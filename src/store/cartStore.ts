@@ -1,0 +1,54 @@
+import { create } from 'zustand';
+import { persist } from 'zustand/middleware';
+
+import { getUUID } from "@/lib/uuid";
+
+export interface CartItem {
+  id: string; // Unique ID for the cart item
+  imageUrl: string; // Firebase Storage URL
+  widthCm: number;
+  heightCm: number;
+  stickersPerSheet: number;
+  sheetQuantity: number;
+  pricePerSheet: number;
+}
+
+interface CartState {
+  items: CartItem[];
+  addItem: (item: Omit<CartItem, 'id'>) => void;
+  removeItem: (id: string) => void;
+  updateQuantity: (id: string, newQuantity: number) => void;
+  clearCart: () => void;
+  getTotalPrice: () => number;
+}
+
+export const useCartStore = create<CartState>()(
+  persist(
+    (set, get) => ({
+      items: [],
+      addItem: (item) => {
+        const id = getUUID();
+        set((state) => ({ items: [...state.items, { ...item, id }] }));
+      },
+      removeItem: (id) =>
+        set((state) => ({ items: state.items.filter((i) => i.id !== id) })),
+      updateQuantity: (id, newQuantity) =>
+        set((state) => ({
+          items: state.items.map((i) =>
+            i.id === id ? { ...i, sheetQuantity: newQuantity } : i
+          ),
+        })),
+      clearCart: () => set({ items: [] }),
+      getTotalPrice: () => {
+        const { items } = get();
+        return items.reduce(
+          (total, item) => total + item.pricePerSheet * item.sheetQuantity,
+          0
+        );
+      },
+    }),
+    {
+      name: 'malenaklejki-cart',
+    }
+  )
+);
