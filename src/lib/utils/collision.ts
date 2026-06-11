@@ -129,7 +129,7 @@ export function getCutLineMargins(
     cutLineType === "circle_inside"
   ) {
     const baseOffset = Math.max(widthCm, heightCm) * 10 * (8 / 120);
-    const offsetMm = (cutLineType === "rounded_inside" || cutLineType === "circle_inside") ? -baseOffset : baseOffset;
+    const offsetMm = (cutLineType === "rounded_inside" || cutLineType === "circle_inside") ? -2 : baseOffset;
     const cutW = wMm + 2 * offsetMm;
     const cutH = hMm + 2 * offsetMm;
     const size = getRotatedSize(cutW, cutH, rotation);
@@ -215,7 +215,7 @@ export function getCutLineBoundingBox(
   const x = overrideParams?.x !== undefined ? overrideParams.x : st.x;
   const y = overrideParams?.y !== undefined ? overrideParams.y : st.y;
 
-  const margins = getCutLineMargins(st, overrideParams);
+  const margins = getOuterMargins(st, overrideParams);
 
   return {
     x: x - margins.left,

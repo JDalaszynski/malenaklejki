@@ -15,6 +15,7 @@ interface NewA4VisualizerProps {
   onDuplicateSticker?: () => void;
   onDeleteSticker?: () => void;
   onCutLineChange?: (type: PlacedSticker["cutLineType"]) => void;
+  isPresentationMode?: boolean;
 }
 
 export function NewA4Visualizer({
@@ -27,6 +28,7 @@ export function NewA4Visualizer({
   onDuplicateSticker,
   onDeleteSticker,
   onCutLineChange,
+  isPresentationMode,
 }: NewA4VisualizerProps) {
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -64,7 +66,63 @@ export function NewA4Visualizer({
   const USABLE_WIDTH_MM = SHEET_WIDTH_MM - 2 * MARGIN_MM; // 190
   const USABLE_HEIGHT_MM = SHEET_HEIGHT_MM - 2 * MARGIN_MM; // 277
 
+  // Presentation State
+  const [demoStickers, setDemoStickers] = useState<PlacedSticker[]>([]);
+
+  useEffect(() => {
+    if (!isPresentationMode) {
+      setDemoStickers([]);
+      return;
+    }
+
+    const DEMO_SEQUENCE_ROWS: PlacedSticker[][] = [
+      [
+        { id: "demo-1", imageUrl: "/images/naklejka-2dcb1324.png", x: 20, y: 20, widthCm: 4, heightCm: 4, aspectRatio: 1, rotation: 0, cutLineType: "none" },
+        { id: "demo-2", imageUrl: "/images/naklejka-49863c60.png", x: 75, y: 20, widthCm: 4, heightCm: 4, aspectRatio: 1, rotation: 0, cutLineType: "none" },
+        { id: "demo-3", imageUrl: "/images/naklejka-72bf19ad.png", x: 130, y: 20, widthCm: 4, heightCm: 4, aspectRatio: 1, rotation: 0, cutLineType: "none" },
+      ],
+      [
+        { id: "demo-4", imageUrl: "/images/naklejka-b118d987.png", x: 25, y: 75, widthCm: 5, heightCm: 5, aspectRatio: 1, rotation: 0, cutLineType: "none" },
+        { id: "demo-5", imageUrl: "/images/naklejka-b571e0b1.png", x: 85, y: 75, widthCm: 5, heightCm: 5, aspectRatio: 1, rotation: 0, cutLineType: "none" },
+        { id: "demo-6", imageUrl: "/images/naklejka-cba65f42.png", x: 145, y: 75, widthCm: 5, heightCm: 5, aspectRatio: 1, rotation: 0, cutLineType: "none" },
+      ],
+      [
+        { id: "demo-7", imageUrl: "/images/naklejka-daee25aa.png", x: 30, y: 140, widthCm: 6, heightCm: 6, aspectRatio: 1, rotation: 0, cutLineType: "none" },
+        { id: "demo-8", imageUrl: "/images/naklejka-2dcb1324.png", x: 120, y: 140, widthCm: 6, heightCm: 6, aspectRatio: 1, rotation: 0, cutLineType: "none" },
+      ],
+      [
+        { id: "demo-9", imageUrl: "/images/naklejka-49863c60.png", x: 20, y: 215, widthCm: 4.5, heightCm: 4.5, aspectRatio: 1, rotation: 0, cutLineType: "none" },
+        { id: "demo-10", imageUrl: "/images/naklejka-72bf19ad.png", x: 80, y: 215, widthCm: 4.5, heightCm: 4.5, aspectRatio: 1, rotation: 0, cutLineType: "none" },
+        { id: "demo-11", imageUrl: "/images/naklejka-b118d987.png", x: 140, y: 215, widthCm: 4.5, heightCm: 4.5, aspectRatio: 1, rotation: 0, cutLineType: "none" },
+      ]
+    ];
+
+    let timeoutId: NodeJS.Timeout;
+    
+    const runDemo = (rowIndex: number) => {
+      if (rowIndex < DEMO_SEQUENCE_ROWS.length) {
+        const nextRow = DEMO_SEQUENCE_ROWS[rowIndex];
+        setDemoStickers(prev => [...prev, ...nextRow]);
+        timeoutId = setTimeout(() => runDemo(rowIndex + 1), 800);
+      } else {
+        timeoutId = setTimeout(() => {
+          setDemoStickers([]);
+          timeoutId = setTimeout(() => runDemo(0), 400);
+        }, 2000);
+      }
+    };
+
+    runDemo(0);
+
+    return () => {
+      clearTimeout(timeoutId);
+    };
+  }, [isPresentationMode]);
+
+  const displayStickers = isPresentationMode ? demoStickers : stickers;
+
   const handlePointerDown = (e: React.PointerEvent, sticker: PlacedSticker) => {
+    if (isPresentationMode) return;
     e.stopPropagation();
     onSelectSticker(sticker.id);
     onError?.(null);
@@ -81,6 +139,7 @@ export function NewA4Visualizer({
   };
 
   const handleResizeStart = (e: React.PointerEvent, sticker: PlacedSticker) => {
+    if (isPresentationMode) return;
     e.stopPropagation();
     onSelectSticker(sticker.id);
     onError?.(null);
@@ -290,6 +349,7 @@ export function NewA4Visualizer({
   };
 
   const handleSheetClick = (e: React.MouseEvent) => {
+    if (isPresentationMode) return;
     if (e.target === e.currentTarget) {
       onSelectSticker(null);
       onError?.(null);
@@ -326,13 +386,13 @@ export function NewA4Visualizer({
       </div>
 
       {/* Render Stickers */}
-      {stickers.map((st) => {
-        const isSelected = st.id === selectedStickerId;
+      {displayStickers.map((st) => {
+        const isSelected = !isPresentationMode && st.id === selectedStickerId;
         const wMm = st.widthCm * 10;
         const hMm = st.heightCm * 10;
         const baseOffsetMm = Math.max(wMm, hMm) * (8 / 120);
         const isInside = st.cutLineType === "rounded_inside" || st.cutLineType === "circle_inside";
-        const offsetMm = isInside ? -baseOffsetMm : baseOffsetMm;
+        const offsetMm = isInside ? -2 : baseOffsetMm;
         const offsetPercentX = (offsetMm / wMm) * 100;
         const offsetPercentY = (offsetMm / hMm) * 100;
 
@@ -342,11 +402,13 @@ export function NewA4Visualizer({
             onPointerDown={(e) => handlePointerDown(e, st)}
             onPointerMove={handlePointerMove}
             onPointerUp={handlePointerUp}
-            className={`absolute flex items-center justify-center cursor-grab active:cursor-grabbing group transition-shadow touch-none ${
+            className={`absolute flex items-center justify-center transition-shadow touch-none ${
               isSelected
                 ? "z-30 ring-2 ring-primary ring-offset-2 rounded-none"
-                : "hover:ring-1 hover:ring-primary/40 hover:ring-offset-1 rounded-none"
-            }`}
+                : isPresentationMode
+                ? "pointer-events-none rounded-none"
+                : "cursor-grab active:cursor-grabbing group hover:ring-1 hover:ring-primary/40 hover:ring-offset-1 rounded-none"
+            } ${isPresentationMode ? "animate-in fade-in zoom-in-50 duration-300 ease-out" : ""}`}
             style={{
               left: `${(st.x / SHEET_WIDTH_MM) * 100}%`,
               top: `${(st.y / SHEET_HEIGHT_MM) * 100}%`,
@@ -359,7 +421,10 @@ export function NewA4Visualizer({
               src={st.imageUrl}
               alt="Naklejka"
               draggable={false}
-              className="max-w-full max-h-full object-contain pointer-events-none select-none rounded-md"
+              className="max-w-full max-h-full object-contain pointer-events-none select-none"
+              style={{
+                borderRadius: "1.008cqw",
+              }}
             />
 
             {/* Cut line visualizer */}
@@ -408,6 +473,7 @@ export function NewA4Visualizer({
                   top: `${-offsetPercentY}%`,
                   bottom: `${-offsetPercentY}%`,
                   borderRadius: "1.008cqw",
+                  filter: "drop-shadow(0 0 2px #ff5ebb)",
                 }}
               />
             )}
@@ -419,6 +485,7 @@ export function NewA4Visualizer({
                   right: `${-offsetPercentX}%`,
                   top: `${-offsetPercentY}%`,
                   bottom: `${-offsetPercentY}%`,
+                  filter: "drop-shadow(0 0 2px #ff5ebb)",
                 }}
               />
             )}
@@ -519,7 +586,6 @@ export function NewA4Visualizer({
                       { type: "contour", label: "Kontur" },
                       { type: "rounded", label: "Prostokąt" },
                       { type: "circle", label: "Koło" },
-                      { type: "contour_inside", label: "Kontur wew." },
                       { type: "rounded_inside", label: "Prostokąt wew." },
                       { type: "circle_inside", label: "Koło wew." },
                     ].map((opt) => (

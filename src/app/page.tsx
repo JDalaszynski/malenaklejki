@@ -5,8 +5,8 @@ import { useState, useEffect, useMemo } from "react";
 import Link from "next/link";
 import { Header } from "@/components/layout/Header";
 import { NewA4Visualizer } from "@/components/creator/NewA4Visualizer";
+import { A4Visualizer3D } from "@/components/creator/A4Visualizer3D";
 import { StickerEditModal } from "@/components/creator/StickerEditModal";
-import { ImageUploader } from "@/components/creator/ImageUploader";
 import { AIGenerator } from "@/components/creator/AIGenerator";
 import { PlacedSticker } from "@/types/creator";
 import { useCartStore } from "@/store/cartStore";
@@ -36,7 +36,8 @@ import {
   Square,
   Circle,
   AlertTriangle,
-  Truck
+  Truck,
+  X
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -50,6 +51,14 @@ export default function Home() {
   const [selectedStickerId, setSelectedStickerId] = useState<string | null>(null);
   const [sheetQuantity, setSheetQuantity] = useState<number>(1);
   const [error, setError] = useState<string | null>(null);
+  const [visualizerMode, setVisualizerMode] = useState<"2d" | "3d">("2d");
+  const [hasUserEverAddedStickers, setHasUserEverAddedStickers] = useState(false);
+
+  useEffect(() => {
+    if (stickers.length > 0 && !hasUserEverAddedStickers) {
+      setHasUserEverAddedStickers(true);
+    }
+  }, [stickers, hasUserEverAddedStickers]);
 
   const [stickerDimensions, setStickerDimensions] = useState<Record<string, { width: number; height: number }>>({});
 
@@ -72,6 +81,7 @@ export default function Home() {
   const [activeEditSticker, setActiveEditSticker] = useState<PlacedSticker | null>(null);
   const [addingMethod, setAddingMethod] = useState<"none" | "upload" | "ai">("none");
   const [pendingImageUrl, setPendingImageUrl] = useState<string | null>(null);
+  const [showConfirmCartModal, setShowConfirmCartModal] = useState(false);
 
   // Loaders
   const [isAddingToCart, setIsAddingToCart] = useState(false);
@@ -263,6 +273,7 @@ export default function Home() {
   const processAndAddSticker = (url: string) => {
     setIsPlacingSticker(true);
     setError(null);
+    setVisualizerMode("2d");
 
     const img = new Image();
     img.onload = () => {
@@ -312,17 +323,99 @@ export default function Home() {
     if (selectedSticker) {
       setActiveEditSticker(selectedSticker);
       setShowEditModal(true);
+      setVisualizerMode("2d");
     }
   };
 
   const handleSaveEdit = (newUrl: string) => {
     if (!activeEditSticker) return;
+    setVisualizerMode("2d");
 
     // Load new image to verify aspect ratio
     const img = new Image();
     img.onload = () => {
       const aspect = img.width / img.height;
       const newHeightCm = activeEditSticker.widthCm / aspect;
+
+      // Validate bounds and collisions
+      let finalWidthCm = activeEditSticker.widthCm;
+      let finalHeightCm = newHeightCm;
+      let finalX = activeEditSticker.x;
+      let finalY = activeEditSticker.y;
+
+      const otherStickers = stickers.filter((s) => s.id !== activeEditSticker.id);
+
+      const testFits = (w: number) => {
+        const h = w / aspect;
+        const margins = getOuterMargins(activeEditSticker, { widthCm: w, heightCm: h });
+
+        let tx = activeEditSticker.x;
+        let ty = activeEditSticker.y;
+
+        // Clamp to safety boundaries
+        if (tx < 10 + margins.left) tx = 10 + margins.left;
+        if (tx > 200 - margins.right) tx = 200 - margins.right;
+        if (ty < 10 + margins.top) ty = 10 + margins.top;
+        if (ty > 287 - margins.bottom) ty = 287 - margins.bottom;
+
+        const fitsIn =
+          tx >= 10 + margins.left &&
+          tx <= 200 - margins.right &&
+          ty >= 10 + margins.top &&
+          ty <= 287 - margins.bottom;
+
+        if (!fitsIn) return null;
+
+        const rotRect = getCutLineBoundingBox(activeEditSticker, {
+          x: tx,
+          y: ty,
+          widthCm: w,
+          heightCm: h,
+        });
+
+        const collision = otherStickers.some((other) => {
+          return checkOverlap(rotRect, getCutLineBoundingBox(other), 1.0);
+        });
+
+        if (collision) return null;
+        return { x: tx, y: ty, w, h };
+      };
+
+      const fitResult = testFits(finalWidthCm);
+      if (fitResult) {
+        finalX = fitResult.x;
+        finalY = fitResult.y;
+      } else {
+        // Try to scale down to find a fit without collisions
+        let found = false;
+        for (let w = finalWidthCm; w >= 1.5; w -= 0.1) {
+          const res = testFits(w);
+          if (res) {
+            finalWidthCm = res.w;
+            finalHeightCm = res.h;
+            finalX = res.x;
+            finalY = res.y;
+            found = true;
+            break;
+          }
+        }
+
+        if (!found) {
+          // If scaling down in place doesn't work, try finding a free position on the sheet
+          const freePos = findFreePosition(15, 15 / aspect, activeEditSticker.rotation || 0, otherStickers);
+          if (freePos) {
+            finalWidthCm = 1.5;
+            finalHeightCm = 1.5 / aspect;
+            finalX = freePos.x;
+            finalY = freePos.y;
+          } else {
+            setError("Brak miejsca na zaktualizowaną naklejkę! Uporządkuj lub usuń inne naklejki.");
+            setShowEditModal(false);
+            setActiveEditSticker(null);
+            return;
+          }
+        }
+      }
 
       // Update sticker URL and dimensions
       setStickers(
@@ -331,8 +424,11 @@ export default function Home() {
             ? {
               ...s,
               imageUrl: newUrl,
-              heightCm: newHeightCm,
+              widthCm: Math.round(finalWidthCm * 10) / 10,
+              heightCm: Math.round(finalHeightCm * 10) / 10,
               aspectRatio: aspect,
+              x: finalX,
+              y: finalY,
               contourPolygons: undefined,
             }
             : s
@@ -867,8 +963,13 @@ export default function Home() {
   };
 
   // Add sheet to Cart
-  const handleAddToCart = async () => {
-    if (stickers.length === 0) return;
+  const handleAddToCart = () => {
+    if (stickers.length === 0 || stickers.some((s) => s.cutLineType === "none")) return;
+    setShowConfirmCartModal(true);
+  };
+
+  // Actual logic to save and add to cart after confirmation
+  const executeAddToCart = async () => {
     setIsAddingToCart(true);
     setError(null);
 
@@ -894,6 +995,7 @@ export default function Home() {
         pricePerSheet: 49.00,
       });
 
+      setShowConfirmCartModal(false);
       router.push("/koszyk");
     } catch (err: any) {
       console.error(err);
@@ -956,6 +1058,7 @@ export default function Home() {
         cutLineType: "none",
       });
       setShowEditModal(true);
+      setVisualizerMode("2d");
     } catch (err) {
       console.error(err);
       setError("Nie udało się przesłać pliku.");
@@ -1008,7 +1111,7 @@ export default function Home() {
             Dodaj Naklejki na Arkusz
           </h1>
           <p className="text-muted-foreground text-sm font-semibold mt-1">
-            Dodaj różne naklejki z komputera lub stwórz je za pomocą AI.
+            Dodaj różne naklejki z komputera lub stwórz je za pomocą naszego generatora obrazów.
           </p>
         </div>
 
@@ -1026,19 +1129,9 @@ export default function Home() {
 
               {addingMethod === "none" ? (
                 <div className="grid grid-cols-2 gap-4">
-                  {/* Desktop Upload Button */}
-                  <button
-                    onClick={() => setAddingMethod("upload")}
-                    className="hidden sm:flex flex-col items-center justify-center p-6 border-2 border-dashed border-border/70 hover:border-primary/45 rounded-2xl bg-muted/10 hover:bg-muted/30 transition-all hover:scale-[1.01]"
-                  >
-                    <UploadCloud className="w-8 h-8 text-muted-foreground group-hover:text-primary mb-2 opacity-75" />
-                    <span className="text-sm font-bold text-foreground">Wgraj zdjęcie</span>
-                    <span className="text-[10px] font-semibold text-muted-foreground mt-0.5">JPG / PNG</span>
-                  </button>
-
-                  {/* Mobile Upload Button (Direct File Picker) */}
+                  {/* Unified Direct File Picker */}
                   <label
-                    className="flex sm:hidden flex-col items-center justify-center p-6 border-2 border-dashed border-border/70 hover:border-primary/45 rounded-2xl bg-muted/10 hover:bg-muted/30 transition-all active:scale-[0.99] cursor-pointer"
+                    className="flex flex-col items-center justify-center p-6 border-2 border-dashed border-border/70 hover:border-primary/45 rounded-2xl bg-muted/10 hover:bg-muted/30 transition-all hover:scale-[1.01] active:scale-[0.99] cursor-pointer"
                   >
                     <input
                       type="file"
@@ -1068,7 +1161,7 @@ export default function Home() {
                 <div className="space-y-4">
                   <div className="flex justify-between items-center pb-2 border-b border-border/20">
                     <span className="text-xs font-black uppercase tracking-wider text-muted-foreground">
-                      {addingMethod === "upload" ? "Wgrywanie pliku" : "Tworzenie przez AI"}
+                      Tworzenie przez AI
                     </span>
                     <button
                       onClick={() => setAddingMethod("none")}
@@ -1078,43 +1171,24 @@ export default function Home() {
                     </button>
                   </div>
 
-                  {addingMethod === "upload" ? (
-                    <ImageUploader
-                      onImageUploaded={(url) => {
-                        setPendingImageUrl(url);
-                        // Open crop/bg removal modal for the newly uploaded sticker immediately
-                        setActiveEditSticker({
-                          id: "new-upload",
-                          imageUrl: url,
-                          x: 15,
-                          y: 15,
-                          widthCm: 5,
-                          heightCm: 5,
-                          aspectRatio: 1,
-                          cutLineType: "none",
-                        });
-                        setShowEditModal(true);
-                      }}
-                    />
-                  ) : (
-                    <AIGenerator
-                      onImageGenerated={(url) => {
-                        setPendingImageUrl(url);
-                        // Open crop/bg removal modal for AI generated sticker immediately
-                        setActiveEditSticker({
-                          id: "new-ai",
-                          imageUrl: url,
-                          x: 15,
-                          y: 15,
-                          widthCm: 5,
-                          heightCm: 5,
-                          aspectRatio: 1,
-                          cutLineType: "none",
-                        });
-                        setShowEditModal(true);
-                      }}
-                    />
-                  )}
+                  <AIGenerator
+                    onImageGenerated={(url) => {
+                      setPendingImageUrl(url);
+                      // Open crop/bg removal modal for AI generated sticker immediately
+                      setActiveEditSticker({
+                        id: "new-ai",
+                        imageUrl: url,
+                        x: 15,
+                        y: 15,
+                        widthCm: 5,
+                        heightCm: 5,
+                        aspectRatio: 1,
+                        cutLineType: "none",
+                      });
+                      setShowEditModal(true);
+                      setVisualizerMode("2d");
+                    }}
+                  />
                 </div>
               )}
             </div>
@@ -1265,13 +1339,12 @@ export default function Home() {
                 {/* Cut line options */}
                 <div className="space-y-3">
                   <span className="text-sm font-bold text-foreground block">Rodzaj linii cięcia (naklejki)</span>
-                  <div className="grid grid-cols-4 gap-2">
+                  <div className="grid grid-cols-3 gap-2">
                     {[
                       { type: "none", label: "Brak", icon: Ban },
                       { type: "contour", label: "Kontur", icon: Sparkles },
                       { type: "rounded", label: "Prostokąt", icon: Square },
                       { type: "circle", label: "Koło", icon: Circle },
-                      { type: "contour_inside", label: "Kontur wew.", icon: Sparkles },
                       { type: "rounded_inside", label: "Prostokąt wew.", icon: Square },
                       { type: "circle_inside", label: "Koło wew.", icon: Circle },
                     ].map((opt) => {
@@ -1299,7 +1372,7 @@ export default function Home() {
                 <span>Dodaj swoją pierwszą naklejkę na arkusz!</span>
               </div>
             ) : (
-              <div className="bg-card border border-border/60 rounded-3xl p-6 shadow-sm text-center py-8 text-muted-foreground font-semibold">
+              <div className="hidden sm:block bg-card border border-border/60 rounded-3xl p-6 shadow-sm text-center py-8 text-muted-foreground font-semibold">
                 Kliknij na naklejkę na arkuszu, aby włączyć jej dopasowanie, zmienić rozmiar lub rodzaj cięcia.
               </div>
             )}
@@ -1311,7 +1384,11 @@ export default function Home() {
             onDragOver={handleDragOver}
             onDragLeave={handleDragLeave}
             onDrop={handleDrop}
-            className="relative lg:col-span-6 flex flex-col items-center justify-center bg-card border border-border/60 rounded-3xl p-6 sm:p-8 shadow-[0_8px_30px_rgba(0,0,0,0.02)] min-h-[500px] order-1 lg:order-2"
+            className={`relative lg:col-span-6 flex flex-col items-center justify-center rounded-3xl p-6 sm:p-8 min-h-[500px] order-1 lg:order-2 transition-all ${
+              stickers.length === 0
+                ? "bg-transparent sm:bg-card border-none sm:border sm:border-border/60 shadow-none sm:shadow-[0_8px_30px_rgba(0,0,0,0.02)]"
+                : "bg-card border border-border/60 shadow-[0_8px_30px_rgba(0,0,0,0.02)]"
+            }`}
           >
             {/* Local Drag Overlay */}
             {isDraggingOverSheet && (
@@ -1324,20 +1401,83 @@ export default function Home() {
               </div>
             )}
 
-            <p className="text-xs font-black uppercase text-muted-foreground tracking-wider mb-6">
-              Twój Arkusz A4 (Podgląd ułożenia)
-            </p>
-            <NewA4Visualizer
-              stickers={stickers}
-              selectedStickerId={selectedStickerId}
-              onSelectSticker={setSelectedStickerId}
-              onUpdateStickers={setStickers}
-              onError={setError}
-              onEditSticker={handleOpenEdit}
-              onDuplicateSticker={handleDuplicateSticker}
-              onDeleteSticker={handleDeleteSticker}
-              onCutLineChange={handleCutLineChange}
-            />
+            <div className="flex flex-col sm:flex-row items-center justify-between w-full mb-6 gap-3 border-b border-border/40 pb-4">
+              <p className="text-xs font-black uppercase text-muted-foreground tracking-wider">
+                Twój Arkusz A4 (Podgląd ułożenia)
+              </p>
+
+              <div className="flex bg-muted/60 p-0.5 rounded-xl border border-border/30 relative">
+                <button
+                  type="button"
+                  onClick={() => setVisualizerMode("2d")}
+                  className={`relative px-4 py-1.5 text-xs font-bold rounded-lg transition-all ${visualizerMode === "2d" ? "text-foreground" : "text-muted-foreground hover:text-foreground"
+                    }`}
+                >
+                  {visualizerMode === "2d" && (
+                    <motion.div
+                      layoutId="activeVisualizerMode"
+                      className="absolute inset-0 bg-background rounded-lg shadow-sm"
+                      transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                    />
+                  )}
+                  <span className="relative z-10">Edycja</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setVisualizerMode("3d")}
+                  className={`relative px-4 py-1.5 text-xs font-bold rounded-lg transition-all flex items-center gap-1.5 ${visualizerMode === "3d" ? "text-foreground" : "text-muted-foreground hover:text-foreground"
+                    }`}
+                >
+                  {visualizerMode === "3d" && (
+                    <motion.div
+                      layoutId="activeVisualizerMode"
+                      className="absolute inset-0 bg-background rounded-lg shadow-sm"
+                      transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                    />
+                  )}
+                  <span className="relative z-10">Wizualizacja</span>
+                </button>
+              </div>
+            </div>
+
+            <div className="relative w-full max-w-[480px] aspect-[210/297] flex items-center justify-center">
+              {visualizerMode === "2d" ? (
+                <NewA4Visualizer
+                  stickers={stickers}
+                  selectedStickerId={selectedStickerId}
+                  onSelectSticker={setSelectedStickerId}
+                  onUpdateStickers={setStickers}
+                  onError={setError}
+                  onEditSticker={handleOpenEdit}
+                  onDuplicateSticker={handleDuplicateSticker}
+                  onDeleteSticker={handleDeleteSticker}
+                  onCutLineChange={handleCutLineChange}
+                  isPresentationMode={stickers.length === 0 && !hasUserEverAddedStickers}
+                />
+              ) : (
+                <A4Visualizer3D stickers={stickers} />
+              )}
+
+              {stickers.length === 0 && (
+                <label className="absolute inset-0 flex sm:hidden flex-col items-center justify-center bg-transparent cursor-pointer z-40 rounded-lg">
+                  <input
+                    type="file"
+                    accept="image/*"
+                    className="hidden"
+                    onChange={(e) => {
+                      const file = e.target.files?.[0];
+                      if (file) handleMobileFileUpload(file);
+                      e.target.value = "";
+                    }}
+                  />
+                  <div className="flex flex-col items-center justify-center bg-background/95 backdrop-blur-sm border border-border/80 py-4 px-6 rounded-2xl shadow-lg animate-bounce">
+                    <UploadCloud className="w-6 h-6 text-primary mb-1.5" />
+                    <span className="text-xs font-extrabold text-foreground">Wgraj zdjęcie</span>
+                    <span className="text-[9px] font-semibold text-muted-foreground mt-0.5">Dodaj pierwszą naklejkę</span>
+                  </div>
+                </label>
+              )}
+            </div>
 
             <div className="flex flex-wrap items-center justify-center gap-2 mt-4 w-full max-w-md">
               <button
@@ -1476,6 +1616,71 @@ export default function Home() {
               setPendingImageUrl(null);
             }}
           />
+        )}
+      </AnimatePresence>
+
+      {/* Confirm Cart Modal */}
+      <AnimatePresence>
+        {showConfirmCartModal && (
+          <div className="fixed inset-0 z-[150] bg-foreground/30 backdrop-blur-sm flex items-center justify-center p-4">
+            <motion.div
+              initial={{ scale: 0.95, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.95, opacity: 0 }}
+              transition={{ duration: 0.2, ease: "easeOut" }}
+              className="bg-card border border-border/80 rounded-3xl w-full max-w-md p-6 sm:p-8 flex flex-col gap-4 shadow-[0_12px_40px_rgba(0,0,0,0.06)] relative animate-in fade-in zoom-in-95 duration-200"
+            >
+              {/* Header */}
+              <div className="flex justify-between items-center w-full pb-2 border-b border-border/30">
+                <div className="flex items-center gap-2">
+                  <ShoppingCart className="w-5 h-5 text-primary" />
+                  <h3 className="text-lg font-extrabold text-foreground">Czy arkusz jest gotowy?</h3>
+                </div>
+                {!isAddingToCart && (
+                  <button
+                    onClick={() => setShowConfirmCartModal(false)}
+                    className="p-1.5 rounded-full border border-border hover:bg-muted/50 active:scale-95 transition-all cursor-pointer"
+                  >
+                    <X className="w-4 h-4 text-foreground" />
+                  </button>
+                )}
+              </div>
+
+              {/* Message */}
+              <div className="py-2">
+                <p className="text-sm font-semibold text-muted-foreground leading-relaxed text-left">
+                  Po dodaniu do koszyka <strong>nie będziesz mieć możliwości edycji</strong> tego arkusza.
+                </p>
+              </div>
+
+              {/* Actions */}
+              <div className="grid grid-cols-2 gap-3 w-full pt-3 border-t border-border/30">
+                <button
+                  type="button"
+                  onClick={() => setShowConfirmCartModal(false)}
+                  disabled={isAddingToCart}
+                  className="w-full inline-flex items-center justify-center rounded-xl text-xs sm:text-sm font-bold bg-muted hover:bg-muted/80 text-foreground h-11 transition-all active:scale-[0.98] disabled:opacity-50 cursor-pointer whitespace-nowrap"
+                >
+                  Edytuj dalej
+                </button>
+                <button
+                  type="button"
+                  onClick={executeAddToCart}
+                  disabled={isAddingToCart}
+                  className="w-full inline-flex items-center justify-center rounded-xl text-xs sm:text-sm font-bold bg-primary text-primary-foreground hover:bg-primary/95 h-11 shadow-sm transition-all active:scale-[0.98] disabled:opacity-50 cursor-pointer whitespace-nowrap"
+                >
+                  {isAddingToCart ? (
+                    <>
+                      <Loader2 className="w-3.5 h-3.5 mr-1.5 animate-spin" />
+                      Zapisujemy...
+                    </>
+                  ) : (
+                    "Tak, dodaj do koszyka!"
+                  )}
+                </button>
+              </div>
+            </motion.div>
+          </div>
         )}
       </AnimatePresence>
 

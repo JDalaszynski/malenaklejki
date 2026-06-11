@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Nunito, Inter } from "next/font/google";
 import "./globals.css";
 import { CookieBanner } from "@/components/layout/CookieBanner";
+import { Analytics } from "@vercel/analytics/react";
 
 const nunito = Nunito({
   variable: "--font-sans",
@@ -31,6 +32,7 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col font-sans">
         {children}
         <CookieBanner />
+        <Analytics />
       </body>
     </html>
   );

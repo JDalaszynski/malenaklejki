@@ -128,7 +128,13 @@
   html {
     @apply font-sans;
   }
-  button {
-    cursor: pointer;
+}
+
+@keyframes glossSweep {
+  0% {
+    background-position: 150% 0%;
+  }
+  100% {
+    background-position: -50% 0%;
   }
 }
