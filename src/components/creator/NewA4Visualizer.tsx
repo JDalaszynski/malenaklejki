@@ -464,7 +464,7 @@ export function NewA4Visualizer({
                 src={st.imageUrl}
                 alt="Naklejka"
                 draggable={false}
-                className="max-w-full max-h-full object-contain pointer-events-none select-none cmyk-preview"
+                className="max-w-full max-h-full object-contain pointer-events-none select-none"
                 style={{
                   borderRadius: "1.008cqw",
                 }}
@@ -523,7 +523,7 @@ export function NewA4Visualizer({
               )}
               {(st.cutLineType === "circle" || st.cutLineType === "circle_inside") && (
                 <div
-                  className="absolute pointer-events-none border-2 border-dashed border-[#ff5ebb] rounded-full animate-pulse z-10"
+                  className="absolute pointer-events-none border-2 border-dashed border-[#ff5ebb] rounded-[50%] animate-pulse z-10"
                   style={{
                     left: "50%",
                     top: "50%",

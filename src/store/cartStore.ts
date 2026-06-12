@@ -5,7 +5,8 @@ import { getUUID } from "@/lib/uuid";
 
 export interface CartItem {
   id: string; // Unique ID for the cart item
-  imageUrl: string; // Firebase Storage URL
+  imageUrl: string; // Firebase Storage URL – print version (color)
+  cutLinesImageUrl?: string; // Firebase Storage URL – cut-lines version (black shapes on white)
   widthCm: number;
   heightCm: number;
   stickersPerSheet: number;

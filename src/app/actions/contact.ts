@@ -13,62 +13,72 @@ export async function sendContactMessage(formData: {
 
   try {
     const adminEmail = process.env.ADMIN_EMAIL || "kontakt@malenaklejki.pl";
+    const year = new Date().getFullYear();
+
+    const htmlContent = `
+<!DOCTYPE html>
+<html lang="pl">
+<head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/></head>
+<body style="margin:0;padding:0;background-color:#f0fdf9;font-family:'Inter',system-ui,-apple-system,sans-serif;">
+  <div style="max-width:620px;margin:0 auto;padding:32px 16px;">
+
+    <!-- Header -->
+    <div style="background:linear-gradient(135deg,#0f172a 0%,#1e293b 100%);border-radius:24px 24px 0 0;padding:28px 32px;text-align:center;">
+      <div style="font-size:13px;font-weight:800;text-transform:uppercase;letter-spacing:3px;color:#a9e4d7;margin-bottom:8px;">
+        MałeNaklejki · Formularz Kontaktowy
+      </div>
+      <h1 style="color:#ffffff;margin:0;font-size:22px;font-weight:900;">
+        ✉️ Nowa wiadomość
+      </h1>
+    </div>
+
+    <!-- Body -->
+    <div style="background:#ffffff;padding:32px;border:1px solid #e2e8f0;border-top:none;">
+
+      <!-- Sender badge -->
+      <div style="background:linear-gradient(135deg,#f0fdf9,#ecfdf5);border:1.5px solid #a9e4d7;border-radius:16px;padding:18px 24px;margin-bottom:28px;">
+        <p style="font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:2px;color:#64748b;margin:0 0 4px;">Od</p>
+        <p style="font-size:20px;font-weight:900;color:#0f172a;margin:0;">${formData.name}</p>
+        <a href="mailto:${formData.email}" style="font-size:14px;color:#a9e4d7;font-weight:700;text-decoration:none;">${formData.email}</a>
+      </div>
+
+      <!-- Subject -->
+      <h2 style="font-size:13px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:#94a3b8;margin-bottom:8px;margin-top:0;">Temat</h2>
+      <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;padding:14px 20px;margin-bottom:24px;">
+        <p style="font-size:15px;font-weight:700;color:#0f172a;margin:0;">${formData.subject}</p>
+      </div>
+
+      <!-- Message -->
+      <h2 style="font-size:13px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:#94a3b8;margin-bottom:8px;">Treść wiadomości</h2>
+      <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;padding:20px 24px;margin-bottom:28px;">
+        <p style="font-size:14px;color:#334155;line-height:1.75;margin:0;white-space:pre-wrap;">${formData.message}</p>
+      </div>
+
+      <!-- CTA -->
+      <div style="text-align:center;">
+        <a href="mailto:${formData.email}?subject=Re: ${encodeURIComponent(formData.subject)}"
+           style="display:inline-block;background:linear-gradient(135deg,#a9e4d7 0%,#6ee7b7 100%);color:#0f172a;font-weight:800;font-size:14px;padding:14px 36px;border-radius:14px;text-decoration:none;letter-spacing:0.2px;">
+          Odpowiedz na wiadomość
+        </a>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div style="background:#f8fafc;border:1px solid #e2e8f0;border-top:none;border-radius:0 0 24px 24px;padding:16px 32px;text-align:center;">
+      <p style="font-size:12px;color:#94a3b8;margin:0;">
+        MałeNaklejki · System powiadomień · ${year}
+      </p>
+    </div>
+  </div>
+</body>
+</html>`;
+
     const payload = {
-      // Must use a verified sender email in Brevo (typically adminEmail) to avoid 400 Bad Request
-      sender: { name: `${formData.name} (Formularz Kontaktowy)`, email: adminEmail },
+      sender: { name: "MałeNaklejki – Formularz Kontaktowy", email: adminEmail },
       to: [{ email: adminEmail, name: "Kontakt MałeNaklejki" }],
       replyTo: { email: formData.email, name: formData.name },
-      subject: `[Formularz Kontaktowy] ${formData.subject}`,
-      htmlContent: `
-        <div style="font-family: 'Inter', system-ui, -apple-system, sans-serif; background-color: #f8fafc; padding: 40px 20px; color: #1e293b; margin: 0;">
-          <div style="max-w: 600px; margin: 0 auto; background-color: #ffffff; border-radius: 24px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05); overflow: hidden; border: 1px solid #e2e8f0;">
-            <!-- Header with gradient -->
-            <div style="background: linear-gradient(135deg, #a855f7 0%, #ec4899 100%); padding: 32px 24px; text-align: center;">
-              <h1 style="color: #ffffff; margin: 0; font-size: 26px; font-weight: 800; letter-spacing: -0.5px;">MałeNaklejki</h1>
-              <p style="color: rgba(255, 255, 255, 0.9); margin: 6px 0 0 0; font-size: 14px; font-weight: 500;">Nowa wiadomość z formularza kontaktowego</p>
-            </div>
-            
-            <!-- Content Body -->
-            <div style="padding: 32px 24px;">
-              <h2 style="color: #0f172a; margin-top: 0; margin-bottom: 24px; font-size: 18px; font-weight: 700; border-bottom: 1px solid #f1f5f9; padding-bottom: 12px;">Szczegóły zgłoszenia</h2>
-              
-              <table style="width: 100%; border-collapse: collapse; margin-bottom: 24px;">
-                <tr>
-                  <td style="padding: 10px 0; font-size: 14px; color: #64748b; font-weight: 600; width: 150px;">Nadawca:</td>
-                  <td style="padding: 10px 0; font-size: 14px; color: #0f172a; font-weight: 700;">${formData.name}</td>
-                </tr>
-                <tr>
-                  <td style="padding: 10px 0; font-size: 14px; color: #64748b; font-weight: 600;">E-mail:</td>
-                  <td style="padding: 10px 0; font-size: 14px; color: #0f172a; font-weight: 700;">
-                    <a href="mailto:${formData.email}" style="color: #a855f7; text-decoration: none; border-bottom: 1px dashed #a855f7;">${formData.email}</a>
-                  </td>
-                </tr>
-                <tr>
-                  <td style="padding: 10px 0; font-size: 14px; color: #64748b; font-weight: 600;">Temat:</td>
-                  <td style="padding: 10px 0; font-size: 14px; color: #0f172a; font-weight: 700;">${formData.subject}</td>
-                </tr>
-              </table>
-              
-              <div style="background-color: #f8fafc; border-radius: 16px; border: 1px solid #e2e8f0; padding: 24px; margin-bottom: 32px;">
-                <h3 style="color: #475569; font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; margin-top: 0; margin-bottom: 12px;">Treść wiadomości:</h3>
-                <p style="color: #334155; font-size: 15px; line-height: 1.6; margin: 0; white-space: pre-wrap;">${formData.message}</p>
-              </div>
-              
-              <!-- Action Button -->
-              <div style="text-align: center; margin-bottom: 16px;">
-                <a href="mailto:${formData.email}?subject=Re: [Formularz Kontaktowy] ${encodeURIComponent(formData.subject)}" style="display: inline-block; background: linear-gradient(135deg, #a855f7 0%, #ec4899 100%); color: #ffffff; font-weight: 700; font-size: 14px; padding: 14px 32px; border-radius: 12px; text-decoration: none; box-shadow: 0 4px 12px rgba(168, 85, 247, 0.2);">
-                  Odpowiedz na e-mail
-                </a>
-              </div>
-            </div>
-            
-            <!-- Footer -->
-            <div style="background-color: #f1f5f9; padding: 20px 24px; text-align: center; border-top: 1px solid #e2e8f0;">
-              <p style="color: #94a3b8; font-size: 12px; margin: 0;">Wiadomość wygenerowana automatycznie przez system sklepu MałeNaklejki.</p>
-            </div>
-          </div>
-        </div>
-      `,
+      subject: `[Kontakt] ${formData.subject} — od ${formData.name}`,
+      htmlContent,
     };
 
     const response = await fetch("https://api.brevo.com/v3/smtp/email", {

@@ -912,7 +912,7 @@ export default function Home() {
           ctx.clip();
 
           const isInsideCut = st.cutLineType === "rounded_inside" || st.cutLineType === "circle_inside" || st.cutLineType === "contour_inside";
-          if ((mode === "normal" || mode === "print") && isInsideCut) {
+          if (mode === "normal" && isInsideCut) {
             ctx.save();
             ctx.beginPath();
             if (st.cutLineType === "rounded_inside") {
@@ -967,11 +967,11 @@ export default function Home() {
     ctx.textBaseline = "middle";
 
     // Top watermark
-    const topText = "mała ".repeat(80).trim();
+    const topText = "małe ".repeat(80).trim();
     ctx.fillText(topText, A4_W / 2, 5 * MM_TO_PX);
 
     // Bottom watermark
-    const bottomText = "NAKLEJKA ".repeat(50).trim();
+    const bottomText = "NAKLEJKI ".repeat(50).trim();
     ctx.fillText(bottomText, A4_W / 2, 292 * MM_TO_PX);
 
     ctx.restore();
@@ -991,20 +991,35 @@ export default function Home() {
     setError(null);
 
     try {
-      const canvas = await renderSheetCanvas("print");
-      const blob = await new Promise<Blob | null>((resolve) =>
-        canvas.toBlob((b) => resolve(b), "image/jpeg", 0.85)
+      // Render print version (color, with sticker images)
+      const printCanvas = await renderSheetCanvas("print");
+      const printBlob = await new Promise<Blob | null>((resolve) =>
+        printCanvas.toBlob((b) => resolve(b), "image/jpeg", 0.85)
+      );
+      if (!printBlob) throw new Error("Could not export print canvas to blob.");
+
+      const printFileName = `composition-${getUUID()}.jpg`;
+      const printRef = ref(storage, `uploads/${printFileName}`);
+      const printSnapshot = await uploadBytes(printRef, printBlob);
+      const printUrl = await getDownloadURL(printSnapshot.ref);
+
+      // Render cut-lines version (black shapes on white, no images)
+      const cutCanvas = await renderSheetCanvas("cut-lines");
+      const cutBlob = await new Promise<Blob | null>((resolve) =>
+        cutCanvas.toBlob((b) => resolve(b), "image/jpeg", 0.85)
       );
 
-      if (!blob) throw new Error("Could not export canvas to blob.");
-
-      const fileName = `composition-${getUUID()}.jpg`;
-      const storageRef = ref(storage, `uploads/${fileName}`);
-      const snapshot = await uploadBytes(storageRef, blob);
-      const downloadUrl = await getDownloadURL(snapshot.ref);
+      let cutLinesUrl: string | undefined;
+      if (cutBlob) {
+        const cutFileName = `composition-cutlines-${getUUID()}.jpg`;
+        const cutRef = ref(storage, `uploads/${cutFileName}`);
+        const cutSnapshot = await uploadBytes(cutRef, cutBlob);
+        cutLinesUrl = await getDownloadURL(cutSnapshot.ref);
+      }
 
       addItem({
-        imageUrl: downloadUrl,
+        imageUrl: printUrl,
+        cutLinesImageUrl: cutLinesUrl,
         widthCm: 21,
         heightCm: 29.7, // A4 sheet size
         stickersPerSheet: stickers.length,

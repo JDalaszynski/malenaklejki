@@ -94,7 +94,7 @@ export function A4Visualizer3D({ stickers }: A4Visualizer3DProps) {
             transform: "translateZ(1px)",
           }}
         >
-          {Array(50).fill("mała").join(" ")}
+          {Array(50).fill("małe").join(" ")}
         </div>
 
         <div
@@ -105,7 +105,7 @@ export function A4Visualizer3D({ stickers }: A4Visualizer3DProps) {
             transform: "translateZ(1px)",
           }}
         >
-          {Array(35).fill("NAKLEJKA").join(" ")}
+          {Array(35).fill("NAKLEJKI").join(" ")}
         </div>
 
         {/* Render Stickers with 3D Depth */}
