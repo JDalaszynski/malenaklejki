@@ -6,11 +6,24 @@ function getDb(): admin.firestore.Firestore {
   if (!dbInstance) {
     if (!admin.apps.length) {
       try {
+        const rawKey = process.env.FIREBASE_PRIVATE_KEY;
+        let formattedKey = rawKey;
+        if (formattedKey) {
+          formattedKey = formattedKey.trim();
+          if (formattedKey.startsWith('"') && formattedKey.endsWith('"')) {
+            formattedKey = formattedKey.substring(1, formattedKey.length - 1);
+          }
+          if (formattedKey.startsWith("'") && formattedKey.endsWith("'")) {
+            formattedKey = formattedKey.substring(1, formattedKey.length - 1);
+          }
+          formattedKey = formattedKey.replace(/\\n/g, '\n');
+        }
+
         admin.initializeApp({
           credential: admin.credential.cert({
             projectId: process.env.FIREBASE_PROJECT_ID,
             clientEmail: process.env.FIREBASE_CLIENT_EMAIL,
-            privateKey: process.env.FIREBASE_PRIVATE_KEY?.replace(/\\n/g, '\n'),
+            privateKey: formattedKey,
           }),
         });
       } catch (error) {
