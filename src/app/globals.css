@@ -190,3 +190,8 @@
     background-position: -50% 0%;
   }
 }
+
+/* Simulates CMYK printed colors (less saturated, slightly adjusted contrast/brightness) */
+.cmyk-preview {
+  filter: contrast(0.94) saturate(0.82) brightness(1.01);
+}

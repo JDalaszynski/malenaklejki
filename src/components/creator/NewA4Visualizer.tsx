@@ -87,7 +87,7 @@ export function NewA4Visualizer({
       return next;
     });
   };
-  
+
   // Drag state
   const [activeDrag, setActiveDrag] = useState<{
     id: string;
@@ -146,7 +146,7 @@ export function NewA4Visualizer({
     ];
 
     let timeoutId: NodeJS.Timeout;
-    
+
     const runDemo = (rowIndex: number) => {
       if (rowIndex < DEMO_SEQUENCE_ROWS.length) {
         const nextRow = DEMO_SEQUENCE_ROWS[rowIndex];
@@ -296,7 +296,7 @@ export function NewA4Visualizer({
         if (ty < MARGIN_MM + margins.top) ty = MARGIN_MM + margins.top;
         if (ty > SHEET_HEIGHT_MM - MARGIN_MM - margins.bottom) ty = SHEET_HEIGHT_MM - MARGIN_MM - margins.bottom;
 
-        const fitsIn = 
+        const fitsIn =
           tx >= MARGIN_MM + margins.left &&
           tx <= SHEET_WIDTH_MM - MARGIN_MM - margins.right &&
           ty >= MARGIN_MM + margins.top &&
@@ -366,12 +366,12 @@ export function NewA4Visualizer({
           stickers.map((s) =>
             s.id === resizeSticker.id
               ? {
-                  ...s,
-                  x: fitX,
-                  y: fitY,
-                  widthCm: Math.round(fitWidthCm * 10) / 10,
-                  heightCm: Math.round(fitHeightCm * 10) / 10,
-                }
+                ...s,
+                x: fitX,
+                y: fitY,
+                widthCm: Math.round(fitWidthCm * 10) / 10,
+                heightCm: Math.round(fitHeightCm * 10) / 10,
+              }
               : s
           )
         );
@@ -415,7 +415,7 @@ export function NewA4Visualizer({
 
       {/* Safety Margins (10mm) indicator */}
       <div
-        className="absolute border-2 border-dashed border-destructive/50 pointer-events-none"
+        className="absolute border-2 border-dashed border-destructive/50 pointer-events-none z-20"
         style={{
           left: `${(MARGIN_MM / SHEET_WIDTH_MM) * 100}%`,
           right: `${(MARGIN_MM / SHEET_WIDTH_MM) * 100}%`,
@@ -446,13 +446,12 @@ export function NewA4Visualizer({
               onPointerDown={(e) => handlePointerDown(e, st)}
               onPointerMove={handlePointerMove}
               onPointerUp={handlePointerUp}
-              className={`absolute flex items-center justify-center transition-shadow touch-none ${
-                isSelected
-                  ? (showQuickMenu || showCutMenu || showRotationMenu ? "z-[60]" : "z-30") + " ring-2 ring-primary ring-offset-2 rounded-none"
-                  : isPresentationMode
+              className={`absolute flex items-center justify-center transition-shadow touch-none ${isSelected
+                ? (showQuickMenu || showCutMenu || showRotationMenu ? "z-[60]" : "z-30") + " ring-2 ring-primary ring-offset-2 rounded-none"
+                : isPresentationMode
                   ? "pointer-events-none rounded-none"
                   : "cursor-grab active:cursor-grabbing group hover:ring-1 hover:ring-primary/40 hover:ring-offset-1 rounded-none"
-              } ${isPresentationMode ? "animate-in fade-in zoom-in-50 duration-300 ease-out" : ""}`}
+                } ${isPresentationMode ? "animate-in fade-in zoom-in-50 duration-300 ease-out" : ""}`}
               style={{
                 left: `${(st.x / SHEET_WIDTH_MM) * 100}%`,
                 top: `${(st.y / SHEET_HEIGHT_MM) * 100}%`,
@@ -465,7 +464,7 @@ export function NewA4Visualizer({
                 src={st.imageUrl}
                 alt="Naklejka"
                 draggable={false}
-                className="max-w-full max-h-full object-contain pointer-events-none select-none"
+                className="max-w-full max-h-full object-contain pointer-events-none select-none cmyk-preview"
                 style={{
                   borderRadius: "1.008cqw",
                 }}
@@ -545,7 +544,7 @@ export function NewA4Visualizer({
 
               {/* Quick Action Menu Button */}
               {isSelected && (
-                <div 
+                <div
                   className={`absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 ${showQuickMenu ? "z-[70]" : "z-[40]"} pointer-events-auto`}
                   style={{ transform: `rotate(${-(st.rotation || 0)}deg)` }}
                 >
@@ -561,7 +560,7 @@ export function NewA4Visualizer({
                   {showQuickMenu && (
                     <div
                       onPointerDown={(e) => e.stopPropagation()}
-                      className="hidden sm:block absolute top-7 left-0 bg-background border border-border rounded-xl shadow-lg py-1.5 min-w-[100px] z-[80] text-left"
+                      className="hidden sm:block absolute top-7 left-0 bg-background border border-border rounded-xl shadow-lg py-1.5 min-w-[140px] z-[80] text-left"
                     >
                       <button
                         type="button"
@@ -570,9 +569,9 @@ export function NewA4Visualizer({
                           setShowQuickMenu(false);
                           onEditSticker?.();
                         }}
-                        className="w-full text-left px-3 py-1.5 text-xs font-bold hover:bg-muted text-foreground transition-colors"
+                        className="w-full text-left px-3 py-1.5 text-xs font-bold hover:bg-muted text-foreground transition-colors whitespace-nowrap"
                       >
-                        Edytuj
+                        Kadruj/Usuń tło
                       </button>
                       <button
                         type="button"
@@ -581,7 +580,7 @@ export function NewA4Visualizer({
                           setShowQuickMenu(false);
                           onDuplicateSticker?.();
                         }}
-                        className="w-full text-left px-3 py-1.5 text-xs font-bold hover:bg-muted text-foreground transition-colors"
+                        className="w-full text-left px-3 py-1.5 text-xs font-bold hover:bg-muted text-foreground transition-colors whitespace-nowrap"
                       >
                         Zduplikuj
                       </button>
@@ -592,7 +591,7 @@ export function NewA4Visualizer({
                           setShowQuickMenu(false);
                           onDeleteSticker?.();
                         }}
-                        className="w-full text-left px-3 py-1.5 text-xs font-bold hover:bg-muted text-destructive transition-colors"
+                        className="w-full text-left px-3 py-1.5 text-xs font-bold hover:bg-muted text-destructive transition-colors whitespace-nowrap"
                       >
                         Usuń
                       </button>
@@ -603,7 +602,7 @@ export function NewA4Visualizer({
 
               {/* Cut Line Selection Menu Button */}
               {isSelected && (
-                <div 
+                <div
                   className={`absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 ${showCutMenu ? "z-[70]" : "z-[40]"} pointer-events-auto`}
                   style={{ transform: `rotate(${-(st.rotation || 0)}deg)` }}
                 >
@@ -637,9 +636,8 @@ export function NewA4Visualizer({
                             setShowCutMenu(false);
                             onCutLineChange?.(opt.type as any);
                           }}
-                          className={`w-full text-left px-3 py-1.5 text-xs font-bold hover:bg-muted transition-colors whitespace-nowrap ${
-                            st.cutLineType === opt.type ? "text-primary bg-primary/5" : "text-foreground"
-                          }`}
+                          className={`w-full text-left px-3 py-1.5 text-xs font-bold hover:bg-muted transition-colors whitespace-nowrap ${st.cutLineType === opt.type ? "text-primary bg-primary/5" : "text-foreground"
+                            }`}
                         >
                           {opt.label}
                         </button>
@@ -671,7 +669,7 @@ export function NewA4Visualizer({
 
             {/* Rotation Menu Button (Bottom-Left in static Sheet coordinates) */}
             {isSelected && (
-              <div 
+              <div
                 className={`absolute ${showRotationMenu ? "z-[70]" : "z-[40]"} pointer-events-auto`}
                 style={{
                   left: `${(st.x / SHEET_WIDTH_MM) * 100}%`,
@@ -717,11 +715,10 @@ export function NewA4Visualizer({
                           onClick={() => {
                             onRotationChange?.(deg);
                           }}
-                          className={`text-[9px] font-black px-1.5 py-0.5 rounded border transition-colors cursor-pointer ${
-                            (st.rotation || 0) === deg
-                              ? "bg-primary text-primary-foreground border-primary"
-                              : "bg-muted hover:bg-muted/80 text-muted-foreground border-transparent"
-                          }`}
+                          className={`text-[9px] font-black px-1.5 py-0.5 rounded border transition-colors cursor-pointer ${(st.rotation || 0) === deg
+                            ? "bg-primary text-primary-foreground border-primary"
+                            : "bg-muted hover:bg-muted/80 text-muted-foreground border-transparent"
+                            }`}
                         >
                           {deg}°
                         </button>
@@ -734,7 +731,7 @@ export function NewA4Visualizer({
 
             {/* No Cut Line Minimalist Warning Label (Centered under unrotated sticker boundaries) */}
             {st.cutLineType === "none" && (
-              <div 
+              <div
                 className="absolute font-black text-red-400/90 dark:text-red-400/85 whitespace-nowrap z-25 pointer-events-none uppercase tracking-wider text-center"
                 style={{
                   left: `${((st.x + wMm / 2) / SHEET_WIDTH_MM) * 100}%`,
@@ -754,7 +751,7 @@ export function NewA4Visualizer({
       {isMounted && selectedSticker && (showQuickMenu || showCutMenu || showRotationMenu) && createPortal(
         <div className="fixed inset-x-0 bottom-0 z-[100] sm:hidden flex flex-col justify-end">
           {/* Backdrop (Fully transparent with no blur, captures clicks to close menu) */}
-          <div 
+          <div
             className="fixed inset-0 bg-transparent"
             onClick={() => {
               setShowQuickMenu(false);
@@ -766,7 +763,7 @@ export function NewA4Visualizer({
           <div className="relative bg-background border-t border-border rounded-t-3xl px-6 pb-8 pt-4 shadow-2xl z-10 flex flex-col animate-in slide-in-from-bottom duration-300 ease-out animate-duration-200">
             {/* Handle */}
             <div className="w-12 h-1 bg-muted rounded-full mx-auto mb-5" />
-            
+
             {/* Content based on active menu */}
             {showQuickMenu && (
               <div className="flex flex-col gap-3">
@@ -780,7 +777,7 @@ export function NewA4Visualizer({
                   className="w-full py-3.5 px-4 bg-muted hover:bg-muted/80 rounded-2xl text-sm font-extrabold text-foreground transition-all flex items-center gap-3"
                 >
                   <Crop className="w-5 h-5 text-muted-foreground" />
-                  <span>Edytuj naklejkę</span>
+                  <span>Kadruj / Usuń Tło</span>
                 </button>
                 <button
                   type="button"
@@ -829,11 +826,10 @@ export function NewA4Visualizer({
                           setShowCutMenu(false);
                           onCutLineChange?.(opt.type as any);
                         }}
-                        className={`py-3 px-4 rounded-xl text-xs font-bold transition-all border flex items-center justify-center gap-2 ${
-                          isActive
-                            ? "bg-primary text-primary-foreground border-primary shadow-sm"
-                            : "bg-muted hover:bg-muted/80 border-transparent text-foreground"
-                        }`}
+                        className={`py-3 px-4 rounded-xl text-xs font-bold transition-all border flex items-center justify-center gap-2 ${isActive
+                          ? "bg-primary text-primary-foreground border-primary shadow-sm"
+                          : "bg-muted hover:bg-muted/80 border-transparent text-foreground"
+                          }`}
                       >
                         <Icon className="w-4 h-4 flex-shrink-0" />
                         <span>{opt.label}</span>
@@ -873,11 +869,10 @@ export function NewA4Visualizer({
                       onClick={() => {
                         onRotationChange?.(deg);
                       }}
-                      className={`py-2 px-3 rounded-lg text-xs font-bold border transition-all ${
-                        (selectedSticker.rotation || 0) === deg
-                          ? "bg-primary text-primary-foreground border-primary"
-                          : "bg-muted border-transparent text-foreground"
-                      }`}
+                      className={`py-2 px-3 rounded-lg text-xs font-bold border transition-all ${(selectedSticker.rotation || 0) === deg
+                        ? "bg-primary text-primary-foreground border-primary"
+                        : "bg-muted border-transparent text-foreground"
+                        }`}
                     >
                       {deg}°
                     </button>

@@ -135,7 +135,7 @@ export function A4Visualizer3D({ stickers }: A4Visualizer3DProps) {
               <img
                 src={st.imageUrl}
                 alt="Naklejka"
-                className="max-w-full max-h-full object-contain select-none"
+                className="max-w-full max-h-full object-contain select-none cmyk-preview"
                 draggable={false}
                 style={{
                   borderRadius: "1.008cqw",
@@ -162,7 +162,7 @@ export function A4Visualizer3D({ stickers }: A4Visualizer3DProps) {
                           key={idx}
                           points={pointsStr}
                           fill="none"
-                          stroke="#94a3b8"
+                          stroke="#cbd5e1"
                           strokeWidth="1"
                           vectorEffect="non-scaling-stroke"
                         />

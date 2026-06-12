@@ -1258,11 +1258,11 @@ export default function Home() {
                       <p>Wysokość: {selectedSticker.heightCm.toFixed(1)} cm</p>
                       <p>Linia cięcia: {
                         selectedSticker.cutLineType === "none" ? "Brak" :
-                        selectedSticker.cutLineType === "contour" ? "Kontur" :
-                        selectedSticker.cutLineType === "rounded" ? "Prostokąt" :
-                        selectedSticker.cutLineType === "circle" ? "Koło" :
-                        selectedSticker.cutLineType === "rounded_inside" ? "Prostokąt wew." :
-                        selectedSticker.cutLineType === "circle_inside" ? "Koło wew." : selectedSticker.cutLineType
+                          selectedSticker.cutLineType === "contour" ? "Kontur" :
+                            selectedSticker.cutLineType === "rounded" ? "Prostokąt" :
+                              selectedSticker.cutLineType === "circle" ? "Koło" :
+                                selectedSticker.cutLineType === "rounded_inside" ? "Prostokąt wew." :
+                                  selectedSticker.cutLineType === "circle_inside" ? "Koło wew." : selectedSticker.cutLineType
                       }</p>
                     </div>
                   </div>
@@ -1279,7 +1279,7 @@ export default function Home() {
                       title="Edytuj naklejkę"
                     >
                       <Crop className="w-3.5 h-3.5" />
-                      <span>Edytuj</span>
+                      <span>Kadruj/Tło</span>
                     </button>
                     <button
                       type="button"

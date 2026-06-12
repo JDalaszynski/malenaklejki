@@ -372,7 +372,7 @@ export function A4Visualizer({ imageUrl, onImageChange }: A4VisualizerProps) {
         <p className="text-sm font-bold mb-4 text-muted-foreground uppercase tracking-wider">Podgląd naklejek</p>
         <canvas
           ref={canvasRef}
-          className="bg-white rounded-xl shadow-sm border border-border/50 max-w-full h-auto object-contain transition-all"
+          className="bg-white rounded-xl shadow-sm border border-border/50 max-w-full h-auto object-contain transition-all cmyk-preview"
           style={{ maxHeight: "500px" }}
         />
         <div className="mt-4 flex flex-col items-center gap-2">
