@@ -47,7 +47,7 @@ function SuccessContent() {
 
 export default function OrderSuccessPage() {
   return (
-    <div className="flex flex-col min-h-screen bg-background text-foreground">
+    <div className="flex flex-col min-h-screen text-foreground">
       <Header />
       <main className="flex-1 flex flex-col">
         <Suspense fallback={<div className="p-16 text-center">Ładowanie...</div>}>

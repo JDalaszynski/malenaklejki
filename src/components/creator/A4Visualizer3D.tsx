@@ -65,6 +65,7 @@ export function A4Visualizer3D({ stickers }: A4Visualizer3DProps) {
       className="relative w-full max-w-[480px] aspect-[210/297] flex items-center justify-center cursor-default select-none overflow-visible touch-none"
       style={{
         perspective: "1200px",
+        containerType: "inline-size",
       }}
     >
       {/* 3D Floating Sheet Wrapper */}
@@ -72,17 +73,40 @@ export function A4Visualizer3D({ stickers }: A4Visualizer3DProps) {
         className="relative w-full h-full bg-white transition-transform duration-300 ease-out shadow-[0_20px_50px_rgba(0,0,0,0.12),0_10px_20px_rgba(0,0,0,0.06)] border border-border/40 overflow-hidden"
         style={{
           transformStyle: "preserve-3d",
-          transform: isHovered 
-            ? `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)` 
+          transform: isHovered
+            ? `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`
             : `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1, 1, 1)`,
           backfaceVisibility: "hidden",
         }}
       >
         {/* Subtle physical paper edge (3D thickness look) */}
-        <div 
-          className="absolute inset-0 border border-slate-300 pointer-events-none" 
-          style={{ transform: "translateZ(-1px)" }} 
+        <div
+          className="absolute inset-0 border border-slate-300 pointer-events-none"
+          style={{ transform: "translateZ(-1px)" }}
         />
+
+        {/* Watermarks (znaki wodne) */}
+        <div
+          className="absolute left-0 right-0 top-0 flex items-center justify-center overflow-hidden pointer-events-none select-none text-primary/35 font-extrabold tracking-wider whitespace-nowrap"
+          style={{
+            height: `${(MARGIN_MM / SHEET_HEIGHT_MM) * 100}%`,
+            fontSize: "1.5cqw",
+            transform: "translateZ(1px)",
+          }}
+        >
+          {Array(50).fill("mała").join(" ")}
+        </div>
+
+        <div
+          className="absolute left-0 right-0 bottom-0 flex items-center justify-center overflow-hidden pointer-events-none select-none text-primary/35 font-extrabold tracking-wider whitespace-nowrap"
+          style={{
+            height: `${(MARGIN_MM / SHEET_HEIGHT_MM) * 100}%`,
+            fontSize: "1.5cqw",
+            transform: "translateZ(1px)",
+          }}
+        >
+          {Array(35).fill("NAKLEJKA").join(" ")}
+        </div>
 
         {/* Render Stickers with 3D Depth */}
         {stickers.map((st) => {
@@ -114,7 +138,7 @@ export function A4Visualizer3D({ stickers }: A4Visualizer3DProps) {
                 className="max-w-full max-h-full object-contain select-none"
                 draggable={false}
                 style={{
-                  borderRadius: "1.0cqw",
+                  borderRadius: "1.008cqw",
                 }}
               />
 
@@ -163,7 +187,7 @@ export function A4Visualizer3D({ stickers }: A4Visualizer3DProps) {
                     right: `${-offsetPercentX}%`,
                     top: `${-offsetPercentY}%`,
                     bottom: `${-offsetPercentY}%`,
-                    borderRadius: "1.0cqw",
+                    borderRadius: "1.008cqw",
                     transform: "translateZ(1px)",
                   }}
                 />
@@ -200,7 +224,7 @@ export function A4Visualizer3D({ stickers }: A4Visualizer3DProps) {
 
         {/* Additional linear reflective gloss sweep animation when not hovered */}
         {!isHovered && (
-          <div 
+          <div
             className="absolute inset-0 pointer-events-none"
             style={{
               mixBlendMode: "overlay",

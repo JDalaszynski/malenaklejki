@@ -225,5 +225,122 @@ export function getCutLineBoundingBox(
   };
 }
 
+export function getGraphicBoundingBox(
+  st: {
+    widthCm: number;
+    heightCm: number;
+    rotation?: number;
+    x: number;
+    y: number;
+  },
+  overrideParams?: {
+    widthCm?: number;
+    heightCm?: number;
+    rotation?: number;
+    x?: number;
+    y?: number;
+  }
+): Rect {
+  const x = overrideParams?.x !== undefined ? overrideParams.x : st.x;
+  const y = overrideParams?.y !== undefined ? overrideParams.y : st.y;
+  const widthCm = overrideParams?.widthCm !== undefined ? overrideParams.widthCm : st.widthCm;
+  const heightCm = overrideParams?.heightCm !== undefined ? overrideParams.heightCm : st.heightCm;
+  const rotation = overrideParams?.rotation !== undefined ? overrideParams.rotation : (st.rotation || 0);
+
+  const wMm = widthCm * 10;
+  const hMm = heightCm * 10;
+  const margins = getContourMargins(wMm, hMm, rotation, undefined);
+
+  return {
+    x: x - margins.left,
+    y: y - margins.top,
+    w: margins.left + margins.right,
+    h: margins.top + margins.bottom,
+  };
+}
+
+export function getOnlyCutLineBoundingBox(
+  st: {
+    widthCm: number;
+    heightCm: number;
+    rotation?: number;
+    x: number;
+    y: number;
+    cutLineType: "none" | "contour" | "rounded" | "circle" | "contour_inside" | "rounded_inside" | "circle_inside";
+    contourPolygons?: { x: number; y: number }[][];
+  },
+  overrideParams?: {
+    widthCm?: number;
+    heightCm?: number;
+    rotation?: number;
+    x?: number;
+    y?: number;
+    cutLineType?: "none" | "contour" | "rounded" | "circle" | "contour_inside" | "rounded_inside" | "circle_inside";
+    contourPolygons?: { x: number; y: number }[][];
+  }
+): Rect {
+  const x = overrideParams?.x !== undefined ? overrideParams.x : st.x;
+  const y = overrideParams?.y !== undefined ? overrideParams.y : st.y;
+
+  const margins = getCutLineMargins(st, overrideParams);
+
+  return {
+    x: x - margins.left,
+    y: y - margins.top,
+    w: margins.left + margins.right,
+    h: margins.top + margins.bottom,
+  };
+}
+
+export function checkStickersCollision(
+  s1: {
+    widthCm: number;
+    heightCm: number;
+    rotation?: number;
+    x: number;
+    y: number;
+    cutLineType: "none" | "contour" | "rounded" | "circle" | "contour_inside" | "rounded_inside" | "circle_inside";
+    contourPolygons?: { x: number; y: number }[][];
+  },
+  s2: {
+    widthCm: number;
+    heightCm: number;
+    rotation?: number;
+    x: number;
+    y: number;
+    cutLineType: "none" | "contour" | "rounded" | "circle" | "contour_inside" | "rounded_inside" | "circle_inside";
+    contourPolygons?: { x: number; y: number }[][];
+  },
+  overrideParams1?: {
+    widthCm?: number;
+    heightCm?: number;
+    rotation?: number;
+    x?: number;
+    y?: number;
+    cutLineType?: "none" | "contour" | "rounded" | "circle" | "contour_inside" | "rounded_inside" | "circle_inside";
+    contourPolygons?: { x: number; y: number }[][];
+  }
+): boolean {
+  // 1. Graphics must not overlap (0 padding)
+  const g1 = getGraphicBoundingBox(s1, overrideParams1);
+  const g2 = getGraphicBoundingBox(s2);
+  if (checkOverlap(g1, g2, 0)) {
+    return true;
+  }
+
+  // 2. Cut lines must not overlap and need safety spacing (1.0mm padding)
+  const c1 = getOnlyCutLineBoundingBox(s1, overrideParams1);
+  const c2 = getOnlyCutLineBoundingBox(s2);
+  const cutLinePadding = (
+    (overrideParams1?.cutLineType ?? s1.cutLineType) === "none" &&
+    s2.cutLineType === "none"
+  ) ? 0.0 : 1.0;
+  if (checkOverlap(c1, c2, cutLinePadding)) {
+    return true;
+  }
+
+  return false;
+}
+
 
 

@@ -155,14 +155,14 @@ export function CheckoutForm() {
               <input type="radio" value="paczkomat" {...register("deliveryMethod")} className="mr-4 w-5 h-5 text-foreground focus:ring-foreground" />
               <div className="flex-1">
                 <p className="font-extrabold text-lg">Paczkomat InPost</p>
-                <p className={`font-medium text-sm ${deliveryMethod === "paczkomat" ? "text-primary" : "text-muted-foreground"}`}>Szybki odbiór (14,00 zł)</p>
+                <p className={`font-medium text-sm ${deliveryMethod === "paczkomat" ? "text-primary" : "text-muted-foreground"}`}>Wysyłka do punktu (19,99 zł)</p>
               </div>
             </label>
             <label className={`flex items-center p-4 border rounded-2xl cursor-pointer transition-all ${deliveryMethod === "kurier" ? "border-primary bg-primary/5 text-foreground shadow-none" : "border-border/60 bg-card text-foreground hover:bg-muted/30"}`}>
               <input type="radio" value="kurier" {...register("deliveryMethod")} className="mr-4 w-5 h-5 text-foreground focus:ring-foreground" />
               <div className="flex-1">
-                <p className="font-extrabold text-lg">Kurier pod drzwi</p>
-                <p className={`font-medium text-sm ${deliveryMethod === "kurier" ? "text-primary" : "text-muted-foreground"}`}>Wygodna dostawa (15,00 zł)</p>
+                <p className="font-extrabold text-lg">Przesyłka Kurierska</p>
+                <p className={`font-medium text-sm ${deliveryMethod === "kurier" ? "text-primary" : "text-muted-foreground"}`}>Kurier pod drzwi (19,99 zł)</p>
               </div>
             </label>
           </div>
@@ -194,7 +194,7 @@ export function CheckoutForm() {
                       onClick={() => setShowPaczkomatModal(true)}
                       className="bg-[#FFCD08] hover:bg-[#FFCD08]/90 text-black font-black px-5 py-3 rounded-2xl text-sm transition-all cursor-pointer border border-[#FFCD08]/20 shrink-0 self-start sm:self-center hover:scale-[1.02] active:scale-[0.98]"
                     >
-                      Wybierz Paczkomat na mapie
+                      Wybierz Paczkomat
                     </button>
                   </div>
                 )}
@@ -319,6 +319,22 @@ export function CheckoutForm() {
             ) : null}
             Kupuję i płacę
           </button>
+
+          <div className="mt-6 pt-6 border-t border-border/40 flex flex-col items-center text-center">
+            <div className="flex items-center justify-center gap-2 text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-3">
+              <span>Płatności obsługuje</span>
+              <img
+                src="/images/payment-icons/Przelewy24_logo.png"
+                alt="Przelewy24"
+                className="h-6 w-auto object-contain"
+              />
+            </div>
+            <img
+              src="/images/payment-icons/metody-platnosci-przelewy24.png"
+              alt="Metody płatności Przelewy24"
+              className="w-full max-w-[380px] h-auto object-contain opacity-90"
+            />
+          </div>
         </div>
       </div>
 

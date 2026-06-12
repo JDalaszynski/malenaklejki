@@ -1,9 +1,10 @@
 "use client";
 
 import React, { useRef, useState, useEffect } from "react";
+import { createPortal } from "react-dom";
 import { PlacedSticker } from "@/types/creator";
-import { checkOverlap, getRotatedSize, getCutLineMargins, getOuterMargins, getCutLineBoundingBox } from "@/lib/utils/collision";
-import { MoreVertical, Scissors } from "lucide-react";
+import { checkOverlap, getRotatedSize, getCutLineMargins, getOuterMargins, getCutLineBoundingBox, checkStickersCollision } from "@/lib/utils/collision";
+import { MoreVertical, Scissors, RotateCw, Crop, Copy, Trash2, Ban, Sparkles, Square, Circle } from "lucide-react";
 
 interface NewA4VisualizerProps {
   stickers: PlacedSticker[];
@@ -15,6 +16,7 @@ interface NewA4VisualizerProps {
   onDuplicateSticker?: () => void;
   onDeleteSticker?: () => void;
   onCutLineChange?: (type: PlacedSticker["cutLineType"]) => void;
+  onRotationChange?: (degrees: number) => void;
   isPresentationMode?: boolean;
 }
 
@@ -28,17 +30,63 @@ export function NewA4Visualizer({
   onDuplicateSticker,
   onDeleteSticker,
   onCutLineChange,
+  onRotationChange,
   isPresentationMode,
 }: NewA4VisualizerProps) {
   const containerRef = useRef<HTMLDivElement>(null);
+  const selectedSticker = stickers.find((s) => s.id === selectedStickerId);
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   // Quick Menu states
   const [showQuickMenu, setShowQuickMenu] = useState(false);
   const [showCutMenu, setShowCutMenu] = useState(false);
+  const [showRotationMenu, setShowRotationMenu] = useState(false);
+
   useEffect(() => {
     setShowQuickMenu(false);
     setShowCutMenu(false);
+    setShowRotationMenu(false);
   }, [selectedStickerId]);
+
+  const toggleQuickMenu = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setShowQuickMenu(prev => {
+      const next = !prev;
+      if (next) {
+        setShowCutMenu(false);
+        setShowRotationMenu(false);
+      }
+      return next;
+    });
+  };
+
+  const toggleCutMenu = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setShowCutMenu(prev => {
+      const next = !prev;
+      if (next) {
+        setShowQuickMenu(false);
+        setShowRotationMenu(false);
+      }
+      return next;
+    });
+  };
+
+  const toggleRotationMenu = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setShowRotationMenu(prev => {
+      const next = !prev;
+      if (next) {
+        setShowQuickMenu(false);
+        setShowCutMenu(false);
+      }
+      return next;
+    });
+  };
   
   // Drag state
   const [activeDrag, setActiveDrag] = useState<{
@@ -194,18 +242,16 @@ export function NewA4Visualizer({
       let finalX = dragSticker.x;
       let finalY = dragSticker.y;
 
-      const dragRectX = getCutLineBoundingBox(dragSticker, { x: clampedX, y: dragSticker.y });
       const xCollision = otherStickers.some((other) => {
-        return checkOverlap(dragRectX, getCutLineBoundingBox(other), 1.0);
+        return checkStickersCollision(dragSticker, other, { x: clampedX, y: dragSticker.y });
       });
 
       if (!xCollision) {
         finalX = clampedX;
       }
 
-      const dragRectY = getCutLineBoundingBox(dragSticker, { x: finalX, y: clampedY });
       const yCollision = otherStickers.some((other) => {
-        return checkOverlap(dragRectY, getCutLineBoundingBox(other), 1.0);
+        return checkStickersCollision(dragSticker, other, { x: finalX, y: clampedY });
       });
 
       if (!yCollision) {
@@ -258,15 +304,13 @@ export function NewA4Visualizer({
 
         if (!fitsIn) return null;
 
-        const rotRect = getCutLineBoundingBox(resizeSticker, {
-          x: tx,
-          y: ty,
-          widthCm: w,
-          heightCm: h,
-        });
-
         const collision = otherStickers.some((other) => {
-          return checkOverlap(rotRect, getCutLineBoundingBox(other), 1.0);
+          return checkStickersCollision(resizeSticker, other, {
+            x: tx,
+            y: ty,
+            widthCm: w,
+            heightCm: h,
+          });
         });
 
         if (collision) return null;
@@ -397,239 +441,454 @@ export function NewA4Visualizer({
         const offsetPercentY = (offsetMm / hMm) * 100;
 
         return (
-          <div
-            key={st.id}
-            onPointerDown={(e) => handlePointerDown(e, st)}
-            onPointerMove={handlePointerMove}
-            onPointerUp={handlePointerUp}
-            className={`absolute flex items-center justify-center transition-shadow touch-none ${
-              isSelected
-                ? "z-30 ring-2 ring-primary ring-offset-2 rounded-none"
-                : isPresentationMode
-                ? "pointer-events-none rounded-none"
-                : "cursor-grab active:cursor-grabbing group hover:ring-1 hover:ring-primary/40 hover:ring-offset-1 rounded-none"
-            } ${isPresentationMode ? "animate-in fade-in zoom-in-50 duration-300 ease-out" : ""}`}
-            style={{
-              left: `${(st.x / SHEET_WIDTH_MM) * 100}%`,
-              top: `${(st.y / SHEET_HEIGHT_MM) * 100}%`,
-              width: `${(wMm / SHEET_WIDTH_MM) * 100}%`,
-              height: `${(hMm / SHEET_HEIGHT_MM) * 100}%`,
-              transform: `rotate(${st.rotation || 0}deg)`,
-            }}
-          >
-            <img
-              src={st.imageUrl}
-              alt="Naklejka"
-              draggable={false}
-              className="max-w-full max-h-full object-contain pointer-events-none select-none"
+          <React.Fragment key={st.id}>
+            <div
+              onPointerDown={(e) => handlePointerDown(e, st)}
+              onPointerMove={handlePointerMove}
+              onPointerUp={handlePointerUp}
+              className={`absolute flex items-center justify-center transition-shadow touch-none ${
+                isSelected
+                  ? (showQuickMenu || showCutMenu || showRotationMenu ? "z-[60]" : "z-30") + " ring-2 ring-primary ring-offset-2 rounded-none"
+                  : isPresentationMode
+                  ? "pointer-events-none rounded-none"
+                  : "cursor-grab active:cursor-grabbing group hover:ring-1 hover:ring-primary/40 hover:ring-offset-1 rounded-none"
+              } ${isPresentationMode ? "animate-in fade-in zoom-in-50 duration-300 ease-out" : ""}`}
               style={{
-                borderRadius: "1.008cqw",
+                left: `${(st.x / SHEET_WIDTH_MM) * 100}%`,
+                top: `${(st.y / SHEET_HEIGHT_MM) * 100}%`,
+                width: `${(wMm / SHEET_WIDTH_MM) * 100}%`,
+                height: `${(hMm / SHEET_HEIGHT_MM) * 100}%`,
+                transform: `rotate(${st.rotation || 0}deg)`,
               }}
-            />
+            >
+              <img
+                src={st.imageUrl}
+                alt="Naklejka"
+                draggable={false}
+                className="max-w-full max-h-full object-contain pointer-events-none select-none"
+                style={{
+                  borderRadius: "1.008cqw",
+                }}
+              />
 
-            {/* Cut line visualizer */}
-            {(st.cutLineType === "contour" || st.cutLineType === "contour_inside") && (
-              st.contourPolygons && st.contourPolygons.length > 0 ? (
-                <svg
-                  className="absolute inset-0 w-full h-full pointer-events-none overflow-visible animate-pulse z-10"
-                  viewBox="0 0 1 1"
-                  preserveAspectRatio="none"
-                  style={{
-                    filter: "drop-shadow(0 0 2px #ff5ebb)",
-                  }}
-                >
-                  {st.contourPolygons.map((poly, idx) => {
-                    const pointsStr = poly
-                      .map((p) => `${p.x},${p.y}`)
-                      .join(" ");
-                    return (
-                      <polygon
-                        key={idx}
-                        points={pointsStr}
-                        fill="none"
-                        stroke="#ff5ebb"
-                        strokeWidth="2"
-                        strokeDasharray="4 3"
-                        vectorEffect="non-scaling-stroke"
-                      />
-                    );
-                  })}
-                </svg>
-              ) : (
+              {/* Cut line visualizer */}
+              {(st.cutLineType === "contour" || st.cutLineType === "contour_inside") && (
+                st.contourPolygons && st.contourPolygons.length > 0 ? (
+                  <svg
+                    className="absolute inset-0 w-full h-full pointer-events-none overflow-visible animate-pulse z-10"
+                    viewBox="0 0 1 1"
+                    preserveAspectRatio="none"
+                    style={{
+                      filter: "drop-shadow(0 0 2px #ff5ebb)",
+                    }}
+                  >
+                    {st.contourPolygons.map((poly, idx) => {
+                      const pointsStr = poly
+                        .map((p) => `${p.x},${p.y}`)
+                        .join(" ");
+                      return (
+                        <polygon
+                          key={idx}
+                          points={pointsStr}
+                          fill="none"
+                          stroke="#ff5ebb"
+                          strokeWidth="2"
+                          strokeDasharray="4 3"
+                          vectorEffect="non-scaling-stroke"
+                        />
+                      );
+                    })}
+                  </svg>
+                ) : (
+                  <div
+                    className="absolute inset-0 pointer-events-none rounded-lg border border-dashed border-[#ff5ebb] animate-pulse z-10"
+                    style={{
+                      filter: "drop-shadow(0 0 2px #ff5ebb)",
+                    }}
+                  />
+                )
+              )}
+              {(st.cutLineType === "rounded" || st.cutLineType === "rounded_inside") && (
                 <div
-                  className="absolute inset-0 pointer-events-none rounded-lg border border-dashed border-[#ff5ebb] animate-pulse z-10"
+                  className="absolute pointer-events-none border-2 border-dashed border-[#ff5ebb] animate-pulse z-10"
                   style={{
+                    left: "50%",
+                    top: "50%",
+                    width: `calc(100% + ${2 * offsetPercentX}%)`,
+                    height: `calc(100% + ${2 * offsetPercentY}%)`,
+                    borderRadius: "1.008cqw",
+                    transform: "translate(-50%, -50%)",
                     filter: "drop-shadow(0 0 2px #ff5ebb)",
                   }}
                 />
-              )
-            )}
-            {(st.cutLineType === "rounded" || st.cutLineType === "rounded_inside") && (
-              <div
-                className="absolute pointer-events-none border-2 border-dashed border-[#ff5ebb] animate-pulse z-10"
-                style={{
-                  left: `${-offsetPercentX}%`,
-                  right: `${-offsetPercentX}%`,
-                  top: `${-offsetPercentY}%`,
-                  bottom: `${-offsetPercentY}%`,
-                  borderRadius: "1.008cqw",
-                  filter: "drop-shadow(0 0 2px #ff5ebb)",
-                }}
-              />
-            )}
-            {(st.cutLineType === "circle" || st.cutLineType === "circle_inside") && (
-              <div
-                className="absolute pointer-events-none rounded-[50%] border-2 border-dashed border-[#ff5ebb] animate-pulse z-10"
-                style={{
-                  left: `${-offsetPercentX}%`,
-                  right: `${-offsetPercentX}%`,
-                  top: `${-offsetPercentY}%`,
-                  bottom: `${-offsetPercentY}%`,
-                  filter: "drop-shadow(0 0 2px #ff5ebb)",
-                }}
-              />
-            )}
-
-            {/* Quick Action Badges on hover */}
-            {isSelected && (
-              <div className="absolute -top-6 left-1/2 -translate-x-1/2 bg-primary text-primary-foreground text-[10px] font-extrabold px-2 py-0.5 rounded-md shadow-md pointer-events-none">
-                {st.widthCm} cm
-              </div>
-            )}
-
-            {/* Quick Action Menu Button */}
-            {isSelected && (
-              <div 
-                className="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 z-[45] pointer-events-auto"
-                style={{ transform: `rotate(${-(st.rotation || 0)}deg)` }}
-              >
-                <button
-                  type="button"
-                  onPointerDown={(e) => e.stopPropagation()}
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    setShowQuickMenu(!showQuickMenu);
+              )}
+              {(st.cutLineType === "circle" || st.cutLineType === "circle_inside") && (
+                <div
+                  className="absolute pointer-events-none border-2 border-dashed border-[#ff5ebb] rounded-full animate-pulse z-10"
+                  style={{
+                    left: "50%",
+                    top: "50%",
+                    width: `calc(100% + ${2 * offsetPercentX}%)`,
+                    height: `calc(100% + ${2 * offsetPercentY}%)`,
+                    transform: "translate(-50%, -50%)",
+                    filter: "drop-shadow(0 0 2px #ff5ebb)",
                   }}
-                  className="w-6 h-6 rounded-full bg-white text-foreground hover:bg-muted border border-border flex items-center justify-center shadow-md active:scale-95 transition-transform"
-                  title="Opcje naklejki"
-                >
-                  <MoreVertical className="w-3.5 h-3.5" />
-                </button>
-                {showQuickMenu && (
-                  <div
-                    onPointerDown={(e) => e.stopPropagation()}
-                    className="absolute top-7 left-0 bg-background border border-border rounded-xl shadow-lg py-1.5 min-w-[100px] z-50 text-left"
-                  >
-                    <button
-                      type="button"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        setShowQuickMenu(false);
-                        onEditSticker?.();
-                      }}
-                      className="w-full text-left px-3 py-1.5 text-xs font-bold hover:bg-muted text-foreground transition-colors"
-                    >
-                      Edytuj
-                    </button>
-                    <button
-                      type="button"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        setShowQuickMenu(false);
-                        onDuplicateSticker?.();
-                      }}
-                      className="w-full text-left px-3 py-1.5 text-xs font-bold hover:bg-muted text-foreground transition-colors"
-                    >
-                      Zduplikuj
-                    </button>
-                    <button
-                      type="button"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        setShowQuickMenu(false);
-                        onDeleteSticker?.();
-                      }}
-                      className="w-full text-left px-3 py-1.5 text-xs font-bold hover:bg-muted text-destructive transition-colors"
-                    >
-                      Usuń
-                    </button>
-                  </div>
-                )}
-              </div>
-            )}
+                />
+              )}
 
-            {/* Cut Line Selection Menu Button */}
-            {isSelected && (
-              <div 
-                className="absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 z-[45] pointer-events-auto"
-                style={{ transform: `rotate(${-(st.rotation || 0)}deg)` }}
-              >
-                <button
-                  type="button"
-                  onPointerDown={(e) => e.stopPropagation()}
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    setShowCutMenu(!showCutMenu);
-                  }}
-                  className="w-6 h-6 rounded-full bg-white text-foreground hover:bg-muted border border-border flex items-center justify-center shadow-md active:scale-95 transition-transform"
-                  title="Wybierz linię cięcia"
+              {/* Quick Action Badges on hover */}
+              {isSelected && (
+                <div className="absolute -top-6 left-1/2 -translate-x-1/2 bg-primary text-primary-foreground text-[10px] font-extrabold px-2 py-0.5 rounded-md shadow-md pointer-events-none">
+                  {st.widthCm} cm
+                </div>
+              )}
+
+              {/* Quick Action Menu Button */}
+              {isSelected && (
+                <div 
+                  className={`absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 ${showQuickMenu ? "z-[70]" : "z-[40]"} pointer-events-auto`}
+                  style={{ transform: `rotate(${-(st.rotation || 0)}deg)` }}
                 >
-                  <Scissors className="w-3.5 h-3.5" />
-                </button>
-                {showCutMenu && (
-                  <div
+                  <button
+                    type="button"
                     onPointerDown={(e) => e.stopPropagation()}
-                    className="absolute top-7 right-0 bg-background border border-border rounded-xl shadow-lg py-1.5 min-w-[100px] z-50 text-left"
+                    onClick={toggleQuickMenu}
+                    className="w-6 h-6 rounded-full bg-white text-foreground hover:bg-muted border border-border flex items-center justify-center shadow-md active:scale-95 transition-transform"
+                    title="Opcje naklejki"
                   >
-                    {[
-                      { type: "none", label: "Brak" },
-                      { type: "contour", label: "Kontur" },
-                      { type: "rounded", label: "Prostokąt" },
-                      { type: "circle", label: "Koło" },
-                      { type: "rounded_inside", label: "Prostokąt wew." },
-                      { type: "circle_inside", label: "Koło wew." },
-                    ].map((opt) => (
+                    <MoreVertical className="w-3.5 h-3.5" />
+                  </button>
+                  {showQuickMenu && (
+                    <div
+                      onPointerDown={(e) => e.stopPropagation()}
+                      className="hidden sm:block absolute top-7 left-0 bg-background border border-border rounded-xl shadow-lg py-1.5 min-w-[100px] z-[80] text-left"
+                    >
                       <button
-                        key={opt.type}
                         type="button"
                         onClick={(e) => {
                           e.stopPropagation();
-                          setShowCutMenu(false);
-                          onCutLineChange?.(opt.type as any);
+                          setShowQuickMenu(false);
+                          onEditSticker?.();
                         }}
-                        className={`w-full text-left px-3 py-1.5 text-xs font-bold hover:bg-muted transition-colors ${
-                          st.cutLineType === opt.type ? "text-primary bg-primary/5" : "text-foreground"
-                        }`}
+                        className="w-full text-left px-3 py-1.5 text-xs font-bold hover:bg-muted text-foreground transition-colors"
                       >
-                        {opt.label}
+                        Edytuj
                       </button>
-                    ))}
+                      <button
+                        type="button"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setShowQuickMenu(false);
+                          onDuplicateSticker?.();
+                        }}
+                        className="w-full text-left px-3 py-1.5 text-xs font-bold hover:bg-muted text-foreground transition-colors"
+                      >
+                        Zduplikuj
+                      </button>
+                      <button
+                        type="button"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setShowQuickMenu(false);
+                          onDeleteSticker?.();
+                        }}
+                        className="w-full text-left px-3 py-1.5 text-xs font-bold hover:bg-muted text-destructive transition-colors"
+                      >
+                        Usuń
+                      </button>
+                    </div>
+                  )}
+                </div>
+              )}
+
+              {/* Cut Line Selection Menu Button */}
+              {isSelected && (
+                <div 
+                  className={`absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 ${showCutMenu ? "z-[70]" : "z-[40]"} pointer-events-auto`}
+                  style={{ transform: `rotate(${-(st.rotation || 0)}deg)` }}
+                >
+                  <button
+                    type="button"
+                    onPointerDown={(e) => e.stopPropagation()}
+                    onClick={toggleCutMenu}
+                    className="w-6 h-6 rounded-full bg-white text-foreground hover:bg-muted border border-border flex items-center justify-center shadow-md active:scale-95 transition-transform"
+                    title="Wybierz linię cięcia"
+                  >
+                    <Scissors className="w-3.5 h-3.5" />
+                  </button>
+                  {showCutMenu && (
+                    <div
+                      onPointerDown={(e) => e.stopPropagation()}
+                      className="hidden sm:block absolute top-7 right-0 bg-background border border-border rounded-xl shadow-lg py-1.5 w-[135px] z-[80] text-left"
+                    >
+                      {[
+                        { type: "none", label: "Brak" },
+                        { type: "contour", label: "Kontur" },
+                        { type: "rounded", label: "Prostokąt" },
+                        { type: "circle", label: "Koło" },
+                        { type: "rounded_inside", label: "Prostokąt wew." },
+                        { type: "circle_inside", label: "Koło wew." },
+                      ].map((opt) => (
+                        <button
+                          key={opt.type}
+                          type="button"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setShowCutMenu(false);
+                            onCutLineChange?.(opt.type as any);
+                          }}
+                          className={`w-full text-left px-3 py-1.5 text-xs font-bold hover:bg-muted transition-colors whitespace-nowrap ${
+                            st.cutLineType === opt.type ? "text-primary bg-primary/5" : "text-foreground"
+                          }`}
+                        >
+                          {opt.label}
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              )}
+
+              {/* Scale Handle on Selected Sticker */}
+              {isSelected && (
+                <div
+                  onPointerDown={(e) => handleResizeStart(e, st)}
+                  className="absolute right-0 bottom-0 translate-x-1/2 translate-y-1/2 w-6 h-6 rounded-full bg-primary text-primary-foreground flex items-center justify-center cursor-se-resize shadow-md hover:scale-110 active:scale-95 transition-transform z-40 border-2 border-white select-none pointer-events-auto touch-none"
+                  title="Przeciągnij, aby zmienić rozmiar"
+                >
+                  <svg
+                    className="w-3.5 h-3.5 rotate-45 text-white"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2.5"
+                    viewBox="0 0 24 24"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 15L12 18.75 15.75 15m-7.5-6L12 5.25 15.75 9" />
+                  </svg>
+                </div>
+              )}
+            </div>
+
+            {/* Rotation Menu Button (Bottom-Left in static Sheet coordinates) */}
+            {isSelected && (
+              <div 
+                className={`absolute ${showRotationMenu ? "z-[70]" : "z-[40]"} pointer-events-auto`}
+                style={{
+                  left: `${(st.x / SHEET_WIDTH_MM) * 100}%`,
+                  top: `${((st.y + hMm) / SHEET_HEIGHT_MM) * 100}%`,
+                  transform: "translate(-50%, -50%)",
+                }}
+              >
+                <button
+                  type="button"
+                  onPointerDown={(e) => e.stopPropagation()}
+                  onClick={toggleRotationMenu}
+                  className="w-6 h-6 rounded-full bg-white text-foreground hover:bg-muted border border-border flex items-center justify-center shadow-md active:scale-95 transition-transform"
+                  title="Obróć naklejkę"
+                >
+                  <RotateCw className="w-3.5 h-3.5" />
+                </button>
+                {showRotationMenu && (
+                  <div
+                    onPointerDown={(e) => e.stopPropagation()}
+                    className="hidden sm:block absolute bottom-7 left-0 bg-background border border-border rounded-xl shadow-lg p-3 min-w-[160px] z-[80] text-left flex flex-col gap-2"
+                  >
+                    <div className="flex justify-between items-center text-[10px] font-bold text-foreground whitespace-nowrap">
+                      <span>Obrót</span>
+                      <span className="text-primary font-black">{st.rotation || 0}°</span>
+                    </div>
+                    <input
+                      type="range"
+                      min={0}
+                      max={360}
+                      step={1}
+                      value={st.rotation || 0}
+                      onChange={(e) => {
+                        const val = Number(e.target.value);
+                        onRotationChange?.(val);
+                      }}
+                      className="w-full h-1.5 bg-muted rounded-lg appearance-none cursor-pointer accent-primary"
+                    />
+                    <div className="flex gap-1 justify-between mt-1">
+                      {[0, 90, 180, 270].map((deg) => (
+                        <button
+                          key={deg}
+                          type="button"
+                          onClick={() => {
+                            onRotationChange?.(deg);
+                          }}
+                          className={`text-[9px] font-black px-1.5 py-0.5 rounded border transition-colors cursor-pointer ${
+                            (st.rotation || 0) === deg
+                              ? "bg-primary text-primary-foreground border-primary"
+                              : "bg-muted hover:bg-muted/80 text-muted-foreground border-transparent"
+                          }`}
+                        >
+                          {deg}°
+                        </button>
+                      ))}
+                    </div>
                   </div>
                 )}
               </div>
             )}
 
-            {/* Scale Handle on Selected Sticker */}
-            {isSelected && (
-              <div
-                onPointerDown={(e) => handleResizeStart(e, st)}
-                className="absolute right-0 bottom-0 translate-x-1/2 translate-y-1/2 w-6 h-6 rounded-full bg-primary text-primary-foreground flex items-center justify-center cursor-se-resize shadow-md hover:scale-110 active:scale-95 transition-transform z-40 border-2 border-white select-none pointer-events-auto touch-none"
-                title="Przeciągnij, aby zmienić rozmiar"
+            {/* No Cut Line Minimalist Warning Label (Centered under unrotated sticker boundaries) */}
+            {st.cutLineType === "none" && (
+              <div 
+                className="absolute font-black text-red-400/90 dark:text-red-400/85 whitespace-nowrap z-25 pointer-events-none uppercase tracking-wider text-center"
+                style={{
+                  left: `${((st.x + wMm / 2) / SHEET_WIDTH_MM) * 100}%`,
+                  top: `${((st.y + hMm + 6) / SHEET_HEIGHT_MM) * 100}%`,
+                  transform: "translateX(-50%)",
+                  fontSize: `${Math.max(6, st.widthCm * 1.6)}px`,
+                }}
               >
-                <svg
-                  className="w-3.5 h-3.5 rotate-45 text-white"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2.5"
-                  viewBox="0 0 24 24"
+                Ustaw linię cięcia
+              </div>
+            )}
+          </React.Fragment>
+        );
+      })}
+
+      {/* MOBILE BOTTOM DRAWER */}
+      {isMounted && selectedSticker && (showQuickMenu || showCutMenu || showRotationMenu) && createPortal(
+        <div className="fixed inset-x-0 bottom-0 z-[100] sm:hidden flex flex-col justify-end">
+          {/* Backdrop (Fully transparent with no blur, captures clicks to close menu) */}
+          <div 
+            className="fixed inset-0 bg-transparent"
+            onClick={() => {
+              setShowQuickMenu(false);
+              setShowCutMenu(false);
+              setShowRotationMenu(false);
+            }}
+          />
+          {/* Bottom Sheet */}
+          <div className="relative bg-background border-t border-border rounded-t-3xl px-6 pb-8 pt-4 shadow-2xl z-10 flex flex-col animate-in slide-in-from-bottom duration-300 ease-out animate-duration-200">
+            {/* Handle */}
+            <div className="w-12 h-1 bg-muted rounded-full mx-auto mb-5" />
+            
+            {/* Content based on active menu */}
+            {showQuickMenu && (
+              <div className="flex flex-col gap-3">
+                <h3 className="text-sm font-black text-muted-foreground uppercase tracking-wider mb-1">Opcje naklejki</h3>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setShowQuickMenu(false);
+                    onEditSticker?.();
+                  }}
+                  className="w-full py-3.5 px-4 bg-muted hover:bg-muted/80 rounded-2xl text-sm font-extrabold text-foreground transition-all flex items-center gap-3"
                 >
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 15L12 18.75 15.75 15m-7.5-6L12 5.25 15.75 9" />
-                </svg>
+                  <Crop className="w-5 h-5 text-muted-foreground" />
+                  <span>Edytuj naklejkę</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setShowQuickMenu(false);
+                    onDuplicateSticker?.();
+                  }}
+                  className="w-full py-3.5 px-4 bg-muted hover:bg-muted/80 rounded-2xl text-sm font-extrabold text-foreground transition-all flex items-center gap-3"
+                >
+                  <Copy className="w-5 h-5 text-muted-foreground" />
+                  <span>Zduplikuj naklejkę</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setShowQuickMenu(false);
+                    onDeleteSticker?.();
+                  }}
+                  className="w-full py-3.5 px-4 bg-destructive/10 hover:bg-destructive/20 rounded-2xl text-sm font-extrabold text-destructive transition-all flex items-center gap-3"
+                >
+                  <Trash2 className="w-5 h-5 text-destructive" />
+                  <span>Usuń naklejkę</span>
+                </button>
+              </div>
+            )}
+
+            {showCutMenu && (
+              <div className="flex flex-col gap-3">
+                <h3 className="text-sm font-black text-muted-foreground uppercase tracking-wider mb-1">Wybierz linię cięcia</h3>
+                <div className="grid grid-cols-2 gap-2">
+                  {[
+                    { type: "none", label: "Brak", icon: Ban },
+                    { type: "contour", label: "Kontur", icon: Sparkles },
+                    { type: "rounded", label: "Prostokąt", icon: Square },
+                    { type: "circle", label: "Koło", icon: Circle },
+                    { type: "rounded_inside", label: "Prostokąt wew.", icon: Square },
+                    { type: "circle_inside", label: "Koło wew.", icon: Circle },
+                  ].map((opt) => {
+                    const isActive = selectedSticker.cutLineType === opt.type;
+                    const Icon = opt.icon;
+                    return (
+                      <button
+                        key={opt.type}
+                        type="button"
+                        onClick={() => {
+                          setShowCutMenu(false);
+                          onCutLineChange?.(opt.type as any);
+                        }}
+                        className={`py-3 px-4 rounded-xl text-xs font-bold transition-all border flex items-center justify-center gap-2 ${
+                          isActive
+                            ? "bg-primary text-primary-foreground border-primary shadow-sm"
+                            : "bg-muted hover:bg-muted/80 border-transparent text-foreground"
+                        }`}
+                      >
+                        <Icon className="w-4 h-4 flex-shrink-0" />
+                        <span>{opt.label}</span>
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
+
+            {showRotationMenu && (
+              <div className="flex flex-col gap-4">
+                <div className="flex justify-between items-center mb-1">
+                  <div className="flex items-center gap-2">
+                    <RotateCw className="w-4 h-4 text-muted-foreground" />
+                    <h3 className="text-sm font-black text-muted-foreground uppercase tracking-wider">Obrót naklejki</h3>
+                  </div>
+                  <span className="text-sm font-black text-primary">{selectedSticker.rotation || 0}°</span>
+                </div>
+                <input
+                  type="range"
+                  min={0}
+                  max={360}
+                  step={1}
+                  value={selectedSticker.rotation || 0}
+                  onChange={(e) => {
+                    const val = Number(e.target.value);
+                    onRotationChange?.(val);
+                  }}
+                  className="w-full h-2 bg-muted rounded-lg appearance-none cursor-pointer accent-primary"
+                />
+                <div className="grid grid-cols-4 gap-2 mt-1">
+                  {[0, 90, 180, 270].map((deg) => (
+                    <button
+                      key={deg}
+                      type="button"
+                      onClick={() => {
+                        onRotationChange?.(deg);
+                      }}
+                      className={`py-2 px-3 rounded-lg text-xs font-bold border transition-all ${
+                        (selectedSticker.rotation || 0) === deg
+                          ? "bg-primary text-primary-foreground border-primary"
+                          : "bg-muted border-transparent text-foreground"
+                      }`}
+                    >
+                      {deg}°
+                    </button>
+                  ))}
+                </div>
               </div>
             )}
           </div>
-        );
-      })}
+        </div>,
+        document.body
+      )}
     </div>
   );
 }

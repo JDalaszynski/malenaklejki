@@ -3,6 +3,7 @@ import { Nunito, Inter } from "next/font/google";
 import "./globals.css";
 import { CookieBanner } from "@/components/layout/CookieBanner";
 import { Analytics } from "@vercel/analytics/react";
+import { InteractiveBackground } from "@/components/layout/InteractiveBackground";
 
 const nunito = Nunito({
   variable: "--font-sans",
@@ -29,7 +30,30 @@ export default function RootLayout({
       lang="pl"
       className={`${nunito.variable} ${inter.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col font-sans">
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              try {
+                if (localStorage.theme === 'dark') {
+                  document.documentElement.classList.add('dark');
+                  document.documentElement.classList.remove('mixed');
+                } else if (localStorage.theme === 'light') {
+                  document.documentElement.classList.remove('dark', 'mixed');
+                } else if (localStorage.theme === 'mixed') {
+                  document.documentElement.classList.add('mixed');
+                  document.documentElement.classList.remove('dark');
+                } else {
+                  // Default theme is light
+                  document.documentElement.classList.remove('dark', 'mixed');
+                }
+              } catch (_) {}
+            `,
+          }}
+        />
+      </head>
+      <body className="min-h-full flex flex-col font-sans relative">
+        <InteractiveBackground />
         {children}
         <CookieBanner />
         <Analytics />

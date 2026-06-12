@@ -282,8 +282,9 @@ export function getContourPoints(
                 }
                 
                 if (contour.length > 5) {
-                  let processed = smoothPolygon(contour, 5);
-                  processed = simplifyPoints(processed, 0.15);
+                  let processed = smoothPolygon(contour, 7);
+                  processed = simplifyPoints(processed, 0.08);
+                  processed = smoothPolygon(processed, 5);
                   
                   if (processed.length > 2) {
                     const normalized = processed.map((p) => ({

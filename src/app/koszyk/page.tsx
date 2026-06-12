@@ -20,7 +20,7 @@ export default function CartPage() {
 
   if (!mounted) {
     return (
-      <div className="min-h-screen bg-background text-foreground flex items-center justify-center">
+      <div className="min-h-screen text-foreground flex items-center justify-center">
         <div className="animate-pulse font-extrabold text-xl text-primary">Ładowanie koszyka...</div>
       </div>
     );
@@ -29,7 +29,7 @@ export default function CartPage() {
   const totalPrice = getTotalPrice();
 
   return (
-    <div className="flex flex-col min-h-screen bg-background text-foreground">
+    <div className="flex flex-col min-h-screen text-foreground">
       {/* Nagłówek w trybie ZEN (bez standardowej ikony koszyka) */}
       <Header zen={true} />
 

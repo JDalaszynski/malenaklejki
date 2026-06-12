@@ -1,5 +1,5 @@
 import { Header } from "@/components/layout/Header";
-import Link from "next/link";
+import { Footer } from "@/components/layout/Footer";
 
 export const metadata = {
   title: "Regulamin - MałeNaklejki",
@@ -7,7 +7,7 @@ export const metadata = {
 
 export default function RegulaminPage() {
   return (
-    <div className="flex flex-col min-h-screen bg-background text-foreground">
+    <div className="flex flex-col min-h-screen text-foreground">
       <Header />
       <main className="flex-1 py-16 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto w-full prose dark:prose-invert text-justify leading-relaxed">
         <h1 className="text-3xl font-extrabold mb-8 text-center text-foreground">Regulamin Sklepu Internetowego MałeNaklejki</h1>
@@ -110,17 +110,7 @@ export default function RegulaminPage() {
         </ol>
       </main>
 
-      <footer className="py-8 text-center text-sm text-muted-foreground border-t mt-12 bg-gradient-to-r from-[#fdf2f8] via-[#f5f3ff] to-[#ecfeff] border-t border-border/60">
-        <div className="max-w-5xl mx-auto flex flex-col items-center px-4 gap-4">
-          <div className="flex flex-wrap justify-center gap-x-6 gap-y-2">
-            <Link href="/regulamin" className="hover:underline">Regulamin</Link>
-            <Link href="/polityka-prywatnosci" className="hover:underline">Polityka prywatności</Link>
-            <Link href="/pliki-cookies" className="hover:underline">Pliki cookies</Link>
-            <Link href="/kontakt" className="hover:underline">Kontakt</Link>
-          </div>
-          <p className="text-xs text-muted-foreground/80 mt-2">&copy; {new Date().getFullYear()} MałeNaklejki. Wszelkie prawa zastrzeżone.</p>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }

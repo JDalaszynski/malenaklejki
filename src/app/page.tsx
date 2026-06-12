@@ -4,13 +4,14 @@ import { getUUID } from "@/lib/uuid";
 import { useState, useEffect, useMemo } from "react";
 import Link from "next/link";
 import { Header } from "@/components/layout/Header";
+import { Footer } from "@/components/layout/Footer";
 import { NewA4Visualizer } from "@/components/creator/NewA4Visualizer";
 import { A4Visualizer3D } from "@/components/creator/A4Visualizer3D";
 import { StickerEditModal } from "@/components/creator/StickerEditModal";
 import { AIGenerator } from "@/components/creator/AIGenerator";
 import { PlacedSticker } from "@/types/creator";
 import { useCartStore } from "@/store/cartStore";
-import { checkOverlap, getRotatedSize, getCutLineMargins, getOuterMargins, getCutLineBoundingBox } from "@/lib/utils/collision";
+import { checkOverlap, getRotatedSize, getCutLineMargins, getOuterMargins, getCutLineBoundingBox, checkStickersCollision } from "@/lib/utils/collision";
 import { getContourPoints } from "@/lib/utils/contour";
 import { getStickersNoun } from "@/lib/utils/polish";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
@@ -37,7 +38,9 @@ import {
   Circle,
   AlertTriangle,
   Truck,
-  X
+  X,
+  ChevronDown,
+  ChevronUp
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -53,6 +56,11 @@ export default function Home() {
   const [error, setError] = useState<string | null>(null);
   const [visualizerMode, setVisualizerMode] = useState<"2d" | "3d">("2d");
   const [hasUserEverAddedStickers, setHasUserEverAddedStickers] = useState(false);
+  const [isMobileStickerDetailsExpanded, setIsMobileStickerDetailsExpanded] = useState(false);
+
+  useEffect(() => {
+    setIsMobileStickerDetailsExpanded(false);
+  }, [selectedStickerId]);
 
   useEffect(() => {
     if (stickers.length > 0 && !hasUserEverAddedStickers) {
@@ -218,7 +226,7 @@ export default function Home() {
     return Math.round(selectedStickerDimension.width / widthInches);
   }, [selectedSticker, selectedStickerDimension]);
 
-  const isLowRes = selectedStickerDpi !== null && selectedStickerDpi < 150;
+  const isLowRes = selectedStickerDpi !== null && selectedStickerDpi < 100;
 
   // Helper to find a free position using grid search with rotation support
   const findFreePosition = (
@@ -247,7 +255,7 @@ export default function Home() {
 
     for (let candidateY = startY; candidateY <= endY; candidateY += step) {
       for (let candidateX = startX; candidateX <= endX; candidateX += step) {
-        const candidateRect = getCutLineBoundingBox({
+        const candidateSticker = {
           x: candidateX,
           y: candidateY,
           widthCm: wMm / 10,
@@ -255,10 +263,10 @@ export default function Home() {
           rotation: rotation,
           cutLineType,
           contourPolygons,
-        });
+        };
 
         const hasCollision = existing.some((st) => {
-          return checkOverlap(candidateRect, getCutLineBoundingBox(st), spacing);
+          return checkStickersCollision(candidateSticker, st);
         });
 
         if (!hasCollision) {
@@ -366,15 +374,13 @@ export default function Home() {
 
         if (!fitsIn) return null;
 
-        const rotRect = getCutLineBoundingBox(activeEditSticker, {
-          x: tx,
-          y: ty,
-          widthCm: w,
-          heightCm: h,
-        });
-
         const collision = otherStickers.some((other) => {
-          return checkOverlap(rotRect, getCutLineBoundingBox(other), 1.0);
+          return checkStickersCollision(activeEditSticker, other, {
+            x: tx,
+            y: ty,
+            widthCm: w,
+            heightCm: h,
+          });
         });
 
         if (collision) return null;
@@ -477,14 +483,12 @@ export default function Home() {
     // Check collision with other stickers
     const otherStickers = stickers.filter((s) => s.id !== selectedSticker.id);
 
-    const rotRect = getCutLineBoundingBox(selectedSticker, {
-      x: targetX,
-      y: targetY,
-      rotation: degrees,
-    });
-
     const collision = otherStickers.some((other) => {
-      return checkOverlap(rotRect, getCutLineBoundingBox(other), 1.0);
+      return checkStickersCollision(selectedSticker, other, {
+        x: targetX,
+        y: targetY,
+        rotation: degrees,
+      });
     });
 
     if (!collision && fitsInBounds) {
@@ -534,15 +538,13 @@ export default function Home() {
 
       if (!fitsIn) return null;
 
-      const rotRect = getCutLineBoundingBox(selectedSticker, {
-        x: tx,
-        y: ty,
-        widthCm: w,
-        heightCm: h,
-      });
-
       const collision = otherStickers.some((other) => {
-        return checkOverlap(rotRect, getCutLineBoundingBox(other), 1.0);
+        return checkStickersCollision(selectedSticker, other, {
+          x: tx,
+          y: ty,
+          widthCm: w,
+          heightCm: h,
+        });
       });
 
       if (collision) return null;
@@ -646,15 +648,13 @@ export default function Home() {
 
     // Check collision with other stickers
     const otherStickers = stickers.filter((s) => s.id !== selectedSticker.id);
-    const rotRect = getCutLineBoundingBox(selectedSticker, {
-      x: targetX,
-      y: targetY,
-      cutLineType: type,
-      contourPolygons: polys,
-    });
-
     const collision = otherStickers.some((other) => {
-      return checkOverlap(rotRect, getCutLineBoundingBox(other), 1.0);
+      return checkStickersCollision(selectedSticker, other, {
+        x: targetX,
+        y: targetY,
+        cutLineType: type,
+        contourPolygons: polys,
+      });
     });
 
     if (collision) {
@@ -795,7 +795,7 @@ export default function Home() {
       if (st.cutLineType === "rounded" || st.cutLineType === "circle") {
         offsetPx = Math.max(st.widthCm, st.heightCm) * 10 * (8 / 120) * MM_TO_PX;
       } else if (st.cutLineType === "rounded_inside" || st.cutLineType === "circle_inside") {
-        offsetPx = -Math.max(st.widthCm, st.heightCm) * 10 * (8 / 120) * MM_TO_PX;
+        offsetPx = -2 * MM_TO_PX;
       }
 
       if (mode === "cut-lines") {
@@ -912,7 +912,7 @@ export default function Home() {
           ctx.clip();
 
           const isInsideCut = st.cutLineType === "rounded_inside" || st.cutLineType === "circle_inside" || st.cutLineType === "contour_inside";
-          if (mode === "normal" && isInsideCut) {
+          if ((mode === "normal" || mode === "print") && isInsideCut) {
             ctx.save();
             ctx.beginPath();
             if (st.cutLineType === "rounded_inside") {
@@ -958,6 +958,23 @@ export default function Home() {
 
       ctx.restore();
     }
+
+    // Watermarks (znaki wodne)
+    ctx.save();
+    ctx.fillStyle = "rgba(169, 228, 215, 0.45)"; // Subtle primary brand color
+    ctx.font = `bold ${3.3 * MM_TO_PX}px sans-serif`;
+    ctx.textAlign = "center";
+    ctx.textBaseline = "middle";
+
+    // Top watermark
+    const topText = "mała ".repeat(80).trim();
+    ctx.fillText(topText, A4_W / 2, 5 * MM_TO_PX);
+
+    // Bottom watermark
+    const bottomText = "NAKLEJKA ".repeat(50).trim();
+    ctx.fillText(bottomText, A4_W / 2, 292 * MM_TO_PX);
+
+    ctx.restore();
 
     return canvas;
   };
@@ -1069,14 +1086,14 @@ export default function Home() {
 
   if (!mounted) {
     return (
-      <div className="min-h-screen bg-background text-foreground flex items-center justify-center">
+      <div className="min-h-screen text-foreground flex items-center justify-center">
         <div className="animate-pulse font-extrabold text-xl text-primary">Ładowanie kreatora...</div>
       </div>
     );
   }
 
   return (
-    <div className="flex flex-col min-h-screen bg-background text-foreground pb-6 relative">
+    <div className="flex flex-col min-h-screen text-foreground relative">
       {/* Sticky Top Notification */}
       {error && (
         <div className="fixed top-5 left-1/2 -translate-x-1/2 z-[100] max-w-md w-full px-4 animate-in fade-in slide-in-from-top duration-300">
@@ -1103,25 +1120,25 @@ export default function Home() {
 
       <Header />
 
-      <main className="flex-1 flex flex-col py-6 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto w-full justify-center relative gap-8">
+      <main className="flex-1 flex flex-col py-3 sm:py-6 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto w-full justify-center relative gap-4 sm:gap-8">
 
         {/* Page Info */}
         <div>
           <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
             Dodaj Naklejki na Arkusz
           </h1>
-          <p className="text-muted-foreground text-sm font-semibold mt-1">
+          <p className="text-muted-foreground text-sm font-semibold mt-1 theme-subtitle">
             Dodaj różne naklejki z komputera lub stwórz je za pomocą naszego generatora obrazów.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-8 items-start">
 
           {/* Left Column: Controls & Sidebar */}
-          <div className="lg:col-span-6 space-y-6 order-2 lg:order-1">
+          <div className="lg:col-span-6 space-y-3 sm:space-y-6 order-2 lg:order-1">
 
             {/* 1. Tool selection: Add Sticker */}
-            <div className="bg-card border border-border/60 rounded-3xl p-6 shadow-sm space-y-4">
+            <div className="bg-card border border-border/40 rounded-3xl p-4 sm:p-6 shadow-sm space-y-3 sm:space-y-4">
               <h3 className="text-lg font-black text-foreground flex items-center gap-2">
                 <Plus className="w-5 h-5 text-primary" />
                 Dodaj naklejkę na arkusz
@@ -1144,7 +1161,7 @@ export default function Home() {
                       }}
                     />
                     <UploadCloud className="w-8 h-8 text-muted-foreground group-hover:text-primary mb-2 opacity-75" />
-                    <span className="text-sm font-bold text-foreground">Wgraj zdjęcie</span>
+                    <span className="text-sm font-bold text-foreground">Dodaj naklejkę</span>
                     <span className="text-[10px] font-semibold text-muted-foreground mt-0.5">JPG / PNG</span>
                   </label>
 
@@ -1198,181 +1215,210 @@ export default function Home() {
               <motion.div
                 initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="bg-card border-2 border-primary/40 rounded-3xl p-6 shadow-sm space-y-6"
+                className="bg-card border-2 border-primary/40 rounded-3xl p-4 sm:p-6 shadow-sm space-y-4 sm:space-y-6"
               >
-                <div className="flex justify-between items-center border-b border-border/40 pb-3">
+                <div
+                  className="flex justify-between items-center border-b border-border/40 pb-3 cursor-pointer sm:cursor-default select-none"
+                  onClick={() => setIsMobileStickerDetailsExpanded(prev => !prev)}
+                >
                   <div className="flex items-center gap-2">
                     <Layers className="w-5 h-5 text-primary" />
                     <h3 className="text-lg font-black text-foreground">Wybrana Naklejka</h3>
                   </div>
-                </div>
-
-                {/* Standardized Actions Button Grid */}
-                <div className="flex flex-wrap sm:flex-nowrap items-center gap-1.5 w-full">
-                  <button
-                    type="button"
-                    onClick={handleOpenEdit}
-                    className="flex-1 inline-flex items-center justify-center gap-1 px-2 py-1.5 text-[11px] font-bold bg-muted/65 hover:bg-muted text-foreground border border-border/40 rounded-xl transition-all active:scale-95"
-                    title="Edytuj naklejkę"
-                  >
-                    <Crop className="w-3.5 h-3.5" />
-                    <span>Edytuj</span>
-                  </button>
-                  <button
-                    type="button"
-                    onClick={handleDuplicateSticker}
-                    className="flex-1 inline-flex items-center justify-center gap-1 px-2 py-1.5 text-[11px] font-bold bg-muted/65 hover:bg-muted text-foreground border border-border/40 rounded-xl transition-all active:scale-95"
-                    title="Zduplikuj"
-                  >
-                    <Copy className="w-3.5 h-3.5" />
-                    <span>Zduplikuj</span>
-                  </button>
-                  <button
-                    type="button"
-                    onClick={handleDownloadSticker}
-                    className="flex-1 inline-flex items-center justify-center gap-1 px-2 py-1.5 text-[11px] font-bold bg-muted/65 hover:bg-muted text-foreground border border-border/40 rounded-xl transition-all active:scale-95"
-                    title="Pobierz"
-                  >
-                    <Download className="w-3.5 h-3.5" />
-                    <span>Pobierz</span>
-                  </button>
-                  <button
-                    type="button"
-                    onClick={handleDeleteSticker}
-                    className="flex-1 inline-flex items-center justify-center gap-1 px-2 py-1.5 text-[11px] font-bold bg-destructive/10 hover:bg-destructive/15 text-destructive border border-destructive/20 rounded-xl transition-all active:scale-95"
-                    title="Usuń"
-                  >
-                    <Trash2 className="w-3.5 h-3.5" />
-                    <span>Usuń</span>
-                  </button>
+                  <div className="sm:hidden text-muted-foreground hover:text-foreground transition-colors p-1">
+                    {isMobileStickerDetailsExpanded ? (
+                      <ChevronUp className="w-5 h-5" />
+                    ) : (
+                      <ChevronDown className="w-5 h-5" />
+                    )}
+                  </div>
                 </div>
 
                 {/* Miniature and Stacked Details Row */}
-                <div className="flex items-center gap-5 bg-muted/20 border border-border/40 p-3 rounded-2xl">
-                  <div className="w-16 h-16 bg-white rounded-xl border border-border/40 p-1 flex items-center justify-center flex-shrink-0">
+                <div
+                  className="flex items-center gap-5 bg-muted/20 border border-border/40 p-3 rounded-2xl cursor-pointer sm:cursor-default hover:bg-muted/30 transition-colors"
+                  onClick={() => setIsMobileStickerDetailsExpanded(prev => !prev)}
+                >
+                  <div className="w-16 h-16 bg-white rounded-xl border border-border/40 p-1 flex items-center justify-center flex-shrink-0 overflow-hidden">
                     <img
                       src={selectedSticker.imageUrl}
                       alt="Miniatura"
-                      className="max-w-full max-h-full object-contain"
+                      className="max-w-full max-h-full object-contain rounded-lg"
                     />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <p className="text-xs font-black text-muted-foreground uppercase tracking-wide">Szczegóły</p>
+                    <p className="text-xs font-black text-muted-foreground uppercase tracking-wide flex items-center justify-between">
+                      <span>Szczegóły</span>
+                      <span className="text-[10px] text-primary sm:hidden font-extrabold">
+                        {isMobileStickerDetailsExpanded ? "zwiń ▲" : "rozwiń opcje ▼"}
+                      </span>
+                    </p>
                     <div className="text-xs font-bold text-foreground mt-0.5 space-y-0.5">
                       <p>Szerokość: {selectedSticker.widthCm} cm</p>
                       <p>Wysokość: {selectedSticker.heightCm.toFixed(1)} cm</p>
+                      <p>Linia cięcia: {
+                        selectedSticker.cutLineType === "none" ? "Brak" :
+                        selectedSticker.cutLineType === "contour" ? "Kontur" :
+                        selectedSticker.cutLineType === "rounded" ? "Prostokąt" :
+                        selectedSticker.cutLineType === "circle" ? "Koło" :
+                        selectedSticker.cutLineType === "rounded_inside" ? "Prostokąt wew." :
+                        selectedSticker.cutLineType === "circle_inside" ? "Koło wew." : selectedSticker.cutLineType
+                      }</p>
                     </div>
                   </div>
                 </div>
 
-                {isLowRes && (
-                  <div className="bg-red-50 border border-red-200 text-red-500 dark:bg-red-950/30 dark:border-red-900/30 dark:text-red-400 text-xs font-bold p-3 rounded-2xl flex items-start gap-2 mt-2">
-                    <AlertTriangle className="w-4 h-4 mt-0.5 flex-shrink-0" />
-                    <div>
-                      <p className="font-extrabold text-[12px]">Uwaga: niska jakość pliku!</p>
-                      <p className="text-[10px] leading-relaxed mt-0.5 font-semibold text-red-500/80 dark:text-red-400/80">
-                        Ta naklejka może być rozmazana w druku. Zalecamy dodanie pliku o lepszej jakości.
-                      </p>
+                {/* Collapsible content container for mobile */}
+                <div className={`space-y-6 ${isMobileStickerDetailsExpanded ? "block animate-in slide-in-from-top-2 duration-200" : "hidden sm:block"}`}>
+                  {/* Standardized Actions Button Grid */}
+                  <div className="flex flex-wrap sm:flex-nowrap items-center gap-1.5 w-full">
+                    <button
+                      type="button"
+                      onClick={handleOpenEdit}
+                      className="flex-1 inline-flex items-center justify-center gap-1 px-2 py-1.5 text-[11px] font-bold bg-muted/65 hover:bg-muted text-foreground border border-border/40 rounded-xl transition-all active:scale-95"
+                      title="Edytuj naklejkę"
+                    >
+                      <Crop className="w-3.5 h-3.5" />
+                      <span>Edytuj</span>
+                    </button>
+                    <button
+                      type="button"
+                      onClick={handleDuplicateSticker}
+                      className="flex-1 inline-flex items-center justify-center gap-1 px-2 py-1.5 text-[11px] font-bold bg-muted/65 hover:bg-muted text-foreground border border-border/40 rounded-xl transition-all active:scale-95"
+                      title="Zduplikuj"
+                    >
+                      <Copy className="w-3.5 h-3.5" />
+                      <span>Zduplikuj</span>
+                    </button>
+                    <button
+                      type="button"
+                      onClick={handleDownloadSticker}
+                      className="flex-1 inline-flex items-center justify-center gap-1 px-2 py-1.5 text-[11px] font-bold bg-muted/65 hover:bg-muted text-foreground border border-border/40 rounded-xl transition-all active:scale-95"
+                      title="Pobierz"
+                    >
+                      <Download className="w-3.5 h-3.5" />
+                      <span>Pobierz</span>
+                    </button>
+                    <button
+                      type="button"
+                      onClick={handleDeleteSticker}
+                      className="flex-1 inline-flex items-center justify-center gap-1 px-2 py-1.5 text-[11px] font-bold bg-destructive/10 hover:bg-destructive/15 text-destructive border border-destructive/20 rounded-xl transition-all active:scale-95"
+                      title="Usuń"
+                    >
+                      <Trash2 className="w-3.5 h-3.5" />
+                      <span>Usuń</span>
+                    </button>
+                  </div>
+
+                  {isLowRes && (
+                    <div className="bg-red-50 border border-red-200 text-red-500 dark:bg-red-950/30 dark:border-red-900/30 dark:text-red-400 text-xs font-bold p-3 rounded-2xl flex items-start gap-2 mt-2">
+                      <AlertTriangle className="w-4 h-4 mt-0.5 flex-shrink-0" />
+                      <div>
+                        <p className="font-extrabold text-[12px]">Uwaga: niska jakość pliku!</p>
+                        <p className="text-[10px] leading-relaxed mt-0.5 font-semibold text-red-500/80 dark:text-red-400/80">
+                          Ta naklejka może być rozmazana w druku. Zalecamy dodanie pliku o lepszej jakości.
+                        </p>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Resize control */}
+                  <div className="space-y-2">
+                    <div className="flex justify-between text-sm font-bold">
+                      <span className="text-foreground">Szerokość naklejki (cm)</span>
+                      <span className="text-primary font-black">{selectedSticker.widthCm} cm</span>
+                    </div>
+                    <input
+                      type="range"
+                      min={3}
+                      max={19}
+                      step={0.1}
+                      value={selectedSticker.widthCm}
+                      onChange={(e) => handleWidthChange(Number(e.target.value))}
+                      className="w-full h-2 bg-muted rounded-lg appearance-none cursor-pointer accent-primary"
+                    />
+                    <p className="text-[10px] text-muted-foreground font-semibold">
+                      Wysokość jest wyliczana automatycznie proporcjonalnie do grafiki (maksymalnie 19 cm).
+                    </p>
+                  </div>
+
+                  {/* Rotation control */}
+                  <div className="space-y-2">
+                    <div className="flex justify-between text-sm font-bold">
+                      <span className="text-foreground">Obrót naklejki (stopnie)</span>
+                      <span className="text-primary font-black">{selectedSticker.rotation || 0}°</span>
+                    </div>
+                    <input
+                      type="range"
+                      min={0}
+                      max={360}
+                      step={1}
+                      value={selectedSticker.rotation || 0}
+                      onChange={(e) => handleRotationChange(Number(e.target.value))}
+                      className="w-full h-2 bg-muted rounded-lg appearance-none cursor-pointer accent-primary"
+                    />
+                    <div className="relative w-full h-8 mt-2">
+                      {[0, 90, 180, 270, 360].map((deg) => {
+                        const pct = (deg / 360) * 100;
+                        return (
+                          <button
+                            key={deg}
+                            type="button"
+                            onClick={() => handleRotationChange(deg)}
+                            style={{
+                              left: `${pct}%`,
+                              transform: `translateX(-${pct}%)`,
+                            }}
+                            className={`absolute text-[10px] font-extrabold rounded-md border transition-all px-2 py-0.5 ${(selectedSticker.rotation || 0) === deg
+                              ? "bg-secondary/20 text-secondary-foreground border-secondary/40"
+                              : "bg-muted/40 hover:bg-muted text-muted-foreground border-transparent"
+                              }`}
+                          >
+                            {deg}°
+                          </button>
+                        );
+                      })}
                     </div>
                   </div>
-                )}
 
-                {/* Resize control */}
-                <div className="space-y-2">
-                  <div className="flex justify-between text-sm font-bold">
-                    <span className="text-foreground">Szerokość naklejki (cm)</span>
-                    <span className="text-primary font-black">{selectedSticker.widthCm} cm</span>
-                  </div>
-                  <input
-                    type="range"
-                    min={3}
-                    max={19}
-                    step={0.1}
-                    value={selectedSticker.widthCm}
-                    onChange={(e) => handleWidthChange(Number(e.target.value))}
-                    className="w-full h-2 bg-muted rounded-lg appearance-none cursor-pointer accent-primary"
-                  />
-                  <p className="text-[10px] text-muted-foreground font-semibold">
-                    Wysokość jest wyliczana automatycznie proporcjonalnie do grafiki (maksymalnie 19 cm).
-                  </p>
-                </div>
-
-                {/* Rotation control */}
-                <div className="space-y-2">
-                  <div className="flex justify-between text-sm font-bold">
-                    <span className="text-foreground">Obrót naklejki (stopnie)</span>
-                    <span className="text-primary font-black">{selectedSticker.rotation || 0}°</span>
-                  </div>
-                  <input
-                    type="range"
-                    min={0}
-                    max={360}
-                    step={1}
-                    value={selectedSticker.rotation || 0}
-                    onChange={(e) => handleRotationChange(Number(e.target.value))}
-                    className="w-full h-2 bg-muted rounded-lg appearance-none cursor-pointer accent-primary"
-                  />
-                  <div className="relative w-full h-8 mt-2">
-                    {[0, 90, 180, 270, 360].map((deg) => {
-                      const pct = (deg / 360) * 100;
-                      return (
-                        <button
-                          key={deg}
-                          type="button"
-                          onClick={() => handleRotationChange(deg)}
-                          style={{
-                            left: `${pct}%`,
-                            transform: `translateX(-${pct}%)`,
-                          }}
-                          className={`absolute text-[10px] font-extrabold rounded-md border transition-all px-2 py-0.5 ${(selectedSticker.rotation || 0) === deg
-                            ? "bg-secondary/20 text-secondary-foreground border-secondary/40"
-                            : "bg-muted/40 hover:bg-muted text-muted-foreground border-transparent"
-                            }`}
-                        >
-                          {deg}°
-                        </button>
-                      );
-                    })}
-                  </div>
-                </div>
-
-                {/* Cut line options */}
-                <div className="space-y-3">
-                  <span className="text-sm font-bold text-foreground block">Rodzaj linii cięcia (naklejki)</span>
-                  <div className="grid grid-cols-3 gap-2">
-                    {[
-                      { type: "none", label: "Brak", icon: Ban },
-                      { type: "contour", label: "Kontur", icon: Sparkles },
-                      { type: "rounded", label: "Prostokąt", icon: Square },
-                      { type: "circle", label: "Koło", icon: Circle },
-                      { type: "rounded_inside", label: "Prostokąt wew.", icon: Square },
-                      { type: "circle_inside", label: "Koło wew.", icon: Circle },
-                    ].map((opt) => {
-                      const Icon = opt.icon;
-                      return (
-                        <button
-                          key={opt.type}
-                          onClick={() => handleCutLineChange(opt.type as any)}
-                          className={`py-3 px-1 text-xs font-bold rounded-xl border text-center transition-all flex flex-col items-center justify-center gap-1.5 active:scale-95 ${selectedSticker.cutLineType === opt.type
-                            ? "bg-primary text-primary-foreground border-primary shadow-sm"
-                            : "bg-background text-muted-foreground border-border hover:bg-muted/40"
-                            }`}
-                        >
-                          <Icon className="w-4 h-4" />
-                          <span>{opt.label}</span>
-                        </button>
-                      );
-                    })}
+                  {/* Cut line options */}
+                  <div className="space-y-3">
+                    <span className="text-sm font-bold text-foreground block">Rodzaj linii cięcia (naklejki)</span>
+                    <div className="grid grid-cols-3 gap-2">
+                      {[
+                        { type: "none", label: "Brak", icon: Ban },
+                        { type: "contour", label: "Kontur", icon: Sparkles },
+                        { type: "rounded", label: "Prostokąt", icon: Square },
+                        { type: "circle", label: "Koło", icon: Circle },
+                        { type: "rounded_inside", label: "Prostokąt wew.", icon: Square },
+                        { type: "circle_inside", label: "Koło wew.", icon: Circle },
+                      ].map((opt) => {
+                        const Icon = opt.icon;
+                        return (
+                          <button
+                            key={opt.type}
+                            onClick={() => handleCutLineChange(opt.type as any)}
+                            className={`py-3 px-1 text-[10px] sm:text-xs font-bold rounded-xl border text-center transition-all flex flex-col items-center justify-center gap-1.5 active:scale-95 whitespace-nowrap ${selectedSticker.cutLineType === opt.type
+                              ? "bg-primary text-primary-foreground border-primary shadow-sm"
+                              : "bg-background text-muted-foreground border-border hover:bg-muted/40"
+                              }`}
+                          >
+                            <Icon className="w-4 h-4" />
+                            <span>{opt.label}</span>
+                          </button>
+                        );
+                      })}
+                    </div>
                   </div>
                 </div>
               </motion.div>
             ) : stickers.length === 0 ? (
-              <div className="bg-card border border-border/60 rounded-3xl p-6 shadow-sm text-center py-8 text-muted-foreground font-semibold flex flex-col items-center gap-3 animate-pulse">
+              <div className="bg-card border border-border/40 rounded-3xl p-6 shadow-sm text-center py-8 text-muted-foreground font-semibold flex flex-col items-center gap-3 animate-pulse">
                 <ArrowUp className="w-6 h-6 text-primary" />
                 <span>Dodaj swoją pierwszą naklejkę na arkusz!</span>
               </div>
             ) : (
-              <div className="hidden sm:block bg-card border border-border/60 rounded-3xl p-6 shadow-sm text-center py-8 text-muted-foreground font-semibold">
+              <div className="hidden sm:block bg-card border border-border/40 rounded-3xl p-6 shadow-sm text-center py-8 text-muted-foreground font-semibold">
                 Kliknij na naklejkę na arkuszu, aby włączyć jej dopasowanie, zmienić rozmiar lub rodzaj cięcia.
               </div>
             )}
@@ -1384,11 +1430,10 @@ export default function Home() {
             onDragOver={handleDragOver}
             onDragLeave={handleDragLeave}
             onDrop={handleDrop}
-            className={`relative lg:col-span-6 flex flex-col items-center justify-center rounded-3xl p-6 sm:p-8 min-h-[500px] order-1 lg:order-2 transition-all ${
-              stickers.length === 0
-                ? "bg-transparent sm:bg-card border-none sm:border sm:border-border/60 shadow-none sm:shadow-[0_8px_30px_rgba(0,0,0,0.02)]"
-                : "bg-card border border-border/60 shadow-[0_8px_30px_rgba(0,0,0,0.02)]"
-            }`}
+            className={`relative lg:col-span-6 flex flex-col items-center justify-center rounded-3xl p-6 sm:p-8 min-h-[500px] order-1 lg:order-2 transition-all ${stickers.length === 0
+              ? "bg-transparent sm:bg-card border-none sm:border sm:border-border/40 shadow-none sm:shadow-[0_8px_30px_rgba(0,0,0,0.02)]"
+              : "bg-card border border-border/40 shadow-[0_8px_30px_rgba(0,0,0,0.02)]"
+              }`}
           >
             {/* Local Drag Overlay */}
             {isDraggingOverSheet && (
@@ -1452,7 +1497,8 @@ export default function Home() {
                   onDuplicateSticker={handleDuplicateSticker}
                   onDeleteSticker={handleDeleteSticker}
                   onCutLineChange={handleCutLineChange}
-                  isPresentationMode={stickers.length === 0 && !hasUserEverAddedStickers}
+                  onRotationChange={handleRotationChange}
+                  isPresentationMode={false}
                 />
               ) : (
                 <A4Visualizer3D stickers={stickers} />
@@ -1472,40 +1518,16 @@ export default function Home() {
                   />
                   <div className="flex flex-col items-center justify-center bg-background/95 backdrop-blur-sm border border-border/80 py-4 px-6 rounded-2xl shadow-lg animate-bounce">
                     <UploadCloud className="w-6 h-6 text-primary mb-1.5" />
-                    <span className="text-xs font-extrabold text-foreground">Wgraj zdjęcie</span>
-                    <span className="text-[9px] font-semibold text-muted-foreground mt-0.5">Dodaj pierwszą naklejkę</span>
+                    <span className="text-xs font-extrabold text-foreground">Dodaj naklejkę</span>
+                    <span className="text-[9px] font-semibold text-muted-foreground mt-0.5">Wgraj pierwszą grafikę</span>
                   </div>
                 </label>
               )}
             </div>
 
-            <div className="flex flex-wrap items-center justify-center gap-2 mt-4 w-full max-w-md">
-              <button
-                onClick={() => handleDownloadPDF("print")}
-                disabled={isGeneratingPdf || stickers.length === 0}
-                className="flex-1 inline-flex items-center justify-center rounded-2xl text-xs font-bold bg-muted text-muted-foreground hover:bg-muted/80 h-12 px-4 transition-all disabled:opacity-50"
-                title="Pobierz plik PDF do druku (bez linii cięcia)"
-              >
-                {isGeneratingPdf ? (
-                  <Loader2 className="w-3.5 h-3.5 animate-spin mr-1.5" />
-                ) : (
-                  <Download className="w-4 h-4 mr-1.5" />
-                )}
-                PDF Druk
-              </button>
 
-              <button
-                onClick={() => handleDownloadPDF("cut-lines")}
-                disabled={isGeneratingPdf || stickers.length === 0}
-                className="flex-1 inline-flex items-center justify-center rounded-2xl text-xs font-bold bg-secondary/20 text-secondary-foreground hover:bg-secondary/35 h-12 px-4 transition-all disabled:opacity-50"
-                title="Pobierz plik PDF z liniami cięcia (czarne sylwetki)"
-              >
-                <Scissors className="w-4 h-4 mr-1.5" />
-                PDF Linie
-              </button>
-            </div>
 
-            <p className="text-[11px] text-muted-foreground bg-muted/20 border border-border/40 p-3 rounded-2xl font-bold mt-4 text-center max-w-md mx-auto">
+            <p className="text-[11px] text-muted-foreground bg-muted/20 border border-border/40 p-3 rounded-2xl font-bold mt-2 sm:mt-4 text-center max-w-md mx-auto">
               Uwaga: Po zmniejszeniu rozmiaru naklejki tekst i małe elementy mogą stać się nieczytelne.
             </p>
           </div>
@@ -1513,7 +1535,7 @@ export default function Home() {
         </div>
 
         {/* Floating/Sticky Bottom Summary Bar */}
-        <div className="relative sm:sticky bottom-0 sm:bottom-4 z-40 bg-background/95 backdrop-blur-md border border-border shadow-[0_8px_30px_rgba(0,0,0,0.08)] py-4 px-6 sm:px-8 rounded-2xl mt-4">
+        <div className="relative sm:sticky bottom-0 sm:bottom-4 z-40 bg-background/95 backdrop-blur-md border border-border/40 shadow-[0_8px_30px_rgba(0,0,0,0.04)] py-3 sm:py-4 px-4 sm:px-8 rounded-2xl mt-2 sm:mt-4">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             {/* Left: Summary Info */}
             <div className="flex flex-col sm:flex-row items-center gap-4 text-center sm:text-left">
@@ -1556,7 +1578,7 @@ export default function Home() {
                     disabled={sheetQuantity <= 1}
                     className="w-8 h-8 rounded-xl bg-background hover:bg-muted border border-border flex items-center justify-center font-bold active:scale-95 transition-transform disabled:opacity-30 disabled:pointer-events-none"
                   >
-                    <Minus className="w-3.5 h-3.5" />
+                    <Minus className="w-3.5 h-3.5 text-foreground" />
                   </button>
                   <span className="text-sm font-black w-6 text-center text-foreground">{sheetQuantity}</span>
                   <button
@@ -1564,7 +1586,7 @@ export default function Home() {
                     onClick={() => setSheetQuantity(sheetQuantity + 1)}
                     className="w-8 h-8 rounded-xl bg-background hover:bg-muted border border-border flex items-center justify-center font-bold active:scale-95 transition-transform"
                   >
-                    <Plus className="w-3.5 h-3.5" />
+                    <Plus className="w-3.5 h-3.5 text-foreground" />
                   </button>
                 </div>
                 <div className="flex items-center gap-1.5 text-[11px] font-black text-secondary whitespace-nowrap">
@@ -1684,17 +1706,33 @@ export default function Home() {
         )}
       </AnimatePresence>
 
-      <footer className="py-8 text-center text-sm text-muted-foreground border-t mt-12 bg-gradient-to-r from-[#fdf2f8] via-[#f5f3ff] to-[#ecfeff] border-t border-border/60">
-        <div className="max-w-5xl mx-auto flex flex-col items-center px-4 gap-4">
-          <div className="flex flex-wrap justify-center gap-x-6 gap-y-2">
-            <Link href="/regulamin" className="hover:underline">Regulamin</Link>
-            <Link href="/polityka-prywatnosci" className="hover:underline">Polityka prywatności</Link>
-            <Link href="/pliki-cookies" className="hover:underline">Pliki cookies</Link>
-            <Link href="/kontakt" className="hover:underline">Kontakt</Link>
-          </div>
-          <p className="text-xs text-muted-foreground/80 mt-2">&copy; {new Date().getFullYear()} MałeNaklejki. Wszelkie prawa zastrzeżone.</p>
+      <Footer>
+        <div className="flex flex-wrap items-center justify-center gap-3 w-full max-w-md my-2 animate-in fade-in duration-200">
+          <button
+            onClick={() => handleDownloadPDF("print")}
+            disabled={isGeneratingPdf || stickers.length === 0}
+            className="flex-1 inline-flex items-center justify-center rounded-2xl text-xs font-bold bg-muted text-muted-foreground hover:bg-muted/80 h-12 px-4 transition-all disabled:opacity-50 cursor-pointer"
+            title="Pobierz plik PDF do druku (bez linii cięcia)"
+          >
+            {isGeneratingPdf ? (
+              <Loader2 className="w-3.5 h-3.5 animate-spin mr-1.5" />
+            ) : (
+              <Download className="w-4 h-4 mr-1.5" />
+            )}
+            PDF Druk
+          </button>
+
+          <button
+            onClick={() => handleDownloadPDF("cut-lines")}
+            disabled={isGeneratingPdf || stickers.length === 0}
+            className="flex-1 inline-flex items-center justify-center rounded-2xl text-xs font-bold bg-secondary/20 text-secondary-foreground hover:bg-secondary/35 h-12 px-4 transition-all disabled:opacity-50 cursor-pointer"
+            title="Pobierz plik PDF z liniami cięcia (czarne sylwetki)"
+          >
+            <Scissors className="w-4 h-4 mr-1.5" />
+            PDF Linie
+          </button>
         </div>
-      </footer>
+      </Footer>
     </div>
   );
 }

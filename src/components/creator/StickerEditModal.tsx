@@ -182,10 +182,10 @@ export function StickerEditModal({ imageSrc, onSave, onCancel }: StickerEditModa
       // Top-Left handle: moving down-right (dx > 0, dy > 0) decreases size, up-left increases it
       const newWidth = Math.max(60, Math.min(320, resizeStart.current.w - dx));
       const newHeight = Math.max(60, Math.min(320, resizeStart.current.h - dy));
-      
+
       setCustomWidth(newWidth);
       setCustomHeight(newHeight);
-      
+
       // Adjust position to anchor the bottom-right corner in image space
       setPosition({
         x: resizeStart.current.posX + (newWidth - resizeStart.current.w),
@@ -462,20 +462,20 @@ export function StickerEditModal({ imageSrc, onSave, onCancel }: StickerEditModa
             type="button"
             onClick={handleRemoveBackground}
             disabled={isProcessing}
-            className="w-full sm:flex-1 inline-flex items-center justify-center gap-1.5 rounded-xl text-xs font-bold bg-secondary/15 text-secondary-foreground hover:bg-secondary/25 border border-secondary/25 h-12 px-3 shadow-none transition-all active:scale-[0.98] disabled:opacity-50"
+            className="w-full sm:flex-1 inline-flex items-center justify-center gap-1.5 rounded-xl text-xs font-bold bg-primary/15 text-primary hover:bg-primary/25 border border-primary/25 h-12 px-3 shadow-none transition-all active:scale-[0.98] disabled:opacity-50"
           >
             <Sparkles className="w-3.5 h-3.5" />
-            Usuń tło (AI)
+            Usuń tło
           </button>
-          
+
           <button
             type="button"
             onClick={handleEnhanceQuality}
             disabled={isProcessing}
-            className="w-full sm:flex-1 inline-flex items-center justify-center gap-1.5 rounded-xl text-xs font-bold bg-secondary/15 text-secondary-foreground hover:bg-secondary/25 border border-secondary/25 h-12 px-3 shadow-none transition-all active:scale-[0.98] disabled:opacity-50"
+            className="w-full sm:flex-1 inline-flex items-center justify-center gap-1.5 rounded-xl text-xs font-bold bg-primary/15 text-primary hover:bg-primary/25 border border-primary/25 h-12 px-3 shadow-none transition-all active:scale-[0.98] disabled:opacity-50"
           >
-            <Wand2 className="w-3.5 h-3.5 text-black" />
-            Popraw jakość (AI)
+            <Wand2 className="w-3.5 h-3.5" />
+            Popraw jakość
           </button>
 
           <button
