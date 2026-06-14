@@ -87,7 +87,7 @@ export function A4Visualizer3D({ stickers }: A4Visualizer3DProps) {
 
         {/* Watermarks (znaki wodne) */}
         <div
-          className="absolute left-0 right-0 top-0 flex items-center justify-center overflow-hidden pointer-events-none select-none text-primary/35 font-extrabold tracking-wider whitespace-nowrap"
+          className="absolute left-0 right-0 top-0 flex items-center justify-center overflow-hidden pointer-events-none select-none text-secondary/35 font-extrabold tracking-wider whitespace-nowrap"
           style={{
             height: `${(MARGIN_MM / SHEET_HEIGHT_MM) * 100}%`,
             fontSize: "1.5cqw",
@@ -98,14 +98,14 @@ export function A4Visualizer3D({ stickers }: A4Visualizer3DProps) {
         </div>
 
         <div
-          className="absolute left-0 right-0 bottom-0 flex items-center justify-center overflow-hidden pointer-events-none select-none text-primary/35 font-extrabold tracking-wider whitespace-nowrap"
+          className="absolute left-0 right-0 bottom-0 flex items-center justify-center overflow-hidden pointer-events-none select-none text-secondary/35 font-extrabold tracking-wider whitespace-nowrap"
           style={{
             height: `${(MARGIN_MM / SHEET_HEIGHT_MM) * 100}%`,
             fontSize: "1.5cqw",
             transform: "translateZ(1px)",
           }}
         >
-          {Array(35).fill("NAKLEJKI").join(" ")}
+          {Array(35).fill("Naklejki").join(" ")}
         </div>
 
         {/* Render Stickers with 3D Depth */}

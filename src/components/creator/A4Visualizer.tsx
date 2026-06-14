@@ -336,12 +336,12 @@ export function A4Visualizer({ imageUrl, onImageChange }: A4VisualizerProps) {
         </div>
 
         <div className="bg-secondary/35 border border-secondary/80 p-5 rounded-xl">
-          <p className="text-lg font-extrabold text-secondary-foreground">
+          <p className="text-lg font-extrabold text-foreground">
             Zmieścimy aż <span className="text-3xl font-black">{fitCalculation.maxStickers * sheetQuantity}</span> sztuk!
           </p>
-          <p className="text-sm mt-2 font-medium text-secondary-foreground/90 leading-relaxed">
+          <p className="text-sm mt-2 font-medium text-foreground/90 leading-relaxed">
             Łącznie: <span className="font-extrabold text-primary text-base">{(49.00 * sheetQuantity).toFixed(2)} zł</span>
-            <span className="block text-xs text-secondary-foreground/80 mt-1">
+            <span className="block text-xs text-foreground/80 mt-1">
               (A4: {fitCalculation.maxStickers} szt./arkusz po {pricePerSticker} zł za sztukę)
             </span>
           </p>

@@ -373,7 +373,7 @@ export function StickerEditModal({ imageSrc, onSave, onCancel }: StickerEditModa
           {isProcessing && (
             <div className="absolute inset-0 bg-background/80 backdrop-blur-[1px] flex flex-col items-center justify-center gap-2 z-30 animate-in fade-in duration-200">
               <Loader2 className="w-8 h-8 animate-spin text-primary" />
-              <span className="text-xs font-bold text-primary">{processingMessage || "Przetwarzanie..."}</span>
+              <span className="text-xs font-bold text-primary">{processingMessage || "Dodawanie..."}</span>
             </div>
           )}
 
@@ -496,7 +496,7 @@ export function StickerEditModal({ imageSrc, onSave, onCancel }: StickerEditModa
             className="flex-1 inline-flex items-center justify-center rounded-xl text-sm font-bold bg-primary text-primary-foreground hover:bg-primary/95 h-11 shadow-sm transition-all disabled:opacity-50 active:scale-[0.98]"
           >
             <Check className="w-4 h-4 mr-1.5" />
-            Zatwierdź naklejkę
+            Dodaj obraz
           </button>
         </div>
       </motion.div>

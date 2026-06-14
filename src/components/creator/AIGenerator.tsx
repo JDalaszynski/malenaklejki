@@ -300,7 +300,7 @@ export function AIGenerator({ onImageGenerated }: AIGeneratorProps) {
             value={prompt}
             onChange={(e) => setPrompt(e.target.value)}
             disabled={isGenerating || isUploadingReference}
-            className="flex h-14 w-full rounded-xl border border-border/70 bg-background px-4 py-2 text-base font-semibold placeholder:text-muted-foreground focus-visible:outline-none focus-visible:border-primary focus-visible:ring-2 focus-visible:ring-primary/20 disabled:opacity-50 flex-1 shadow-none"
+            className="flex h-14 w-full rounded-xl border border-slate-200 dark:border-border/70 bg-background px-4 py-2 text-base font-semibold placeholder:text-muted-foreground focus-visible:outline-none focus-visible:border-primary focus-visible:ring-2 focus-visible:ring-primary/20 disabled:opacity-50 flex-1 shadow-none"
           />
           <motion.button
             whileTap={canGenerate ? { scale: 0.98 } : {}}
@@ -330,7 +330,7 @@ export function AIGenerator({ onImageGenerated }: AIGeneratorProps) {
 
           {attachedImage ? (
             /* Thumbnail of attached image */
-            <div className="flex items-center gap-3 bg-muted/40 border border-border/60 rounded-xl px-3 py-2 flex-1">
+            <div className="flex items-center gap-3 bg-muted/40 border border-slate-200 dark:border-border/60 rounded-xl px-3 py-2 flex-1">
               <div className="w-10 h-10 rounded-lg overflow-hidden border border-border/50 flex-shrink-0 bg-white">
                 <img
                   src={attachedImage.previewUrl}
@@ -361,7 +361,7 @@ export function AIGenerator({ onImageGenerated }: AIGeneratorProps) {
               type="button"
               onClick={() => fileInputRef.current?.click()}
               disabled={isGenerating || isUploadingReference}
-              className="inline-flex items-center gap-2 text-sm font-semibold text-muted-foreground hover:text-primary border border-border/60 hover:border-primary/40 bg-muted/30 hover:bg-muted/50 transition-all px-4 py-2.5 rounded-xl disabled:opacity-40 disabled:pointer-events-none w-full justify-center"
+              className="inline-flex items-center gap-2 text-sm font-semibold text-muted-foreground hover:text-primary border border-slate-200 dark:border-border/60 hover:border-primary/40 bg-muted/30 hover:bg-muted/50 transition-all px-4 py-2.5 rounded-xl disabled:opacity-40 disabled:pointer-events-none w-full justify-center"
             >
               <ImagePlus className="w-4 h-4" />
               Wgraj swoje zdjęcie<span className="hidden sm:inline"> (lub przeciągnij tutaj)</span>
@@ -379,7 +379,7 @@ export function AIGenerator({ onImageGenerated }: AIGeneratorProps) {
             value={selectedStyleId}
             onChange={(e) => setSelectedStyleId(e.target.value)}
             disabled={isGenerating || isUploadingReference}
-            className="flex h-12 w-full rounded-xl border border-border/70 bg-background px-4 py-2 text-sm font-semibold focus-visible:outline-none focus-visible:border-primary focus-visible:ring-2 focus-visible:ring-primary/20 disabled:opacity-50 shadow-none cursor-pointer"
+            className="flex h-12 w-full rounded-xl border border-slate-200 dark:border-border/70 bg-background px-4 py-2 text-sm font-semibold focus-visible:outline-none focus-visible:border-primary focus-visible:ring-2 focus-visible:ring-primary/20 disabled:opacity-50 shadow-none cursor-pointer"
           >
             {STYLES.map((style) => (
               <option key={style.id} value={style.id}>
@@ -402,7 +402,7 @@ export function AIGenerator({ onImageGenerated }: AIGeneratorProps) {
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.9 }}
-              className="w-full aspect-square bg-secondary/10 border-2 border-secondary/30 rounded-[2rem] flex flex-col items-center justify-center gap-4 text-secondary-foreground"
+              className="w-full aspect-square bg-secondary/10 border-2 border-secondary/30 rounded-[2rem] flex flex-col items-center justify-center gap-4 text-foreground"
             >
               <motion.div
                 animate={{ y: [0, -15, 0], rotate: [0, 5, -5, 0] }}

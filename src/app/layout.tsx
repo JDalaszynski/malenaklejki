@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Nunito, Inter } from "next/font/google";
+import { Nunito, Fredoka } from "next/font/google";
 import "./globals.css";
 import { CookieBanner } from "@/components/layout/CookieBanner";
 import { Analytics } from "@vercel/analytics/react";
@@ -8,11 +8,13 @@ import { InteractiveBackground } from "@/components/layout/InteractiveBackground
 const nunito = Nunito({
   variable: "--font-sans",
   subsets: ["latin", "latin-ext"],
+  weight: ["400", "700"],
 });
 
-const inter = Inter({
-  variable: "--font-inter",
+const fredoka = Fredoka({
+  variable: "--font-heading",
   subsets: ["latin", "latin-ext"],
+  weight: ["400", "600", "700"],
 });
 
 export const metadata: Metadata = {
@@ -28,24 +30,18 @@ export default function RootLayout({
   return (
     <html
       lang="pl"
-      className={`${nunito.variable} ${inter.variable} h-full antialiased`}
+      className={`${nunito.variable} ${fredoka.variable} h-full antialiased`}
+      suppressHydrationWarning
     >
       <head>
         <script
           dangerouslySetInnerHTML={{
             __html: `
-              try {
-                if (localStorage.theme === 'dark') {
+               try {
+                if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
                   document.documentElement.classList.add('dark');
-                  document.documentElement.classList.remove('mixed');
-                } else if (localStorage.theme === 'light') {
-                  document.documentElement.classList.remove('dark', 'mixed');
-                } else if (localStorage.theme === 'mixed') {
-                  document.documentElement.classList.add('mixed');
-                  document.documentElement.classList.remove('dark');
                 } else {
-                  // Default theme is light
-                  document.documentElement.classList.remove('dark', 'mixed');
+                  document.documentElement.classList.remove('dark');
                 }
               } catch (_) {}
             `,

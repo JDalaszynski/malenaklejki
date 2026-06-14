@@ -5,6 +5,7 @@ import { ShoppingCart } from "lucide-react";
 import { useCartStore } from "@/store/cartStore";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 interface HeaderProps {
   zen?: boolean;
@@ -23,24 +24,33 @@ export function Header({ zen = false }: HeaderProps) {
 
   return (
     <header className="w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 z-50 pt-4">
-      <div className="grid grid-cols-3 h-16 sm:h-20 items-center px-6 sm:px-8 bg-background/90 backdrop-blur-md rounded-2xl shadow-[0_8px_20px_-6px_oklch(0.86_0.08_170_/_0.25)] border border-[oklch(0.86_0.08_170_/_0.3)]">
-        {/* Left: Empty Placeholder to keep logo centered */}
-        <div className="flex justify-start items-center" />
-
-        {/* Center: Logo */}
-        <div className="flex justify-center items-center">
-          <Link href="/" className="flex items-center space-x-2">
-            <motion.span
+      <div className="flex justify-between items-center h-16 sm:h-20 px-6 sm:px-8 bg-background/90 backdrop-blur-md rounded-2xl shadow-[0_8px_20px_-6px_oklch(0.86_0.08_170_/_0.25)] border border-[oklch(0.86_0.08_170_/_0.3)]">
+        {/* Left: Logo */}
+        <div className="flex justify-start items-center">
+          <Link href="/" className="flex items-center">
+            <motion.div
               whileTap={{ scale: 0.98 }}
-              className="text-xl sm:text-2xl md:text-3xl whitespace-nowrap"
+              className="relative h-10 sm:h-11 md:h-12 flex items-center"
             >
-              <span className="font-medium bg-clip-text text-transparent bg-gradient-to-r from-primary to-[oklch(0.76_0.08_170)]">
-                małe
-              </span>
-              <span className="font-black bg-clip-text text-transparent bg-gradient-to-r from-secondary to-[oklch(0.60_0.01_290)] logo-naklejki">
-                Naklejki
-              </span>
-            </motion.span>
+              <Image
+                src="/images/logo/malenaklejki-logo-light.png?v=3"
+                alt="małe Naklejki Logo"
+                width={280}
+                height={70}
+                className="h-full w-auto object-contain dark:hidden"
+                priority
+                unoptimized
+              />
+              <Image
+                src="/images/logo/malenaklejki-logo-dark.png?v=3"
+                alt="małe Naklejki Logo"
+                width={280}
+                height={70}
+                className="h-full w-auto object-contain hidden dark:block"
+                priority
+                unoptimized
+              />
+            </motion.div>
           </Link>
         </div>
 

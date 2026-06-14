@@ -2,8 +2,9 @@
 
 import { useCartStore } from "@/store/cartStore";
 import { Header } from "@/components/layout/Header";
+import { Footer } from "@/components/layout/Footer";
 import Link from "next/link";
-import { Trash2, Plus, Minus, ArrowLeft, CreditCard, ShoppingBag } from "lucide-react";
+import { Trash2, Plus, Minus, ArrowLeft, CreditCard, ShoppingBag, Truck } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
@@ -36,7 +37,7 @@ export default function CartPage() {
       <main className="flex-1 flex flex-col py-6 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto w-full justify-center">
         <div className="mb-8 text-center sm:text-left flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <div>
-            <h1 className="text-4xl font-extrabold tracking-tight text-transparent bg-clip-text bg-gradient-to-br from-primary to-secondary drop-shadow-sm">
+            <h1 className="text-4xl font-extrabold tracking-tight text-foreground">
               Twój Koszyk
             </h1>
             <p className="text-muted-foreground mt-2 font-medium text-lg">
@@ -105,7 +106,7 @@ export default function CartPage() {
                           Wymiary: {item.widthCm} × {item.heightCm.toFixed(1)} cm
                         </p>
                         <div className="pt-0.5 flex flex-wrap gap-2 items-center">
-                          <span className="text-[11px] font-bold text-secondary-foreground bg-secondary/15 px-2.5 py-0.5 rounded-full inline-block">
+                          <span className="text-[11px] font-bold text-foreground bg-secondary/15 px-2.5 py-0.5 rounded-full inline-block">
                             {item.stickersPerSheet} {getStickersNoun(item.stickersPerSheet)} na arkuszu
                           </span>
                           {item.stickersPerSheet > 0 && (
@@ -171,19 +172,22 @@ export default function CartPage() {
             <div className="space-y-4">
               <div className="bg-card border border-border/70 rounded-2xl p-6 shadow-sm space-y-6">
                 <h3 className="font-extrabold text-xl text-foreground border-b border-border/40 pb-3">Podsumowanie</h3>
-                
+
                 <div className="space-y-3 font-semibold">
                   <div className="flex justify-between text-muted-foreground text-sm">
                     <span>Suma częściowa</span>
                     <span>{totalPrice.toFixed(2)} zł</span>
                   </div>
                   <div className="flex justify-between text-muted-foreground text-sm">
-                    <span>Dostawa</span>
-                    <span className="text-xs font-bold bg-secondary/20 text-secondary-foreground px-2 py-0.5 rounded-md">Obliczana w kasie</span>
+                    <span className="flex items-center gap-1.5">
+                      <Truck className="w-4 h-4 text-muted-foreground/75" />
+                      Dostawa
+                    </span>
+                    <span>19.99 zł</span>
                   </div>
                   <div className="flex justify-between text-xl font-black text-primary border-t border-border/40 pt-4">
                     <span>Do zapłaty</span>
-                    <span>{totalPrice.toFixed(2)} zł</span>
+                    <span>{(totalPrice + 19.99).toFixed(2)} zł</span>
                   </div>
                 </div>
 
@@ -208,17 +212,19 @@ export default function CartPage() {
 
               {/* Informacja w trybie ZEN */}
               <div className="text-center space-y-3">
-                <div className="inline-block bg-secondary/10 text-secondary-foreground border border-secondary/20 px-4 py-2 rounded-2xl text-xs font-black">
+                <div className="inline-flex items-center gap-1.5 bg-secondary/10 text-foreground border border-secondary/20 px-4 py-2 rounded-2xl text-xs font-black">
+                  <Truck className="w-3.5 h-3.5 text-secondary" />
                   Wysyłka w ciągu 3 dni roboczych
                 </div>
                 <p className="text-xs text-muted-foreground font-semibold">
-                  Bezpieczne zakupy w MałeNaklejki. Gwarancja uśmiechu przy rozpakowywaniu!
+                  Bezpieczne zakupy w MałeNaklejki. <br /> Gwarancja uśmiechu przy rozpakowywaniu!
                 </p>
               </div>
             </div>
           </div>
         )}
       </main>
+      <Footer />
     </div>
   );
 }

@@ -552,7 +552,7 @@ export function NewA4Visualizer({
                     type="button"
                     onPointerDown={(e) => e.stopPropagation()}
                     onClick={toggleQuickMenu}
-                    className="w-6 h-6 rounded-full bg-white text-foreground hover:bg-muted border border-border flex items-center justify-center shadow-md active:scale-95 transition-transform"
+                    className="w-6 h-6 rounded-full bg-background text-foreground hover:bg-muted border border-border flex items-center justify-center shadow-md active:scale-95 transition-transform"
                     title="Opcje naklejki"
                   >
                     <MoreVertical className="w-3.5 h-3.5" />
@@ -610,7 +610,7 @@ export function NewA4Visualizer({
                     type="button"
                     onPointerDown={(e) => e.stopPropagation()}
                     onClick={toggleCutMenu}
-                    className="w-6 h-6 rounded-full bg-white text-foreground hover:bg-muted border border-border flex items-center justify-center shadow-md active:scale-95 transition-transform"
+                    className="w-6 h-6 rounded-full bg-background text-foreground hover:bg-muted border border-border flex items-center justify-center shadow-md active:scale-95 transition-transform"
                     title="Wybierz linię cięcia"
                   >
                     <Scissors className="w-3.5 h-3.5" />
@@ -681,7 +681,7 @@ export function NewA4Visualizer({
                   type="button"
                   onPointerDown={(e) => e.stopPropagation()}
                   onClick={toggleRotationMenu}
-                  className="w-6 h-6 rounded-full bg-white text-foreground hover:bg-muted border border-border flex items-center justify-center shadow-md active:scale-95 transition-transform"
+                  className="w-6 h-6 rounded-full bg-background text-foreground hover:bg-muted border border-border flex items-center justify-center shadow-md active:scale-95 transition-transform"
                   title="Obróć naklejkę"
                 >
                   <RotateCw className="w-3.5 h-3.5" />

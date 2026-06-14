@@ -961,7 +961,7 @@ export default function Home() {
 
     // Watermarks (znaki wodne)
     ctx.save();
-    ctx.fillStyle = "rgba(169, 228, 215, 0.45)"; // Subtle primary brand color
+    ctx.fillStyle = "rgba(64, 190, 136, 0.45)"; // Subtle brand color (#40BE88)
     ctx.font = `bold ${3.3 * MM_TO_PX}px sans-serif`;
     ctx.textAlign = "center";
     ctx.textBaseline = "middle";
@@ -1139,7 +1139,7 @@ export default function Home() {
 
         {/* Page Info */}
         <div>
-          <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+          <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-foreground">
             Dodaj Naklejki na Arkusz
           </h1>
           <p className="text-muted-foreground text-sm font-semibold mt-1 theme-subtitle">
@@ -1163,7 +1163,7 @@ export default function Home() {
                 <div className="grid grid-cols-2 gap-4">
                   {/* Unified Direct File Picker */}
                   <label
-                    className="flex flex-col items-center justify-center p-6 border-2 border-dashed border-border/70 hover:border-primary/45 rounded-2xl bg-muted/10 hover:bg-muted/30 transition-all hover:scale-[1.01] active:scale-[0.99] cursor-pointer"
+                    className="flex flex-col items-center justify-center p-6 border-2 border-dashed border-foreground/20 dark:border-foreground/30 hover:border-primary/45 rounded-2xl bg-muted/10 hover:bg-muted/30 transition-all hover:scale-[1.01] active:scale-[0.99] cursor-pointer"
                   >
                     <input
                       type="file"
@@ -1177,15 +1177,15 @@ export default function Home() {
                     />
                     <UploadCloud className="w-8 h-8 text-muted-foreground group-hover:text-primary mb-2 opacity-75" />
                     <span className="text-sm font-bold text-foreground">Dodaj naklejkę</span>
-                    <span className="text-[10px] font-semibold text-muted-foreground mt-0.5">JPG / PNG</span>
+                    <span className="text-[10px] font-semibold text-muted-foreground mt-0.5">Zdjęcie JPG / PNG</span>
                   </label>
 
                   <button
                     onClick={() => setAddingMethod("ai")}
-                    className="flex flex-col items-center justify-center p-6 border-2 border-dashed border-border/70 hover:border-secondary/45 rounded-2xl bg-muted/10 hover:bg-muted/30 transition-all hover:scale-[1.01]"
+                    className="flex flex-col items-center justify-center p-6 border-2 border-dashed border-foreground/20 dark:border-foreground/30 hover:border-secondary/45 rounded-2xl bg-muted/10 hover:bg-muted/30 transition-all hover:scale-[1.01] cursor-pointer"
                   >
                     <Wand2 className="w-8 h-8 text-muted-foreground group-hover:text-secondary mb-2 opacity-75" />
-                    <span className="text-sm font-bold text-foreground">Wygeneruj przez AI</span>
+                    <span className="text-sm font-bold text-foreground">Wygeneruj naklejkę</span>
                     <span className="text-[10px] font-semibold text-muted-foreground mt-0.5">Opisz swój pomysł</span>
                   </button>
                 </div>
@@ -1290,7 +1290,7 @@ export default function Home() {
                     <button
                       type="button"
                       onClick={handleOpenEdit}
-                      className="flex-1 inline-flex items-center justify-center gap-1 px-2 py-1.5 text-[11px] font-bold bg-muted/65 hover:bg-muted text-foreground border border-border/40 rounded-xl transition-all active:scale-95"
+                      className="flex-1 inline-flex items-center justify-center gap-1 px-2 py-1.5 text-[11px] font-bold bg-muted hover:bg-muted/80 dark:bg-white/10 dark:hover:bg-white/20 text-foreground border border-border/40 rounded-xl transition-all active:scale-95 cursor-pointer"
                       title="Edytuj naklejkę"
                     >
                       <Crop className="w-3.5 h-3.5" />
@@ -1299,7 +1299,7 @@ export default function Home() {
                     <button
                       type="button"
                       onClick={handleDuplicateSticker}
-                      className="flex-1 inline-flex items-center justify-center gap-1 px-2 py-1.5 text-[11px] font-bold bg-muted/65 hover:bg-muted text-foreground border border-border/40 rounded-xl transition-all active:scale-95"
+                      className="flex-1 inline-flex items-center justify-center gap-1 px-2 py-1.5 text-[11px] font-bold bg-muted hover:bg-muted/80 dark:bg-white/10 dark:hover:bg-white/20 text-foreground border border-border/40 rounded-xl transition-all active:scale-95 cursor-pointer"
                       title="Zduplikuj"
                     >
                       <Copy className="w-3.5 h-3.5" />
@@ -1308,7 +1308,7 @@ export default function Home() {
                     <button
                       type="button"
                       onClick={handleDownloadSticker}
-                      className="flex-1 inline-flex items-center justify-center gap-1 px-2 py-1.5 text-[11px] font-bold bg-muted/65 hover:bg-muted text-foreground border border-border/40 rounded-xl transition-all active:scale-95"
+                      className="flex-1 inline-flex items-center justify-center gap-1 px-2 py-1.5 text-[11px] font-bold bg-muted hover:bg-muted/80 dark:bg-white/10 dark:hover:bg-white/20 text-foreground border border-border/40 rounded-xl transition-all active:scale-95 cursor-pointer"
                       title="Pobierz"
                     >
                       <Download className="w-3.5 h-3.5" />
@@ -1317,7 +1317,7 @@ export default function Home() {
                     <button
                       type="button"
                       onClick={handleDeleteSticker}
-                      className="flex-1 inline-flex items-center justify-center gap-1 px-2 py-1.5 text-[11px] font-bold bg-destructive/10 hover:bg-destructive/15 text-destructive border border-destructive/20 rounded-xl transition-all active:scale-95"
+                      className="flex-1 inline-flex items-center justify-center gap-1 px-2 py-1.5 text-[11px] font-bold bg-destructive/10 hover:bg-destructive/15 text-destructive border border-destructive/20 rounded-xl transition-all active:scale-95 cursor-pointer"
                       title="Usuń"
                     >
                       <Trash2 className="w-3.5 h-3.5" />
@@ -1350,7 +1350,7 @@ export default function Home() {
                       step={0.1}
                       value={selectedSticker.widthCm}
                       onChange={(e) => handleWidthChange(Number(e.target.value))}
-                      className="w-full h-2 bg-muted rounded-lg appearance-none cursor-pointer accent-primary"
+                      className="w-full h-2 bg-muted dark:bg-muted-foreground/40 rounded-lg appearance-none cursor-pointer accent-primary"
                     />
                     <p className="text-[10px] text-muted-foreground font-semibold">
                       Wysokość jest wyliczana automatycznie proporcjonalnie do grafiki (maksymalnie 19 cm).
@@ -1370,7 +1370,7 @@ export default function Home() {
                       step={1}
                       value={selectedSticker.rotation || 0}
                       onChange={(e) => handleRotationChange(Number(e.target.value))}
-                      className="w-full h-2 bg-muted rounded-lg appearance-none cursor-pointer accent-primary"
+                      className="w-full h-2 bg-muted dark:bg-muted-foreground/40 rounded-lg appearance-none cursor-pointer accent-primary"
                     />
                     <div className="relative w-full h-8 mt-2">
                       {[0, 90, 180, 270, 360].map((deg) => {
@@ -1385,7 +1385,7 @@ export default function Home() {
                               transform: `translateX(-${pct}%)`,
                             }}
                             className={`absolute text-[10px] font-extrabold rounded-md border transition-all px-2 py-0.5 ${(selectedSticker.rotation || 0) === deg
-                              ? "bg-secondary/20 text-secondary-foreground border-secondary/40"
+                              ? "bg-secondary/20 text-foreground border-secondary/40"
                               : "bg-muted/40 hover:bg-muted text-muted-foreground border-transparent"
                               }`}
                           >
@@ -1413,7 +1413,7 @@ export default function Home() {
                           <button
                             key={opt.type}
                             onClick={() => handleCutLineChange(opt.type as any)}
-                            className={`py-3 px-1 text-[10px] sm:text-xs font-bold rounded-xl border text-center transition-all flex flex-col items-center justify-center gap-1.5 active:scale-95 whitespace-nowrap ${selectedSticker.cutLineType === opt.type
+                            className={`py-3 px-1 text-[10px] sm:text-xs font-bold rounded-xl border text-center transition-all flex flex-col items-center justify-center gap-1.5 active:scale-95 whitespace-nowrap cursor-pointer ${selectedSticker.cutLineType === opt.type
                               ? "bg-primary text-primary-foreground border-primary shadow-sm"
                               : "bg-background text-muted-foreground border-border hover:bg-muted/40"
                               }`}
@@ -1470,7 +1470,7 @@ export default function Home() {
                 <button
                   type="button"
                   onClick={() => setVisualizerMode("2d")}
-                  className={`relative px-4 py-1.5 text-xs font-bold rounded-lg transition-all ${visualizerMode === "2d" ? "text-foreground" : "text-muted-foreground hover:text-foreground"
+                  className={`relative px-4 py-1.5 text-xs font-bold rounded-lg transition-all cursor-pointer ${visualizerMode === "2d" ? "text-foreground" : "text-muted-foreground hover:text-foreground"
                     }`}
                 >
                   {visualizerMode === "2d" && (
@@ -1485,7 +1485,7 @@ export default function Home() {
                 <button
                   type="button"
                   onClick={() => setVisualizerMode("3d")}
-                  className={`relative px-4 py-1.5 text-xs font-bold rounded-lg transition-all flex items-center gap-1.5 ${visualizerMode === "3d" ? "text-foreground" : "text-muted-foreground hover:text-foreground"
+                  className={`relative px-4 py-1.5 text-xs font-bold rounded-lg transition-all flex items-center gap-1.5 cursor-pointer ${visualizerMode === "3d" ? "text-foreground" : "text-muted-foreground hover:text-foreground"
                     }`}
                 >
                   {visualizerMode === "3d" && (
@@ -1534,7 +1534,7 @@ export default function Home() {
                   <div className="flex flex-col items-center justify-center bg-background/95 backdrop-blur-sm border border-border/80 py-4 px-6 rounded-2xl shadow-lg animate-bounce">
                     <UploadCloud className="w-6 h-6 text-primary mb-1.5" />
                     <span className="text-xs font-extrabold text-foreground">Dodaj naklejkę</span>
-                    <span className="text-[9px] font-semibold text-muted-foreground mt-0.5">Wgraj pierwszą grafikę</span>
+                    <span className="text-[9px] font-semibold text-muted-foreground mt-0.5">Wgraj zdjęcie z galerii</span>
                   </div>
                 </label>
               )}
@@ -1591,7 +1591,7 @@ export default function Home() {
                     type="button"
                     onClick={() => setSheetQuantity(Math.max(1, sheetQuantity - 1))}
                     disabled={sheetQuantity <= 1}
-                    className="w-8 h-8 rounded-xl bg-background hover:bg-muted border border-border flex items-center justify-center font-bold active:scale-95 transition-transform disabled:opacity-30 disabled:pointer-events-none"
+                    className="w-8 h-8 rounded-xl bg-background hover:bg-muted border border-border flex items-center justify-center font-bold active:scale-95 transition-transform disabled:opacity-30 disabled:pointer-events-none cursor-pointer"
                   >
                     <Minus className="w-3.5 h-3.5 text-foreground" />
                   </button>
@@ -1599,7 +1599,7 @@ export default function Home() {
                   <button
                     type="button"
                     onClick={() => setSheetQuantity(sheetQuantity + 1)}
-                    className="w-8 h-8 rounded-xl bg-background hover:bg-muted border border-border flex items-center justify-center font-bold active:scale-95 transition-transform"
+                    className="w-8 h-8 rounded-xl bg-background hover:bg-muted border border-border flex items-center justify-center font-bold active:scale-95 transition-transform cursor-pointer"
                   >
                     <Plus className="w-3.5 h-3.5 text-foreground" />
                   </button>
@@ -1740,7 +1740,7 @@ export default function Home() {
           <button
             onClick={() => handleDownloadPDF("cut-lines")}
             disabled={isGeneratingPdf || stickers.length === 0}
-            className="flex-1 inline-flex items-center justify-center rounded-2xl text-xs font-bold bg-secondary/20 text-secondary-foreground hover:bg-secondary/35 h-12 px-4 transition-all disabled:opacity-50 cursor-pointer"
+            className="flex-1 inline-flex items-center justify-center rounded-2xl text-xs font-bold bg-secondary/20 text-foreground hover:bg-secondary/35 h-12 px-4 transition-all disabled:opacity-50 cursor-pointer"
             title="Pobierz plik PDF z liniami cięcia (czarne sylwetki)"
           >
             <Scissors className="w-4 h-4 mr-1.5" />
