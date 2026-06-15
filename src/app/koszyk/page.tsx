@@ -30,7 +30,7 @@ export default function CartPage() {
   const totalPrice = getTotalPrice();
 
   return (
-    <div className="flex flex-col min-h-screen text-foreground">
+    <div className="flex flex-col min-h-screen text-foreground bg-[#edf6f2] dark:bg-[#002c2e]">
       {/* Nagłówek w trybie ZEN (bez standardowej ikony koszyka) */}
       <Header zen={true} />
 
@@ -170,7 +170,7 @@ export default function CartPage() {
 
             {/* Podsumowanie i przejściowe CTA */}
             <div className="space-y-4">
-              <div className="bg-card border border-border/70 rounded-2xl p-6 shadow-sm space-y-6">
+              <div className="bg-card border border-border/70 rounded-2xl p-6 shadow-[0_8px_30px_rgba(0,0,0,0.04)] space-y-6">
                 <h3 className="font-extrabold text-xl text-foreground border-b border-border/40 pb-3">Podsumowanie</h3>
 
                 <div className="space-y-3 font-semibold">

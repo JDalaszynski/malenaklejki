@@ -154,3 +154,91 @@
 .cmyk-preview {
   filter: contrast(0.94) saturate(0.82) brightness(1.01);
 }
+
+/* Forces a clean, light/white theme on specific pages (e.g. legal docs) */
+.always-light {
+  background-color: #FFFFFF !important;
+  color: #004749 !important;
+}
+
+.always-light .dark\:hidden {
+  display: block !important;
+}
+
+.always-light .hidden.dark\:block {
+  display: none !important;
+}
+
+.always-light .prose,
+.always-light .prose h1,
+.always-light .prose h2,
+.always-light .prose h3,
+.always-light .prose h4,
+.always-light .prose strong,
+.always-light .prose p,
+.always-light .prose li {
+  color: #004749 !important;
+}
+
+/* Premium Liquidglass Effect (Glassmorphism) */
+.liquid-glass {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.65) 0%, rgba(255, 255, 255, 0.35) 100%) !important;
+  backdrop-filter: blur(16px) saturate(120%) !important;
+  box-shadow: 
+    inset 0 1px 1.5px rgba(255, 255, 255, 0.6), 
+    inset 0 -1px 1px rgba(0, 0, 0, 0.03),
+    0 10px 30px -5px rgba(0, 71, 73, 0.05),
+    0 4px 12px -2px rgba(0, 71, 73, 0.03) !important;
+  border-color: rgba(255, 255, 255, 0.45) !important;
+}
+
+.dark .liquid-glass {
+  background: linear-gradient(135deg, rgba(0, 58, 59, 0.65) 0%, rgba(0, 58, 59, 0.35) 100%) !important;
+  backdrop-filter: blur(16px) saturate(120%) !important;
+  box-shadow: 
+    inset 0 1px 1.5px rgba(255, 255, 255, 0.15), 
+    0 10px 30px -5px rgba(0, 0, 0, 0.25),
+    0 4px 12px -2px rgba(0, 0, 0, 0.15) !important;
+  border-color: rgba(255, 255, 255, 0.12) !important;
+}
+
+/* More contrasting Liquidglass for Footers on white backgrounds */
+.liquid-glass-footer {
+  background: linear-gradient(135deg, rgba(235, 245, 241, 0.95) 0%, rgba(220, 235, 230, 0.85) 100%) !important;
+  backdrop-filter: blur(16px) saturate(120%) !important;
+  box-shadow: 
+    inset 0 1.5px 1.5px rgba(255, 255, 255, 0.8), 
+    inset 0 -1.5px 1.5px rgba(0, 0, 0, 0.05),
+    0 10px 30px -5px rgba(0, 71, 73, 0.08) !important;
+  border-color: rgba(0, 71, 73, 0.12) !important;
+}
+
+.dark .liquid-glass-footer {
+  background: linear-gradient(135deg, rgba(0, 44, 46, 0.95) 0%, rgba(0, 34, 36, 0.85) 100%) !important;
+  backdrop-filter: blur(16px) saturate(120%) !important;
+  box-shadow: 
+    inset 0 1.5px 1.5px rgba(255, 255, 255, 0.15), 
+    0 10px 30px -5px rgba(0, 0, 0, 0.3) !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+/* Flash Highlight Animation for visualizer focus */
+@keyframes visualizerHighlight {
+  0% {
+    box-shadow: 0 0 0 0px rgba(2, 175, 122, 0.8), 0 8px 30px rgba(0,0,0,0.02);
+    border-color: rgba(2, 175, 122, 0.8) !important;
+  }
+  30% {
+    box-shadow: 0 0 25px 8px rgba(2, 175, 122, 0.65), 0 8px 30px rgba(0,0,0,0.02);
+    border-color: rgba(2, 175, 122, 1) !important;
+    transform: scale(1.015);
+  }
+  100% {
+    box-shadow: 0 0 0 0px rgba(2, 175, 122, 0), 0 8px 30px rgba(0,0,0,0.02);
+    border-color: rgba(255, 255, 255, 0.45) !important;
+  }
+}
+
+.highlight-flash {
+  animation: visualizerHighlight 1.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}

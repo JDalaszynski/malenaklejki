@@ -115,7 +115,7 @@ export function CookieBanner() {
                 />
                 <div>
                   <p className="text-[11px] font-black text-foreground">Niezbędne</p>
-                  <p className="text-[9px] text-muted-foreground leading-tight">Wymagane do działania koszyka i płatności Stripe.</p>
+                  <p className="text-[9px] text-muted-foreground leading-tight">Wymagane do działania koszyka i płatności Przelewy24.</p>
                 </div>
               </label>
 

@@ -158,8 +158,8 @@ export function ContactForm() {
                     disabled={isSubmitting}
                     {...register("name")}
                     className={`flex h-12 w-full rounded-xl border ${
-                      errors.name ? "border-destructive ring-destructive/20" : "border-border/70"
-                    } bg-background px-4 py-2 text-sm font-semibold placeholder:text-muted-foreground focus-visible:outline-none focus-visible:border-primary focus-visible:ring-2 focus-visible:ring-primary/20 disabled:opacity-50 shadow-none`}
+                      errors.name ? "border-destructive ring-destructive/20" : "border-foreground/15 dark:border-white/10 hover:border-foreground/25"
+                    } bg-background px-4 py-2 text-sm font-semibold placeholder:text-muted-foreground/45 focus-visible:outline-none focus-visible:border-primary focus-visible:ring-2 focus-visible:ring-primary/20 disabled:opacity-50 shadow-none`}
                     placeholder="np. Jan Kowalski"
                   />
                   {errors.name && (
@@ -178,8 +178,8 @@ export function ContactForm() {
                     disabled={isSubmitting}
                     {...register("email")}
                     className={`flex h-12 w-full rounded-xl border ${
-                      errors.email ? "border-destructive ring-destructive/20" : "border-border/70"
-                    } bg-background px-4 py-2 text-sm font-semibold placeholder:text-muted-foreground focus-visible:outline-none focus-visible:border-primary focus-visible:ring-2 focus-visible:ring-primary/20 disabled:opacity-50 shadow-none`}
+                      errors.email ? "border-destructive ring-destructive/20" : "border-foreground/15 dark:border-white/10 hover:border-foreground/25"
+                    } bg-background px-4 py-2 text-sm font-semibold placeholder:text-muted-foreground/45 focus-visible:outline-none focus-visible:border-primary focus-visible:ring-2 focus-visible:ring-primary/20 disabled:opacity-50 shadow-none`}
                     placeholder="np. jan.kowalski@gmail.com"
                   />
                   {errors.email && (
@@ -198,8 +198,8 @@ export function ContactForm() {
                     disabled={isSubmitting}
                     {...register("subject")}
                     className={`flex h-12 w-full rounded-xl border ${
-                      errors.subject ? "border-destructive ring-destructive/20" : "border-border/70"
-                    } bg-background px-4 py-2 text-sm font-semibold placeholder:text-muted-foreground focus-visible:outline-none focus-visible:border-primary focus-visible:ring-2 focus-visible:ring-primary/20 disabled:opacity-50 shadow-none`}
+                      errors.subject ? "border-destructive ring-destructive/20" : "border-foreground/15 dark:border-white/10 hover:border-foreground/25"
+                    } bg-background px-4 py-2 text-sm font-semibold placeholder:text-muted-foreground/45 focus-visible:outline-none focus-visible:border-primary focus-visible:ring-2 focus-visible:ring-primary/20 disabled:opacity-50 shadow-none`}
                     placeholder="np. Pytanie o zamówienie #12345"
                   />
                   {errors.subject && (
@@ -218,8 +218,8 @@ export function ContactForm() {
                     disabled={isSubmitting}
                     {...register("message")}
                     className={`flex w-full rounded-xl border ${
-                      errors.message ? "border-destructive ring-destructive/20" : "border-border/70"
-                    } bg-background px-4 py-3 text-sm font-semibold placeholder:text-muted-foreground focus-visible:outline-none focus-visible:border-primary focus-visible:ring-2 focus-visible:ring-primary/20 disabled:opacity-50 shadow-none resize-none`}
+                      errors.message ? "border-destructive ring-destructive/20" : "border-foreground/15 dark:border-white/10 hover:border-foreground/25"
+                    } bg-background px-4 py-3 text-sm font-semibold placeholder:text-muted-foreground/45 focus-visible:outline-none focus-visible:border-primary focus-visible:ring-2 focus-visible:ring-primary/20 disabled:opacity-50 shadow-none resize-none`}
                     placeholder="Wpisz treść swojej wiadomości..."
                   />
                   {errors.message && (

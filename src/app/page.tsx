@@ -3,6 +3,7 @@
 import { getUUID } from "@/lib/uuid";
 import { useState, useEffect, useMemo } from "react";
 import Link from "next/link";
+import NextImage from "next/image";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { NewA4Visualizer } from "@/components/creator/NewA4Visualizer";
@@ -40,7 +41,9 @@ import {
   Truck,
   X,
   ChevronDown,
-  ChevronUp
+  ChevronUp,
+  Edit3,
+  Eye
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -55,6 +58,71 @@ export default function Home() {
   const [sheetQuantity, setSheetQuantity] = useState<number>(1);
   const [error, setError] = useState<string | null>(null);
   const [visualizerMode, setVisualizerMode] = useState<"2d" | "3d">("2d");
+
+  // Mount state for hydration check
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const [showStickyHeader, setShowStickyHeader] = useState(false);
+  const getTotalPrice = useCartStore((state) => state.getTotalPrice);
+  const totalPrice = getTotalPrice();
+
+  const [shouldHighlightSheet, setShouldHighlightSheet] = useState(false);
+
+  const scrollToAndHighlightSheet = () => {
+    const el = document.getElementById("sheet-preview-section");
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth", block: "center" });
+      setShouldHighlightSheet(true);
+      setTimeout(() => {
+        setShouldHighlightSheet(false);
+      }, 1500);
+    }
+  };
+
+  useEffect(() => {
+    if (!mounted) return;
+
+    const handleScrollToSheet = () => {
+      scrollToAndHighlightSheet();
+    };
+
+    const handleHashChange = () => {
+      if (window.location.hash === "#sheet") {
+        setTimeout(scrollToAndHighlightSheet, 300);
+      }
+    };
+
+    // Run on initial mount if hash matches
+    if (window.location.hash === "#sheet") {
+      setTimeout(scrollToAndHighlightSheet, 800);
+    }
+
+    window.addEventListener("scroll-to-sheet", handleScrollToSheet);
+    window.addEventListener("hashchange", handleHashChange);
+
+    const handleScroll = () => {
+      const section = document.getElementById("seo-marketing-section");
+      if (section) {
+        const rect = section.getBoundingClientRect();
+        setShowStickyHeader(rect.top <= 80);
+      } else {
+        setShowStickyHeader(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+
+    return () => {
+      window.removeEventListener("scroll-to-sheet", handleScrollToSheet);
+      window.removeEventListener("hashchange", handleHashChange);
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [mounted]);
+
   const [hasUserEverAddedStickers, setHasUserEverAddedStickers] = useState(false);
   const [isMobileStickerDetailsExpanded, setIsMobileStickerDetailsExpanded] = useState(false);
 
@@ -154,11 +222,6 @@ export default function Home() {
     }
   };
 
-  // Mount state for hydration check
-  const [mounted, setMounted] = useState(false);
-  useEffect(() => {
-    setMounted(true);
-  }, []);
 
   // Automatically calculate contours for stickers that don't have them yet
   useEffect(() => {
@@ -981,7 +1044,14 @@ export default function Home() {
 
   // Add sheet to Cart
   const handleAddToCart = () => {
-    if (stickers.length === 0 || stickers.some((s) => s.cutLineType === "none")) return;
+    if (stickers.length === 0) return;
+    const stickersWithNoCutLine = stickers.filter((s) => s.cutLineType === "none");
+    if (stickersWithNoCutLine.length > 0) {
+      const count = stickersWithNoCutLine.length;
+      const noun = count === 1 ? "naklejki" : "naklejek";
+      setError(`Wybierz linię cięcia dla ${count} ${noun} na arkuszu!`);
+      return;
+    }
     setShowConfirmCartModal(true);
   };
 
@@ -1133,38 +1203,398 @@ export default function Home() {
         </div>
       )}
 
-      <Header />
+      {/* Górna sekcja (kreator + nagłówek) na wyróżnionym tle */}
+      <div className="w-full bg-[#edf6f2] dark:bg-[#002c2e] border-b border-primary/15 dark:border-primary/25 pb-8 sm:pb-12 shadow-[inset_0_-6px_24px_rgba(0,0,0,0.03)] flex flex-col">
+        <Header />
 
-      <main className="flex-1 flex flex-col py-3 sm:py-6 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto w-full justify-center relative gap-4 sm:gap-8">
+        <main className="flex-1 flex flex-col py-3 sm:py-6 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto w-full justify-center relative gap-4 sm:gap-8">
 
-        {/* Page Info */}
-        <div>
-          <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-foreground">
-            Dodaj Naklejki na Arkusz
-          </h1>
-          <p className="text-muted-foreground text-sm font-semibold mt-1 theme-subtitle">
-            Dodaj różne naklejki z komputera lub stwórz je za pomocą naszego generatora obrazów.
-          </p>
-        </div>
+          {/* Page Info */}
+          <div>
+            <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-foreground">
+              Dodaj Naklejki na Arkusz
+            </h1>
+            <p className="text-muted-foreground text-sm font-semibold mt-1 theme-subtitle">
+              Dodaj różne naklejki lub stwórz je za pomocą naszego generatora obrazów.
+            </p>
+          </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-8 items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-8 items-start">
 
-          {/* Left Column: Controls & Sidebar */}
-          <div className="lg:col-span-6 space-y-3 sm:space-y-6 order-2 lg:order-1">
+            {/* Left Column: Controls & Sidebar */}
+            <div className="lg:col-span-6 space-y-3 sm:space-y-6 order-2 lg:order-1">
 
-            {/* 1. Tool selection: Add Sticker */}
-            <div className="bg-card border border-border/40 rounded-3xl p-4 sm:p-6 shadow-sm space-y-3 sm:space-y-4">
-              <h3 className="text-lg font-black text-foreground flex items-center gap-2">
-                <Plus className="w-5 h-5 text-primary" />
-                Dodaj naklejkę na arkusz
-              </h3>
+              {/* 1. Tool selection: Add Sticker */}
+              <div className="liquid-glass border border-border/40 rounded-3xl p-4 sm:p-6 shadow-sm space-y-3 sm:space-y-4">
+                <h3 className="text-lg font-black text-foreground flex items-center gap-2">
+                  <Plus className="w-5 h-5 text-primary" />
+                  Dodaj naklejkę na arkusz
+                </h3>
 
-              {addingMethod === "none" ? (
-                <div className="grid grid-cols-2 gap-4">
-                  {/* Unified Direct File Picker */}
-                  <label
-                    className="flex flex-col items-center justify-center p-6 border-2 border-dashed border-foreground/20 dark:border-foreground/30 hover:border-primary/45 rounded-2xl bg-muted/10 hover:bg-muted/30 transition-all hover:scale-[1.01] active:scale-[0.99] cursor-pointer"
+                {addingMethod === "none" ? (
+                  <div className="grid grid-cols-2 gap-4">
+                    {/* Unified Direct File Picker */}
+                    <label
+                      className="flex flex-col items-center justify-center p-6 border-2 border-dashed border-foreground/20 dark:border-foreground/30 hover:border-primary/45 rounded-2xl bg-muted/10 hover:bg-muted/30 transition-all hover:scale-[1.01] active:scale-[0.99] cursor-pointer"
+                    >
+                      <input
+                        type="file"
+                        accept="image/*"
+                        className="hidden"
+                        onChange={(e) => {
+                          const file = e.target.files?.[0];
+                          if (file) handleMobileFileUpload(file);
+                          e.target.value = "";
+                        }}
+                      />
+                      <UploadCloud className="w-8 h-8 text-muted-foreground group-hover:text-primary mb-2 opacity-75" />
+                      <span className="text-sm font-bold text-foreground">Dodaj naklejkę</span>
+                      <span className="text-[10px] font-semibold text-muted-foreground mt-0.5">Zdjęcie JPG / PNG</span>
+                    </label>
+
+                    <button
+                      onClick={() => setAddingMethod("ai")}
+                      className="flex flex-col items-center justify-center p-6 border-2 border-dashed border-foreground/20 dark:border-foreground/30 hover:border-secondary/45 rounded-2xl bg-muted/10 hover:bg-muted/30 transition-all hover:scale-[1.01] cursor-pointer"
+                    >
+                      <Wand2 className="w-8 h-8 text-muted-foreground group-hover:text-secondary mb-2 opacity-75" />
+                      <span className="text-sm font-bold text-foreground">Wygeneruj naklejkę</span>
+                      <span className="text-[10px] font-semibold text-muted-foreground mt-0.5">Opisz swój pomysł</span>
+                    </button>
+                  </div>
+                ) : (
+                  <div className="space-y-4">
+                    <div className="flex justify-between items-center pb-2 border-b border-border/20">
+                      <span className="text-xs font-black uppercase tracking-wider text-muted-foreground">
+                        Tworzenie przez AI
+                      </span>
+                      <button
+                        onClick={() => setAddingMethod("none")}
+                        className="text-xs font-bold text-muted-foreground hover:text-foreground bg-muted/40 hover:bg-muted/70 px-2.5 py-1 rounded-md"
+                      >
+                        Anuluj
+                      </button>
+                    </div>
+
+                    <AIGenerator
+                      onImageGenerated={(url) => {
+                        setPendingImageUrl(url);
+                        // Open crop/bg removal modal for AI generated sticker immediately
+                        setActiveEditSticker({
+                          id: "new-ai",
+                          imageUrl: url,
+                          x: 15,
+                          y: 15,
+                          widthCm: 5,
+                          heightCm: 5,
+                          aspectRatio: 1,
+                          cutLineType: "none",
+                        });
+                        setShowEditModal(true);
+                        setVisualizerMode("2d");
+                      }}
+                    />
+                  </div>
+                )}
+              </div>
+
+              {/* 2. Selected Sticker Manager */}
+              {selectedSticker ? (
+                <motion.div
+                  initial={{ opacity: 0, y: 15 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="liquid-glass border-2 border-primary/40 rounded-3xl p-4 sm:p-6 shadow-sm space-y-4 sm:space-y-6"
+                >
+                  <div
+                    className="flex justify-between items-center border-b border-border/40 pb-3 cursor-pointer sm:cursor-default select-none"
+                    onClick={() => setIsMobileStickerDetailsExpanded(prev => !prev)}
                   >
+                    <div className="flex items-center gap-2">
+                      <Layers className="w-5 h-5 text-primary" />
+                      <h3 className="text-lg font-black text-foreground">Wybrana Naklejka</h3>
+                    </div>
+                    <div className="sm:hidden text-muted-foreground hover:text-foreground transition-colors p-1">
+                      {isMobileStickerDetailsExpanded ? (
+                        <ChevronUp className="w-5 h-5" />
+                      ) : (
+                        <ChevronDown className="w-5 h-5" />
+                      )}
+                    </div>
+                  </div>
+
+                  {/* Miniature and Stacked Details Row */}
+                  <div
+                    className="flex items-center gap-5 bg-muted/20 border border-border/40 p-3 rounded-2xl cursor-pointer sm:cursor-default hover:bg-muted/30 transition-colors"
+                    onClick={() => setIsMobileStickerDetailsExpanded(prev => !prev)}
+                  >
+                    <div className="w-16 h-16 bg-white rounded-xl border border-border/40 p-1 flex items-center justify-center flex-shrink-0 overflow-hidden">
+                      <img
+                        src={selectedSticker.imageUrl}
+                        alt="Miniatura"
+                        className="max-w-full max-h-full object-contain rounded-lg"
+                      />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <p className="text-xs font-black text-muted-foreground uppercase tracking-wide flex items-center justify-between">
+                        <span>Szczegóły</span>
+                        <span className="text-[10px] text-primary sm:hidden font-extrabold">
+                          {isMobileStickerDetailsExpanded ? "zwiń ▲" : "rozwiń opcje ▼"}
+                        </span>
+                      </p>
+                      <div className="text-xs font-bold text-foreground mt-0.5 space-y-0.5">
+                        <p>Szerokość: {selectedSticker.widthCm} cm</p>
+                        <p>Wysokość: {selectedSticker.heightCm.toFixed(1)} cm</p>
+                        <p>Linia cięcia: {
+                          selectedSticker.cutLineType === "none" ? "Brak" :
+                            selectedSticker.cutLineType === "contour" ? "Kontur" :
+                              selectedSticker.cutLineType === "rounded" ? "Prostokąt" :
+                                selectedSticker.cutLineType === "circle" ? "Koło" :
+                                  selectedSticker.cutLineType === "rounded_inside" ? "Prostokąt wew." :
+                                    selectedSticker.cutLineType === "circle_inside" ? "Koło wew." : selectedSticker.cutLineType
+                        }</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Collapsible content container for mobile */}
+                  <div className={`space-y-6 ${isMobileStickerDetailsExpanded ? "block animate-in slide-in-from-top-2 duration-200" : "hidden sm:block"}`}>
+                    {/* Standardized Actions Button Grid */}
+                    <div className="flex flex-wrap sm:flex-nowrap items-center gap-1.5 w-full">
+                      <button
+                        type="button"
+                        onClick={handleOpenEdit}
+                        className="flex-1 inline-flex items-center justify-center gap-1 px-2 py-1.5 text-[11px] font-bold bg-muted hover:bg-muted/80 dark:bg-white/10 dark:hover:bg-white/20 text-foreground border border-border/40 rounded-xl transition-all active:scale-95 cursor-pointer"
+                        title="Edytuj naklejkę"
+                      >
+                        <Crop className="w-3.5 h-3.5" />
+                        <span>Kadruj/Tło</span>
+                      </button>
+                      <button
+                        type="button"
+                        onClick={handleDuplicateSticker}
+                        className="flex-1 inline-flex items-center justify-center gap-1 px-2 py-1.5 text-[11px] font-bold bg-muted hover:bg-muted/80 dark:bg-white/10 dark:hover:bg-white/20 text-foreground border border-border/40 rounded-xl transition-all active:scale-95 cursor-pointer"
+                        title="Zduplikuj"
+                      >
+                        <Copy className="w-3.5 h-3.5" />
+                        <span>Zduplikuj</span>
+                      </button>
+                      <button
+                        type="button"
+                        onClick={handleDownloadSticker}
+                        className="flex-1 inline-flex items-center justify-center gap-1 px-2 py-1.5 text-[11px] font-bold bg-muted hover:bg-muted/80 dark:bg-white/10 dark:hover:bg-white/20 text-foreground border border-border/40 rounded-xl transition-all active:scale-95 cursor-pointer"
+                        title="Pobierz"
+                      >
+                        <Download className="w-3.5 h-3.5" />
+                        <span>Pobierz</span>
+                      </button>
+                      <button
+                        type="button"
+                        onClick={handleDeleteSticker}
+                        className="flex-1 inline-flex items-center justify-center gap-1 px-2 py-1.5 text-[11px] font-bold bg-destructive/10 hover:bg-destructive/15 text-destructive border border-destructive/20 rounded-xl transition-all active:scale-95 cursor-pointer"
+                        title="Usuń"
+                      >
+                        <Trash2 className="w-3.5 h-3.5" />
+                        <span>Usuń</span>
+                      </button>
+                    </div>
+
+                    {isLowRes && (
+                      <div className="bg-red-50 border border-red-200 text-red-500 dark:bg-red-950/30 dark:border-red-900/30 dark:text-red-400 text-xs font-bold p-3 rounded-2xl flex items-start gap-2 mt-2">
+                        <AlertTriangle className="w-4 h-4 mt-0.5 flex-shrink-0" />
+                        <div>
+                          <p className="font-extrabold text-[12px]">Uwaga: niska jakość pliku!</p>
+                          <p className="text-[10px] leading-relaxed mt-0.5 font-semibold text-red-500/80 dark:text-red-400/80">
+                            Ta naklejka może być rozmazana w druku. Zalecamy dodanie pliku o lepszej jakości.
+                          </p>
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Resize control */}
+                    <div className="space-y-2">
+                      <div className="flex justify-between text-sm font-bold">
+                        <span className="text-foreground">Szerokość naklejki (cm)</span>
+                        <span className="text-primary font-black">{selectedSticker.widthCm} cm</span>
+                      </div>
+                      <input
+                        type="range"
+                        min={3}
+                        max={19}
+                        step={0.1}
+                        value={selectedSticker.widthCm}
+                        onChange={(e) => handleWidthChange(Number(e.target.value))}
+                        className="w-full h-2 bg-muted dark:bg-muted-foreground/40 rounded-lg appearance-none cursor-pointer accent-primary"
+                      />
+                      <p className="text-[10px] text-muted-foreground font-semibold">
+                        Wysokość jest wyliczana automatycznie proporcjonalnie do grafiki (maksymalnie 19 cm).
+                      </p>
+                    </div>
+
+                    {/* Rotation control */}
+                    <div className="space-y-2">
+                      <div className="flex justify-between text-sm font-bold">
+                        <span className="text-foreground">Obrót naklejki (stopnie)</span>
+                        <span className="text-primary font-black">{selectedSticker.rotation || 0}°</span>
+                      </div>
+                      <input
+                        type="range"
+                        min={0}
+                        max={360}
+                        step={1}
+                        value={selectedSticker.rotation || 0}
+                        onChange={(e) => handleRotationChange(Number(e.target.value))}
+                        className="w-full h-2 bg-muted dark:bg-muted-foreground/40 rounded-lg appearance-none cursor-pointer accent-primary"
+                      />
+                      <div className="relative w-full h-8 mt-2">
+                        {[0, 90, 180, 270, 360].map((deg) => {
+                          const pct = (deg / 360) * 100;
+                          return (
+                            <button
+                              key={deg}
+                              type="button"
+                              onClick={() => handleRotationChange(deg)}
+                              style={{
+                                left: `${pct}%`,
+                                transform: `translateX(-${pct}%)`,
+                              }}
+                              className={`absolute text-[10px] font-extrabold rounded-md border transition-all px-2 py-0.5 ${(selectedSticker.rotation || 0) === deg
+                                ? "bg-secondary/20 text-foreground border-secondary/40"
+                                : "bg-muted/40 hover:bg-muted text-muted-foreground border-transparent"
+                                }`}
+                            >
+                              {deg}°
+                            </button>
+                          );
+                        })}
+                      </div>
+                    </div>
+
+                    {/* Cut line options */}
+                    <div className="space-y-3">
+                      <span className="text-sm font-bold text-foreground block">Rodzaj linii cięcia (naklejki)</span>
+                      <div className="grid grid-cols-3 gap-2">
+                        {[
+                          { type: "none", label: "Brak", icon: Ban },
+                          { type: "contour", label: "Kontur", icon: Sparkles },
+                          { type: "rounded", label: "Prostokąt", icon: Square },
+                          { type: "circle", label: "Koło", icon: Circle },
+                          { type: "rounded_inside", label: "Prostokąt wew.", icon: Square },
+                          { type: "circle_inside", label: "Koło wew.", icon: Circle },
+                        ].map((opt) => {
+                          const Icon = opt.icon;
+                          return (
+                            <button
+                              key={opt.type}
+                              onClick={() => handleCutLineChange(opt.type as any)}
+                              className={`py-3 px-1 text-[10px] sm:text-xs font-bold rounded-xl border text-center transition-all flex flex-col items-center justify-center gap-1.5 active:scale-95 whitespace-nowrap cursor-pointer ${selectedSticker.cutLineType === opt.type
+                                ? "bg-primary text-primary-foreground border-primary shadow-sm"
+                                : "bg-background text-muted-foreground border-border hover:bg-muted/40"
+                                }`}
+                            >
+                              <Icon className="w-4 h-4" />
+                              <span>{opt.label}</span>
+                            </button>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
+              ) : stickers.length === 0 ? (
+                <div className="liquid-glass border border-border/40 rounded-3xl p-6 shadow-sm text-center py-8 text-muted-foreground font-semibold flex flex-col items-center gap-3 animate-pulse">
+                  <ArrowUp className="w-6 h-6 text-primary" />
+                  <span>Dodaj swoją pierwszą naklejkę na arkusz!</span>
+                </div>
+              ) : (
+                <div className="hidden sm:block liquid-glass border border-border/40 rounded-3xl p-6 shadow-sm text-center py-8 text-muted-foreground font-semibold">
+                  Kliknij na naklejkę na arkuszu, aby włączyć jej dopasowanie, zmienić rozmiar lub rodzaj cięcia.
+                </div>
+              )}
+
+            </div>
+
+            {/* Right Column: Visualizer Sheet */}
+            <div
+              id="sheet-preview-section"
+              onDragOver={handleDragOver}
+              onDragLeave={handleDragLeave}
+              onDrop={handleDrop}
+              className={`relative lg:col-span-6 flex flex-col items-center justify-center rounded-3xl p-6 sm:p-8 min-h-[500px] order-1 lg:order-2 transition-all liquid-glass border border-border/40 shadow-[0_8px_30px_rgba(0,0,0,0.02)] ${
+                shouldHighlightSheet ? "highlight-flash" : ""
+              }`}
+            >
+              {/* Local Drag Overlay */}
+              {isDraggingOverSheet && (
+                <div className="absolute inset-0 z-[50] bg-primary/20 backdrop-blur-md flex flex-col items-center justify-center border-4 border-dashed border-primary rounded-3xl animate-in fade-in duration-200 m-2 pointer-events-none">
+                  <div className="bg-background/90 p-8 rounded-2xl shadow-xl flex flex-col items-center gap-3 text-center max-w-xs">
+                    <UploadCloud className="w-12 h-12 text-primary animate-bounce" />
+                    <h3 className="text-lg font-extrabold text-foreground">Upuść plik tutaj!</h3>
+                    <p className="text-xs text-muted-foreground font-semibold">Dodaj naklejkę bezpośrednio na arkusz</p>
+                  </div>
+                </div>
+              )}
+
+              <div className="flex flex-col sm:flex-row items-center justify-between w-full mb-3 gap-3 border-b border-border/40 pb-2">
+                <p className="text-xs font-black uppercase text-muted-foreground tracking-wider">
+                  Twój Arkusz A4  <br />(Podgląd ułożenia)
+                </p>
+
+                <div className="flex bg-[#004749]/5 dark:bg-[#002224] p-1 rounded-2xl border border-[#004749]/10 dark:border-white/10 relative shadow-[inset_0_1.5px_3px_rgba(0,44,46,0.06)] gap-1">
+                  <button
+                    type="button"
+                    onClick={() => setVisualizerMode("2d")}
+                    className={`relative px-4 py-2 text-xs font-black rounded-xl transition-all flex items-center gap-1.5 cursor-pointer ${visualizerMode === "2d" ? "text-[#004749] dark:text-white" : "text-muted-foreground/80 hover:text-foreground"
+                      }`}
+                  >
+                    {visualizerMode === "2d" && (
+                      <motion.div
+                        layoutId="activeVisualizerMode"
+                        className="absolute inset-0 bg-white dark:bg-[#004749] rounded-xl shadow-[0_3px_10px_rgba(0,71,73,0.12),_0_1px_3px_rgba(0,71,73,0.04)] dark:shadow-[0_4px_12px_rgba(0,0,0,0.3)] border border-[#004749]/5 dark:border-white/10"
+                        transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                      />
+                    )}
+                    <Edit3 className="w-3.5 h-3.5 relative z-10" />
+                    <span className="relative z-10">Edycja</span>
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setVisualizerMode("3d")}
+                    className={`relative px-4 py-2 text-xs font-black rounded-xl transition-all flex items-center gap-1.5 cursor-pointer ${visualizerMode === "3d" ? "text-[#004749] dark:text-white" : "text-muted-foreground/80 hover:text-foreground"
+                      }`}
+                  >
+                    {visualizerMode === "3d" && (
+                      <motion.div
+                        layoutId="activeVisualizerMode"
+                        className="absolute inset-0 bg-white dark:bg-[#004749] rounded-xl shadow-[0_3px_10px_rgba(0,71,73,0.12),_0_1px_3px_rgba(0,71,73,0.04)] dark:shadow-[0_4px_12px_rgba(0,0,0,0.3)] border border-[#004749]/5 dark:border-white/10"
+                        transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                      />
+                    )}
+                    <Eye className="w-3.5 h-3.5 relative z-10" />
+                    <span className="relative z-10">Wizualizacja</span>
+                  </button>
+                </div>
+              </div>
+
+              <div className="relative w-full max-w-[480px] aspect-[210/297] flex items-center justify-center">
+                {visualizerMode === "2d" ? (
+                  <NewA4Visualizer
+                    stickers={stickers}
+                    selectedStickerId={selectedStickerId}
+                    onSelectSticker={setSelectedStickerId}
+                    onUpdateStickers={setStickers}
+                    onError={setError}
+                    onEditSticker={handleOpenEdit}
+                    onDuplicateSticker={handleDuplicateSticker}
+                    onDeleteSticker={handleDeleteSticker}
+                    onCutLineChange={handleCutLineChange}
+                    onRotationChange={handleRotationChange}
+                    isPresentationMode={false}
+                  />
+                ) : (
+                  <A4Visualizer3D stickers={stickers} />
+                )}
+
+                {stickers.length === 0 && (
+                  <label className="absolute inset-0 flex sm:hidden flex-col items-center justify-center bg-transparent cursor-pointer z-40 rounded-lg">
                     <input
                       type="file"
                       accept="image/*"
@@ -1175,462 +1605,361 @@ export default function Home() {
                         e.target.value = "";
                       }}
                     />
-                    <UploadCloud className="w-8 h-8 text-muted-foreground group-hover:text-primary mb-2 opacity-75" />
-                    <span className="text-sm font-bold text-foreground">Dodaj naklejkę</span>
-                    <span className="text-[10px] font-semibold text-muted-foreground mt-0.5">Zdjęcie JPG / PNG</span>
+                    <div className="flex flex-col items-center justify-center bg-background/95 backdrop-blur-sm border border-border/80 py-4 px-6 rounded-2xl shadow-lg animate-bounce">
+                      <UploadCloud className="w-6 h-6 text-primary mb-1.5" />
+                      <span className="text-xs font-extrabold text-foreground">Dodaj naklejkę</span>
+                      <span className="text-[9px] font-semibold text-muted-foreground mt-0.5">Wgraj zdjęcie z galerii</span>
+                    </div>
                   </label>
+                )}
+              </div>
 
-                  <button
-                    onClick={() => setAddingMethod("ai")}
-                    className="flex flex-col items-center justify-center p-6 border-2 border-dashed border-foreground/20 dark:border-foreground/30 hover:border-secondary/45 rounded-2xl bg-muted/10 hover:bg-muted/30 transition-all hover:scale-[1.01] cursor-pointer"
-                  >
-                    <Wand2 className="w-8 h-8 text-muted-foreground group-hover:text-secondary mb-2 opacity-75" />
-                    <span className="text-sm font-bold text-foreground">Wygeneruj naklejkę</span>
-                    <span className="text-[10px] font-semibold text-muted-foreground mt-0.5">Opisz swój pomysł</span>
-                  </button>
-                </div>
-              ) : (
-                <div className="space-y-4">
-                  <div className="flex justify-between items-center pb-2 border-b border-border/20">
-                    <span className="text-xs font-black uppercase tracking-wider text-muted-foreground">
-                      Tworzenie przez AI
-                    </span>
-                    <button
-                      onClick={() => setAddingMethod("none")}
-                      className="text-xs font-bold text-muted-foreground hover:text-foreground bg-muted/40 hover:bg-muted/70 px-2.5 py-1 rounded-md"
-                    >
-                      Anuluj
-                    </button>
-                  </div>
 
-                  <AIGenerator
-                    onImageGenerated={(url) => {
-                      setPendingImageUrl(url);
-                      // Open crop/bg removal modal for AI generated sticker immediately
-                      setActiveEditSticker({
-                        id: "new-ai",
-                        imageUrl: url,
-                        x: 15,
-                        y: 15,
-                        widthCm: 5,
-                        heightCm: 5,
-                        aspectRatio: 1,
-                        cutLineType: "none",
-                      });
-                      setShowEditModal(true);
-                      setVisualizerMode("2d");
-                    }}
-                  />
-                </div>
-              )}
+
+              <p className="text-[11px] text-muted-foreground bg-muted/20 border border-border/40 p-3 rounded-2xl font-bold mt-2 sm:mt-4 text-center max-w-md mx-auto">
+                Uwaga: Po zmniejszeniu rozmiaru naklejki tekst i małe elementy mogą stać się nieczytelne.
+              </p>
             </div>
-
-            {/* 2. Selected Sticker Manager */}
-            {selectedSticker ? (
-              <motion.div
-                initial={{ opacity: 0, y: 15 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="bg-card border-2 border-primary/40 rounded-3xl p-4 sm:p-6 shadow-sm space-y-4 sm:space-y-6"
-              >
-                <div
-                  className="flex justify-between items-center border-b border-border/40 pb-3 cursor-pointer sm:cursor-default select-none"
-                  onClick={() => setIsMobileStickerDetailsExpanded(prev => !prev)}
-                >
-                  <div className="flex items-center gap-2">
-                    <Layers className="w-5 h-5 text-primary" />
-                    <h3 className="text-lg font-black text-foreground">Wybrana Naklejka</h3>
-                  </div>
-                  <div className="sm:hidden text-muted-foreground hover:text-foreground transition-colors p-1">
-                    {isMobileStickerDetailsExpanded ? (
-                      <ChevronUp className="w-5 h-5" />
-                    ) : (
-                      <ChevronDown className="w-5 h-5" />
-                    )}
-                  </div>
-                </div>
-
-                {/* Miniature and Stacked Details Row */}
-                <div
-                  className="flex items-center gap-5 bg-muted/20 border border-border/40 p-3 rounded-2xl cursor-pointer sm:cursor-default hover:bg-muted/30 transition-colors"
-                  onClick={() => setIsMobileStickerDetailsExpanded(prev => !prev)}
-                >
-                  <div className="w-16 h-16 bg-white rounded-xl border border-border/40 p-1 flex items-center justify-center flex-shrink-0 overflow-hidden">
-                    <img
-                      src={selectedSticker.imageUrl}
-                      alt="Miniatura"
-                      className="max-w-full max-h-full object-contain rounded-lg"
-                    />
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <p className="text-xs font-black text-muted-foreground uppercase tracking-wide flex items-center justify-between">
-                      <span>Szczegóły</span>
-                      <span className="text-[10px] text-primary sm:hidden font-extrabold">
-                        {isMobileStickerDetailsExpanded ? "zwiń ▲" : "rozwiń opcje ▼"}
-                      </span>
-                    </p>
-                    <div className="text-xs font-bold text-foreground mt-0.5 space-y-0.5">
-                      <p>Szerokość: {selectedSticker.widthCm} cm</p>
-                      <p>Wysokość: {selectedSticker.heightCm.toFixed(1)} cm</p>
-                      <p>Linia cięcia: {
-                        selectedSticker.cutLineType === "none" ? "Brak" :
-                          selectedSticker.cutLineType === "contour" ? "Kontur" :
-                            selectedSticker.cutLineType === "rounded" ? "Prostokąt" :
-                              selectedSticker.cutLineType === "circle" ? "Koło" :
-                                selectedSticker.cutLineType === "rounded_inside" ? "Prostokąt wew." :
-                                  selectedSticker.cutLineType === "circle_inside" ? "Koło wew." : selectedSticker.cutLineType
-                      }</p>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Collapsible content container for mobile */}
-                <div className={`space-y-6 ${isMobileStickerDetailsExpanded ? "block animate-in slide-in-from-top-2 duration-200" : "hidden sm:block"}`}>
-                  {/* Standardized Actions Button Grid */}
-                  <div className="flex flex-wrap sm:flex-nowrap items-center gap-1.5 w-full">
-                    <button
-                      type="button"
-                      onClick={handleOpenEdit}
-                      className="flex-1 inline-flex items-center justify-center gap-1 px-2 py-1.5 text-[11px] font-bold bg-muted hover:bg-muted/80 dark:bg-white/10 dark:hover:bg-white/20 text-foreground border border-border/40 rounded-xl transition-all active:scale-95 cursor-pointer"
-                      title="Edytuj naklejkę"
-                    >
-                      <Crop className="w-3.5 h-3.5" />
-                      <span>Kadruj/Tło</span>
-                    </button>
-                    <button
-                      type="button"
-                      onClick={handleDuplicateSticker}
-                      className="flex-1 inline-flex items-center justify-center gap-1 px-2 py-1.5 text-[11px] font-bold bg-muted hover:bg-muted/80 dark:bg-white/10 dark:hover:bg-white/20 text-foreground border border-border/40 rounded-xl transition-all active:scale-95 cursor-pointer"
-                      title="Zduplikuj"
-                    >
-                      <Copy className="w-3.5 h-3.5" />
-                      <span>Zduplikuj</span>
-                    </button>
-                    <button
-                      type="button"
-                      onClick={handleDownloadSticker}
-                      className="flex-1 inline-flex items-center justify-center gap-1 px-2 py-1.5 text-[11px] font-bold bg-muted hover:bg-muted/80 dark:bg-white/10 dark:hover:bg-white/20 text-foreground border border-border/40 rounded-xl transition-all active:scale-95 cursor-pointer"
-                      title="Pobierz"
-                    >
-                      <Download className="w-3.5 h-3.5" />
-                      <span>Pobierz</span>
-                    </button>
-                    <button
-                      type="button"
-                      onClick={handleDeleteSticker}
-                      className="flex-1 inline-flex items-center justify-center gap-1 px-2 py-1.5 text-[11px] font-bold bg-destructive/10 hover:bg-destructive/15 text-destructive border border-destructive/20 rounded-xl transition-all active:scale-95 cursor-pointer"
-                      title="Usuń"
-                    >
-                      <Trash2 className="w-3.5 h-3.5" />
-                      <span>Usuń</span>
-                    </button>
-                  </div>
-
-                  {isLowRes && (
-                    <div className="bg-red-50 border border-red-200 text-red-500 dark:bg-red-950/30 dark:border-red-900/30 dark:text-red-400 text-xs font-bold p-3 rounded-2xl flex items-start gap-2 mt-2">
-                      <AlertTriangle className="w-4 h-4 mt-0.5 flex-shrink-0" />
-                      <div>
-                        <p className="font-extrabold text-[12px]">Uwaga: niska jakość pliku!</p>
-                        <p className="text-[10px] leading-relaxed mt-0.5 font-semibold text-red-500/80 dark:text-red-400/80">
-                          Ta naklejka może być rozmazana w druku. Zalecamy dodanie pliku o lepszej jakości.
-                        </p>
-                      </div>
-                    </div>
-                  )}
-
-                  {/* Resize control */}
-                  <div className="space-y-2">
-                    <div className="flex justify-between text-sm font-bold">
-                      <span className="text-foreground">Szerokość naklejki (cm)</span>
-                      <span className="text-primary font-black">{selectedSticker.widthCm} cm</span>
-                    </div>
-                    <input
-                      type="range"
-                      min={3}
-                      max={19}
-                      step={0.1}
-                      value={selectedSticker.widthCm}
-                      onChange={(e) => handleWidthChange(Number(e.target.value))}
-                      className="w-full h-2 bg-muted dark:bg-muted-foreground/40 rounded-lg appearance-none cursor-pointer accent-primary"
-                    />
-                    <p className="text-[10px] text-muted-foreground font-semibold">
-                      Wysokość jest wyliczana automatycznie proporcjonalnie do grafiki (maksymalnie 19 cm).
-                    </p>
-                  </div>
-
-                  {/* Rotation control */}
-                  <div className="space-y-2">
-                    <div className="flex justify-between text-sm font-bold">
-                      <span className="text-foreground">Obrót naklejki (stopnie)</span>
-                      <span className="text-primary font-black">{selectedSticker.rotation || 0}°</span>
-                    </div>
-                    <input
-                      type="range"
-                      min={0}
-                      max={360}
-                      step={1}
-                      value={selectedSticker.rotation || 0}
-                      onChange={(e) => handleRotationChange(Number(e.target.value))}
-                      className="w-full h-2 bg-muted dark:bg-muted-foreground/40 rounded-lg appearance-none cursor-pointer accent-primary"
-                    />
-                    <div className="relative w-full h-8 mt-2">
-                      {[0, 90, 180, 270, 360].map((deg) => {
-                        const pct = (deg / 360) * 100;
-                        return (
-                          <button
-                            key={deg}
-                            type="button"
-                            onClick={() => handleRotationChange(deg)}
-                            style={{
-                              left: `${pct}%`,
-                              transform: `translateX(-${pct}%)`,
-                            }}
-                            className={`absolute text-[10px] font-extrabold rounded-md border transition-all px-2 py-0.5 ${(selectedSticker.rotation || 0) === deg
-                              ? "bg-secondary/20 text-foreground border-secondary/40"
-                              : "bg-muted/40 hover:bg-muted text-muted-foreground border-transparent"
-                              }`}
-                          >
-                            {deg}°
-                          </button>
-                        );
-                      })}
-                    </div>
-                  </div>
-
-                  {/* Cut line options */}
-                  <div className="space-y-3">
-                    <span className="text-sm font-bold text-foreground block">Rodzaj linii cięcia (naklejki)</span>
-                    <div className="grid grid-cols-3 gap-2">
-                      {[
-                        { type: "none", label: "Brak", icon: Ban },
-                        { type: "contour", label: "Kontur", icon: Sparkles },
-                        { type: "rounded", label: "Prostokąt", icon: Square },
-                        { type: "circle", label: "Koło", icon: Circle },
-                        { type: "rounded_inside", label: "Prostokąt wew.", icon: Square },
-                        { type: "circle_inside", label: "Koło wew.", icon: Circle },
-                      ].map((opt) => {
-                        const Icon = opt.icon;
-                        return (
-                          <button
-                            key={opt.type}
-                            onClick={() => handleCutLineChange(opt.type as any)}
-                            className={`py-3 px-1 text-[10px] sm:text-xs font-bold rounded-xl border text-center transition-all flex flex-col items-center justify-center gap-1.5 active:scale-95 whitespace-nowrap cursor-pointer ${selectedSticker.cutLineType === opt.type
-                              ? "bg-primary text-primary-foreground border-primary shadow-sm"
-                              : "bg-background text-muted-foreground border-border hover:bg-muted/40"
-                              }`}
-                          >
-                            <Icon className="w-4 h-4" />
-                            <span>{opt.label}</span>
-                          </button>
-                        );
-                      })}
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
-            ) : stickers.length === 0 ? (
-              <div className="bg-card border border-border/40 rounded-3xl p-6 shadow-sm text-center py-8 text-muted-foreground font-semibold flex flex-col items-center gap-3 animate-pulse">
-                <ArrowUp className="w-6 h-6 text-primary" />
-                <span>Dodaj swoją pierwszą naklejkę na arkusz!</span>
-              </div>
-            ) : (
-              <div className="hidden sm:block bg-card border border-border/40 rounded-3xl p-6 shadow-sm text-center py-8 text-muted-foreground font-semibold">
-                Kliknij na naklejkę na arkuszu, aby włączyć jej dopasowanie, zmienić rozmiar lub rodzaj cięcia.
-              </div>
-            )}
 
           </div>
 
-          {/* Right Column: Visualizer Sheet */}
-          <div
-            onDragOver={handleDragOver}
-            onDragLeave={handleDragLeave}
-            onDrop={handleDrop}
-            className={`relative lg:col-span-6 flex flex-col items-center justify-center rounded-3xl p-6 sm:p-8 min-h-[500px] order-1 lg:order-2 transition-all ${stickers.length === 0
-              ? "bg-transparent sm:bg-card border-none sm:border sm:border-border/40 shadow-none sm:shadow-[0_8px_30px_rgba(0,0,0,0.02)]"
-              : "bg-card border border-border/40 shadow-[0_8px_30px_rgba(0,0,0,0.02)]"
-              }`}
-          >
-            {/* Local Drag Overlay */}
-            {isDraggingOverSheet && (
-              <div className="absolute inset-0 z-[50] bg-primary/20 backdrop-blur-md flex flex-col items-center justify-center border-4 border-dashed border-primary rounded-3xl animate-in fade-in duration-200 m-2 pointer-events-none">
-                <div className="bg-background/90 p-8 rounded-2xl shadow-xl flex flex-col items-center gap-3 text-center max-w-xs">
-                  <UploadCloud className="w-12 h-12 text-primary animate-bounce" />
-                  <h3 className="text-lg font-extrabold text-foreground">Upuść plik tutaj!</h3>
-                  <p className="text-xs text-muted-foreground font-semibold">Dodaj naklejkę bezpośrednio na arkusz</p>
+          {/* Floating/Sticky Bottom Summary Bar */}
+          <div className="relative sm:sticky bottom-0 sm:bottom-4 z-40 liquid-glass border border-border/40 shadow-[0_8px_30px_rgba(0,0,0,0.04)] py-3 sm:py-4 px-4 sm:px-8 rounded-2xl mt-2 sm:mt-4">
+            <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+              {/* Left: Summary Info */}
+              <div className="flex flex-col sm:flex-row items-center gap-4 text-center sm:text-left">
+                <div>
+                  <p className="text-xs font-black uppercase text-muted-foreground tracking-wider">Podsumowanie</p>
+                  <h4 className="text-xl font-black text-foreground">
+                    {(49.0 * sheetQuantity).toFixed(2)} zł <span className="text-xs font-semibold text-muted-foreground">({sheetQuantity} szt.)</span>
+                  </h4>
+                  {stickers.length > 0 && (
+                    <p className="text-[10px] font-bold text-muted-foreground sm:hidden mt-0.5 animate-in fade-in duration-200">
+                      {stickers.length} {getStickersNoun(stickers.length)} (Tylko {(49.00 / stickers.length).toFixed(2)} zł za 1 naklejkę!)
+                    </p>
+                  )}
+                  {stickers.some((s) => s.cutLineType === "none") && (
+                    <p className="text-[10px] font-bold text-destructive mt-1 animate-pulse">
+                      Wybierz linię cięcia dla wszystkich naklejek!
+                    </p>
+                  )}
+                </div>
+                <div className="text-[10px] text-muted-foreground font-semibold border-l border-border/60 pl-4 hidden sm:block">
+                  <p>Cena: 49.00 zł / arkusz A4</p>
+                  <p>{stickers.length} {getStickersNoun(stickers.length)} na arkuszu</p>
+                  {stickers.length > 0 && (
+                    <p className="mt-0.5">
+                      Tylko {(49.00 / stickers.length).toFixed(2)} zł za 1 naklejkę!
+                    </p>
+                  )}
                 </div>
               </div>
-            )}
 
-            <div className="flex flex-col sm:flex-row items-center justify-between w-full mb-6 gap-3 border-b border-border/40 pb-4">
-              <p className="text-xs font-black uppercase text-muted-foreground tracking-wider">
-                Twój Arkusz A4 (Podgląd ułożenia)
-              </p>
+              {/* Right: Actions & Quantity */}
+              <div className="flex flex-wrap items-center justify-center gap-4 w-full md:w-auto">
+                {/* Quantity Selector & Shipping Info */}
+                <div className="flex flex-col sm:flex-row items-center gap-3 w-full sm:w-auto justify-center">
+                  <div className="flex items-center gap-3 bg-muted/50 border border-border/30 px-3 py-1.5 rounded-2xl">
+                    <span className="text-xs font-bold text-muted-foreground">Arkusze:</span>
+                    <button
+                      type="button"
+                      onClick={() => setSheetQuantity(Math.max(1, sheetQuantity - 1))}
+                      disabled={sheetQuantity <= 1}
+                      className="w-8 h-8 rounded-xl bg-background hover:bg-muted border border-border flex items-center justify-center font-bold active:scale-95 transition-transform disabled:opacity-30 disabled:pointer-events-none cursor-pointer"
+                    >
+                      <Minus className="w-3.5 h-3.5 text-foreground" />
+                    </button>
+                    <span className="text-sm font-black w-6 text-center text-foreground">{sheetQuantity}</span>
+                    <button
+                      type="button"
+                      onClick={() => setSheetQuantity(sheetQuantity + 1)}
+                      className="w-8 h-8 rounded-xl bg-background hover:bg-muted border border-border flex items-center justify-center font-bold active:scale-95 transition-transform cursor-pointer"
+                    >
+                      <Plus className="w-3.5 h-3.5 text-foreground" />
+                    </button>
+                  </div>
+                  <div className="flex items-center gap-1.5 text-[11px] font-black text-secondary whitespace-nowrap">
+                    <Truck className="w-4 h-4 text-secondary" />
+                    <span>Wysyłka w ciągu 3 dni</span>
+                  </div>
+                </div>
 
-              <div className="flex bg-muted/60 p-0.5 rounded-xl border border-border/30 relative">
-                <button
-                  type="button"
-                  onClick={() => setVisualizerMode("2d")}
-                  className={`relative px-4 py-1.5 text-xs font-bold rounded-lg transition-all cursor-pointer ${visualizerMode === "2d" ? "text-foreground" : "text-muted-foreground hover:text-foreground"
-                    }`}
-                >
-                  {visualizerMode === "2d" && (
-                    <motion.div
-                      layoutId="activeVisualizerMode"
-                      className="absolute inset-0 bg-background rounded-lg shadow-sm"
-                      transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                    />
-                  )}
-                  <span className="relative z-10">Edycja</span>
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setVisualizerMode("3d")}
-                  className={`relative px-4 py-1.5 text-xs font-bold rounded-lg transition-all flex items-center gap-1.5 cursor-pointer ${visualizerMode === "3d" ? "text-foreground" : "text-muted-foreground hover:text-foreground"
-                    }`}
-                >
-                  {visualizerMode === "3d" && (
-                    <motion.div
-                      layoutId="activeVisualizerMode"
-                      className="absolute inset-0 bg-background rounded-lg shadow-sm"
-                      transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                    />
-                  )}
-                  <span className="relative z-10">Wizualizacja</span>
-                </button>
+                {/* CTA Buttons */}
+                <div className="flex flex-col sm:flex-row items-center gap-2 w-full sm:w-auto">
+                  <button
+                    onClick={handleAddToCart}
+                    disabled={isAddingToCart || stickers.length === 0}
+                    className="w-full sm:w-auto inline-flex items-center justify-center rounded-2xl text-sm font-bold bg-primary text-primary-foreground hover:bg-primary/95 active:scale-[0.98] h-12 px-6 shadow-sm transition-all disabled:opacity-50"
+                  >
+                    {isAddingToCart ? (
+                      <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                    ) : (
+                      <ShoppingCart className="w-4 h-4 mr-2" />
+                    )}
+                    Dodaj do koszyka
+                  </button>
+
+                </div>
               </div>
             </div>
+          </div>
 
-            <div className="relative w-full max-w-[480px] aspect-[210/297] flex items-center justify-center">
-              {visualizerMode === "2d" ? (
-                <NewA4Visualizer
-                  stickers={stickers}
-                  selectedStickerId={selectedStickerId}
-                  onSelectSticker={setSelectedStickerId}
-                  onUpdateStickers={setStickers}
-                  onError={setError}
-                  onEditSticker={handleOpenEdit}
-                  onDuplicateSticker={handleDuplicateSticker}
-                  onDeleteSticker={handleDeleteSticker}
-                  onCutLineChange={handleCutLineChange}
-                  onRotationChange={handleRotationChange}
-                  isPresentationMode={false}
-                />
-              ) : (
-                <A4Visualizer3D stickers={stickers} />
-              )}
+        </main>
+      </div>
 
-              {stickers.length === 0 && (
-                <label className="absolute inset-0 flex sm:hidden flex-col items-center justify-center bg-transparent cursor-pointer z-40 rounded-lg">
-                  <input
-                    type="file"
-                    accept="image/*"
-                    className="hidden"
-                    onChange={(e) => {
-                      const file = e.target.files?.[0];
-                      if (file) handleMobileFileUpload(file);
-                      e.target.value = "";
-                    }}
-                  />
-                  <div className="flex flex-col items-center justify-center bg-background/95 backdrop-blur-sm border border-border/80 py-4 px-6 rounded-2xl shadow-lg animate-bounce">
-                    <UploadCloud className="w-6 h-6 text-primary mb-1.5" />
-                    <span className="text-xs font-extrabold text-foreground">Dodaj naklejkę</span>
-                    <span className="text-[9px] font-semibold text-muted-foreground mt-0.5">Wgraj zdjęcie z galerii</span>
-                  </div>
-                </label>
-              )}
-            </div>
+      {/* Sekcja SEO i marketingowa na białym tle */}
+      <div className="w-full bg-white dark:bg-[#004749] z-10 flex flex-col flex-grow">
+        <section id="seo-marketing-section" className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12 sm:space-y-16 pt-12 sm:pt-16 pb-12 sm:pb-16">
 
-
-
-            <p className="text-[11px] text-muted-foreground bg-muted/20 border border-border/40 p-3 rounded-2xl font-bold mt-2 sm:mt-4 text-center max-w-md mx-auto">
-              Uwaga: Po zmniejszeniu rozmiaru naklejki tekst i małe elementy mogą stać się nieczytelne.
+        {/* Sekcja 1: Główne zalety / USP */}
+        <div className="space-y-6 sm:space-y-8">
+          <div className="text-center max-w-2xl mx-auto space-y-2">
+            <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-foreground" id="seo-features-title">
+              Zaprojektuj i wydrukuj naklejki na własnych zasadach
+            </h2>
+            <p className="text-muted-foreground text-sm font-semibold">
+              Odkryj korzyści płynące z korzystania z naszego inteligentnego kreatora arkuszy A4.
             </p>
           </div>
 
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {[
+              {
+                title: "Dowolność i oszczędność",
+                desc: "Nie musisz zamawiać tysięcy sztuk jednego wzoru. Na jednym arkuszu A4 możesz umieścić wiele różnych grafik o dowolnych wymiarach, płacąc zawsze stałą cenę."
+              },
+              {
+                title: "Wysoka jakość i trwałość",
+                desc: "Nasze naklejki drukujemy na profesjonalnej folii samoprzylepnej odpornej na wodę, promienie UV i ścieranie. Idealnie sprawdzą się na laptopy, butelki, samochody oraz opakowania produktów."
+              },
+              {
+                title: "Automatyczna linia cięcia",
+                desc: "Nasz kreator samodzielnie wykrywa krawędzie Twoich obrazów i tworzy precyzyjną linię cięcia po konturze. Ty decydujesz, czy naklejka ma być prostokątna, okrągła, czy wycięta po kształcie."
+              }
+            ].map((item, idx) => (
+              <div key={idx} className="bg-card border border-border/40 rounded-3xl p-6 sm:p-8 shadow-sm space-y-3">
+                <div className="w-10 h-10 rounded-2xl bg-primary/10 flex items-center justify-center text-primary font-black">
+                  {idx + 1}
+                </div>
+                <h3 className="text-lg font-black text-foreground">
+                  {item.title}
+                </h3>
+                <p className="text-muted-foreground text-xs sm:text-sm font-semibold leading-relaxed">
+                  {item.desc}
+                </p>
+              </div>
+            ))}
+          </div>
         </div>
 
-        {/* Floating/Sticky Bottom Summary Bar */}
-        <div className="relative sm:sticky bottom-0 sm:bottom-4 z-40 bg-background/95 backdrop-blur-md border border-border/40 shadow-[0_8px_30px_rgba(0,0,0,0.04)] py-3 sm:py-4 px-4 sm:px-8 rounded-2xl mt-2 sm:mt-4">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-            {/* Left: Summary Info */}
-            <div className="flex flex-col sm:flex-row items-center gap-4 text-center sm:text-left">
-              <div>
-                <p className="text-xs font-black uppercase text-muted-foreground tracking-wider">Podsumowanie</p>
-                <h4 className="text-xl font-black text-foreground">
-                  {(49.0 * sheetQuantity).toFixed(2)} zł <span className="text-xs font-semibold text-muted-foreground">({sheetQuantity} szt.)</span>
-                </h4>
-                {stickers.length > 0 && (
-                  <p className="text-[10px] font-bold text-muted-foreground sm:hidden mt-0.5 animate-in fade-in duration-200">
-                    {stickers.length} {getStickersNoun(stickers.length)} (Tylko {(49.00 / stickers.length).toFixed(2)} zł za 1 naklejkę!)
-                  </p>
-                )}
-                {stickers.some((s) => s.cutLineType === "none") && (
-                  <p className="text-[10px] font-bold text-destructive mt-1 animate-pulse">
-                    Wybierz linię cięcia dla wszystkich naklejek!
-                  </p>
-                )}
+        {/* Sekcja 2: Jak to działa (Krok po kroku) */}
+        <div className="space-y-6 sm:space-y-8 bg-muted/10 border border-border/20 rounded-3xl p-6 sm:p-8">
+          <div className="text-center max-w-2xl mx-auto space-y-2">
+            <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-foreground" id="seo-how-it-works-title">
+              Jak to działa? Twoje naklejki w 4 prostych krokach
+            </h2>
+            <p className="text-muted-foreground text-sm font-semibold">
+              Cały proces – od pomysłu do gotowego wydruku – zajmie Ci zaledwie kilka minut.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 relative">
+            {[
+              {
+                title: "Dodaj swoje grafiki",
+                desc: "Wgraj pliki JPG/PNG ze swojego komputera lub telefonu, albo skorzystaj z generatora AI, wpisując opis wymarzonego wzoru."
+              },
+              {
+                title: "Dopasuj rozmiar i cięcie",
+                desc: "Wybierz wielkość każdej naklejki oraz jej linię cięcia. Możesz wyciąć naklejki po obrysie (konturze), w okręgu lub w prostokącie."
+              },
+              {
+                title: "Rozmieść na arkuszu A4",
+                desc: "Przeciągaj naklejki na podglądzie arkusza. Inteligentny system zapobiegnie ich nakładaniu się i upewni się, że wszystko zmieści się idealnie."
+              },
+              {
+                title: "Zamów z szybką dostawą",
+                desc: "Sprawdź gotową kompozycję w trójwymiarowym podglądzie 3D, dodaj arkusz do koszyka i sfinalizuj bezpieczne zamówienie za pomocą Przelewy24."
+              }
+            ].map((step, idx) => (
+              <div key={idx} className="space-y-2 relative">
+                <div className="text-xs font-black uppercase text-primary tracking-widest">
+                  Krok 0{idx + 1}
+                </div>
+                <h3 className="text-base font-black text-foreground">
+                  {step.title}
+                </h3>
+                <p className="text-muted-foreground text-xs font-semibold leading-relaxed">
+                  {step.desc}
+                </p>
               </div>
-              <div className="text-[10px] text-muted-foreground font-semibold border-l border-border/60 pl-4 hidden sm:block">
-                <p>Cena: 49.00 zł / arkusz A4</p>
-                <p>{stickers.length} {getStickersNoun(stickers.length)} na arkuszu</p>
-                {stickers.length > 0 && (
-                  <p className="mt-0.5">
-                    Tylko {(49.00 / stickers.length).toFixed(2)} zł za 1 naklejkę!
-                  </p>
-                )}
-              </div>
+            ))}
+          </div>
+        </div>
+        {/* Sekcja SEO: Informacje o naklejkach personalizowanych */}
+        <div className="space-y-12 sm:space-y-16 mt-8">
+          {/* Blok 1: Gdzie kupić */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+            <div className="lg:col-span-8 space-y-4">
+              <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-foreground">
+                Gdzie kupić pojedyncze naklejki personalizowane online?
+              </h2>
+              <p className="text-muted-foreground text-sm sm:text-base font-semibold leading-relaxed">
+                Najlepszym rozwiązaniem dla zamówień niskonakładowych jest platforma <Link href="/" className="text-primary hover:underline font-bold">malenaklejki.pl</Link>. To tutaj szybko zaprojektujesz i kupisz naklejki personalizowane bez minimalnych limitów zamówienia. Za stałą kwotę 49,00 zł otrzymujesz w pełni zagospodarowany arkusz naklejek w formacie A4. Możesz umieścić na nim dowolną liczbę różnych grafik, a nasz zaawansowany system automatycznie zadba o to, aby elementy nie nachodziły na siebie. To Ty decydujesz, co drukujesz.
+              </p>
+            </div>
+            <div className="lg:col-span-4 bg-primary/5 border border-primary/15 rounded-3xl p-6 text-center space-y-2">
+              <p className="text-3xl font-black text-primary">49,00 zł</p>
+              <p className="text-xs font-bold text-muted-foreground uppercase tracking-wider">Stała cena za cały arkusz A4</p>
+            </div>
+          </div>
+
+          {/* Blok 2: Jak zrobić własne wlepki i etykiety */}
+          <div className="space-y-6 sm:space-y-8 bg-muted/10 border border-border/20 rounded-3xl p-6 sm:p-8">
+            <div className="max-w-3xl space-y-4">
+              <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-foreground">
+                Jak zrobić własne wlepki i etykiety w kilku prostych krokach?
+              </h2>
+              <p className="text-muted-foreground text-sm sm:text-base font-semibold leading-relaxed">
+                Jeśli zastanawiasz się jak zrobić własne wlepki bez profesjonalnego oprogramowania graficznego, nasz interaktywny naklejki kreator to odpowiedź na Twoje potrzeby. Cały proces odbywa się bezpośrednio w przeglądarce:
+              </p>
             </div>
 
-            {/* Right: Actions & Quantity */}
-            <div className="flex flex-wrap items-center justify-center gap-4 w-full md:w-auto">
-              {/* Quantity Selector & Shipping Info */}
-              <div className="flex flex-col sm:flex-row items-center gap-3 w-full sm:w-auto justify-center">
-                <div className="flex items-center gap-3 bg-muted/50 border border-border/30 px-3 py-1.5 rounded-2xl">
-                  <span className="text-xs font-bold text-muted-foreground">Arkusze:</span>
-                  <button
-                    type="button"
-                    onClick={() => setSheetQuantity(Math.max(1, sheetQuantity - 1))}
-                    disabled={sheetQuantity <= 1}
-                    className="w-8 h-8 rounded-xl bg-background hover:bg-muted border border-border flex items-center justify-center font-bold active:scale-95 transition-transform disabled:opacity-30 disabled:pointer-events-none cursor-pointer"
-                  >
-                    <Minus className="w-3.5 h-3.5 text-foreground" />
-                  </button>
-                  <span className="text-sm font-black w-6 text-center text-foreground">{sheetQuantity}</span>
-                  <button
-                    type="button"
-                    onClick={() => setSheetQuantity(sheetQuantity + 1)}
-                    className="w-8 h-8 rounded-xl bg-background hover:bg-muted border border-border flex items-center justify-center font-bold active:scale-95 transition-transform cursor-pointer"
-                  >
-                    <Plus className="w-3.5 h-3.5 text-foreground" />
-                  </button>
-                </div>
-                <div className="flex items-center gap-1.5 text-[11px] font-black text-secondary whitespace-nowrap">
-                  <Truck className="w-4 h-4 text-secondary" />
-                  <span>Wysyłka w ciągu 3 dni</span>
-                </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div className="bg-card border border-border/40 rounded-2xl p-5 space-y-3">
+                <div className="text-xs font-black uppercase text-primary tracking-widest">Sztuczna Inteligencja (AI)</div>
+                <p className="text-muted-foreground text-xs sm:text-sm font-semibold leading-relaxed">
+                  Opisz swój pomysł zwykłym tekstem, a wbudowany generator stworzy dla Ciebie unikalne wzory na naklejki do druku. W ten sposób łatwo stworzysz imponujące własne wlepki nawet bez umiejętności rysowania.
+                </p>
               </div>
-
-              {/* CTA Buttons */}
-              <div className="flex flex-col sm:flex-row items-center gap-2 w-full sm:w-auto">
-                <button
-                  onClick={handleAddToCart}
-                  disabled={isAddingToCart || stickers.length === 0 || stickers.some((s) => s.cutLineType === "none")}
-                  className="w-full sm:w-auto inline-flex items-center justify-center rounded-2xl text-sm font-bold bg-primary text-primary-foreground hover:bg-primary/95 active:scale-[0.98] h-12 px-6 shadow-sm transition-all disabled:opacity-50"
-                >
-                  {isAddingToCart ? (
-                    <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                  ) : (
-                    <ShoppingCart className="w-4 h-4 mr-2" />
-                  )}
-                  Dodaj do koszyka
-                </button>
-
+              <div className="bg-card border border-border/40 rounded-2xl p-5 space-y-3">
+                <div className="text-xs font-black uppercase text-primary tracking-widest">Szybkie naklejki ze zdjęciem</div>
+                <p className="text-muted-foreground text-xs sm:text-sm font-semibold leading-relaxed">
+                  Wgraj dowolną fotografię z dysku lub telefonu. System natychmiast usunie tło, dzięki czemu powstaną precyzyjnie wycięte po obrysie kształty (tzw. naklejki die cut). Możesz ułożyć całe grupowe naklejki ze zdjęć na jednym panelu.
+                </p>
               </div>
+              <div className="bg-card border border-border/40 rounded-2xl p-5 space-y-3">
+                <div className="text-xs font-black uppercase text-primary tracking-widest">Szybkie kadrowanie</div>
+                <p className="text-muted-foreground text-xs sm:text-sm font-semibold leading-relaxed">
+                  Wrzucasz przygotowane wcześniej małe obrazki do druku na naklejki, a system sam dostosowuje ścieżki cięcia (koła, zaokrąglone prostokąty lub nieregularne obrysy). To najkrótsza droga, by wyprodukować własne, domowe naklejki diy i wytrzymałe własne wlepy na laptopa czy motocykl.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Blok 3: Dla małych firm & Wyjątkowe okazje */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
+            <div className="space-y-4">
+              <h3 className="text-xl sm:text-2xl font-extrabold tracking-tight text-foreground">
+                Profesjonalny arkusz naklejek na zamówienie dla małych firm
+              </h3>
+              <p className="text-muted-foreground text-sm font-semibold leading-relaxed">
+                Prowadzisz małą gastronomię, tworzysz rękodzieło albo produkujesz naturalne kosmetyki? Profesjonalny druk naklejek na zamówienie na arkuszach A4 to model stworzony dla Ciebie. Zamiast inwestować w tysiące sztuk etykiet, których jeszcze nie potrzebujesz, kupujesz jeden wielofunkcyjny arkusz z naklejkami.
+              </p>
+              <p className="text-muted-foreground text-sm font-semibold leading-relaxed">
+                Wgrywasz własne logo i jednym kliknięciem tworzysz unikalne naklejki z własną grafiką oraz informacyjne naklejki z własnym napisem opisujące skład produktu. To idealne i ekonomiczne małe naklejki z własnym nadrukiem na słoiczki, butelki czy opakowania wysyłkowe. Każdy produkt prezentuje się u klienta o wiele lepiej, gdy zdobią go precyzyjnie docięte naklejki samoprzylepne na zamówienie. Jeśli w przyszłości rozwiniesz ofertę, bez problemu skonfigurujesz w koszyku również większe naklejki na zamówienie z własnym nadrukiem.
+              </p>
+            </div>
+
+            <div className="space-y-4">
+              <h3 className="text-xl sm:text-2xl font-extrabold tracking-tight text-foreground">
+                Wyjątkowe okazje i naklejki z własnym zdjęciem
+              </h3>
+              <p className="text-muted-foreground text-sm font-semibold leading-relaxed">
+                Nasz pojedynczy arkusz naklejek do druku to absolutny hit podczas rodzinnych i religijnych uroczystości. W zaledwie kilka minut zaprojektujesz u nas pamiątkowe naklejki personalizowane na chrzest jako naklejki na podziękowania dla gości lub stworzysz eleganckie naklejki personalizowane komunia pasujące do zaproszeń.
+              </p>
+              <p className="text-muted-foreground text-sm font-semibold leading-relaxed">
+                Nic nie stoi na przeszkodzie, aby wykorzystać wykadrowane naklejki ze zdjęcia jubilata do dekoracji prezentów. Niezależnie od tego, czy system ma przetworzyć klasyczne naklejki ze zdjeciem bez skomplikowanego tła, czy wyciąć portret całej rodziny, efekt zawsze jest perfekcyjny.
+              </p>
+            </div>
+          </div>
+
+          {/* Blok 4: Praktyczne zastosowania */}
+          <div className="space-y-6 sm:space-y-8 bg-muted/10 border border-border/20 rounded-3xl p-6 sm:p-8">
+            <div className="space-y-4">
+              <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-foreground">
+                Praktyczne zastosowania – wybierz naklejki na zamówienie online
+              </h2>
+              <p className="text-muted-foreground text-sm sm:text-base font-semibold leading-relaxed">
+                Nasi klienci wykorzystują kreator do najbardziej nietypowych i codziennych zadań. Sprawdź, co możesz stworzyć:
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+              {[
+                "Kolorowe naklejki z grafiką na prezenty urodzinowe i sprzęt elektroniczny.",
+                "Dedykowane naklejki z własnym wzorem do oznaczania organizerów i pudełek w biurze.",
+                "Wytrzymałe naklejki na zeszyty personalizowane z wizerunkami ulubionych bohaterów z gier lub bajek.",
+                "Funkcjonalne naklejki na ubrania dla dzieci (idealne do naklejania na nylonowe metki z instrukcją prania), ułatwiające organizację rzeczy w przedszkolu i żłobku.",
+                "Pamiątkowe dekoracje plannerów, gdzie główną rolę gra motywacyjna naklejka z własnym napisem."
+              ].map((text, idx) => (
+                <div key={idx} className="bg-card border border-border/40 rounded-3xl p-5 flex flex-col items-start text-left space-y-3">
+                  <span className="px-2.5 py-1 text-[10px] font-black bg-primary/10 text-primary rounded-lg">
+                    Zastosowanie 0{idx + 1}
+                  </span>
+                  <p className="text-muted-foreground text-xs font-semibold leading-relaxed">
+                    {text}
+                  </p>
+                </div>
+              ))}
+            </div>
+
+            <div className="border-t border-border/20 pt-6">
+              <p className="text-muted-foreground text-sm sm:text-base font-semibold leading-relaxed">
+                Wybierając elastyczny produkt, jakim jest naklejki arkusz, płacisz raz, a na kartce A4 zyskujesz dziesiątki różnorodnych wlepek. Gwarantujemy, że nasze naklejki z własnym nadrukiem to najwyższa jakość winylu i mocny klej. Drukujemy Twoje gotowe naklejki arkusze błyskawicznie, a integracja z bezpieczną bramką płatniczą Przelewy24 oznacza natychmiastowe przekazanie pliku do produkcji. Przetestuj nasze naklejki na zamówienie już dziś i stwórz swój pierwszy projekt powyżej!
+              </p>
             </div>
           </div>
         </div>
 
-      </main>
+        {/* Sekcja 4: FAQ */}
+        <div className="space-y-6 sm:space-y-8">
+          <div className="text-center max-w-2xl mx-auto space-y-2">
+            <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-foreground" id="seo-faq-title">
+              Często zadawane pytania (FAQ)
+            </h2>
+            <p className="text-muted-foreground text-sm font-semibold">
+              Wszystko, co musisz wiedzieć o tworzeniu, drukowaniu i dostawie naklejek na arkuszach.
+            </p>
+          </div>
+
+          <div className="max-w-3xl mx-auto space-y-4">
+            {[
+              {
+                q: "Jakiej jakości pliki powinienem wgrać do kreatora?",
+                a: "Najlepsze rezultaty uzyskasz wgrywając pliki w formacie PNG lub JPG o rozdzielczości 300 DPI. Kreator automatycznie ocenia jakość grafiki i ostrzeże Cię komunikatem, jeśli rozdzielczość będzie zbyt niska (poniżej 100 DPI)."
+              },
+              {
+                q: "Co oznacza cięcie po konturze (obrysie)?",
+                a: "Nasze maszyny plotujące wytną naklejkę dokładnie wzdłuż krawędzi Twojego obrazka (z pominięciem przezroczystego tła). W kreatorze możesz wybrać opcję „Kontur”, aby zobaczyć podgląd linii cięcia naniesiony na Twoją grafikę."
+              },
+              {
+                q: "Ile naklejek zmieści się na jednym arkuszu A4?",
+                a: "To zależy od Ciebie! Możesz umieścić jedną ogromną naklejkę (do 19 cm szerokości) lub kilkadziesiąt mniejszych (np. o średnicy 3-4 cm). Nasz system automatycznie pilnuje, aby naklejki nie nakładały się na siebie."
+              },
+              {
+                q: "Czy mogę edytować arkusz po dodaniu do koszyka?",
+                a: "Po dodaniu arkusza do koszyka kompozycja jest zapisywana i generowany jest plik produkcyjny. Wszelkie poprawki wymagają ponownego ułożenia arkusza, dlatego przed zatwierdzeniem upewnij się w podglądzie 2D/3D, że wszystko wygląda poprawnie."
+              },
+              {
+                q: "Jaki jest czas realizacji i koszt dostawy?",
+                a: "Wszystkie zamówienia drukujemy i wysyłamy w ciągu 3 dni roboczych. Koszt dostawy wynosi 19,99 zł, a bezpieczną i szybką płatność realizujemy za pośrednictwem Przelewy24 (karta, BLIK, przelew)."
+              }
+            ].map((faq, idx) => (
+              <div key={idx} className="bg-card border border-border/40 rounded-2xl p-5 shadow-sm space-y-2">
+                <h3 className="text-sm sm:text-base font-black text-foreground flex items-start gap-2">
+                  <span className="text-primary font-extrabold">Q:</span>
+                  <span>{faq.q}</span>
+                </h3>
+                <div className="text-xs sm:text-sm text-muted-foreground font-semibold leading-relaxed pl-6">
+                  <p>{faq.a}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+      </section>
 
       {/* Edit Modal (Crop + AI background removal) */}
       <AnimatePresence>
@@ -1721,33 +2050,116 @@ export default function Home() {
         )}
       </AnimatePresence>
 
-      <Footer>
-        <div className="flex flex-wrap items-center justify-center gap-3 w-full max-w-md my-2 animate-in fade-in duration-200">
-          <button
-            onClick={() => handleDownloadPDF("print")}
-            disabled={isGeneratingPdf || stickers.length === 0}
-            className="flex-1 inline-flex items-center justify-center rounded-2xl text-xs font-bold bg-muted text-muted-foreground hover:bg-muted/80 h-12 px-4 transition-all disabled:opacity-50 cursor-pointer"
-            title="Pobierz plik PDF do druku (bez linii cięcia)"
-          >
-            {isGeneratingPdf ? (
-              <Loader2 className="w-3.5 h-3.5 animate-spin mr-1.5" />
-            ) : (
-              <Download className="w-4 h-4 mr-1.5" />
-            )}
-            PDF Druk
-          </button>
+      <Footer />
+      </div>
 
-          <button
-            onClick={() => handleDownloadPDF("cut-lines")}
-            disabled={isGeneratingPdf || stickers.length === 0}
-            className="flex-1 inline-flex items-center justify-center rounded-2xl text-xs font-bold bg-secondary/20 text-foreground hover:bg-secondary/35 h-12 px-4 transition-all disabled:opacity-50 cursor-pointer"
-            title="Pobierz plik PDF z liniami cięcia (czarne sylwetki)"
+      {/* Sticky Header w formie menu po wjechaniu na sekcję SEO */}
+      <AnimatePresence>
+        {showStickyHeader && (
+          <div className="fixed top-0 left-0 right-0 z-[120] pointer-events-none">
+            <motion.div
+              initial={{ y: -100, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={{ y: -100, opacity: 0 }}
+              transition={{ duration: 0.25, ease: "easeOut" }}
+              className="max-w-5xl mx-auto w-full pointer-events-auto flex justify-between items-center h-14 sm:h-16 px-5 sm:px-6 bg-background/90 backdrop-blur-md rounded-b-2xl rounded-t-none border-x border-b border-border/70 shadow-[0_8px_30px_rgba(0,0,0,0.06)]"
+            >
+              {/* Left: Minimized Logo */}
+              <div className="flex justify-start items-center">
+                <Link href="/" className="flex items-center">
+                  <motion.div
+                    whileTap={{ scale: 0.98 }}
+                    className="relative h-8 sm:h-9 flex items-center"
+                  >
+                    <NextImage
+                      src="/images/logo/malenaklejki-logo-light.png?v=3"
+                      alt="małe Naklejki Logo"
+                      width={220}
+                      height={55}
+                      className="h-full w-auto object-contain dark:hidden"
+                      priority
+                      unoptimized
+                    />
+                    <NextImage
+                      src="/images/logo/malenaklejki-logo-dark.png?v=3"
+                      alt="małe Naklejki Logo"
+                      width={220}
+                      height={55}
+                      className="h-full w-auto object-contain hidden dark:block"
+                      priority
+                      unoptimized
+                    />
+                  </motion.div>
+                </Link>
+              </div>
+
+              {/* Right: Minimized Actions & Cart info */}
+              <div className="flex justify-end items-center gap-3 sm:gap-4">
+                {/* Zamów Naklejki Personalizowane Button */}
+                <button
+                  type="button"
+                  onClick={scrollToAndHighlightSheet}
+                  className="hidden md:inline-flex px-3.5 py-1.5 text-[13px] font-extrabold text-foreground hover:text-primary bg-muted/40 hover:bg-muted/85 rounded-lg border border-border/30 transition-all cursor-pointer hover:scale-[1.01] active:scale-[0.99] whitespace-nowrap"
+                >
+                  Zamów Naklejki Personalizowane
+                </button>
+
+                {/* Kontakt Button */}
+                <Link
+                  href="/kontakt"
+                  className="hidden md:inline-flex px-3.5 py-1.5 text-[13px] font-extrabold text-foreground hover:text-primary bg-muted/40 hover:bg-muted/85 rounded-lg border border-border/30 transition-all cursor-pointer hover:scale-[1.01] active:scale-[0.99] whitespace-nowrap"
+                >
+                  Kontakt
+                </Link>
+                <Link href="/koszyk">
+                  <div className="relative flex items-center p-1.5 rounded-xl hover:bg-muted/50 transition-colors cursor-pointer group">
+                    <motion.div whileHover={{ scale: 1.05, rotate: 1 }} whileTap={{ scale: 0.95 }}>
+                      <ShoppingCart className="w-5 h-5 text-foreground group-hover:text-primary transition-colors" />
+                    </motion.div>
+                    {cartItems.length > 0 && (
+                      <span className="absolute top-0 right-0 -mt-1 -mr-1 flex h-4.5 w-4.5 items-center justify-center rounded-full bg-primary border border-background text-[9px] font-bold text-primary-foreground">
+                        {cartItems.length}
+                      </span>
+                    )}
+                    {cartItems.length > 0 && (
+                      <span className="ml-2 hidden sm:block font-extrabold text-sm text-primary">
+                        {totalPrice.toFixed(2)} zł
+                      </span>
+                    )}
+                  </div>
+                </Link>
+
+                {stickers.length > 0 && (
+                  <button
+                    type="button"
+                    onClick={handleAddToCart}
+                    className="inline-flex items-center justify-center rounded-xl text-xs font-extrabold bg-primary text-primary-foreground hover:bg-primary/95 px-4 h-9 sm:h-10 shadow-sm transition-all active:scale-95 cursor-pointer animate-in fade-in zoom-in-95 duration-200"
+                  >
+                    Dodaj do koszyka
+                  </button>
+                )}
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
+
+      {/* Przycisk Scroll to Top (pływający w prawym dolnym rogu) */}
+      <AnimatePresence>
+        {showStickyHeader && (
+          <motion.button
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.8 }}
+            transition={{ duration: 0.2 }}
+            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+            className="fixed bottom-6 right-6 z-[100] p-3 rounded-full bg-primary text-primary-foreground shadow-lg hover:bg-primary/90 hover:scale-105 active:scale-95 transition-all cursor-pointer border border-primary/20"
+            title="Przewiń do góry"
           >
-            <Scissors className="w-4 h-4 mr-1.5" />
-            PDF Linie
-          </button>
-        </div>
-      </Footer>
+            <ArrowUp className="w-5 h-5" />
+          </motion.button>
+        )}
+      </AnimatePresence>
     </div>
   );
 }

@@ -1,110 +1,286 @@
-import { Header } from "@/components/layout/Header";
+import { DocLayout, DocSection } from "@/components/layout/DocLayout";
 import Link from "next/link";
-import { Footer } from "@/components/layout/Footer";
+import { Building2, Mail, Phone, ShieldCheck, Database, Landmark, UserCheck, Eye } from "lucide-react";
 
 export const metadata = {
   title: "Polityka Prywatności - MałeNaklejki",
 };
 
 export default function PrivacyPolicyPage() {
-  return (
-    <div className="flex flex-col min-h-screen text-foreground">
-      <Header />
-      <main className="flex-1 py-16 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto w-full prose dark:prose-invert text-justify leading-relaxed">
-        <h1 className="text-3xl font-extrabold mb-8 text-center text-foreground">Polityka Prywatności</h1>
-        <p className="text-xs text-muted-foreground mb-10 text-center font-bold">Ostatnia aktualizacja: {new Date().toLocaleDateString("pl-PL")}</p>
-
-        <h2>§ 1. Postanowienia ogólne</h2>
-        <ol>
-          <li>
-            Właścicielem serwisu oraz Administratorem Danych Osobowych jest:
-            <div className="bg-card border border-border/60 p-4 rounded-2xl my-4 space-y-1 text-sm font-semibold not-prose">
-              <p>Firma: <span className="text-primary font-bold">Jakub Dalaszyński</span></p>
-              <p>NIP: <span className="text-primary font-bold">6972414844</span></p>
-              <p>REGON: <span className="text-primary font-bold">544772342</span></p>
-              <p>Adres e-mail: <span className="text-primary font-bold">kontakt@malenaklejki.pl</span></p>
-              <p>Telefon: <span className="text-primary font-bold">695527166</span></p>
+  const sections: DocSection[] = [
+    {
+      id: "postanowienia-ogolne",
+      title: "§ 1. Postanowienia ogólne",
+      searchText: `Właścicielem serwisu oraz Administratorem Danych Osobowych jest: Firma Jakub Dalaszyński NIP 6972414844 REGON 544772342 Adres e-mail kontakt@malenaklejki.pl Telefon 695527166 zwany dalej Administratorem. Administrator przykłada ogromną wagę do ochrony prywatności RODO ustawa o ochronie danych osobowych.`,
+      content: (
+        <div className="space-y-4">
+          <p>
+            1. Właścicielem serwisu oraz Administratorem Danych Osobowych jest:
+          </p>
+          <div className="bg-muted/40 border border-border/80 p-5 rounded-2xl my-4 grid grid-cols-1 md:grid-cols-2 gap-4 text-sm font-semibold not-prose shadow-inner">
+            <div className="flex items-center gap-3">
+              <div className="w-9 h-9 rounded-xl bg-primary/10 flex items-center justify-center border border-primary/20 shrink-0">
+                <Building2 className="w-4.5 h-4.5 text-primary" />
+              </div>
+              <div>
+                <p className="text-xs text-muted-foreground font-bold uppercase tracking-wider">Administrator / Firma</p>
+                <p className="text-foreground font-black text-sm">Jakub Dalaszyński</p>
+              </div>
             </div>
-            zwany dalej <strong>„Administratorem”</strong>.
-          </li>
-          <li>Administrator przykłada ogromną wagę do ochrony prywatności i poufności danych osobowych użytkowników korzystających z serwisu MałeNaklejki. Dane osobowe są przetwarzane zgodnie z przepisami Rozporządzenia Parlamentu Europejskiego i Rady (UE) 2016/679 z dnia 27 kwietnia 2016 r. (RODO) oraz ustawy o ochronie danych osobowych.</li>
-        </ol>
+            <div className="flex items-center gap-3">
+              <div className="w-9 h-9 rounded-xl bg-primary/10 flex items-center justify-center border border-primary/20 shrink-0">
+                <ShieldCheck className="w-4.5 h-4.5 text-primary" />
+              </div>
+              <div>
+                <p className="text-xs text-muted-foreground font-bold uppercase tracking-wider">NIP / REGON</p>
+                <p className="text-foreground font-black text-sm">NIP: 6972414844 / REGON: 544772342</p>
+              </div>
+            </div>
+            <div className="flex items-center gap-3">
+              <div className="w-9 h-9 rounded-xl bg-primary/10 flex items-center justify-center border border-primary/20 shrink-0">
+                <Mail className="w-4.5 h-4.5 text-primary" />
+              </div>
+              <div>
+                <p className="text-xs text-muted-foreground font-bold uppercase tracking-wider">Adres e-mail</p>
+                <a href="mailto:kontakt@malenaklejki.pl" className="text-primary hover:underline font-black text-sm">
+                  kontakt@malenaklejki.pl
+                </a>
+              </div>
+            </div>
+            <div className="flex items-center gap-3">
+              <div className="w-9 h-9 rounded-xl bg-primary/10 flex items-center justify-center border border-primary/20 shrink-0">
+                <Phone className="w-4.5 h-4.5 text-primary" />
+              </div>
+              <div>
+                <p className="text-xs text-muted-foreground font-bold uppercase tracking-wider">Telefon kontaktowy</p>
+                <a href="tel:+48695527166" className="text-primary hover:underline font-black text-sm">
+                  +48 695 527 166
+                </a>
+              </div>
+            </div>
+          </div>
+          <p className="text-xs text-muted-foreground font-bold italic mt-2">
+            Zwanym dalej <strong>„Administratorem”</strong>.
+          </p>
+          <p>
+            2. Administrator przykłada ogromną wagę do ochrony prywatności i poufności danych osobowych użytkowników korzystających z serwisu MałeNaklejki. Dane osobowe są przetwarzane zgodnie z przepisami Rozporządzenia Parlamentu Europejskiego i Rady (UE) 2016/679 z dnia 27 kwietnia 2016 r. (RODO) oraz ustawy o ochronie danych osobowych.
+          </p>
+        </div>
+      ),
+    },
+    {
+      id: "cele-przetwarzania",
+      title: "§ 2. Rodzaj, cele i podstawy prawne przetwarzania danych",
+      searchText: `Realizacja zamówień art 6 ust 1 lit b RODO imię nazwisko adres e-mail numer telefonu adres dostawy ulica kod pocztowy miasto kraj dane do faktury NIP nazwa firmy adres. Obsługa płatności Przelewy24. Przetwarzanie grafik Firebase Storage Google Cloud EMEA Limited UE kontur cięcia linia cięcia. Obowiązki prawne podatkowo-księgowe art 6 ust 1 lit c RODO faktura księgowość. Ustalenie dochodzenie obrona przed roszczeniami art 6 ust 1 lit f RODO.`,
+      content: (
+        <div className="space-y-6">
+          <p>Przetwarzamy dane osobowe użytkowników w następujących celach:</p>
+          <div className="grid grid-cols-1 gap-4">
+            <div className="bg-card border border-border/80 p-5 rounded-2xl flex flex-col gap-2">
+              <div className="flex items-center gap-2 mb-1">
+                <div className="w-7 h-7 rounded-lg bg-primary/10 flex items-center justify-center border border-primary/20">
+                  <span className="text-primary font-bold text-xs">1</span>
+                </div>
+                <h4 className="font-black text-foreground text-sm">Realizacja zamówień (art. 6 ust. 1 lit. b RODO)</h4>
+              </div>
+              <ul className="text-sm space-y-1 pl-9">
+                <li><strong className="text-primary">Zakres danych:</strong> imię, nazwisko, adres e-mail, numer telefonu, adres dostawy (ulica, kod pocztowy, miasto, kraj), dane do faktury (NIP, nazwa firmy, adres).</li>
+                <li><strong className="text-primary">Cel:</strong> przyjęcie zamówienia, weryfikacja płatności, produkcja spersonalizowanych naklejek oraz dostawa pod wskazany adres.</li>
+              </ul>
+            </div>
 
-        <h2>§ 2. Rodzaj, cele i podstawy prawne przetwarzania danych</h2>
-        <p>Przetwarzamy dane osobowe użytkowników w następujących celach:</p>
-        <ol>
-          <li>
-            <strong>Realizacja zamówień (art. 6 ust. 1 lit. b RODO):</strong>
-            <ul>
-              <li>Zakres danych: imię, nazwisko, adres e-mail, numer telefonu, adres dostawy (ulica, kod pocztowy, miasto, kraj), ewentualnie dane do faktury (NIP, nazwa firmy, adres).</li>
-              <li>Cel: przyjęcie zamówienia, weryfikacja płatności, produkcja spersonalizowanych naklejek oraz dostawa pod wskazany adres.</li>
-            </ul>
-          </li>
-          <li>
-            <strong>Obsługa płatności (art. 6 ust. 1 lit. b RODO):</strong>
-            <ul>
-              <li>Płatności online realizowane są przez zewnętrznego operatora <strong>Stripe</strong>. Administrator nie przechowuje i nie ma bezpośredniego dostępu do danych kart płatniczych ani haseł bankowych.</li>
-            </ul>
-          </li>
-          <li>
-            <strong>Przetwarzanie grafik użytkownika (art. 6 ust. 1 lit. b RODO):</strong>
-            <ul>
-              <li>Wgrywane przez Klienta grafiki są zapisywane w chmurze <strong>Firebase Storage</strong> (serwery Google w UE). Pliki te są używane wyłącznie do wyznaczenia linii cięcia, edycji obrazu w kreatorze oraz wydrukowania zamówionych naklejek.</li>
-            </ul>
-          </li>
-          <li>
-            <strong>Wypełnienie obowiązków prawnych i podatkowo-księgowych (art. 6 ust. 1 lit. c RODO):</strong>
-            <ul>
-              <li>Cel: wystawianie faktur, prowadzenie księgowości oraz przechowywanie dokumentacji podatkowej zgodnie z prawem polskim.</li>
-            </ul>
-          </li>
-          <li>
-            <strong>Ustalenie, dochodzenie i obrona przed roszczeniami (art. 6 ust. 1 lit. f RODO):</strong>
-            <ul>
-              <li>Cel: prawnie uzasadniony interes Administratora polegający na ochronie własnych praw.</li>
-            </ul>
-          </li>
-        </ol>
+            <div className="bg-card border border-border/80 p-5 rounded-2xl flex flex-col gap-2">
+              <div className="flex items-center gap-2 mb-1">
+                <div className="w-7 h-7 rounded-lg bg-primary/10 flex items-center justify-center border border-primary/20">
+                  <span className="text-primary font-bold text-xs">2</span>
+                </div>
+                <h4 className="font-black text-foreground text-sm">Obsługa płatności (art. 6 ust. 1 lit. b RODO)</h4>
+              </div>
+              <p className="text-sm pl-9">
+                Płatności online realizowane są przez zewnętrznego operatora <strong>Przelewy24</strong>. Administrator nie przechowuje i nie ma bezpośredniego dostępu do danych kart płatniczych ani haseł bankowych.
+              </p>
+            </div>
 
-        <h2>§ 3. Okres przechowywania danych</h2>
-        <ol>
-          <li>Dane związane z realizacją zamówienia przechowywane są przez okres niezbędny do realizacji umowy, a po tym czasie przez okres przedawnienia roszczeń (co do zasady 6 lat) oraz okres wymagany przepisami prawa podatkowego (5 lat od końca roku podatkowego).</li>
-          <li>Pliki graficzne (projekty naklejek) wgrane przez użytkownika są automatycznie usuwane lub archiwizowane do usunięcia w okresie 30 dni od momentu zrealizowania zamówienia, chyba że przechowywanie jest konieczne do obsługi ewentualnych reklamacji.</li>
-          <li>Dane przetwarzane w celach analitycznych lub technicznych (w tym pliki cookies) przechowywane są zgodnie z czasem ich wygaśnięcia zapisanym w plikach cookies (szczegóły w Polityce Cookies).</li>
-        </ol>
+            <div className="bg-card border border-border/80 p-5 rounded-2xl flex flex-col gap-2">
+              <div className="flex items-center gap-2 mb-1">
+                <div className="w-7 h-7 rounded-lg bg-primary/10 flex items-center justify-center border border-primary/20">
+                  <span className="text-primary font-bold text-xs">3</span>
+                </div>
+                <h4 className="font-black text-foreground text-sm">Przetwarzanie grafik użytkownika (art. 6 ust. 1 lit. b RODO)</h4>
+              </div>
+              <p className="text-sm pl-9">
+                Wgrywane przez Klienta grafiki są zapisywane w chmurze <strong>Firebase Storage</strong> (serwery Google w UE). Pliki te są używane wyłącznie do wyznaczenia linii cięcia, edycji obrazu w kreatorze oraz wydrukowania zamówionych naklejek.
+              </p>
+            </div>
 
-        <h2>§ 4. Odbiorcy danych osobowych</h2>
-        <p>W celu prawidłowego działania serwisu i realizacji zamówień dane osobowe mogą być przekazywane zaufanym podmiotom trzecim:</p>
-        <ul>
-          <li><strong>Firebase (Google Cloud EMEA Limited)</strong> – w celu bezpiecznego przechowywania danych w bazie oraz plików graficznych w Storage.</li>
-          <li><strong>Stripe Payments Europe, Ltd.</strong> – w celu bezpiecznej obsługi płatności elektronicznych.</li>
-          <li><strong>InPost sp. z o.o.</strong> oraz inne firmy kurierskie/spedycyjne – w celu wygenerowania etykiety nadawczej i dostarczenia przesyłki.</li>
-          <li>Podmioty świadczące usługi księgowe, prawne i informatyczne dla Administratora.</li>
-        </ul>
+            <div className="bg-card border border-border/80 p-5 rounded-2xl flex flex-col gap-2">
+              <div className="flex items-center gap-2 mb-1">
+                <div className="w-7 h-7 rounded-lg bg-primary/10 flex items-center justify-center border border-primary/20">
+                  <span className="text-primary font-bold text-xs">4</span>
+                </div>
+                <h4 className="font-black text-foreground text-sm">Obowiązki prawne i podatkowo-księgowe (art. 6 ust. 1 lit. c RODO)</h4>
+              </div>
+              <p className="text-sm pl-9">
+                <strong className="text-primary">Cel:</strong> wystawianie faktur, prowadzenie księgowości oraz przechowywanie dokumentacji podatkowej zgodnie z prawem polskim.
+              </p>
+            </div>
 
-        <h2>§ 5. Prawa osób, których dane dotyczą</h2>
-        <p>Każdej osobie, której dane przetwarzamy, przysługuje prawo do:</p>
-        <ul>
-          <li>Dostępu do swoich danych osobowych oraz otrzymania ich kopii.</li>
-          <li>Sprostowania (poprawiania) swoich danych.</li>
-          <li>Usunięcia danych („prawo do bycia zapomnianym”) – o ile nie zachodzą inne podstawy prawne wykluczające to prawo (np. obowiązek przechowywania dokumentów księgowych).</li>
-          <li>Ograniczenia przetwarzania danych.</li>
-          <li>Przenoszenia danych.</li>
-          <li>Wniesienia sprzeciwu wobec przetwarzania opartego na prawnie uzasadnionym interesie.</li>
-          <li>Cofnięcia zgody w dowolnym momencie (jeśli przetwarzanie odbywało się na podstawie zgody).</li>
-          <li>Wniesienia skargi do Prezesa Urzędu Ochrony Danych Osobowych (UODO), jeśli uzna, że przetwarzanie jej danych narusza RODO.</li>
-        </ul>
-        <p>W celu realizacji swoich praw prosimy o kontakt pod adresem: <strong>kontakt@malenaklejki.pl</strong>.</p>
+            <div className="bg-card border border-border/80 p-5 rounded-2xl flex flex-col gap-2">
+              <div className="flex items-center gap-2 mb-1">
+                <div className="w-7 h-7 rounded-lg bg-primary/10 flex items-center justify-center border border-primary/20">
+                  <span className="text-primary font-bold text-xs">5</span>
+                </div>
+                <h4 className="font-black text-foreground text-sm">Ustalenie, dochodzenie i obrona przed roszczeniami (art. 6 ust. 1 lit. f RODO)</h4>
+              </div>
+              <p className="text-sm pl-9">
+                <strong className="text-primary">Cel:</strong> prawnie uzasadniony interes Administratora polegający na ochronie własnych praw.
+              </p>
+            </div>
+          </div>
+        </div>
+      ),
+    },
+    {
+      id: "okres-przechowywania",
+      title: "§ 3. Okres przechowywania danych",
+      searchText: `realizacja umowy przedawnienie roszczeń 6 lat okres wymagany przepisami prawa podatkowego 5 lat. pliki graficzne projekty naklejek automatycznie usuwane 30 dni od zrealizowania zamówienia reklamacji. dane analityczne pliki cookies Polityka Cookies.`,
+      content: (
+        <div className="space-y-4">
+          <p>
+            1. Dane związane z realizacją zamówienia przechowywane są przez okres niezbędny do realizacji umowy, a po tym czasie przez okres przedawnienia roszczeń (co do zasady 6 lat) oraz okres wymagany przepisami prawa podatkowego (5 lat od końca roku podatkowego).
+          </p>
+          <p>
+            2. Pliki graficzne (projekty naklejek) wgrane przez użytkownika są automatycznie usuwane lub archiwizowane do usunięcia w okresie 30 dni od momentu zrealizowania zamówienia, chyba że przechowywanie jest konieczne do obsługi ewentualnych reklamacji.
+          </p>
+          <p>
+            3. Dane przetwarzane w celach analitycznych lub technicznych (w tym pliki cookies) przechowywane są zgodnie z czasem ich wygaśnięcia zapisanym w plikach cookies (szczegóły w Polityce Cookies).
+          </p>
+        </div>
+      ),
+    },
+    {
+      id: "odbiorcy-danych",
+      title: "§ 4. Odbiorcy danych osobowych",
+      searchText: `odbiorcy danych osobowych podmioty trzecie. Firebase Google Cloud EMEA Limited bezpieczne przechowywanie danych bazy Storage. Przelewy24 PayPro SA obsługa płatności. InPost sp z o o etykiety nadawcze wysyłka kurier. księgowość informatyczne.`,
+      content: (
+        <div className="space-y-4">
+          <p>W celu prawidłowego działania serwisu i realizacji zamówień dane osobowe mogą być przekazywane zaufanym podmiotom trzecim:</p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="bg-muted/40 border border-border/80 p-4 rounded-2xl flex gap-3">
+              <Database className="w-5 h-5 text-primary shrink-0 mt-1" />
+              <div>
+                <h4 className="font-bold text-foreground text-sm">Firebase (Google)</h4>
+                <p className="text-xs text-muted-foreground mt-1">
+                  Bezpieczne przechowywanie danych w bazie danych oraz projektów graficznych w chmurze Storage (serwery w UE).
+                </p>
+              </div>
+            </div>
 
-        <h2>§ 6. Pliki Cookies i Profilowanie</h2>
-        <ol>
-          <li>Serwis wykorzystuje pliki cookies (ciasteczka) w celu zapewnienia prawidłowego działania (np. przechowywanie koszyka, sesja użytkownika), analizy ruchu oraz dopasowania treści.</li>
-          <li>Szczegółowe informacje o rodzajach stosowanych plików cookies, ich celach oraz metodach zarządzania nimi (w tym wycofania zgody) znajdują się w dedykowanej <Link href="/pliki-cookies" className="text-primary font-bold hover:underline">Polityce Cookies</Link>.</li>
-          <li>Serwis nie stosuje zautomatyzowanego podejmowania decyzji, w tym profilowania wywołującego skutki prawne dla użytkowników.</li>
-        </ol>
-      </main>
+            <div className="bg-muted/40 border border-border/80 p-4 rounded-2xl flex gap-3">
+              <Landmark className="w-5 h-5 text-primary shrink-0 mt-1" />
+              <div>
+                <h4 className="font-bold text-foreground text-sm">Przelewy24 (PayPro SA)</h4>
+                <p className="text-xs text-muted-foreground mt-1">
+                  Bezpieczne procesowanie transakcji płatniczych, przelewów internetowych, BLIK oraz kart płatniczych.
+                </p>
+              </div>
+            </div>
 
-      <Footer />
-    </div>
+            <div className="bg-muted/40 border border-border/80 p-4 rounded-2xl flex gap-3">
+              <UserCheck className="w-5 h-5 text-primary shrink-0 mt-1" />
+              <div>
+                <h4 className="font-bold text-foreground text-sm">InPost & Kurierzy</h4>
+                <p className="text-xs text-muted-foreground mt-1">
+                  Firmy spedycyjne odpowiedzialne za generowanie etykiet przewozowych oraz fizyczną dostawę paczki.
+                </p>
+              </div>
+            </div>
+
+            <div className="bg-muted/40 border border-border/80 p-4 rounded-2xl flex gap-3">
+              <Eye className="w-5 h-5 text-primary shrink-0 mt-1" />
+              <div>
+                <h4 className="font-bold text-foreground text-sm">Partnerzy operacyjni</h4>
+                <p className="text-xs text-muted-foreground mt-1">
+                  Podmioty świadczące dla nas certyfikowane usługi księgowe, prawne oraz wsparcie IT.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      ),
+    },
+    {
+      id: "prawa-osob",
+      title: "§ 5. Prawa osób, których dane dotyczą",
+      searchText: `Prawa osób których dane dotyczą. dostęp do danych kopia sprostowanie usunięcie prawo do bycia zapomnianym ograniczenie przetwarzania przenoszenie sprzeciw cofnięcie zgody skarga do UODO Prezesa Urzędu Ochrony Danych Osobowych. kontakt mailowy kontakt@malenaklejki.pl.`,
+      content: (
+        <div className="space-y-4">
+          <p>Każdej osobie, której dane przetwarzamy, przysługuje prawo do:</p>
+          <ul className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-2 text-sm font-semibold pl-4 list-disc text-primary">
+            <li>
+              <span className="text-foreground font-medium">Dostępu do swoich danych oraz otrzymania ich kopii</span>
+            </li>
+            <li>
+              <span className="text-foreground font-medium">Sprostowania (poprawiania) swoich danych</span>
+            </li>
+            <li>
+              <span className="text-foreground font-medium">Usunięcia danych („prawo do bycia zapomnianym”)</span>
+            </li>
+            <li>
+              <span className="text-foreground font-medium">Ograniczenia przetwarzania danych</span>
+            </li>
+            <li>
+              <span className="text-foreground font-medium">Przenoszenia swoich danych osobowych</span>
+            </li>
+            <li>
+              <span className="text-foreground font-medium">Wniesienia sprzeciwu wobec przetwarzania</span>
+            </li>
+            <li>
+              <span className="text-foreground font-medium">Cofnięcia zgody w dowolnym momencie</span>
+            </li>
+            <li>
+              <span className="text-foreground font-medium">Wniesienia skargi do Prezesa UODO</span>
+            </li>
+          </ul>
+          <p className="mt-4 pt-2">
+            W celu realizacji swoich praw prosimy o kontakt pod adresem:{" "}
+            <a href="mailto:kontakt@malenaklejki.pl" className="text-primary hover:underline font-bold">
+              kontakt@malenaklejki.pl
+            </a>.
+          </p>
+        </div>
+      ),
+    },
+    {
+      id: "cookies-profilowanie",
+      title: "§ 6. Pliki Cookies i Profilowanie",
+      searchText: `pliki cookies ciasteczka koszyk sesja użytkownika Polityka Cookies. nie stosuje zautomatyzowanego podejmowania decyzji profilowanie.`,
+      content: (
+        <div className="space-y-4">
+          <p>
+            1. Serwis wykorzystuje pliki cookies (ciasteczka) w celu zapewnienia prawidłowego działania (np. przechowywanie koszyka, sesja użytkownika), analizy ruchu oraz dopasowania treści.
+          </p>
+          <p>
+            2. Szczegółowe informacje o rodzajach stosowanych plików cookies, ich celach oraz metodach zarządzania nimi (w tym wycofania zgody) znajdują się w dedykowanej{" "}
+            <Link href="/pliki-cookies" className="text-primary font-bold hover:underline">
+              Polityce Cookies
+            </Link>.
+          </p>
+          <p>
+            3. Serwis nie stosuje zautomatyzowanego podejmowania decyzji, w tym profilowania wywołującego skutki prawne dla użytkowników.
+          </p>
+        </div>
+      ),
+    },
+  ];
+
+  return (
+    <DocLayout
+      title="Polityka Prywatności"
+      description="Zasady przetwarzania i ochrony danych osobowych użytkowników korzystających z serwisu MałeNaklejki."
+      lastUpdated="14 czerwca 2026 r."
+      activeTab="polityka-prywatnosci"
+      sections={sections}
+    />
   );
 }

@@ -8,7 +8,7 @@ export default function CheckoutPage() {
   const router = useRouter();
 
   return (
-    <div className="flex flex-col min-h-screen text-foreground">
+    <div className="flex flex-col min-h-screen text-foreground bg-[#edf6f2] dark:bg-[#002c2e]">
       <Header zen={true} />
       
       <main className="flex-1 flex flex-col py-6 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto w-full">

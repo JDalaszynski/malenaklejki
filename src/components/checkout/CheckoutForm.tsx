@@ -213,23 +213,23 @@ export function CheckoutForm() {
             <h2 className="text-2xl font-extrabold mb-6">1. Dane kontaktowe</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
-                <label className="text-sm font-bold mb-2 block">Imię *</label>
-                <input {...register("firstName")} className="flex h-12 w-full rounded-xl border border-border bg-background px-4 py-2 text-base font-medium focus-visible:outline-none focus-visible:border-primary focus-visible:ring-2 focus-visible:ring-primary/20" />
+                <label className="text-sm font-bold mb-2 block">Imię<span className="text-destructive"> *</span></label>
+                <input {...register("firstName")} className="flex h-12 w-full rounded-xl border border-slate-300 dark:border-white/20 bg-background px-4 py-2 text-base font-medium focus-visible:outline-none focus-visible:border-primary focus-visible:ring-2 focus-visible:ring-primary/20" />
                 {errors.firstName && <p className="inline-block bg-destructive/30 text-destructive-foreground text-xs font-bold px-3 py-1 rounded-lg border border-destructive/40 mt-1.5">{errors.firstName.message}</p>}
               </div>
               <div>
-                <label className="text-sm font-bold mb-2 block">Nazwisko *</label>
-                <input {...register("lastName")} className="flex h-12 w-full rounded-xl border border-border bg-background px-4 py-2 text-base font-medium focus-visible:outline-none focus-visible:border-primary focus-visible:ring-2 focus-visible:ring-primary/20" />
+                <label className="text-sm font-bold mb-2 block">Nazwisko<span className="text-destructive"> *</span></label>
+                <input {...register("lastName")} className="flex h-12 w-full rounded-xl border border-slate-300 dark:border-white/20 bg-background px-4 py-2 text-base font-medium focus-visible:outline-none focus-visible:border-primary focus-visible:ring-2 focus-visible:ring-primary/20" />
                 {errors.lastName && <p className="inline-block bg-destructive/30 text-destructive-foreground text-xs font-bold px-3 py-1 rounded-lg border border-destructive/40 mt-1.5">{errors.lastName.message}</p>}
               </div>
               <div>
-                <label className="text-sm font-bold mb-2 block">Adres e-mail *</label>
-                <input {...register("email")} className="flex h-12 w-full rounded-xl border border-border bg-background px-4 py-2 text-base font-medium focus-visible:outline-none focus-visible:border-primary focus-visible:ring-2 focus-visible:ring-primary/20" />
+                <label className="text-sm font-bold mb-2 block">Adres e-mail<span className="text-destructive"> *</span></label>
+                <input {...register("email")} className="flex h-12 w-full rounded-xl border border-slate-300 dark:border-white/20 bg-background px-4 py-2 text-base font-medium focus-visible:outline-none focus-visible:border-primary focus-visible:ring-2 focus-visible:ring-primary/20" />
                 {errors.email && <p className="inline-block bg-destructive/30 text-destructive-foreground text-xs font-bold px-3 py-1 rounded-lg border border-destructive/40 mt-1.5">{errors.email.message}</p>}
               </div>
               <div>
-                <label className="text-sm font-bold mb-2 block">Numer telefonu *</label>
-                <input {...register("phone")} className="flex h-12 w-full rounded-xl border border-border bg-background px-4 py-2 text-base font-medium focus-visible:outline-none focus-visible:border-primary focus-visible:ring-2 focus-visible:ring-primary/20" />
+                <label className="text-sm font-bold mb-2 block">Numer telefonu<span className="text-destructive"> *</span></label>
+                <input {...register("phone")} className="flex h-12 w-full rounded-xl border border-slate-300 dark:border-white/20 bg-background px-4 py-2 text-base font-medium focus-visible:outline-none focus-visible:border-primary focus-visible:ring-2 focus-visible:ring-primary/20" />
                 {errors.phone && <p className="inline-block bg-destructive/30 text-destructive-foreground text-xs font-bold px-3 py-1 rounded-lg border border-destructive/40 mt-1.5">{errors.phone.message}</p>}
               </div>
             </div>
@@ -294,23 +294,23 @@ export function CheckoutForm() {
             {deliveryMethod === "kurier" && (
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4 animate-in fade-in">
                 <div className="md:col-span-2">
-                  <label className="text-sm font-bold mb-2 block">Ulica *</label>
-                  <input {...register("street")} className="flex h-12 w-full rounded-xl border border-border bg-background px-4 py-2 text-base font-medium focus-visible:outline-none focus-visible:border-primary focus-visible:ring-2 focus-visible:ring-primary/20" />
+                  <label className="text-sm font-bold mb-2 block">Ulica<span className="text-destructive"> *</span></label>
+                  <input {...register("street")} className="flex h-12 w-full rounded-xl border border-slate-300 dark:border-white/20 bg-background px-4 py-2 text-base font-medium focus-visible:outline-none focus-visible:border-primary focus-visible:ring-2 focus-visible:ring-primary/20" />
                   {errors.street && <p className="inline-block bg-destructive/30 text-destructive-foreground text-xs font-bold px-3 py-1 rounded-lg border border-destructive/40 mt-1.5">{errors.street.message}</p>}
                 </div>
                 <div>
-                  <label className="text-sm font-bold mb-2 block">Numer lokalu/domu *</label>
-                  <input {...register("building")} className="flex h-12 w-full rounded-xl border border-border bg-background px-4 py-2 text-base font-medium focus-visible:outline-none focus-visible:border-primary focus-visible:ring-2 focus-visible:ring-primary/20" />
+                  <label className="text-sm font-bold mb-2 block">Numer lokalu/domu<span className="text-destructive"> *</span></label>
+                  <input {...register("building")} className="flex h-12 w-full rounded-xl border border-slate-300 dark:border-white/20 bg-background px-4 py-2 text-base font-medium focus-visible:outline-none focus-visible:border-primary focus-visible:ring-2 focus-visible:ring-primary/20" />
                   {errors.building && <p className="inline-block bg-destructive/30 text-destructive-foreground text-xs font-bold px-3 py-1 rounded-lg border border-destructive/40 mt-1.5">{errors.building.message}</p>}
                 </div>
                 <div>
-                  <label className="text-sm font-bold mb-2 block">Kod pocztowy *</label>
-                  <input {...register("postalCode")} placeholder="00-000" className="flex h-12 w-full rounded-xl border border-border bg-background px-4 py-2 text-base font-medium focus-visible:outline-none focus-visible:border-primary focus-visible:ring-2 focus-visible:ring-primary/20" />
+                  <label className="text-sm font-bold mb-2 block">Kod pocztowy<span className="text-destructive"> *</span></label>
+                  <input {...register("postalCode")} placeholder="00-000" className="flex h-12 w-full rounded-xl border border-slate-300 dark:border-white/20 bg-background px-4 py-2 text-base font-medium focus-visible:outline-none focus-visible:border-primary focus-visible:ring-2 focus-visible:ring-primary/20" />
                   {errors.postalCode && <p className="inline-block bg-destructive/30 text-destructive-foreground text-xs font-bold px-3 py-1 rounded-lg border border-destructive/40 mt-1.5">{errors.postalCode.message}</p>}
                 </div>
                 <div className="md:col-span-2">
-                  <label className="text-sm font-bold mb-2 block">Miejscowość *</label>
-                  <input {...register("city")} className="flex h-12 w-full rounded-xl border border-border bg-background px-4 py-2 text-base font-medium focus-visible:outline-none focus-visible:border-primary focus-visible:ring-2 focus-visible:ring-primary/20" />
+                  <label className="text-sm font-bold mb-2 block">Miejscowość<span className="text-destructive"> *</span></label>
+                  <input {...register("city")} className="flex h-12 w-full rounded-xl border border-slate-300 dark:border-white/20 bg-background px-4 py-2 text-base font-medium focus-visible:outline-none focus-visible:border-primary focus-visible:ring-2 focus-visible:ring-primary/20" />
                   {errors.city && <p className="inline-block bg-destructive/30 text-destructive-foreground text-xs font-bold px-3 py-1 rounded-lg border border-destructive/40 mt-1.5">{errors.city.message}</p>}
                 </div>
               </div>
@@ -327,13 +327,13 @@ export function CheckoutForm() {
             {wantsInvoice && (
               <div className="grid grid-cols-1 gap-6 mt-6 animate-in fade-in slide-in-from-top-2">
                 <div>
-                  <label className="text-sm font-bold mb-2 block">NIP *</label>
-                  <input {...register("nip")} className="flex h-12 w-full rounded-xl border border-border bg-background px-4 py-2 text-base font-medium focus-visible:outline-none focus-visible:border-primary focus-visible:ring-2 focus-visible:ring-primary/20" />
+                  <label className="text-sm font-bold mb-2 block">NIP<span className="text-destructive"> *</span></label>
+                  <input {...register("nip")} className="flex h-12 w-full rounded-xl border border-slate-300 dark:border-white/20 bg-background px-4 py-2 text-base font-medium focus-visible:outline-none focus-visible:border-primary focus-visible:ring-2 focus-visible:ring-primary/20" />
                   {errors.nip && <p className="inline-block bg-destructive/30 text-destructive-foreground text-xs font-bold px-3 py-1 rounded-lg border border-destructive/40 mt-1.5">{errors.nip.message}</p>}
                 </div>
                 <div>
-                  <label className="text-sm font-bold mb-2 block">Nazwa firmy *</label>
-                  <input {...register("companyName")} className="flex h-12 w-full rounded-xl border border-border bg-background px-4 py-2 text-base font-medium focus-visible:outline-none focus-visible:border-primary focus-visible:ring-2 focus-visible:ring-primary/20" />
+                  <label className="text-sm font-bold mb-2 block">Nazwa firmy<span className="text-destructive"> *</span></label>
+                  <input {...register("companyName")} className="flex h-12 w-full rounded-xl border border-slate-300 dark:border-white/20 bg-background px-4 py-2 text-base font-medium focus-visible:outline-none focus-visible:border-primary focus-visible:ring-2 focus-visible:ring-primary/20" />
                   {errors.companyName && <p className="inline-block bg-destructive/30 text-destructive-foreground text-xs font-bold px-3 py-1 rounded-lg border border-destructive/40 mt-1.5">{errors.companyName.message}</p>}
                 </div>
               </div>
@@ -391,7 +391,7 @@ export function CheckoutForm() {
               <label className="flex items-start cursor-pointer">
                 <input type="checkbox" {...register("termsAccepted")} className="mt-1 mr-3 w-5 h-5 rounded border-gray-300 text-foreground flex-shrink-0 focus:ring-foreground" />
                 <span className="text-sm font-medium text-muted-foreground">
-                  Akceptuję <a href="/regulamin" className="text-primary font-bold hover:underline" target="_blank">regulamin</a> oraz <a href="/polityka-prywatnosci" className="text-primary font-bold hover:underline" target="_blank">politykę prywatności</a>. *
+                  Akceptuję <a href="/regulamin" className="text-primary font-bold hover:underline" target="_blank">regulamin</a> oraz <a href="/polityka-prywatnosci" className="text-primary font-bold hover:underline" target="_blank">politykę prywatności</a>.<span className="text-destructive"> *</span>
                 </span>
               </label>
               {errors.termsAccepted && <p className="inline-block bg-destructive/30 text-destructive-foreground text-xs font-bold px-3 py-1 rounded-lg border border-destructive/40 mt-1.5">{errors.termsAccepted.message}</p>}
@@ -400,7 +400,7 @@ export function CheckoutForm() {
             <button
               type="submit"
               disabled={isSubmitting}
-              className="w-full inline-flex items-center justify-center whitespace-nowrap rounded-xl text-lg font-bold bg-primary text-primary-foreground hover:bg-primary/95 active:scale-[0.98] h-16 shadow-sm transition-all disabled:pointer-events-none disabled:opacity-50"
+              className="w-full inline-flex items-center justify-center whitespace-nowrap rounded-xl text-lg font-bold bg-primary text-primary-foreground hover:bg-primary/95 active:scale-[0.98] h-16 shadow-sm transition-all disabled:pointer-events-none disabled:opacity-50 cursor-pointer"
             >
               {isSubmitting ? (
                 <Loader2 className="w-6 h-6 mr-2 animate-spin" />

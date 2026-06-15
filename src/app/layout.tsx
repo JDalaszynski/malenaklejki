@@ -18,8 +18,37 @@ const fredoka = Fredoka({
 });
 
 export const metadata: Metadata = {
-  title: "małe Naklejki - Stwórz własne naklejki!",
-  description: "Wydrukuj swoje własne naklejki na arkuszach A4 w prosty i radosny sposób.",
+  metadataBase: new URL("https://malenaklejki.pl"),
+  title: "małeNaklejki - Stwórz własne naklejki!",
+  description: "Wydrukuj swoje własne naklejki na arkuszach A4 w prosty i przyjemny sposób.",
+  icons: {
+    icon: "/images/logo/favicon.png?v=2",
+  },
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    title: "małeNaklejki - Stwórz własne naklejki!",
+    description: "Wydrukuj swoje własne naklejki na arkuszach A4 w prosty i przyjemny sposób.",
+    url: "https://malenaklejki.pl",
+    siteName: "małeNaklejki",
+    locale: "pl_PL",
+    type: "website",
+    images: [
+      {
+        url: "/images/logo/favicon.png?v=2",
+        width: 512,
+        height: 512,
+        alt: "małeNaklejki - Kreator Naklejek A4",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary",
+    title: "małeNaklejki - Stwórz własne naklejki!",
+    description: "Wydrukuj swoje własne naklejki na arkuszach A4 w prosty i przyjemny sposób.",
+    images: ["/images/logo/favicon.png?v=2"],
+  },
 };
 
 export default function RootLayout({
@@ -38,7 +67,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{
             __html: `
                try {
-                if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                if (localStorage.theme === 'dark' || ((!localStorage.theme || localStorage.theme === 'system') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
                   document.documentElement.classList.add('dark');
                 } else {
                   document.documentElement.classList.remove('dark');

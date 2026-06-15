@@ -24,7 +24,7 @@ export function Header({ zen = false }: HeaderProps) {
 
   return (
     <header className="w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 z-50 pt-4">
-      <div className="flex justify-between items-center h-16 sm:h-20 px-6 sm:px-8 bg-background/90 backdrop-blur-md rounded-2xl shadow-[0_8px_20px_-6px_oklch(0.86_0.08_170_/_0.25)] border border-[oklch(0.86_0.08_170_/_0.3)]">
+      <div className="flex justify-between items-center h-16 sm:h-20 px-6 sm:px-8 liquid-glass rounded-2xl shadow-[0_8px_30px_rgba(0,0,0,0.04)] border border-border/70">
         {/* Left: Logo */}
         <div className="flex justify-start items-center">
           <Link href="/" className="flex items-center">
@@ -54,8 +54,32 @@ export function Header({ zen = false }: HeaderProps) {
           </Link>
         </div>
 
-        {/* Right: Cart */}
-        <div className="flex justify-end items-center">
+        {/* Right: Navigation & Cart */}
+        <div className="flex justify-end items-center gap-3 sm:gap-4 md:gap-5">
+          {/* Zamów Naklejki Personalizowane Button */}
+          <Link
+            href="/#sheet"
+            onClick={(e) => {
+              if (window.location.pathname === "/") {
+                e.preventDefault();
+                window.location.hash = "#sheet";
+                // Trigger scroll and highlight custom event
+                const event = new CustomEvent("scroll-to-sheet");
+                window.dispatchEvent(event);
+              }
+            }}
+            className="hidden md:inline-flex px-4 py-2 text-[15px] font-extrabold text-foreground hover:text-primary bg-muted/40 hover:bg-muted/85 rounded-xl border border-border/30 transition-all cursor-pointer hover:scale-[1.01] active:scale-[0.99] whitespace-nowrap"
+          >
+            Zamów Naklejki Personalizowane
+          </Link>
+
+          {/* Kontakt Button */}
+          <Link
+            href="/kontakt"
+            className="hidden md:inline-flex px-4 py-2 text-[15px] font-extrabold text-foreground hover:text-primary bg-muted/40 hover:bg-muted/85 rounded-xl border border-border/30 transition-all cursor-pointer hover:scale-[1.01] active:scale-[0.99] whitespace-nowrap"
+          >
+            Kontakt
+          </Link>
           {!zen && (
             <div className="relative">
               <Link href="/koszyk">
