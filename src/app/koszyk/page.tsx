@@ -31,8 +31,8 @@ export default function CartPage() {
 
   return (
     <div className="flex flex-col min-h-screen text-foreground bg-[#edf6f2] dark:bg-[#002c2e]">
-      {/* Nagłówek w trybie ZEN (bez standardowej ikony koszyka) */}
-      <Header zen={true} />
+      {/* Nagłówek (z standardową ikoną koszyka) */}
+      <Header />
 
       <main className="flex-1 flex flex-col py-6 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto w-full justify-center">
         <div className="mb-8 text-center sm:text-left flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
