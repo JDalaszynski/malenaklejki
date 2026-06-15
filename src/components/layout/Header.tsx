@@ -56,30 +56,34 @@ export function Header({ zen = false }: HeaderProps) {
 
         {/* Right: Navigation & Cart */}
         <div className="flex justify-end items-center gap-3 sm:gap-4 md:gap-5">
-          {/* Zamów Naklejki Personalizowane Button */}
-          <Link
-            href="/#sheet"
-            onClick={(e) => {
-              if (window.location.pathname === "/") {
-                e.preventDefault();
-                window.location.hash = "#sheet";
-                // Trigger scroll and highlight custom event
-                const event = new CustomEvent("scroll-to-sheet");
-                window.dispatchEvent(event);
-              }
-            }}
-            className="hidden md:inline-flex px-4 py-2 text-[15px] font-extrabold text-foreground hover:text-primary bg-muted/40 hover:bg-muted/85 rounded-xl border border-border/30 transition-all cursor-pointer hover:scale-[1.01] active:scale-[0.99] whitespace-nowrap"
-          >
-            Zamów Naklejki Personalizowane
-          </Link>
+          {!zen && (
+            <>
+              {/* Zamów Naklejki Personalizowane Button */}
+              <Link
+                href="/#sheet"
+                onClick={(e) => {
+                  if (window.location.pathname === "/") {
+                    e.preventDefault();
+                    window.location.hash = "#sheet";
+                    // Trigger scroll and highlight custom event
+                    const event = new CustomEvent("scroll-to-sheet");
+                    window.dispatchEvent(event);
+                  }
+                }}
+                className="hidden md:inline-flex px-4 py-2 text-[15px] font-extrabold text-foreground hover:text-primary bg-muted/40 hover:bg-muted/85 rounded-xl border border-border/30 transition-all cursor-pointer hover:scale-[1.01] active:scale-[0.99] whitespace-nowrap"
+              >
+                Zamów Naklejki Personalizowane
+              </Link>
 
-          {/* Kontakt Button */}
-          <Link
-            href="/kontakt"
-            className="hidden md:inline-flex px-4 py-2 text-[15px] font-extrabold text-foreground hover:text-primary bg-muted/40 hover:bg-muted/85 rounded-xl border border-border/30 transition-all cursor-pointer hover:scale-[1.01] active:scale-[0.99] whitespace-nowrap"
-          >
-            Kontakt
-          </Link>
+              {/* Kontakt Button */}
+              <Link
+                href="/kontakt"
+                className="hidden md:inline-flex px-4 py-2 text-[15px] font-extrabold text-foreground hover:text-primary bg-muted/40 hover:bg-muted/85 rounded-xl border border-border/30 transition-all cursor-pointer hover:scale-[1.01] active:scale-[0.99] whitespace-nowrap"
+              >
+                Kontakt
+              </Link>
+            </>
+          )}
           {!zen && (
             <div className="relative">
               <Link href="/koszyk">
