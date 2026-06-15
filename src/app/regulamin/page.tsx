@@ -1,5 +1,5 @@
 import { DocLayout, DocSection } from "@/components/layout/DocLayout";
-import { Building2, Mail, Phone, ShieldCheck } from "lucide-react";
+import { Building2, Mail, Phone, ShieldCheck, MapPin } from "lucide-react";
 
 export const metadata = {
   title: "Regulamin - MałeNaklejki",
@@ -10,7 +10,7 @@ export default function RegulaminPage() {
     {
       id: "postanowienia-ogolne",
       title: "§ 1. Postanowienia ogólne",
-      searchText: `Sklep internetowy działający pod adresem MałeNaklejki prowadzony jest przez: Firma Jakub Dalaszyński NIP 6972414844 REGON 544772342 Adres e-mail kontakt@malenaklejki.pl Telefon 695527166 zwany dalej Sprzedawcą. Regulamin określa zasady korzystania ze Sklepu, składania zamówień na produkty personalizowane naklejki na arkuszach A4, sposoby płatności, dostawy, procedury reklamacyjne. Wszystkie ceny w Sklepie są cenami brutto VAT w złotych polskich PLN bez kosztów dostawy.`,
+      searchText: `Sklep internetowy działający pod adresem MałeNaklejki prowadzony jest przez: Firma Jakub Dalaszyński ul. Geodetów 41, 64-100 Trzebiny NIP 6972414844 REGON 544772342 Adres e-mail kontakt@malenaklejki.pl Telefon 695527166 zwany dalej Sprzedawcą. Regulamin określa zasady korzystania ze Sklepu, składania zamówień na produkty personalizowane naklejki na arkuszach A4, sposoby płatności, dostawy, procedury reklamacyjne. Wszystkie ceny w Sklepie są cenami brutto VAT w złotych polskich PLN bez kosztów dostawy.`,
       content: (
         <div className="space-y-4">
           <p>
@@ -24,6 +24,15 @@ export default function RegulaminPage() {
               <div>
                 <p className="text-xs text-muted-foreground font-bold uppercase tracking-wider">Firma</p>
                 <p className="text-foreground font-black text-sm">Jakub Dalaszyński</p>
+              </div>
+            </div>
+            <div className="flex items-center gap-3">
+              <div className="w-9 h-9 rounded-xl bg-primary/10 flex items-center justify-center border border-primary/20 shrink-0">
+                <MapPin className="w-4.5 h-4.5 text-primary" />
+              </div>
+              <div>
+                <p className="text-xs text-muted-foreground font-bold uppercase tracking-wider">Adres siedziby</p>
+                <p className="text-foreground font-black text-sm">ul. Geodetów 41, 64-100 Trzebiny</p>
               </div>
             </div>
             <div className="flex items-center gap-3">

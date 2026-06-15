@@ -50,6 +50,7 @@ import { motion, AnimatePresence } from "framer-motion";
 export default function Home() {
   const router = useRouter();
   const addItem = useCartStore((state) => state.addItem);
+  const updateItem = useCartStore((state) => state.updateItem);
   const cartItems = useCartStore((state) => state.items);
 
   // Creator state
@@ -58,12 +59,33 @@ export default function Home() {
   const [sheetQuantity, setSheetQuantity] = useState<number>(1);
   const [error, setError] = useState<string | null>(null);
   const [visualizerMode, setVisualizerMode] = useState<"2d" | "3d">("2d");
+  const [editCartItemId, setEditCartItemId] = useState<string | null>(null);
 
   // Mount state for hydration check
   const [mounted, setMounted] = useState(false);
   useEffect(() => {
     setMounted(true);
+    const params = new URLSearchParams(window.location.search);
+    const editId = params.get("edit");
+    if (editId) {
+      setEditCartItemId(editId);
+    }
   }, []);
+
+  useEffect(() => {
+    if (mounted && editCartItemId && cartItems.length > 0) {
+      const item = cartItems.find((i) => i.id === editCartItemId);
+      if (item && item.stickers && item.stickers.length > 0) {
+        setStickers(item.stickers);
+        setSheetQuantity(item.sheetQuantity);
+        
+        // Remove edit param from URL without reloading
+        const url = new URL(window.location.href);
+        url.searchParams.delete('edit');
+        window.history.replaceState({}, '', url.toString());
+      }
+    }
+  }, [mounted, editCartItemId, cartItems]);
 
   const [showStickyHeader, setShowStickyHeader] = useState(false);
   const getTotalPrice = useCartStore((state) => state.getTotalPrice);
@@ -157,7 +179,6 @@ export default function Home() {
   const [activeEditSticker, setActiveEditSticker] = useState<PlacedSticker | null>(null);
   const [addingMethod, setAddingMethod] = useState<"none" | "upload" | "ai">("none");
   const [pendingImageUrl, setPendingImageUrl] = useState<string | null>(null);
-  const [showConfirmCartModal, setShowConfirmCartModal] = useState(false);
 
   // Loaders
   const [isAddingToCart, setIsAddingToCart] = useState(false);
@@ -437,16 +458,6 @@ export default function Home() {
 
         if (!fitsIn) return null;
 
-        const collision = otherStickers.some((other) => {
-          return checkStickersCollision(activeEditSticker, other, {
-            x: tx,
-            y: ty,
-            widthCm: w,
-            heightCm: h,
-          });
-        });
-
-        if (collision) return null;
         return { x: tx, y: ty, w, h };
       };
 
@@ -543,27 +554,14 @@ export default function Home() {
       targetY >= 10 + margins.top &&
       targetY <= 287 - margins.bottom;
 
-    // Check collision with other stickers
-    const otherStickers = stickers.filter((s) => s.id !== selectedSticker.id);
-
-    const collision = otherStickers.some((other) => {
-      return checkStickersCollision(selectedSticker, other, {
-        x: targetX,
-        y: targetY,
-        rotation: degrees,
-      });
-    });
-
-    if (!collision && fitsInBounds) {
+    if (fitsInBounds) {
       setStickers(
         stickers.map((s) =>
           s.id === selectedSticker.id ? { ...s, rotation: degrees, x: targetX, y: targetY } : s
         )
       );
-    } else if (!fitsInBounds) {
-      setError("Brak miejsca na obrócenie naklejki (kontur wychodzi poza arkusz).");
     } else {
-      setError("Brak miejsca na obrócenie naklejki w tym ułożeniu! Przesuń ją najpierw.");
+      setError("Brak miejsca na obrócenie naklejki (kontur wychodzi poza arkusz).");
     }
   };
 
@@ -601,16 +599,6 @@ export default function Home() {
 
       if (!fitsIn) return null;
 
-      const collision = otherStickers.some((other) => {
-        return checkStickersCollision(selectedSticker, other, {
-          x: tx,
-          y: ty,
-          widthCm: w,
-          heightCm: h,
-        });
-      });
-
-      if (collision) return null;
       return { x: tx, y: ty, w, h };
     };
 
@@ -706,22 +694,6 @@ export default function Home() {
 
     if (!fitsInBounds) {
       setError("Brak miejsca na zmianę linii cięcia (kontur wychodzi poza arkusz)!");
-      return;
-    }
-
-    // Check collision with other stickers
-    const otherStickers = stickers.filter((s) => s.id !== selectedSticker.id);
-    const collision = otherStickers.some((other) => {
-      return checkStickersCollision(selectedSticker, other, {
-        x: targetX,
-        y: targetY,
-        cutLineType: type,
-        contourPolygons: polys,
-      });
-    });
-
-    if (collision) {
-      setError("Brak miejsca na zmianę linii cięcia (kolizja z inną naklejką)!");
       return;
     }
 
@@ -1052,7 +1024,25 @@ export default function Home() {
       setError(`Wybierz linię cięcia dla ${count} ${noun} na arkuszu!`);
       return;
     }
-    setShowConfirmCartModal(true);
+
+    // Sprawdź nachodzenie na siebie naklejek
+    let hasOverlap = false;
+    for (let i = 0; i < stickers.length; i++) {
+      for (let j = i + 1; j < stickers.length; j++) {
+        if (checkStickersCollision(stickers[i], stickers[j])) {
+          hasOverlap = true;
+          break;
+        }
+      }
+      if (hasOverlap) break;
+    }
+
+    if (hasOverlap) {
+      setError("Naklejki na arkuszu nachodzą na siebie! Uporządkuj je przed dodaniem do koszyka.");
+      return;
+    }
+
+    executeAddToCart();
   };
 
   // Actual logic to save and add to cart after confirmation
@@ -1087,7 +1077,7 @@ export default function Home() {
         cutLinesUrl = await getDownloadURL(cutSnapshot.ref);
       }
 
-      addItem({
+      const cartItemData = {
         imageUrl: printUrl,
         cutLinesImageUrl: cutLinesUrl,
         widthCm: 21,
@@ -1095,9 +1085,16 @@ export default function Home() {
         stickersPerSheet: stickers.length,
         sheetQuantity: sheetQuantity,
         pricePerSheet: 49.00,
-      });
+        stickers: stickers,
+      };
 
-      setShowConfirmCartModal(false);
+      if (editCartItemId) {
+        updateItem(editCartItemId, cartItemData);
+        setEditCartItemId(null);
+      } else {
+        addItem(cartItemData);
+      }
+
       router.push("/koszyk");
     } catch (err: any) {
       console.error(err);
@@ -1323,7 +1320,7 @@ export default function Home() {
 
                   {/* Miniature and Stacked Details Row */}
                   <div
-                    className="flex items-center gap-5 bg-muted/20 border border-border/40 p-3 rounded-2xl cursor-pointer sm:cursor-default hover:bg-muted/30 transition-colors"
+                    className="flex items-center gap-5 bg-[#004749]/5 dark:bg-muted/20 border border-[#004749]/15 dark:border-border/40 p-3 rounded-2xl cursor-pointer sm:cursor-default hover:bg-[#004749]/10 dark:hover:bg-muted/30 transition-colors"
                     onClick={() => setIsMobileStickerDetailsExpanded(prev => !prev)}
                   >
                     <div className="w-16 h-16 bg-white rounded-xl border border-border/40 p-1 flex items-center justify-center flex-shrink-0 overflow-hidden">
@@ -1422,7 +1419,7 @@ export default function Home() {
                         step={0.1}
                         value={selectedSticker.widthCm}
                         onChange={(e) => handleWidthChange(Number(e.target.value))}
-                        className="w-full h-2 bg-muted dark:bg-muted-foreground/40 rounded-lg appearance-none cursor-pointer accent-primary"
+                        className="w-full h-2 bg-foreground/10 dark:bg-muted-foreground/40 rounded-lg appearance-none cursor-pointer accent-primary focus:outline-none"
                       />
                       <p className="text-[10px] text-muted-foreground font-semibold">
                         Wysokość jest wyliczana automatycznie proporcjonalnie do grafiki (maksymalnie 19 cm).
@@ -1442,7 +1439,7 @@ export default function Home() {
                         step={1}
                         value={selectedSticker.rotation || 0}
                         onChange={(e) => handleRotationChange(Number(e.target.value))}
-                        className="w-full h-2 bg-muted dark:bg-muted-foreground/40 rounded-lg appearance-none cursor-pointer accent-primary"
+                        className="w-full h-2 bg-foreground/10 dark:bg-muted-foreground/40 rounded-lg appearance-none cursor-pointer accent-primary focus:outline-none"
                       />
                       <div className="relative w-full h-8 mt-2">
                         {[0, 90, 180, 270, 360].map((deg) => {
@@ -1696,8 +1693,9 @@ export default function Home() {
                     ) : (
                       <ShoppingCart className="w-4 h-4 mr-2" />
                     )}
-                    Dodaj do koszyka
+                    {editCartItemId ? "Zaktualizuj w koszyku" : "Dodaj do koszyka"}
                   </button>
+
 
                 </div>
               </div>
@@ -1982,71 +1980,6 @@ export default function Home() {
               setPendingImageUrl(null);
             }}
           />
-        )}
-      </AnimatePresence>
-
-      {/* Confirm Cart Modal */}
-      <AnimatePresence>
-        {showConfirmCartModal && (
-          <div className="fixed inset-0 z-[150] bg-foreground/30 backdrop-blur-sm flex items-center justify-center p-4">
-            <motion.div
-              initial={{ scale: 0.95, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.95, opacity: 0 }}
-              transition={{ duration: 0.2, ease: "easeOut" }}
-              className="bg-card border border-border/80 rounded-3xl w-full max-w-md p-6 sm:p-8 flex flex-col gap-4 shadow-[0_12px_40px_rgba(0,0,0,0.06)] relative animate-in fade-in zoom-in-95 duration-200"
-            >
-              {/* Header */}
-              <div className="flex justify-between items-center w-full pb-2 border-b border-border/30">
-                <div className="flex items-center gap-2">
-                  <ShoppingCart className="w-5 h-5 text-primary" />
-                  <h3 className="text-lg font-extrabold text-foreground">Czy arkusz jest gotowy?</h3>
-                </div>
-                {!isAddingToCart && (
-                  <button
-                    onClick={() => setShowConfirmCartModal(false)}
-                    className="p-1.5 rounded-full border border-border hover:bg-muted/50 active:scale-95 transition-all cursor-pointer"
-                  >
-                    <X className="w-4 h-4 text-foreground" />
-                  </button>
-                )}
-              </div>
-
-              {/* Message */}
-              <div className="py-2">
-                <p className="text-sm font-semibold text-muted-foreground leading-relaxed text-left">
-                  Po dodaniu do koszyka <strong>nie będziesz mieć możliwości edycji</strong> tego arkusza.
-                </p>
-              </div>
-
-              {/* Actions */}
-              <div className="grid grid-cols-2 gap-3 w-full pt-3 border-t border-border/30">
-                <button
-                  type="button"
-                  onClick={() => setShowConfirmCartModal(false)}
-                  disabled={isAddingToCart}
-                  className="w-full inline-flex items-center justify-center rounded-xl text-xs sm:text-sm font-bold bg-muted hover:bg-muted/80 text-foreground h-11 transition-all active:scale-[0.98] disabled:opacity-50 cursor-pointer whitespace-nowrap"
-                >
-                  Edytuj dalej
-                </button>
-                <button
-                  type="button"
-                  onClick={executeAddToCart}
-                  disabled={isAddingToCart}
-                  className="w-full inline-flex items-center justify-center rounded-xl text-xs sm:text-sm font-bold bg-primary text-primary-foreground hover:bg-primary/95 h-11 shadow-sm transition-all active:scale-[0.98] disabled:opacity-50 cursor-pointer whitespace-nowrap"
-                >
-                  {isAddingToCart ? (
-                    <>
-                      <Loader2 className="w-3.5 h-3.5 mr-1.5 animate-spin" />
-                      Zapisujemy...
-                    </>
-                  ) : (
-                    "Tak, dodaj do koszyka!"
-                  )}
-                </button>
-              </div>
-            </motion.div>
-          </div>
         )}
       </AnimatePresence>
 

@@ -84,6 +84,9 @@
   --sidebar-ring: #02af7a;
   --bg-gradient-1: #02af7a1A;
   --bg-gradient-2: #40be881A;
+  --highlight-color: 2, 175, 122;
+  --highlight-border-end: rgba(255, 255, 255, 0.45);
+  --liquid-glass-bg: linear-gradient(135deg, rgba(255, 255, 255, 0.65) 0%, rgba(255, 255, 255, 0.35) 100%);
 }
 
 .dark {
@@ -121,6 +124,9 @@
   --sidebar-ring: #02af7a;
   --bg-gradient-1: #02af7a1A;
   --bg-gradient-2: #40be881A;
+  --highlight-color: 255, 255, 255;
+  --highlight-border-end: rgba(255, 255, 255, 0.12);
+  --liquid-glass-bg: linear-gradient(135deg, rgba(0, 58, 59, 0.65) 0%, rgba(0, 58, 59, 0.35) 100%);
 }
 
 
@@ -182,7 +188,7 @@
 
 /* Premium Liquidglass Effect (Glassmorphism) */
 .liquid-glass {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.65) 0%, rgba(255, 255, 255, 0.35) 100%) !important;
+  background: var(--liquid-glass-bg) !important;
   backdrop-filter: blur(16px) saturate(120%) !important;
   box-shadow: 
     inset 0 1px 1.5px rgba(255, 255, 255, 0.6), 
@@ -193,7 +199,7 @@
 }
 
 .dark .liquid-glass {
-  background: linear-gradient(135deg, rgba(0, 58, 59, 0.65) 0%, rgba(0, 58, 59, 0.35) 100%) !important;
+  background: var(--liquid-glass-bg) !important;
   backdrop-filter: blur(16px) saturate(120%) !important;
   box-shadow: 
     inset 0 1px 1.5px rgba(255, 255, 255, 0.15), 
@@ -225,20 +231,38 @@
 /* Flash Highlight Animation for visualizer focus */
 @keyframes visualizerHighlight {
   0% {
-    box-shadow: 0 0 0 0px rgba(2, 175, 122, 0.8), 0 8px 30px rgba(0,0,0,0.02);
-    border-color: rgba(2, 175, 122, 0.8) !important;
+    box-shadow: 0 0 0 0px rgba(var(--highlight-color), 0.8), 0 8px 30px rgba(0,0,0,0.02);
+    border-color: rgba(var(--highlight-color), 0.8) !important;
+    background: var(--liquid-glass-bg) !important;
   }
   30% {
-    box-shadow: 0 0 25px 8px rgba(2, 175, 122, 0.65), 0 8px 30px rgba(0,0,0,0.02);
-    border-color: rgba(2, 175, 122, 1) !important;
+    box-shadow: 0 0 25px 8px rgba(var(--highlight-color), 0.65), 0 8px 30px rgba(0,0,0,0.02);
+    border-color: rgba(var(--highlight-color), 1) !important;
+    background: rgba(var(--highlight-color), 0.45) !important;
     transform: scale(1.015);
   }
   100% {
-    box-shadow: 0 0 0 0px rgba(2, 175, 122, 0), 0 8px 30px rgba(0,0,0,0.02);
-    border-color: rgba(255, 255, 255, 0.45) !important;
+    box-shadow: 0 0 0 0px rgba(var(--highlight-color), 0), 0 8px 30px rgba(0,0,0,0.02);
+    border-color: var(--highlight-border-end) !important;
+    background: var(--liquid-glass-bg) !important;
   }
 }
 
 .highlight-flash {
   animation: visualizerHighlight 1.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+@keyframes redGlowPulse {
+  0%, 100% {
+    box-shadow: 0 0 4px 1px rgba(248, 113, 113, 0.45);
+    border-color: rgba(248, 113, 113, 0.8) !important;
+  }
+  50% {
+    box-shadow: 0 0 12px 5px rgba(248, 113, 113, 0.9);
+    border-color: rgba(248, 113, 113, 1) !important;
+  }
+}
+
+.red-shadow-pulse {
+  animation: redGlowPulse 1.6s infinite ease-in-out;
 }

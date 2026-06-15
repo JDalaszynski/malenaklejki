@@ -1,6 +1,43 @@
 "use server";
 
 import { db } from "@/lib/firebase/admin";
+import { z } from "zod";
+import { checkRateLimit } from "@/lib/utils/rateLimit";
+import { escapeHtml } from "@/lib/utils/sanitize";
+import { headers } from "next/headers";
+
+const OrderItemSchema = z.object({
+  id: z.string().optional(),
+  widthCm: z.number().min(1).max(100),
+  heightCm: z.number().min(1).max(100),
+  stickersPerSheet: z.number().int().min(0).max(1000),
+  sheetQuantity: z.number().int().min(1).max(1000),
+  pricePerSheet: z.number().min(0).max(10000),
+  imageUrl: z.string(),
+  cutLinesImageUrl: z.string().optional().nullable(),
+}).passthrough();
+
+const CreateOrderSchema = z.object({
+  email: z.string().email().max(254),
+  firstName: z.string().min(1).max(100),
+  lastName: z.string().min(1).max(100),
+  phone: z.string().regex(/^[0-9+\s\-()]{7,20}$/),
+  deliveryMethod: z.enum(["kurier", "paczkomat"]),
+  street: z.string().max(100).optional(),
+  building: z.string().max(20).optional(),
+  city: z.string().max(100).optional(),
+  postalCode: z.string().max(20).optional(),
+  lockerId: z.string().max(100).optional(),
+  lockerAddress: z.string().max(250).optional(),
+  wantsInvoice: z.boolean(),
+  nip: z.string().max(20).optional(),
+  companyName: z.string().max(200).optional(),
+  items: z.array(OrderItemSchema).min(1).max(100),
+  pdfAttachments: z.array(z.object({
+    base64: z.string(),
+    name: z.string().max(200),
+  })).optional(),
+});
 
 /**
  * Generates a human-readable order number: MNK-YYYYMMDD-XXXX
@@ -45,10 +82,19 @@ async function sendEmail(payload: object): Promise<boolean> {
 
 /** Build customer confirmation email HTML */
 function buildCustomerEmailHtml(data: any, orderNumber: string): string {
+  const safeFirstName = escapeHtml(data.firstName);
+  const safeLastName = escapeHtml(data.lastName);
+  const safeStreet = escapeHtml(data.street || "");
+  const safeBuilding = escapeHtml(data.building || "");
+  const safeCity = escapeHtml(data.city || "");
+  const safePostalCode = escapeHtml(data.postalCode || "");
+  const safeLockerId = escapeHtml(data.lockerId || "");
+  const safeLockerAddress = escapeHtml(data.lockerAddress || "");
+
   const deliveryLabel =
     data.deliveryMethod === "paczkomat"
-      ? `Paczkomat InPost: <strong>${data.lockerId}</strong><br/>${data.lockerAddress ?? ""}`
-      : `Kurier pod drzwi: ${data.street} ${data.building}, ${data.postalCode} ${data.city}`;
+      ? `Paczkomat InPost: <strong>${safeLockerId}</strong><br/>${safeLockerAddress}`
+      : `Kurier pod drzwi: ${safeStreet} ${safeBuilding}, ${safePostalCode} ${safeCity}`;
 
   const itemRows = data.items
     .map(
@@ -92,7 +138,7 @@ function buildCustomerEmailHtml(data: any, orderNumber: string): string {
     <div style="background:#ffffff;padding:32px;border-left:1px solid #e2e8f0;border-right:1px solid #e2e8f0;">
 
       <p style="font-size:16px;color:#334155;font-weight:600;margin-top:0;">
-        Cześć <strong>${data.firstName}</strong>! 👋
+        Cześć <strong>${safeFirstName}</strong>! 👋
       </p>
       <p style="font-size:14px;color:#64748b;line-height:1.7;margin-bottom:24px;">
         Twoje zamówienie zostało przyjęte i trafiło do realizacji.
@@ -146,7 +192,7 @@ function buildCustomerEmailHtml(data: any, orderNumber: string): string {
       </h2>
       <div style="background:#f8fafc;border-radius:12px;border:1px solid #e2e8f0;padding:16px 20px;margin-bottom:24px;">
         <p style="font-size:14px;color:#334155;font-weight:600;margin:0;line-height:1.7;">
-          ${data.firstName} ${data.lastName}<br/>
+          ${safeFirstName} ${safeLastName}<br/>
           ${deliveryLabel}
         </p>
       </div>
@@ -174,10 +220,23 @@ function buildCustomerEmailHtml(data: any, orderNumber: string): string {
 
 /** Build seller notification email HTML */
 function buildSellerEmailHtml(data: any, orderNumber: string): string {
+  const safeFirstName = escapeHtml(data.firstName);
+  const safeLastName = escapeHtml(data.lastName);
+  const safeEmail = escapeHtml(data.email);
+  const safePhone = escapeHtml(data.phone);
+  const safeStreet = escapeHtml(data.street || "");
+  const safeBuilding = escapeHtml(data.building || "");
+  const safeCity = escapeHtml(data.city || "");
+  const safePostalCode = escapeHtml(data.postalCode || "");
+  const safeLockerId = escapeHtml(data.lockerId || "");
+  const safeLockerAddress = escapeHtml(data.lockerAddress || "");
+  const safeCompanyName = escapeHtml(data.companyName || "");
+  const safeNip = escapeHtml(data.nip || "");
+
   const deliveryLabel =
     data.deliveryMethod === "paczkomat"
-      ? `Paczkomat InPost: ${data.lockerId} — ${data.lockerAddress ?? ""}`
-      : `Kurier: ${data.street} ${data.building}, ${data.postalCode} ${data.city}`;
+      ? `Paczkomat InPost: ${safeLockerId} — ${safeLockerAddress}`
+      : `Kurier: ${safeStreet} ${safeBuilding}, ${safePostalCode} ${safeCity}`;
 
   const itemRows = data.items
     .map(
@@ -223,15 +282,15 @@ function buildSellerEmailHtml(data: any, orderNumber: string): string {
         <table style="width:100%;border-collapse:collapse;">
           <tr>
             <td style="font-size:13px;color:#64748b;padding:4px 0;font-weight:600;width:130px;">Imię i nazwisko:</td>
-            <td style="font-size:13px;color:#0f172a;padding:4px 0;font-weight:700;">${data.firstName} ${data.lastName}</td>
+            <td style="font-size:13px;color:#0f172a;padding:4px 0;font-weight:700;">${safeFirstName} ${safeLastName}</td>
           </tr>
           <tr>
             <td style="font-size:13px;color:#64748b;padding:4px 0;font-weight:600;">E-mail:</td>
-            <td style="font-size:13px;color:#0f172a;padding:4px 0;font-weight:700;">${data.email}</td>
+            <td style="font-size:13px;color:#0f172a;padding:4px 0;font-weight:700;">${safeEmail}</td>
           </tr>
           <tr>
             <td style="font-size:13px;color:#64748b;padding:4px 0;font-weight:600;">Telefon:</td>
-            <td style="font-size:13px;color:#0f172a;padding:4px 0;font-weight:700;">${data.phone}</td>
+            <td style="font-size:13px;color:#0f172a;padding:4px 0;font-weight:700;">${safePhone}</td>
           </tr>
           <tr>
             <td style="font-size:13px;color:#64748b;padding:4px 0;font-weight:600;">Dostawa:</td>
@@ -240,7 +299,7 @@ function buildSellerEmailHtml(data: any, orderNumber: string): string {
           ${data.wantsInvoice ? `
           <tr>
             <td style="font-size:13px;color:#64748b;padding:4px 0;font-weight:600;">Faktura VAT:</td>
-            <td style="font-size:13px;color:#0f172a;padding:4px 0;font-weight:700;">${data.companyName} · NIP: ${data.nip}</td>
+            <td style="font-size:13px;color:#0f172a;padding:4px 0;font-weight:700;">${safeCompanyName} · NIP: ${safeNip}</td>
           </tr>` : ""}
         </table>
       </div>
@@ -286,12 +345,43 @@ function buildSellerEmailHtml(data: any, orderNumber: string): string {
 </html>`;
 }
 
-export async function createOrder(data: any) {
+export async function createOrder(rawData: any) {
   try {
-    // 1. Generate unique order number
+    // 1. Rate limiting
+    const headersList = await headers();
+    const ip = headersList.get("x-forwarded-for") || "unknown";
+    if (!checkRateLimit(`order-${ip}`, 5, 3600000)) {
+      return { success: false, error: "Zbyt wiele prób utworzenia zamówienia. Spróbuj później." };
+    }
+
+    // 2. Validate input using Zod
+    const result = CreateOrderSchema.safeParse(rawData);
+    if (!result.success) {
+      console.error("Zod Validation Error:", result.error);
+      return { success: false, error: "Błędne dane zamówienia. Spróbuj ponownie." };
+    }
+    const data = result.data;
+
+    // 3. Server-side price calculation
+    const serverSubtotal = data.items.reduce(
+      (sum, item) => sum + item.pricePerSheet * item.sheetQuantity,
+      0
+    );
+    const shippingCost = 19.99;
+    const serverTotal = serverSubtotal + shippingCost;
+
+    // Build the final data object with trusted totals
+    const finalData = {
+      ...data,
+      subtotal: serverSubtotal,
+      shippingCost,
+      total: serverTotal,
+    };
+
+    // 4. Generate unique order number
     const orderNumber = generateOrderNumber();
 
-    // 2. Create Firestore Document
+    // 5. Create Firestore Document
     const orderRef = db.collection("orders").doc();
 
     const orderData = {
@@ -300,54 +390,53 @@ export async function createOrder(data: any) {
       status: "PENDING_PAYMENT",
       createdAt: new Date().toISOString(),
       customer: {
-        email: data.email,
-        firstName: data.firstName,
-        lastName: data.lastName,
-        phone: data.phone,
+        email: finalData.email,
+        firstName: finalData.firstName,
+        lastName: finalData.lastName,
+        phone: finalData.phone,
       },
       delivery: {
-        method: data.deliveryMethod,
+        method: finalData.deliveryMethod,
         courierDetails:
-          data.deliveryMethod === "kurier"
+          finalData.deliveryMethod === "kurier"
             ? {
-              street: data.street,
-              building: data.building,
-              city: data.city,
-              postalCode: data.postalCode,
+              street: finalData.street,
+              building: finalData.building,
+              city: finalData.city,
+              postalCode: finalData.postalCode,
             }
             : null,
         paczkomatDetails:
-          data.deliveryMethod === "paczkomat"
+          finalData.deliveryMethod === "paczkomat"
             ? {
-              lockerId: data.lockerId,
-              address: data.lockerAddress,
+              lockerId: finalData.lockerId,
+              address: finalData.lockerAddress,
             }
             : null,
       },
       billing: {
-        wantsInvoice: data.wantsInvoice,
-        nip: data.wantsInvoice ? data.nip : null,
-        companyName: data.wantsInvoice ? data.companyName : null,
+        wantsInvoice: finalData.wantsInvoice,
+        nip: finalData.wantsInvoice ? finalData.nip : null,
+        companyName: finalData.wantsInvoice ? finalData.companyName : null,
       },
-      items: data.items,
+      items: finalData.items,
       totals: {
-        subtotal: data.subtotal,
-        shipping: data.shippingCost,
-        total: data.total,
+        subtotal: finalData.subtotal,
+        shipping: finalData.shippingCost,
+        total: finalData.total,
       },
     };
 
     await orderRef.set(orderData);
 
-    // 3. Build PDF attachments for seller email
+    // 6. Build PDF attachments for seller email
     const attachments: Array<{ content: string; name: string; type: string }> = [];
-    if (data.pdfAttachments && Array.isArray(data.pdfAttachments)) {
-      for (const att of data.pdfAttachments) {
-        // Prepend order number to the file name
+    if (finalData.pdfAttachments && Array.isArray(finalData.pdfAttachments)) {
+      for (const att of finalData.pdfAttachments) {
         const prefix = orderNumber.replace(/[^a-zA-Z0-9-]/g, "_");
         const attachmentName = `${prefix}-${att.name}`;
         attachments.push({
-          content: att.base64, // base64 string
+          content: att.base64,
           name: attachmentName,
           type: "application/pdf",
         });
@@ -357,21 +446,21 @@ export async function createOrder(data: any) {
     const adminEmail = process.env.ADMIN_EMAIL || "kontakt@malenaklejki.pl";
     const siteFromEmail = adminEmail;
 
-    // 4. Send customer confirmation email
+    // 7. Send customer confirmation email
     const customerEmailPayload = {
       sender: { name: "MałeNaklejki", email: siteFromEmail },
-      to: [{ email: data.email, name: `${data.firstName} ${data.lastName}` }],
+      to: [{ email: finalData.email, name: `${finalData.firstName} ${finalData.lastName}` }],
       subject: `Potwierdzenie zamówienia ${orderNumber} – MałeNaklejki`,
-      htmlContent: buildCustomerEmailHtml(data, orderNumber),
+      htmlContent: buildCustomerEmailHtml(finalData, orderNumber),
     };
     await sendEmail(customerEmailPayload);
 
-    // 5. Send seller notification email (with PDF attachments)
+    // 8. Send seller notification email (with PDF attachments)
     const sellerEmailPayload: any = {
       sender: { name: "MałeNaklejki – System zamówień", email: siteFromEmail },
       to: [{ email: adminEmail, name: "MałeNaklejki – Sprzedawca" }],
-      subject: `🛒 Nowe zamówienie ${orderNumber} – ${data.firstName} ${data.lastName} (${data.total.toFixed(2)} zł)`,
-      htmlContent: buildSellerEmailHtml(data, orderNumber),
+      subject: `🛒 Nowe zamówienie ${orderNumber} – ${finalData.firstName} ${finalData.lastName} (${finalData.total.toFixed(2)} zł)`,
+      htmlContent: buildSellerEmailHtml(finalData, orderNumber),
     };
     if (attachments.length > 0) {
       sellerEmailPayload.attachment = attachments;

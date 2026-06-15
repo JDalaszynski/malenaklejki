@@ -12,6 +12,7 @@ export interface CartItem {
   stickersPerSheet: number;
   sheetQuantity: number;
   pricePerSheet: number;
+  stickers?: any[]; // Store the exact sticker layout for editing
 }
 
 interface CartState {
@@ -19,6 +20,7 @@ interface CartState {
   addItem: (item: Omit<CartItem, 'id'>) => void;
   removeItem: (id: string) => void;
   updateQuantity: (id: string, newQuantity: number) => void;
+  updateItem: (id: string, item: Omit<CartItem, 'id'>) => void;
   clearCart: () => void;
   getTotalPrice: () => number;
 }
@@ -37,6 +39,12 @@ export const useCartStore = create<CartState>()(
         set((state) => ({
           items: state.items.map((i) =>
             i.id === id ? { ...i, sheetQuantity: newQuantity } : i
+          ),
+        })),
+      updateItem: (id, item) =>
+        set((state) => ({
+          items: state.items.map((i) =>
+            i.id === id ? { ...item, id } : i
           ),
         })),
       clearCart: () => set({ items: [] }),

@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { motion, AnimatePresence } from "framer-motion";
-import { Mail, Phone, Building2, Send, CheckCircle2, Loader2, AlertCircle } from "lucide-react";
+import { Mail, Phone, Building2, Send, CheckCircle2, Loader2, AlertCircle, MapPin } from "lucide-react";
 import { sendContactMessage } from "@/app/actions/contact";
 
 const contactSchema = z.object({
@@ -92,13 +92,27 @@ export function ContactForm() {
               </div>
             </motion.a>
 
+            {/* Address Card */}
+            <div className="flex items-start gap-4 bg-muted/20 border border-border/40 p-4 rounded-2xl">
+              <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center text-primary flex-shrink-0">
+                <MapPin className="w-6 h-6" />
+              </div>
+              <div className="space-y-1">
+                <p className="text-xs font-black text-muted-foreground uppercase tracking-wide">Siedziba firmy</p>
+                <p className="text-sm font-extrabold text-foreground leading-snug">
+                  ul. Geodetów 41<br />
+                  64-100 Trzebiny
+                </p>
+              </div>
+            </div>
+
             {/* Company Info Card */}
             <div className="flex items-start gap-4 bg-muted/20 border border-border/40 p-4 rounded-2xl">
               <div className="w-12 h-12 bg-accent/10 rounded-xl flex items-center justify-center text-accent-foreground flex-shrink-0">
                 <Building2 className="w-6 h-6" />
               </div>
               <div className="space-y-1">
-                <p className="text-xs font-black text-muted-foreground uppercase tracking-wide">Dane firmy</p>
+                <p className="text-xs font-black text-muted-foreground uppercase tracking-wide">Dane rejestrowe</p>
                 <p className="text-sm font-extrabold text-foreground">Jakub Dalaszyński</p>
                 <div className="text-xs font-semibold text-muted-foreground space-y-0.5">
                   <p>NIP: 6972414844</p>

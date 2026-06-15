@@ -234,29 +234,67 @@ export function NewA4Visualizer({
 
       const margins = getOuterMargins(dragSticker);
 
-      const clampedX = Math.max(MARGIN_MM + margins.left, Math.min(SHEET_WIDTH_MM - MARGIN_MM - margins.right, targetX));
-      const clampedY = Math.max(MARGIN_MM + margins.top, Math.min(SHEET_HEIGHT_MM - MARGIN_MM - margins.bottom, targetY));
-
       const otherStickers = stickers.filter((s) => s.id !== dragSticker.id);
 
-      let finalX = dragSticker.x;
-      let finalY = dragSticker.y;
+      let snapX = targetX;
+      let snapY = targetY;
+      const SNAP_DIST = 4; // mm
+      const PAD = 1.0; // mm
 
-      const xCollision = otherStickers.some((other) => {
-        return checkStickersCollision(dragSticker, other, { x: clampedX, y: dragSticker.y });
+      const dragLeft = targetX - margins.left;
+      const dragRight = targetX + margins.right;
+      const dragTop = targetY - margins.top;
+      const dragBottom = targetY + margins.bottom;
+
+      let minDiffX = SNAP_DIST;
+      let minDiffY = SNAP_DIST;
+
+      otherStickers.forEach(other => {
+        const otherMargins = getOuterMargins(other);
+        const otherLeft = other.x - otherMargins.left;
+        const otherRight = other.x + otherMargins.right;
+        const otherTop = other.y - otherMargins.top;
+        const otherBottom = other.y + otherMargins.bottom;
+
+        // Snap X
+        let diff = Math.abs(dragRight - (otherLeft - PAD));
+        if (diff < minDiffX) {
+           minDiffX = diff;
+           snapX = otherLeft - PAD - margins.right;
+        }
+        diff = Math.abs(dragLeft - (otherRight + PAD));
+        if (diff < minDiffX) {
+           minDiffX = diff;
+           snapX = otherRight + PAD + margins.left;
+        }
+        // Align centers on X if close
+        diff = Math.abs(targetX - other.x);
+        if (diff < minDiffX) {
+           minDiffX = diff;
+           snapX = other.x;
+        }
+        
+        // Snap Y
+        diff = Math.abs(dragBottom - (otherTop - PAD));
+        if (diff < minDiffY) {
+           minDiffY = diff;
+           snapY = otherTop - PAD - margins.bottom;
+        }
+        diff = Math.abs(dragTop - (otherBottom + PAD));
+        if (diff < minDiffY) {
+           minDiffY = diff;
+           snapY = otherBottom + PAD + margins.top;
+        }
+        // Align centers on Y if close
+        diff = Math.abs(targetY - other.y);
+        if (diff < minDiffY) {
+           minDiffY = diff;
+           snapY = other.y;
+        }
       });
 
-      if (!xCollision) {
-        finalX = clampedX;
-      }
-
-      const yCollision = otherStickers.some((other) => {
-        return checkStickersCollision(dragSticker, other, { x: finalX, y: clampedY });
-      });
-
-      if (!yCollision) {
-        finalY = clampedY;
-      }
+      let finalX = Math.max(MARGIN_MM + margins.left, Math.min(SHEET_WIDTH_MM - MARGIN_MM - margins.right, snapX));
+      let finalY = Math.max(MARGIN_MM + margins.top, Math.min(SHEET_HEIGHT_MM - MARGIN_MM - margins.bottom, snapY));
 
       if (finalX !== dragSticker.x || finalY !== dragSticker.y) {
         onUpdateStickers(
@@ -304,16 +342,6 @@ export function NewA4Visualizer({
 
         if (!fitsIn) return null;
 
-        const collision = otherStickers.some((other) => {
-          return checkStickersCollision(resizeSticker, other, {
-            x: tx,
-            y: ty,
-            widthCm: w,
-            heightCm: h,
-          });
-        });
-
-        if (collision) return null;
         return { x: tx, y: ty, w, h };
       };
 
@@ -610,7 +638,11 @@ export function NewA4Visualizer({
                     type="button"
                     onPointerDown={(e) => e.stopPropagation()}
                     onClick={toggleCutMenu}
-                    className="w-6 h-6 rounded-full bg-background text-foreground hover:bg-muted border border-border flex items-center justify-center shadow-md active:scale-95 transition-transform"
+                    className={`w-6 h-6 rounded-full flex items-center justify-center shadow-md active:scale-95 transition-all duration-300 border ${
+                      st.cutLineType === "none"
+                        ? "bg-red-400 text-white border-red-400 hover:bg-red-500 red-shadow-pulse z-50"
+                        : "bg-background text-foreground hover:bg-muted border-border"
+                    }`}
                     title="Wybierz linię cięcia"
                   >
                     <Scissors className="w-3.5 h-3.5" />
@@ -705,7 +737,7 @@ export function NewA4Visualizer({
                         const val = Number(e.target.value);
                         onRotationChange?.(val);
                       }}
-                      className="w-full h-1.5 bg-muted rounded-lg appearance-none cursor-pointer accent-primary"
+                      className="w-full h-1.5 bg-foreground/10 dark:bg-muted-foreground/40 rounded-lg appearance-none cursor-pointer accent-primary focus:outline-none"
                     />
                     <div className="flex gap-1 justify-between mt-1">
                       {[0, 90, 180, 270].map((deg) => (
@@ -859,7 +891,7 @@ export function NewA4Visualizer({
                     const val = Number(e.target.value);
                     onRotationChange?.(val);
                   }}
-                  className="w-full h-2 bg-muted rounded-lg appearance-none cursor-pointer accent-primary"
+                  className="w-full h-2 bg-foreground/10 dark:bg-muted-foreground/40 rounded-lg appearance-none cursor-pointer accent-primary focus:outline-none"
                 />
                 <div className="grid grid-cols-4 gap-2 mt-1">
                   {[0, 90, 180, 270].map((deg) => (

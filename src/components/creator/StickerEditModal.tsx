@@ -393,11 +393,13 @@ export function StickerEditModal({ imageSrc, onSave, onCancel }: StickerEditModa
                 height: "100%",
                 backgroundImage: "radial-gradient(var(--border) 1px, transparent 1px)",
                 backgroundSize: "12px 12px",
+                touchAction: "none",
               }}
               onPointerDown={handlePointerDown}
               onPointerMove={handlePointerMove}
               onPointerUp={handlePointerUp}
-              className="w-full h-full overflow-hidden bg-[#eaeaea] select-none shadow-[inset_0_2px_8px_rgba(0,0,0,0.02)] cursor-grab active:cursor-grabbing"
+              onPointerCancel={handlePointerUp}
+              className="w-full h-full overflow-hidden bg-[#eaeaea] select-none shadow-[inset_0_2px_8px_rgba(0,0,0,0.02)] cursor-grab active:cursor-grabbing touch-none"
             >
               <img
                 ref={imageRef}
@@ -412,7 +414,7 @@ export function StickerEditModal({ imageSrc, onSave, onCancel }: StickerEditModa
                   transformOrigin: "center center",
                   pointerEvents: "none",
                 }}
-                className="absolute top-0 left-0 max-w-none transition-transform duration-75 ease-out"
+                className="absolute top-0 left-0 max-w-none"
               />
 
               {/* Guidelines */}
@@ -437,7 +439,9 @@ export function StickerEditModal({ imageSrc, onSave, onCancel }: StickerEditModa
               onPointerDown={handleResizeTLPointerDown}
               onPointerMove={handleResizePointerMove}
               onPointerUp={handleResizePointerUp}
-              className="absolute left-0 top-0 -translate-x-1/2 -translate-y-1/2 w-7 h-7 rounded-full border border-primary bg-primary text-primary-foreground flex items-center justify-center cursor-nwse-resize shadow-md hover:scale-105 active:scale-95 transition-transform z-20"
+              onPointerCancel={handleResizePointerUp}
+              style={{ touchAction: "none" }}
+              className="absolute left-0 top-0 -translate-x-1/2 -translate-y-1/2 w-7 h-7 rounded-full border border-primary bg-primary text-primary-foreground flex items-center justify-center cursor-nwse-resize shadow-md hover:scale-105 active:scale-95 transition-transform z-20 touch-none"
               title="Zmień proporcje kadru (lewy górny róg)"
             >
               <Maximize2 className="w-3.5 h-3.5 rotate-45" />
@@ -448,7 +452,9 @@ export function StickerEditModal({ imageSrc, onSave, onCancel }: StickerEditModa
               onPointerDown={handleResizeBRPointerDown}
               onPointerMove={handleResizePointerMove}
               onPointerUp={handleResizePointerUp}
-              className="absolute right-0 bottom-0 translate-x-1/2 translate-y-1/2 w-7 h-7 rounded-full border border-primary bg-primary text-primary-foreground flex items-center justify-center cursor-nwse-resize shadow-md hover:scale-105 active:scale-95 transition-transform z-20"
+              onPointerCancel={handleResizePointerUp}
+              style={{ touchAction: "none" }}
+              className="absolute right-0 bottom-0 translate-x-1/2 translate-y-1/2 w-7 h-7 rounded-full border border-primary bg-primary text-primary-foreground flex items-center justify-center cursor-nwse-resize shadow-md hover:scale-105 active:scale-95 transition-transform z-20 touch-none"
               title="Zmień proporcje kadru (prawy dolny róg)"
             >
               <Maximize2 className="w-3.5 h-3.5 rotate-45" />

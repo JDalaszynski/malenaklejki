@@ -89,7 +89,7 @@ export default function CartPage() {
                     className="flex flex-col sm:flex-row sm:items-center justify-between gap-6 p-5 bg-card border border-border/70 rounded-2xl shadow-sm hover:shadow-md transition-shadow relative"
                   >
                     {/* Lewa strona: Podgląd i Szczegóły */}
-                    <div className="flex items-center gap-4 flex-1">
+                    <Link href={`/?edit=${item.id}`} className="flex items-center gap-4 flex-1 hover:opacity-80 transition-opacity">
                       <div className="w-20 h-20 sm:w-24 sm:h-24 bg-muted/30 rounded-xl overflow-hidden flex-shrink-0 border border-border/40 p-2 flex items-center justify-center">
                         <img
                           src={item.imageUrl}
@@ -115,8 +115,9 @@ export default function CartPage() {
                             </span>
                           )}
                         </div>
+                        <p className="text-[10px] font-bold text-primary mt-1 underline">Edytuj arkusz</p>
                       </div>
-                    </div>
+                    </Link>
 
                     {/* Prawa strona: Ilość, cena i przycisk usuwania */}
                     <div className="flex items-center justify-between sm:justify-end gap-6 border-t sm:border-t-0 pt-4 sm:pt-0 w-full sm:w-auto">
