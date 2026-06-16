@@ -99,7 +99,7 @@ export async function generateStickerImage(
     parts.push({ text: fullPrompt });
 
     const response = await genAI.models.generateContent({
-      model: "gemini-3.1-flash-image",
+      model: "gemini-2.5-flash-image",
       contents: [{ role: "user", parts }],
       config: {
         responseModalities: ["TEXT", "IMAGE"],
@@ -113,7 +113,7 @@ export async function generateStickerImage(
     if (!imagePart?.inlineData?.data) {
       return {
         success: false,
-        error: "Gemini nie zwrócił obrazu. Spróbuj innego opisu!",
+        error: "Generator nie stworzył obrazu. Spróbuj innego opisu.",
       };
     }
 
@@ -132,7 +132,7 @@ export async function generateStickerImage(
 
     return { success: true, url };
   } catch (error: any) {
-    console.error("Gemini Generation Error:", error);
+    console.error("Generation Error:", error);
     return {
       success: false,
       error: error.message || "Błąd podczas generowania naklejki.",
@@ -150,7 +150,7 @@ export async function removeStickerBackground(
   if (validationError) return { success: false, error: validationError };
 
   if (!process.env.GEMINI_API_KEY) {
-    return { success: false, error: "Brak klucza API Gemini." };
+    return { success: false, error: "Brak klucza API." };
   }
 
   try {
@@ -168,7 +168,7 @@ export async function removeStickerBackground(
     ];
 
     const response = await genAI.models.generateContent({
-      model: "gemini-3.1-flash-image",
+      model: "gemini-2.5-flash-image",
       contents: [{ role: "user", parts }],
       config: {
         responseModalities: ["TEXT", "IMAGE"],
@@ -181,7 +181,7 @@ export async function removeStickerBackground(
     if (!imagePart?.inlineData?.data) {
       return {
         success: false,
-        error: "Gemini nie był w stanie usunąć tła. Spróbuj innego zdjęcia!",
+        error: "Nie jesteśmy w stanie usunąć tła. Spróbuj innego zdjęcia.",
       };
     }
 
@@ -199,7 +199,7 @@ export async function removeStickerBackground(
 
     return { success: true, url };
   } catch (error: any) {
-    console.error("Gemini Background Removal Error:", error);
+    console.error("Background Removal Error:", error);
     return {
       success: false,
       error: error.message || "Błąd podczas usuwania tła naklejki.",
@@ -235,7 +235,7 @@ export async function enhanceStickerQuality(
     ];
 
     const response = await genAI.models.generateContent({
-      model: "gemini-3.1-flash-image",
+      model: "gemini-2.5-flash-image",
       contents: [{ role: "user", parts }],
       config: {
         responseModalities: ["TEXT", "IMAGE"],
@@ -248,7 +248,7 @@ export async function enhanceStickerQuality(
     if (!imagePart?.inlineData?.data) {
       return {
         success: false,
-        error: "Gemini nie był w stanie poprawić jakości obrazu.",
+        error: "Nie jesteśmy w stanie poprawić jakości obrazu.",
       };
     }
 
@@ -266,7 +266,7 @@ export async function enhanceStickerQuality(
 
     return { success: true, url };
   } catch (error: any) {
-    console.error("Gemini Enhancement Error:", error);
+    console.error("Enhancement Error:", error);
     return {
       success: false,
       error: error.message || "Błąd podczas poprawiania jakości naklejki.",

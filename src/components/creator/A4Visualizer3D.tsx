@@ -70,7 +70,7 @@ export function A4Visualizer3D({ stickers }: A4Visualizer3DProps) {
     >
       {/* 3D Floating Sheet Wrapper */}
       <div
-        className="relative w-full h-full bg-white transition-transform duration-300 ease-out shadow-[0_20px_50px_rgba(0,0,0,0.12),0_10px_20px_rgba(0,0,0,0.06)] border border-border/40 overflow-hidden"
+        className="relative w-full h-full bg-white transition-transform duration-300 ease-out shadow-[0_20px_50px_rgba(0,0,0,0.12),0_10px_20px_rgba(0,0,0,0.06)] border border-border/40 overflow-hidden cmyk-preview"
         style={{
           transformStyle: "preserve-3d",
           transform: isHovered
@@ -135,7 +135,7 @@ export function A4Visualizer3D({ stickers }: A4Visualizer3DProps) {
               <img
                 src={st.imageUrl}
                 alt="Naklejka"
-                className="max-w-full max-h-full object-contain select-none cmyk-preview"
+                className="max-w-full max-h-full object-contain select-none"
                 draggable={false}
                 style={{
                   borderRadius: "1.008cqw",

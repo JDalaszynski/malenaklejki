@@ -160,9 +160,13 @@ export function CheckoutForm() {
         clearCart();
         // Keep isSubmitting=true so overlay stays visible during navigation
         // (avoids flash of empty cart before success page renders)
-        router.push(
-          `/zamowienie-sukces?orderNumber=${encodeURIComponent(response.orderNumber!)}&orderId=${response.orderId}`
-        );
+        if (response.redirectUrl) {
+          window.location.href = response.redirectUrl;
+        } else {
+          router.push(
+            `/zamowienie-sukces?orderNumber=${encodeURIComponent(response.orderNumber!)}&orderId=${response.orderId}`
+          );
+        }
       } else {
         alert("Błąd podczas tworzenia zamówienia: " + response.error);
         setIsSubmitting(false);
