@@ -9,8 +9,28 @@ const p24EnvSchema = z.object({
   P24_ENV: z.enum(["sandbox", "production"]).default("production"),
 });
 
+function cleanEnvValue(val?: string): string {
+  if (!val) return "";
+  let clean = val.trim();
+  if (clean.startsWith('"') && clean.endsWith('"')) {
+    clean = clean.slice(1, -1);
+  }
+  if (clean.startsWith("'") && clean.endsWith("'")) {
+    clean = clean.slice(1, -1);
+  }
+  return clean.trim();
+}
+
 export function getP24Config() {
-  const parsed = p24EnvSchema.safeParse(process.env);
+  const envData = {
+    P24_MERCHANT_ID: cleanEnvValue(process.env.P24_MERCHANT_ID),
+    P24_POS_ID: cleanEnvValue(process.env.P24_POS_ID),
+    P24_CRC: cleanEnvValue(process.env.P24_CRC),
+    P24_API_KEY: cleanEnvValue(process.env.P24_API_KEY),
+    P24_ENV: cleanEnvValue(process.env.P24_ENV),
+  };
+
+  const parsed = p24EnvSchema.safeParse(envData);
   if (!parsed.success) {
     throw new Error(`Błąd konfiguracji P24: ${parsed.error.message}`);
   }
@@ -70,7 +90,7 @@ export async function registerTransaction(data: {
 
   const url = `${getP24BaseUrl(config.P24_ENV)}/transaction/register`;
 
-  const auth = Buffer.from(`${merchantId}:${config.P24_API_KEY}`).toString("base64");
+  const auth = Buffer.from(`${posId}:${config.P24_API_KEY}`).toString("base64");
 
   const response = await fetch(url, {
     method: "POST",
@@ -128,7 +148,7 @@ export async function verifyTransaction(data: {
   };
 
   const url = `${getP24BaseUrl(config.P24_ENV)}/transaction/verify`;
-  const auth = Buffer.from(`${merchantId}:${config.P24_API_KEY}`).toString("base64");
+  const auth = Buffer.from(`${posId}:${config.P24_API_KEY}`).toString("base64");
 
   const response = await fetch(url, {
     method: "PUT",
