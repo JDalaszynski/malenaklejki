@@ -1686,7 +1686,7 @@ export default function Home() {
                   <button
                     onClick={handleAddToCart}
                     disabled={isAddingToCart || stickers.length === 0}
-                    className="w-full sm:w-auto inline-flex items-center justify-center rounded-2xl text-sm font-bold bg-primary text-primary-foreground hover:bg-primary/95 active:scale-[0.98] h-12 px-6 shadow-sm transition-all disabled:opacity-50"
+                    className="w-full sm:w-auto inline-flex items-center justify-center rounded-2xl text-sm font-bold bg-primary text-primary-foreground hover:bg-primary/95 active:scale-[0.98] h-12 px-6 shadow-sm transition-all disabled:opacity-50 cursor-pointer"
                   >
                     {isAddingToCart ? (
                       <Loader2 className="w-4 h-4 mr-2 animate-spin" />
@@ -1959,30 +1959,6 @@ export default function Home() {
 
       </section>
 
-      {/* Edit Modal (Crop + AI background removal) */}
-      <AnimatePresence>
-        {showEditModal && activeEditSticker && (
-          <StickerEditModal
-            imageSrc={activeEditSticker.imageUrl}
-            onSave={(url) => {
-              if (activeEditSticker.id === "new-upload" || activeEditSticker.id === "new-ai") {
-                processAndAddSticker(url);
-                setShowEditModal(false);
-                setActiveEditSticker(null);
-                setPendingImageUrl(null);
-              } else {
-                handleSaveEdit(url);
-              }
-            }}
-            onCancel={() => {
-              setShowEditModal(false);
-              setActiveEditSticker(null);
-              setPendingImageUrl(null);
-            }}
-          />
-        )}
-      </AnimatePresence>
-
       <Footer />
       </div>
 
@@ -2091,6 +2067,30 @@ export default function Home() {
           >
             <ArrowUp className="w-5 h-5" />
           </motion.button>
+        )}
+      </AnimatePresence>
+
+      {/* Edit Modal (Crop + AI background removal) */}
+      <AnimatePresence>
+        {showEditModal && activeEditSticker && (
+          <StickerEditModal
+            imageSrc={activeEditSticker.imageUrl}
+            onSave={(url) => {
+              if (activeEditSticker.id === "new-upload" || activeEditSticker.id === "new-ai") {
+                processAndAddSticker(url);
+                setShowEditModal(false);
+                setActiveEditSticker(null);
+                setPendingImageUrl(null);
+              } else {
+                handleSaveEdit(url);
+              }
+            }}
+            onCancel={() => {
+              setShowEditModal(false);
+              setActiveEditSticker(null);
+              setPendingImageUrl(null);
+            }}
+          />
         )}
       </AnimatePresence>
     </div>

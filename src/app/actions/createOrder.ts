@@ -23,6 +23,7 @@ const CreateOrderSchema = z.object({
   lastName: z.string().min(1).max(100),
   phone: z.string().regex(/^[0-9+\s\-()]{7,20}$/),
   deliveryMethod: z.enum(["kurier", "paczkomat"]),
+  paymentMethod: z.enum(["przelewy24", "blik", "przelew"]),
   street: z.string().max(100).optional(),
   building: z.string().max(20).optional(),
   city: z.string().max(100).optional(),
@@ -40,6 +41,7 @@ const CreateOrderSchema = z.object({
 });
 
 import { registerTransaction } from "@/lib/p24";
+import { buildManualTransferEmailHtml } from "@/lib/emails";
 
 /**
  * Generates a human-readable order number: MNK-YYYYMMDD-XXXX
@@ -166,6 +168,10 @@ export async function createOrder(rawData: any) {
         nip: finalData.wantsInvoice ? finalData.nip : null,
         companyName: finalData.wantsInvoice ? finalData.companyName : null,
       },
+      payment: {
+        method: finalData.paymentMethod,
+        status: "PENDING_PAYMENT",
+      },
       items: itemsToSave,
       totals: {
         subtotal: finalData.subtotal,
@@ -179,20 +185,47 @@ export async function createOrder(rawData: any) {
     const cleanOrderData = JSON.parse(JSON.stringify(orderData));
     await orderRef.set(cleanOrderData);
 
-    // 6. Init P24 Transaction
+    // 6. Handle Payment Routing
     const appUrl = process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000";
     const returnUrl = `${appUrl}/zamowienie-sukces?orderNumber=${encodeURIComponent(orderNumber)}&orderId=${orderRef.id}`;
+
+    if (finalData.paymentMethod === "przelew") {
+      // Wyślij e-mail z danymi do przelewu
+      const emailHtml = buildManualTransferEmailHtml(finalData, orderNumber);
+      await sendEmail({
+        sender: { name: "MałeNaklejki", email: "kontakt@malenaklejki.pl" },
+        to: [{ email: finalData.email, name: `${finalData.firstName} ${finalData.lastName}` }],
+        subject: `Zamówienie ${orderNumber} - dane do przelewu`,
+        htmlContent: emailHtml,
+      });
+
+      if (finalData.pdfAttachments && Array.isArray(finalData.pdfAttachments)) {
+        await orderRef.update({
+          pdfAttachments: finalData.pdfAttachments
+        });
+      }
+
+      return {
+        success: true,
+        orderId: orderRef.id,
+        orderNumber,
+        redirectUrl: returnUrl, // Bezpośrednio na ekran sukcesu
+      };
+    }
+
+    // P24 lub BLIK
     const statusUrl = `${appUrl}/api/webhooks/przelewy24`;
 
     const p24Response = await registerTransaction({
       sessionId: orderRef.id, // używamy orderRef.id jako sessionId w P24, musi być unikalny dla każdej próby
       amount: Math.round(finalData.total * 100), // konwersja na grosze
       currency: "PLN",
-      description: `Zamówienie ${orderNumber}`,
+      description: `Zamowienie ${orderNumber}`,
       email: finalData.email,
       client: `${finalData.firstName} ${finalData.lastName}`,
       urlReturn: returnUrl,
       urlStatus: statusUrl,
+      methodId: finalData.paymentMethod === "blik" ? 73 : undefined,
     });
 
     // Zapisujemy w Firestore PDF-y by webhook mógł je wysłać.
@@ -217,3 +250,61 @@ export async function createOrder(rawData: any) {
     return { success: false, error: error.message };
   }
 }
+
+export async function getOrderStatus(orderId: string) {
+  try {
+    const orderSnap = await db.collection("orders").doc(orderId).get();
+    if (!orderSnap.exists) {
+      return { success: false, error: "Zamówienie nie istnieje" };
+    }
+    const orderData = orderSnap.data()!;
+    return {
+      success: true,
+      status: orderData.status,
+      orderNumber: orderData.orderNumber,
+      total: orderData.totals?.total || 0,
+    };
+  } catch (error: any) {
+    console.error("getOrderStatus error:", error);
+    return { success: false, error: error.message };
+  }
+}
+
+export async function retryOrderPayment(orderId: string) {
+  try {
+    const orderRef = db.collection("orders").doc(orderId);
+    const orderSnap = await orderRef.get();
+    if (!orderSnap.exists) {
+      return { success: false, error: "Zamówienie nie istnieje" };
+    }
+    const orderData = orderSnap.data()!;
+
+    if (orderData.status === "PAID") {
+      return { success: false, error: "Zamówienie jest już opłacone" };
+    }
+
+    const appUrl = process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000";
+    const returnUrl = `${appUrl}/zamowienie-sukces?orderNumber=${encodeURIComponent(orderData.orderNumber)}&orderId=${orderId}`;
+    const statusUrl = `${appUrl}/api/webhooks/przelewy24`;
+
+    const p24Response = await registerTransaction({
+      sessionId: `${orderId}_retry${Date.now()}`,
+      amount: Math.round((orderData.totals?.total || 0) * 100),
+      currency: "PLN",
+      description: `Zamowienie ${orderData.orderNumber}`,
+      email: orderData.customer.email,
+      client: `${orderData.customer.firstName} ${orderData.customer.lastName}`,
+      urlReturn: returnUrl,
+      urlStatus: statusUrl,
+    });
+
+    return {
+      success: true,
+      redirectUrl: p24Response.paymentUrl,
+    };
+  } catch (error: any) {
+    console.error("retryOrderPayment error:", error);
+    return { success: false, error: error.message };
+  }
+}
+

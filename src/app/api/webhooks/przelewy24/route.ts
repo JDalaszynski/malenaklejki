@@ -41,7 +41,8 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Invalid signature" }, { status: 400 });
     }
 
-    const sessionId = body.sessionId; // to nasz orderRef.id
+    const sessionId = body.sessionId; // to nasz orderRef.id, lub orderRef.id + "_retry..."
+    const orderIdFromSession = sessionId.split('_')[0];
     const orderId = body.orderId;
     const amount = body.amount;
     const currency = body.currency;
@@ -61,7 +62,7 @@ export async function POST(req: NextRequest) {
     }
 
     // 3. Aktualizacja zamówienia w Firestore
-    const orderRef = db.collection("orders").doc(sessionId);
+    const orderRef = db.collection("orders").doc(orderIdFromSession);
     const orderSnap = await orderRef.get();
 
     if (!orderSnap.exists) {

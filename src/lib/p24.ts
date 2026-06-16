@@ -57,6 +57,7 @@ export async function registerTransaction(data: {
   client: string;
   urlReturn: string;
   urlStatus: string;
+  methodId?: number;
 }) {
   const config = getP24Config();
   const merchantId = parseInt(config.P24_MERCHANT_ID, 10);
@@ -85,6 +86,7 @@ export async function registerTransaction(data: {
     language: "pl",
     urlReturn: data.urlReturn,
     urlStatus: data.urlStatus,
+    method: data.methodId,
     sign,
   };
 
@@ -167,6 +169,32 @@ export async function verifyTransaction(data: {
   const result = await response.json();
   return result;
 }
+
+export async function getTransactionBySessionId(sessionId: string) {
+  const config = getP24Config();
+  const url = `${getP24BaseUrl(config.P24_ENV)}/transaction/by/sessionId/${sessionId}`;
+  const auth = Buffer.from(`${config.P24_POS_ID}:${config.P24_API_KEY}`).toString("base64");
+
+  const response = await fetch(url, {
+    method: "GET",
+    headers: {
+      Authorization: `Basic ${auth}`,
+    },
+  });
+
+  if (response.status === 404) {
+    return null;
+  }
+
+  if (!response.ok) {
+    const errorText = await response.text();
+    throw new Error(`Błąd pobierania szczegółów transakcji P24: ${response.status} ${errorText}`);
+  }
+
+  const result = await response.json();
+  return result.data;
+}
+
 
 export function verifyWebhookSignature(payload: any): boolean {
   try {

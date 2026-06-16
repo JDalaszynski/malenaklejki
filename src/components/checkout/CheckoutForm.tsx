@@ -17,6 +17,7 @@ const checkoutSchema = z.object({
   lastName: z.string().min(2, { message: "Nazwisko jest wymagane" }),
   phone: z.string().min(9, { message: "Proszę podać poprawny numer telefonu" }),
   deliveryMethod: z.enum(["kurier", "paczkomat"]),
+  paymentMethod: z.enum(["przelewy24", "blik", "przelew"]),
   street: z.string().optional(),
   building: z.string().optional(),
   city: z.string().optional(),
@@ -90,6 +91,7 @@ export function CheckoutForm() {
     resolver: zodResolver(checkoutSchema),
     defaultValues: {
       deliveryMethod: "paczkomat",
+      paymentMethod: "przelewy24",
       wantsInvoice: false,
       termsAccepted: false,
     },
@@ -98,6 +100,7 @@ export function CheckoutForm() {
   const { watch, register, handleSubmit, setValue, formState: { errors } } = form;
 
   const deliveryMethod = watch("deliveryMethod");
+  const paymentMethod = watch("paymentMethod");
   const wantsInvoice = watch("wantsInvoice");
   const lockerId = watch("lockerId");
   const lockerAddress = watch("lockerAddress");
@@ -388,6 +391,34 @@ export function CheckoutForm() {
               <div className="pt-3 border-t border-border/40 flex justify-between font-bold text-xl text-primary">
                 <span>Razem</span>
                 <span>{total.toFixed(2)} zł</span>
+              </div>
+            </div>
+
+            <div className="mb-6">
+              <h3 className="text-sm font-bold text-muted-foreground uppercase tracking-wider mb-3">Metoda płatności</h3>
+              <div className="flex flex-col gap-3">
+                <label className={`flex items-center p-3 border rounded-xl cursor-pointer transition-all ${paymentMethod === "przelewy24" ? "border-primary bg-primary/5 text-foreground shadow-sm" : "border-border/60 bg-card text-foreground hover:bg-muted/30"}`}>
+                  <input type="radio" value="przelewy24" {...register("paymentMethod")} className="mr-3 w-4 h-4 text-foreground focus:ring-foreground" />
+                  <div className="flex-1">
+                    <p className="font-bold text-sm">Przelewy24</p>
+                    <p className="text-xs text-muted-foreground">Szybki przelew, karta</p>
+                  </div>
+                  <img src="/images/payment-icons/Przelewy24_logo.png" alt="P24" className="h-5 w-auto object-contain opacity-90" />
+                </label>
+                <label className={`flex items-center p-3 border rounded-xl cursor-pointer transition-all ${paymentMethod === "blik" ? "border-primary bg-primary/5 text-foreground shadow-sm" : "border-border/60 bg-card text-foreground hover:bg-muted/30"}`}>
+                  <input type="radio" value="blik" {...register("paymentMethod")} className="mr-3 w-4 h-4 text-foreground focus:ring-foreground" />
+                  <div className="flex-1">
+                    <p className="font-bold text-sm">BLIK</p>
+                    <p className="text-xs text-muted-foreground">Szybka płatność kodem z aplikacji</p>
+                  </div>
+                </label>
+                <label className={`flex items-center p-3 border rounded-xl cursor-pointer transition-all ${paymentMethod === "przelew" ? "border-primary bg-primary/5 text-foreground shadow-sm" : "border-border/60 bg-card text-foreground hover:bg-muted/30"}`}>
+                  <input type="radio" value="przelew" {...register("paymentMethod")} className="mr-3 w-4 h-4 text-foreground focus:ring-foreground" />
+                  <div className="flex-1">
+                    <p className="font-bold text-sm">Przelew tradycyjny</p>
+                    <p className="text-xs text-muted-foreground">Dane do przelewu otrzymasz na e-mail</p>
+                  </div>
+                </label>
               </div>
             </div>
 
