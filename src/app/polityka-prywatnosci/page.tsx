@@ -71,7 +71,7 @@ export default function PrivacyPolicyPage() {
     {
       id: "cele-przetwarzania",
       title: "§ 2. Rodzaj, cele i podstawy prawne przetwarzania danych",
-      searchText: `Realizacja zamówień art 6 ust 1 lit b RODO imię nazwisko adres e-mail numer telefonu adres dostawy ulica kod pocztowy miasto kraj dane do faktury NIP nazwa firmy adres. Obsługa płatności Przelewy24. Przetwarzanie grafik Firebase Storage Google Cloud EMEA Limited UE kontur cięcia linia cięcia. Obowiązki prawne podatkowo-księgowe art 6 ust 1 lit c RODO faktura księgowość. Ustalenie dochodzenie obrona przed roszczeniami art 6 ust 1 lit f RODO.`,
+      searchText: `Realizacja zamówień art 6 ust 1 lit b RODO imię nazwisko adres e-mail numer telefonu adres dostawy ulica kod pocztowy miasto kraj dane do faktury NIP nazwa firmy adres. Obsługa płatności Przelewy24. Przetwarzanie grafik Firebase Storage Google Cloud EMEA Limited UE kontur cięcia linia cięcia. Obowiązki prawne podatkowo-księgowe art 6 ust 1 lit c RODO faktura księgowość. Ustalenie dochodzenie obrona przed roszczeniami art 6 ust 1 lit f RODO. Analiza statystyki ruchu na stronie Google Analytics 4 Vercel Analytics zgoda art 6 ust 1 lit a RODO.`,
       content: (
         <div className="space-y-6">
           <p>Przetwarzamy dane osobowe użytkowników w następujących celach:</p>
@@ -136,6 +136,19 @@ export default function PrivacyPolicyPage() {
                 <strong className="text-primary">Cel:</strong> prawnie uzasadniony interes Administratora polegający na ochronie własnych praw.
               </p>
             </div>
+
+            <div className="bg-card border border-border/80 p-5 rounded-2xl flex flex-col gap-2">
+              <div className="flex items-center gap-2 mb-1">
+                <div className="w-7 h-7 rounded-lg bg-primary/10 flex items-center justify-center border border-primary/20">
+                  <span className="text-primary font-bold text-xs">6</span>
+                </div>
+                <h4 className="font-black text-foreground text-sm">Analiza ruchu i statystyki (art. 6 ust. 1 lit. a RODO – dobrowolna zgoda)</h4>
+              </div>
+              <ul className="text-sm space-y-1 pl-9">
+                <li><strong className="text-primary">Zakres danych:</strong> identyfikator online (Client ID), adres IP, przybliżona lokalizacja geograficzna, parametry techniczne urządzenia i przeglądarki, zachowanie w serwisie.</li>
+                <li><strong className="text-primary">Cel:</strong> badanie ruchu na stronie, optymalizacja kreatora naklejek pod kątem użyteczności oraz weryfikacja skuteczności działań marketingowych przy użyciu narzędzi Google Analytics 4 oraz Vercel Analytics.</li>
+              </ul>
+            </div>
           </div>
         </div>
       ),
@@ -161,7 +174,7 @@ export default function PrivacyPolicyPage() {
     {
       id: "odbiorcy-danych",
       title: "§ 4. Odbiorcy danych osobowych",
-      searchText: `odbiorcy danych osobowych podmioty trzecie. Firebase Google Cloud EMEA Limited bezpieczne przechowywanie danych bazy Storage. Przelewy24 PayPro SA obsługa płatności. InPost sp z o o etykiety nadawcze wysyłka kurier. księgowość informatyczne.`,
+      searchText: `odbiorcy danych osobowych podmioty trzecie. Firebase Google Cloud EMEA Limited bezpieczne przechowywanie danych bazy Storage. Przelewy24 PayPro SA obsługa płatności. InPost sp z o o etykiety nadawcze wysyłka kurier. księgowość informatyczne. Google Analytics 4 Google Ireland Limited Vercel Inc.`,
       content: (
         <div className="space-y-4">
           <p>W celu prawidłowego działania serwisu i realizacji zamówień dane osobowe mogą być przekazywane zaufanym podmiotom trzecim:</p>
@@ -202,6 +215,26 @@ export default function PrivacyPolicyPage() {
                 <h4 className="font-bold text-foreground text-sm">Partnerzy operacyjni</h4>
                 <p className="text-xs text-muted-foreground mt-1">
                   Podmioty świadczące dla nas certyfikowane usługi księgowe, prawne oraz wsparcie IT.
+                </p>
+              </div>
+            </div>
+
+            <div className="bg-muted/40 border border-border/80 p-4 rounded-2xl flex gap-3">
+              <Database className="w-5 h-5 text-primary shrink-0 mt-1" />
+              <div>
+                <h4 className="font-bold text-foreground text-sm">Google Ireland Limited</h4>
+                <p className="text-xs text-muted-foreground mt-1">
+                  Dostawca usług analitycznych Google Analytics 4. Dane przesyłane są w sposób w pełni zgodny z mechanizmem Google Consent Mode V2.
+                </p>
+              </div>
+            </div>
+
+            <div className="bg-muted/40 border border-border/80 p-4 rounded-2xl flex gap-3">
+              <Database className="w-5 h-5 text-primary shrink-0 mt-1" />
+              <div>
+                <h4 className="font-bold text-foreground text-sm">Vercel Inc.</h4>
+                <p className="text-xs text-muted-foreground mt-1">
+                  Dostawca usług hostingowych oraz anonimowego narzędzia do statystyk i analityki wydajnościowej Vercel Analytics.
                 </p>
               </div>
             </div>

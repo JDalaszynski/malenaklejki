@@ -229,14 +229,20 @@ export default function RegulaminPage() {
     {
       id: "dane-osobowe",
       title: "§ 9. Dane osobowe i pliki cookies",
-      searchText: `dane osobowe pliki cookies administrator danych sprzedawca. realizacja zamówienia rozliczenia finansowo-księgowe dochodzenie roszczeń RODO Polityka Prywatności.`,
+      searchText: `dane osobowe pliki cookies administrator danych sprzedawca. realizacja zamówienia rozliczenia finansowo-księgowe dochodzenie roszczeń RODO Polityka Prywatności. analityczne marketingowe zgoda ciasteczka Google Analytics.`,
       content: (
         <div className="space-y-4">
           <p>
             1. Administratorem danych osobowych Klientów jest Sprzedawca.
           </p>
           <p>
-            2. Dane osobowe Klienta przetwarzane są wyłącznie w celu realizacji zamówienia, rozliczeń finansowo-księgowych oraz ewentualnego dochodzenia roszczeń, zgodnie z Ogólnym Rozporządzeniem o Ochronie Danych (RODO). Szczegółowe zasady przetwarzania danych określa Polityka Prywatności.
+            2. Dane osobowe Klienta przetwarzane są w celu realizacji zamówienia, rozliczeń finansowo-księgowych oraz ewentualnego dochodzenia roszczeń, zgodnie z Ogólnym Rozporządzeniem o Ochronie Danych (RODO). Szczegółowe zasady przetwarzania danych określa Polityka Prywatności.
+          </p>
+          <p>
+            3. Serwis wykorzystuje pliki cookies (ciasteczka) niezbędne do prawidłowego działania sklepu (np. koszyk, sesja) oraz – za dobrowolną zgodą Klienta – pliki cookies o charakterze analitycznym i marketingowym (np. Google Analytics).
+          </p>
+          <p>
+            4. Klient ma możliwość zarządzania zgodami na pliki cookies w dowolnym momencie za pomocą panelu preferencji cookies dostępnego w serwisie lub za pośrednictwem ustawień swojej przeglądarki. Szczegółowe informacje znajdują się w Polityce Cookies.
           </p>
         </div>
       ),

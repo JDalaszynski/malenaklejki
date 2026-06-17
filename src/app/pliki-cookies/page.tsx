@@ -72,7 +72,7 @@ export default function CookiesPolicyPage() {
     {
       id: "jakie-stosujemy",
       title: "§ 3. Jakie pliki cookies stosujemy?",
-      searchText: `cookies sesyjne session cookies pliki tymczasowe wylogowanie wyłączenie przeglądarki. cookies stałe persistent cookies czas określony. podmioty trzecie Przelewy24 autoryzacja transakcji oszustwom płatności. Firebase Google Analytics badanie ruchu kreator naklejek.`,
+      searchText: `cookies sesyjne session cookies pliki tymczasowe wylogowanie wyłączenie przeglądarki. cookies stałe persistent cookies czas określony. podmioty trzecie Przelewy24 autoryzacja transakcji oszustwom płatności. Firebase Google Analytics 4 GA4 Vercel Analytics badanie ruchu kreator naklejek.`,
       content: (
         <div className="space-y-4">
           <p>W ramach naszego serwisu stosujemy dwa główne rodzaje plików:</p>
@@ -91,16 +91,34 @@ export default function CookiesPolicyPage() {
                 Przelewy24
               </span>
               <p className="text-xs text-foreground font-semibold">
-                Niezbędne pliki cookies służące do autoryzacji transakcji, przeciwdziałania oszustwom i sprawnej obsługi płatności.
+                Niezbędne pliki cookies służące do autoryzacji transakcji, przeciwdziałania oszustwom i sprawnej obsługi płatności online.
               </p>
             </div>
             <div className="border-t border-border/60 my-2" />
             <div>
               <span className="inline-block text-xs font-black bg-primary/10 text-primary px-2 py-0.5 rounded-md border border-primary/20 mb-1">
-                Firebase / Google Analytics
+                Firebase
               </span>
               <p className="text-xs text-foreground font-semibold">
-                Pliki analityczne do badania ruchu i zachowań użytkowników w celu ulepszania kreatora naklejek.
+                Pliki sesyjne służące do bezpiecznego przesyłania plików graficznych i zapisu danych w kreatorze naklejek.
+              </p>
+            </div>
+            <div className="border-t border-border/60 my-2" />
+            <div>
+              <span className="inline-block text-xs font-black bg-primary/10 text-primary px-2 py-0.5 rounded-md border border-primary/20 mb-1">
+                Google Analytics 4
+              </span>
+              <p className="text-xs text-foreground font-semibold">
+                Pliki analityczne wykorzystywane do badania liczby odwiedzin, źródeł ruchu oraz aktywności użytkowników na stronie w celu optymalizacji kreatora. Działają zgodnie z ustawieniami zgód (Consent Mode V2).
+              </p>
+            </div>
+            <div className="border-t border-border/60 my-2" />
+            <div>
+              <span className="inline-block text-xs font-black bg-primary/10 text-primary px-2 py-0.5 rounded-md border border-primary/20 mb-1">
+                Vercel Analytics
+              </span>
+              <p className="text-xs text-foreground font-semibold">
+                Anonimowe statystyki wydajnościowe strony oraz liczby odwiedzin służące do monitorowania sprawności działania platformy.
               </p>
             </div>
           </div>
