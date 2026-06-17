@@ -21,7 +21,7 @@ export async function sendCustomerConfirmationEmail(orderData: any) {
               Szerokość naklejki: <strong>${item.widthCm} cm</strong><br/>
               Naklejek na arkuszu: <strong>${item.stickersPerSheet} szt.</strong>
             </p>
-            <p style="margin: 4px 0 0 0; font-size: 13px; color: #a855f7; font-weight: 700;">
+            <p style="margin: 4px 0 0 0; font-size: 13px; color: #02af7a; font-weight: 700;">
               Liczba arkuszy: ${item.sheetQuantity} szt.
             </p>
           </td>
@@ -46,10 +46,10 @@ export async function sendCustomerConfirmationEmail(orderData: any) {
       to: [{ email: orderData.customer.email, name: `${orderData.customer.firstName} ${orderData.customer.lastName}` }],
       subject: `Twoje zamówienie w MałeNaklejki zostało opłacone! (Nr: ${orderData.id})`,
       htmlContent: `
-        <div style="font-family: 'Inter', system-ui, -apple-system, sans-serif; background-color: #f8fafc; padding: 40px 20px; color: #1e293b; margin: 0;">
+        <div style="font-family: 'Inter', system-ui, -apple-system, sans-serif; background-color: #f4faf7; padding: 40px 20px; color: #1e293b; margin: 0;">
           <div style="max-w: 600px; margin: 0 auto; background-color: #ffffff; border-radius: 24px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05); overflow: hidden; border: 1px solid #e2e8f0;">
             <!-- Header Banner with Brand Colors -->
-            <div style="background: linear-gradient(135deg, #a855f7 0%, #ec4899 100%); padding: 36px 24px; text-align: center;">
+            <div style="background: linear-gradient(135deg, #02af7a 0%, #004749 100%); padding: 36px 24px; text-align: center;">
               <h1 style="color: #ffffff; margin: 0; font-size: 28px; font-weight: 800; letter-spacing: -0.5px;">MałeNaklejki</h1>
               <p style="color: rgba(255, 255, 255, 0.95); margin: 8px 0 0 0; font-size: 15px; font-weight: 500;">Dziękujemy za złożenie zamówienia! 🎉</p>
             </div>
@@ -96,7 +96,7 @@ export async function sendCustomerConfirmationEmail(orderData: any) {
                   </tr>
                   <tr style="font-size: 16px; font-weight: 800;">
                     <td style="padding: 12px 0 0 0; border-top: 1px solid #e2e8f0; color: #0f172a;">Łączna kwota:</td>
-                    <td style="padding: 12px 0 0 0; border-top: 1px solid #e2e8f0; text-align: right; color: #a855f7; font-size: 18px;">${orderData.totals.total.toFixed(2)} PLN</td>
+                    <td style="padding: 12px 0 0 0; border-top: 1px solid #e2e8f0; text-align: right; color: #02af7a; font-size: 18px;">${orderData.totals.total.toFixed(2)} PLN</td>
                   </tr>
                 </table>
               </div>

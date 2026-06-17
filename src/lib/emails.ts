@@ -42,19 +42,19 @@ export function buildCustomerEmailHtml(data: any, orderNumber: string): string {
 <!DOCTYPE html>
 <html lang="pl">
 <head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/></head>
-<body style="margin:0;padding:0;background-color:#f0fdf9;font-family:'Inter',system-ui,-apple-system,sans-serif;">
+<body style="margin:0;padding:0;background-color:#f4faf7;font-family:'Inter',system-ui,-apple-system,sans-serif;">
   <div style="max-width:620px;margin:0 auto;padding:32px 16px;">
 
     <!-- Header -->
-    <div style="background:linear-gradient(135deg,#a9e4d7 0%,#6ee7b7 100%);border-radius:24px 24px 0 0;padding:36px 32px;text-align:center;">
-      <div style="font-size:32px;font-weight:900;color:#0f172a;letter-spacing:-1px;margin-bottom:4px;">
-        Małe<span style="color:#1e293b;">Naklejki</span>
+    <div style="background:linear-gradient(135deg,#02af7a 0%,#004749 100%);border-radius:24px 24px 0 0;padding:36px 32px;text-align:center;">
+      <div style="font-size:32px;font-weight:900;color:#ffffff;letter-spacing:-1px;margin-bottom:4px;">
+        Małe<span style="color:#f4faf7;">Naklejki</span>
       </div>
-      <div style="width:40px;height:3px;background:#0f172a;opacity:0.2;border-radius:2px;margin:8px auto 16px;"></div>
-      <h1 style="color:#0f172a;margin:0;font-size:22px;font-weight:800;">
+      <div style="width:40px;height:3px;background:#ffffff;opacity:0.2;border-radius:2px;margin:8px auto 16px;"></div>
+      <h1 style="color:#ffffff;margin:0;font-size:22px;font-weight:800;">
        Zamówienie przyjęte i opłacone!
       </h1>
-      <p style="color:#1e293b;opacity:0.75;margin:8px 0 0;font-size:14px;font-weight:500;">
+      <p style="color:#ffffff;opacity:0.85;margin:8px 0 0;font-size:14px;font-weight:500;">
         Dziękujemy! Twoje naklejki wkrótce trafią do produkcji.
       </p>
     </div>
@@ -70,7 +70,7 @@ export function buildCustomerEmailHtml(data: any, orderNumber: string): string {
       </p>
 
       <!-- Order number badge -->
-      <div style="background:linear-gradient(135deg,#f0fdf9 0%,#ecfdf5 100%);border:1.5px solid #a9e4d7;border-radius:16px;padding:20px 24px;margin-bottom:28px;text-align:center;">
+      <div style="background:linear-gradient(135deg,#f4faf7 0%,#e8f5f0 100%);border:1.5px solid #02af7a;border-radius:16px;padding:20px 24px;margin-bottom:28px;text-align:center;">
         <p style="font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:2px;color:#64748b;margin:0 0 6px;">
           Numer zamówienia
         </p>
@@ -123,7 +123,7 @@ export function buildCustomerEmailHtml(data: any, orderNumber: string): string {
 
       <p style="font-size:13px;color:#94a3b8;line-height:1.7;margin-bottom:0;">
         Masz pytania dotyczące zamówienia? Napisz do nas na
-        <a href="mailto:kontakt@malenaklejki.pl" style="color:#a9e4d7;font-weight:700;text-decoration:none;">kontakt@malenaklejki.pl</a>
+        <a href="mailto:kontakt@malenaklejki.pl" style="color:#02af7a;font-weight:700;text-decoration:none;">kontakt@malenaklejki.pl</a>
         podając numer zamówienia.
       </p>
     </div>
@@ -131,7 +131,7 @@ export function buildCustomerEmailHtml(data: any, orderNumber: string): string {
     <!-- Footer -->
     <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:0 0 24px 24px;padding:20px 32px;text-align:center;border-top:none;">
       <p style="font-size:12px;color:#94a3b8;margin:0 0 4px;">
-        © ${new Date().getFullYear()} MałeNaklejki · <a href="https://malenaklejki.pl" style="color:#a9e4d7;text-decoration:none;">malenaklejki.pl</a>
+        © ${new Date().getFullYear()} MałeNaklejki · <a href="https://malenaklejki.pl" style="color:#02af7a;text-decoration:none;">malenaklejki.pl</a>
       </p>
       <p style="font-size:11px;color:#cbd5e1;margin:0;">
         To jest automatyczne potwierdzenie zamówienia. Nie odpowiadaj na ten email.
@@ -576,19 +576,19 @@ export function buildManualTransferEmailHtml(data: any, orderNumber: string): st
 <!DOCTYPE html>
 <html lang="pl">
 <head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/></head>
-<body style="margin:0;padding:0;background-color:#f8fafc;font-family:'Inter',system-ui,-apple-system,sans-serif;">
+<body style="margin:0;padding:0;background-color:#f4faf7;font-family:'Inter',system-ui,-apple-system,sans-serif;">
   <div style="max-width:620px;margin:0 auto;padding:32px 16px;">
 
     <!-- Header -->
-    <div style="background:linear-gradient(135deg,#3b82f6 0%,#2563eb 100%);border-radius:24px 24px 0 0;padding:36px 32px;text-align:center;">
+    <div style="background:linear-gradient(135deg,#02af7a 0%,#004749 100%);border-radius:24px 24px 0 0;padding:36px 32px;text-align:center;">
       <div style="font-size:32px;font-weight:900;color:#ffffff;letter-spacing:-1px;margin-bottom:4px;">
-        Małe<span style="color:#bfdbfe;">Naklejki</span>
+        Małe<span style="color:#f4faf7;">Naklejki</span>
       </div>
       <div style="width:40px;height:3px;background:#ffffff;opacity:0.2;border-radius:2px;margin:8px auto 16px;"></div>
       <h1 style="color:#ffffff;margin:0;font-size:22px;font-weight:800;">
        Zamówienie oczekuje na opłacenie
       </h1>
-      <p style="color:#eff6ff;opacity:0.9;margin:8px 0 0;font-size:14px;font-weight:500;">
+      <p style="color:#ffffff;opacity:0.95;margin:8px 0 0;font-size:14px;font-weight:500;">
         Złożyłeś zamówienie wybierając przelew tradycyjny.
       </p>
     </div>
@@ -604,7 +604,7 @@ export function buildManualTransferEmailHtml(data: any, orderNumber: string): st
       </p>
 
       <!-- Order number badge -->
-      <div style="background:#f1f5f9;border-radius:16px;padding:16px 20px;margin-bottom:28px;text-align:center;">
+      <div style="background:linear-gradient(135deg,#f4faf7 0%,#e8f5f0 100%);border:1.5px solid #02af7a;border-radius:16px;padding:16px 20px;margin-bottom:28px;text-align:center;">
         <p style="font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:2px;color:#64748b;margin:0 0 6px;">
           Tytuł przelewu / Numer zamówienia
         </p>
@@ -617,27 +617,27 @@ export function buildManualTransferEmailHtml(data: any, orderNumber: string): st
       <h2 style="font-size:14px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:#94a3b8;margin-bottom:12px;margin-top:0;">
         Dane do przelewu
       </h2>
-      <div style="background:#eff6ff;border:1.5px solid #bfdbfe;border-radius:16px;padding:20px;margin-bottom:24px;">
+      <div style="background:#f4faf7;border:1.5px solid #02af7a;border-radius:16px;padding:20px;margin-bottom:24px;">
         <table style="width:100%;border-collapse:collapse;">
           <tr>
-            <td style="font-size:13px;color:#3b82f6;padding:6px 0;font-weight:700;width:120px;">Odbiorca:</td>
+            <td style="font-size:13px;color:#004749;padding:6px 0;font-weight:700;width:120px;">Odbiorca:</td>
             <td style="font-size:14px;color:#0f172a;padding:6px 0;font-weight:800;">Jakub Dalaszyński</td>
           </tr>
           <tr>
-            <td style="font-size:13px;color:#3b82f6;padding:6px 0;font-weight:700;">Adres:</td>
+            <td style="font-size:13px;color:#004749;padding:6px 0;font-weight:700;">Adres:</td>
             <td style="font-size:14px;color:#0f172a;padding:6px 0;font-weight:600;">ul. Geodetów 41 64-100 Trzebiny</td>
           </tr>
           <tr>
-            <td style="font-size:13px;color:#3b82f6;padding:6px 0;font-weight:700;">Numer konta:</td>
+            <td style="font-size:13px;color:#004749;padding:6px 0;font-weight:700;">Numer konta:</td>
             <td style="font-size:15px;color:#0f172a;padding:6px 0;font-weight:900;letter-spacing:1px;">64 1020 3088 0000 8002 0171 3445</td>
           </tr>
           <tr>
-            <td style="font-size:13px;color:#3b82f6;padding:6px 0;font-weight:700;">Bank:</td>
+            <td style="font-size:13px;color:#004749;padding:6px 0;font-weight:700;">Bank:</td>
             <td style="font-size:14px;color:#0f172a;padding:6px 0;font-weight:600;">PKO BP</td>
           </tr>
           <tr>
-            <td style="font-size:13px;color:#3b82f6;padding:6px 0;font-weight:700;border-top:1px solid #bfdbfe;margin-top:8px;padding-top:14px;">Kwota do zapłaty:</td>
-            <td style="font-size:18px;color:#1d4ed8;padding:6px 0;font-weight:900;border-top:1px solid #bfdbfe;margin-top:8px;padding-top:14px;">${total.toFixed(2)} zł</td>
+            <td style="font-size:13px;color:#004749;padding:6px 0;font-weight:700;border-top:1px solid #02af7a;margin-top:8px;padding-top:14px;">Kwota do zapłaty:</td>
+            <td style="font-size:18px;color:#02af7a;padding:6px 0;font-weight:900;border-top:1px solid #02af7a;margin-top:8px;padding-top:14px;">${total.toFixed(2)} zł</td>
           </tr>
         </table>
       </div>
@@ -648,9 +648,9 @@ export function buildManualTransferEmailHtml(data: any, orderNumber: string): st
     </div>
 
     <!-- Footer -->
-    <div style="background:#f1f5f9;border:1px solid #e2e8f0;border-radius:0 0 24px 24px;padding:20px 32px;text-align:center;border-top:none;">
+    <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:0 0 24px 24px;padding:20px 32px;text-align:center;border-top:none;">
       <p style="font-size:12px;color:#64748b;margin:0 0 4px;">
-        © ${new Date().getFullYear()} MałeNaklejki · <a href="https://malenaklejki.pl" style="color:#3b82f6;text-decoration:none;">malenaklejki.pl</a>
+        © ${new Date().getFullYear()} MałeNaklejki · <a href="https://malenaklejki.pl" style="color:#02af7a;text-decoration:none;">malenaklejki.pl</a>
       </p>
       <p style="font-size:11px;color:#94a3b8;margin:0;">
         Wiadomość wygenerowana automatycznie.
