@@ -72,7 +72,7 @@ export function Header({ zen = false }: HeaderProps) {
                 }}
                 className="hidden md:inline-flex px-4 py-2 text-[15px] font-extrabold text-foreground hover:text-primary bg-muted/40 hover:bg-muted/85 rounded-xl border border-border/30 transition-all cursor-pointer hover:scale-[1.01] active:scale-[0.99] whitespace-nowrap"
               >
-                Zamów Naklejki Personalizowane
+                Stwórz Własne Naklejki
               </Link>
 
               {/* Kontakt Button */}

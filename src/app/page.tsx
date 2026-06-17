@@ -60,6 +60,7 @@ export default function Home() {
   const [error, setError] = useState<string | null>(null);
   const [visualizerMode, setVisualizerMode] = useState<"2d" | "3d">("2d");
   const [editCartItemId, setEditCartItemId] = useState<string | null>(null);
+  const [overlappingStickerIds, setOverlappingStickerIds] = useState<string[]>([]);
 
   // Mount state for hydration check
   const [mounted, setMounted] = useState(false);
@@ -73,12 +74,18 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
+    if (!error) {
+      setOverlappingStickerIds([]);
+    }
+  }, [error]);
+
+  useEffect(() => {
     if (mounted && editCartItemId && cartItems.length > 0) {
       const item = cartItems.find((i) => i.id === editCartItemId);
       if (item && item.stickers && item.stickers.length > 0) {
         setStickers(item.stickers);
         setSheetQuantity(item.sheetQuantity);
-        
+
         // Remove edit param from URL without reloading
         const url = new URL(window.location.href);
         url.searchParams.delete('edit');
@@ -1027,17 +1034,19 @@ export default function Home() {
 
     // Sprawdź nachodzenie na siebie naklejek
     let hasOverlap = false;
+    const overlaps = new Set<string>();
     for (let i = 0; i < stickers.length; i++) {
       for (let j = i + 1; j < stickers.length; j++) {
         if (checkStickersCollision(stickers[i], stickers[j])) {
+          overlaps.add(stickers[i].id);
+          overlaps.add(stickers[j].id);
           hasOverlap = true;
-          break;
         }
       }
-      if (hasOverlap) break;
     }
 
     if (hasOverlap) {
+      setOverlappingStickerIds(Array.from(overlaps));
       setError("Naklejki na arkuszu nachodzą na siebie! Uporządkuj je przed dodaniem do koszyka.");
       return;
     }
@@ -1515,9 +1524,8 @@ export default function Home() {
               onDragOver={handleDragOver}
               onDragLeave={handleDragLeave}
               onDrop={handleDrop}
-              className={`relative lg:col-span-6 flex flex-col items-center justify-center rounded-3xl p-6 sm:p-8 min-h-[500px] order-1 lg:order-2 transition-all liquid-glass border border-border/40 shadow-[0_8px_30px_rgba(0,0,0,0.02)] ${
-                shouldHighlightSheet ? "highlight-flash" : ""
-              }`}
+              className={`relative lg:col-span-6 flex flex-col items-center justify-center rounded-3xl p-6 sm:p-8 min-h-[500px] order-1 lg:order-2 transition-all liquid-glass border border-border/40 shadow-[0_8px_30px_rgba(0,0,0,0.02)] ${shouldHighlightSheet ? "highlight-flash" : ""
+                }`}
             >
               {/* Local Drag Overlay */}
               {isDraggingOverSheet && (
@@ -1585,6 +1593,7 @@ export default function Home() {
                     onCutLineChange={handleCutLineChange}
                     onRotationChange={handleRotationChange}
                     isPresentationMode={false}
+                    overlappingStickerIds={overlappingStickerIds}
                   />
                 ) : (
                   <A4Visualizer3D stickers={stickers} />
@@ -1709,257 +1718,282 @@ export default function Home() {
       <div className="w-full bg-white dark:bg-[#004749] z-10 flex flex-col flex-grow">
         <section id="seo-marketing-section" className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12 sm:space-y-16 pt-12 sm:pt-16 pb-12 sm:pb-16">
 
-        {/* Sekcja 1: Główne zalety / USP */}
-        <div className="space-y-6 sm:space-y-8">
-          <div className="text-center max-w-2xl mx-auto space-y-2">
-            <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-foreground" id="seo-features-title">
-              Zaprojektuj i wydrukuj naklejki na własnych zasadach
-            </h2>
-            <p className="text-muted-foreground text-sm font-semibold">
-              Odkryj korzyści płynące z korzystania z naszego inteligentnego kreatora arkuszy A4.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {[
-              {
-                title: "Dowolność i oszczędność",
-                desc: "Nie musisz zamawiać tysięcy sztuk jednego wzoru. Na jednym arkuszu A4 możesz umieścić wiele różnych grafik o dowolnych wymiarach, płacąc zawsze stałą cenę."
-              },
-              {
-                title: "Wysoka jakość i trwałość",
-                desc: "Nasze naklejki drukujemy na profesjonalnej folii samoprzylepnej odpornej na wodę, promienie UV i ścieranie. Idealnie sprawdzą się na laptopy, butelki, samochody oraz opakowania produktów."
-              },
-              {
-                title: "Automatyczna linia cięcia",
-                desc: "Nasz kreator samodzielnie wykrywa krawędzie Twoich obrazów i tworzy precyzyjną linię cięcia po konturze. Ty decydujesz, czy naklejka ma być prostokątna, okrągła, czy wycięta po kształcie."
-              }
-            ].map((item, idx) => (
-              <div key={idx} className="bg-card border border-border/40 rounded-3xl p-6 sm:p-8 shadow-sm space-y-3">
-                <div className="w-10 h-10 rounded-2xl bg-primary/10 flex items-center justify-center text-primary font-black">
-                  {idx + 1}
-                </div>
-                <h3 className="text-lg font-black text-foreground">
-                  {item.title}
-                </h3>
-                <p className="text-muted-foreground text-xs sm:text-sm font-semibold leading-relaxed">
-                  {item.desc}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Sekcja 2: Jak to działa (Krok po kroku) */}
-        <div className="space-y-6 sm:space-y-8 bg-muted/10 border border-border/20 rounded-3xl p-6 sm:p-8">
-          <div className="text-center max-w-2xl mx-auto space-y-2">
-            <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-foreground" id="seo-how-it-works-title">
-              Jak to działa? Twoje naklejki w 4 prostych krokach
-            </h2>
-            <p className="text-muted-foreground text-sm font-semibold">
-              Cały proces – od pomysłu do gotowego wydruku – zajmie Ci zaledwie kilka minut.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 relative">
-            {[
-              {
-                title: "Dodaj swoje grafiki",
-                desc: "Wgraj pliki JPG/PNG ze swojego komputera lub telefonu, albo skorzystaj z generatora AI, wpisując opis wymarzonego wzoru."
-              },
-              {
-                title: "Dopasuj rozmiar i cięcie",
-                desc: "Wybierz wielkość każdej naklejki oraz jej linię cięcia. Możesz wyciąć naklejki po obrysie (konturze), w okręgu lub w prostokącie."
-              },
-              {
-                title: "Rozmieść na arkuszu A4",
-                desc: "Przeciągaj naklejki na podglądzie arkusza. Inteligentny system zapobiegnie ich nakładaniu się i upewni się, że wszystko zmieści się idealnie."
-              },
-              {
-                title: "Zamów z szybką dostawą",
-                desc: "Sprawdź gotową kompozycję w trójwymiarowym podglądzie 3D, dodaj arkusz do koszyka i sfinalizuj bezpieczne zamówienie za pomocą Przelewy24."
-              }
-            ].map((step, idx) => (
-              <div key={idx} className="space-y-2 relative">
-                <div className="text-xs font-black uppercase text-primary tracking-widest">
-                  Krok 0{idx + 1}
-                </div>
-                <h3 className="text-base font-black text-foreground">
-                  {step.title}
-                </h3>
-                <p className="text-muted-foreground text-xs font-semibold leading-relaxed">
-                  {step.desc}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-        {/* Sekcja SEO: Informacje o naklejkach personalizowanych */}
-        <div className="space-y-12 sm:space-y-16 mt-8">
-          {/* Blok 1: Gdzie kupić */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
-            <div className="lg:col-span-8 space-y-4">
-              <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-foreground">
-                Gdzie kupić pojedyncze naklejki personalizowane online?
-              </h2>
-              <p className="text-muted-foreground text-sm sm:text-base font-semibold leading-relaxed">
-                Najlepszym rozwiązaniem dla zamówień niskonakładowych jest platforma <Link href="/" className="text-primary hover:underline font-bold">malenaklejki.pl</Link>. To tutaj szybko zaprojektujesz i kupisz naklejki personalizowane bez minimalnych limitów zamówienia. Za stałą kwotę 49,00 zł otrzymujesz w pełni zagospodarowany arkusz naklejek w formacie A4. Możesz umieścić na nim dowolną liczbę różnych grafik, a nasz zaawansowany system automatycznie zadba o to, aby elementy nie nachodziły na siebie. To Ty decydujesz, co drukujesz.
-              </p>
+          {/* Sekcja 1: Główne zalety / USP */}
+          <div className="space-y-6 sm:space-y-8">
+            {/* USP Badges */}
+            <div className="flex flex-wrap justify-center items-center gap-3 sm:gap-4 pb-2">
+              {[
+                { icon: Sparkles, text: "Naklejki po Twojemu w 100%" },
+                { icon: Scissors, text: "Wycinane po dowolnym kształcie" },
+                { icon: Layers, text: "Naklejki w małych ilościach" }
+              ].map((usp, index) => {
+                const IconComponent = usp.icon;
+                return (
+                  <motion.div
+                    key={index}
+                    whileHover={{ scale: 1.02 }}
+                    className="flex items-center gap-2 bg-muted/40 dark:bg-white/5 border border-border/30 dark:border-white/10 px-3.5 py-2 rounded-full shadow-sm"
+                  >
+                    <div className="p-1 rounded-full bg-primary/10 dark:bg-primary/20 text-primary flex items-center justify-center">
+                      <IconComponent className="w-3.5 h-3.5" />
+                    </div>
+                    <span className="text-xs sm:text-sm font-extrabold text-foreground tracking-tight">
+                      {usp.text}
+                    </span>
+                  </motion.div>
+                );
+              })}
             </div>
-            <div className="lg:col-span-4 bg-primary/5 border border-primary/15 rounded-3xl p-6 text-center space-y-2">
-              <p className="text-3xl font-black text-primary">49,00 zł</p>
-              <p className="text-xs font-bold text-muted-foreground uppercase tracking-wider">Stała cena za cały arkusz A4</p>
-            </div>
-          </div>
 
-          {/* Blok 2: Jak zrobić własne wlepki i etykiety */}
-          <div className="space-y-6 sm:space-y-8 bg-muted/10 border border-border/20 rounded-3xl p-6 sm:p-8">
-            <div className="max-w-3xl space-y-4">
-              <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-foreground">
-                Jak zrobić własne wlepki i etykiety w kilku prostych krokach?
+            <div className="text-center max-w-2xl mx-auto space-y-2">
+              <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-foreground" id="seo-features-title">
+                Zaprojektuj i wydrukuj naklejki na własnych zasadach
               </h2>
-              <p className="text-muted-foreground text-sm sm:text-base font-semibold leading-relaxed">
-                Jeśli zastanawiasz się jak zrobić własne wlepki bez profesjonalnego oprogramowania graficznego, nasz interaktywny naklejki kreator to odpowiedź na Twoje potrzeby. Cały proces odbywa się bezpośrednio w przeglądarce:
+              <p className="text-muted-foreground text-sm font-semibold">
+                Odkryj korzyści płynące z korzystania z naszego inteligentnego kreatora arkuszy A4.
               </p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div className="bg-card border border-border/40 rounded-2xl p-5 space-y-3">
-                <div className="text-xs font-black uppercase text-primary tracking-widest">Sztuczna Inteligencja (AI)</div>
-                <p className="text-muted-foreground text-xs sm:text-sm font-semibold leading-relaxed">
-                  Opisz swój pomysł zwykłym tekstem, a wbudowany generator stworzy dla Ciebie unikalne wzory na naklejki do druku. W ten sposób łatwo stworzysz imponujące własne wlepki nawet bez umiejętności rysowania.
-                </p>
-              </div>
-              <div className="bg-card border border-border/40 rounded-2xl p-5 space-y-3">
-                <div className="text-xs font-black uppercase text-primary tracking-widest">Szybkie naklejki ze zdjęciem</div>
-                <p className="text-muted-foreground text-xs sm:text-sm font-semibold leading-relaxed">
-                  Wgraj dowolną fotografię z dysku lub telefonu. System natychmiast usunie tło, dzięki czemu powstaną precyzyjnie wycięte po obrysie kształty (tzw. naklejki die cut). Możesz ułożyć całe grupowe naklejki ze zdjęć na jednym panelu.
-                </p>
-              </div>
-              <div className="bg-card border border-border/40 rounded-2xl p-5 space-y-3">
-                <div className="text-xs font-black uppercase text-primary tracking-widest">Szybkie kadrowanie</div>
-                <p className="text-muted-foreground text-xs sm:text-sm font-semibold leading-relaxed">
-                  Wrzucasz przygotowane wcześniej małe obrazki do druku na naklejki, a system sam dostosowuje ścieżki cięcia (koła, zaokrąglone prostokąty lub nieregularne obrysy). To najkrótsza droga, by wyprodukować własne, domowe naklejki diy i wytrzymałe własne wlepy na laptopa czy motocykl.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          {/* Blok 3: Dla małych firm & Wyjątkowe okazje */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
-            <div className="space-y-4">
-              <h3 className="text-xl sm:text-2xl font-extrabold tracking-tight text-foreground">
-                Profesjonalny arkusz naklejek na zamówienie dla małych firm
-              </h3>
-              <p className="text-muted-foreground text-sm font-semibold leading-relaxed">
-                Prowadzisz małą gastronomię, tworzysz rękodzieło albo produkujesz naturalne kosmetyki? Profesjonalny druk naklejek na zamówienie na arkuszach A4 to model stworzony dla Ciebie. Zamiast inwestować w tysiące sztuk etykiet, których jeszcze nie potrzebujesz, kupujesz jeden wielofunkcyjny arkusz z naklejkami.
-              </p>
-              <p className="text-muted-foreground text-sm font-semibold leading-relaxed">
-                Wgrywasz własne logo i jednym kliknięciem tworzysz unikalne naklejki z własną grafiką oraz informacyjne naklejki z własnym napisem opisujące skład produktu. To idealne i ekonomiczne małe naklejki z własnym nadrukiem na słoiczki, butelki czy opakowania wysyłkowe. Każdy produkt prezentuje się u klienta o wiele lepiej, gdy zdobią go precyzyjnie docięte naklejki samoprzylepne na zamówienie. Jeśli w przyszłości rozwiniesz ofertę, bez problemu skonfigurujesz w koszyku również większe naklejki na zamówienie z własnym nadrukiem.
-              </p>
-            </div>
-
-            <div className="space-y-4">
-              <h3 className="text-xl sm:text-2xl font-extrabold tracking-tight text-foreground">
-                Wyjątkowe okazje i naklejki z własnym zdjęciem
-              </h3>
-              <p className="text-muted-foreground text-sm font-semibold leading-relaxed">
-                Nasz pojedynczy arkusz naklejek do druku to absolutny hit podczas rodzinnych i religijnych uroczystości. W zaledwie kilka minut zaprojektujesz u nas pamiątkowe naklejki personalizowane na chrzest jako naklejki na podziękowania dla gości lub stworzysz eleganckie naklejki personalizowane komunia pasujące do zaproszeń.
-              </p>
-              <p className="text-muted-foreground text-sm font-semibold leading-relaxed">
-                Nic nie stoi na przeszkodzie, aby wykorzystać wykadrowane naklejki ze zdjęcia jubilata do dekoracji prezentów. Niezależnie od tego, czy system ma przetworzyć klasyczne naklejki ze zdjeciem bez skomplikowanego tła, czy wyciąć portret całej rodziny, efekt zawsze jest perfekcyjny.
-              </p>
-            </div>
-          </div>
-
-          {/* Blok 4: Praktyczne zastosowania */}
-          <div className="space-y-6 sm:space-y-8 bg-muted/10 border border-border/20 rounded-3xl p-6 sm:p-8">
-            <div className="space-y-4">
-              <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-foreground">
-                Praktyczne zastosowania – wybierz naklejki na zamówienie online
-              </h2>
-              <p className="text-muted-foreground text-sm sm:text-base font-semibold leading-relaxed">
-                Nasi klienci wykorzystują kreator do najbardziej nietypowych i codziennych zadań. Sprawdź, co możesz stworzyć:
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
               {[
-                "Kolorowe naklejki z grafiką na prezenty urodzinowe i sprzęt elektroniczny.",
-                "Dedykowane naklejki z własnym wzorem do oznaczania organizerów i pudełek w biurze.",
-                "Wytrzymałe naklejki na zeszyty personalizowane z wizerunkami ulubionych bohaterów z gier lub bajek.",
-                "Funkcjonalne naklejki na ubrania dla dzieci (idealne do naklejania na nylonowe metki z instrukcją prania), ułatwiające organizację rzeczy w przedszkolu i żłobku.",
-                "Pamiątkowe dekoracje plannerów, gdzie główną rolę gra motywacyjna naklejka z własnym napisem."
-              ].map((text, idx) => (
-                <div key={idx} className="bg-card border border-border/40 rounded-3xl p-5 flex flex-col items-start text-left space-y-3">
-                  <span className="px-2.5 py-1 text-[10px] font-black bg-primary/10 text-primary rounded-lg">
-                    Zastosowanie 0{idx + 1}
-                  </span>
-                  <p className="text-muted-foreground text-xs font-semibold leading-relaxed">
-                    {text}
+                {
+                  title: "Dowolność i oszczędność",
+                  desc: "Nie musisz zamawiać tysięcy sztuk jednego wzoru. Na jednym arkuszu A4 możesz umieścić wiele różnych grafik o dowolnych wymiarach, płacąc zawsze stałą cenę."
+                },
+                {
+                  title: "Wysoka jakość i trwałość",
+                  desc: "Nasze naklejki drukujemy na profesjonalnej folii samoprzylepnej odpornej na wodę, promienie UV i ścieranie. Idealnie sprawdzą się na laptopy, butelki, samochody oraz opakowania produktów."
+                },
+                {
+                  title: "Automatyczna linia cięcia",
+                  desc: "Nasz kreator samodzielnie wykrywa krawędzie Twoich obrazów i tworzy precyzyjną linię cięcia po konturze. Ty decydujesz, czy naklejka ma być prostokątna, okrągła, czy wycięta po kształcie."
+                }
+              ].map((item, idx) => (
+                <div key={idx} className="bg-card border border-border/40 rounded-3xl p-6 sm:p-8 shadow-sm space-y-3">
+                  <div className="w-10 h-10 rounded-2xl bg-primary/10 flex items-center justify-center text-primary font-black">
+                    {idx + 1}
+                  </div>
+                  <h3 className="text-lg font-black text-foreground">
+                    {item.title}
+                  </h3>
+                  <p className="text-muted-foreground text-xs sm:text-sm font-semibold leading-relaxed">
+                    {item.desc}
                   </p>
                 </div>
               ))}
             </div>
+          </div>
 
-            <div className="border-t border-border/20 pt-6">
-              <p className="text-muted-foreground text-sm sm:text-base font-semibold leading-relaxed">
-                Wybierając elastyczny produkt, jakim jest naklejki arkusz, płacisz raz, a na kartce A4 zyskujesz dziesiątki różnorodnych wlepek. Gwarantujemy, że nasze naklejki z własnym nadrukiem to najwyższa jakość winylu i mocny klej. Drukujemy Twoje gotowe naklejki arkusze błyskawicznie, a integracja z bezpieczną bramką płatniczą Przelewy24 oznacza natychmiastowe przekazanie pliku do produkcji. Przetestuj nasze naklejki na zamówienie już dziś i stwórz swój pierwszy projekt powyżej!
+          {/* Sekcja 2: Jak to działa (Krok po kroku) */}
+          <div className="space-y-6 sm:space-y-8 bg-muted/10 border border-border/20 rounded-3xl p-6 sm:p-8">
+            <div className="text-center max-w-2xl mx-auto space-y-2">
+              <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-foreground" id="seo-how-it-works-title">
+                Jak to działa? Twoje naklejki w 4 prostych krokach
+              </h2>
+              <p className="text-muted-foreground text-sm font-semibold">
+                Cały proces – od pomysłu do gotowego wydruku – zajmie Ci zaledwie kilka minut.
               </p>
             </div>
-          </div>
-        </div>
 
-        {/* Sekcja 4: FAQ */}
-        <div className="space-y-6 sm:space-y-8">
-          <div className="text-center max-w-2xl mx-auto space-y-2">
-            <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-foreground" id="seo-faq-title">
-              Często zadawane pytania (FAQ)
-            </h2>
-            <p className="text-muted-foreground text-sm font-semibold">
-              Wszystko, co musisz wiedzieć o tworzeniu, drukowaniu i dostawie naklejek na arkuszach.
-            </p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 relative">
+              {[
+                {
+                  title: "Dodaj swoje grafiki",
+                  desc: "Wgraj pliki JPG/PNG ze swojego komputera lub telefonu, albo skorzystaj z generatora AI, wpisując opis wymarzonego wzoru."
+                },
+                {
+                  title: "Dopasuj rozmiar i cięcie",
+                  desc: "Wybierz wielkość każdej naklejki oraz jej linię cięcia. Możesz wyciąć naklejki po obrysie (konturze), w okręgu lub w prostokącie."
+                },
+                {
+                  title: "Rozmieść na arkuszu A4",
+                  desc: "Przeciągaj naklejki na podglądzie arkusza. Inteligentny system zapobiegnie ich nakładaniu się i upewni się, że wszystko zmieści się idealnie."
+                },
+                {
+                  title: "Zamów z szybką dostawą",
+                  desc: "Sprawdź gotową kompozycję w trójwymiarowym podglądzie 3D, dodaj arkusz do koszyka i sfinalizuj bezpieczne zamówienie za pomocą Przelewy24."
+                }
+              ].map((step, idx) => (
+                <div key={idx} className="space-y-2 relative">
+                  <div className="text-xs font-black uppercase text-primary tracking-widest">
+                    Krok 0{idx + 1}
+                  </div>
+                  <h3 className="text-base font-black text-foreground">
+                    {step.title}
+                  </h3>
+                  <p className="text-muted-foreground text-xs font-semibold leading-relaxed">
+                    {step.desc}
+                  </p>
+                </div>
+              ))}
+            </div>
           </div>
+          {/* Sekcja SEO: Informacje o naklejkach personalizowanych */}
+          <div className="space-y-12 sm:space-y-16 mt-8">
+            {/* Blok 1: Gdzie kupić */}
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+              <div className="lg:col-span-8 space-y-4">
+                <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-foreground">
+                  Gdzie kupić pojedyncze naklejki personalizowane online?
+                </h2>
+                <p className="text-muted-foreground text-sm sm:text-base font-semibold leading-relaxed">
+                  Najlepszym rozwiązaniem dla zamówień niskonakładowych jest platforma <Link href="/" className="text-primary hover:underline font-bold">malenaklejki.pl</Link>. To tutaj szybko zaprojektujesz i kupisz naklejki personalizowane bez minimalnych limitów zamówienia. Za stałą kwotę 49,00 zł otrzymujesz w pełni zagospodarowany arkusz naklejek w formacie A4. Możesz umieścić na nim dowolną liczbę różnych grafik, a nasz zaawansowany system automatycznie zadba o to, aby elementy nie nachodziły na siebie. To Ty decydujesz, co drukujesz.
+                </p>
+              </div>
+              <div className="lg:col-span-4 bg-primary/5 border border-primary/15 rounded-3xl p-6 text-center space-y-2">
+                <p className="text-3xl font-black text-primary">49,00 zł</p>
+                <p className="text-xs font-bold text-muted-foreground uppercase tracking-wider">Stała cena za cały arkusz A4</p>
+              </div>
+            </div>
 
-          <div className="max-w-3xl mx-auto space-y-4">
-            {[
-              {
-                q: "Jakiej jakości pliki powinienem wgrać do kreatora?",
-                a: "Najlepsze rezultaty uzyskasz wgrywając pliki w formacie PNG lub JPG o rozdzielczości 300 DPI. Kreator automatycznie ocenia jakość grafiki i ostrzeże Cię komunikatem, jeśli rozdzielczość będzie zbyt niska (poniżej 100 DPI)."
-              },
-              {
-                q: "Co oznacza cięcie po konturze (obrysie)?",
-                a: "Nasze maszyny plotujące wytną naklejkę dokładnie wzdłuż krawędzi Twojego obrazka (z pominięciem przezroczystego tła). W kreatorze możesz wybrać opcję „Kontur”, aby zobaczyć podgląd linii cięcia naniesiony na Twoją grafikę."
-              },
-              {
-                q: "Ile naklejek zmieści się na jednym arkuszu A4?",
-                a: "To zależy od Ciebie! Możesz umieścić jedną ogromną naklejkę (do 19 cm szerokości) lub kilkadziesiąt mniejszych (np. o średnicy 3-4 cm). Nasz system automatycznie pilnuje, aby naklejki nie nakładały się na siebie."
-              },
-              {
-                q: "Czy mogę edytować arkusz po dodaniu do koszyka?",
-                a: "Po dodaniu arkusza do koszyka kompozycja jest zapisywana i generowany jest plik produkcyjny. Wszelkie poprawki wymagają ponownego ułożenia arkusza, dlatego przed zatwierdzeniem upewnij się w podglądzie 2D/3D, że wszystko wygląda poprawnie."
-              },
-              {
-                q: "Jaki jest czas realizacji i koszt dostawy?",
-                a: "Wszystkie zamówienia drukujemy i wysyłamy w ciągu 3 dni roboczych. Koszt dostawy wynosi 19,99 zł, a bezpieczną i szybką płatność realizujemy za pośrednictwem Przelewy24 (karta, BLIK, przelew)."
-              }
-            ].map((faq, idx) => (
-              <div key={idx} className="bg-card border border-border/40 rounded-2xl p-5 shadow-sm space-y-2">
-                <h3 className="text-sm sm:text-base font-black text-foreground flex items-start gap-2">
-                  <span className="text-primary font-extrabold">Q:</span>
-                  <span>{faq.q}</span>
-                </h3>
-                <div className="text-xs sm:text-sm text-muted-foreground font-semibold leading-relaxed pl-6">
-                  <p>{faq.a}</p>
+            {/* Blok 2: Jak zrobić własne wlepki i etykiety */}
+            <div className="space-y-6 sm:space-y-8 bg-muted/10 border border-border/20 rounded-3xl p-6 sm:p-8">
+              <div className="max-w-3xl space-y-4">
+                <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-foreground">
+                  Jak zrobić własne wlepki i etykiety w kilku prostych krokach?
+                </h2>
+                <p className="text-muted-foreground text-sm sm:text-base font-semibold leading-relaxed">
+                  Jeśli zastanawiasz się jak zrobić własne wlepki bez profesjonalnego oprogramowania graficznego, nasz interaktywny naklejki kreator to odpowiedź na Twoje potrzeby. Cały proces odbywa się bezpośrednio w przeglądarce:
+                </p>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div className="bg-card border border-border/40 rounded-2xl p-5 space-y-3">
+                  <div className="text-xs font-black uppercase text-primary tracking-widest">Sztuczna Inteligencja (AI)</div>
+                  <p className="text-muted-foreground text-xs sm:text-sm font-semibold leading-relaxed">
+                    Opisz swój pomysł zwykłym tekstem, a wbudowany generator stworzy dla Ciebie unikalne wzory na naklejki do druku. W ten sposób łatwo stworzysz imponujące własne wlepki nawet bez umiejętności rysowania.
+                  </p>
+                </div>
+                <div className="bg-card border border-border/40 rounded-2xl p-5 space-y-3">
+                  <div className="text-xs font-black uppercase text-primary tracking-widest">Szybkie naklejki ze zdjęciem</div>
+                  <p className="text-muted-foreground text-xs sm:text-sm font-semibold leading-relaxed">
+                    Wgraj dowolną fotografię z dysku lub telefonu. System natychmiast usunie tło, dzięki czemu powstaną precyzyjnie wycięte po obrysie kształty (tzw. naklejki die cut). Możesz ułożyć całe grupowe naklejki ze zdjęć na jednym panelu.
+                  </p>
+                </div>
+                <div className="bg-card border border-border/40 rounded-2xl p-5 space-y-3">
+                  <div className="text-xs font-black uppercase text-primary tracking-widest">Szybkie kadrowanie</div>
+                  <p className="text-muted-foreground text-xs sm:text-sm font-semibold leading-relaxed">
+                    Wrzucasz przygotowane wcześniej małe obrazki do druku na naklejki, a system sam dostosowuje ścieżki cięcia (koła, zaokrąglone prostokąty lub nieregularne obrysy). To najkrótsza droga, by wyprodukować własne, domowe naklejki diy i wytrzymałe własne wlepy na laptopa czy motocykl.
+                  </p>
                 </div>
               </div>
-            ))}
+            </div>
+
+            {/* Blok 3: Dla małych firm & Wyjątkowe okazje */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
+              <div className="space-y-4">
+                <h3 className="text-xl sm:text-2xl font-extrabold tracking-tight text-foreground">
+                  Profesjonalny arkusz naklejek na zamówienie dla małych firm
+                </h3>
+                <p className="text-muted-foreground text-sm font-semibold leading-relaxed">
+                  Prowadzisz małą gastronomię, tworzysz rękodzieło albo produkujesz naturalne kosmetyki? Profesjonalny druk naklejek na zamówienie na arkuszach A4 to model stworzony dla Ciebie. Zamiast inwestować w tysiące sztuk etykiet, których jeszcze nie potrzebujesz, kupujesz jeden wielofunkcyjny arkusz z naklejkami.
+                </p>
+                <p className="text-muted-foreground text-sm font-semibold leading-relaxed">
+                  Wgrywasz własne logo i jednym kliknięciem tworzysz unikalne naklejki z własną grafiką oraz informacyjne naklejki z własnym napisem opisujące skład produktu. To idealne i ekonomiczne małe naklejki z własnym nadrukiem na słoiczki, butelki czy opakowania wysyłkowe. Każdy produkt prezentuje się u klienta o wiele lepiej, gdy zdobią go precyzyjnie docięte naklejki samoprzylepne na zamówienie. Jeśli w przyszłości rozwiniesz ofertę, bez problemu skonfigurujesz w koszyku również większe naklejki na zamówienie z własnym nadrukiem.
+                </p>
+              </div>
+
+              <div className="space-y-4">
+                <h3 className="text-xl sm:text-2xl font-extrabold tracking-tight text-foreground">
+                  Wyjątkowe okazje i naklejki z własnym zdjęciem
+                </h3>
+                <p className="text-muted-foreground text-sm font-semibold leading-relaxed">
+                  Nasz pojedynczy arkusz naklejek do druku to absolutny hit podczas rodzinnych i religijnych uroczystości. W zaledwie kilka minut zaprojektujesz u nas pamiątkowe naklejki personalizowane na chrzest jako naklejki na podziękowania dla gości lub stworzysz eleganckie naklejki personalizowane komunia pasujące do zaproszeń.
+                </p>
+                <p className="text-muted-foreground text-sm font-semibold leading-relaxed">
+                  Nic nie stoi na przeszkodzie, aby wykorzystać wykadrowane naklejki ze zdjęcia jubilata do dekoracji prezentów. Niezależnie od tego, czy system ma przetworzyć klasyczne naklejki ze zdjeciem bez skomplikowanego tła, czy wyciąć portret całej rodziny, efekt zawsze jest perfekcyjny.
+                </p>
+              </div>
+            </div>
+
+            {/* Blok 4: Praktyczne zastosowania */}
+            <div className="space-y-6 sm:space-y-8 bg-muted/10 border border-border/20 rounded-3xl p-6 sm:p-8">
+              <div className="space-y-4">
+                <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-foreground">
+                  Praktyczne zastosowania – wybierz naklejki na zamówienie online
+                </h2>
+                <p className="text-muted-foreground text-sm sm:text-base font-semibold leading-relaxed">
+                  Nasi klienci wykorzystują kreator do najbardziej nietypowych i codziennych zadań. Sprawdź, co możesz stworzyć:
+                </p>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+                {[
+                  "Kolorowe naklejki z grafiką na prezenty urodzinowe i sprzęt elektroniczny.",
+                  "Dedykowane naklejki z własnym wzorem do oznaczania organizerów i pudełek w biurze.",
+                  "Wytrzymałe naklejki na zeszyty personalizowane z wizerunkami ulubionych bohaterów z gier lub bajek.",
+                  "Funkcjonalne naklejki na ubrania dla dzieci (idealne do naklejania na nylonowe metki z instrukcją prania), ułatwiające organizację rzeczy w przedszkolu i żłobku.",
+                  "Pamiątkowe dekoracje plannerów, gdzie główną rolę gra motywacyjna naklejka z własnym napisem."
+                ].map((text, idx) => (
+                  <div key={idx} className="bg-card border border-border/40 rounded-3xl p-5 flex flex-col items-start text-left space-y-3">
+                    <span className="px-2.5 py-1 text-[10px] font-black bg-primary/10 text-primary rounded-lg">
+                      Zastosowanie 0{idx + 1}
+                    </span>
+                    <p className="text-muted-foreground text-xs font-semibold leading-relaxed">
+                      {text}
+                    </p>
+                  </div>
+                ))}
+              </div>
+
+              <div className="border-t border-border/20 pt-6">
+                <p className="text-muted-foreground text-sm sm:text-base font-semibold leading-relaxed">
+                  Wybierając elastyczny produkt, jakim jest naklejki arkusz, płacisz raz, a na kartce A4 zyskujesz dziesiątki różnorodnych wlepek. Gwarantujemy, że nasze naklejki z własnym nadrukiem to najwyższa jakość winylu i mocny klej. Drukujemy Twoje gotowe naklejki arkusze błyskawicznie, a integracja z bezpieczną bramką płatniczą Przelewy24 oznacza natychmiastowe przekazanie pliku do produkcji. Przetestuj nasze naklejki na zamówienie już dziś i stwórz swój pierwszy projekt powyżej!
+                </p>
+              </div>
+            </div>
           </div>
-        </div>
 
-      </section>
+          {/* Sekcja 4: FAQ */}
+          <div className="space-y-6 sm:space-y-8">
+            <div className="text-center max-w-2xl mx-auto space-y-2">
+              <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-foreground" id="seo-faq-title">
+                Często zadawane pytania (FAQ)
+              </h2>
+              <p className="text-muted-foreground text-sm font-semibold">
+                Wszystko, co musisz wiedzieć o tworzeniu, drukowaniu i dostawie naklejek na arkuszach.
+              </p>
+            </div>
 
-      <Footer />
+            <div className="max-w-3xl mx-auto space-y-4">
+              {[
+                {
+                  q: "Jakiej jakości pliki powinienem wgrać do kreatora?",
+                  a: "Najlepsze rezultaty uzyskasz wgrywając pliki w formacie PNG lub JPG o rozdzielczości 300 DPI. Kreator automatycznie ocenia jakość grafiki i ostrzeże Cię komunikatem, jeśli rozdzielczość będzie zbyt niska (poniżej 100 DPI)."
+                },
+                {
+                  q: "Co oznacza cięcie po konturze (obrysie)?",
+                  a: "Nasze maszyny plotujące wytną naklejkę dokładnie wzdłuż krawędzi Twojego obrazka (z pominięciem przezroczystego tła). W kreatorze możesz wybrać opcję „Kontur”, aby zobaczyć podgląd linii cięcia naniesiony na Twoją grafikę."
+                },
+                {
+                  q: "Ile naklejek zmieści się na jednym arkuszu A4?",
+                  a: "To zależy od Ciebie! Możesz umieścić jedną ogromną naklejkę (do 19 cm szerokości) lub kilkadziesiąt mniejszych (np. o średnicy 3-4 cm). Nasz system automatycznie pilnuje, aby naklejki nie nakładały się na siebie."
+                },
+                {
+                  q: "Czy mogę edytować arkusz po dodaniu do koszyka?",
+                  a: "Po dodaniu arkusza do koszyka kompozycja jest zapisywana i generowany jest plik produkcyjny. Wszelkie poprawki wymagają ponownego ułożenia arkusza, dlatego przed zatwierdzeniem upewnij się w podglądzie 2D/3D, że wszystko wygląda poprawnie."
+                },
+                {
+                  q: "Jaki jest czas realizacji i koszt dostawy?",
+                  a: "Wszystkie zamówienia drukujemy i wysyłamy w ciągu 3 dni roboczych. Koszt dostawy wynosi 19,99 zł, a bezpieczną i szybką płatność realizujemy za pośrednictwem Przelewy24 (karta, BLIK, przelew)."
+                }
+              ].map((faq, idx) => (
+                <div key={idx} className="bg-card border border-border/40 rounded-2xl p-5 shadow-sm space-y-2">
+                  <h3 className="text-sm sm:text-base font-black text-foreground flex items-start gap-2">
+                    <span className="text-primary font-extrabold">Q:</span>
+                    <span>{faq.q}</span>
+                  </h3>
+                  <div className="text-xs sm:text-sm text-muted-foreground font-semibold leading-relaxed pl-6">
+                    <p>{faq.a}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+        </section>
+
+        <Footer />
       </div>
 
       {/* Sticky Header w formie menu po wjechaniu na sekcję SEO */}
@@ -2010,7 +2044,7 @@ export default function Home() {
                   onClick={scrollToAndHighlightSheet}
                   className="hidden md:inline-flex px-3.5 py-1.5 text-[13px] font-extrabold text-foreground hover:text-primary bg-muted/40 hover:bg-muted/85 rounded-lg border border-border/30 transition-all cursor-pointer hover:scale-[1.01] active:scale-[0.99] whitespace-nowrap"
                 >
-                  Zamów Naklejki Personalizowane
+                  Stwórz Własne Naklejki
                 </button>
 
                 {/* Kontakt Button */}

@@ -18,6 +18,7 @@ interface NewA4VisualizerProps {
   onCutLineChange?: (type: PlacedSticker["cutLineType"]) => void;
   onRotationChange?: (degrees: number) => void;
   isPresentationMode?: boolean;
+  overlappingStickerIds?: string[];
 }
 
 export function NewA4Visualizer({
@@ -32,6 +33,7 @@ export function NewA4Visualizer({
   onCutLineChange,
   onRotationChange,
   isPresentationMode,
+  overlappingStickerIds = [],
 }: NewA4VisualizerProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const selectedSticker = stickers.find((s) => s.id === selectedStickerId);
@@ -478,7 +480,9 @@ export function NewA4Visualizer({
                 ? (showQuickMenu || showCutMenu || showRotationMenu ? "z-[60]" : "z-30") + " ring-2 ring-primary ring-offset-2 rounded-none"
                 : isPresentationMode
                   ? "pointer-events-none rounded-none"
-                  : "cursor-grab active:cursor-grabbing group hover:ring-1 hover:ring-primary/40 hover:ring-offset-1 rounded-none"
+                  : overlappingStickerIds.includes(st.id) 
+                    ? "cursor-grab active:cursor-grabbing group ring-2 ring-red-500 ring-offset-2 shadow-[0_0_15px_rgba(239,68,68,0.6)] z-20 rounded-none animate-pulse"
+                    : "cursor-grab active:cursor-grabbing group hover:ring-1 hover:ring-primary/40 hover:ring-offset-1 rounded-none"
                 } ${isPresentationMode ? "animate-in fade-in zoom-in-50 duration-300 ease-out" : ""}`}
               style={{
                 left: `${(st.x / SHEET_WIDTH_MM) * 100}%`,
