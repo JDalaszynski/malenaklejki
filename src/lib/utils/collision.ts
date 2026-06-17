@@ -40,7 +40,8 @@ export function getContourMargins(
   wMm: number,
   hMm: number,
   rotationDegrees: number,
-  contourPolygons?: Point[][]
+  contourPolygons?: Point[][],
+  cutLineType?: "none" | "contour" | "rounded" | "circle" | "contour_inside" | "rounded_inside" | "circle_inside"
 ): { left: number; right: number; top: number; bottom: number } {
   const rad = (rotationDegrees * Math.PI) / 180;
   const size = getRotatedSize(wMm, hMm, rotationDegrees);
@@ -84,11 +85,17 @@ export function getContourMargins(
     });
   });
 
+  let extraMm = 0;
+  if (cutLineType === "contour") {
+    const baseOffsetMm = Math.max(wMm, hMm) * (8 / 120);
+    extraMm = Math.max(0, 4 - baseOffsetMm);
+  }
+
   return {
-    left: -cx - minRotX,
-    right: cx + maxRotX,
-    top: -cy - minRotY,
-    bottom: cy + maxRotY,
+    left: -cx - minRotX + extraMm,
+    right: cx + maxRotX + extraMm,
+    top: -cy - minRotY + extraMm,
+    bottom: cy + maxRotY + extraMm,
   };
 }
 
@@ -128,7 +135,7 @@ export function getCutLineMargins(
     cutLineType === "rounded_inside" ||
     cutLineType === "circle_inside"
   ) {
-    const baseOffset = Math.max(widthCm, heightCm) * 10 * (8 / 120);
+    const baseOffset = Math.max(4, Math.max(widthCm, heightCm) * 10 * (8 / 120));
     const offsetMm = (cutLineType === "rounded_inside" || cutLineType === "circle_inside") ? -2 : baseOffset;
     const cutW = wMm + 2 * offsetMm;
     const cutH = hMm + 2 * offsetMm;
@@ -145,7 +152,8 @@ export function getCutLineMargins(
     wMm,
     hMm,
     rotation,
-    (cutLineType === "contour" || cutLineType === "contour_inside") ? contourPolygons : undefined
+    (cutLineType === "contour" || cutLineType === "contour_inside") ? contourPolygons : undefined,
+    cutLineType
   );
 }
 

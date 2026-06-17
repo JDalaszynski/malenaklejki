@@ -835,7 +835,7 @@ export default function Home() {
       const relY = -drawH / 2;
       let offsetPx = 0;
       if (st.cutLineType === "rounded" || st.cutLineType === "circle") {
-        offsetPx = Math.max(st.widthCm, st.heightCm) * 10 * (8 / 120) * MM_TO_PX;
+        offsetPx = Math.max(4, Math.max(st.widthCm, st.heightCm) * 10 * (8 / 120)) * MM_TO_PX;
       } else if (st.cutLineType === "rounded_inside" || st.cutLineType === "circle_inside") {
         offsetPx = -2 * MM_TO_PX;
       }
@@ -867,12 +867,17 @@ export default function Home() {
           ctx.fill();
         } else if (st.cutLineType === "contour" || st.cutLineType === "contour_inside") {
           if (st.contourPolygons && st.contourPolygons.length > 0) {
+            const baseOffsetMm = Math.max(st.widthCm * 10, st.heightCm * 10) * (8 / 120);
+            const extraMm = st.cutLineType === "contour" ? Math.max(0, 4 - baseOffsetMm) : 0;
+            const scaleX = (st.widthCm * 10 / 2 + baseOffsetMm + extraMm) / (st.widthCm * 10 / 2 + baseOffsetMm);
+            const scaleY = (st.heightCm * 10 / 2 + baseOffsetMm + extraMm) / (st.heightCm * 10 / 2 + baseOffsetMm);
+
             st.contourPolygons.forEach((poly) => {
               if (poly.length < 2) return;
               ctx.beginPath();
-              ctx.moveTo(relX + poly[0].x * drawW, relY + poly[0].y * drawH);
+              ctx.moveTo(relX + (0.5 + (poly[0].x - 0.5) * scaleX) * drawW, relY + (0.5 + (poly[0].y - 0.5) * scaleY) * drawH);
               for (let i = 1; i < poly.length; i++) {
-                ctx.lineTo(relX + poly[i].x * drawW, relY + poly[i].y * drawH);
+                ctx.lineTo(relX + (0.5 + (poly[i].x - 0.5) * scaleX) * drawW, relY + (0.5 + (poly[i].y - 0.5) * scaleY) * drawH);
               }
               ctx.closePath();
               ctx.fill();
@@ -920,12 +925,17 @@ export default function Home() {
             ctx.lineJoin = "round";
 
             if (st.contourPolygons && st.contourPolygons.length > 0) {
+              const baseOffsetMm = Math.max(st.widthCm * 10, st.heightCm * 10) * (8 / 120);
+              const extraMm = st.cutLineType === "contour" ? Math.max(0, 4 - baseOffsetMm) : 0;
+              const scaleX = (st.widthCm * 10 / 2 + baseOffsetMm + extraMm) / (st.widthCm * 10 / 2 + baseOffsetMm);
+              const scaleY = (st.heightCm * 10 / 2 + baseOffsetMm + extraMm) / (st.heightCm * 10 / 2 + baseOffsetMm);
+
               st.contourPolygons.forEach((poly) => {
                 if (poly.length < 2) return;
                 ctx.beginPath();
-                ctx.moveTo(relX + poly[0].x * drawW, relY + poly[0].y * drawH);
+                ctx.moveTo(relX + (0.5 + (poly[0].x - 0.5) * scaleX) * drawW, relY + (0.5 + (poly[0].y - 0.5) * scaleY) * drawH);
                 for (let i = 1; i < poly.length; i++) {
-                  ctx.lineTo(relX + poly[i].x * drawW, relY + poly[i].y * drawH);
+                  ctx.lineTo(relX + (0.5 + (poly[i].x - 0.5) * scaleX) * drawW, relY + (0.5 + (poly[i].y - 0.5) * scaleY) * drawH);
                 }
                 ctx.closePath();
                 ctx.stroke();
