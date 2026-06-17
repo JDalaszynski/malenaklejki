@@ -88,7 +88,7 @@ export function getContourMargins(
   let extraMm = 0;
   if (cutLineType === "contour") {
     const baseOffsetMm = Math.max(wMm, hMm) * (8 / 120);
-    extraMm = Math.max(0, 4 - baseOffsetMm);
+    extraMm = Math.max(0, 3 - baseOffsetMm);
   }
 
   return {
@@ -135,7 +135,7 @@ export function getCutLineMargins(
     cutLineType === "rounded_inside" ||
     cutLineType === "circle_inside"
   ) {
-    const baseOffset = Math.max(4, Math.max(widthCm, heightCm) * 10 * (8 / 120));
+    const baseOffset = Math.max(3, Math.max(widthCm, heightCm) * 10 * (8 / 120));
     const offsetMm = (cutLineType === "rounded_inside" || cutLineType === "circle_inside") ? -2 : baseOffset;
     const cutW = wMm + 2 * offsetMm;
     const cutH = hMm + 2 * offsetMm;

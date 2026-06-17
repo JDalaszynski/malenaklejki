@@ -112,7 +112,7 @@ export function A4Visualizer3D({ stickers }: A4Visualizer3DProps) {
         {stickers.map((st) => {
           const wMm = st.widthCm * 10;
           const hMm = st.heightCm * 10;
-          const baseOffsetMm = Math.max(4, Math.max(wMm, hMm) * (8 / 120));
+          const baseOffsetMm = Math.max(3, Math.max(wMm, hMm) * (8 / 120));
           const isInside = st.cutLineType === "rounded_inside" || st.cutLineType === "circle_inside";
           const offsetMm = isInside ? -2 : baseOffsetMm;
           const offsetPercentX = (offsetMm / wMm) * 100;
@@ -151,8 +151,8 @@ export function A4Visualizer3D({ stickers }: A4Visualizer3DProps) {
                     preserveAspectRatio="none"
                     style={{
                       transformOrigin: "center",
-                      transform: (st.cutLineType === "contour" && Math.max(wMm, hMm) * (8 / 120) < 4) 
-                        ? `translateZ(1px) scaleX(${(wMm/2 + 4) / (wMm/2 + Math.max(wMm, hMm) * (8/120))}) scaleY(${(hMm/2 + 4) / (hMm/2 + Math.max(wMm, hMm) * (8/120))})` 
+                      transform: (st.cutLineType === "contour" && Math.max(wMm, hMm) * (8 / 120) < 3) 
+                        ? `translateZ(1px) scaleX(${(wMm/2 + 3) / (wMm/2 + Math.max(wMm, hMm) * (8/120))}) scaleY(${(hMm/2 + 3) / (hMm/2 + Math.max(wMm, hMm) * (8/120))})` 
                         : "translateZ(1px)",
                     }}
                   >

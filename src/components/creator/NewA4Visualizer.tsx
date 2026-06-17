@@ -464,7 +464,7 @@ export function NewA4Visualizer({
         const isSelected = !isPresentationMode && st.id === selectedStickerId;
         const wMm = st.widthCm * 10;
         const hMm = st.heightCm * 10;
-        const baseOffsetMm = Math.max(4, Math.max(wMm, hMm) * (8 / 120));
+        const baseOffsetMm = Math.max(3, Math.max(wMm, hMm) * (8 / 120));
         const isInside = st.cutLineType === "rounded_inside" || st.cutLineType === "circle_inside";
         const offsetMm = isInside ? -2 : baseOffsetMm;
         const offsetPercentX = (offsetMm / wMm) * 100;
@@ -512,8 +512,8 @@ export function NewA4Visualizer({
                     style={{
                       filter: "drop-shadow(0 0 2px #ff5ebb)",
                       transformOrigin: "center",
-                      transform: (st.cutLineType === "contour" && Math.max(wMm, hMm) * (8 / 120) < 4) 
-                        ? `scaleX(${(wMm/2 + 4) / (wMm/2 + Math.max(wMm, hMm) * (8/120))}) scaleY(${(hMm/2 + 4) / (hMm/2 + Math.max(wMm, hMm) * (8/120))})` 
+                      transform: (st.cutLineType === "contour" && Math.max(wMm, hMm) * (8 / 120) < 3) 
+                        ? `scaleX(${(wMm/2 + 3) / (wMm/2 + Math.max(wMm, hMm) * (8/120))}) scaleY(${(hMm/2 + 3) / (hMm/2 + Math.max(wMm, hMm) * (8/120))})` 
                         : "none",
                     }}
                   >

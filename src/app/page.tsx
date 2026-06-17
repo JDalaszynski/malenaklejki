@@ -835,7 +835,7 @@ export default function Home() {
       const relY = -drawH / 2;
       let offsetPx = 0;
       if (st.cutLineType === "rounded" || st.cutLineType === "circle") {
-        offsetPx = Math.max(4, Math.max(st.widthCm, st.heightCm) * 10 * (8 / 120)) * MM_TO_PX;
+        offsetPx = Math.max(3, Math.max(st.widthCm, st.heightCm) * 10 * (8 / 120)) * MM_TO_PX;
       } else if (st.cutLineType === "rounded_inside" || st.cutLineType === "circle_inside") {
         offsetPx = -2 * MM_TO_PX;
       }
@@ -868,7 +868,7 @@ export default function Home() {
         } else if (st.cutLineType === "contour" || st.cutLineType === "contour_inside") {
           if (st.contourPolygons && st.contourPolygons.length > 0) {
             const baseOffsetMm = Math.max(st.widthCm * 10, st.heightCm * 10) * (8 / 120);
-            const extraMm = st.cutLineType === "contour" ? Math.max(0, 4 - baseOffsetMm) : 0;
+            const extraMm = st.cutLineType === "contour" ? Math.max(0, 3 - baseOffsetMm) : 0;
             const scaleX = (st.widthCm * 10 / 2 + baseOffsetMm + extraMm) / (st.widthCm * 10 / 2 + baseOffsetMm);
             const scaleY = (st.heightCm * 10 / 2 + baseOffsetMm + extraMm) / (st.heightCm * 10 / 2 + baseOffsetMm);
 
@@ -926,7 +926,7 @@ export default function Home() {
 
             if (st.contourPolygons && st.contourPolygons.length > 0) {
               const baseOffsetMm = Math.max(st.widthCm * 10, st.heightCm * 10) * (8 / 120);
-              const extraMm = st.cutLineType === "contour" ? Math.max(0, 4 - baseOffsetMm) : 0;
+              const extraMm = st.cutLineType === "contour" ? Math.max(0, 3 - baseOffsetMm) : 0;
               const scaleX = (st.widthCm * 10 / 2 + baseOffsetMm + extraMm) / (st.widthCm * 10 / 2 + baseOffsetMm);
               const scaleY = (st.heightCm * 10 / 2 + baseOffsetMm + extraMm) / (st.heightCm * 10 / 2 + baseOffsetMm);
 
