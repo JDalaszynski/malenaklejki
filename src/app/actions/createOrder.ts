@@ -41,7 +41,7 @@ const CreateOrderSchema = z.object({
 });
 
 import { registerTransaction } from "@/lib/p24";
-import { buildManualTransferEmailHtml } from "@/lib/emails";
+import { buildManualTransferEmailHtml, buildNewOrderSellerEmailHtml } from "@/lib/emails";
 
 /**
  * Generates a human-readable order number: MNK-YYYYMMDD-XXXX
@@ -185,6 +185,39 @@ export async function createOrder(rawData: any) {
     const cleanOrderData = JSON.parse(JSON.stringify(orderData));
     await orderRef.set(cleanOrderData);
 
+    // Send email to seller immediately with files
+    try {
+      const adminEmail = process.env.ADMIN_EMAIL || "kontakt@malenaklejki.pl";
+      const siteFromEmail = adminEmail;
+
+      const attachments: Array<{ content: string; name: string; type: string }> = [];
+      if (finalData.pdfAttachments && Array.isArray(finalData.pdfAttachments)) {
+        for (const att of finalData.pdfAttachments) {
+          const prefix = orderNumber.replace(/[^a-zA-Z0-9-]/g, "_");
+          const attachmentName = `${prefix}-${att.name}`;
+          attachments.push({
+            content: att.base64,
+            name: attachmentName,
+            type: "application/pdf",
+          });
+        }
+      }
+
+      const sellerEmailPayload: any = {
+        sender: { name: "MałeNaklejki – System zamówień", email: siteFromEmail },
+        to: [{ email: adminEmail, name: "MałeNaklejki – Sprzedawca" }],
+        subject: `🛒 Nowe zamówienie ${orderNumber} – ${finalData.firstName} ${finalData.lastName} (${finalData.total.toFixed(2)} zł)`,
+        htmlContent: buildNewOrderSellerEmailHtml(finalData, orderNumber),
+      };
+      if (attachments.length > 0) {
+        sellerEmailPayload.attachment = attachments;
+      }
+      await sendEmail(sellerEmailPayload);
+      console.log(`Initial seller notification email sent for order ${orderNumber}`);
+    } catch (emailErr) {
+      console.error("Failed to send initial seller notification email:", emailErr);
+    }
+
     // 6. Handle Payment Routing
     const appUrl = process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000";
     const returnUrl = `${appUrl}/zamowienie-sukces?orderNumber=${encodeURIComponent(orderNumber)}&orderId=${orderRef.id}`;
@@ -263,6 +296,7 @@ export async function getOrderStatus(orderId: string) {
       status: orderData.status,
       orderNumber: orderData.orderNumber,
       total: orderData.totals?.total || 0,
+      paymentMethod: orderData.payment?.method || orderData.paymentMethod || null,
     };
   } catch (error: any) {
     console.error("getOrderStatus error:", error);

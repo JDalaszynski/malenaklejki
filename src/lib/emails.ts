@@ -170,6 +170,14 @@ export function buildSellerEmailHtml(data: any, orderNumber: string): string {
       ? `Paczkomat InPost: ${safeLockerId} — ${safeLockerAddress}`
       : `Kurier: ${safeStreet} ${safeBuilding}, ${safePostalCode} ${safeCity}`;
 
+  const paymentMethodLabel = (() => {
+    const method = data.paymentMethod || data.payment?.method;
+    if (method === "przelewy24") return "Przelewy24 (szybki przelew/karta)";
+    if (method === "blik") return "BLIK";
+    if (method === "przelew") return "Przelew tradycyjny";
+    return method || "Nieznana";
+  })();
+
   const itemRows = (data.items || [])
     .map(
       (item: any, i: number) => `
@@ -228,6 +236,10 @@ export function buildSellerEmailHtml(data: any, orderNumber: string): string {
             <td style="font-size:13px;color:#64748b;padding:4px 0;font-weight:600;">Dostawa:</td>
             <td style="font-size:13px;color:#0f172a;padding:4px 0;font-weight:700;">${deliveryLabel}</td>
           </tr>
+          <tr>
+            <td style="font-size:13px;color:#64748b;padding:4px 0;font-weight:600;">Płatność:</td>
+            <td style="font-size:13px;color:#0f172a;padding:4px 0;font-weight:700;">${paymentMethodLabel}</td>
+          </tr>
           ${wantsInvoice ? `
           <tr>
             <td style="font-size:13px;color:#64748b;padding:4px 0;font-weight:600;">Faktura VAT:</td>
@@ -271,6 +283,148 @@ export function buildSellerEmailHtml(data: any, orderNumber: string): string {
 </html>`;
 }
 
+/** Build seller notification email HTML for new/pending orders */
+export function buildNewOrderSellerEmailHtml(data: any, orderNumber: string): string {
+  const safeFirstName = escapeHtml(data.firstName || data.customer?.firstName || "");
+  const safeLastName = escapeHtml(data.lastName || data.customer?.lastName || "");
+  const safeEmail = escapeHtml(data.email || data.customer?.email || "");
+  const safePhone = escapeHtml(data.phone || data.customer?.phone || "");
+
+  const safeStreet = escapeHtml(data.street || data.delivery?.courierDetails?.street || "");
+  const safeBuilding = escapeHtml(data.building || data.delivery?.courierDetails?.building || "");
+  const safeCity = escapeHtml(data.city || data.delivery?.courierDetails?.city || "");
+  const safePostalCode = escapeHtml(data.postalCode || data.delivery?.courierDetails?.postalCode || "");
+  const safeLockerId = escapeHtml(data.lockerId || data.delivery?.paczkomatDetails?.lockerId || "");
+  const safeLockerAddress = escapeHtml(data.lockerAddress || data.delivery?.paczkomatDetails?.address || "");
+
+  const wantsInvoice = data.wantsInvoice ?? data.billing?.wantsInvoice;
+  const safeCompanyName = escapeHtml(data.companyName || data.billing?.companyName || "");
+  const safeNip = escapeHtml(data.nip || data.billing?.nip || "");
+
+  const deliveryMethod = data.deliveryMethod || data.delivery?.method;
+  const subtotal = data.subtotal ?? data.totals?.subtotal ?? 0;
+  const shippingCost = data.shippingCost ?? data.totals?.shipping ?? 0;
+  const total = data.total ?? data.totals?.total ?? 0;
+
+  const deliveryLabel =
+    deliveryMethod === "paczkomat"
+      ? `Paczkomat InPost: ${safeLockerId} — ${safeLockerAddress}`
+      : `Kurier: ${safeStreet} ${safeBuilding}, ${safePostalCode} ${safeCity}`;
+
+  const paymentMethodLabel = (() => {
+    const method = data.paymentMethod || data.payment?.method;
+    if (method === "przelewy24") return "Przelewy24 (szybki przelew/karta)";
+    if (method === "blik") return "BLIK";
+    if (method === "przelew") return "Przelew tradycyjny";
+    return method || "Nieznana";
+  })();
+
+  const itemRows = (data.items || [])
+    .map(
+      (item: any, i: number) => `
+    <tr>
+      <td style="padding:10px 0;border-bottom:1px solid #f1f5f9;font-size:13px;color:#334155;">${i + 1}. Arkusz A4 – ${item.stickersPerSheet} naklejek (${item.widthCm}×${item.heightCm?.toFixed ? item.heightCm.toFixed(1) : item.heightCm} cm)</td>
+      <td style="padding:10px 0;border-bottom:1px solid #f1f5f9;font-size:13px;color:#334155;text-align:center;">${item.sheetQuantity} szt.</td>
+      <td style="padding:10px 0;border-bottom:1px solid #f1f5f9;font-size:13px;font-weight:700;color:#0f172a;text-align:right;">${(item.pricePerSheet * item.sheetQuantity).toFixed(2)} zł</td>
+    </tr>`
+    )
+    .join("");
+
+  return `
+<!DOCTYPE html>
+<html lang="pl">
+<head><meta charset="UTF-8"/></head>
+<body style="margin:0;padding:0;background:#eff6ff;font-family:'Inter',system-ui,-apple-system,sans-serif;">
+  <div style="max-width:660px;margin:0 auto;padding:32px 16px;">
+
+    <!-- Header -->
+    <div style="background:linear-gradient(135deg,#1e3a8a 0%,#3b82f6 100%);border-radius:24px 24px 0 0;padding:28px 32px;text-align:center;">
+      <div style="font-size:14px;font-weight:800;text-transform:uppercase;letter-spacing:3px;color:#93c5fd;margin-bottom:8px;">
+        MałeNaklejki · Panel Sprzedawcy
+      </div>
+      <h1 style="color:#ffffff;margin:0;font-size:22px;font-weight:900;">
+        🛒 Nowe zamówienie (Nieopłacone)
+      </h1>
+    </div>
+
+    <!-- Body -->
+    <div style="background:#ffffff;padding:32px;border:1px solid #bfdbfe;border-top:none;">
+
+      <!-- Order badge -->
+      <div style="background:linear-gradient(135deg,#eff6ff,#dbeafe);border:2px solid #3b82f6;border-radius:16px;padding:18px 24px;margin-bottom:28px;text-align:center;">
+        <p style="font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:2px;color:#1e40af;margin:0 0 4px;">Numer zamówienia</p>
+        <p style="font-size:28px;font-weight:900;color:#0f172a;font-family:monospace;letter-spacing:2px;margin:0;">${orderNumber}</p>
+        <p style="font-size:12px;color:#1e40af;margin:6px 0 0;">Oczekuje na płatność przez: <strong>${paymentMethodLabel}</strong></p>
+        <p style="font-size:11px;color:#64748b;margin:6px 0 0;">${new Date().toLocaleString("pl-PL", { timeZone: "Europe/Warsaw" })}</p>
+      </div>
+
+      <!-- Customer info -->
+      <h2 style="font-size:13px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:#94a3b8;margin-bottom:10px;margin-top:0;">Dane klienta</h2>
+      <div style="background:#f8fafc;border-radius:12px;border:1px solid #e2e8f0;padding:16px 20px;margin-bottom:24px;">
+        <table style="width:100%;border-collapse:collapse;">
+          <tr>
+            <td style="font-size:13px;color:#64748b;padding:4px 0;font-weight:600;width:130px;">Imię i nazwisko:</td>
+            <td style="font-size:13px;color:#0f172a;padding:4px 0;font-weight:700;">${safeFirstName} ${safeLastName}</td>
+          </tr>
+          <tr>
+            <td style="font-size:13px;color:#64748b;padding:4px 0;font-weight:600;">E-mail:</td>
+            <td style="font-size:13px;color:#0f172a;padding:4px 0;font-weight:700;">${safeEmail}</td>
+          </tr>
+          <tr>
+            <td style="font-size:13px;color:#64748b;padding:4px 0;font-weight:600;">Telefon:</td>
+            <td style="font-size:13px;color:#0f172a;padding:4px 0;font-weight:700;">${safePhone}</td>
+          </tr>
+          <tr>
+            <td style="font-size:13px;color:#64748b;padding:4px 0;font-weight:600;">Dostawa:</td>
+            <td style="font-size:13px;color:#0f172a;padding:4px 0;font-weight:700;">${deliveryLabel}</td>
+          </tr>
+          <tr>
+            <td style="font-size:13px;color:#64748b;padding:4px 0;font-weight:600;">Płatność:</td>
+            <td style="font-size:13px;color:#0f172a;padding:4px 0;font-weight:700;">${paymentMethodLabel}</td>
+          </tr>
+          ${wantsInvoice ? `
+          <tr>
+            <td style="font-size:13px;color:#64748b;padding:4px 0;font-weight:600;">Faktura VAT:</td>
+            <td style="font-size:13px;color:#0f172a;padding:4px 0;font-weight:700;">${safeCompanyName} · NIP: ${safeNip}</td>
+          </tr>` : ""}
+        </table>
+      </div>
+
+      <!-- Items -->
+      <h2 style="font-size:13px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:#94a3b8;margin-bottom:10px;">Zamówione produkty</h2>
+      <table style="width:100%;border-collapse:collapse;margin-bottom:24px;">
+        <thead>
+          <tr>
+            <th style="text-align:left;font-size:11px;font-weight:700;color:#94a3b8;text-transform:uppercase;padding-bottom:8px;">Produkt</th>
+            <th style="text-align:center;font-size:11px;font-weight:700;color:#94a3b8;text-transform:uppercase;padding-bottom:8px;">Ilość</th>
+            <th style="text-align:right;font-size:11px;font-weight:700;color:#94a3b8;text-transform:uppercase;padding-bottom:8px;">Cena</th>
+          </tr>
+        </thead>
+        <tbody>${itemRows}</tbody>
+      </table>
+
+      <!-- Totals -->
+      <div style="background:#f0f9ff;border-radius:12px;border:1.5px solid #93c5fd;padding:16px 20px;margin-bottom:24px;">
+        <div style="display:flex;justify-content:space-between;margin-bottom:8px;">
+          <span style="font-size:13px;color:#64748b;">Naklejki</span>
+          <span style="font-size:13px;font-weight:700;color:#0f172a;">${subtotal.toFixed(2)} zł</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;margin-bottom:12px;">
+          <span style="font-size:13px;color:#64748b;">Dostawa</span>
+          <span style="font-size:13px;font-weight:700;color:#0f172a;">${shippingCost.toFixed(2)} zł</span>
+        </div>
+        <div style="border-top:1px solid #93c5fd;padding-top:12px;display:flex;justify-content:space-between;">
+          <span style="font-size:16px;font-weight:800;color:#0f172a;">Do zapłaty</span>
+          <span style="font-size:20px;font-weight:900;color:#0f172a;">${total.toFixed(2)} zł</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>`;
+}
+
 /** Build seller email HTML for unpaid/abandoned orders */
 export function buildUnpaidOrderSellerEmailHtml(data: any, orderNumber: string): string {
   const safeFirstName = escapeHtml(data.firstName || data.customer?.firstName || "");
@@ -294,6 +448,14 @@ export function buildUnpaidOrderSellerEmailHtml(data: any, orderNumber: string):
     deliveryMethod === "paczkomat"
       ? `Paczkomat InPost: ${safeLockerId} — ${safeLockerAddress}`
       : `Kurier: ${safeStreet} ${safeBuilding}, ${safePostalCode} ${safeCity}`;
+
+  const paymentMethodLabel = (() => {
+    const method = data.paymentMethod || data.payment?.method;
+    if (method === "przelewy24") return "Przelewy24 (szybki przelew/karta)";
+    if (method === "blik") return "BLIK";
+    if (method === "przelew") return "Przelew tradycyjny";
+    return method || "Nieznana";
+  })();
 
   const itemRows = (data.items || [])
     .map(
@@ -356,6 +518,10 @@ export function buildUnpaidOrderSellerEmailHtml(data: any, orderNumber: string):
           <tr>
             <td style="font-size:13px;color:#6b7280;padding:4px 0;font-weight:600;">Dostawa:</td>
             <td style="font-size:13px;color:#0f172a;padding:4px 0;font-weight:700;">${deliveryLabel}</td>
+          </tr>
+          <tr>
+            <td style="font-size:13px;color:#6b7280;padding:4px 0;font-weight:600;">Metoda płatności:</td>
+            <td style="font-size:13px;color:#0f172a;padding:4px 0;font-weight:700;">${paymentMethodLabel}</td>
           </tr>
         </table>
       </div>

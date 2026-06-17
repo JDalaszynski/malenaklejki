@@ -411,6 +411,7 @@ export function CheckoutForm() {
                     <p className="font-bold text-sm">BLIK</p>
                     <p className="text-xs text-muted-foreground">Szybka płatność kodem z aplikacji</p>
                   </div>
+                  <img src="/images/payment-icons/BLIK-LOGO-RGB.png" alt="BLIK" className="h-5 w-auto object-contain opacity-90" />
                 </label>
                 <label className={`flex items-center p-3 border rounded-xl cursor-pointer transition-all ${paymentMethod === "przelew" ? "border-primary bg-primary/5 text-foreground shadow-sm" : "border-border/60 bg-card text-foreground hover:bg-muted/30"}`}>
                   <input type="radio" value="przelew" {...register("paymentMethod")} className="mr-3 w-4 h-4 text-foreground focus:ring-foreground" />

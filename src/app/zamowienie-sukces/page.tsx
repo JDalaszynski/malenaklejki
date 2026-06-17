@@ -29,6 +29,7 @@ function SuccessContent() {
   const [copied, setCopied] = useState(false);
   const [retrying, setRetrying] = useState(false);
   const [retryError, setRetryError] = useState<string | null>(null);
+  const [isPrzelew, setIsPrzelew] = useState(false);
 
   const pollCountRef = useRef(0);
   const maxPolls = 6; // up to 12 seconds total checking
@@ -49,13 +50,20 @@ function SuccessContent() {
           if (res.orderNumber) setOrderNumber(res.orderNumber);
           if (res.total) setOrderTotal(res.total);
 
+          if (res.paymentMethod === "przelew") {
+            setIsPrzelew(true);
+            setPaymentStatus("success");
+            if (intervalId) clearInterval(intervalId);
+            return;
+          }
+
           if (res.status === "PAID") {
             setPaymentStatus("success");
-            clearInterval(intervalId);
+            if (intervalId) clearInterval(intervalId);
             return;
           } else if (res.status === "PAYMENT_FAILED") {
             setPaymentStatus("failed");
-            clearInterval(intervalId);
+            if (intervalId) clearInterval(intervalId);
             return;
           }
         }
@@ -195,38 +203,16 @@ function SuccessContent() {
           <div className="px-8 py-6 bg-muted/10">
             <h3 className="font-bold text-foreground mb-2 text-sm sm:text-base">Co się stało?</h3>
             <p className="text-sm font-medium text-muted-foreground leading-relaxed">
-              Przelew lub BLIK mógł zostać anulowany, odrzucony przez bank lub sesja płatności wygasła w Przelewy24. Twoje zamówienie jest bezpiecznie zapisane w naszej bazie. Nie musisz ponownie projektować i tworzyć koszyka — wystarczy kliknąć poniższy przycisk.
+              Przelew lub BLIK mógł zostać anulowany, odrzucony przez bank lub sesja płatności wygasła w Przelewy24. Twoje zamówienie jest bezpiecznie zapisane w naszej bazie. Nie musisz ponownie projektować i tworzyć koszyka — skontaktuj się z nami w celu dokończenia transakcji.
             </p>
-            {retryError && (
-              <div className="mt-4 p-4 bg-destructive/10 border border-destructive/20 text-destructive rounded-2xl text-sm font-semibold">
-                {retryError}
-              </div>
-            )}
           </div>
         </div>
 
         {/* CTA Buttons */}
-        <div className="w-full flex flex-col sm:flex-row gap-3 animate-in fade-in slide-in-from-bottom-4 duration-500 delay-200">
-          <button
-            onClick={handleRetryPayment}
-            disabled={retrying}
-            className="flex-1 inline-flex items-center justify-center gap-2 rounded-2xl text-base font-bold bg-primary text-primary-foreground hover:bg-primary/90 disabled:opacity-75 disabled:pointer-events-none h-14 px-8 transition-all hover:scale-[1.01] active:scale-[0.99] shadow-sm cursor-pointer"
-          >
-            {retrying ? (
-              <>
-                <Loader2 className="w-5 h-5 animate-spin" />
-                Generowanie płatności...
-              </>
-            ) : (
-              <>
-                <Sparkles className="w-5 h-5" />
-                Spróbuj opłacić ponownie
-              </>
-            )}
-          </button>
+        <div className="w-full flex flex-col gap-3 animate-in fade-in slide-in-from-bottom-4 duration-500 delay-200 max-w-sm mx-auto">
           <Link
             href="/kontakt"
-            className="flex-1 inline-flex items-center justify-center gap-2 rounded-2xl text-base font-bold bg-card border border-border/70 text-foreground hover:bg-muted/30 h-14 px-8 transition-all hover:scale-[1.01] active:scale-[0.99]"
+            className="w-full inline-flex items-center justify-center gap-2 rounded-2xl text-base font-bold bg-primary text-primary-foreground hover:bg-primary/90 h-14 px-8 transition-all hover:scale-[1.01] active:scale-[0.99] shadow-sm cursor-pointer"
           >
             Kontakt z obsługą
             <ArrowRight className="w-5 h-5" />
@@ -257,7 +243,16 @@ function SuccessContent() {
             Dziękujemy za zamówienie!
           </h1>
           <p className="text-muted-foreground font-medium text-base sm:text-lg max-w-md mx-auto">
-            Twoje naklejki trafiły do produkcji. <br />Zabieramy się do realizacji!
+            {isPrzelew ? (
+              <>
+                Dane do płatności przelewem wysłaliśmy na Twój e-mail.<br />
+                Po zaksięgowaniu wpłaty przystąpimy do realizacji zamówienia.
+              </>
+            ) : (
+              <>
+                Twoje naklejki trafiły do produkcji. <br />Zabieramy się do realizacji!
+              </>
+            )}
           </p>
         </div>
 
@@ -294,7 +289,11 @@ function SuccessContent() {
             <Mail className="w-5 h-5 text-primary" />
           </div>
           <p className="text-sm font-medium text-muted-foreground">
-            Wysłaliśmy potwierdzenie na Twój adres e-mail ze szczegółami zamówienia.
+            {isPrzelew ? (
+              "Szczegóły zamówienia oraz dane do przelewu znajdziesz w swojej skrzynce e-mail."
+            ) : (
+              "Wysłaliśmy potwierdzenie na Twój adres e-mail ze szczegółami zamówienia."
+            )}
           </p>
         </div>
       </div>
@@ -306,9 +305,19 @@ function SuccessContent() {
             <Clock className="w-6 h-6 text-primary" />
           </div>
           <div>
-            <p className="font-extrabold text-foreground text-base">Szacowany czas realizacji</p>
+            <p className="font-extrabold text-foreground text-base">
+              {isPrzelew ? "Czas realizacji po zaksięgowaniu wpłaty" : "Szacowany czas realizacji"}
+            </p>
             <p className="text-muted-foreground text-sm font-medium mt-0.5">
-              Produkcja i wysyłka: <strong className="text-foreground">3 dni roboczych</strong> od złożenia zamówienia i jego opłacenia.
+              {isPrzelew ? (
+                <>
+                  Produkcja i wysyłka: <strong className="text-foreground">3 dni robocze</strong> od zaksięgowania przelewu na konto.
+                </>
+              ) : (
+                <>
+                  Produkcja i wysyłka: <strong className="text-foreground">3 dni roboczych</strong> od złożenia zamówienia i jego opłacenia.
+                </>
+              )}
             </p>
           </div>
         </div>
