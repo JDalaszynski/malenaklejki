@@ -383,13 +383,11 @@ export default function Home() {
       const wMm = defaultWidthCm * 10;
       const hMm = defaultHeightCm * 10;
 
-      // Find free space on the sheet (0 rotation initially)
-      const pos = findFreePosition(wMm, hMm, 0, stickers);
+      let pos = findFreePosition(wMm, hMm, 0, stickers);
 
       if (!pos) {
-        setError("Brak miejsca na nową naklejkę! Uporządkuj lub powiększ istniejące naklejki.");
-        setIsPlacingSticker(false);
-        return;
+        // Zawsze pozwalamy dodać nową naklejkę na środku, ewentualnie wyświetli się czerwony konflikt
+        pos = { x: 105, y: 148.5 };
       }
 
       const newSticker: PlacedSticker = {
@@ -487,20 +485,15 @@ export default function Home() {
           }
         }
 
-        if (!found) {
           // If scaling down in place doesn't work, try finding a free position on the sheet
-          const freePos = findFreePosition(15, 15 / aspect, activeEditSticker.rotation || 0, otherStickers);
-          if (freePos) {
-            finalWidthCm = 1.5;
-            finalHeightCm = 1.5 / aspect;
-            finalX = freePos.x;
-            finalY = freePos.y;
-          } else {
-            setError("Brak miejsca na zaktualizowaną naklejkę! Uporządkuj lub usuń inne naklejki.");
-            setShowEditModal(false);
-            setActiveEditSticker(null);
-            return;
+          let freePos = findFreePosition(15, 15 / aspect, activeEditSticker.rotation || 0, otherStickers);
+          if (!freePos) {
+            freePos = { x: activeEditSticker.x, y: activeEditSticker.y };
           }
+          finalWidthCm = 1.5;
+          finalHeightCm = 1.5 / aspect;
+          finalX = freePos.x;
+          finalY = freePos.y;
         }
       }
 
@@ -721,7 +714,7 @@ export default function Home() {
     const wMm = selectedSticker.widthCm * 10;
     const hMm = selectedSticker.heightCm * 10;
 
-    const pos = findFreePosition(
+    let pos = findFreePosition(
       wMm,
       hMm,
       selectedSticker.rotation || 0,
@@ -731,8 +724,7 @@ export default function Home() {
     );
 
     if (!pos) {
-      setError("Brak miejsca na zduplikowanie naklejki! Uporządkuj lub zmniejsz istniejące naklejki.");
-      return;
+      pos = { x: selectedSticker.x + 10, y: selectedSticker.y + 10 };
     }
 
     const margins = getOuterMargins(selectedSticker);
