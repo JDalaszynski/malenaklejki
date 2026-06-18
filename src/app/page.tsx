@@ -485,6 +485,7 @@ export default function Home() {
           }
         }
 
+        if (!found) {
           // If scaling down in place doesn't work, try finding a free position on the sheet
           let freePos = findFreePosition(15, 15 / aspect, activeEditSticker.rotation || 0, otherStickers);
           if (!freePos) {
