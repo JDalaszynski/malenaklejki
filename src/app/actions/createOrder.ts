@@ -59,6 +59,31 @@ function generateOrderNumber(): string {
   return `MNK-${year}${month}${day}-${suffix}`;
 }
 
+
+
+/**
+ * Helper to build a clean and detailed payment description for Przelewy24 reports.
+ */
+function buildP24Description(
+  orderNumber: string,
+  email: string,
+  total: number,
+  items: any[]
+): string {
+  const itemsSummary = items
+    .map(item => `${item.sheetQuantity}x Naklejki na Arkuszu A4`)
+    .join(", ");
+
+  // Format to show Order Number, E-mail, Amount and Goods Type
+  const desc = `Zamowienie: ${orderNumber} | E-mail: ${email} | Kwota: ${total.toFixed(2)} zł | Towar: ${itemsSummary}`;
+
+  // Przelewy24 description max length is 1024 characters, let's truncate if it's too long
+  if (desc.length > 1000) {
+    return desc.slice(0, 997) + "...";
+  }
+  return desc;
+}
+
 /**
  * Sends an email via Brevo. Returns true on success.
  */
@@ -248,12 +273,14 @@ export async function createOrder(rawData: any) {
 
     // P24 lub BLIK
     const statusUrl = `${appUrl}/api/webhooks/przelewy24`;
+    const expectedTotalGrosze = Math.round(finalData.total * 100);
+    const p24Description = buildP24Description(orderNumber, finalData.email, finalData.total, finalData.items);
 
     const p24Response = await registerTransaction({
       sessionId: orderRef.id, // używamy orderRef.id jako sessionId w P24, musi być unikalny dla każdej próby
-      amount: Math.round(finalData.total * 100), // konwersja na grosze
+      amount: expectedTotalGrosze, // konwersja na grosze
       currency: "PLN",
-      description: `Zamowienie ${orderNumber}`,
+      description: p24Description,
       email: finalData.email,
       client: `${finalData.firstName} ${finalData.lastName}`,
       urlReturn: returnUrl,
@@ -321,11 +348,19 @@ export async function retryOrderPayment(orderId: string) {
     const returnUrl = `${appUrl}/zamowienie-sukces?orderNumber=${encodeURIComponent(orderData.orderNumber)}&orderId=${orderId}`;
     const statusUrl = `${appUrl}/api/webhooks/przelewy24`;
 
+    const expectedTotalGrosze = Math.round((orderData.totals?.total || 0) * 100);
+    const p24Description = buildP24Description(
+      orderData.orderNumber,
+      orderData.customer.email,
+      orderData.totals?.total || 0,
+      orderData.items || []
+    );
+
     const p24Response = await registerTransaction({
       sessionId: `${orderId}_retry${Date.now()}`,
-      amount: Math.round((orderData.totals?.total || 0) * 100),
+      amount: expectedTotalGrosze,
       currency: "PLN",
-      description: `Zamowienie ${orderData.orderNumber}`,
+      description: p24Description,
       email: orderData.customer.email,
       client: `${orderData.customer.firstName} ${orderData.customer.lastName}`,
       urlReturn: returnUrl,
