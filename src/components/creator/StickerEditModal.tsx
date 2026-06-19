@@ -2,6 +2,7 @@
 
 import { getUUID } from "@/lib/uuid";
 import React, { useState, useEffect, useRef } from "react";
+import { createPortal } from "react-dom";
 import { X, Crop, Sparkles, Loader2, RotateCcw, Maximize2, Check, Wand2 } from "lucide-react";
 import { motion } from "framer-motion";
 import { removeStickerBackground, enhanceStickerQuality } from "@/app/actions/generateImage";
@@ -28,6 +29,7 @@ const blobToBase64 = (blob: Blob): Promise<string> =>
   });
 
 export function StickerEditModal({ imageSrc, onSave, onCancel }: StickerEditModalProps) {
+  const [mounted, setMounted] = useState(false);
   const [currentUrl, setCurrentUrl] = useState(imageSrc);
   const [isProcessing, setIsProcessing] = useState(false);
   const [processingMessage, setProcessingMessage] = useState<string | null>(null);
@@ -112,6 +114,7 @@ export function StickerEditModal({ imageSrc, onSave, onCancel }: StickerEditModa
   }, [currentUrl]);
 
   useEffect(() => {
+    setMounted(true);
     document.body.style.overflow = "hidden";
     return () => {
       document.body.style.overflow = "";
@@ -338,7 +341,9 @@ export function StickerEditModal({ imageSrc, onSave, onCancel }: StickerEditModa
     }
   };
 
-  return (
+  if (!mounted) return null;
+
+  return createPortal(
     <div className="fixed inset-0 z-[100] bg-foreground/30 backdrop-blur-sm flex items-center justify-center p-4">
       <motion.div
         initial={{ scale: 0.95, opacity: 0 }}
@@ -506,6 +511,7 @@ export function StickerEditModal({ imageSrc, onSave, onCancel }: StickerEditModa
           </button>
         </div>
       </motion.div>
-    </div>
+    </div>,
+    document.body
   );
 }

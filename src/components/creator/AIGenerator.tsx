@@ -1,7 +1,8 @@
 "use client";
 
 import { getUUID } from "@/lib/uuid";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
+import { createPortal } from "react-dom";
 import { generateStickerImage } from "@/app/actions/generateImage";
 import {
   Loader2,
@@ -102,6 +103,10 @@ const STYLES = [
 ];
 
 export function AIGenerator({ onImageGenerated }: AIGeneratorProps) {
+  const [isMounted, setIsMounted] = useState(false);
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
   const [prompt, setPrompt] = useState("");
   const [isGenerating, setIsGenerating] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -343,7 +348,7 @@ export function AIGenerator({ onImageGenerated }: AIGeneratorProps) {
                   {attachedImage.fileName}
                 </p>
                 <p className="text-[10px] text-muted-foreground font-medium mt-0.5">
-                  Gemini przetworzy to zdjęcie na naklejkę
+                  Generator przetworzy to zdjęcie na naklejkę
                 </p>
               </div>
               <button
@@ -424,7 +429,7 @@ export function AIGenerator({ onImageGenerated }: AIGeneratorProps) {
 
       {/* Result Preview Modal */}
       <AnimatePresence>
-        {previewUrl && (
+        {isMounted && previewUrl && createPortal(
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -493,7 +498,8 @@ export function AIGenerator({ onImageGenerated }: AIGeneratorProps) {
                 </button>
               </div>
             </motion.div>
-          </motion.div>
+          </motion.div>,
+          document.body
         )}
       </AnimatePresence>
 
