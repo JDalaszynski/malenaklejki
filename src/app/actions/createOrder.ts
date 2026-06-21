@@ -220,10 +220,12 @@ export async function createOrder(rawData: any) {
         for (const att of finalData.pdfAttachments) {
           const prefix = orderNumber.replace(/[^a-zA-Z0-9-]/g, "_");
           const attachmentName = `${prefix}-${att.name}`;
+          const isJpg = att.name.toLowerCase().endsWith(".jpg") || att.name.toLowerCase().endsWith(".jpeg");
+          const contentType = isJpg ? "image/jpeg" : "application/pdf";
           attachments.push({
             content: att.base64,
             name: attachmentName,
-            type: "application/pdf",
+            type: contentType,
           });
         }
       }

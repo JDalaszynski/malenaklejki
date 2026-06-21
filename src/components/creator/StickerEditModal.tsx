@@ -361,7 +361,7 @@ export function StickerEditModal({ imageSrc, onSave, onCancel }: StickerEditModa
           <button
             onClick={onCancel}
             disabled={isProcessing}
-            className="p-1.5 rounded-full border border-border hover:bg-muted/50 active:scale-95 transition-all"
+            className="p-1.5 rounded-full border border-border hover:bg-muted/50 active:scale-95 transition-all cursor-pointer"
           >
             <X className="w-4 h-4 text-foreground" />
           </button>
@@ -473,7 +473,7 @@ export function StickerEditModal({ imageSrc, onSave, onCancel }: StickerEditModa
             type="button"
             onClick={handleRemoveBackground}
             disabled={isProcessing}
-            className="w-full sm:flex-1 inline-flex items-center justify-center gap-1.5 rounded-xl text-xs font-bold bg-primary/15 text-primary hover:bg-primary/25 border border-primary/25 h-12 px-3 shadow-none transition-all active:scale-[0.98] disabled:opacity-50"
+            className="w-full sm:flex-1 inline-flex items-center justify-center gap-1.5 rounded-xl text-xs font-bold bg-primary/15 text-primary hover:bg-primary/25 border border-primary/25 h-12 px-3 shadow-none transition-all active:scale-[0.98] disabled:opacity-50 cursor-pointer"
           >
             <Sparkles className="w-3.5 h-3.5" />
             Usuń tło
@@ -485,7 +485,7 @@ export function StickerEditModal({ imageSrc, onSave, onCancel }: StickerEditModa
             type="button"
             onClick={() => imageRef.current && initializeLayout(imageRef.current, true)}
             disabled={isProcessing}
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-1.5 rounded-xl text-xs font-bold bg-muted text-muted-foreground hover:bg-muted/80 border border-border/30 h-12 px-4 transition-all active:scale-[0.98] disabled:opacity-50"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-1.5 rounded-xl text-xs font-bold bg-muted text-muted-foreground hover:bg-muted/80 border border-border/30 h-12 px-4 transition-all active:scale-[0.98] disabled:opacity-50 cursor-pointer"
           >
             <RotateCcw className="w-3.5 h-3.5" />
             Resetuj kadr
@@ -497,14 +497,14 @@ export function StickerEditModal({ imageSrc, onSave, onCancel }: StickerEditModa
           <button
             onClick={onCancel}
             disabled={isProcessing}
-            className="flex-1 inline-flex items-center justify-center rounded-xl text-sm font-bold bg-muted text-muted-foreground hover:bg-muted/80 h-11 transition-all active:scale-[0.98]"
+            className="flex-1 inline-flex items-center justify-center rounded-xl text-sm font-bold bg-muted text-muted-foreground hover:bg-muted/80 h-11 transition-all active:scale-[0.98] cursor-pointer"
           >
             Anuluj
           </button>
           <button
             onClick={handleCropAndSave}
             disabled={isProcessing}
-            className="flex-1 inline-flex items-center justify-center rounded-xl text-sm font-bold bg-primary text-primary-foreground hover:bg-primary/95 h-11 shadow-sm transition-all disabled:opacity-50 active:scale-[0.98]"
+            className="flex-1 inline-flex items-center justify-center rounded-xl text-sm font-bold bg-primary text-primary-foreground hover:bg-primary/95 h-11 shadow-sm transition-all disabled:opacity-50 active:scale-[0.98] cursor-pointer"
           >
             <Check className="w-4 h-4 mr-1.5" />
             Dodaj naklejkę

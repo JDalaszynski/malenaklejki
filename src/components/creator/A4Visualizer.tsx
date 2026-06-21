@@ -31,7 +31,7 @@ export function A4Visualizer({ imageUrl, onImageChange }: A4VisualizerProps) {
   // A4 Sheet dimensions in mm
   const SHEET_WIDTH_MM = 210;
   const SHEET_HEIGHT_MM = 297;
-  const MARGIN_MM = 10; // 1cm margin
+  const MARGIN_MM = 11; // 11mm margin
 
   // Usable area in mm after subtracting safety margins
   const USABLE_WIDTH_MM = SHEET_WIDTH_MM - 2 * MARGIN_MM;

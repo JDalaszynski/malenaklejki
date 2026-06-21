@@ -112,9 +112,9 @@ export function NewA4Visualizer({
   // Constants
   const SHEET_WIDTH_MM = 210;
   const SHEET_HEIGHT_MM = 297;
-  const MARGIN_MM = 10;
-  const USABLE_WIDTH_MM = SHEET_WIDTH_MM - 2 * MARGIN_MM; // 190
-  const USABLE_HEIGHT_MM = SHEET_HEIGHT_MM - 2 * MARGIN_MM; // 277
+  const MARGIN_MM = 11;
+  const USABLE_WIDTH_MM = SHEET_WIDTH_MM - 2 * MARGIN_MM; // 188
+  const USABLE_HEIGHT_MM = SHEET_HEIGHT_MM - 2 * MARGIN_MM; // 275
 
   // Presentation State
   const [demoStickers, setDemoStickers] = useState<PlacedSticker[]>([]);
@@ -443,7 +443,7 @@ export function NewA4Visualizer({
       {/* Grid pattern background */}
       <div className="absolute inset-0 bg-[radial-gradient(#cbd5e1_1px,transparent_1px)] [background-size:16px_16px] pointer-events-none opacity-60" />
 
-      {/* Safety Margins (10mm) indicator */}
+      {/* Safety Margins (11mm) indicator */}
       <div
         className="absolute border-2 border-dashed border-destructive/50 pointer-events-none z-20"
         style={{

@@ -18,7 +18,7 @@ export function A4Visualizer3D({ stickers }: A4Visualizer3DProps) {
   // Constants (same as 2D Visualizer for scaling)
   const SHEET_WIDTH_MM = 210;
   const SHEET_HEIGHT_MM = 297;
-  const MARGIN_MM = 10;
+  const MARGIN_MM = 11;
 
   const handlePointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
     const container = containerRef.current;
@@ -85,28 +85,7 @@ export function A4Visualizer3D({ stickers }: A4Visualizer3DProps) {
           style={{ transform: "translateZ(-1px)" }}
         />
 
-        {/* Watermarks (znaki wodne) */}
-        <div
-          className="absolute left-0 right-0 top-0 flex items-center justify-center overflow-hidden pointer-events-none select-none text-secondary/35 font-extrabold tracking-wider whitespace-nowrap"
-          style={{
-            height: `${(MARGIN_MM / SHEET_HEIGHT_MM) * 100}%`,
-            fontSize: "1.5cqw",
-            transform: "translateZ(1px)",
-          }}
-        >
-          {Array(50).fill("małe").join(" ")}
-        </div>
 
-        <div
-          className="absolute left-0 right-0 bottom-0 flex items-center justify-center overflow-hidden pointer-events-none select-none text-secondary/35 font-extrabold tracking-wider whitespace-nowrap"
-          style={{
-            height: `${(MARGIN_MM / SHEET_HEIGHT_MM) * 100}%`,
-            fontSize: "1.5cqw",
-            transform: "translateZ(1px)",
-          }}
-        >
-          {Array(35).fill("Naklejki").join(" ")}
-        </div>
 
         {/* Render Stickers with 3D Depth */}
         {stickers.map((st) => {

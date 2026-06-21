@@ -275,10 +275,10 @@ export default function Home() {
 
           let targetX = currentSt.x;
           let targetY = currentSt.y;
-          if (targetX < 10 + margins.left) targetX = 10 + margins.left;
-          if (targetX > 200 - margins.right) targetX = 200 - margins.right;
-          if (targetY < 10 + margins.top) targetY = 10 + margins.top;
-          if (targetY > 287 - margins.bottom) targetY = 287 - margins.bottom;
+          if (targetX < 11 + margins.left) targetX = 11 + margins.left;
+          if (targetX > 199 - margins.right) targetX = 199 - margins.right;
+          if (targetY < 11 + margins.top) targetY = 11 + margins.top;
+          if (targetY > 286 - margins.bottom) targetY = 286 - margins.bottom;
 
           updatedStickers[idx] = {
             ...currentSt,
@@ -339,10 +339,10 @@ export default function Home() {
       contourPolygons,
     });
 
-    const startX = 10 + margins.left;
-    const endX = 200 - margins.right;
-    const startY = 10 + margins.top;
-    const endY = 287 - margins.bottom;
+    const startX = 11 + margins.left;
+    const endX = 199 - margins.right;
+    const startY = 11 + margins.top;
+    const endY = 286 - margins.bottom;
 
     for (let candidateY = startY; candidateY <= endY; candidateY += step) {
       for (let candidateX = startX; candidateX <= endX; candidateX += step) {
@@ -450,16 +450,16 @@ export default function Home() {
         let ty = activeEditSticker.y;
 
         // Clamp to safety boundaries
-        if (tx < 10 + margins.left) tx = 10 + margins.left;
-        if (tx > 200 - margins.right) tx = 200 - margins.right;
-        if (ty < 10 + margins.top) ty = 10 + margins.top;
-        if (ty > 287 - margins.bottom) ty = 287 - margins.bottom;
+        if (tx < 11 + margins.left) tx = 11 + margins.left;
+        if (tx > 199 - margins.right) tx = 199 - margins.right;
+        if (ty < 11 + margins.top) ty = 11 + margins.top;
+        if (ty > 286 - margins.bottom) ty = 286 - margins.bottom;
 
         const fitsIn =
-          tx >= 10 + margins.left &&
-          tx <= 200 - margins.right &&
-          ty >= 10 + margins.top &&
-          ty <= 287 - margins.bottom;
+          tx >= 11 + margins.left &&
+          tx <= 199 - margins.right &&
+          ty >= 11 + margins.top &&
+          ty <= 286 - margins.bottom;
 
         if (!fitsIn) return null;
 
@@ -544,16 +544,16 @@ export default function Home() {
     let targetX = selectedSticker.x;
     let targetY = selectedSticker.y;
 
-    if (targetX < 10 + margins.left) targetX = 10 + margins.left;
-    if (targetX > 200 - margins.right) targetX = 200 - margins.right;
-    if (targetY < 10 + margins.top) targetY = 10 + margins.top;
-    if (targetY > 287 - margins.bottom) targetY = 287 - margins.bottom;
+    if (targetX < 11 + margins.left) targetX = 11 + margins.left;
+    if (targetX > 199 - margins.right) targetX = 199 - margins.right;
+    if (targetY < 11 + margins.top) targetY = 11 + margins.top;
+    if (targetY > 286 - margins.bottom) targetY = 286 - margins.bottom;
 
     const fitsInBounds =
-      targetX >= 10 + margins.left &&
-      targetX <= 200 - margins.right &&
-      targetY >= 10 + margins.top &&
-      targetY <= 287 - margins.bottom;
+      targetX >= 11 + margins.left &&
+      targetX <= 199 - margins.right &&
+      targetY >= 11 + margins.top &&
+      targetY <= 286 - margins.bottom;
 
     if (fitsInBounds) {
       setStickers(
@@ -587,16 +587,16 @@ export default function Home() {
       let tx = selectedSticker.x;
       let ty = selectedSticker.y;
 
-      if (tx < 10 + margins.left) tx = 10 + margins.left;
-      if (tx > 200 - margins.right) tx = 200 - margins.right;
-      if (ty < 10 + margins.top) ty = 10 + margins.top;
-      if (ty > 287 - margins.bottom) ty = 287 - margins.bottom;
+      if (tx < 11 + margins.left) tx = 11 + margins.left;
+      if (tx > 199 - margins.right) tx = 199 - margins.right;
+      if (ty < 11 + margins.top) ty = 11 + margins.top;
+      if (ty > 286 - margins.bottom) ty = 286 - margins.bottom;
 
       const fitsIn =
-        tx >= 10 + margins.left &&
-        tx <= 200 - margins.right &&
-        ty >= 10 + margins.top &&
-        ty <= 287 - margins.bottom;
+        tx >= 11 + margins.left &&
+        tx <= 199 - margins.right &&
+        ty >= 11 + margins.top &&
+        ty <= 286 - margins.bottom;
 
       if (!fitsIn) return null;
 
@@ -682,16 +682,16 @@ export default function Home() {
     let targetX = selectedSticker.x;
     let targetY = selectedSticker.y;
 
-    if (targetX < 10 + margins.left) targetX = 10 + margins.left;
-    if (targetX > 200 - margins.right) targetX = 200 - margins.right;
-    if (targetY < 10 + margins.top) targetY = 10 + margins.top;
-    if (targetY > 287 - margins.bottom) targetY = 287 - margins.bottom;
+    if (targetX < 11 + margins.left) targetX = 11 + margins.left;
+    if (targetX > 199 - margins.right) targetX = 199 - margins.right;
+    if (targetY < 11 + margins.top) targetY = 11 + margins.top;
+    if (targetY > 286 - margins.bottom) targetY = 286 - margins.bottom;
 
     const fitsInBounds =
-      targetX >= 10 + margins.left &&
-      targetX <= 200 - margins.right &&
-      targetY >= 10 + margins.top &&
-      targetY <= 287 - margins.bottom;
+      targetX >= 11 + margins.left &&
+      targetX <= 199 - margins.right &&
+      targetY >= 11 + margins.top &&
+      targetY <= 286 - margins.bottom;
 
     if (!fitsInBounds) {
       setError("Brak miejsca na zmianę linii cięcia (kontur wychodzi poza arkusz)!");
@@ -732,10 +732,10 @@ export default function Home() {
 
     let targetX = pos.x;
     let targetY = pos.y;
-    if (targetX < 10 + margins.left) targetX = 10 + margins.left;
-    if (targetX > 200 - margins.right) targetX = 200 - margins.right;
-    if (targetY < 10 + margins.top) targetY = 10 + margins.top;
-    if (targetY > 287 - margins.bottom) targetY = 287 - margins.bottom;
+    if (targetX < 11 + margins.left) targetX = 11 + margins.left;
+    if (targetX > 199 - margins.right) targetX = 199 - margins.right;
+    if (targetY < 11 + margins.top) targetY = 11 + margins.top;
+    if (targetY > 286 - margins.bottom) targetY = 286 - margins.bottom;
 
     const duplicated: PlacedSticker = {
       ...selectedSticker,
@@ -1004,22 +1004,7 @@ export default function Home() {
       ctx.restore();
     }
 
-    // Watermarks (znaki wodne)
-    ctx.save();
-    ctx.fillStyle = "rgba(64, 190, 136, 0.45)"; // Subtle brand color (#40BE88)
-    ctx.font = `bold ${3.3 * MM_TO_PX}px sans-serif`;
-    ctx.textAlign = "center";
-    ctx.textBaseline = "middle";
-
-    // Top watermark
-    const topText = "małe ".repeat(80).trim();
-    ctx.fillText(topText, A4_W / 2, 5 * MM_TO_PX);
-
-    // Bottom watermark
-    const bottomText = "NAKLEJKI ".repeat(50).trim();
-    ctx.fillText(bottomText, A4_W / 2, 292 * MM_TO_PX);
-
-    ctx.restore();
+    // Watermarks removed
 
     return canvas;
   };
@@ -1116,7 +1101,7 @@ export default function Home() {
     }
   };
 
-  // Download high-res PDF
+  // Download high-res PDF or JPG
   const handleDownloadPDF = async (mode: "print" | "cut-lines") => {
     if (stickers.length === 0) return;
     setIsGeneratingPdf(true);
@@ -1126,19 +1111,30 @@ export default function Home() {
       const canvas = await renderSheetCanvas(mode);
       const imgData = canvas.toDataURL("image/jpeg", 0.85);
 
-      const pdf = new jsPDF({
-        orientation: "portrait",
-        unit: "mm",
-        format: "a4",
-      });
+      if (mode === "cut-lines") {
+        const link = document.createElement("a");
+        link.href = imgData;
+        link.download = "kompozycja-arkusza-A4-LINIE_CIECIA.jpg";
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      } else {
+        const pdf = new jsPDF({
+          orientation: "portrait",
+          unit: "mm",
+          format: "a4",
+        });
 
-      pdf.addImage(imgData, "JPEG", 0, 0, 210, 297);
-
-      const fileSuffix = mode === "print" ? "DRUK" : "LINIE_CIECIA";
-      pdf.save(`kompozycja-arkusza-A4-${fileSuffix}.pdf`);
+        pdf.addImage(imgData, "JPEG", 0, 0, 210, 297);
+        pdf.save("kompozycja-arkusza-A4-DRUK.pdf");
+      }
     } catch (err: any) {
       console.error(err);
-      setError("Nie udało się wygenerować pliku PDF.");
+      setError(
+        mode === "cut-lines"
+          ? "Nie udało się wygenerować pliku JPG."
+          : "Nie udało się wygenerować pliku PDF."
+      );
     } finally {
       setIsGeneratingPdf(false);
     }

@@ -79,6 +79,27 @@ async function generatePdfBase64(imageUrl: string): Promise<string> {
   return pdfOutput.split(",")[1];
 }
 
+/** Fetches an image URL and converts it directly to a base64 string (without embedding in PDF).
+ */
+async function fetchImageBase64(imageUrl: string): Promise<string> {
+  // Fetch the image via proxy to avoid CORS
+  const response = await fetch(`/api/proxy-image?url=${encodeURIComponent(imageUrl)}`);
+  if (!response.ok) {
+    throw new Error(`Failed to fetch image: ${imageUrl}`);
+  }
+  const blob = await response.blob();
+
+  // Convert the blob directly to a base64 data URL
+  const base64DataUrl = await new Promise<string>((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onloadend = () => resolve(reader.result as string);
+    reader.onerror = () => reject(new Error("Failed to read image blob"));
+    reader.readAsDataURL(blob);
+  });
+
+  return base64DataUrl.split(",")[1];
+}
+
 
 
 export function CheckoutForm() {
@@ -136,12 +157,12 @@ export function CheckoutForm() {
             name: `arkusz-${itemIndex}-DRUK.pdf`,
           });
 
-          // Cut-lines PDF – use the dedicated cut-lines image stored at add-to-cart time
+          // Cut-lines JPG – use the dedicated cut-lines image stored at add-to-cart time
           const cutSource = item.cutLinesImageUrl ?? item.imageUrl;
-          const cutBase64 = await generatePdfBase64(cutSource);
+          const cutBase64 = await fetchImageBase64(cutSource);
           pdfAttachments.push({
             base64: cutBase64,
-            name: `arkusz-${itemIndex}-LINIE-CIECIA.pdf`,
+            name: `arkusz-${itemIndex}-LINIE-CIECIA.jpg`,
           });
         } catch (pdfErr) {
           console.warn(`PDF generation failed for item ${itemIndex}:`, pdfErr);

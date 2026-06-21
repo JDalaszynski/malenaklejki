@@ -93,10 +93,12 @@ export async function POST(req: NextRequest) {
       for (const att of orderData.pdfAttachments) {
         const prefix = orderData.orderNumber.replace(/[^a-zA-Z0-9-]/g, "_");
         const attachmentName = `${prefix}-${att.name}`;
+        const isJpg = att.name.toLowerCase().endsWith(".jpg") || att.name.toLowerCase().endsWith(".jpeg");
+        const contentType = isJpg ? "image/jpeg" : "application/pdf";
         attachments.push({
           content: att.base64,
           name: attachmentName,
-          type: "application/pdf",
+          type: contentType,
         });
       }
       // Opcjonalnie: usunięcie wielkich plików PDF z bazy po wysłaniu e-maila, by oszczędzić miejsce
