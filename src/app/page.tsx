@@ -1088,6 +1088,357 @@ export default function Home() {
     return canvas;
   };
 
+  // Render high resolution 3D sheet visualization on hidden canvas
+  const render3DSheetCanvas = async (): Promise<HTMLCanvasElement> => {
+    const A4_W = 2480;
+    const A4_H = 3508;
+    const MM_TO_PX = A4_W / 210;
+
+    // Create a temporary flat canvas to render the high-res flat sheet with realistic sticker look
+    const flatCanvas = document.createElement("canvas");
+    flatCanvas.width = A4_W;
+    flatCanvas.height = A4_H;
+    const flatCtx = flatCanvas.getContext("2d")!;
+
+    // Fill white background for the A4 sheet
+    flatCtx.fillStyle = "#ffffff";
+    flatCtx.fillRect(0, 0, A4_W, A4_H);
+
+    // Load sticker images
+    const loadedImages = await Promise.all(
+      stickers.map(async (st) => {
+        try {
+          const img = await loadProxiedImage(st.imageUrl);
+          return { id: st.id, img };
+        } catch (err) {
+          console.error(err);
+          return null;
+        }
+      })
+    );
+
+    // Draw realistic stickers on the flat canvas
+    for (const st of stickers) {
+      const drawX = st.x * MM_TO_PX;
+      const drawY = st.y * MM_TO_PX;
+      const drawW = st.widthCm * 10 * MM_TO_PX;
+      const drawH = st.heightCm * 10 * MM_TO_PX;
+
+      const wMm = st.widthCm * 10;
+      const hMm = st.heightCm * 10;
+      const baseOffsetMm = Math.max(2, Math.max(wMm, hMm) * (8 / 120));
+      const isInside = st.cutLineType === "rounded_inside" || st.cutLineType === "circle_inside" || st.cutLineType === "contour_inside";
+      const offsetMm = isInside ? -2 : baseOffsetMm;
+
+      let sx = 1;
+      let sy = 1;
+      if (st.cutLineType === "rounded" || st.cutLineType === "rounded_inside" || st.cutLineType === "circle" || st.cutLineType === "circle_inside") {
+        sx = (wMm + 2 * offsetMm) / wMm;
+        sy = (hMm + 2 * offsetMm) / hMm;
+      } else if (st.cutLineType === "contour" || st.cutLineType === "contour_inside") {
+        const scaleX = (st.cutLineType === "contour" && Math.max(wMm, hMm) * (8 / 120) < 2)
+          ? (wMm / 2 + 2) / (wMm / 2 + Math.max(wMm, hMm) * (8 / 120))
+          : 1;
+        const scaleY = (st.cutLineType === "contour" && Math.max(wMm, hMm) * (8 / 120) < 2)
+          ? (hMm / 2 + 2) / (hMm / 2 + Math.max(wMm, hMm) * (8 / 120))
+          : 1;
+        sx = scaleX;
+        sy = scaleY;
+      }
+
+      // Helper to define cut path
+      const defineCutPath = (ctx: CanvasRenderingContext2D, w: number, h: number, type: string) => {
+        const rx = -w / 2;
+        const ry = -h / 2;
+        if (type === "circle" || type === "circle_inside") {
+          ctx.beginPath();
+          ctx.ellipse(0, 0, w / 2, h / 2, 0, 0, 2 * Math.PI);
+          ctx.closePath();
+        } else if (type === "rounded" || type === "rounded_inside" || type === "none") {
+          const radius = w * 0.05; // 5% border radius
+          ctx.beginPath();
+          ctx.moveTo(rx + radius, ry);
+          ctx.lineTo(rx + w - radius, ry);
+          ctx.quadraticCurveTo(rx + w, ry, rx + w, ry + radius);
+          ctx.lineTo(rx + w, ry + h - radius);
+          ctx.quadraticCurveTo(rx + w, ry + h, rx + w - radius, ry + h);
+          ctx.lineTo(rx + radius, ry + h);
+          ctx.quadraticCurveTo(rx, ry + h, rx, ry + h - radius);
+          ctx.lineTo(rx, ry + radius);
+          ctx.quadraticCurveTo(rx, ry, rx + radius, ry);
+          ctx.closePath();
+        } else if (type === "contour" || type === "contour_inside") {
+          if (st.contourPolygons && st.contourPolygons.length > 0) {
+            ctx.beginPath();
+            st.contourPolygons.forEach((poly) => {
+              if (poly.length < 2) return;
+              ctx.moveTo(rx + poly[0].x * w, ry + poly[0].y * h);
+              for (let i = 1; i < poly.length; i++) {
+                ctx.lineTo(rx + poly[i].x * w, ry + poly[i].y * h);
+              }
+            });
+            ctx.closePath();
+          } else {
+            ctx.beginPath();
+            ctx.rect(rx, ry, w, h);
+            ctx.closePath();
+          }
+        }
+      };
+
+      // 1. Draw sticker shadow on the flat sheet
+      flatCtx.save();
+      flatCtx.translate(drawX + drawW / 2, drawY + drawH / 2);
+      flatCtx.rotate(((st.rotation || 0) * Math.PI) / 180);
+      flatCtx.translate(1.0 * MM_TO_PX, 1.5 * MM_TO_PX);
+      defineCutPath(flatCtx, drawW * sx, drawH * sy, st.cutLineType);
+      flatCtx.fillStyle = "rgba(0, 0, 0, 0.09)";
+      flatCtx.filter = "blur(4px)";
+      flatCtx.fill();
+      flatCtx.filter = "none";
+      flatCtx.restore();
+
+      // 2. Draw sticker vinyl backing (white background)
+      flatCtx.save();
+      flatCtx.translate(drawX + drawW / 2, drawY + drawH / 2);
+      flatCtx.rotate(((st.rotation || 0) * Math.PI) / 180);
+      flatCtx.fillStyle = "#ffffff";
+      defineCutPath(flatCtx, drawW * sx, drawH * sy, st.cutLineType);
+      flatCtx.fill();
+
+      // 3. Clip and draw sticker image
+      const loaded = loadedImages.find((item) => item?.id === st.id);
+      if (loaded?.img) {
+        flatCtx.save();
+        defineCutPath(flatCtx, drawW * sx, drawH * sy, st.cutLineType);
+        flatCtx.clip();
+        flatCtx.drawImage(loaded.img, -drawW / 2, -drawH / 2, drawW, drawH);
+        flatCtx.restore();
+      }
+
+      // 4. Draw cut outline (light gray, realistic cut lines look)
+      if (st.cutLineType !== "none") {
+        flatCtx.strokeStyle = "#cbd5e1";
+        flatCtx.lineWidth = 1.0 * MM_TO_PX;
+        defineCutPath(flatCtx, drawW * sx, drawH * sy, st.cutLineType);
+        flatCtx.stroke();
+      }
+      flatCtx.restore();
+    }
+
+    // Now, create the target canvas for the 3D projection
+    const destCanvas = document.createElement("canvas");
+    destCanvas.width = 1240;
+    destCanvas.height = 1754;
+    const destCtx = destCanvas.getContext("2d")!;
+
+    // Leave the background transparent so the shadow blends perfectly
+
+    // Projection variables
+    const thetaX = 10 * Math.PI / 180;
+    const thetaY = -15 * Math.PI / 180;
+    const d = 1200;
+    const S = 0.35; // Scaling factor to fit comfortably with shadow padding
+
+    const cosX = Math.cos(thetaX);
+    const sinX = Math.sin(thetaX);
+    const cosY = Math.cos(thetaY);
+    const sinY = Math.sin(thetaY);
+
+    const project = (x: number, y: number) => {
+      const x0 = (x - A4_W / 2) * S;
+      const y0 = (y - A4_H / 2) * S;
+      const x1 = x0 * cosY;
+      const y1 = y0;
+      const z1 = -x0 * sinY;
+      const x2 = x1;
+      const y2 = y1 * cosX - z1 * sinX;
+      const z2 = y1 * sinX + z1 * cosX;
+      const u = (x2 * d) / (d - z2);
+      const v = (y2 * d) / (d - z2);
+      return {
+        x: u + destCanvas.width / 2,
+        y: v + destCanvas.height / 2,
+      };
+    };
+
+    const projectShadow = (x: number, y: number) => {
+      const x0 = (x - A4_W / 2) * S;
+      const y0 = (y - A4_H / 2) * S;
+      const z0 = -80; // offset in depth
+      const x1 = x0 * cosY + z0 * sinY;
+      const y1 = y0;
+      const z1 = -x0 * sinY + z0 * cosY;
+      const x2 = x1;
+      const y2 = y1 * cosX - z1 * sinX;
+      const z2 = y1 * sinX + z1 * cosX;
+      const u = (x2 * d) / (d - z2);
+      const v = (y2 * d) / (d - z2);
+      return {
+        x: u + destCanvas.width / 2 + 10,
+        y: v + destCanvas.height / 2 + 35,
+      };
+    };
+
+    // 1. Draw sheet shadow
+    const s00 = projectShadow(0, 0);
+    const s10 = projectShadow(A4_W, 0);
+    const s11 = projectShadow(A4_W, A4_H);
+    const s01 = projectShadow(0, A4_H);
+
+    destCtx.save();
+    destCtx.filter = "blur(40px)";
+    destCtx.fillStyle = "rgba(0, 0, 0, 0.16)";
+    destCtx.beginPath();
+    destCtx.moveTo(s00.x, s00.y);
+    destCtx.lineTo(s10.x, s10.y);
+    destCtx.lineTo(s11.x, s11.y);
+    destCtx.lineTo(s01.x, s01.y);
+    destCtx.closePath();
+    destCtx.fill();
+    destCtx.filter = "none";
+    destCtx.restore();
+
+    // 2. Draw solid white sheet background underneath the mesh warp to ensure no background bleeds through subpixel gaps
+    const pTL_bg = project(0, 0);
+    const pTR_bg = project(A4_W, 0);
+    const pBR_bg = project(A4_W, A4_H);
+    const pBL_bg = project(0, A4_H);
+
+    destCtx.save();
+    destCtx.fillStyle = "#ffffff";
+    destCtx.beginPath();
+    destCtx.moveTo(pTL_bg.x, pTL_bg.y);
+    destCtx.lineTo(pTR_bg.x, pTR_bg.y);
+    destCtx.lineTo(pBR_bg.x, pBR_bg.y);
+    destCtx.lineTo(pBL_bg.x, pBL_bg.y);
+    destCtx.closePath();
+    destCtx.fill();
+    destCtx.restore();
+
+    // Helper to draw projected triangles with slight inflation to prevent gaps
+    const drawTriangle = (
+      ctx: CanvasRenderingContext2D,
+      src: HTMLCanvasElement,
+      x0: number, y0: number,
+      x1: number, y1: number,
+      x2: number, y2: number,
+      u0: number, v0: number,
+      u1: number, v1: number,
+      u2: number, v2: number
+    ) => {
+      // Calculate centroid of destination triangle
+      const uc = (u0 + u1 + u2) / 3;
+      const vc = (v0 + v1 + v2) / 3;
+
+      // Inflate destination vertices slightly outwards from centroid (0.75px) to prevent subpixel antialiasing cracks
+      const inflate = (u: number, v: number) => {
+        const du = u - uc;
+        const dv = v - vc;
+        const len = Math.sqrt(du * du + dv * dv);
+        if (len < 0.0001) return { u, v };
+        return {
+          u: u + (du / len) * 0.75,
+          v: v + (dv / len) * 0.75,
+        };
+      };
+
+      const p0 = inflate(u0, v0);
+      const p1 = inflate(u1, v1);
+      const p2 = inflate(u2, v2);
+
+      const delta = x0 * (y1 - y2) + x1 * (y2 - y0) + x2 * (y0 - y1);
+      if (Math.abs(delta) < 0.0001) return;
+
+      const a = (p0.u * (y1 - y2) + p1.u * (y2 - y0) + p2.u * (y0 - y1)) / delta;
+      const c = (p0.u * (x2 - x1) + p1.u * (x0 - x2) + p2.u * (x1 - x0)) / delta;
+      const e = (p0.u * (x1 * y2 - x2 * y1) + p1.u * (x2 * y0 - x0 * y2) + p2.u * (x0 * y1 - x1 * y0)) / delta;
+
+      const b = (p0.v * (y1 - y2) + p1.v * (y2 - y0) + p2.v * (y0 - y1)) / delta;
+      const d = (p0.v * (x2 - x1) + p1.v * (x0 - x2) + p2.v * (x1 - x0)) / delta;
+      const f = (p0.v * (x1 * y2 - x2 * y1) + p1.v * (x2 * y0 - x0 * y2) + p2.v * (x0 * y1 - x1 * y0)) / delta;
+
+      ctx.save();
+      ctx.beginPath();
+      ctx.moveTo(p0.u, p0.v);
+      ctx.lineTo(p1.u, p1.v);
+      ctx.lineTo(p2.u, p2.v);
+      ctx.closePath();
+      ctx.clip();
+
+      ctx.transform(a, b, c, d, e, f);
+      ctx.drawImage(src, 0, 0);
+      ctx.restore();
+    };
+
+    // 2. Warp flat sheet to 3D projected space on destination canvas
+    const cols = 16;
+    const rows = 16;
+    const cellW = A4_W / cols;
+    const cellH = A4_H / rows;
+
+    for (let r = 0; r < rows; r++) {
+      for (let c = 0; c < cols; c++) {
+        const x0 = c * cellW;
+        const y0 = r * cellH;
+        const x1 = x0 + cellW;
+        const y1 = y0 + cellH;
+
+        const p00 = project(x0, y0);
+        const p10 = project(x1, y0);
+        const p01 = project(x0, y1);
+        const p11 = project(x1, y1);
+
+        drawTriangle(destCtx, flatCanvas, x0, y0, x1, y0, x0, y1, p00.x, p00.y, p10.x, p10.y, p01.x, p01.y);
+        drawTriangle(destCtx, flatCanvas, x1, y0, x1, y1, x0, y1, p10.x, p10.y, p11.x, p11.y, p01.x, p01.y);
+      }
+    }
+
+    // 3. Draw sheet physical outline edge
+    const pTL = project(0, 0);
+    const pTR = project(A4_W, 0);
+    const pBR = project(A4_W, A4_H);
+    const pBL = project(0, A4_H);
+
+    destCtx.save();
+    destCtx.strokeStyle = "rgba(0, 0, 0, 0.12)";
+    destCtx.lineWidth = 1.5;
+    destCtx.beginPath();
+    destCtx.moveTo(pTL.x, pTL.y);
+    destCtx.lineTo(pTR.x, pTR.y);
+    destCtx.lineTo(pBR.x, pBR.y);
+    destCtx.lineTo(pBL.x, pBL.y);
+    destCtx.closePath();
+    destCtx.stroke();
+    destCtx.restore();
+
+    // 4. Draw glossy glare overlay
+    destCtx.save();
+    destCtx.beginPath();
+    destCtx.moveTo(pTL.x, pTL.y);
+    destCtx.lineTo(pTR.x, pTR.y);
+    destCtx.lineTo(pBR.x, pBR.y);
+    destCtx.lineTo(pBL.x, pBL.y);
+    destCtx.closePath();
+    destCtx.clip();
+
+    const glareCenter = project(A4_W * 0.3, A4_H * 0.2);
+    const grad = destCtx.createRadialGradient(
+      glareCenter.x, glareCenter.y, 0,
+      glareCenter.x, glareCenter.y, 600
+    );
+    grad.addColorStop(0, "rgba(255, 255, 255, 0.4)");
+    grad.addColorStop(0.5, "rgba(255, 255, 255, 0.05)");
+    grad.addColorStop(1, "rgba(255, 255, 255, 0)");
+
+    destCtx.fillStyle = grad;
+    destCtx.globalCompositeOperation = "color-dodge";
+    destCtx.fillRect(0, 0, destCanvas.width, destCanvas.height);
+    destCtx.restore();
+
+    return destCanvas;
+  };
+
   // Add sheet to Cart
   const handleAddToCart = () => {
     if (stickers.length === 0) return;
@@ -1180,22 +1531,24 @@ export default function Home() {
     }
   };
 
-  // Download high-res PNG (print or cut-lines)
-  const handleDownloadPNG = async (mode: "print" | "cut-lines") => {
+  // Download high-res PNG (print, cut-lines, or 3D visualization)
+  const handleDownloadPNG = async (mode: "print" | "cut-lines" | "3d") => {
     if (stickers.length === 0) return;
     setIsGeneratingPng(true);
     setError(null);
 
     try {
-      const canvas = await renderSheetCanvas(mode);
+      const canvas = mode === "3d" ? await render3DSheetCanvas() : await renderSheetCanvas(mode);
       const imgData = canvas.toDataURL("image/png");
 
       const link = document.createElement("a");
       link.href = imgData;
       if (mode === "cut-lines") {
         link.download = "kompozycja-arkusza-A4-LINIE_CIECIA.png";
-      } else {
+      } else if (mode === "print") {
         link.download = "kompozycja-arkusza-A4-DRUK.png";
+      } else {
+        link.download = "kompozycja-arkusza-A4-WIZUALIZACJA_3D.png";
       }
       document.body.appendChild(link);
       link.click();
@@ -1205,7 +1558,9 @@ export default function Home() {
       setError(
         mode === "cut-lines"
           ? "Nie udało się wygenerować pliku PNG (linie cięcia)."
-          : "Nie udało się wygenerować pliku PNG (druk arkusza)."
+          : mode === "print"
+          ? "Nie udało się wygenerować pliku PNG (druk arkusza)."
+          : "Nie udało się wygenerować pliku PNG (wizualizacja 3D arkusza)."
       );
     } finally {
       setIsGeneratingPng(false);
@@ -1811,22 +2166,41 @@ export default function Home() {
             <div className="flex flex-wrap justify-center items-center gap-3 sm:gap-4 pb-2">
               {[
                 { icon: Sparkles, text: "Naklejki po Twojemu w 100%" },
-                { icon: Scissors, text: "Wycinane po dowolnym kształcie" },
-                { icon: Layers, text: "Naklejki w małych ilościach" }
+                { 
+                  icon: Scissors, 
+                  text: "Wycinane po dowolnym kształcie",
+                  image: "/images/ksztalt-dowolny-naklejki-z-wlasnym-ksztaltem.jpg"
+                },
+                { 
+                  icon: Layers, 
+                  text: "Naklejki w małych ilościach",
+                  image: "/images/naklejki-od-1-szt-niski-naklad-male-ilosci-malenaklejkii.jpg"
+                }
               ].map((usp, index) => {
                 const IconComponent = usp.icon;
                 return (
                   <motion.div
                     key={index}
                     whileHover={{ scale: 1.02 }}
-                    className="flex items-center gap-2 bg-muted/40 dark:bg-white/5 border border-border/30 dark:border-white/10 px-3.5 py-2 rounded-full shadow-sm"
+                    className={`flex ${usp.image ? "flex-col items-center p-3.5 rounded-3xl max-w-[280px]" : "items-center gap-2 px-3.5 py-2 rounded-full"} bg-muted/40 dark:bg-white/5 border-0 shadow-none`}
                   >
-                    <div className="p-1 rounded-full bg-primary/10 dark:bg-primary/20 text-primary flex items-center justify-center">
-                      <IconComponent className="w-3.5 h-3.5" />
+                    {usp.image && (
+                      <div className="w-full aspect-square rounded-2xl overflow-hidden mb-2.5 flex items-center justify-center">
+                        <img
+                          src={usp.image}
+                          alt={usp.text}
+                          className={`w-full h-full object-contain rounded-xl ${usp.text === "Naklejki w małych ilościach" ? "scale-[0.88]" : ""}`}
+                        />
+                      </div>
+                    )}
+                    <div className="flex items-center gap-2">
+                      <div className="p-1 rounded-full bg-primary/10 dark:bg-primary/20 text-primary flex items-center justify-center">
+                        <IconComponent className="w-3.5 h-3.5" />
+                      </div>
+                      <span className="text-xs sm:text-sm font-extrabold text-foreground tracking-tight">
+                        {usp.text}
+                      </span>
                     </div>
-                    <span className="text-xs sm:text-sm font-extrabold text-foreground tracking-tight">
-                      {usp.text}
-                    </span>
                   </motion.div>
                 );
               })}
@@ -2106,6 +2480,19 @@ export default function Home() {
                   <Download className="w-3.5 h-3.5" />
                 )}
                 <span>Pobierz PNG (linie cięcia)</span>
+              </button>
+              <span className="text-muted-foreground/30 select-none">|</span>
+              <button
+                onClick={() => handleDownloadPNG("3d")}
+                disabled={isGeneratingPng}
+                className="hover:text-foreground transition-colors disabled:opacity-50 flex items-center gap-1.5 cursor-pointer"
+              >
+                {isGeneratingPng ? (
+                  <Loader2 className="w-3.5 h-3.5 animate-spin" />
+                ) : (
+                  <Download className="w-3.5 h-3.5" />
+                )}
+                <span>Pobierz PNG (wizualizacja 3D)</span>
               </button>
             </div>
           )}
