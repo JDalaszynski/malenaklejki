@@ -1186,14 +1186,14 @@ export default function Home() {
         }
       };
 
-      // 1. Draw sticker shadow on the flat sheet
+      // 1. Draw sticker shadow on the flat sheet (subtler offset and opacity)
       flatCtx.save();
       flatCtx.translate(drawX + drawW / 2, drawY + drawH / 2);
       flatCtx.rotate(((st.rotation || 0) * Math.PI) / 180);
-      flatCtx.translate(1.0 * MM_TO_PX, 1.5 * MM_TO_PX);
+      flatCtx.translate(0.4 * MM_TO_PX, 0.6 * MM_TO_PX);
       defineCutPath(flatCtx, drawW * sx, drawH * sy, st.cutLineType);
-      flatCtx.fillStyle = "rgba(0, 0, 0, 0.09)";
-      flatCtx.filter = "blur(4px)";
+      flatCtx.fillStyle = "rgba(0, 0, 0, 0.05)";
+      flatCtx.filter = "blur(3px)";
       flatCtx.fill();
       flatCtx.filter = "none";
       flatCtx.restore();
@@ -1216,10 +1216,10 @@ export default function Home() {
         flatCtx.restore();
       }
 
-      // 4. Draw cut outline (light gray, realistic cut lines look)
+      // 4. Draw cut outline (light gray, realistic cut lines look - thinner)
       if (st.cutLineType !== "none") {
         flatCtx.strokeStyle = "#cbd5e1";
-        flatCtx.lineWidth = 1.0 * MM_TO_PX;
+        flatCtx.lineWidth = 0.3 * MM_TO_PX;
         defineCutPath(flatCtx, drawW * sx, drawH * sy, st.cutLineType);
         flatCtx.stroke();
       }
