@@ -9,7 +9,7 @@ import Script from "next/script";
 const nunito = Nunito({
   variable: "--font-sans",
   subsets: ["latin", "latin-ext"],
-  weight: ["400", "700"],
+  weight: ["400", "600", "700", "800", "900"],
 });
 
 const fredoka = Fredoka({
@@ -20,7 +20,7 @@ const fredoka = Fredoka({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://malenaklejki.pl"),
-  title: "małeNaklejki - Stwórz własne naklejki!",
+  title: "MałeNaklejki - Stwórz własne naklejki!",
   description: "Wydrukuj swoje własne naklejki na arkuszach A4 w prosty i przyjemny sposób.",
   icons: {
     icon: "/images/logo/favicon.png?v=2",
@@ -29,10 +29,10 @@ export const metadata: Metadata = {
     canonical: "/",
   },
   openGraph: {
-    title: "małeNaklejki - Stwórz własne naklejki!",
+    title: "MałeNaklejki - Stwórz własne naklejki!",
     description: "Wydrukuj swoje własne naklejki na arkuszach A4 w prosty i przyjemny sposób.",
     url: "https://malenaklejki.pl",
-    siteName: "małeNaklejki",
+    siteName: "MałeNaklejki",
     locale: "pl_PL",
     type: "website",
     images: [
@@ -40,13 +40,13 @@ export const metadata: Metadata = {
         url: "/images/logo/favicon.png?v=2",
         width: 512,
         height: 512,
-        alt: "małeNaklejki - Kreator Naklejek A4",
+        alt: "MałeNaklejki - Kreator Naklejek A4",
       },
     ],
   },
   twitter: {
     card: "summary",
-    title: "małeNaklejki - Stwórz własne naklejki!",
+    title: "MałeNaklejki - Stwórz własne naklejki!",
     description: "Wydrukuj swoje własne naklejki na arkuszach A4 w prosty i przyjemny sposób.",
     images: ["/images/logo/favicon.png?v=2"],
   },

@@ -88,7 +88,7 @@ export function getContourMargins(
   let extraMm = 0;
   if (cutLineType === "contour") {
     const baseOffsetMm = Math.max(wMm, hMm) * (8 / 120);
-    extraMm = Math.max(0, 3 - baseOffsetMm);
+    extraMm = Math.max(0, 2 - baseOffsetMm);
   }
 
   return {
@@ -135,7 +135,7 @@ export function getCutLineMargins(
     cutLineType === "rounded_inside" ||
     cutLineType === "circle_inside"
   ) {
-    const baseOffset = Math.max(3, Math.max(widthCm, heightCm) * 10 * (8 / 120));
+    const baseOffset = Math.max(2, Math.max(widthCm, heightCm) * 10 * (8 / 120));
     const offsetMm = (cutLineType === "rounded_inside" || cutLineType === "circle_inside") ? -2 : baseOffset;
     const cutW = wMm + 2 * offsetMm;
     const cutH = hMm + 2 * offsetMm;
@@ -349,6 +349,82 @@ export function checkStickersCollision(
 
   return false;
 }
+
+/**
+ * Clamps a sticker position (x, y) based on its margins to the usable A4 sheet area,
+ * taking into account the 11mm safety margins and the 6x6mm inward indents at each of the 4 corners.
+ */
+export function clampToUsableArea(
+  x: number,
+  y: number,
+  margins: { left: number; right: number; top: number; bottom: number }
+): { x: number; y: number } {
+  const MARGIN_MM = 11;
+  const SHEET_WIDTH_MM = 210;
+  const SHEET_HEIGHT_MM = 297;
+
+  // 1. Initial clamp to main 11mm safety margins
+  let cx = Math.max(MARGIN_MM + margins.left, Math.min(SHEET_WIDTH_MM - MARGIN_MM - margins.right, x));
+  let cy = Math.max(MARGIN_MM + margins.top, Math.min(SHEET_HEIGHT_MM - MARGIN_MM - margins.bottom, y));
+
+  // Helper bounds
+  const leftBound = cx - margins.left;
+  const rightBound = cx + margins.right;
+  const topBound = cy - margins.top;
+  const bottomBound = cy + margins.bottom;
+
+  const CORNER_LIMIT = 17; // 11 + 6
+  const RIGHT_CORNER_LIMIT = 193; // 199 - 6
+  const BOTTOM_CORNER_LIMIT = 280; // 286 - 6
+
+  // 2. Resolve corner collisions (using smaller push-out distance)
+  // Top-Left: leftBound < 17 && topBound < 17
+  if (leftBound < CORNER_LIMIT && topBound < CORNER_LIMIT) {
+    const dx = CORNER_LIMIT - leftBound;
+    const dy = CORNER_LIMIT - topBound;
+    if (dx < dy) {
+      cx = CORNER_LIMIT + margins.left;
+    } else {
+      cy = CORNER_LIMIT + margins.top;
+    }
+  }
+
+  // Top-Right: rightBound > 193 && topBound < 17
+  if (rightBound > RIGHT_CORNER_LIMIT && topBound < CORNER_LIMIT) {
+    const dx = rightBound - RIGHT_CORNER_LIMIT;
+    const dy = CORNER_LIMIT - topBound;
+    if (dx < dy) {
+      cx = RIGHT_CORNER_LIMIT - margins.right;
+    } else {
+      cy = CORNER_LIMIT + margins.top;
+    }
+  }
+
+  // Bottom-Left: leftBound < 17 && bottomBound > 280
+  if (leftBound < CORNER_LIMIT && bottomBound > BOTTOM_CORNER_LIMIT) {
+    const dx = CORNER_LIMIT - leftBound;
+    const dy = bottomBound - BOTTOM_CORNER_LIMIT;
+    if (dx < dy) {
+      cx = CORNER_LIMIT + margins.left;
+    } else {
+      cy = BOTTOM_CORNER_LIMIT - margins.bottom;
+    }
+  }
+
+  // Bottom-Right: rightBound > 193 && bottomBound > 280
+  if (rightBound > RIGHT_CORNER_LIMIT && bottomBound > BOTTOM_CORNER_LIMIT) {
+    const dx = rightBound - RIGHT_CORNER_LIMIT;
+    const dy = bottomBound - BOTTOM_CORNER_LIMIT;
+    if (dx < dy) {
+      cx = RIGHT_CORNER_LIMIT - margins.right;
+    } else {
+      cy = BOTTOM_CORNER_LIMIT - margins.bottom;
+    }
+  }
+
+  return { x: cx, y: cy };
+}
+
 
 
 

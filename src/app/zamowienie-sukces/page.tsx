@@ -193,7 +193,7 @@ function SuccessContent() {
                   Kwota do zapłaty
                 </p>
                 <span className="font-black text-xl sm:text-2xl text-foreground">
-                  {orderTotal.toFixed(2)} zł
+                  {orderTotal.toFixed(2).replace('.', ',')} zł
                 </span>
               </div>
             )}

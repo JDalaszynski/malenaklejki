@@ -34,14 +34,10 @@ const CreateOrderSchema = z.object({
   nip: z.string().max(20).optional(),
   companyName: z.string().max(200).optional(),
   items: z.array(OrderItemSchema).min(1).max(100),
-  pdfAttachments: z.array(z.object({
-    base64: z.string(),
-    name: z.string().max(200),
-  })).optional(),
 });
 
 import { registerTransaction } from "@/lib/p24";
-import { buildManualTransferEmailHtml, buildNewOrderSellerEmailHtml } from "@/lib/emails";
+import { buildManualTransferEmailHtml, buildNewOrderSellerEmailHtml, buildOrderAttachments } from "@/lib/emails";
 
 /**
  * Generates a human-readable order number: MNK-YYYYMMDD-XXXX
@@ -75,7 +71,7 @@ function buildP24Description(
     .join(", ");
 
   // Format to show Order Number, E-mail, Amount and Goods Type
-  const desc = `Zamowienie: ${orderNumber} | E-mail: ${email} | Kwota: ${total.toFixed(2)} zł | Towar: ${itemsSummary}`;
+  const desc = `Zamowienie: ${orderNumber} | E-mail: ${email} | Kwota: ${total.toFixed(2).replace('.', ',')} zl | Towar: ${itemsSummary}`;
 
   // Przelewy24 description max length is 1024 characters, let's truncate if it's too long
   if (desc.length > 1000) {
@@ -215,25 +211,12 @@ export async function createOrder(rawData: any) {
       const adminEmail = process.env.ADMIN_EMAIL || "kontakt@malenaklejki.pl";
       const siteFromEmail = adminEmail;
 
-      const attachments: Array<{ content: string; name: string; type: string }> = [];
-      if (finalData.pdfAttachments && Array.isArray(finalData.pdfAttachments)) {
-        for (const att of finalData.pdfAttachments) {
-          const prefix = orderNumber.replace(/[^a-zA-Z0-9-]/g, "_");
-          const attachmentName = `${prefix}-${att.name}`;
-          const isJpg = att.name.toLowerCase().endsWith(".jpg") || att.name.toLowerCase().endsWith(".jpeg");
-          const contentType = isJpg ? "image/jpeg" : "application/pdf";
-          attachments.push({
-            content: att.base64,
-            name: attachmentName,
-            type: contentType,
-          });
-        }
-      }
+      const attachments = await buildOrderAttachments(finalData.items, orderNumber);
 
       const sellerEmailPayload: any = {
         sender: { name: "MałeNaklejki – System zamówień", email: siteFromEmail },
         to: [{ email: adminEmail, name: "MałeNaklejki – Sprzedawca" }],
-        subject: `🛒 Nowe zamówienie ${orderNumber} – ${finalData.firstName} ${finalData.lastName} (${finalData.total.toFixed(2)} zł)`,
+        subject: `🛒 Nowe zamówienie ${orderNumber} – ${finalData.firstName} ${finalData.lastName} (${finalData.total.toFixed(2).replace('.', ',')} zł)`,
         htmlContent: buildNewOrderSellerEmailHtml(finalData, orderNumber),
       };
       if (attachments.length > 0) {
@@ -259,11 +242,7 @@ export async function createOrder(rawData: any) {
         htmlContent: emailHtml,
       });
 
-      if (finalData.pdfAttachments && Array.isArray(finalData.pdfAttachments)) {
-        await orderRef.update({
-          pdfAttachments: finalData.pdfAttachments
-        });
-      }
+
 
       return {
         success: true,
@@ -295,11 +274,7 @@ export async function createOrder(rawData: any) {
     // Dla uproszczenia (do limitu Firestore 1MB) zapiszemy je tymczasowo,
     // ale bezpieczniej jest wysyłać je z frontendu bez bazy, lub po prostu nie dołączać ich do webhooka.
     // W tej implementacji dodajemy je do bazy, bo i tak wcześniej tak robiliśmy:
-    if (finalData.pdfAttachments && Array.isArray(finalData.pdfAttachments)) {
-      await orderRef.update({
-        pdfAttachments: finalData.pdfAttachments
-      });
-    }
+
 
     return {
       success: true,

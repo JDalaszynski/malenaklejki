@@ -12,13 +12,12 @@ import { StickerEditModal } from "@/components/creator/StickerEditModal";
 import { AIGenerator } from "@/components/creator/AIGenerator";
 import { PlacedSticker } from "@/types/creator";
 import { useCartStore } from "@/store/cartStore";
-import { checkOverlap, getRotatedSize, getCutLineMargins, getOuterMargins, getCutLineBoundingBox, checkStickersCollision } from "@/lib/utils/collision";
+import { checkOverlap, getRotatedSize, getCutLineMargins, getOuterMargins, getCutLineBoundingBox, checkStickersCollision, clampToUsableArea } from "@/lib/utils/collision";
 import { getContourPoints } from "@/lib/utils/contour";
 import { getStickersNoun } from "@/lib/utils/polish";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { storage } from "@/lib/firebase/client";
 import { useRouter } from "next/navigation";
-import jsPDF from "jspdf";
 import {
   UploadCloud,
   Wand2,
@@ -189,7 +188,7 @@ export default function Home() {
 
   // Loaders
   const [isAddingToCart, setIsAddingToCart] = useState(false);
-  const [isGeneratingPdf, setIsGeneratingPdf] = useState(false);
+  const [isGeneratingPng, setIsGeneratingPng] = useState(false);
   const [isPlacingSticker, setIsPlacingSticker] = useState(false);
 
   // Drag-and-drop states
@@ -273,12 +272,9 @@ export default function Home() {
           // Clamp using the new contour if the sticker uses custom contour cut line
           const margins = getOuterMargins(currentSt, { contourPolygons: polys });
 
-          let targetX = currentSt.x;
-          let targetY = currentSt.y;
-          if (targetX < 11 + margins.left) targetX = 11 + margins.left;
-          if (targetX > 199 - margins.right) targetX = 199 - margins.right;
-          if (targetY < 11 + margins.top) targetY = 11 + margins.top;
-          if (targetY > 286 - margins.bottom) targetY = 286 - margins.bottom;
+          const clamped = clampToUsableArea(currentSt.x, currentSt.y, margins);
+          let targetX = clamped.x;
+          let targetY = clamped.y;
 
           updatedStickers[idx] = {
             ...currentSt,
@@ -309,6 +305,34 @@ export default function Home() {
   }, [stickers, mounted]);
 
   const selectedSticker = stickers.find((s) => s.id === selectedStickerId);
+
+  const [widthInputValue, setWidthInputValue] = useState<string>("");
+
+  useEffect(() => {
+    if (selectedSticker) {
+      setWidthInputValue(selectedSticker.widthCm.toString().replace('.', ','));
+    } else {
+      setWidthInputValue("");
+    }
+  }, [selectedStickerId, selectedSticker?.widthCm]);
+
+  const handleManualWidthCommit = (valStr: string) => {
+    const sanitized = valStr.replace(",", ".");
+    const num = parseFloat(sanitized);
+    if (!isNaN(num)) {
+      const clamped = Math.max(3, Math.min(19, num));
+      const rounded = Math.round(clamped * 10) / 10;
+      handleWidthChange(rounded);
+      // Force sync widthInputValue in case handleWidthChange did not update the value
+      if (selectedSticker) {
+        setWidthInputValue(selectedSticker.widthCm.toString().replace('.', ','));
+      }
+    } else {
+      if (selectedSticker) {
+        setWidthInputValue(selectedSticker.widthCm.toString().replace('.', ','));
+      }
+    }
+  };
 
   const selectedStickerDimension = selectedSticker ? stickerDimensions[selectedSticker.id] : null;
   const selectedStickerDpi = useMemo(() => {
@@ -346,6 +370,11 @@ export default function Home() {
 
     for (let candidateY = startY; candidateY <= endY; candidateY += step) {
       for (let candidateX = startX; candidateX <= endX; candidateX += step) {
+        const clamped = clampToUsableArea(candidateX, candidateY, margins);
+        if (Math.abs(clamped.x - candidateX) > 0.01 || Math.abs(clamped.y - candidateY) > 0.01) {
+          continue; // overlaps corners or safety bounds
+        }
+
         const candidateSticker = {
           x: candidateX,
           y: candidateY,
@@ -449,17 +478,31 @@ export default function Home() {
         let tx = activeEditSticker.x;
         let ty = activeEditSticker.y;
 
-        // Clamp to safety boundaries
-        if (tx < 11 + margins.left) tx = 11 + margins.left;
-        if (tx > 199 - margins.right) tx = 199 - margins.right;
-        if (ty < 11 + margins.top) ty = 11 + margins.top;
-        if (ty > 286 - margins.bottom) ty = 286 - margins.bottom;
+        const clamped = clampToUsableArea(tx, ty, margins);
+        tx = clamped.x;
+        ty = clamped.y;
+
+        const leftBound = tx - margins.left;
+        const rightBound = tx + margins.right;
+        const topBound = ty - margins.top;
+        const bottomBound = ty + margins.bottom;
+
+        const CORNER_LIMIT = 17;
+        const RIGHT_CORNER_LIMIT = 193;
+        const BOTTOM_CORNER_LIMIT = 280;
+
+        const overlapsCorner =
+          (leftBound < CORNER_LIMIT && topBound < CORNER_LIMIT) ||
+          (rightBound > RIGHT_CORNER_LIMIT && topBound < CORNER_LIMIT) ||
+          (leftBound < CORNER_LIMIT && bottomBound > BOTTOM_CORNER_LIMIT) ||
+          (rightBound > RIGHT_CORNER_LIMIT && bottomBound > BOTTOM_CORNER_LIMIT);
 
         const fitsIn =
           tx >= 11 + margins.left &&
           tx <= 199 - margins.right &&
           ty >= 11 + margins.top &&
-          ty <= 286 - margins.bottom;
+          ty <= 286 - margins.bottom &&
+          !overlapsCorner;
 
         if (!fitsIn) return null;
 
@@ -541,19 +584,31 @@ export default function Home() {
     const margins = getOuterMargins(selectedSticker, { rotation: degrees });
 
     // Check bounds compensating for rotated pivot offset
-    let targetX = selectedSticker.x;
-    let targetY = selectedSticker.y;
+    const clamped = clampToUsableArea(selectedSticker.x, selectedSticker.y, margins);
+    let targetX = clamped.x;
+    let targetY = clamped.y;
 
-    if (targetX < 11 + margins.left) targetX = 11 + margins.left;
-    if (targetX > 199 - margins.right) targetX = 199 - margins.right;
-    if (targetY < 11 + margins.top) targetY = 11 + margins.top;
-    if (targetY > 286 - margins.bottom) targetY = 286 - margins.bottom;
+    const leftBound = targetX - margins.left;
+    const rightBound = targetX + margins.right;
+    const topBound = targetY - margins.top;
+    const bottomBound = targetY + margins.bottom;
+
+    const CORNER_LIMIT = 17;
+    const RIGHT_CORNER_LIMIT = 193;
+    const BOTTOM_CORNER_LIMIT = 280;
+
+    const overlapsCorner =
+      (leftBound < CORNER_LIMIT && topBound < CORNER_LIMIT) ||
+      (rightBound > RIGHT_CORNER_LIMIT && topBound < CORNER_LIMIT) ||
+      (leftBound < CORNER_LIMIT && bottomBound > BOTTOM_CORNER_LIMIT) ||
+      (rightBound > RIGHT_CORNER_LIMIT && bottomBound > BOTTOM_CORNER_LIMIT);
 
     const fitsInBounds =
       targetX >= 11 + margins.left &&
       targetX <= 199 - margins.right &&
       targetY >= 11 + margins.top &&
-      targetY <= 286 - margins.bottom;
+      targetY <= 286 - margins.bottom &&
+      !overlapsCorner;
 
     if (fitsInBounds) {
       setStickers(
@@ -587,16 +642,31 @@ export default function Home() {
       let tx = selectedSticker.x;
       let ty = selectedSticker.y;
 
-      if (tx < 11 + margins.left) tx = 11 + margins.left;
-      if (tx > 199 - margins.right) tx = 199 - margins.right;
-      if (ty < 11 + margins.top) ty = 11 + margins.top;
-      if (ty > 286 - margins.bottom) ty = 286 - margins.bottom;
+      const clamped = clampToUsableArea(tx, ty, margins);
+      tx = clamped.x;
+      ty = clamped.y;
+
+      const leftBound = tx - margins.left;
+      const rightBound = tx + margins.right;
+      const topBound = ty - margins.top;
+      const bottomBound = ty + margins.bottom;
+
+      const CORNER_LIMIT = 17;
+      const RIGHT_CORNER_LIMIT = 193;
+      const BOTTOM_CORNER_LIMIT = 280;
+
+      const overlapsCorner =
+        (leftBound < CORNER_LIMIT && topBound < CORNER_LIMIT) ||
+        (rightBound > RIGHT_CORNER_LIMIT && topBound < CORNER_LIMIT) ||
+        (leftBound < CORNER_LIMIT && bottomBound > BOTTOM_CORNER_LIMIT) ||
+        (rightBound > RIGHT_CORNER_LIMIT && bottomBound > BOTTOM_CORNER_LIMIT);
 
       const fitsIn =
         tx >= 11 + margins.left &&
         tx <= 199 - margins.right &&
         ty >= 11 + margins.top &&
-        ty <= 286 - margins.bottom;
+        ty <= 286 - margins.bottom &&
+        !overlapsCorner;
 
       if (!fitsIn) return null;
 
@@ -679,19 +749,31 @@ export default function Home() {
 
     const margins = getOuterMargins(selectedSticker, { cutLineType: type, contourPolygons: polys });
 
-    let targetX = selectedSticker.x;
-    let targetY = selectedSticker.y;
+    const clamped = clampToUsableArea(selectedSticker.x, selectedSticker.y, margins);
+    let targetX = clamped.x;
+    let targetY = clamped.y;
 
-    if (targetX < 11 + margins.left) targetX = 11 + margins.left;
-    if (targetX > 199 - margins.right) targetX = 199 - margins.right;
-    if (targetY < 11 + margins.top) targetY = 11 + margins.top;
-    if (targetY > 286 - margins.bottom) targetY = 286 - margins.bottom;
+    const leftBound = targetX - margins.left;
+    const rightBound = targetX + margins.right;
+    const topBound = targetY - margins.top;
+    const bottomBound = targetY + margins.bottom;
+
+    const CORNER_LIMIT = 17;
+    const RIGHT_CORNER_LIMIT = 193;
+    const BOTTOM_CORNER_LIMIT = 280;
+
+    const overlapsCorner =
+      (leftBound < CORNER_LIMIT && topBound < CORNER_LIMIT) ||
+      (rightBound > RIGHT_CORNER_LIMIT && topBound < CORNER_LIMIT) ||
+      (leftBound < CORNER_LIMIT && bottomBound > BOTTOM_CORNER_LIMIT) ||
+      (rightBound > RIGHT_CORNER_LIMIT && bottomBound > BOTTOM_CORNER_LIMIT);
 
     const fitsInBounds =
       targetX >= 11 + margins.left &&
       targetX <= 199 - margins.right &&
       targetY >= 11 + margins.top &&
-      targetY <= 286 - margins.bottom;
+      targetY <= 286 - margins.bottom &&
+      !overlapsCorner;
 
     if (!fitsInBounds) {
       setError("Brak miejsca na zmianę linii cięcia (kontur wychodzi poza arkusz)!");
@@ -730,12 +812,9 @@ export default function Home() {
 
     const margins = getOuterMargins(selectedSticker);
 
-    let targetX = pos.x;
-    let targetY = pos.y;
-    if (targetX < 11 + margins.left) targetX = 11 + margins.left;
-    if (targetX > 199 - margins.right) targetX = 199 - margins.right;
-    if (targetY < 11 + margins.top) targetY = 11 + margins.top;
-    if (targetY > 286 - margins.bottom) targetY = 286 - margins.bottom;
+    const clamped = clampToUsableArea(pos.x, pos.y, margins);
+    let targetX = clamped.x;
+    let targetY = clamped.y;
 
     const duplicated: PlacedSticker = {
       ...selectedSticker,
@@ -828,7 +907,7 @@ export default function Home() {
       const relY = -drawH / 2;
       let offsetPx = 0;
       if (st.cutLineType === "rounded" || st.cutLineType === "circle") {
-        offsetPx = Math.max(3, Math.max(st.widthCm, st.heightCm) * 10 * (8 / 120)) * MM_TO_PX;
+        offsetPx = Math.max(2, Math.max(st.widthCm, st.heightCm) * 10 * (8 / 120)) * MM_TO_PX;
       } else if (st.cutLineType === "rounded_inside" || st.cutLineType === "circle_inside") {
         offsetPx = -2 * MM_TO_PX;
       }
@@ -861,7 +940,7 @@ export default function Home() {
         } else if (st.cutLineType === "contour" || st.cutLineType === "contour_inside") {
           if (st.contourPolygons && st.contourPolygons.length > 0) {
             const baseOffsetMm = Math.max(st.widthCm * 10, st.heightCm * 10) * (8 / 120);
-            const extraMm = st.cutLineType === "contour" ? Math.max(0, 3 - baseOffsetMm) : 0;
+            const extraMm = st.cutLineType === "contour" ? Math.max(0, 2 - baseOffsetMm) : 0;
             const scaleX = (st.widthCm * 10 / 2 + baseOffsetMm + extraMm) / (st.widthCm * 10 / 2 + baseOffsetMm);
             const scaleY = (st.heightCm * 10 / 2 + baseOffsetMm + extraMm) / (st.heightCm * 10 / 2 + baseOffsetMm);
 
@@ -919,7 +998,7 @@ export default function Home() {
 
             if (st.contourPolygons && st.contourPolygons.length > 0) {
               const baseOffsetMm = Math.max(st.widthCm * 10, st.heightCm * 10) * (8 / 120);
-              const extraMm = st.cutLineType === "contour" ? Math.max(0, 3 - baseOffsetMm) : 0;
+              const extraMm = st.cutLineType === "contour" ? Math.max(0, 2 - baseOffsetMm) : 0;
               const scaleX = (st.widthCm * 10 / 2 + baseOffsetMm + extraMm) / (st.widthCm * 10 / 2 + baseOffsetMm);
               const scaleY = (st.heightCm * 10 / 2 + baseOffsetMm + extraMm) / (st.heightCm * 10 / 2 + baseOffsetMm);
 
@@ -1051,11 +1130,11 @@ export default function Home() {
       // Render print version (color, with sticker images)
       const printCanvas = await renderSheetCanvas("print");
       const printBlob = await new Promise<Blob | null>((resolve) =>
-        printCanvas.toBlob((b) => resolve(b), "image/jpeg", 0.85)
+        printCanvas.toBlob((b) => resolve(b), "image/png")
       );
       if (!printBlob) throw new Error("Could not export print canvas to blob.");
 
-      const printFileName = `composition-${getUUID()}.jpg`;
+      const printFileName = `composition-${getUUID()}.png`;
       const printRef = ref(storage, `uploads/${printFileName}`);
       const printSnapshot = await uploadBytes(printRef, printBlob);
       const printUrl = await getDownloadURL(printSnapshot.ref);
@@ -1063,12 +1142,12 @@ export default function Home() {
       // Render cut-lines version (black shapes on white, no images)
       const cutCanvas = await renderSheetCanvas("cut-lines");
       const cutBlob = await new Promise<Blob | null>((resolve) =>
-        cutCanvas.toBlob((b) => resolve(b), "image/jpeg", 0.85)
+        cutCanvas.toBlob((b) => resolve(b), "image/png")
       );
 
       let cutLinesUrl: string | undefined;
       if (cutBlob) {
-        const cutFileName = `composition-cutlines-${getUUID()}.jpg`;
+        const cutFileName = `composition-cutlines-${getUUID()}.png`;
         const cutRef = ref(storage, `uploads/${cutFileName}`);
         const cutSnapshot = await uploadBytes(cutRef, cutBlob);
         cutLinesUrl = await getDownloadURL(cutSnapshot.ref);
@@ -1101,42 +1180,35 @@ export default function Home() {
     }
   };
 
-  // Download high-res PDF or JPG
-  const handleDownloadPDF = async (mode: "print" | "cut-lines") => {
+  // Download high-res PNG (print or cut-lines)
+  const handleDownloadPNG = async (mode: "print" | "cut-lines") => {
     if (stickers.length === 0) return;
-    setIsGeneratingPdf(true);
+    setIsGeneratingPng(true);
     setError(null);
 
     try {
       const canvas = await renderSheetCanvas(mode);
-      const imgData = canvas.toDataURL("image/jpeg", 0.85);
+      const imgData = canvas.toDataURL("image/png");
 
+      const link = document.createElement("a");
+      link.href = imgData;
       if (mode === "cut-lines") {
-        const link = document.createElement("a");
-        link.href = imgData;
-        link.download = "kompozycja-arkusza-A4-LINIE_CIECIA.jpg";
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
+        link.download = "kompozycja-arkusza-A4-LINIE_CIECIA.png";
       } else {
-        const pdf = new jsPDF({
-          orientation: "portrait",
-          unit: "mm",
-          format: "a4",
-        });
-
-        pdf.addImage(imgData, "JPEG", 0, 0, 210, 297);
-        pdf.save("kompozycja-arkusza-A4-DRUK.pdf");
+        link.download = "kompozycja-arkusza-A4-DRUK.png";
       }
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
     } catch (err: any) {
       console.error(err);
       setError(
         mode === "cut-lines"
-          ? "Nie udało się wygenerować pliku JPG."
-          : "Nie udało się wygenerować pliku PDF."
+          ? "Nie udało się wygenerować pliku PNG (linie cięcia)."
+          : "Nie udało się wygenerować pliku PNG (druk arkusza)."
       );
     } finally {
-      setIsGeneratingPdf(false);
+      setIsGeneratingPng(false);
     }
   };
 
@@ -1177,7 +1249,7 @@ export default function Home() {
   if (!mounted) {
     return (
       <div className="min-h-screen text-foreground flex items-center justify-center">
-        <div className="animate-pulse font-extrabold text-xl text-primary">Ładowanie kreatora...</div>
+        <div className="animate-pulse font-extrabold text-xl text-primary">MałeNaklejki...</div>
       </div>
     );
   }
@@ -1346,8 +1418,8 @@ export default function Home() {
                         </span>
                       </p>
                       <div className="text-xs font-bold text-foreground mt-0.5 space-y-0.5">
-                        <p>Szerokość: {selectedSticker.widthCm} cm</p>
-                        <p>Wysokość: {selectedSticker.heightCm.toFixed(1)} cm</p>
+                        <p>Szerokość: {String(selectedSticker.widthCm).replace('.', ',')} cm</p>
+                        <p>Wysokość: {selectedSticker.heightCm.toFixed(1).replace('.', ',')} cm</p>
                         <p>Linia cięcia: {
                           selectedSticker.cutLineType === "none" ? "Brak" :
                             selectedSticker.cutLineType === "contour" ? "Kontur" :
@@ -1416,9 +1488,25 @@ export default function Home() {
 
                     {/* Resize control */}
                     <div className="space-y-2">
-                      <div className="flex justify-between text-sm font-bold">
+                      <div className="flex justify-between items-center text-sm font-bold">
                         <span className="text-foreground">Szerokość naklejki (cm)</span>
-                        <span className="text-primary font-black">{selectedSticker.widthCm} cm</span>
+                        <div className="flex items-center gap-1 text-primary font-black">
+                          <input
+                            type="text"
+                            value={widthInputValue}
+                            onChange={(e) => setWidthInputValue(e.target.value)}
+                            onBlur={() => handleManualWidthCommit(widthInputValue)}
+                            onFocus={(e) => e.currentTarget.select()}
+                            onKeyDown={(e) => {
+                              if (e.key === "Enter") {
+                                handleManualWidthCommit(widthInputValue);
+                                e.currentTarget.blur();
+                              }
+                            }}
+                            className="w-10 bg-transparent text-right text-primary font-black focus:outline-none p-0 select-text cursor-pointer focus:cursor-text"
+                          />
+                          <span className="select-none">cm</span>
+                        </div>
                       </div>
                       <input
                         type="range"
@@ -1635,12 +1723,12 @@ export default function Home() {
               <div className="flex flex-col sm:flex-row items-center gap-4 text-center sm:text-left">
                 <div>
                   <p className="text-xs font-black uppercase text-muted-foreground tracking-wider">Podsumowanie</p>
-                  <h4 className="text-xl font-black text-foreground">
-                    {(49.0 * sheetQuantity).toFixed(2)} zł <span className="text-xs font-semibold text-muted-foreground">({sheetQuantity} szt.)</span>
+                  <h4 className="text-2xl font-black text-foreground">
+                    {(49.0 * sheetQuantity).toFixed(2).replace('.', ',')} zł <span className="text-xs font-semibold text-muted-foreground">({sheetQuantity} szt.)</span>
                   </h4>
                   {stickers.length > 0 && (
                     <p className="text-[10px] font-bold text-muted-foreground sm:hidden mt-0.5 animate-in fade-in duration-200">
-                      {stickers.length} {getStickersNoun(stickers.length)} (Tylko {(49.00 / stickers.length).toFixed(2)} zł za 1 naklejkę!)
+                      {stickers.length} {getStickersNoun(stickers.length)} (Tylko {(49.00 / stickers.length).toFixed(2).replace('.', ',')} zł za 1 naklejkę!)
                     </p>
                   )}
                   {stickers.some((s) => s.cutLineType === "none") && (
@@ -1650,11 +1738,11 @@ export default function Home() {
                   )}
                 </div>
                 <div className="text-[10px] text-muted-foreground font-semibold border-l border-border/60 pl-4 hidden sm:block">
-                  <p>Cena: 49.00 zł / arkusz A4</p>
+                  <p>Cena: 49,00 zł / arkusz A4</p>
                   <p>{stickers.length} {getStickersNoun(stickers.length)} na arkuszu</p>
                   {stickers.length > 0 && (
                     <p className="mt-0.5">
-                      Tylko {(49.00 / stickers.length).toFixed(2)} zł za 1 naklejkę!
+                      Tylko {(49.00 / stickers.length).toFixed(2).replace('.', ',')} zł za 1 naklejkę!
                     </p>
                   )}
                 </div>
@@ -1989,10 +2077,39 @@ export default function Home() {
               ))}
             </div>
           </div>
-
         </section>
 
-        <Footer />
+        <Footer>
+          {stickers.length > 0 && (
+            <div className="flex flex-wrap justify-center gap-4 mb-2 text-xs font-semibold text-muted-foreground/75">
+              <button
+                onClick={() => handleDownloadPNG("print")}
+                disabled={isGeneratingPng}
+                className="hover:text-foreground transition-colors disabled:opacity-50 flex items-center gap-1.5 cursor-pointer"
+              >
+                {isGeneratingPng ? (
+                  <Loader2 className="w-3.5 h-3.5 animate-spin" />
+                ) : (
+                  <Download className="w-3.5 h-3.5" />
+                )}
+                <span>Pobierz PNG (druk arkusza)</span>
+              </button>
+              <span className="text-muted-foreground/30 select-none">|</span>
+              <button
+                onClick={() => handleDownloadPNG("cut-lines")}
+                disabled={isGeneratingPng}
+                className="hover:text-foreground transition-colors disabled:opacity-50 flex items-center gap-1.5 cursor-pointer"
+              >
+                {isGeneratingPng ? (
+                  <Loader2 className="w-3.5 h-3.5 animate-spin" />
+                ) : (
+                  <Download className="w-3.5 h-3.5" />
+                )}
+                <span>Pobierz PNG (linie cięcia)</span>
+              </button>
+            </div>
+          )}
+        </Footer>
       </div>
 
       {/* Sticky Header w formie menu po wjechaniu na sekcję SEO */}
@@ -2065,7 +2182,7 @@ export default function Home() {
                     )}
                     {cartItems.length > 0 && (
                       <span className="ml-2 hidden sm:block font-extrabold text-sm text-primary">
-                        {totalPrice.toFixed(2)} zł
+                        {totalPrice.toFixed(2).replace('.', ',')} zł
                       </span>
                     )}
                   </div>

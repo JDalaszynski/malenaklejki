@@ -103,7 +103,7 @@ export default function CartPage() {
                           Naklejki na Arkuszu A4
                         </h3>
                         <p className="font-semibold text-xs sm:text-sm text-muted-foreground">
-                          Wymiary: {item.widthCm} × {item.heightCm.toFixed(1)} cm
+                          Wymiary: {String(item.widthCm).replace('.', ',')} × {item.heightCm.toFixed(1).replace('.', ',')} cm
                         </p>
                         <div className="pt-0.5 flex flex-wrap gap-2 items-center">
                           <span className="text-[11px] font-bold text-foreground bg-secondary/15 px-2.5 py-0.5 rounded-full inline-block">
@@ -111,7 +111,7 @@ export default function CartPage() {
                           </span>
                           {item.stickersPerSheet > 0 && (
                             <span className="text-[11px] font-semibold text-muted-foreground inline-block ml-1">
-                              Tylko {(item.pricePerSheet / item.stickersPerSheet).toFixed(2)} zł za 1 naklejkę!
+                              Tylko {(item.pricePerSheet / item.stickersPerSheet).toFixed(2).replace('.', ',')} zł za 1 naklejkę!
                             </span>
                           )}
                         </div>
@@ -148,10 +148,10 @@ export default function CartPage() {
                       {/* Cena za zestaw */}
                       <div className="text-right min-w-[80px]">
                         <p className="font-black text-lg text-primary">
-                          {(item.pricePerSheet * item.sheetQuantity).toFixed(2)} zł
+                          {(item.pricePerSheet * item.sheetQuantity).toFixed(2).replace('.', ',')} zł
                         </p>
                         <p className="text-[10px] text-muted-foreground font-semibold">
-                          {item.pricePerSheet.toFixed(2)} zł / arkusz
+                          {item.pricePerSheet.toFixed(2).replace('.', ',')} zł / arkusz
                         </p>
                       </div>
 
@@ -177,18 +177,18 @@ export default function CartPage() {
                 <div className="space-y-3 font-semibold">
                   <div className="flex justify-between text-muted-foreground text-sm">
                     <span>Suma częściowa</span>
-                    <span>{totalPrice.toFixed(2)} zł</span>
+                    <span>{totalPrice.toFixed(2).replace('.', ',')} zł</span>
                   </div>
                   <div className="flex justify-between text-muted-foreground text-sm">
                     <span className="flex items-center gap-1.5">
                       <Truck className="w-4 h-4 text-muted-foreground/75" />
                       Dostawa
                     </span>
-                    <span>19.99 zł</span>
+                    <span>19,99 zł</span>
                   </div>
                   <div className="flex justify-between text-xl font-black text-primary border-t border-border/40 pt-4">
                     <span>Do zapłaty</span>
-                    <span>{(totalPrice + 19.99).toFixed(2)} zł</span>
+                    <span>{(totalPrice + 19.99).toFixed(2).replace('.', ',')} zł</span>
                   </div>
                 </div>
 

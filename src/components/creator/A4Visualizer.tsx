@@ -6,7 +6,6 @@ import { Loader2, ShoppingCart, Minus, Plus, Crop, Download } from "lucide-react
 import { useRouter } from "next/navigation";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { storage } from "@/lib/firebase/client";
-import jsPDF from "jspdf";
 
 interface A4VisualizerProps {
   imageUrl: string;
@@ -24,7 +23,7 @@ export function A4Visualizer({ imageUrl, onImageChange }: A4VisualizerProps) {
   const [isReuploading, setIsReuploading] = useState(false);
   const [isFetchingCrop, setIsFetchingCrop] = useState(false);
   const [cropBlobSrc, setCropBlobSrc] = useState<string | null>(null);
-  const [isGeneratingPdf, setIsGeneratingPdf] = useState(false);
+  const [isGeneratingPng, setIsGeneratingPng] = useState(false);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const addItem = useCartStore((state) => state.addItem);
 
@@ -186,11 +185,11 @@ export function A4Visualizer({ imageUrl, onImageChange }: A4VisualizerProps) {
     }, 400);
   };
 
-  const handleDownloadPDF = async () => {
+  const handleDownloadPNG = async () => {
     const { bestOrientation, cols, rows, maxStickers } = fitCalculation;
     if (!maxStickers || !cols || !rows) return;
 
-    setIsGeneratingPdf(true);
+    setIsGeneratingPng(true);
     try {
       // Fetch image via proxy to avoid tainted canvas
       const response = await fetch(`/api/proxy-image?url=${encodeURIComponent(imageUrl)}`);
@@ -253,18 +252,21 @@ export function A4Visualizer({ imageUrl, onImageChange }: A4VisualizerProps) {
 
       URL.revokeObjectURL(blobUrl);
 
-      const imgData = canvas.toDataURL("image/jpeg", 0.85);
-      const pdf = new jsPDF({ orientation: "portrait", unit: "mm", format: "a4" });
-      pdf.addImage(imgData, "JPEG", 0, 0, 210, 297);
-      pdf.save(`naklejki-A4-${widthCm}cm.pdf`);
+      const imgData = canvas.toDataURL("image/png");
+      const link = document.createElement("a");
+      link.href = imgData;
+      link.download = `naklejki-A4-${widthCm}cm.png`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
     } catch (err) {
-      console.error("PDF generation error:", err);
+      console.error("PNG generation error:", err);
     } finally {
-      setIsGeneratingPdf(false);
+      setIsGeneratingPng(false);
     }
   };
 
-  const pricePerSticker = (49.00 / (fitCalculation.maxStickers || 1)).toFixed(2);
+  const pricePerSticker = (49.00 / (fitCalculation.maxStickers || 1)).toFixed(2).replace('.', ',');
 
   return (
     <div className="flex flex-col md:flex-row gap-8 w-full mt-8 bg-card rounded-2xl p-6 sm:p-8 pb-28 md:pb-8 border border-border/70 shadow-[0_8px_30px_rgba(0,0,0,0.02)]">
@@ -299,7 +301,7 @@ export function A4Visualizer({ imageUrl, onImageChange }: A4VisualizerProps) {
             <label className="text-sm font-bold mb-2 block text-foreground">Wysokość (auto)</label>
             <input
               type="text"
-              value={imageAspect ? heightCm.toFixed(1) : "Obliczanie..."}
+              value={imageAspect ? heightCm.toFixed(1).replace('.', ',') : "Obliczanie..."}
               disabled
               className="flex h-12 w-full rounded-xl border border-transparent bg-muted px-4 py-2 text-sm font-bold text-muted-foreground"
             />
@@ -340,7 +342,7 @@ export function A4Visualizer({ imageUrl, onImageChange }: A4VisualizerProps) {
             Zmieścimy aż <span className="text-3xl font-black">{fitCalculation.maxStickers * sheetQuantity}</span> sztuk!
           </p>
           <p className="text-sm mt-2 font-medium text-foreground/90 leading-relaxed">
-            Łącznie: <span className="font-extrabold text-primary text-base">{(49.00 * sheetQuantity).toFixed(2)} zł</span>
+            Łącznie: <span className="font-extrabold text-primary text-base">{(49.00 * sheetQuantity).toFixed(2).replace('.', ',')} zł</span>
             <span className="block text-xs text-foreground/80 mt-1">
               (A4: {fitCalculation.maxStickers} szt./arkusz po {pricePerSticker} zł za sztukę)
             </span>
@@ -351,7 +353,7 @@ export function A4Visualizer({ imageUrl, onImageChange }: A4VisualizerProps) {
         <div className="fixed bottom-0 left-0 right-0 p-4 bg-background/95 backdrop-blur-md border-t border-border/60 shadow-lg md:static md:p-0 md:bg-transparent md:border-0 md:shadow-none z-30 flex items-center justify-between md:block gap-4">
           <div className="md:hidden flex-1">
             <p className="text-[10px] uppercase tracking-wider font-bold text-muted-foreground">Suma ({sheetQuantity} ark.)</p>
-            <p className="text-xl font-black text-primary leading-tight">{(49.00 * sheetQuantity).toFixed(2)} zł</p>
+            <p className="text-xl font-black text-primary leading-tight">{(49.00 * sheetQuantity).toFixed(2).replace('.', ',')} zł</p>
           </div>
           <button
             onClick={handleAddToCart}
@@ -391,16 +393,16 @@ export function A4Visualizer({ imageUrl, onImageChange }: A4VisualizerProps) {
             </button>
           )}
           <button
-            onClick={handleDownloadPDF}
-            disabled={isGeneratingPdf || fitCalculation.maxStickers === 0}
+            onClick={handleDownloadPNG}
+            disabled={isGeneratingPng || fitCalculation.maxStickers === 0}
             className="inline-flex items-center gap-1.5 text-xs font-semibold text-muted-foreground hover:text-primary transition-colors px-3 py-1.5 rounded-lg hover:bg-muted/60 disabled:opacity-40 disabled:pointer-events-none"
           >
-            {isGeneratingPdf ? (
+            {isGeneratingPng ? (
               <Loader2 className="w-3.5 h-3.5 animate-spin" />
             ) : (
               <Download className="w-3.5 h-3.5" />
             )}
-            {isGeneratingPdf ? "Generowanie PDF..." : "Pobierz PDF do druku (A4)"}
+            {isGeneratingPng ? "Generowanie PNG..." : "Pobierz PNG do druku (A4)"}
           </button>
         </div>
       </div>

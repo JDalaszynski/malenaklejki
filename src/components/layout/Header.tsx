@@ -103,7 +103,7 @@ export function Header({ zen = false }: HeaderProps) {
                   )}
                   {mounted && totalItems > 0 && (
                     <span className="ml-3 hidden sm:block font-extrabold text-lg text-primary">
-                      {totalPrice.toFixed(2)} zł
+                      {totalPrice.toFixed(2).replace('.', ',')} zł
                     </span>
                   )}
                 </div>

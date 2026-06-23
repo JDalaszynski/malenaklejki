@@ -26,13 +26,13 @@ export function buildCustomerEmailHtml(data: any, orderNumber: string): string {
       (item: any, i: number) => `
     <tr>
       <td style="padding: 12px 0; border-bottom: 1px solid #f1f5f9; font-size: 14px; color: #334155; font-weight: 600;">
-        Arkusz A4 – ${item.stickersPerSheet} naklejek (${item.widthCm}×${item.heightCm} cm)
+        Arkusz A4 – ${item.stickersPerSheet} naklejek (${String(item.widthCm).replace('.', ',')}×${String(item.heightCm).replace('.', ',')} cm)
       </td>
       <td style="padding: 12px 0; border-bottom: 1px solid #f1f5f9; font-size: 14px; color: #334155; font-weight: 600; text-align: center;">
         ${item.sheetQuantity} szt.
       </td>
       <td style="padding: 12px 0; border-bottom: 1px solid #f1f5f9; font-size: 14px; color: #0f172a; font-weight: 700; text-align: right;">
-        ${(item.pricePerSheet * item.sheetQuantity).toFixed(2)} zł
+        ${(item.pricePerSheet * item.sheetQuantity).toFixed(2).replace('.', ',')} zł
       </td>
     </tr>`
     )
@@ -98,15 +98,15 @@ export function buildCustomerEmailHtml(data: any, orderNumber: string): string {
       <div style="background:#f8fafc;border-radius:12px;border:1px solid #e2e8f0;padding:16px 20px;margin-bottom:24px;">
         <div style="display:flex;justify-content:space-between;margin-bottom:8px;">
           <span style="font-size:14px;color:#64748b;font-weight:500;">Naklejki</span>
-          <span style="font-size:14px;color:#0f172a;font-weight:700;">${subtotal.toFixed(2)} zł</span>
+          <span style="font-size:14px;color:#0f172a;font-weight:700;">${subtotal.toFixed(2).replace('.', ',')} zł</span>
         </div>
         <div style="display:flex;justify-content:space-between;margin-bottom:12px;">
           <span style="font-size:14px;color:#64748b;font-weight:500;">Dostawa</span>
-          <span style="font-size:14px;color:#0f172a;font-weight:700;">${shippingCost.toFixed(2)} zł</span>
+          <span style="font-size:14px;color:#0f172a;font-weight:700;">${shippingCost.toFixed(2).replace('.', ',')} zł</span>
         </div>
         <div style="border-top:1px solid #e2e8f0;padding-top:12px;display:flex;justify-content:space-between;">
           <span style="font-size:16px;color:#0f172a;font-weight:800;">Razem</span>
-          <span style="font-size:18px;color:#0f172a;font-weight:900;">${total.toFixed(2)} zł</span>
+          <span style="font-size:18px;color:#0f172a;font-weight:900;">${total.toFixed(2).replace('.', ',')} zł</span>
         </div>
       </div>
 
@@ -182,9 +182,9 @@ export function buildSellerEmailHtml(data: any, orderNumber: string): string {
     .map(
       (item: any, i: number) => `
     <tr>
-      <td style="padding:10px 0;border-bottom:1px solid #f1f5f9;font-size:13px;color:#334155;">${i + 1}. Arkusz A4 – ${item.stickersPerSheet} naklejek (${item.widthCm}×${item.heightCm?.toFixed ? item.heightCm.toFixed(1) : item.heightCm} cm)</td>
+      <td style="padding:10px 0;border-bottom:1px solid #f1f5f9;font-size:13px;color:#334155;">${i + 1}. Arkusz A4 – ${item.stickersPerSheet} naklejek (${String(item.widthCm).replace('.', ',')}×${(item.heightCm?.toFixed ? item.heightCm.toFixed(1) : String(item.heightCm)).replace('.', ',')} cm)</td>
       <td style="padding:10px 0;border-bottom:1px solid #f1f5f9;font-size:13px;color:#334155;text-align:center;">${item.sheetQuantity} szt.</td>
-      <td style="padding:10px 0;border-bottom:1px solid #f1f5f9;font-size:13px;font-weight:700;color:#0f172a;text-align:right;">${(item.pricePerSheet * item.sheetQuantity).toFixed(2)} zł</td>
+      <td style="padding:10px 0;border-bottom:1px solid #f1f5f9;font-size:13px;font-weight:700;color:#0f172a;text-align:right;">${(item.pricePerSheet * item.sheetQuantity).toFixed(2).replace('.', ',')} zł</td>
     </tr>`
     )
     .join("");
@@ -265,15 +265,15 @@ export function buildSellerEmailHtml(data: any, orderNumber: string): string {
       <div style="background:#f0fdf9;border-radius:12px;border:1.5px solid #a9e4d7;padding:16px 20px;margin-bottom:24px;">
         <div style="display:flex;justify-content:space-between;margin-bottom:8px;">
           <span style="font-size:13px;color:#64748b;">Naklejki</span>
-          <span style="font-size:13px;font-weight:700;color:#0f172a;">${subtotal.toFixed(2)} zł</span>
+          <span style="font-size:13px;font-weight:700;color:#0f172a;">${subtotal.toFixed(2).replace('.', ',')} zł</span>
         </div>
         <div style="display:flex;justify-content:space-between;margin-bottom:12px;">
           <span style="font-size:13px;color:#64748b;">Dostawa</span>
-          <span style="font-size:13px;font-weight:700;color:#0f172a;">${shippingCost.toFixed(2)} zł</span>
+          <span style="font-size:13px;font-weight:700;color:#0f172a;">${shippingCost.toFixed(2).replace('.', ',')} zł</span>
         </div>
         <div style="border-top:1px solid #a9e4d7;padding-top:12px;display:flex;justify-content:space-between;">
           <span style="font-size:16px;font-weight:800;color:#0f172a;">Do zapłaty</span>
-          <span style="font-size:20px;font-weight:900;color:#0f172a;">${total.toFixed(2)} zł</span>
+          <span style="font-size:20px;font-weight:900;color:#0f172a;">${total.toFixed(2).replace('.', ',')} zł</span>
         </div>
       </div>
     </div>
@@ -323,9 +323,9 @@ export function buildNewOrderSellerEmailHtml(data: any, orderNumber: string): st
     .map(
       (item: any, i: number) => `
     <tr>
-      <td style="padding:10px 0;border-bottom:1px solid #f1f5f9;font-size:13px;color:#334155;">${i + 1}. Arkusz A4 – ${item.stickersPerSheet} naklejek (${item.widthCm}×${item.heightCm?.toFixed ? item.heightCm.toFixed(1) : item.heightCm} cm)</td>
+      <td style="padding:10px 0;border-bottom:1px solid #f1f5f9;font-size:13px;color:#334155;">${i + 1}. Arkusz A4 – ${item.stickersPerSheet} naklejek (${String(item.widthCm).replace('.', ',')}×${(item.heightCm?.toFixed ? item.heightCm.toFixed(1) : String(item.heightCm)).replace('.', ',')} cm)</td>
       <td style="padding:10px 0;border-bottom:1px solid #f1f5f9;font-size:13px;color:#334155;text-align:center;">${item.sheetQuantity} szt.</td>
-      <td style="padding:10px 0;border-bottom:1px solid #f1f5f9;font-size:13px;font-weight:700;color:#0f172a;text-align:right;">${(item.pricePerSheet * item.sheetQuantity).toFixed(2)} zł</td>
+      <td style="padding:10px 0;border-bottom:1px solid #f1f5f9;font-size:13px;font-weight:700;color:#0f172a;text-align:right;">${(item.pricePerSheet * item.sheetQuantity).toFixed(2).replace('.', ',')} zł</td>
     </tr>`
     )
     .join("");
@@ -407,15 +407,15 @@ export function buildNewOrderSellerEmailHtml(data: any, orderNumber: string): st
       <div style="background:#f0f9ff;border-radius:12px;border:1.5px solid #93c5fd;padding:16px 20px;margin-bottom:24px;">
         <div style="display:flex;justify-content:space-between;margin-bottom:8px;">
           <span style="font-size:13px;color:#64748b;">Naklejki</span>
-          <span style="font-size:13px;font-weight:700;color:#0f172a;">${subtotal.toFixed(2)} zł</span>
+          <span style="font-size:13px;font-weight:700;color:#0f172a;">${subtotal.toFixed(2).replace('.', ',')} zł</span>
         </div>
         <div style="display:flex;justify-content:space-between;margin-bottom:12px;">
           <span style="font-size:13px;color:#64748b;">Dostawa</span>
-          <span style="font-size:13px;font-weight:700;color:#0f172a;">${shippingCost.toFixed(2)} zł</span>
+          <span style="font-size:13px;font-weight:700;color:#0f172a;">${shippingCost.toFixed(2).replace('.', ',')} zł</span>
         </div>
         <div style="border-top:1px solid #93c5fd;padding-top:12px;display:flex;justify-content:space-between;">
           <span style="font-size:16px;font-weight:800;color:#0f172a;">Do zapłaty</span>
-          <span style="font-size:20px;font-weight:900;color:#0f172a;">${total.toFixed(2)} zł</span>
+          <span style="font-size:20px;font-weight:900;color:#0f172a;">${total.toFixed(2).replace('.', ',')} zł</span>
         </div>
       </div>
     </div>
@@ -461,9 +461,9 @@ export function buildUnpaidOrderSellerEmailHtml(data: any, orderNumber: string):
     .map(
       (item: any, i: number) => `
     <tr>
-      <td style="padding:10px 0;border-bottom:1px solid #f1f5f9;font-size:13px;color:#334155;">${i + 1}. Arkusz A4 – ${item.stickersPerSheet} naklejek (${item.widthCm}×${item.heightCm?.toFixed ? item.heightCm.toFixed(1) : item.heightCm} cm)</td>
+      <td style="padding:10px 0;border-bottom:1px solid #f1f5f9;font-size:13px;color:#334155;">${i + 1}. Arkusz A4 – ${item.stickersPerSheet} naklejek (${String(item.widthCm).replace('.', ',')}×${(item.heightCm?.toFixed ? item.heightCm.toFixed(1) : String(item.heightCm)).replace('.', ',')} cm)</td>
       <td style="padding:10px 0;border-bottom:1px solid #f1f5f9;font-size:13px;color:#334155;text-align:center;">${item.sheetQuantity} szt.</td>
-      <td style="padding:10px 0;border-bottom:1px solid #f1f5f9;font-size:13px;font-weight:700;color:#0f172a;text-align:right;">${(item.pricePerSheet * item.sheetQuantity).toFixed(2)} zł</td>
+      <td style="padding:10px 0;border-bottom:1px solid #f1f5f9;font-size:13px;font-weight:700;color:#0f172a;text-align:right;">${(item.pricePerSheet * item.sheetQuantity).toFixed(2).replace('.', ',')} zł</td>
     </tr>`
     )
     .join("");
@@ -543,15 +543,15 @@ export function buildUnpaidOrderSellerEmailHtml(data: any, orderNumber: string):
       <div style="background:#f9fafb;border-radius:12px;border:1px solid #e5e7eb;padding:16px 20px;">
         <div style="display:flex;justify-content:space-between;margin-bottom:8px;">
           <span style="font-size:13px;color:#6b7280;">Suma produktów</span>
-          <span style="font-size:13px;font-weight:700;color:#0f172a;">${subtotal.toFixed(2)} zł</span>
+          <span style="font-size:13px;font-weight:700;color:#0f172a;">${subtotal.toFixed(2).replace('.', ',')} zł</span>
         </div>
         <div style="display:flex;justify-content:space-between;margin-bottom:12px;">
           <span style="font-size:13px;color:#6b7280;">Dostawa</span>
-          <span style="font-size:13px;font-weight:700;color:#0f172a;">${shippingCost.toFixed(2)} zł</span>
+          <span style="font-size:13px;font-weight:700;color:#0f172a;">${shippingCost.toFixed(2).replace('.', ',')} zł</span>
         </div>
         <div style="border-top:1px solid #e5e7eb;padding-top:12px;display:flex;justify-content:space-between;">
           <span style="font-size:16px;font-weight:800;color:#0f172a;">Kwota nieopłacona</span>
-          <span style="font-size:20px;font-weight:900;color:#dc2626;">${total.toFixed(2)} zł</span>
+          <span style="font-size:20px;font-weight:900;color:#dc2626;">${total.toFixed(2).replace('.', ',')} zł</span>
         </div>
       </div>
     </div>
@@ -637,7 +637,7 @@ export function buildManualTransferEmailHtml(data: any, orderNumber: string): st
           </tr>
           <tr>
             <td style="font-size:13px;color:#004749;padding:6px 0;font-weight:700;border-top:1px solid #02af7a;margin-top:8px;padding-top:14px;">Kwota do zapłaty:</td>
-            <td style="font-size:18px;color:#02af7a;padding:6px 0;font-weight:900;border-top:1px solid #02af7a;margin-top:8px;padding-top:14px;">${total.toFixed(2)} zł</td>
+            <td style="font-size:18px;color:#02af7a;padding:6px 0;font-weight:900;border-top:1px solid #02af7a;margin-top:8px;padding-top:14px;">${total.toFixed(2).replace('.', ',')} zł</td>
           </tr>
         </table>
       </div>
@@ -659,5 +659,57 @@ export function buildManualTransferEmailHtml(data: any, orderNumber: string): st
   </div>
 </body>
 </html>`;
+}
+
+async function downloadImageAsBase64(url: string): Promise<string | null> {
+  try {
+    const res = await fetch(url);
+    if (!res.ok) throw new Error(`Failed to fetch image: ${res.statusText}`);
+    const arrayBuffer = await res.arrayBuffer();
+    return Buffer.from(arrayBuffer).toString("base64");
+  } catch (error) {
+    console.error(`Error downloading image from URL (${url}):`, error);
+    return null;
+  }
+}
+
+export async function buildOrderAttachments(
+  items: any[],
+  orderNumber: string
+): Promise<Array<{ content: string; name: string; type: string }>> {
+  const attachments: Array<{ content: string; name: string; type: string }> = [];
+  const prefix = orderNumber.replace(/[^a-zA-Z0-9-]/g, "_");
+
+  for (let i = 0; i < items.length; i++) {
+    const item = items[i];
+    const itemIndex = i + 1;
+
+    // 1. Druk (imageUrl)
+    if (item.imageUrl) {
+      const printBase64 = await downloadImageAsBase64(item.imageUrl);
+      if (printBase64) {
+        attachments.push({
+          content: printBase64,
+          name: `${prefix}-arkusz-${itemIndex}-DRUK.png`,
+          type: "image/png",
+        });
+      }
+    }
+
+    // 2. Linie cięcia (cutLinesImageUrl lub fallback do imageUrl)
+    const cutUrl = item.cutLinesImageUrl || item.imageUrl;
+    if (cutUrl) {
+      const cutBase64 = await downloadImageAsBase64(cutUrl);
+      if (cutBase64) {
+        attachments.push({
+          content: cutBase64,
+          name: `${prefix}-arkusz-${itemIndex}-LINIE-CIECIA.png`,
+          type: "image/png",
+        });
+      }
+    }
+  }
+
+  return attachments;
 }
 

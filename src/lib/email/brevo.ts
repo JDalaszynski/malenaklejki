@@ -18,7 +18,7 @@ export async function sendCustomerConfirmationEmail(orderData: any) {
           <td style="padding: 16px 8px 16px 0; vertical-align: middle; font-family: 'Inter', system-ui, -apple-system, sans-serif;">
             <h4 style="margin: 0; font-size: 15px; color: #0f172a; font-weight: 700;">Arkusz A4 z naklejkami</h4>
             <p style="margin: 4px 0 0 0; font-size: 13px; color: #64748b; font-weight: 500; line-height: 1.4;">
-              Szerokość naklejki: <strong>${item.widthCm} cm</strong><br/>
+              Szerokość naklejki: <strong>${String(item.widthCm).replace('.', ',')} cm</strong><br/>
               Naklejek na arkuszu: <strong>${item.stickersPerSheet} szt.</strong>
             </p>
             <p style="margin: 4px 0 0 0; font-size: 13px; color: #02af7a; font-weight: 700;">
@@ -26,7 +26,7 @@ export async function sendCustomerConfirmationEmail(orderData: any) {
             </p>
           </td>
           <td style="padding: 16px; text-align: right; vertical-align: middle; font-family: 'Inter', system-ui, -apple-system, sans-serif; width: 100px;">
-            <span style="font-size: 15px; font-weight: 800; color: #0f172a;">${(item.pricePerSheet * item.sheetQuantity).toFixed(2)} PLN</span>
+            <span style="font-size: 15px; font-weight: 800; color: #0f172a;">${(item.pricePerSheet * item.sheetQuantity).toFixed(2).replace('.', ',')} PLN</span>
           </td>
         </tr>
       </table>
@@ -88,15 +88,15 @@ export async function sendCustomerConfirmationEmail(orderData: any) {
                 <table cellpadding="0" cellspacing="0" border="0" style="width: 100%; font-family: 'Inter', system-ui, -apple-system, sans-serif; font-size: 14px; color: #475569;">
                   <tr>
                     <td style="padding: 4px 0;">Wartość produktów:</td>
-                    <td style="padding: 4px 0; text-align: right; font-weight: 600; color: #0f172a;">${orderData.totals.subtotal.toFixed(2)} PLN</td>
+                    <td style="padding: 4px 0; text-align: right; font-weight: 600; color: #0f172a;">${orderData.totals.subtotal.toFixed(2).replace('.', ',')} PLN</td>
                   </tr>
                   <tr>
                     <td style="padding: 4px 0;">Koszt dostawy:</td>
-                    <td style="padding: 4px 0; text-align: right; font-weight: 600; color: #0f172a;">${orderData.totals.shipping.toFixed(2)} PLN</td>
+                    <td style="padding: 4px 0; text-align: right; font-weight: 600; color: #0f172a;">${orderData.totals.shipping.toFixed(2).replace('.', ',')} PLN</td>
                   </tr>
                   <tr style="font-size: 16px; font-weight: 800;">
                     <td style="padding: 12px 0 0 0; border-top: 1px solid #e2e8f0; color: #0f172a;">Łączna kwota:</td>
-                    <td style="padding: 12px 0 0 0; border-top: 1px solid #e2e8f0; text-align: right; color: #02af7a; font-size: 18px;">${orderData.totals.total.toFixed(2)} PLN</td>
+                    <td style="padding: 12px 0 0 0; border-top: 1px solid #e2e8f0; text-align: right; color: #02af7a; font-size: 18px;">${orderData.totals.total.toFixed(2).replace('.', ',')} PLN</td>
                   </tr>
                 </table>
               </div>
@@ -159,7 +159,7 @@ export async function sendAdminFulfillmentAlert(orderData: any) {
           <td style="padding: 16px; vertical-align: middle; font-family: 'Inter', system-ui, -apple-system, sans-serif;">
             <h4 style="margin: 0; font-size: 15px; color: #0f172a; font-weight: 700;">Arkusz #${index + 1}</h4>
             <p style="margin: 4px 0 0 0; font-size: 13px; color: #475569; line-height: 1.4;">
-              Szerokość naklejki: <strong>${item.widthCm} cm</strong> | Ilość sztuk na arkuszu: <strong>${item.stickersPerSheet} szt.</strong><br/>
+              Szerokość naklejki: <strong>${String(item.widthCm).replace('.', ',')} cm</strong> | Ilość sztuk na arkuszu: <strong>${item.stickersPerSheet} szt.</strong><br/>
               Liczba arkuszy do wydruku: <strong style="color: #a855f7; font-size: 14px;">${item.sheetQuantity} szt.</strong>
             </p>
             <p style="margin: 6px 0 0 0; font-size: 12px;">
@@ -182,7 +182,7 @@ export async function sendAdminFulfillmentAlert(orderData: any) {
       // Must use a verified sender email address in Brevo (normally adminEmail)
       sender: { name: 'System MałeNaklejki', email: adminEmail },
       to: [{ email: adminEmail, name: 'Admin MałeNaklejki' }],
-      subject: `Nowe opłacone zamówienie! (${orderData.totals.total.toFixed(2)} PLN) - ${orderData.id}`,
+      subject: `Nowe opłacone zamówienie! (${orderData.totals.total.toFixed(2).replace('.', ',')} PLN) - ${orderData.id}`,
       htmlContent: `
         <div style="font-family: 'Inter', system-ui, -apple-system, sans-serif; background-color: #f8fafc; padding: 40px 20px; color: #1e293b; margin: 0;">
           <div style="max-w: 650px; margin: 0 auto; background-color: #ffffff; border-radius: 24px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05); overflow: hidden; border: 1px solid #e2e8f0;">
@@ -227,7 +227,7 @@ export async function sendAdminFulfillmentAlert(orderData: any) {
               
               <!-- Cost Summary -->
               <div style="background-color: #0f172a; color: #ffffff; border-radius: 16px; padding: 16px; text-align: center; font-size: 16px; font-weight: 800;">
-                Suma zamówienia: <span style="color: #ec4899; font-size: 20px;">${orderData.totals.total.toFixed(2)} PLN</span>
+                Suma zamówienia: <span style="color: #ec4899; font-size: 20px;">${orderData.totals.total.toFixed(2).replace('.', ',')} PLN</span>
               </div>
             </div>
             

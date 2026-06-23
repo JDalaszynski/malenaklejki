@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { verifyWebhookSignature, verifyTransaction } from "@/lib/p24";
 import { db } from "@/lib/firebase/admin";
-import { buildCustomerEmailHtml, buildSellerEmailHtml } from "@/lib/emails";
+import { buildCustomerEmailHtml, buildSellerEmailHtml, buildOrderAttachments } from "@/lib/emails";
 
 export const dynamic = "force-dynamic";
 
@@ -87,23 +87,7 @@ export async function POST(req: NextRequest) {
     const adminEmail = process.env.ADMIN_EMAIL || "kontakt@malenaklejki.pl";
     const siteFromEmail = adminEmail;
 
-    // Zbuduj załączniki (jeśli istnieją z momentu tworzenia koszyka)
-    const attachments: Array<{ content: string; name: string; type: string }> = [];
-    if (orderData.pdfAttachments && Array.isArray(orderData.pdfAttachments)) {
-      for (const att of orderData.pdfAttachments) {
-        const prefix = orderData.orderNumber.replace(/[^a-zA-Z0-9-]/g, "_");
-        const attachmentName = `${prefix}-${att.name}`;
-        const isJpg = att.name.toLowerCase().endsWith(".jpg") || att.name.toLowerCase().endsWith(".jpeg");
-        const contentType = isJpg ? "image/jpeg" : "application/pdf";
-        attachments.push({
-          content: att.base64,
-          name: attachmentName,
-          type: contentType,
-        });
-      }
-      // Opcjonalnie: usunięcie wielkich plików PDF z bazy po wysłaniu e-maila, by oszczędzić miejsce
-      // await orderRef.update({ pdfAttachments: null });
-    }
+    const attachments = await buildOrderAttachments(orderData.items || [], orderData.orderNumber);
 
     // E-mail do klienta
     const customerEmailPayload = {
@@ -118,7 +102,7 @@ export async function POST(req: NextRequest) {
     const sellerEmailPayload: any = {
       sender: { name: "MałeNaklejki – System zamówień", email: siteFromEmail },
       to: [{ email: adminEmail, name: "MałeNaklejki – Sprzedawca" }],
-      subject: `🛒 Nowe OPŁACONE zamówienie ${orderData.orderNumber} – ${orderData.customer.firstName} ${orderData.customer.lastName} (${orderData.totals.total.toFixed(2)} zł)`,
+      subject: `🛒 Nowe OPŁACONE zamówienie ${orderData.orderNumber} – ${orderData.customer.firstName} ${orderData.customer.lastName} (${orderData.totals.total.toFixed(2).replace('.', ',')} zł)`,
       htmlContent: buildSellerEmailHtml(orderData, orderData.orderNumber),
     };
     if (attachments.length > 0) {

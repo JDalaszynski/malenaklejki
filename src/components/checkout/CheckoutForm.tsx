@@ -48,57 +48,9 @@ const checkoutSchema = z.object({
 
 type CheckoutFormValues = z.infer<typeof checkoutSchema>;
 
-/** Generates an A4 PDF (base64) from an image URL by fetching it and embedding it directly.
- *  This preserves the exact 0.85 quality JPEG data uploaded to Firebase without re-compression,
- *  and avoids blocking the main thread during checkout.
- *  For print PDFs, pass item.imageUrl (color composite).
- *  For cut-lines PDFs, pass item.cutLinesImageUrl (black shapes on white).
- */
-async function generatePdfBase64(imageUrl: string): Promise<string> {
-  const { jsPDF } = await import("jspdf");
 
-  // Fetch the image via proxy to avoid CORS
-  const response = await fetch(`/api/proxy-image?url=${encodeURIComponent(imageUrl)}`);
-  if (!response.ok) {
-    throw new Error(`Failed to fetch image: ${imageUrl}`);
-  }
-  const blob = await response.blob();
 
-  // Convert the blob directly to a base64 data URL
-  const base64DataUrl = await new Promise<string>((resolve, reject) => {
-    const reader = new FileReader();
-    reader.onloadend = () => resolve(reader.result as string);
-    reader.onerror = () => reject(new Error("Failed to read image blob"));
-    reader.readAsDataURL(blob);
-  });
 
-  const pdf = new jsPDF({ orientation: "portrait", unit: "mm", format: "a4" });
-  pdf.addImage(base64DataUrl, "JPEG", 0, 0, 210, 297);
-
-  const pdfOutput = pdf.output("datauristring");
-  return pdfOutput.split(",")[1];
-}
-
-/** Fetches an image URL and converts it directly to a base64 string (without embedding in PDF).
- */
-async function fetchImageBase64(imageUrl: string): Promise<string> {
-  // Fetch the image via proxy to avoid CORS
-  const response = await fetch(`/api/proxy-image?url=${encodeURIComponent(imageUrl)}`);
-  if (!response.ok) {
-    throw new Error(`Failed to fetch image: ${imageUrl}`);
-  }
-  const blob = await response.blob();
-
-  // Convert the blob directly to a base64 data URL
-  const base64DataUrl = await new Promise<string>((resolve, reject) => {
-    const reader = new FileReader();
-    reader.onloadend = () => resolve(reader.result as string);
-    reader.onerror = () => reject(new Error("Failed to read image blob"));
-    reader.readAsDataURL(blob);
-  });
-
-  return base64DataUrl.split(",")[1];
-}
 
 
 
@@ -142,40 +94,12 @@ export function CheckoutForm() {
     await new Promise((resolve) => setTimeout(resolve, 150));
 
     try {
-      // Generate PDF attachments for each item
-      const pdfAttachments: Array<{ base64: string; name: string }> = [];
-
-      for (let i = 0; i < items.length; i++) {
-        const item = items[i];
-        const itemIndex = i + 1;
-
-        try {
-          // Print PDF – from the stored color composite image
-          const printBase64 = await generatePdfBase64(item.imageUrl);
-          pdfAttachments.push({
-            base64: printBase64,
-            name: `arkusz-${itemIndex}-DRUK.pdf`,
-          });
-
-          // Cut-lines JPG – use the dedicated cut-lines image stored at add-to-cart time
-          const cutSource = item.cutLinesImageUrl ?? item.imageUrl;
-          const cutBase64 = await fetchImageBase64(cutSource);
-          pdfAttachments.push({
-            base64: cutBase64,
-            name: `arkusz-${itemIndex}-LINIE-CIECIA.jpg`,
-          });
-        } catch (pdfErr) {
-          console.warn(`PDF generation failed for item ${itemIndex}:`, pdfErr);
-        }
-      }
-
       const payload = {
         ...data,
         items,
         subtotal,
         shippingCost,
         total,
-        pdfAttachments,
       };
 
       const response = await createOrder(payload);
@@ -389,13 +313,13 @@ export function CheckoutForm() {
                       </p>
                       {item.stickersPerSheet > 0 && (
                         <p className="text-xs text-muted-foreground">
-                          Tylko {(item.pricePerSheet / item.stickersPerSheet).toFixed(2)} zł za 1 naklejkę!
+                          Tylko {(item.pricePerSheet / item.stickersPerSheet).toFixed(2).replace('.', ',')} zł za 1 naklejkę!
                         </p>
                       )}
-                      <p className="font-bold text-sm text-primary">Sztuk: {item.sheetQuantity} (A4)</p>
+                      <p className="font-bold text-sm text-primary">Ilość: {item.sheetQuantity} szt.</p>
                     </div>
                   </div>
-                  <p className="font-extrabold text-lg">{(item.pricePerSheet * item.sheetQuantity).toFixed(2)} zł</p>
+                  <p className="font-extrabold text-lg">{(item.pricePerSheet * item.sheetQuantity).toFixed(2).replace('.', ',')} zł</p>
                 </div>
               ))}
             </div>
@@ -403,15 +327,15 @@ export function CheckoutForm() {
             <div className="space-y-3 mb-6 bg-muted/15 p-4 rounded-xl border border-border/40">
               <div className="flex justify-between font-medium">
                 <span className="text-muted-foreground">Naklejki</span>
-                <span>{subtotal.toFixed(2)} zł</span>
+                <span>{subtotal.toFixed(2).replace('.', ',')} zł</span>
               </div>
               <div className="flex justify-between font-medium">
                 <span className="text-muted-foreground">Dostawa</span>
-                <span>{shippingCost.toFixed(2)} zł</span>
+                <span>{shippingCost.toFixed(2).replace('.', ',')} zł</span>
               </div>
               <div className="pt-3 border-t border-border/40 flex justify-between font-bold text-xl text-primary">
                 <span>Razem</span>
-                <span>{total.toFixed(2)} zł</span>
+                <span>{total.toFixed(2).replace('.', ',')} zł</span>
               </div>
             </div>
 

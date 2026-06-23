@@ -68,9 +68,47 @@ export function A4Visualizer3D({ stickers }: A4Visualizer3DProps) {
         containerType: "inline-size",
       }}
     >
+      {/* SVG clipPath definitions for contour stickers - placed at root 2D container for browser rendering safety */}
+      <svg style={{ position: "absolute", width: 0, height: 0, overflow: "hidden", pointerEvents: "none" }} aria-hidden="true">
+        <defs>
+          {stickers.map((st) => {
+            if (
+              (st.cutLineType === "contour" || st.cutLineType === "contour_inside") &&
+              st.contourPolygons &&
+              st.contourPolygons.length > 0
+            ) {
+              const wMm = st.widthCm * 10;
+              const hMm = st.heightCm * 10;
+              const scaleX = (st.cutLineType === "contour" && Math.max(wMm, hMm) * (8 / 120) < 2)
+                ? (wMm / 2 + 2) / (wMm / 2 + Math.max(wMm, hMm) * (8 / 120))
+                : 1;
+              const scaleY = (st.cutLineType === "contour" && Math.max(wMm, hMm) * (8 / 120) < 2)
+                ? (hMm / 2 + 2) / (hMm / 2 + Math.max(wMm, hMm) * (8 / 120))
+                : 1;
+
+              return (
+                <clipPath id={`clip-${st.id}`} clipPathUnits="objectBoundingBox" key={st.id}>
+                  {st.contourPolygons.map((poly, idx) => {
+                    const pointsStr = poly
+                      .map((p) => {
+                        const px = 0.5 + (p.x - 0.5) / scaleX;
+                        const py = 0.5 + (p.y - 0.5) / scaleY;
+                        return `${px},${py}`;
+                      })
+                      .join(" ");
+                    return <polygon key={idx} points={pointsStr} />;
+                  })}
+                </clipPath>
+              );
+            }
+            return null;
+          })}
+        </defs>
+      </svg>
+
       {/* 3D Floating Sheet Wrapper */}
       <div
-        className="relative w-full h-full bg-white transition-transform duration-300 ease-out shadow-[0_20px_50px_rgba(0,0,0,0.12),0_10px_20px_rgba(0,0,0,0.06)] border border-border/40 overflow-hidden cmyk-preview"
+        className="relative w-full h-full bg-[#fcfcfc] transition-transform duration-300 ease-out shadow-[0_20px_50px_rgba(0,0,0,0.12),0_10px_20px_rgba(0,0,0,0.06)] border border-border/40 overflow-hidden cmyk-preview"
         style={{
           transformStyle: "preserve-3d",
           transform: isHovered
@@ -85,17 +123,55 @@ export function A4Visualizer3D({ stickers }: A4Visualizer3DProps) {
           style={{ transform: "translateZ(-1px)" }}
         />
 
-
-
         {/* Render Stickers with 3D Depth */}
         {stickers.map((st) => {
           const wMm = st.widthCm * 10;
           const hMm = st.heightCm * 10;
-          const baseOffsetMm = Math.max(3, Math.max(wMm, hMm) * (8 / 120));
+          const baseOffsetMm = Math.max(2, Math.max(wMm, hMm) * (8 / 120));
           const isInside = st.cutLineType === "rounded_inside" || st.cutLineType === "circle_inside";
           const offsetMm = isInside ? -2 : baseOffsetMm;
           const offsetPercentX = (offsetMm / wMm) * 100;
           const offsetPercentY = (offsetMm / hMm) * 100;
+
+          // Determine scale factors sx and sy
+          let sx = 1;
+          let sy = 1;
+
+          if (
+            st.cutLineType === "rounded" ||
+            st.cutLineType === "rounded_inside" ||
+            st.cutLineType === "circle" ||
+            st.cutLineType === "circle_inside"
+          ) {
+            sx = (wMm + 2 * offsetMm) / wMm;
+            sy = (hMm + 2 * offsetMm) / hMm;
+          } else if (st.cutLineType === "contour" || st.cutLineType === "contour_inside") {
+            const scaleX = (st.cutLineType === "contour" && Math.max(wMm, hMm) * (8 / 120) < 2)
+              ? (wMm / 2 + 2) / (wMm / 2 + Math.max(wMm, hMm) * (8 / 120))
+              : 1;
+            const scaleY = (st.cutLineType === "contour" && Math.max(wMm, hMm) * (8 / 120) < 2)
+              ? (hMm / 2 + 2) / (hMm / 2 + Math.max(wMm, hMm) * (8 / 120))
+              : 1;
+            sx = scaleX;
+            sy = scaleY;
+          }
+
+          const getClipPathStyle = () => {
+            if (st.cutLineType === "circle" || st.cutLineType === "circle_inside") {
+              return "ellipse(50% 50% at 50% 50%)";
+            }
+            if (st.cutLineType === "rounded" || st.cutLineType === "rounded_inside" || st.cutLineType === "none") {
+              return "inset(0% round 1.008cqw)";
+            }
+            if (
+              (st.cutLineType === "contour" || st.cutLineType === "contour_inside") &&
+              st.contourPolygons &&
+              st.contourPolygons.length > 0
+            ) {
+              return `url(#clip-${st.id})`;
+            }
+            return undefined;
+          };
 
           return (
             <div
@@ -110,16 +186,77 @@ export function A4Visualizer3D({ stickers }: A4Visualizer3DProps) {
                 transformStyle: "preserve-3d",
               }}
             >
-              {/* Sticker Image */}
-              <img
-                src={st.imageUrl}
-                alt="Naklejka"
-                className="max-w-full max-h-full object-contain select-none"
-                draggable={false}
+              {/* Sticker Shadow (cast onto the sheet) */}
+              <div
+                className="absolute bg-black/9"
                 style={{
-                  borderRadius: "1.008cqw",
+                  left: "50%",
+                  top: "50%",
+                  width: `${sx * 100}%`,
+                  height: `${sy * 100}%`,
+                  transform: "translate(calc(-50% + 0.6px), calc(-50% + 1px)) translateZ(0.05px)",
+                  clipPath: getClipPathStyle(),
+                  filter: "blur(1.2px)",
                 }}
               />
+
+              {/* Contour White Backing (Vinyl Base) - rendered as SVG polygon to ensure solid white background in all browsers */}
+              {(st.cutLineType === "contour" || st.cutLineType === "contour_inside") && st.contourPolygons && st.contourPolygons.length > 0 && (
+                <svg
+                  className="absolute inset-0 w-full h-full pointer-events-none overflow-visible"
+                  viewBox="0 0 1 1"
+                  preserveAspectRatio="none"
+                  style={{
+                    transformOrigin: "center",
+                    transform: (st.cutLineType === "contour" && Math.max(wMm, hMm) * (8 / 120) < 2)
+                      ? `translateZ(0.1px) scaleX(${(wMm / 2 + 2) / (wMm / 2 + Math.max(wMm, hMm) * (8 / 120))}) scaleY(${(hMm / 2 + 2) / (hMm / 2 + Math.max(wMm, hMm) * (8 / 120))})`
+                      : "translateZ(0.1px)",
+                  }}
+                >
+                  {st.contourPolygons.map((poly, idx) => {
+                    const pointsStr = poly
+                      .map((p) => `${p.x},${p.y}`)
+                      .join(" ");
+                    return (
+                      <polygon
+                        key={idx}
+                        points={pointsStr}
+                        fill="#ffffff"
+                        stroke="none"
+                      />
+                    );
+                  })}
+                </svg>
+              )}
+
+              {/* Sticker Body (Vinyl base + Image) clipped to cut line */}
+              <div
+                className="absolute bg-white overflow-hidden"
+                style={{
+                  left: "50%",
+                  top: "50%",
+                  width: `${sx * 100}%`,
+                  height: `${sy * 100}%`,
+                  transform: "translate(-50%, -50%) translateZ(0.15px)",
+                  transformStyle: "preserve-3d",
+                  clipPath: getClipPathStyle(),
+                }}
+              >
+                {/* Sticker Image */}
+                <img
+                  src={st.imageUrl}
+                  alt="Naklejka"
+                  className="absolute select-none object-contain"
+                  draggable={false}
+                  style={{
+                    left: "50%",
+                    top: "50%",
+                    width: `${(1 / sx) * 100}%`,
+                    height: `${(1 / sy) * 100}%`,
+                    transform: "translate(-50%, -50%)",
+                  }}
+                />
+              </div>
 
               {/* Cut Lines floating slightly above sticker */}
               {(st.cutLineType === "contour" || st.cutLineType === "contour_inside") && (
@@ -130,8 +267,8 @@ export function A4Visualizer3D({ stickers }: A4Visualizer3DProps) {
                     preserveAspectRatio="none"
                     style={{
                       transformOrigin: "center",
-                      transform: (st.cutLineType === "contour" && Math.max(wMm, hMm) * (8 / 120) < 3) 
-                        ? `translateZ(1px) scaleX(${(wMm/2 + 3) / (wMm/2 + Math.max(wMm, hMm) * (8/120))}) scaleY(${(hMm/2 + 3) / (hMm/2 + Math.max(wMm, hMm) * (8/120))})` 
+                      transform: (st.cutLineType === "contour" && Math.max(wMm, hMm) * (8 / 120) < 2)
+                        ? `translateZ(1px) scaleX(${(wMm / 2 + 2) / (wMm / 2 + Math.max(wMm, hMm) * (8 / 120))}) scaleY(${(hMm / 2 + 2) / (hMm / 2 + Math.max(wMm, hMm) * (8 / 120))})`
                         : "translateZ(1px)",
                     }}
                   >

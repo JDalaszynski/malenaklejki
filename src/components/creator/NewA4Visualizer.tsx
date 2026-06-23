@@ -3,7 +3,7 @@
 import React, { useRef, useState, useEffect } from "react";
 import { createPortal } from "react-dom";
 import { PlacedSticker } from "@/types/creator";
-import { checkOverlap, getRotatedSize, getCutLineMargins, getOuterMargins, getCutLineBoundingBox, checkStickersCollision } from "@/lib/utils/collision";
+import { checkOverlap, getRotatedSize, getCutLineMargins, getOuterMargins, getCutLineBoundingBox, checkStickersCollision, clampToUsableArea } from "@/lib/utils/collision";
 import { MoreVertical, Scissors, RotateCw, Crop, Copy, Trash2, Ban, Sparkles, Square, Circle } from "lucide-react";
 
 interface NewA4VisualizerProps {
@@ -46,12 +46,10 @@ export function NewA4Visualizer({
   // Quick Menu states
   const [showQuickMenu, setShowQuickMenu] = useState(false);
   const [showCutMenu, setShowCutMenu] = useState(false);
-  const [showRotationMenu, setShowRotationMenu] = useState(false);
 
   useEffect(() => {
     setShowQuickMenu(false);
     setShowCutMenu(false);
-    setShowRotationMenu(false);
   }, [selectedStickerId]);
 
   const toggleQuickMenu = (e: React.MouseEvent) => {
@@ -60,7 +58,6 @@ export function NewA4Visualizer({
       const next = !prev;
       if (next) {
         setShowCutMenu(false);
-        setShowRotationMenu(false);
       }
       return next;
     });
@@ -72,19 +69,6 @@ export function NewA4Visualizer({
       const next = !prev;
       if (next) {
         setShowQuickMenu(false);
-        setShowRotationMenu(false);
-      }
-      return next;
-    });
-  };
-
-  const toggleRotationMenu = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    setShowRotationMenu(prev => {
-      const next = !prev;
-      if (next) {
-        setShowQuickMenu(false);
-        setShowCutMenu(false);
       }
       return next;
     });
@@ -261,42 +245,43 @@ export function NewA4Visualizer({
         // Snap X
         let diff = Math.abs(dragRight - (otherLeft - PAD));
         if (diff < minDiffX) {
-           minDiffX = diff;
-           snapX = otherLeft - PAD - margins.right;
+          minDiffX = diff;
+          snapX = otherLeft - PAD - margins.right;
         }
         diff = Math.abs(dragLeft - (otherRight + PAD));
         if (diff < minDiffX) {
-           minDiffX = diff;
-           snapX = otherRight + PAD + margins.left;
+          minDiffX = diff;
+          snapX = otherRight + PAD + margins.left;
         }
         // Align centers on X if close
         diff = Math.abs(targetX - other.x);
         if (diff < minDiffX) {
-           minDiffX = diff;
-           snapX = other.x;
+          minDiffX = diff;
+          snapX = other.x;
         }
-        
+
         // Snap Y
         diff = Math.abs(dragBottom - (otherTop - PAD));
         if (diff < minDiffY) {
-           minDiffY = diff;
-           snapY = otherTop - PAD - margins.bottom;
+          minDiffY = diff;
+          snapY = otherTop - PAD - margins.bottom;
         }
         diff = Math.abs(dragTop - (otherBottom + PAD));
         if (diff < minDiffY) {
-           minDiffY = diff;
-           snapY = otherBottom + PAD + margins.top;
+          minDiffY = diff;
+          snapY = otherBottom + PAD + margins.top;
         }
         // Align centers on Y if close
         diff = Math.abs(targetY - other.y);
         if (diff < minDiffY) {
-           minDiffY = diff;
-           snapY = other.y;
+          minDiffY = diff;
+          snapY = other.y;
         }
       });
 
-      let finalX = Math.max(MARGIN_MM + margins.left, Math.min(SHEET_WIDTH_MM - MARGIN_MM - margins.right, snapX));
-      let finalY = Math.max(MARGIN_MM + margins.top, Math.min(SHEET_HEIGHT_MM - MARGIN_MM - margins.bottom, snapY));
+      const clamped = clampToUsableArea(snapX, snapY, margins);
+      let finalX = clamped.x;
+      let finalY = clamped.y;
 
       if (finalX !== dragSticker.x || finalY !== dragSticker.y) {
         onUpdateStickers(
@@ -331,16 +316,31 @@ export function NewA4Visualizer({
         let tx = resizeSticker.x;
         let ty = resizeSticker.y;
 
-        if (tx < MARGIN_MM + margins.left) tx = MARGIN_MM + margins.left;
-        if (tx > SHEET_WIDTH_MM - MARGIN_MM - margins.right) tx = SHEET_WIDTH_MM - MARGIN_MM - margins.right;
-        if (ty < MARGIN_MM + margins.top) ty = MARGIN_MM + margins.top;
-        if (ty > SHEET_HEIGHT_MM - MARGIN_MM - margins.bottom) ty = SHEET_HEIGHT_MM - MARGIN_MM - margins.bottom;
+        const clamped = clampToUsableArea(tx, ty, margins);
+        tx = clamped.x;
+        ty = clamped.y;
+
+        const leftBound = tx - margins.left;
+        const rightBound = tx + margins.right;
+        const topBound = ty - margins.top;
+        const bottomBound = ty + margins.bottom;
+
+        const CORNER_LIMIT = 17;
+        const RIGHT_CORNER_LIMIT = 193;
+        const BOTTOM_CORNER_LIMIT = 280;
+
+        const overlapsCorner =
+          (leftBound < CORNER_LIMIT && topBound < CORNER_LIMIT) ||
+          (rightBound > RIGHT_CORNER_LIMIT && topBound < CORNER_LIMIT) ||
+          (leftBound < CORNER_LIMIT && bottomBound > BOTTOM_CORNER_LIMIT) ||
+          (rightBound > RIGHT_CORNER_LIMIT && bottomBound > BOTTOM_CORNER_LIMIT);
 
         const fitsIn =
           tx >= MARGIN_MM + margins.left &&
           tx <= SHEET_WIDTH_MM - MARGIN_MM - margins.right &&
           ty >= MARGIN_MM + margins.top &&
-          ty <= SHEET_HEIGHT_MM - MARGIN_MM - margins.bottom;
+          ty <= SHEET_HEIGHT_MM - MARGIN_MM - margins.bottom &&
+          !overlapsCorner;
 
         if (!fitsIn) return null;
 
@@ -434,37 +434,46 @@ export function NewA4Visualizer({
     <div
       ref={containerRef}
       onClick={handleSheetClick}
-      className="relative bg-white border border-border/80 shadow-[0_15px_45px_rgba(0,71,73,0.08),_0_4px_12px_rgba(0,71,73,0.03)] dark:shadow-[0_15px_45px_rgba(0,0,0,0.35),_0_4px_12px_rgba(0,0,0,0.2)] aspect-[210/297] w-full max-w-[480px] rounded-lg select-none cursor-default overflow-hidden transition-all duration-300 hover:shadow-[0_22px_60px_rgba(0,71,73,0.14),_0_6px_20px_rgba(0,71,73,0.05)] dark:hover:shadow-[0_22px_60px_rgba(0,0,0,0.45),_0_6px_20px_rgba(0,0,0,0.25)]"
+      className="relative bg-white border border-border/80 shadow-[0_15px_45px_rgba(0,71,73,0.08),_0_4px_12px_rgba(0,71,73,0.03)] dark:shadow-[0_15px_45px_rgba(0,0,0,0.35),_0_4px_12px_rgba(0,0,0,0.2)] aspect-[210/297] w-full max-w-[480px] rounded-lg select-none cursor-default overflow-visible transition-all duration-300 hover:shadow-[0_22px_60px_rgba(0,71,73,0.14),_0_6px_20px_rgba(0,71,73,0.05)] dark:hover:shadow-[0_22px_60px_rgba(0,0,0,0.45),_0_6px_20px_rgba(0,0,0,0.25)]"
       style={{
         containerType: "inline-size",
         transform: "translate3d(0,0,0)",
       }}
     >
       {/* Grid pattern background */}
-      <div className="absolute inset-0 bg-[radial-gradient(#cbd5e1_1px,transparent_1px)] [background-size:16px_16px] pointer-events-none opacity-60" />
+      <div className="absolute inset-0 bg-[radial-gradient(#cbd5e1_1px,transparent_1px)] [background-size:16px_16px] pointer-events-none opacity-60 rounded-lg" />
 
-      {/* Safety Margins (11mm) indicator */}
+      {/* Safety Margins (11mm) with 6x6mm corner indents indicator */}
+      <svg
+        className="absolute inset-0 w-full h-full pointer-events-none z-20"
+        viewBox="0 0 210 297"
+      >
+        <path
+          d="M 17 11 L 193 11 L 193 17 L 199 17 L 199 280 L 193 280 L 193 286 L 17 286 L 17 280 L 11 280 L 11 17 L 17 17 Z"
+          fill="none"
+          stroke="rgb(239, 68, 68)"
+          strokeWidth="0.6"
+          strokeDasharray="2 1.5"
+          strokeOpacity="0.5"
+        />
+      </svg>
       <div
-        className="absolute border-2 border-dashed border-destructive/50 pointer-events-none z-20"
+        className="absolute pointer-events-none z-20 text-[9px] font-black text-destructive/80 tracking-wider uppercase"
         style={{
-          left: `${(MARGIN_MM / SHEET_WIDTH_MM) * 100}%`,
-          right: `${(MARGIN_MM / SHEET_WIDTH_MM) * 100}%`,
-          top: `${(MARGIN_MM / SHEET_HEIGHT_MM) * 100}%`,
-          bottom: `${(MARGIN_MM / SHEET_HEIGHT_MM) * 100}%`,
-          borderRadius: "1.008cqw",
+          left: `${(18 / SHEET_WIDTH_MM) * 100}%`,
+          top: `${(12 / SHEET_HEIGHT_MM) * 100}%`,
         }}
       >
-        <span className="absolute top-1 left-2 text-[9px] font-black text-destructive/80 tracking-wider uppercase">
-          Margines Bezpieczeństwa
-        </span>
+        Margines Bezpieczeństwa
       </div>
+
 
       {/* Render Stickers */}
       {displayStickers.map((st) => {
         const isSelected = !isPresentationMode && st.id === selectedStickerId;
         const wMm = st.widthCm * 10;
         const hMm = st.heightCm * 10;
-        const baseOffsetMm = Math.max(3, Math.max(wMm, hMm) * (8 / 120));
+        const baseOffsetMm = Math.max(2, Math.max(wMm, hMm) * (8 / 120));
         const isInside = st.cutLineType === "rounded_inside" || st.cutLineType === "circle_inside";
         const offsetMm = isInside ? -2 : baseOffsetMm;
         const offsetPercentX = (offsetMm / wMm) * 100;
@@ -477,10 +486,10 @@ export function NewA4Visualizer({
               onPointerMove={handlePointerMove}
               onPointerUp={handlePointerUp}
               className={`absolute flex items-center justify-center transition-shadow touch-none ${isSelected
-                ? (showQuickMenu || showCutMenu || showRotationMenu ? "z-[60]" : "z-30") + " ring-2 ring-primary ring-offset-2 rounded-none"
+                ? (showQuickMenu || showCutMenu ? "z-[60]" : "z-30") + " ring-2 ring-primary ring-offset-2 rounded-none"
                 : isPresentationMode
                   ? "pointer-events-none rounded-none"
-                  : overlappingStickerIds.includes(st.id) 
+                  : overlappingStickerIds.includes(st.id)
                     ? "cursor-grab active:cursor-grabbing group ring-2 ring-red-500 ring-offset-2 shadow-[0_0_15px_rgba(239,68,68,0.6)] z-20 rounded-none animate-pulse"
                     : "cursor-grab active:cursor-grabbing group hover:ring-1 hover:ring-primary/40 hover:ring-offset-1 rounded-none"
                 } ${isPresentationMode ? "animate-in fade-in zoom-in-50 duration-300 ease-out" : ""}`}
@@ -512,8 +521,8 @@ export function NewA4Visualizer({
                     style={{
                       filter: "drop-shadow(0 0 2px #ff5ebb)",
                       transformOrigin: "center",
-                      transform: (st.cutLineType === "contour" && Math.max(wMm, hMm) * (8 / 120) < 3) 
-                        ? `scaleX(${(wMm/2 + 3) / (wMm/2 + Math.max(wMm, hMm) * (8/120))}) scaleY(${(hMm/2 + 3) / (hMm/2 + Math.max(wMm, hMm) * (8/120))})` 
+                      transform: (st.cutLineType === "contour" && Math.max(wMm, hMm) * (8 / 120) < 2)
+                        ? `scaleX(${(wMm / 2 + 2) / (wMm / 2 + Math.max(wMm, hMm) * (8 / 120))}) scaleY(${(hMm / 2 + 2) / (hMm / 2 + Math.max(wMm, hMm) * (8 / 120))})`
                         : "none",
                     }}
                   >
@@ -596,7 +605,7 @@ export function NewA4Visualizer({
                   {showQuickMenu && (
                     <div
                       onPointerDown={(e) => e.stopPropagation()}
-                      className="hidden sm:block absolute top-7 left-0 bg-background border border-border rounded-xl shadow-lg py-1.5 min-w-[140px] z-[80] text-left"
+                      className="hidden sm:block absolute top-7 left-0 bg-background border border-border rounded-xl shadow-lg py-1.5 min-w-[145px] z-[80] text-left"
                     >
                       <button
                         type="button"
@@ -605,9 +614,10 @@ export function NewA4Visualizer({
                           setShowQuickMenu(false);
                           onEditSticker?.();
                         }}
-                        className="w-full text-left px-3 py-1.5 text-xs font-bold hover:bg-muted text-foreground transition-colors whitespace-nowrap"
+                        className="flex items-center gap-2 w-full text-left px-3 py-1.5 text-xs font-bold hover:bg-muted text-foreground transition-colors whitespace-nowrap"
                       >
-                        Kadruj/Usuń tło
+                        <Crop className="w-3.5 h-3.5 text-muted-foreground" />
+                        <span>Kadruj/Usuń tło</span>
                       </button>
                       <button
                         type="button"
@@ -616,9 +626,10 @@ export function NewA4Visualizer({
                           setShowQuickMenu(false);
                           onDuplicateSticker?.();
                         }}
-                        className="w-full text-left px-3 py-1.5 text-xs font-bold hover:bg-muted text-foreground transition-colors whitespace-nowrap"
+                        className="flex items-center gap-2 w-full text-left px-3 py-1.5 text-xs font-bold hover:bg-muted text-foreground transition-colors whitespace-nowrap"
                       >
-                        Zduplikuj
+                        <Copy className="w-3.5 h-3.5 text-muted-foreground" />
+                        <span>Zduplikuj</span>
                       </button>
                       <button
                         type="button"
@@ -627,9 +638,10 @@ export function NewA4Visualizer({
                           setShowQuickMenu(false);
                           onDeleteSticker?.();
                         }}
-                        className="w-full text-left px-3 py-1.5 text-xs font-bold hover:bg-muted text-destructive transition-colors whitespace-nowrap"
+                        className="flex items-center gap-2 w-full text-left px-3 py-1.5 text-xs font-bold hover:bg-muted text-destructive transition-colors whitespace-nowrap"
                       >
-                        Usuń
+                        <Trash2 className="w-3.5 h-3.5 text-destructive" />
+                        <span>Usuń</span>
                       </button>
                     </div>
                   )}
@@ -646,11 +658,10 @@ export function NewA4Visualizer({
                     type="button"
                     onPointerDown={(e) => e.stopPropagation()}
                     onClick={toggleCutMenu}
-                    className={`w-6 h-6 rounded-full flex items-center justify-center shadow-md active:scale-95 transition-all duration-300 border ${
-                      st.cutLineType === "none"
+                    className={`w-6 h-6 rounded-full flex items-center justify-center shadow-md active:scale-95 transition-all duration-300 border ${st.cutLineType === "none"
                         ? "bg-red-400 text-white border-red-400 hover:bg-red-500 red-shadow-pulse z-50"
                         : "bg-background text-foreground hover:bg-muted border-border"
-                    }`}
+                      }`}
                     title="Wybierz linię cięcia"
                   >
                     <Scissors className="w-3.5 h-3.5" />
@@ -658,30 +669,34 @@ export function NewA4Visualizer({
                   {showCutMenu && (
                     <div
                       onPointerDown={(e) => e.stopPropagation()}
-                      className="hidden sm:block absolute top-7 right-0 bg-background border border-border rounded-xl shadow-lg py-1.5 w-[135px] z-[80] text-left"
+                      className="hidden sm:block absolute top-7 right-0 bg-background border border-border rounded-xl shadow-lg py-1.5 min-w-[145px] z-[80] text-left"
                     >
                       {[
-                        { type: "none", label: "Brak" },
-                        { type: "contour", label: "Kontur" },
-                        { type: "rounded", label: "Prostokąt" },
-                        { type: "circle", label: "Koło" },
-                        { type: "rounded_inside", label: "Prostokąt wew." },
-                        { type: "circle_inside", label: "Koło wew." },
-                      ].map((opt) => (
-                        <button
-                          key={opt.type}
-                          type="button"
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            setShowCutMenu(false);
-                            onCutLineChange?.(opt.type as any);
-                          }}
-                          className={`w-full text-left px-3 py-1.5 text-xs font-bold hover:bg-muted transition-colors whitespace-nowrap ${st.cutLineType === opt.type ? "text-primary bg-primary/5" : "text-foreground"
-                            }`}
-                        >
-                          {opt.label}
-                        </button>
-                      ))}
+                        { type: "none", label: "Brak", icon: Ban },
+                        { type: "contour", label: "Kontur", icon: Sparkles },
+                        { type: "rounded", label: "Prostokąt", icon: Square },
+                        { type: "circle", label: "Koło", icon: Circle },
+                        { type: "rounded_inside", label: "Prostokąt wew.", icon: Square },
+                        { type: "circle_inside", label: "Koło wew.", icon: Circle },
+                      ].map((opt) => {
+                        const Icon = opt.icon;
+                        return (
+                          <button
+                            key={opt.type}
+                            type="button"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              setShowCutMenu(false);
+                              onCutLineChange?.(opt.type as any);
+                            }}
+                            className={`flex items-center gap-2 w-full text-left px-3 py-1.5 text-xs font-bold hover:bg-muted transition-colors whitespace-nowrap ${st.cutLineType === opt.type ? "text-primary bg-primary/5" : "text-foreground"
+                              }`}
+                          >
+                            <Icon className="w-3.5 h-3.5 text-muted-foreground" />
+                            <span>{opt.label}</span>
+                          </button>
+                        );
+                      })}
                     </div>
                   )}
                 </div>
@@ -707,68 +722,6 @@ export function NewA4Visualizer({
               )}
             </div>
 
-            {/* Rotation Menu Button (Bottom-Left in static Sheet coordinates) */}
-            {isSelected && (
-              <div
-                className={`absolute ${showRotationMenu ? "z-[70]" : "z-[40]"} pointer-events-auto`}
-                style={{
-                  left: `${(st.x / SHEET_WIDTH_MM) * 100}%`,
-                  top: `${((st.y + hMm) / SHEET_HEIGHT_MM) * 100}%`,
-                  transform: "translate(-50%, -50%)",
-                }}
-              >
-                <button
-                  type="button"
-                  onPointerDown={(e) => e.stopPropagation()}
-                  onClick={toggleRotationMenu}
-                  className="w-6 h-6 rounded-full bg-background text-foreground hover:bg-muted border border-border flex items-center justify-center shadow-md active:scale-95 transition-transform"
-                  title="Obróć naklejkę"
-                >
-                  <RotateCw className="w-3.5 h-3.5" />
-                </button>
-                {showRotationMenu && (
-                  <div
-                    onPointerDown={(e) => e.stopPropagation()}
-                    className="hidden sm:block absolute bottom-7 left-0 bg-background border border-border rounded-xl shadow-lg p-3 min-w-[160px] z-[80] text-left flex flex-col gap-2"
-                  >
-                    <div className="flex justify-between items-center text-[10px] font-bold text-foreground whitespace-nowrap">
-                      <span>Obrót</span>
-                      <span className="text-primary font-black">{st.rotation || 0}°</span>
-                    </div>
-                    <input
-                      type="range"
-                      min={0}
-                      max={360}
-                      step={1}
-                      value={st.rotation || 0}
-                      onChange={(e) => {
-                        const val = Number(e.target.value);
-                        onRotationChange?.(val);
-                      }}
-                      className="w-full h-1.5 bg-foreground/10 dark:bg-muted-foreground/40 rounded-lg appearance-none cursor-pointer accent-primary focus:outline-none"
-                    />
-                    <div className="flex gap-1 justify-between mt-1">
-                      {[0, 90, 180, 270].map((deg) => (
-                        <button
-                          key={deg}
-                          type="button"
-                          onClick={() => {
-                            onRotationChange?.(deg);
-                          }}
-                          className={`text-[9px] font-black px-1.5 py-0.5 rounded border transition-colors cursor-pointer ${(st.rotation || 0) === deg
-                            ? "bg-primary text-primary-foreground border-primary"
-                            : "bg-muted hover:bg-muted/80 text-muted-foreground border-transparent"
-                            }`}
-                        >
-                          {deg}°
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-                )}
-              </div>
-            )}
-
             {/* No Cut Line Minimalist Warning Label (Centered under unrotated sticker boundaries) */}
             {st.cutLineType === "none" && (
               <div
@@ -788,7 +741,7 @@ export function NewA4Visualizer({
       })}
 
       {/* MOBILE BOTTOM DRAWER */}
-      {isMounted && selectedSticker && (showQuickMenu || showCutMenu || showRotationMenu) && createPortal(
+      {isMounted && selectedSticker && (showQuickMenu || showCutMenu) && createPortal(
         <div className="fixed inset-x-0 bottom-0 z-[100] sm:hidden flex flex-col justify-end">
           {/* Backdrop (Fully transparent with no blur, captures clicks to close menu) */}
           <div
@@ -796,7 +749,6 @@ export function NewA4Visualizer({
             onClick={() => {
               setShowQuickMenu(false);
               setShowCutMenu(false);
-              setShowRotationMenu(false);
             }}
           />
           {/* Bottom Sheet */}
@@ -876,47 +828,6 @@ export function NewA4Visualizer({
                       </button>
                     );
                   })}
-                </div>
-              </div>
-            )}
-
-            {showRotationMenu && (
-              <div className="flex flex-col gap-4">
-                <div className="flex justify-between items-center mb-1">
-                  <div className="flex items-center gap-2">
-                    <RotateCw className="w-4 h-4 text-muted-foreground" />
-                    <h3 className="text-sm font-black text-muted-foreground uppercase tracking-wider">Obrót naklejki</h3>
-                  </div>
-                  <span className="text-sm font-black text-primary">{selectedSticker.rotation || 0}°</span>
-                </div>
-                <input
-                  type="range"
-                  min={0}
-                  max={360}
-                  step={1}
-                  value={selectedSticker.rotation || 0}
-                  onChange={(e) => {
-                    const val = Number(e.target.value);
-                    onRotationChange?.(val);
-                  }}
-                  className="w-full h-2 bg-foreground/10 dark:bg-muted-foreground/40 rounded-lg appearance-none cursor-pointer accent-primary focus:outline-none"
-                />
-                <div className="grid grid-cols-4 gap-2 mt-1">
-                  {[0, 90, 180, 270].map((deg) => (
-                    <button
-                      key={deg}
-                      type="button"
-                      onClick={() => {
-                        onRotationChange?.(deg);
-                      }}
-                      className={`py-2 px-3 rounded-lg text-xs font-bold border transition-all ${(selectedSticker.rotation || 0) === deg
-                        ? "bg-primary text-primary-foreground border-primary"
-                        : "bg-muted border-transparent text-foreground"
-                        }`}
-                    >
-                      {deg}°
-                    </button>
-                  ))}
                 </div>
               </div>
             )}

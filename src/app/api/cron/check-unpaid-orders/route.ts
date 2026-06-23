@@ -5,6 +5,7 @@ import {
   buildUnpaidOrderSellerEmailHtml,
   buildCustomerEmailHtml,
   buildSellerEmailHtml,
+  buildOrderAttachments,
 } from "@/lib/emails";
 
 export const dynamic = "force-dynamic";
@@ -99,20 +100,7 @@ export async function GET(req: NextRequest) {
         });
 
         // Wyślij normalne e-maile o udanej płatności
-        const attachments: any[] = [];
-        if (order.pdfAttachments && Array.isArray(order.pdfAttachments)) {
-          for (const att of order.pdfAttachments) {
-            const prefix = order.orderNumber.replace(/[^a-zA-Z0-9-]/g, "_");
-            const attachmentName = `${prefix}-${att.name}`;
-            const isJpg = att.name.toLowerCase().endsWith(".jpg") || att.name.toLowerCase().endsWith(".jpeg");
-            const contentType = isJpg ? "image/jpeg" : "application/pdf";
-            attachments.push({
-              content: att.base64,
-              name: attachmentName,
-              type: contentType,
-            });
-          }
-        }
+        const attachments = await buildOrderAttachments(order.items || [], order.orderNumber);
 
         // Email do klienta
         const customerEmailPayload = {
@@ -127,7 +115,7 @@ export async function GET(req: NextRequest) {
         const sellerEmailPayload: any = {
           sender: { name: "MałeNaklejki – System zamówień", email: siteFromEmail },
           to: [{ email: adminEmail, name: "MałeNaklejki – Sprzedawca" }],
-          subject: `🛒 Nowe OPŁACONE zamówienie ${order.orderNumber} – ${order.customer.firstName} ${order.customer.lastName} (${order.totals.total.toFixed(2)} zł)`,
+          subject: `🛒 Nowe OPŁACONE zamówienie ${order.orderNumber} – ${order.customer.firstName} ${order.customer.lastName} (${order.totals.total.toFixed(2).replace('.', ',')} zł)`,
           htmlContent: buildSellerEmailHtml(order, order.orderNumber),
         };
         if (attachments.length > 0) {
@@ -149,7 +137,7 @@ export async function GET(req: NextRequest) {
         const unpaidEmailPayload = {
           sender: { name: "MałeNaklejki – Alert płatności", email: siteFromEmail },
           to: [{ email: adminEmail, name: "MałeNaklejki – Sprzedawca" }],
-          subject: `⚠️ Brak płatności dla zamówienia ${order.orderNumber} (${order.totals.total.toFixed(2)} zł)`,
+          subject: `⚠️ Brak płatności dla zamówienia ${order.orderNumber} (${order.totals.total.toFixed(2).replace('.', ',')} zł)`,
           htmlContent: buildUnpaidOrderSellerEmailHtml(order, order.orderNumber),
         };
         await sendEmail(unpaidEmailPayload);
