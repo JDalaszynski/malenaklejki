@@ -457,15 +457,17 @@ export function NewA4Visualizer({
           strokeOpacity="0.5"
         />
       </svg>
-      <div
-        className="absolute pointer-events-none z-20 text-[9px] font-black text-destructive/80 tracking-wider uppercase"
-        style={{
-          left: `${(18 / SHEET_WIDTH_MM) * 100}%`,
-          top: `${(12 / SHEET_HEIGHT_MM) * 100}%`,
-        }}
-      >
-        Margines Bezpieczeństwa
-      </div>
+      {displayStickers.length === 0 && (
+        <div
+          className="absolute pointer-events-none z-20 text-[9px] font-black text-destructive/80 tracking-wider uppercase"
+          style={{
+            left: `${(18 / SHEET_WIDTH_MM) * 100}%`,
+            top: `${(12 / SHEET_HEIGHT_MM) * 100}%`,
+          }}
+        >
+          Margines Bezpieczeństwa
+        </div>
+      )}
 
 
       {/* Render Stickers */}

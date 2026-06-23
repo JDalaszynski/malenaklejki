@@ -1,7 +1,7 @@
 import { MetadataRoute } from "next";
 
 export default function robots(): MetadataRoute.Robots {
-  const baseUrl = "https://malenaklejki.pl";
+  const baseUrl = "https://www.malenaklejki.pl";
 
   return {
     rules: {

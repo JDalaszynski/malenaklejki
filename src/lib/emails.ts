@@ -131,7 +131,7 @@ export function buildCustomerEmailHtml(data: any, orderNumber: string): string {
     <!-- Footer -->
     <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:0 0 24px 24px;padding:20px 32px;text-align:center;border-top:none;">
       <p style="font-size:12px;color:#94a3b8;margin:0 0 4px;">
-        © ${new Date().getFullYear()} MałeNaklejki · <a href="https://malenaklejki.pl" style="color:#02af7a;text-decoration:none;">malenaklejki.pl</a>
+        © ${new Date().getFullYear()} MałeNaklejki · <a href="https://www.malenaklejki.pl" style="color:#02af7a;text-decoration:none;">malenaklejki.pl</a>
       </p>
       <p style="font-size:11px;color:#cbd5e1;margin:0;">
         To jest automatyczne potwierdzenie zamówienia. Nie odpowiadaj na ten email.
@@ -650,7 +650,7 @@ export function buildManualTransferEmailHtml(data: any, orderNumber: string): st
     <!-- Footer -->
     <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:0 0 24px 24px;padding:20px 32px;text-align:center;border-top:none;">
       <p style="font-size:12px;color:#64748b;margin:0 0 4px;">
-        © ${new Date().getFullYear()} MałeNaklejki · <a href="https://malenaklejki.pl" style="color:#02af7a;text-decoration:none;">malenaklejki.pl</a>
+        © ${new Date().getFullYear()} MałeNaklejki · <a href="https://www.malenaklejki.pl" style="color:#02af7a;text-decoration:none;">malenaklejki.pl</a>
       </p>
       <p style="font-size:11px;color:#94a3b8;margin:0;">
         Wiadomość wygenerowana automatycznie.

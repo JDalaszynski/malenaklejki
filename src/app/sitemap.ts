@@ -1,7 +1,7 @@
 import { MetadataRoute } from "next";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://malenaklejki.pl";
+  const baseUrl = "https://www.malenaklejki.pl";
   const routes = ["", "/kontakt", "/regulamin", "/polityka-prywatnosci", "/pliki-cookies"];
 
   return routes.map((route) => ({

@@ -19,7 +19,7 @@ const fredoka = Fredoka({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://malenaklejki.pl"),
+  metadataBase: new URL("https://www.malenaklejki.pl"),
   title: "MałeNaklejki - Stwórz własne naklejki!",
   description: "Wydrukuj swoje własne naklejki na arkuszach A4 w prosty i przyjemny sposób.",
   icons: {
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "MałeNaklejki - Stwórz własne naklejki!",
     description: "Wydrukuj swoje własne naklejki na arkuszach A4 w prosty i przyjemny sposób.",
-    url: "https://malenaklejki.pl",
+    url: "https://www.malenaklejki.pl",
     siteName: "MałeNaklejki",
     locale: "pl_PL",
     type: "website",
