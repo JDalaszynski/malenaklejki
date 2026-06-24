@@ -8,7 +8,7 @@ import { Trash2, Plus, Minus, ArrowLeft, CreditCard, ShoppingBag, Truck } from "
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { getStickersNoun } from "@/lib/utils/polish";
+import { getStickersNoun, getIndividualStickersLabel } from "@/lib/utils/polish";
 
 export default function CartPage() {
   const { items, removeItem, updateQuantity, getTotalPrice } = useCartStore();
@@ -100,21 +100,30 @@ export default function CartPage() {
 
                       <div className="space-y-1">
                         <h3 className="font-extrabold text-base sm:text-lg text-foreground leading-snug">
-                          Naklejki na Arkuszu A4
+                          Zestaw Naklejek
                         </h3>
                         <p className="font-semibold text-xs sm:text-sm text-muted-foreground">
                           Wymiary: {String(item.widthCm).replace('.', ',')} × {item.heightCm.toFixed(1).replace('.', ',')} cm
                         </p>
                         <div className="pt-0.5 flex flex-wrap gap-2 items-center">
                           <span className="text-[11px] font-bold text-foreground bg-secondary/15 px-2.5 py-0.5 rounded-full inline-block">
-                            {item.stickersPerSheet} {getStickersNoun(item.stickersPerSheet)} na arkuszu
+                            {item.deliveryForm === "individual"
+                              ? `${item.stickersPerSheet} ${getIndividualStickersLabel(item.stickersPerSheet)}`
+                              : `${item.stickersPerSheet} ${getStickersNoun(item.stickersPerSheet)} na arkuszu`
+                            }
                           </span>
-                          {item.stickersPerSheet > 0 && (
-                            <span className="text-[11px] font-semibold text-muted-foreground inline-block ml-1">
-                              Tylko {(item.pricePerSheet / item.stickersPerSheet).toFixed(2).replace('.', ',')} zł za 1 naklejkę!
-                            </span>
-                          )}
+                          <span className={`text-[11px] font-bold px-2.5 py-0.5 rounded-full inline-block border ${item.deliveryForm === "individual"
+                            ? "bg-blue-500/10 text-blue-600 dark:text-blue-400 border-blue-500/20"
+                            : "bg-[#02af7a]/10 text-[#004749] dark:text-[#a9e4d7] border-[#02af7a]/20"
+                            }`}>
+                            {item.deliveryForm === "individual" ? "Forma: Pojedyncze sztuki" : "Forma: Pozostawione na arkuszu"}
+                          </span>
                         </div>
+                        {item.stickersPerSheet > 0 && (
+                          <p className="text-[11px] font-semibold text-muted-foreground mt-1">
+                            Tylko {(item.pricePerSheet / item.stickersPerSheet).toFixed(2).replace('.', ',')} zł za 1 naklejkę!
+                          </p>
+                        )}
                         <p className="text-[10px] font-bold text-primary mt-1 underline">Edytuj arkusz</p>
                       </div>
                     </Link>

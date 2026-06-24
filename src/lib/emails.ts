@@ -26,7 +26,10 @@ export function buildCustomerEmailHtml(data: any, orderNumber: string): string {
       (item: any, i: number) => `
     <tr>
       <td style="padding: 12px 0; border-bottom: 1px solid #f1f5f9; font-size: 14px; color: #334155; font-weight: 600;">
-        Arkusz A4 – ${item.stickersPerSheet} naklejek (${String(item.widthCm).replace('.', ',')}×${String(item.heightCm).replace('.', ',')} cm)
+        Zestaw – ${item.stickersPerSheet} naklejek (${String(item.widthCm).replace('.', ',')}×${String(item.heightCm).replace('.', ',')} cm)<br/>
+        <span style="font-size: 12px; color: #64748b; font-weight: 500;">
+          Sposób dostarczenia: ${item.deliveryForm === "individual" ? "Pocięte na sztuki (pojedyncze)" : "W jednym arkuszu A4"}
+        </span>
       </td>
       <td style="padding: 12px 0; border-bottom: 1px solid #f1f5f9; font-size: 14px; color: #334155; font-weight: 600; text-align: center;">
         ${item.sheetQuantity} szt.
@@ -182,7 +185,12 @@ export function buildSellerEmailHtml(data: any, orderNumber: string): string {
     .map(
       (item: any, i: number) => `
     <tr>
-      <td style="padding:10px 0;border-bottom:1px solid #f1f5f9;font-size:13px;color:#334155;">${i + 1}. Arkusz A4 – ${item.stickersPerSheet} naklejek (${String(item.widthCm).replace('.', ',')}×${(item.heightCm?.toFixed ? item.heightCm.toFixed(1) : String(item.heightCm)).replace('.', ',')} cm)</td>
+      <td style="padding:10px 0;border-bottom:1px solid #f1f5f9;font-size:13px;color:#334155;">
+        ${i + 1}. Zestaw – ${item.stickersPerSheet} naklejek (${String(item.widthCm).replace('.', ',')}×${(item.heightCm?.toFixed ? item.heightCm.toFixed(1) : String(item.heightCm)).replace('.', ',')} cm)<br/>
+        <strong style="color: ${item.deliveryForm === "individual" ? "#3b82f6" : "#02af7a"}; font-size: 11px; text-transform: uppercase;">
+          Format: ${item.deliveryForm === "individual" ? "POCIĘTE NA SZTUKI" : "NA ARKUSZU"}
+        </strong>
+      </td>
       <td style="padding:10px 0;border-bottom:1px solid #f1f5f9;font-size:13px;color:#334155;text-align:center;">${item.sheetQuantity} szt.</td>
       <td style="padding:10px 0;border-bottom:1px solid #f1f5f9;font-size:13px;font-weight:700;color:#0f172a;text-align:right;">${(item.pricePerSheet * item.sheetQuantity).toFixed(2).replace('.', ',')} zł</td>
     </tr>`
@@ -323,7 +331,12 @@ export function buildNewOrderSellerEmailHtml(data: any, orderNumber: string): st
     .map(
       (item: any, i: number) => `
     <tr>
-      <td style="padding:10px 0;border-bottom:1px solid #f1f5f9;font-size:13px;color:#334155;">${i + 1}. Arkusz A4 – ${item.stickersPerSheet} naklejek (${String(item.widthCm).replace('.', ',')}×${(item.heightCm?.toFixed ? item.heightCm.toFixed(1) : String(item.heightCm)).replace('.', ',')} cm)</td>
+      <td style="padding:10px 0;border-bottom:1px solid #f1f5f9;font-size:13px;color:#334155;">
+        ${i + 1}. Zestaw – ${item.stickersPerSheet} naklejek (${String(item.widthCm).replace('.', ',')}×${(item.heightCm?.toFixed ? item.heightCm.toFixed(1) : String(item.heightCm)).replace('.', ',')} cm)<br/>
+        <strong style="color: ${item.deliveryForm === "individual" ? "#3b82f6" : "#02af7a"}; font-size: 11px; text-transform: uppercase;">
+          Format: ${item.deliveryForm === "individual" ? "POCIĘTE NA SZTUKI" : "NA ARKUSZU"}
+        </strong>
+      </td>
       <td style="padding:10px 0;border-bottom:1px solid #f1f5f9;font-size:13px;color:#334155;text-align:center;">${item.sheetQuantity} szt.</td>
       <td style="padding:10px 0;border-bottom:1px solid #f1f5f9;font-size:13px;font-weight:700;color:#0f172a;text-align:right;">${(item.pricePerSheet * item.sheetQuantity).toFixed(2).replace('.', ',')} zł</td>
     </tr>`
@@ -461,7 +474,12 @@ export function buildUnpaidOrderSellerEmailHtml(data: any, orderNumber: string):
     .map(
       (item: any, i: number) => `
     <tr>
-      <td style="padding:10px 0;border-bottom:1px solid #f1f5f9;font-size:13px;color:#334155;">${i + 1}. Arkusz A4 – ${item.stickersPerSheet} naklejek (${String(item.widthCm).replace('.', ',')}×${(item.heightCm?.toFixed ? item.heightCm.toFixed(1) : String(item.heightCm)).replace('.', ',')} cm)</td>
+      <td style="padding:10px 0;border-bottom:1px solid #f1f5f9;font-size:13px;color:#334155;">
+        ${i + 1}. Zestaw – ${item.stickersPerSheet} naklejek (${String(item.widthCm).replace('.', ',')}×${(item.heightCm?.toFixed ? item.heightCm.toFixed(1) : String(item.heightCm)).replace('.', ',')} cm)<br/>
+        <strong style="color: ${item.deliveryForm === "individual" ? "#3b82f6" : "#02af7a"}; font-size: 11px; text-transform: uppercase;">
+          Format: ${item.deliveryForm === "individual" ? "POCIĘTE NA SZTUKI" : "NA ARKUSZU"}
+        </strong>
+      </td>
       <td style="padding:10px 0;border-bottom:1px solid #f1f5f9;font-size:13px;color:#334155;text-align:center;">${item.sheetQuantity} szt.</td>
       <td style="padding:10px 0;border-bottom:1px solid #f1f5f9;font-size:13px;font-weight:700;color:#0f172a;text-align:right;">${(item.pricePerSheet * item.sheetQuantity).toFixed(2).replace('.', ',')} zł</td>
     </tr>`

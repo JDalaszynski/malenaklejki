@@ -14,7 +14,7 @@ import { PlacedSticker } from "@/types/creator";
 import { useCartStore } from "@/store/cartStore";
 import { checkOverlap, getRotatedSize, getCutLineMargins, getOuterMargins, getCutLineBoundingBox, checkStickersCollision, clampToUsableArea } from "@/lib/utils/collision";
 import { getContourPoints } from "@/lib/utils/contour";
-import { getStickersNoun } from "@/lib/utils/polish";
+import { getStickersNoun, getIndividualStickersLabel } from "@/lib/utils/polish";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { storage } from "@/lib/firebase/client";
 import { useRouter } from "next/navigation";
@@ -56,6 +56,7 @@ export default function Home() {
   const [stickers, setStickers] = useState<PlacedSticker[]>([]);
   const [selectedStickerId, setSelectedStickerId] = useState<string | null>(null);
   const [sheetQuantity, setSheetQuantity] = useState<number>(1);
+  const [deliveryForm, setDeliveryForm] = useState<"sheet" | "individual">("sheet");
   const [error, setError] = useState<string | null>(null);
   const [visualizerMode, setVisualizerMode] = useState<"2d" | "3d">("2d");
   const [editCartItemId, setEditCartItemId] = useState<string | null>(null);
@@ -84,6 +85,7 @@ export default function Home() {
       if (item && item.stickers && item.stickers.length > 0) {
         setStickers(item.stickers);
         setSheetQuantity(item.sheetQuantity);
+        setDeliveryForm(item.deliveryForm || "sheet");
 
         // Remove edit param from URL without reloading
         const url = new URL(window.location.href);
@@ -1513,6 +1515,7 @@ export default function Home() {
         sheetQuantity: sheetQuantity,
         pricePerSheet: 49.00,
         stickers: stickers,
+        deliveryForm: deliveryForm,
       };
 
       if (editCartItemId) {
@@ -1559,8 +1562,8 @@ export default function Home() {
         mode === "cut-lines"
           ? "Nie udało się wygenerować pliku PNG (linie cięcia)."
           : mode === "print"
-          ? "Nie udało się wygenerować pliku PNG (druk arkusza)."
-          : "Nie udało się wygenerować pliku PNG (wizualizacja 3D arkusza)."
+            ? "Nie udało się wygenerować pliku PNG (druk arkusza)."
+            : "Nie udało się wygenerować pliku PNG (wizualizacja 3D arkusza)."
       );
     } finally {
       setIsGeneratingPng(false);
@@ -1958,6 +1961,75 @@ export default function Home() {
                 </div>
               )}
 
+              {/* 3. Sticker Delivery Format Option */}
+              {stickers.length > 0 && (
+                <motion.div
+                  initial={{ opacity: 0, y: 15 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="liquid-glass border border-border/40 rounded-3xl p-4 sm:p-6 shadow-sm space-y-4"
+                >
+                  <h3 className="text-base font-black text-foreground flex items-center gap-2">
+                    <Scissors className="w-4.5 h-4.5 text-primary" />
+                    Forma zestawu naklejek
+                  </h3>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <button
+                      type="button"
+                      onClick={() => setDeliveryForm("sheet")}
+                      className={`p-4 rounded-2xl border text-left transition-all flex flex-col justify-between cursor-pointer ${deliveryForm === "sheet"
+                        ? "border-primary bg-primary/5 shadow-sm text-foreground"
+                        : "border-border/60 bg-background/50 hover:bg-muted/30 text-muted-foreground hover:text-foreground"
+                        }`}
+                    >
+                      <div className="flex items-center justify-between w-full mb-2">
+                        <div className="flex items-center gap-2">
+                          <Layers className={`w-4 h-4 ${deliveryForm === "sheet" ? "text-primary" : "text-muted-foreground"}`} />
+                          <span className="font-extrabold text-xs text-foreground">Pozostawione na arkuszu</span>
+                        </div>
+                        <div className={`w-4.5 h-4.5 rounded-full border flex items-center justify-center transition-all ${deliveryForm === "sheet"
+                          ? "border-primary bg-primary/10"
+                          : "border-slate-300 dark:border-white/20 bg-background"
+                          }`}>
+                          {deliveryForm === "sheet" && (
+                            <div className="w-2.5 h-2.5 rounded-full bg-primary" />
+                          )}
+                        </div>
+                      </div>
+                      <p className="text-[12px] leading-relaxed font-medium">
+                        Naklejki otrzymasz na arkuszu A4. Wygodne do przechowywania i odklejania.
+                      </p>
+                    </button>
+
+                    <button
+                      type="button"
+                      onClick={() => setDeliveryForm("individual")}
+                      className={`p-4 rounded-2xl border text-left transition-all flex flex-col justify-between cursor-pointer ${deliveryForm === "individual"
+                        ? "border-primary bg-primary/5 shadow-sm text-foreground"
+                        : "border-border/60 bg-background/50 hover:bg-muted/30 text-muted-foreground hover:text-foreground"
+                        }`}
+                    >
+                      <div className="flex items-center justify-between w-full mb-2">
+                        <div className="flex items-center gap-2">
+                          <Scissors className={`w-4 h-4 ${deliveryForm === "individual" ? "text-primary" : "text-muted-foreground"}`} />
+                          <span className="font-extrabold text-xs text-foreground">Pojedyncze sztuki</span>
+                        </div>
+                        <div className={`w-4.5 h-4.5 rounded-full border flex items-center justify-center transition-all ${deliveryForm === "individual"
+                          ? "border-primary bg-primary/10"
+                          : "border-slate-300 dark:border-white/20 bg-background"
+                          }`}>
+                          {deliveryForm === "individual" && (
+                            <div className="w-2.5 h-2.5 rounded-full bg-primary" />
+                          )}
+                        </div>
+                      </div>
+                      <p className="text-[12px] leading-relaxed font-medium">
+                        Każda naklejka zostanie docięta osobno do jej kształtu i dostarczona luzem.
+                      </p>
+                    </button>
+                  </div>
+                </motion.div>
+              )}
+
             </div>
 
             {/* Right Column: Visualizer Sheet */}
@@ -1981,8 +2053,8 @@ export default function Home() {
               )}
 
               <div className="flex flex-col sm:flex-row items-center justify-between w-full mb-3 gap-3 border-b border-border/40 pb-2">
-                <p className="text-xs font-black uppercase text-muted-foreground tracking-wider">
-                  Twój Arkusz A4  <br />(Podgląd ułożenia)
+                <p className="text-xs font-black uppercase text-muted-foreground tracking-wider text-center sm:text-left">
+                  Twój Zestaw Naklejek  <br />(Podgląd ułożenia)
                 </p>
 
                 <div className="flex bg-[#004749]/5 dark:bg-[#002224] p-1 rounded-2xl border border-[#004749]/10 dark:border-white/10 relative shadow-[inset_0_1.5px_3px_rgba(0,44,46,0.06)] gap-1">
@@ -2036,9 +2108,10 @@ export default function Home() {
                     onRotationChange={handleRotationChange}
                     isPresentationMode={false}
                     overlappingStickerIds={overlappingStickerIds}
+                    deliveryForm={deliveryForm}
                   />
                 ) : (
-                  <A4Visualizer3D stickers={stickers} />
+                  <A4Visualizer3D stickers={stickers} deliveryForm={deliveryForm} />
                 )}
 
                 {stickers.length === 0 && (
@@ -2083,7 +2156,7 @@ export default function Home() {
                   </h4>
                   {stickers.length > 0 && (
                     <p className="text-[10px] font-bold text-muted-foreground sm:hidden mt-0.5 animate-in fade-in duration-200">
-                      {stickers.length} {getStickersNoun(stickers.length)} (Tylko {(49.00 / stickers.length).toFixed(2).replace('.', ',')} zł za 1 naklejkę!)
+                      {stickers.length} {deliveryForm === "individual" ? getIndividualStickersLabel(stickers.length) : getStickersNoun(stickers.length)} · <span className="text-primary">{deliveryForm === "individual" ? "Pojedyncze sztuki" : "Pozostawione na arkuszu"}</span> (Tylko {(49.00 / stickers.length).toFixed(2).replace('.', ',')} zł za 1 naklejkę!)
                     </p>
                   )}
                   {stickers.some((s) => s.cutLineType === "none") && (
@@ -2093,8 +2166,15 @@ export default function Home() {
                   )}
                 </div>
                 <div className="text-[10px] text-muted-foreground font-semibold border-l border-border/60 pl-4 hidden sm:block">
-                  <p>Cena: 49,00 zł / arkusz A4</p>
-                  <p>{stickers.length} {getStickersNoun(stickers.length)} na arkuszu</p>
+                  <p>
+                    {deliveryForm === "individual"
+                      ? `${stickers.length} ${getIndividualStickersLabel(stickers.length)}`
+                      : `${stickers.length} ${getStickersNoun(stickers.length)} na arkuszu`
+                    }
+                  </p>
+                  <p className="mt-0.5">
+                    Forma: <span className="font-extrabold text-foreground">{deliveryForm === "individual" ? "Pojedyncze sztuki" : "Pozostawione na arkuszu"}</span>
+                  </p>
                   {stickers.length > 0 && (
                     <p className="mt-0.5">
                       Tylko {(49.00 / stickers.length).toFixed(2).replace('.', ',')} zł za 1 naklejkę!
@@ -2108,7 +2188,7 @@ export default function Home() {
                 {/* Quantity Selector & Shipping Info */}
                 <div className="flex flex-col sm:flex-row items-center gap-3 w-full sm:w-auto justify-center">
                   <div className="flex items-center gap-3 bg-muted/50 border border-border/30 px-3 py-1.5 rounded-2xl">
-                    <span className="text-xs font-bold text-muted-foreground">Arkusze:</span>
+                    <span className="text-xs font-bold text-muted-foreground">Zestawy:</span>
                     <button
                       type="button"
                       onClick={() => setSheetQuantity(Math.max(1, sheetQuantity - 1))}
@@ -2160,19 +2240,27 @@ export default function Home() {
       <div className="w-full bg-white dark:bg-[#004749] z-10 flex flex-col flex-grow">
         <section id="seo-marketing-section" className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12 sm:space-y-16 pt-12 sm:pt-16 pb-12 sm:pb-16">
 
-          {/* Sekcja 1: Główne zalety / USP */}
+          {/* USP Badges */}
           <div className="space-y-6 sm:space-y-8">
-            {/* USP Badges */}
-            <div className="flex flex-wrap justify-center items-center gap-3 sm:gap-4 pb-2">
+            <div className="text-center max-w-2xl mx-auto space-y-2">
+              <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-foreground">
+                Dlaczego Naklejki w MałeNaklejki?
+              </h2>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 pb-4 w-full">
               {[
-                { icon: Sparkles, text: "Naklejki po Twojemu w 100%" },
-                { 
-                  icon: Scissors, 
+                {
+                  icon: Sparkles,
+                  text: "Naklejki po Twojemu w 100%",
+                  image: "/images/naklejki-z-wlasnym-nadrukiem-na-arkuszu.png"
+                },
+                {
+                  icon: Scissors,
                   text: "Wycinane po dowolnym kształcie",
                   image: "/images/ksztalt-dowolny-naklejki-z-wlasnym-ksztaltem.jpg"
                 },
-                { 
-                  icon: Layers, 
+                {
+                  icon: Layers,
                   text: "Naklejki w małych ilościach",
                   image: "/images/naklejki-od-1-szt-niski-naklad-male-ilosci-malenaklejkii.jpg"
                 }
@@ -2181,23 +2269,33 @@ export default function Home() {
                 return (
                   <motion.div
                     key={index}
-                    whileHover={{ scale: 1.02 }}
-                    className={`flex ${usp.image ? "flex-col items-center p-3.5 rounded-3xl max-w-[280px]" : "items-center gap-2 px-3.5 py-2 rounded-full"} bg-muted/40 dark:bg-white/5 border-0 shadow-none`}
+                    whileHover={{ y: -6, scale: 1.02 }}
+                    transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                    className="group relative overflow-hidden rounded-[32px] border border-border/60 dark:border-white/10 bg-gradient-to-b from-card to-card/95 dark:from-[#005254] dark:to-[#003a3c] p-5 flex flex-col justify-between shadow-xl shadow-slate-100/50 dark:shadow-none transition-all duration-300 hover:shadow-2xl hover:shadow-slate-200/50 dark:hover:border-primary/40"
                   >
-                    {usp.image && (
-                      <div className="w-full aspect-square rounded-2xl overflow-hidden mb-2.5 flex items-center justify-center">
-                        <img
-                          src={usp.image}
-                          alt={usp.text}
-                          className={`w-full h-full object-contain rounded-xl ${usp.text === "Naklejki w małych ilościach" ? "scale-[0.88]" : ""}`}
-                        />
+                    {/* Subtle Top Light Accent */}
+                    <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-primary/20 dark:via-primary/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+                    {/* Decorative radial background light */}
+                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(var(--primary),0.02),transparent_70%)] pointer-events-none" />
+
+                    {/* Image Container */}
+                    <div className="relative w-full aspect-[4/3] rounded-2xl bg-white dark:bg-white flex items-center justify-center p-6 overflow-hidden">
+                      <img
+                        src={usp.image}
+                        alt={usp.text}
+                        className={`w-full h-full object-contain transform transition-transform duration-500 group-hover:scale-105 ${usp.text === "Naklejki w małych ilościach" ? "scale-[0.7] group-hover:scale-[0.75]" :
+                          usp.text === "Naklejki po Twojemu w 100%" ? "scale-[1.45] group-hover:scale-[1.5]" : ""
+                          }`}
+                      />
+                    </div>
+
+                    {/* Badge and Text Row */}
+                    <div className="flex items-center gap-3 w-full mt-5 bg-muted/30 dark:bg-[#004749]/60 p-3.5 rounded-2xl border border-border/40 dark:border-white/5 transition-colors duration-300 group-hover:bg-primary/5 dark:group-hover:bg-[#005c5f]">
+                      <div className="p-2 rounded-xl bg-primary/10 dark:bg-primary/20 text-primary flex items-center justify-center shrink-0">
+                        <IconComponent className="w-4.5 h-4.5" />
                       </div>
-                    )}
-                    <div className="flex items-center gap-2">
-                      <div className="p-1 rounded-full bg-primary/10 dark:bg-primary/20 text-primary flex items-center justify-center">
-                        <IconComponent className="w-3.5 h-3.5" />
-                      </div>
-                      <span className="text-xs sm:text-sm font-extrabold text-foreground tracking-tight">
+                      <span className="text-sm font-extrabold text-foreground tracking-tight leading-snug">
                         {usp.text}
                       </span>
                     </div>
@@ -2205,90 +2303,80 @@ export default function Home() {
                 );
               })}
             </div>
-
-            <div className="text-center max-w-2xl mx-auto space-y-2">
-              <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-foreground" id="seo-features-title">
-                Zaprojektuj i wydrukuj naklejki na własnych zasadach
-              </h2>
-              <p className="text-muted-foreground text-sm font-semibold">
-                Odkryj korzyści płynące z korzystania z naszego inteligentnego kreatora arkuszy A4.
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {[
-                {
-                  title: "Dowolność i oszczędność",
-                  desc: "Nie musisz zamawiać tysięcy sztuk jednego wzoru. Na jednym arkuszu A4 możesz umieścić wiele różnych grafik o dowolnych wymiarach, płacąc zawsze stałą cenę."
-                },
-                {
-                  title: "Wysoka jakość i trwałość",
-                  desc: "Nasze naklejki drukujemy na profesjonalnej folii samoprzylepnej odpornej na wodę, promienie UV i ścieranie. Idealnie sprawdzą się na laptopy, butelki, samochody oraz opakowania produktów."
-                },
-                {
-                  title: "Automatyczna linia cięcia",
-                  desc: "Nasz kreator samodzielnie wykrywa krawędzie Twoich obrazów i tworzy precyzyjną linię cięcia po konturze. Ty decydujesz, czy naklejka ma być prostokątna, okrągła, czy wycięta po kształcie."
-                }
-              ].map((item, idx) => (
-                <div key={idx} className="bg-card border border-border/40 rounded-3xl p-6 sm:p-8 shadow-sm space-y-3">
-                  <div className="w-10 h-10 rounded-2xl bg-primary/10 flex items-center justify-center text-primary font-black">
-                    {idx + 1}
-                  </div>
-                  <h3 className="text-lg font-black text-foreground">
-                    {item.title}
-                  </h3>
-                  <p className="text-muted-foreground text-xs sm:text-sm font-semibold leading-relaxed">
-                    {item.desc}
-                  </p>
-                </div>
-              ))}
-            </div>
           </div>
 
           {/* Sekcja 2: Jak to działa (Krok po kroku) */}
           <div className="space-y-6 sm:space-y-8 bg-muted/10 border border-border/20 rounded-3xl p-6 sm:p-8">
             <div className="text-center max-w-2xl mx-auto space-y-2">
               <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-foreground" id="seo-how-it-works-title">
-                Jak to działa? Twoje naklejki w 4 prostych krokach
+                Twoje naklejki w 3 prostych krokach
               </h2>
               <p className="text-muted-foreground text-sm font-semibold">
-                Cały proces – od pomysłu do gotowego wydruku – zajmie Ci zaledwie kilka minut.
+                Zajmie Ci zaledwie kilka minut!
               </p>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 relative">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 relative">
               {[
                 {
-                  title: "Dodaj swoje grafiki",
-                  desc: "Wgraj pliki JPG/PNG ze swojego komputera lub telefonu, albo skorzystaj z generatora AI, wpisując opis wymarzonego wzoru."
-                },
-                {
-                  title: "Dopasuj rozmiar i cięcie",
-                  desc: "Wybierz wielkość każdej naklejki oraz jej linię cięcia. Możesz wyciąć naklejki po obrysie (konturze), w okręgu lub w prostokącie."
+                  title: "Dodaj i dostosuj grafiki",
+                  desc: "Wgraj zdjęcia/grafiki z telefonu lub komputera albo stwórz je za pomocą AI. Wybierz rozmiar każdej naklejki oraz jej linię cięcia (kontur, koło lub prostokąt).",
+                  image: "/images/kroki/krok-1-dodaj-dostosuj-naklejki.png"
                 },
                 {
                   title: "Rozmieść na arkuszu A4",
-                  desc: "Przeciągaj naklejki na podglądzie arkusza. Inteligentny system zapobiegnie ich nakładaniu się i upewni się, że wszystko zmieści się idealnie."
+                  desc: "Układaj i przeciągaj naklejki na podglądzie arkusza. Inteligentny kreator dopilnuje, aby naklejki na siebie nie nachodziły i optymalnie wykorzystały miejsce.",
+                  image: "/images/kroki/krok-2-rozmiesc-na-arkuszu-a4-naklejki.png"
                 },
                 {
-                  title: "Zamów z szybką dostawą",
-                  desc: "Sprawdź gotową kompozycję w trójwymiarowym podglądzie 3D, dodaj arkusz do koszyka i sfinalizuj bezpieczne zamówienie za pomocą Przelewy24."
+                  title: "Sprawdź w 3D i zamów",
+                  desc: "Obejrzyj realistyczną wizualizację 3D gotowego arkusza, dodaj go do koszyka i sfinalizuj bezpieczne zamówienie za pomocą BLIK/Przelewy24.",
+                  image: "/images/kroki/krok-3-sprawdz-3d-i-zamow-naklejki.png"
                 }
               ].map((step, idx) => (
-                <div key={idx} className="space-y-2 relative">
-                  <div className="text-xs font-black uppercase text-primary tracking-widest">
-                    Krok 0{idx + 1}
+                <div key={idx} className="space-y-4 relative group">
+                  {/* Image Container */}
+                  <div className="relative w-full aspect-[4/3] rounded-2xl bg-white dark:bg-white flex items-center justify-center p-0 overflow-hidden">
+                    <img
+                      src={step.image}
+                      alt={step.title}
+                      className={`w-full h-full object-contain ${idx === 2 ? "scale-125" : ""
+                        }`}
+                    />
                   </div>
-                  <h3 className="text-base font-black text-foreground">
-                    {step.title}
-                  </h3>
-                  <p className="text-muted-foreground text-xs font-semibold leading-relaxed">
-                    {step.desc}
-                  </p>
+                  <div className="space-y-2">
+                    <div className="text-xs font-black uppercase text-primary tracking-widest">
+                      Krok 0{idx + 1}
+                    </div>
+                    <h3 className="text-base font-black text-foreground">
+                      {step.title}
+                    </h3>
+                    <p className="text-muted-foreground text-xs font-semibold leading-relaxed">
+                      {step.desc}
+                    </p>
+                  </div>
                 </div>
               ))}
             </div>
+
+            {/* Payment info */}
+            <div className="border-t border-border/20 pt-6 flex flex-col items-center justify-center gap-4 text-center">
+              <div className="flex items-center justify-center gap-3">
+                <span className="text-xs sm:text-sm font-extrabold text-muted-foreground">Płatności obsługuje:</span>
+                <img
+                  src="/images/payment-icons/Przelewy24_logo.png"
+                  alt="Przelewy24 Logo"
+                  className="h-6 sm:h-7 object-contain"
+                />
+              </div>
+              <img
+                src="/images/payment-icons/metody-platnosci-przelewy24.png"
+                alt="Metody płatności Przelewy24"
+                className="w-full max-w-[450px] sm:max-w-[600px] h-auto object-contain opacity-90 dark:brightness-90 dark:invert-[0.05]"
+              />
+            </div>
           </div>
+
           {/* Sekcja SEO: Informacje o naklejkach personalizowanych */}
           <div className="space-y-12 sm:space-y-16 mt-8">
             {/* Blok 1: Gdzie kupić */}
@@ -2303,7 +2391,7 @@ export default function Home() {
               </div>
               <div className="lg:col-span-4 bg-primary/5 border border-primary/15 rounded-3xl p-6 text-center space-y-2">
                 <p className="text-3xl font-black text-primary">49,00 zł</p>
-                <p className="text-xs font-bold text-muted-foreground uppercase tracking-wider">Stała cena za cały arkusz A4</p>
+                <p className="text-xs font-bold text-muted-foreground uppercase tracking-wider">Stała cena za cały zestaw</p>
               </div>
             </div>
 

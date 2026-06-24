@@ -13,6 +13,7 @@ export interface CartItem {
   sheetQuantity: number;
   pricePerSheet: number;
   stickers?: any[]; // Store the exact sticker layout for editing
+  deliveryForm?: "sheet" | "individual";
 }
 
 interface CartState {

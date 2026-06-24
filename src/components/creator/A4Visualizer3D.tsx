@@ -6,9 +6,10 @@ import { ShoppingCart } from "lucide-react";
 
 interface A4Visualizer3DProps {
   stickers: PlacedSticker[];
+  deliveryForm?: "sheet" | "individual";
 }
 
-export function A4Visualizer3D({ stickers }: A4Visualizer3DProps) {
+export function A4Visualizer3D({ stickers, deliveryForm = "sheet" }: A4Visualizer3DProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [rotateX, setRotateX] = useState(10); // initial floating tilt
   const [rotateY, setRotateY] = useState(-15);
@@ -108,20 +109,28 @@ export function A4Visualizer3D({ stickers }: A4Visualizer3DProps) {
 
       {/* 3D Floating Sheet Wrapper */}
       <div
-        className="relative w-full h-full bg-[#fcfcfc] transition-transform duration-300 ease-out shadow-[0_20px_50px_rgba(0,0,0,0.12),0_10px_20px_rgba(0,0,0,0.06)] border border-border/40 overflow-hidden cmyk-preview"
+        className={`relative w-full h-full transition-transform duration-300 ease-out overflow-hidden cmyk-preview ${
+          deliveryForm === "individual"
+            ? "bg-transparent"
+            : "bg-[#fcfcfc] border border-border/40 shadow-[0_20px_50px_rgba(0,0,0,0.12),0_10px_20px_rgba(0,0,0,0.06)]"
+        }`}
         style={{
           transformStyle: "preserve-3d",
-          transform: isHovered
-            ? `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`
-            : `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1, 1, 1)`,
+          transform: deliveryForm === "individual"
+            ? "none"
+            : (isHovered
+              ? `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`
+              : `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1, 1, 1)`),
           backfaceVisibility: "hidden",
         }}
       >
         {/* Subtle physical paper edge (3D thickness look) */}
-        <div
-          className="absolute inset-0 border border-slate-300 pointer-events-none"
-          style={{ transform: "translateZ(-1px)" }}
-        />
+        {deliveryForm !== "individual" && (
+          <div
+            className="absolute inset-0 border border-slate-300 pointer-events-none"
+            style={{ transform: "translateZ(-1px)" }}
+          />
+        )}
 
         {/* Render Stickers with 3D Depth */}
         {stickers.map((st) => {
@@ -332,7 +341,9 @@ export function A4Visualizer3D({ stickers }: A4Visualizer3DProps) {
         <div
           className="absolute inset-0 pointer-events-none transition-opacity duration-300"
           style={{
-            opacity: isHovered ? 0.35 : 0.15,
+            opacity: deliveryForm === "individual"
+              ? (isHovered ? 0.35 : 0)
+              : (isHovered ? 0.35 : 0.15),
             mixBlendMode: "color-dodge",
             background: isHovered
               ? `radial-gradient(circle at ${glarePosition.x}% ${glarePosition.y}%, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.05) 50%, transparent 100%)`
@@ -342,7 +353,7 @@ export function A4Visualizer3D({ stickers }: A4Visualizer3DProps) {
         />
 
         {/* Additional linear reflective gloss sweep animation when not hovered */}
-        {!isHovered && (
+        {deliveryForm !== "individual" && !isHovered && (
           <div
             className="absolute inset-0 pointer-events-none"
             style={{

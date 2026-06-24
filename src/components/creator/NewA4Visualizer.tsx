@@ -19,6 +19,7 @@ interface NewA4VisualizerProps {
   onRotationChange?: (degrees: number) => void;
   isPresentationMode?: boolean;
   overlappingStickerIds?: string[];
+  deliveryForm?: "sheet" | "individual";
 }
 
 export function NewA4Visualizer({
@@ -34,6 +35,7 @@ export function NewA4Visualizer({
   onRotationChange,
   isPresentationMode,
   overlappingStickerIds = [],
+  deliveryForm = "sheet",
 }: NewA4VisualizerProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const selectedSticker = stickers.find((s) => s.id === selectedStickerId);
@@ -434,10 +436,15 @@ export function NewA4Visualizer({
     <div
       ref={containerRef}
       onClick={handleSheetClick}
-      className="relative bg-white border border-border/80 shadow-[0_15px_45px_rgba(0,71,73,0.08),_0_4px_12px_rgba(0,71,73,0.03)] dark:shadow-[0_15px_45px_rgba(0,0,0,0.35),_0_4px_12px_rgba(0,0,0,0.2)] aspect-[210/297] w-full max-w-[480px] rounded-lg select-none cursor-default overflow-visible transition-all duration-300 hover:shadow-[0_22px_60px_rgba(0,71,73,0.14),_0_6px_20px_rgba(0,71,73,0.05)] dark:hover:shadow-[0_22px_60px_rgba(0,0,0,0.45),_0_6px_20px_rgba(0,0,0,0.25)]"
+      className={`relative aspect-[210/297] w-full max-w-[480px] rounded-lg select-none cursor-default overflow-visible transition-all duration-300 ${
+        deliveryForm === "individual"
+          ? "border-transparent shadow-none"
+          : "border border-border/80 shadow-[0_15px_45px_rgba(0,71,73,0.08),_0_4px_12px_rgba(0,71,73,0.03)] dark:shadow-[0_15px_45px_rgba(0,0,0,0.35),_0_4px_12px_rgba(0,0,0,0.2)] hover:shadow-[0_22px_60px_rgba(0,71,73,0.14),_0_6px_20px_rgba(0,71,73,0.05)] dark:hover:shadow-[0_22px_60px_rgba(0,0,0,0.45),_0_6px_20px_rgba(0,0,0,0.25)]"
+      }`}
       style={{
         containerType: "inline-size",
         transform: "translate3d(0,0,0)",
+        backgroundColor: deliveryForm === "individual" ? "transparent" : "#ffffff",
       }}
     >
       {/* Grid pattern background */}

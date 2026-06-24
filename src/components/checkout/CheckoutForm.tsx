@@ -9,7 +9,7 @@ import { useCartStore } from "@/store/cartStore";
 import { createOrder } from "@/app/actions/createOrder";
 import { Loader2, X, Package } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { getStickersNoun } from "@/lib/utils/polish";
+import { getStickersNoun, getIndividualStickersLabel } from "@/lib/utils/polish";
 
 const checkoutSchema = z.object({
   email: z.string().email({ message: "Proszę podać poprawny adres e-mail" }),
@@ -307,9 +307,15 @@ export function CheckoutForm() {
                       <img src={item.imageUrl} alt="Sticker" className="max-w-full max-h-full object-contain shadow-sm" />
                     </div>
                     <div>
-                      <p className="font-extrabold text-base">Naklejki na Arkuszu A4</p>
+                      <p className="font-extrabold text-base">Zestaw Naklejek </p>
                       <p className="font-medium text-sm text-muted-foreground">
-                        {item.stickersPerSheet} {getStickersNoun(item.stickersPerSheet)}
+                        {item.deliveryForm === "individual"
+                          ? `${item.stickersPerSheet} ${getIndividualStickersLabel(item.stickersPerSheet)}`
+                          : `${item.stickersPerSheet} ${getStickersNoun(item.stickersPerSheet)}`
+                        }
+                      </p>
+                      <p className="text-xs font-bold text-muted-foreground/90 mt-0.5">
+                        Forma: {item.deliveryForm === "individual" ? "Pojedyncze sztuki" : "Pozostawione na arkuszu"}
                       </p>
                       {item.stickersPerSheet > 0 && (
                         <p className="text-xs text-muted-foreground">

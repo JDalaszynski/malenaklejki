@@ -15,6 +15,7 @@ const OrderItemSchema = z.object({
   pricePerSheet: z.number().min(0).max(10000),
   imageUrl: z.string(),
   cutLinesImageUrl: z.string().optional().nullable(),
+  deliveryForm: z.enum(["sheet", "individual"]).default("sheet"),
 }).passthrough();
 
 const CreateOrderSchema = z.object({
@@ -67,7 +68,7 @@ function buildP24Description(
   items: any[]
 ): string {
   const itemsSummary = items
-    .map(item => `${item.sheetQuantity}x Naklejki na Arkuszu A4`)
+    .map(item => `${item.sheetQuantity}x Zestaw Naklejek`)
     .join(", ");
 
   // Format to show Order Number, E-mail, Amount and Goods Type
