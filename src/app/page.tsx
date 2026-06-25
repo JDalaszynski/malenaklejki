@@ -1640,7 +1640,7 @@ export default function Home() {
 
       {/* Górna sekcja (kreator + nagłówek) na wyróżnionym tle */}
       <div className="w-full bg-[#edf6f2] dark:bg-[#002c2e] border-b border-primary/15 dark:border-primary/25 pb-8 sm:pb-12 shadow-[inset_0_-6px_24px_rgba(0,0,0,0.03)] flex flex-col">
-        <Header />
+        <Header sticky={false} />
 
         <main className="flex-1 flex flex-col py-3 sm:py-6 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto w-full justify-center relative gap-4 sm:gap-8">
 
@@ -2637,6 +2637,14 @@ export default function Home() {
                 >
                   Stwórz Własne Naklejki
                 </button>
+
+                {/* Zamów Projekt Button */}
+                <Link
+                  href="/zamow-projekt"
+                  className="hidden md:inline-flex px-3.5 py-1.5 text-[13px] font-extrabold text-foreground hover:text-primary bg-muted/40 hover:bg-muted/85 rounded-lg border border-border/30 transition-all cursor-pointer hover:scale-[1.01] active:scale-[0.99] whitespace-nowrap"
+                >
+                  Zamów Projekt
+                </Link>
 
                 {/* Kontakt Button */}
                 <Link

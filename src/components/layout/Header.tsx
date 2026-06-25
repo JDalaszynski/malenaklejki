@@ -9,10 +9,11 @@ import Image from "next/image";
 
 interface HeaderProps {
   zen?: boolean;
+  sticky?: boolean;
 }
 
-export function Header({ zen = false }: HeaderProps) {
-  const { items, getTotalPrice } = useCartStore();
+export function Header({ zen = false, sticky = true }: HeaderProps) {
+  const { items } = useCartStore();
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -20,10 +21,9 @@ export function Header({ zen = false }: HeaderProps) {
   }, []);
 
   const totalItems = items.length;
-  const totalPrice = getTotalPrice();
 
   return (
-    <header className="w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 z-50 pt-4">
+    <header className={`${sticky ? "sticky top-0" : ""} w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 z-50 pt-4 pb-2`}>
       <div className="flex justify-between items-center h-16 sm:h-20 px-6 sm:px-8 liquid-glass rounded-2xl shadow-[0_8px_30px_rgba(0,0,0,0.04)] border border-border/70">
         {/* Left: Logo */}
         <div className="flex justify-start items-center">
@@ -72,7 +72,15 @@ export function Header({ zen = false }: HeaderProps) {
                 }}
                 className="hidden md:inline-flex px-4 py-2 text-[15px] font-extrabold text-foreground hover:text-primary bg-muted/40 hover:bg-muted/85 rounded-xl border border-border/30 transition-all cursor-pointer hover:scale-[1.01] active:scale-[0.99] whitespace-nowrap"
               >
-                Stwórz Własne Naklejki
+                Zamów Zestaw Naklejek
+              </Link>
+
+              {/* Zamów Projekt Button */}
+              <Link
+                href="/zamow-projekt"
+                className="hidden md:inline-flex px-4 py-2 text-[15px] font-extrabold text-foreground hover:text-primary bg-muted/40 hover:bg-muted/85 rounded-xl border border-border/30 transition-all cursor-pointer hover:scale-[1.01] active:scale-[0.99] whitespace-nowrap"
+              >
+                Zamów Projekt
               </Link>
 
               {/* Kontakt Button */}
@@ -100,11 +108,6 @@ export function Header({ zen = false }: HeaderProps) {
                     >
                       {totalItems}
                     </motion.span>
-                  )}
-                  {mounted && totalItems > 0 && (
-                    <span className="ml-3 hidden sm:block font-extrabold text-lg text-primary">
-                      {totalPrice.toFixed(2).replace('.', ',')} zł
-                    </span>
                   )}
                 </div>
               </Link>
