@@ -514,7 +514,7 @@ export function NewA4Visualizer({
                 src={st.imageUrl}
                 alt="Naklejka"
                 draggable={false}
-                className="max-w-full max-h-full object-contain pointer-events-none select-none"
+                className="max-w-full max-h-full object-contain pointer-events-none select-none border border-zinc-200 dark:border-zinc-700/80"
                 style={{
                   borderRadius: "1.008cqw",
                 }}
