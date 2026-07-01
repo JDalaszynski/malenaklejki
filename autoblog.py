@@ -69,13 +69,40 @@ def run_agent():
     lines = plan_content.splitlines()
     selected_line_idx = -1
     selected_topic = None
+    metadata_lines = []
 
     # Find the first line starting with "- [ ]"
     for idx, line in enumerate(lines):
         if line.strip().startswith("- [ ]"):
             selected_line_idx = idx
-            selected_topic = line.replace("- [ ]", "").strip()
+            selected_topic = line.replace("- [ ]", "").replace("**", "").strip()
+            
+            # Read subsequent indented lines as metadata
+            next_idx = idx + 1
+            while next_idx < len(lines) and (lines[next_idx].startswith("    ") or lines[next_idx].startswith("\t")):
+                metadata_lines.append(lines[next_idx])
+                next_idx += 1
             break
+
+    # Parse metadata details
+    format_type = ""
+    main_keyword = ""
+    goal = ""
+    persona = ""
+    parent_link = ""
+
+    for m_line in metadata_lines:
+        clean_m = m_line.strip().replace("- ", "").replace("*", "")
+        if "Format:" in clean_m:
+            format_type = clean_m.split("Format:")[1].strip()
+        elif "Główna Fraza Kluczowa:" in clean_m:
+            main_keyword = clean_m.split("Główna Fraza Kluczowa:")[1].strip()
+        elif "Cel:" in clean_m:
+            goal = clean_m.split("Cel:")[1].strip()
+        elif "Persona:" in clean_m:
+            persona = clean_m.split("Persona:")[1].strip()
+        elif "Link nadrzędny (Filar):" in clean_m:
+            parent_link = clean_m.split("Link nadrzędny (Filar):")[1].strip()
 
     # Fetch existing posts for internal linking
     existing_posts = get_existing_posts_metadata()
@@ -86,10 +113,19 @@ def run_agent():
     # Setup prompt instructions
     if selected_topic:
         print(f"Wybrany temat z planu: '{selected_topic}'")
-        topic_instruction = f"Napisz artykuł o następującym tytule: \"{selected_topic}\""
+        topic_instruction = f"""
+Napisz artykuł o następującym tytule: "{selected_topic}"
+
+Parametry i charakterystyka wpisu:
+- **Format / Rola:** {format_type if format_type else "Supporting Article"}
+- **Główna Fraza Kluczowa (SEO):** {main_keyword if main_keyword else "brak"}
+- **Cel:** {goal if goal else "brak"}
+- **Grupa docelowa (Persona):** {persona if persona else "brak"}
+"""
+        if parent_link:
+            topic_instruction += f"\n- **Link nadrzędny (Filar):** {parent_link}"
     else:
         print("Brak zaplanowanych tematów o statusie '- [ ]' w plan.md. Generuję temat autonomicznie...")
-        # Get list of already existing files to avoid duplicates
         existing_files = [p["slug"] for p in existing_posts]
         existing_str = ", ".join(existing_files) if existing_files else "brak"
         
@@ -127,9 +163,17 @@ tags: ["naklejki", "marketing", "poradnik"]
 ---
 """
 
+    if parent_link:
+        prompt += f"""
+ŻELAZNA ZASADA LINKOWANIA WEWNĘTRZNEGO (SEO):
+Ten artykuł jest wpisem wspierającym (Cluster Content). BEZWZGLĘDNIE musisz umieścić w nim link wewnętrzny prowadzący z powrotem do nadrzędnego artykułu filarowego (Pillar Page).
+Link ma prowadzić dokładnie do adresu: {parent_link}
+Wstaw ten link w naturalny, kontekstowy sposób w pierwszej połowie artykułu (w obrębie pierwszego lub drugiego rozdziału H2). Jako tekst linku (anchor text) użyj powiązanej frazy kluczowej, np. [naklejki na zamówienie]({parent_link}). To kluczowy warunek techniczny publikacji!
+"""
+
     if existing_links_str:
         prompt += f"""
-LINKOWANIE WEWNĘTRZNE (SEO):
+POZOSTAŁE LINKOWANIE WEWNĘTRZNE (SEO):
 Oto lista innych artykułów już opublikowanych na naszym blogu:
 {existing_links_str}
 
@@ -197,25 +241,31 @@ Zwróć WYŁĄCZNIE wygenerowany artykuł w formacie Markdown z blokiem YAML na 
     # 6. Update plan.md if we wrote a topic from the list
     if selected_line_idx != -1:
         date_str = datetime.now().strftime('%Y-%m-%d')
-        # Format the line as checked [x] and move to completed log or just update it in place
-        lines[selected_line_idx] = f"- [x] {selected_topic} (opublikowano {date_str})"
         
-        # Optionally move the completed item under the "## Zrealizowane Artykuły" section
-        completed_line = lines.pop(selected_line_idx)
+        # Build block of completed lines to move (parent + indented metadata)
+        completed_lines = [
+            f"- [x] **{selected_topic}** (opublikowano {date_str})"
+        ] + metadata_lines
+        
+        # Remove parent and all indented lines from original list
+        num_to_remove = 1 + len(metadata_lines)
+        for _ in range(num_to_remove):
+            lines.pop(selected_line_idx)
         
         # Find where the completed section starts
         completed_section_idx = -1
         for idx, line in enumerate(lines):
-            if "## Zrealizowane Artykuły" in line:
+            if "## 📈 Zrealizowane Artykuły" in line:
                 completed_section_idx = idx
                 break
                 
         if completed_section_idx != -1:
-            # Insert the completed post after the header of the completed section
-            lines.insert(completed_section_idx + 1, completed_line)
+            # Insert the completed block under the header of the completed section
+            for i, c_line in enumerate(completed_lines):
+                lines.insert(completed_section_idx + 1 + i, c_line)
         else:
             # Fallback: append at the end
-            lines.append(completed_line)
+            lines.extend(completed_lines)
 
         new_plan_content = "\n".join(lines)
         try:
