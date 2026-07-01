@@ -12,6 +12,7 @@ AGENT_DIR = os.path.join(PROJECT_DIR, "blog-agent")
 PLAN_FILE = os.path.join(AGENT_DIR, "plan.json")
 RULES_FILE = os.path.join(AGENT_DIR, "rules.md")
 STRATEGY_FILE = os.path.join(AGENT_DIR, "strategy.md")
+KEYWORDS_FILE = os.path.join(AGENT_DIR, "keywords.md")
 MODEL_NAME = "qwen2.5:32b"  # Local Ollama model
 
 # Pull latest changes from remote repository first
@@ -34,9 +35,10 @@ def run_agent():
     # 1. Pull latest plan and files from Windows/GitHub
     git_pull()
 
-    # 2. Read instructions
+    # 2. Read instructions, strategy, and keywords
     rules = read_file_or_empty(RULES_FILE)
     strategy = read_file_or_empty(STRATEGY_FILE)
+    keywords = read_file_or_empty(KEYWORDS_FILE)
 
     # 3. Read topics plan
     plan = []
@@ -59,7 +61,7 @@ def run_agent():
         print(f"Wybrany temat z planu: '{selected_topic['title']}' (ID: {selected_topic['id']})")
         topic_instruction = f"""
 Napisz artykuł o następującym tytule: "{selected_topic['title']}"
-Słowa kluczowe do użycia w tekście: {', '.join(selected_topic.get('keywords', []))}.
+Główne słowa kluczowe z planu: {', '.join(selected_topic.get('keywords', []))}.
 """
     else:
         print("Brak zaplanowanych tematów o statusie 'todo'. Generuję temat autonomicznie...")
@@ -84,6 +86,9 @@ STRATEGIA MARKETINGOWA:
 ZASADY PISANIA ARTYKUŁÓW:
 {rules}
 
+BAZA SŁÓW KLUCZOWYCH SEO:
+{keywords}
+
 ZADANIE:
 {topic_instruction}
 
@@ -95,6 +100,11 @@ description: "Krótka, zachęcająca zajawka artykułu do wyświetlenia na liśc
 image: ""
 tags: ["naklejki", "marketing", "poradnik"]
 ---
+
+Zasady korzystania ze słów kluczowych:
+- Z bazy słów kluczowych SEO wybierz te frazy, które pasują tematycznie do Twojego artykułu.
+- Wpleć je w treść artykułu (w nagłówkach, akapitach, listach) w naturalny, poprawny gramatycznie sposób.
+- Nie stosuj techniki "keyword stuffing" – czytelność i wartość dla czytelnika są zawsze priorytetem.
 
 Zwróć WYŁĄCZNIE wygenerowany artykuł w formacie Markdown z blokiem YAML na samej górze. Nie dodawaj żadnych dopisków od siebie.
 """
