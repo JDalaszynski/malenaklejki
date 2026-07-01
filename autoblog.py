@@ -18,6 +18,8 @@ MODEL_NAME = "qwen2.5:32b"  # Local Ollama model
 # Pull latest changes from remote repository first
 def git_pull():
     try:
+        print("Resetowanie ewentualnych lokalnych plików na Macu (git reset)...")
+        subprocess.run(["git", "reset", "--hard"], cwd=PROJECT_DIR, check=True)
         print("Pobieranie najnowszych zmian z repozytorium (git pull)...")
         subprocess.run(["git", "pull", "origin", "main"], cwd=PROJECT_DIR, check=True)
     except Exception as e:
@@ -144,7 +146,10 @@ Zwróć WYŁĄCZNIE wygenerowany artykuł w formacie Markdown z blokiem YAML na 
         "messages": [
             {"role": "user", "content": prompt}
         ],
-        "stream": False
+        "stream": False,
+        "options": {
+            "temperature": 0.5  # Lower temperature helps model stick strictly to strategy, rules, and blacklists
+        }
     }
     
     req = urllib.request.Request(
@@ -157,6 +162,12 @@ Zwróć WYŁĄCZNIE wygenerowany artykuł w formacie Markdown z blokiem YAML na 
     with urllib.request.urlopen(req) as response:
         res = json.loads(response.read().decode("utf-8"))
         content = res["message"]["content"]
+
+    # Clean up any potential markdown code fences wrapped around the YAML block by the LLM
+    content = content.strip()
+    content = re.sub(r'^```(yaml|markdown)?\n', '', content)
+    content = re.sub(r'\n```$', '', content)
+    content = content.strip()
 
     # 5. Extract title and write post to src/content/blog/
     title_match = re.search(r'title:\s*"(.*?)"', content)
