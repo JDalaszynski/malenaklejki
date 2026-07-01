@@ -12,6 +12,7 @@ AGENT_DIR = os.path.join(PROJECT_DIR, "blog-agent")
 PLAN_MD_FILE = os.path.join(AGENT_DIR, "plan.md")
 RULES_FILE = os.path.join(AGENT_DIR, "rules.md")
 STRATEGY_FILE = os.path.join(AGENT_DIR, "strategy.md")
+KEYWORDS_FILE = os.path.join(AGENT_DIR, "keywords.md")
 MODEL_NAME = "qwen2.5:32b"  # Local Ollama model
 
 # Pull latest changes from remote repository first
@@ -52,9 +53,10 @@ def run_agent():
     # 1. Pull latest plan and files from Windows/GitHub
     git_pull()
 
-    # 2. Read strategy and rules
+    # 2. Read strategy, rules and keywords
     rules = read_file_or_empty(RULES_FILE)
     strategy = read_file_or_empty(STRATEGY_FILE)
+    keywords = read_file_or_empty(KEYWORDS_FILE)
 
     # 3. Read plan.md checklist
     plan_content = read_file_or_empty(PLAN_MD_FILE)
@@ -104,8 +106,14 @@ STRATEGIA MARKETINGOWA:
 ZASADY PISANIA ARTYKUŁÓW:
 {rules}
 
+BAZA SŁÓW KLUCZOWYCH (SEO):
+{keywords}
+
 ZADANIE:
 {topic_instruction}
+
+SEO & FRAZY KLUCZOWE:
+Przejrzyj powyższą BAZĘ SŁÓW KLUCZOWYCH. Wybierz te frazy, które są bezpośrednio lub semantycznie powiązane z tematem Twojego artykułu i wpleć je w naturalny, bezbłędny językowo sposób w nagłówki H2/H3 oraz w treść akapitów. Główna fraza kluczowa powinna znaleźć się w tytule (nagłówek YAML) oraz w pierwszym akapicie. Pamiętaj o kategorycznym zakazie nienaturalnego upychania słów kluczowych (keyword stuffing) zawartym w zasadach.
 
 Na samym początku wygenerowanego tekstu DODAJ DOKŁADNIE TEN blok nagłówka YAML (frontmatter) i nic więcej:
 ---
