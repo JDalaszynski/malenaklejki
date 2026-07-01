@@ -89,7 +89,7 @@ Na samym początku wygenerowanego tekstu DODAJ DOKŁADNIE TEN blok nagłówka YA
 ---
 title: "Tytuł artykułu w cudzysłowie"
 date: "{datetime.now().strftime('%Y-%m-%d')}"
-description: "Krótka, zachęcająca zajawka artykułu do wyświetlenia na liście (1-2 zdania)"
+description: "Meta description pod SEO (120-160 znaków, zawierający słowo kluczowe, zachęcający do kliknięcia w wynikach wyszukiwania)"
 image: ""
 tags: ["naklejki", "marketing", "poradnik"]
 ---
