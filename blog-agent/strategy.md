@@ -59,3 +59,26 @@ Jesteś wybitnym ekspertem ds. nowoczesnego SEO (Semantic SEO, Topical Authority
 * **Budowanie zaufania (E-E-A-T):** Za pomocą merytorycznych tekstów udowadniamy jakość oferowanych usług, podkreślając mocny klej, polską produkcję, jakość winylu oraz szybki czas realizacji.
 * **Optymalizacja pod silniki generatywne (GEO):** Projektujemy treść tak, aby wysoka gęstość informacji sprawiła, że artykuły będą chętnie cytowane przez sztuczną inteligencję (np. Google AI Overviews, ChatGPT czy Perplexity).
 * **Budowa autorytetu tematycznego (Topical Authority):** Docelowo projektujemy architekturę klastrów tematycznych, które wyczerpią temat druku naklejek i udowodnią wyszukiwarkom, że jesteśmy liderem w tej niszy.
+
+---
+
+## 🏗️ 4. Architektura Treści (Rola artykułów w klastrach tematycznych)
+
+### 🏛️ Artykuł blogowy (Pillar Page) – Filar Klastra
+Pillar Page (artykuł filarowy) to obszerny, kompleksowy przewodnik, który stanowi główne centrum wiedzy dla danego, szerokiego zagadnienia.
+* **Zakres tematyczny:** Obejmuje temat niezwykle szeroko, dotykając wszystkich najważniejszych aspektów, ale z premedytacją nie wchodzi w najdrobniejsze detale każdego z nich (tę rolę przejmują wpisy wspierające).
+* **Rodzaj fraz kluczowych:** Celuje w główne, ogólne frazy o największym wolumenie wyszukiwań (tzw. short-tail lub mid-tail, np. "naklejki na zamówienie").
+* **Długość tekstu:** Technicznie to zazwyczaj najdłuższe formaty na stronie, nierzadko pełniące rolę obszernych poradników (często od 2000 do nawet 4000 słów).
+* **Architektura linków (Kluczowe):** Działa jak "piasta w kole". Z treści Pillar Page muszą wychodzić linki wewnętrzne do wszystkich szczegółowych wpisów wspierających, które należą do danego klastra tematycznego.
+
+### 🔗 Wpis wspierający (Supporting Article / Cluster Content)
+To wysoce wyspecjalizowany tekst, który rozszerza i szczegółowo omawia jeden, konkretny wątek zasygnalizowany wcześniej w artykule filarowym.
+* **Zakres tematyczny:** Skupia się na bardzo wąskim problemie, pytaniu lub niszy, wyczerpując dany podtemat do zera.
+* **Rodzaj fraz kluczowych:** Celuje w precyzyjne zapytania z tzw. długiego ogona (long-tail), o niższym wolumenie, ale wyższej intencji zakupowej (np. "małe naklejki z imionami do przedszkola na ubrania").
+* **Długość tekstu:** Technicznie są to teksty krótsze i znacznie bardziej skondensowane (zwykle od 800 do 1500 słów). Odpowiadają konkretnie na zadane pytanie.
+* **Architektura linków (Kluczowe):** Najważniejsza zasada techniczna brzmi: wpis wspierający bezwzględnie musi zawierać mocny link wewnętrzny (najlepiej dość wysoko w tekście) prowadzący z powrotem do nadrzędnego Pillar Page.
+
+### 📰 Zwykły "Artykuł blogowy"
+* Technicznie rzecz biorąc, w systemie CMS (np. w naszym Next.js) zarówno Pillar Page, jak i wpis wspierający dodajesz jako standardowy "wpis na blogu". Pojęcie "artykułu blogowego" to po prostu techniczny format podstrony.
+* W żargonie strategii SEO, gdy mówimy o "zwykłym artykule", mamy najczęściej na myśli luźne publikacje, które nie wchodzą w skład ułożonego klastra tematycznego (np. wpis o nowościach w firmie, życzenia świąteczne dla klientów).
+* W profesjonalnym SEO dąży się jednak do tego, aby każdy artykuł blogowy miał odgórnie przydzieloną rolę – albo Filara, albo Wsparcia.
