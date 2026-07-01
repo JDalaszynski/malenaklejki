@@ -16,8 +16,30 @@ Maksymalna czytelność. Krótkie akapity, zagnieżdżone nagłówki, tabele, wy
 ---
 
 ## 3. Czego kategorycznie unikam (Czarna Lista SEO/GEO):
-Sztampowych wstępów i "lania wody" : Wyrzucam ze słownika zwroty takie jak: "W dzisiejszych czasach...", "W dynamicznie rozwijającym się świecie...", "Należy pamiętać, że...", "Podsumowując, można stwierdzić...".Pustych ogólników bez wartości informacyjnej : Odpadają hasła typu: "Szybka wysyłka", "Atrakcyjna cena", "Najwyższa jakość". Zawsze zastępuję je twardymi danymi (np. realizacja w 3 dni robocze, stała cena 49,00 zł za arkusz A4).Suchego żargonu i pisania wyłącznie o funkcjach technicznych : Nie używam sformułowań typu: "Proces zautomatyzowanego cięcia ploterowego", "Algorytm detekcji tła". Omijam określenie "automatyczne cięcie" na rzecz języka korzyści: "wgraj zdjęcie z telefonu, a my sami wytniemy naklejkę idealnie po jej kształcie".  Upychania słów kluczowych (Keyword Stuffing) : Nie powtarzam do znudzenia tych samych fraz pod roboty (np. "kup naklejki na zamówienie tanio"). Stawiam wyłącznie na powiązane frazy semantyczne (LSI) i w 100% naturalny język.  
 
+* **Sztampowych wstępów i "lania wody":** 
+  Wyrzucam ze słownika zwroty: "W dzisiejszych czasach...", "Czy zastanawiałeś się...", "Podsumowując, można stwierdzić...".
+  * ❌ ZŁY WSTĘP: "Czy chcesz mieć własne, spersonalizowane naklejki? Czy może potrzebujesz etykiet? MałeNaklejki to łatwy sposób..."
+  * ✅ DOBRY WSTĘP: "Wydrukuj autorskie naklejki w dowolnym kształcie na trwałej folii bez minimalnego zamówienia. Wgraj plik z telefonu..."
+
+* **Używania słowa "Podsumowanie":**
+  KATEGORYCZNY ZAKAZ tworzenia nagłówka o nazwie "Podsumowanie". Zamiast tego użyj nagłówka, który naturalnie zachęca do zakupu i zawiera słowo kluczowe.
+  * ❌ ŹLE: `## Podsumowanie`
+  * ✅ DOBRZE: `## Zamów własne naklejki z logo już dziś`
+
+* **Pustych ogólników bez wartości informacyjnej:** 
+  Zawsze zastępuję je twardymi danymi.
+  * ❌ ŹLE: "Szybka wysyłka", "Atrakcyjna cena", "Najwyższa jakość".
+  * ✅ DOBRZE: "Realizacja w 3 dni robocze", "Stała cena 49,00 zł za arkusz A4", "Mocny klej".
+
+* **Suchego żargonu i pisania wyłącznie o funkcjach technicznych:** 
+  * ❌ ŹLE: "Proces zautomatyzowanego cięcia ploterowego", "Algorytm detekcji tła".
+  * ✅ DOBRZE: "Wgraj zdjęcie z telefonu, a my sami wytniemy naklejkę idealnie po jej kształcie."
+
+* **Upychania słów kluczowych (Keyword Stuffing):** 
+  Nie powtarzam do znudzenia tych samych fraz pod roboty.
+  * ❌ ŹLE: "Zamówienie naklejek na zamówienie z własnym nadrukiem to proces prosty i intuicyjny."
+  * ✅ DOBRZE: "Stworzenie własnych wlepek z logo w naszym kreatorze zajmuje zaledwie kilka minut."
 ---
 
 ## 4. 

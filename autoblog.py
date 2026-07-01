@@ -134,19 +134,21 @@ Wymyśl sam nowy, unikalny temat artykułu blogowego powiązany z naszą ofertą
 Napisane już tematy/pliki (unikaj ich!): {existing_str}.
 """
 
-    prompt = f"""
+    system_prompt = f"""
 Jesteś profesjonalnym copywriterem i ekspertem ds. marketingu w firmie "MałeNaklejki".
 Nasza strona oferuje drukowanie własnych naklejek na arkuszach A4 z cięciem po obrysie, usuwaniem tła przez AI, dla firm i osób prywatnych.
 
 STRATEGIA MARKETINGOWA:
 {strategy}
 
-ZASADY PISANIA ARTYKUŁÓW:
+ZASADY PISANIA ARTYKUŁÓW (KRYTYCZNE - MUSISZ SIĘ DO NICH BEZWZGLĘDNIE STOSOWAĆ):
 {rules}
 
 BAZA SŁÓW KLUCZOWYCH (SEO):
 {keywords}
+"""
 
+    user_prompt = f"""
 ZADANIE:
 {topic_instruction}
 
@@ -164,7 +166,7 @@ tags: ["naklejki", "marketing", "poradnik"]
 """
 
     if parent_link:
-        prompt += f"""
+        user_prompt += f"""
 ŻELAZNA ZASADA LINKOWANIA WEWNĘTRZNEGO (SEO):
 Ten artykuł jest wpisem wspierającym (Cluster Content). BEZWZGLĘDNIE musisz umieścić w nim link wewnętrzny prowadzący z powrotem do nadrzędnego artykułu filarowego (Pillar Page).
 Link ma prowadzić dokładnie do adresu: {parent_link}
@@ -172,7 +174,7 @@ Wstaw ten link w naturalny, kontekstowy sposób w pierwszej połowie artykułu (
 """
 
     if existing_links_str:
-        prompt += f"""
+        user_prompt += f"""
 POZOSTAŁE LINKOWANIE WEWNĘTRZNE (SEO):
 Oto lista innych artykułów już opublikowanych na naszym blogu:
 {existing_links_str}
@@ -180,7 +182,7 @@ Oto lista innych artykułów już opublikowanych na naszym blogu:
 ZADANIE DODATKOWE: Jeśli w tekście nowego artykułu nawiążesz do tematów opisanych w powyższych artykułach, WSTAW do nich naturalny link w formacie Markdown, np. [słowa kluczowe](/blog/slug). Wstaw maksymalnie 1-2 takie linki w całym artykule, tylko w miejscach, gdzie ma to sens dla czytelnika i pasuje do kontekstu zdania. Nie wstawiaj linków na siłę.
 """
 
-    prompt += """
+    user_prompt += """
 Zwróć WYŁĄCZNIE wygenerowany artykuł w formacie Markdown z blokiem YAML na samej górze. Nie dodawaj żadnych dopisków od siebie.
 """
 
@@ -188,7 +190,8 @@ Zwróć WYŁĄCZNIE wygenerowany artykuł w formacie Markdown z blokiem YAML na 
     data = {
         "model": MODEL_NAME,
         "messages": [
-            {"role": "user", "content": prompt}
+            {"role": "system", "content": system_prompt},
+            {"role": "user", "content": user_prompt}
         ],
         "stream": False,
         "options": {
