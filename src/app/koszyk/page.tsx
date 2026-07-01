@@ -224,7 +224,7 @@ export default function CartPage() {
               <div className="text-center space-y-3">
                 <div className="inline-flex items-center gap-1.5 bg-secondary/10 text-foreground border border-secondary/20 px-4 py-2 rounded-2xl text-xs font-black">
                   <Truck className="w-3.5 h-3.5 text-secondary" />
-                  Wysyłka w ciągu 3 dni roboczych
+                  Wysyłka w ciągu 2 dni roboczych
                 </div>
                 <p className="text-xs text-muted-foreground font-semibold">
                   Bezpieczne zakupy w MałeNaklejki. <br /> Gwarancja uśmiechu przy rozpakowywaniu!

@@ -67,7 +67,9 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <head>
-        <script
+        <Script
+          id="theme-toggle"
+          strategy="beforeInteractive"
           dangerouslySetInnerHTML={{
             __html: `
                try {
@@ -81,7 +83,9 @@ export default function RootLayout({
           }}
         />
         {process.env.NEXT_PUBLIC_GA_ID && (
-          <script
+          <Script
+            id="ga-consent"
+            strategy="beforeInteractive"
             dangerouslySetInnerHTML={{
               __html: `
                 window.dataLayer = window.dataLayer || [];

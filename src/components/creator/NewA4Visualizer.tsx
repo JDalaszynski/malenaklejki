@@ -3,7 +3,7 @@
 import React, { useRef, useState, useEffect } from "react";
 import { createPortal } from "react-dom";
 import { PlacedSticker } from "@/types/creator";
-import { checkOverlap, getRotatedSize, getCutLineMargins, getOuterMargins, getCutLineBoundingBox, checkStickersCollision, clampToUsableArea } from "@/lib/utils/collision";
+import { checkOverlap, getRotatedSize, getCutLineMargins, getOuterMargins, getCutLineBoundingBox, checkStickersCollision, clampToUsableArea, getContourMargins } from "@/lib/utils/collision";
 import { MoreVertical, Scissors, RotateCw, Crop, Copy, Trash2, Ban, Sparkles, Square, Circle } from "lucide-react";
 
 interface NewA4VisualizerProps {
@@ -94,6 +94,7 @@ export function NewA4Visualizer({
     initHeightCm: number; // sticker initial height in cm
     aspectRatio: number;
   } | null>(null);
+
 
   // Constants
   const SHEET_WIDTH_MM = 210;
@@ -216,11 +217,27 @@ export function NewA4Visualizer({
       const wMm = dragSticker.widthCm * 10;
       const hMm = dragSticker.heightCm * 10;
 
-      const size = getRotatedSize(wMm, hMm, dragSticker.rotation || 0);
-      const offsetX = (size.w - wMm) / 2;
-      const offsetY = (size.h - hMm) / 2;
+      // Graphic margins (0 offset/padding)
+      const gMargins = getContourMargins(wMm, hMm, dragSticker.rotation || 0, undefined);
+      // Cut line margins
+      const cMargins = getCutLineMargins(dragSticker);
+      // Outer envelope margins
+      const outerMargins = getOuterMargins(dragSticker);
 
-      const margins = getOuterMargins(dragSticker);
+      const dragGLeft = targetX - gMargins.left;
+      const dragGRight = targetX + gMargins.right;
+      const dragGTop = targetY - gMargins.top;
+      const dragGBottom = targetY + gMargins.bottom;
+
+      const dragCLeft = targetX - cMargins.left;
+      const dragCRight = targetX + cMargins.right;
+      const dragCTop = targetY - cMargins.top;
+      const dragCBottom = targetY + cMargins.bottom;
+
+      const dragOLeft = targetX - outerMargins.left;
+      const dragORight = targetX + outerMargins.right;
+      const dragOTop = targetY - outerMargins.top;
+      const dragOBottom = targetY + outerMargins.bottom;
 
       const otherStickers = stickers.filter((s) => s.id !== dragSticker.id);
 
@@ -229,59 +246,200 @@ export function NewA4Visualizer({
       const SNAP_DIST = 4; // mm
       const PAD = 1.0; // mm
 
-      const dragLeft = targetX - margins.left;
-      const dragRight = targetX + margins.right;
-      const dragTop = targetY - margins.top;
-      const dragBottom = targetY + margins.bottom;
-
       let minDiffX = SNAP_DIST;
       let minDiffY = SNAP_DIST;
 
-      otherStickers.forEach(other => {
-        const otherMargins = getOuterMargins(other);
-        const otherLeft = other.x - otherMargins.left;
-        const otherRight = other.x + otherMargins.right;
-        const otherTop = other.y - otherMargins.top;
-        const otherBottom = other.y + otherMargins.bottom;
+      // --- 1. Sheet Borders (X) ---
+      // Left border (11mm)
+      let diff = Math.abs(dragOLeft - 11);
+      if (diff < minDiffX) {
+        minDiffX = diff;
+        snapX = 11 + outerMargins.left;
+      }
+      // Right border (199mm)
+      diff = Math.abs(dragORight - 199);
+      if (diff < minDiffX) {
+        minDiffX = diff;
+        snapX = 199 - outerMargins.right;
+      }
+      // Corner margins if close to top/bottom indents
+      if (dragOTop < 17 || dragOBottom > 280) {
+        diff = Math.abs(dragOLeft - 17);
+        if (diff < minDiffX) {
+          minDiffX = diff;
+          snapX = 17 + outerMargins.left;
+        }
+        diff = Math.abs(dragORight - 193);
+        if (diff < minDiffX) {
+          minDiffX = diff;
+          snapX = 193 - outerMargins.right;
+        }
+      }
 
-        // Snap X
-        let diff = Math.abs(dragRight - (otherLeft - PAD));
-        if (diff < minDiffX) {
-          minDiffX = diff;
-          snapX = otherLeft - PAD - margins.right;
+      // --- 2. Sheet Borders (Y) ---
+      // Top border (11mm)
+      diff = Math.abs(dragOTop - 11);
+      if (diff < minDiffY) {
+        minDiffY = diff;
+        snapY = 11 + outerMargins.top;
+      }
+      // Bottom border (286mm)
+      diff = Math.abs(dragOBottom - 286);
+      if (diff < minDiffY) {
+        minDiffY = diff;
+        snapY = 286 - outerMargins.bottom;
+      }
+      // Corner margins if close to left/right indents
+      if (dragOLeft < 17 || dragORight > 193) {
+        diff = Math.abs(dragOTop - 17);
+        if (diff < minDiffY) {
+          minDiffY = diff;
+          snapY = 17 + outerMargins.top;
         }
-        diff = Math.abs(dragLeft - (otherRight + PAD));
-        if (diff < minDiffX) {
-          minDiffX = diff;
-          snapX = otherRight + PAD + margins.left;
+        diff = Math.abs(dragOBottom - 280);
+        if (diff < minDiffY) {
+          minDiffY = diff;
+          snapY = 280 - outerMargins.bottom;
         }
-        // Align centers on X if close
-        diff = Math.abs(targetX - other.x);
-        if (diff < minDiffX) {
-          minDiffX = diff;
-          snapX = other.x;
+      }
+
+      // --- 3. Other Stickers Snapping ---
+      otherStickers.forEach((other) => {
+        const otherGMargins = getContourMargins(other.widthCm * 10, other.heightCm * 10, other.rotation || 0, undefined);
+        const otherCMargins = getCutLineMargins(other);
+
+        const otherGLeft = other.x - otherGMargins.left;
+        const otherGRight = other.x + otherGMargins.right;
+        const otherGTop = other.y - otherGMargins.top;
+        const otherGBottom = other.y + otherGMargins.bottom;
+
+        const otherCLeft = other.x - otherCMargins.left;
+        const otherCRight = other.x + otherCMargins.right;
+        const otherCTop = other.y - otherCMargins.top;
+        const otherCBottom = other.y + otherCMargins.bottom;
+
+        // Proximity calculation: snap only if the other sticker is nearby in the orthogonal dimension
+        const verticalGap = dragGTop > otherGBottom ? (dragGTop - otherGBottom) : (otherGTop > dragGBottom ? (otherGTop - dragGBottom) : 0);
+        const horizontalGap = dragGLeft > otherGRight ? (dragGLeft - otherGRight) : (otherGLeft > dragGRight ? (otherGLeft - dragGRight) : 0);
+
+        const CLOSE_THRESHOLD_MM = 30; // Snap only if within 30mm (3cm) clear spacing
+        const isCloseY = verticalGap < CLOSE_THRESHOLD_MM;
+        const isCloseX = horizontalGap < CLOSE_THRESHOLD_MM;
+
+        // --- X Snapping ---
+        if (isCloseY) {
+          // A. Graphic-to-graphic touching (gap = 0)
+          diff = Math.abs(dragGRight - otherGLeft);
+          if (diff < minDiffX) {
+            minDiffX = diff;
+            snapX = otherGLeft - gMargins.right;
+          }
+          diff = Math.abs(dragGLeft - otherGRight);
+          if (diff < minDiffX) {
+            minDiffX = diff;
+            snapX = otherGRight + gMargins.left;
+          }
+
+          // B. Cutline-to-cutline touching (gap = 1.0mm)
+          diff = Math.abs(dragCRight - (otherCLeft - PAD));
+          if (diff < minDiffX) {
+            minDiffX = diff;
+            snapX = otherCLeft - PAD - cMargins.right;
+          }
+          diff = Math.abs(dragCLeft - (otherCRight + PAD));
+          if (diff < minDiffX) {
+            minDiffX = diff;
+            snapX = otherCRight + PAD + cMargins.left;
+          }
+
+          // C. Align Center X
+          diff = Math.abs(targetX - other.x);
+          if (diff < minDiffX) {
+            minDiffX = diff;
+            snapX = other.x;
+          }
+
+          // D. Align Edges
+          diff = Math.abs(dragGLeft - otherGLeft);
+          if (diff < minDiffX) {
+            minDiffX = diff;
+            snapX = otherGLeft + gMargins.left;
+          }
+          diff = Math.abs(dragGRight - otherGRight);
+          if (diff < minDiffX) {
+            minDiffX = diff;
+            snapX = otherGRight - gMargins.right;
+          }
+          diff = Math.abs(dragCLeft - otherCLeft);
+          if (diff < minDiffX) {
+            minDiffX = diff;
+            snapX = otherCLeft + cMargins.left;
+          }
+          diff = Math.abs(dragCRight - otherCRight);
+          if (diff < minDiffX) {
+            minDiffX = diff;
+            snapX = otherCRight - cMargins.right;
+          }
         }
 
-        // Snap Y
-        diff = Math.abs(dragBottom - (otherTop - PAD));
-        if (diff < minDiffY) {
-          minDiffY = diff;
-          snapY = otherTop - PAD - margins.bottom;
-        }
-        diff = Math.abs(dragTop - (otherBottom + PAD));
-        if (diff < minDiffY) {
-          minDiffY = diff;
-          snapY = otherBottom + PAD + margins.top;
-        }
-        // Align centers on Y if close
-        diff = Math.abs(targetY - other.y);
-        if (diff < minDiffY) {
-          minDiffY = diff;
-          snapY = other.y;
+        // --- Y Snapping ---
+        if (isCloseX) {
+          // A. Graphic-to-graphic touching (gap = 0)
+          diff = Math.abs(dragGBottom - otherGTop);
+          if (diff < minDiffY) {
+            minDiffY = diff;
+            snapY = otherGTop - gMargins.bottom;
+          }
+          diff = Math.abs(dragGTop - otherGBottom);
+          if (diff < minDiffY) {
+            minDiffY = diff;
+            snapY = otherGBottom + gMargins.top;
+          }
+
+          // B. Cutline-to-cutline touching (gap = 1.0mm)
+          diff = Math.abs(dragCBottom - (otherCTop - PAD));
+          if (diff < minDiffY) {
+            minDiffY = diff;
+            snapY = otherCTop - PAD - cMargins.bottom;
+          }
+          diff = Math.abs(dragCTop - (otherCBottom + PAD));
+          if (diff < minDiffY) {
+            minDiffY = diff;
+            snapY = otherCBottom + PAD + cMargins.top;
+          }
+
+          // C. Align Center Y
+          diff = Math.abs(targetY - other.y);
+          if (diff < minDiffY) {
+            minDiffY = diff;
+            snapY = other.y;
+          }
+
+          // D. Align Edges
+          diff = Math.abs(dragGTop - otherGTop);
+          if (diff < minDiffY) {
+            minDiffY = diff;
+            snapY = otherGTop + gMargins.top;
+          }
+          diff = Math.abs(dragGBottom - otherGBottom);
+          if (diff < minDiffY) {
+            minDiffY = diff;
+            snapY = otherGBottom - gMargins.bottom;
+          }
+          diff = Math.abs(dragCTop - otherCTop);
+          if (diff < minDiffY) {
+            minDiffY = diff;
+            snapY = otherCTop + cMargins.top;
+          }
+          diff = Math.abs(dragCBottom - otherCBottom);
+          if (diff < minDiffY) {
+            minDiffY = diff;
+            snapY = otherCBottom - cMargins.bottom;
+          }
         }
       });
 
-      const clamped = clampToUsableArea(snapX, snapY, margins);
+      const clamped = clampToUsableArea(snapX, snapY, outerMargins);
       let finalX = clamped.x;
       let finalY = clamped.y;
 

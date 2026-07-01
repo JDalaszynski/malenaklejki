@@ -22,19 +22,35 @@ function SuccessContent() {
   const router = useRouter();
   const orderNumberParam = searchParams.get("orderNumber");
   const orderId = searchParams.get("orderId");
+  const paymentMethodParam = searchParams.get("paymentMethod");
 
-  const [paymentStatus, setPaymentStatus] = useState<"loading" | "success" | "failed">("loading");
+  const [paymentStatus, setPaymentStatus] = useState<"loading" | "success" | "failed">(
+    (paymentMethodParam === "przelew" || paymentMethodParam === "vinted") ? "success" : "loading"
+  );
   const [orderNumber, setOrderNumber] = useState<string | null>(orderNumberParam);
   const [orderTotal, setOrderTotal] = useState<number>(0);
   const [copied, setCopied] = useState(false);
   const [retrying, setRetrying] = useState(false);
   const [retryError, setRetryError] = useState<string | null>(null);
-  const [isPrzelew, setIsPrzelew] = useState(false);
+  const [isPrzelew, setIsPrzelew] = useState(paymentMethodParam === "przelew");
+  const [isVinted, setIsVinted] = useState(paymentMethodParam === "vinted");
 
   const pollCountRef = useRef(0);
   const maxPolls = 6; // up to 12 seconds total checking
 
   useEffect(() => {
+    if (paymentMethodParam === "przelew" || paymentMethodParam === "vinted") {
+      if (orderId) {
+        getOrderStatus(orderId).then((res) => {
+          if (res && res.success) {
+            if (res.total) setOrderTotal(res.total);
+            if (res.orderNumber) setOrderNumber(res.orderNumber);
+          }
+        });
+      }
+      return;
+    }
+
     if (!orderId) {
       // Jeśli brak ID zamówienia w URL (np. stare zamówienia), domyślnie pokazujemy sukces
       setPaymentStatus("success");
@@ -52,6 +68,13 @@ function SuccessContent() {
 
           if (res.paymentMethod === "przelew") {
             setIsPrzelew(true);
+            setPaymentStatus("success");
+            if (intervalId) clearInterval(intervalId);
+            return;
+          }
+
+          if (res.paymentMethod === "vinted") {
+            setIsVinted(true);
             setPaymentStatus("success");
             if (intervalId) clearInterval(intervalId);
             return;
@@ -89,7 +112,7 @@ function SuccessContent() {
     return () => {
       if (intervalId) clearInterval(intervalId);
     };
-  }, [orderId]);
+  }, [orderId, paymentMethodParam]);
 
   const handleCopy = () => {
     const num = orderNumber || orderNumberParam;
@@ -248,6 +271,11 @@ function SuccessContent() {
                 Dane do płatności przelewem wysłaliśmy na Twój e-mail.<br />
                 Po zaksięgowaniu wpłaty przystąpimy do realizacji zamówienia.
               </>
+            ) : isVinted ? (
+              <>
+                Dedykowany link do płatności przez Vinted wysłaliśmy na Twój e-mail.<br />
+                Po zakupieniu oferty na Vinted przystąpimy do realizacji zamówienia.
+              </>
             ) : (
               <>
                 Twoje naklejki trafiły do produkcji. <br />Zabieramy się do realizacji!
@@ -291,6 +319,8 @@ function SuccessContent() {
           <p className="text-sm font-medium text-muted-foreground">
             {isPrzelew ? (
               "Szczegóły zamówienia oraz dane do przelewu znajdziesz w swojej skrzynce e-mail."
+            ) : isVinted ? (
+              "Szczegóły zamówienia oraz instrukcję zakupu na Vinted wysłaliśmy na Twój adres e-mail."
             ) : (
               "Wysłaliśmy potwierdzenie na Twój adres e-mail ze szczegółami zamówienia."
             )}
@@ -306,12 +336,16 @@ function SuccessContent() {
           </div>
           <div>
             <p className="font-extrabold text-foreground text-base">
-              {isPrzelew ? "Czas realizacji po zaksięgowaniu wpłaty" : "Szacowany czas realizacji"}
+              {isPrzelew ? "Czas realizacji po zaksięgowaniu wpłaty" : isVinted ? "Czas realizacji po zakupie" : "Szacowany czas realizacji"}
             </p>
             <p className="text-muted-foreground text-sm font-medium mt-0.5">
               {isPrzelew ? (
                 <>
                   Produkcja i wysyłka: <strong className="text-foreground">3 dni robocze</strong> od zaksięgowania przelewu na konto.
+                </>
+              ) : isVinted ? (
+                <>
+                  Produkcja i wysyłka: <strong className="text-foreground">3 dni robocze</strong> od zakupu oferty na Vinted.
                 </>
               ) : (
                 <>

@@ -253,12 +253,34 @@ export function A4Visualizer({ imageUrl, onImageChange }: A4VisualizerProps) {
       URL.revokeObjectURL(blobUrl);
 
       const imgData = canvas.toDataURL("image/png");
+      let downloadUrl = imgData;
+
+      try {
+        const response = await fetch("/api/compress-png", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ image: imgData }),
+        });
+        if (response.ok) {
+          const compressedBlob = await response.blob();
+          downloadUrl = URL.createObjectURL(compressedBlob);
+        } else {
+          console.warn("Server PNG compression failed, downloading uncompressed canvas image.");
+        }
+      } catch (compressErr) {
+        console.warn("Failed to compress PNG via server:", compressErr);
+      }
+
       const link = document.createElement("a");
-      link.href = imgData;
+      link.href = downloadUrl;
       link.download = `naklejki-A4-${widthCm}cm.png`;
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
+
+      if (downloadUrl.startsWith("blob:")) {
+        URL.revokeObjectURL(downloadUrl);
+      }
     } catch (err) {
       console.error("PNG generation error:", err);
     } finally {

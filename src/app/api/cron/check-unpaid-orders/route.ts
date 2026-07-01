@@ -57,7 +57,14 @@ export async function GET(req: NextRequest) {
     ordersSnap.forEach((doc) => {
       const data = doc.data();
       const createdAt = new Date(data.createdAt);
-      if (createdAt < timeThreshold && !data.failureNotificationSent) {
+      const paymentMethod = data.payment?.method || data.paymentMethod;
+
+      // Only check automatic payment methods (przelewy24, blik)
+      if (
+        createdAt < timeThreshold &&
+        !data.failureNotificationSent &&
+        (paymentMethod === "przelewy24" || paymentMethod === "blik")
+      ) {
         unpaidOrders.push({ id: doc.id, ...data });
       }
     });

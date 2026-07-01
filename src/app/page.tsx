@@ -46,6 +46,18 @@ import {
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
+const compressPNGOnServer = async (dataUrl: string): Promise<Blob> => {
+  const response = await fetch("/api/compress-png", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ image: dataUrl }),
+  });
+  if (!response.ok) {
+    throw new Error(`Failed to compress image on server: ${response.statusText}`);
+  }
+  return response.blob();
+};
+
 export default function Home() {
   const router = useRouter();
   const addItem = useCartStore((state) => state.addItem);
@@ -1482,10 +1494,19 @@ export default function Home() {
     try {
       // Render print version (color, with sticker images)
       const printCanvas = await renderSheetCanvas("print");
-      const printBlob = await new Promise<Blob | null>((resolve) =>
-        printCanvas.toBlob((b) => resolve(b), "image/png")
-      );
-      if (!printBlob) throw new Error("Could not export print canvas to blob.");
+      const printDataUrl = printCanvas.toDataURL("image/png");
+
+      let printBlob: Blob;
+      try {
+        printBlob = await compressPNGOnServer(printDataUrl);
+      } catch (err) {
+        console.warn("Server compression failed for print image, falling back to uncompressed blob:", err);
+        const rawBlob = await new Promise<Blob | null>((resolve) =>
+          printCanvas.toBlob((b) => resolve(b), "image/png")
+        );
+        if (!rawBlob) throw new Error("Could not export print canvas to blob.");
+        printBlob = rawBlob;
+      }
 
       const printFileName = `composition-${getUUID()}.png`;
       const printRef = ref(storage, `uploads/${printFileName}`);
@@ -1494,9 +1515,17 @@ export default function Home() {
 
       // Render cut-lines version (black shapes on white, no images)
       const cutCanvas = await renderSheetCanvas("cut-lines");
-      const cutBlob = await new Promise<Blob | null>((resolve) =>
-        cutCanvas.toBlob((b) => resolve(b), "image/png")
-      );
+      const cutDataUrl = cutCanvas.toDataURL("image/png");
+
+      let cutBlob: Blob | null = null;
+      try {
+        cutBlob = await compressPNGOnServer(cutDataUrl);
+      } catch (err) {
+        console.warn("Server compression failed for cut-lines image, falling back to uncompressed blob:", err);
+        cutBlob = await new Promise<Blob | null>((resolve) =>
+          cutCanvas.toBlob((b) => resolve(b), "image/png")
+        );
+      }
 
       let cutLinesUrl: string | undefined;
       if (cutBlob) {
@@ -1544,8 +1573,16 @@ export default function Home() {
       const canvas = mode === "3d" ? await render3DSheetCanvas() : await renderSheetCanvas(mode);
       const imgData = canvas.toDataURL("image/png");
 
+      let downloadUrl = imgData;
+      try {
+        const compressedBlob = await compressPNGOnServer(imgData);
+        downloadUrl = URL.createObjectURL(compressedBlob);
+      } catch (compressErr) {
+        console.warn("Server PNG compression failed, downloading uncompressed canvas image:", compressErr);
+      }
+
       const link = document.createElement("a");
-      link.href = imgData;
+      link.href = downloadUrl;
       if (mode === "cut-lines") {
         link.download = "kompozycja-arkusza-A4-LINIE_CIECIA.png";
       } else if (mode === "print") {
@@ -1556,6 +1593,10 @@ export default function Home() {
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
+
+      if (downloadUrl.startsWith("blob:")) {
+        URL.revokeObjectURL(downloadUrl);
+      }
     } catch (err: any) {
       console.error(err);
       setError(
@@ -2208,7 +2249,7 @@ export default function Home() {
                   </div>
                   <div className="flex items-center gap-1.5 text-[11px] font-black text-secondary whitespace-nowrap">
                     <Truck className="w-4 h-4 text-secondary" />
-                    <span>Wysyłka w ciągu 3 dni</span>
+                    <span>Wysyłka w ciągu 2 dni</span>
                   </div>
                 </div>
 
@@ -2663,23 +2704,8 @@ export default function Home() {
                         {cartItems.length}
                       </span>
                     )}
-                    {cartItems.length > 0 && (
-                      <span className="ml-2 hidden sm:block font-extrabold text-sm text-primary">
-                        {totalPrice.toFixed(2).replace('.', ',')} zł
-                      </span>
-                    )}
                   </div>
                 </Link>
-
-                {stickers.length > 0 && (
-                  <button
-                    type="button"
-                    onClick={handleAddToCart}
-                    className="inline-flex items-center justify-center rounded-xl text-xs font-extrabold bg-primary text-primary-foreground hover:bg-primary/95 px-4 h-9 sm:h-10 shadow-sm transition-all active:scale-95 cursor-pointer animate-in fade-in zoom-in-95 duration-200"
-                  >
-                    Dodaj do koszyka
-                  </button>
-                )}
               </div>
             </motion.div>
           </div>

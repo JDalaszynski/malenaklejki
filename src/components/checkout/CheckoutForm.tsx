@@ -3,7 +3,7 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { InPostGeowidget } from "./InPostGeowidget";
 import { useCartStore } from "@/store/cartStore";
 import { createOrder } from "@/app/actions/createOrder";
@@ -16,8 +16,8 @@ const checkoutSchema = z.object({
   firstName: z.string().min(2, { message: "Imię jest wymagane" }),
   lastName: z.string().min(2, { message: "Nazwisko jest wymagane" }),
   phone: z.string().min(9, { message: "Proszę podać poprawny numer telefonu" }),
-  deliveryMethod: z.enum(["kurier", "paczkomat"]),
-  paymentMethod: z.enum(["przelewy24", "blik", "przelew"]),
+  deliveryMethod: z.enum(["kurier", "paczkomat", "vinted"]),
+  paymentMethod: z.enum(["przelewy24", "blik", "przelew", "vinted"]),
   street: z.string().optional(),
   building: z.string().optional(),
   city: z.string().optional(),
@@ -31,6 +31,9 @@ const checkoutSchema = z.object({
     message: "Akceptacja regulaminu jest wymagana",
   }),
 }).superRefine((data, ctx) => {
+  if (data.paymentMethod === "vinted") {
+    return;
+  }
   if (data.deliveryMethod === "kurier") {
     if (!data.street) ctx.addIssue({ code: z.ZodIssueCode.custom, message: "Ulica jest wymagana", path: ["street"] });
     if (!data.building) ctx.addIssue({ code: z.ZodIssueCode.custom, message: "Numer budynku jest wymagany", path: ["building"] });
@@ -79,8 +82,16 @@ export function CheckoutForm() {
   const lockerAddress = watch("lockerAddress");
 
   const subtotal = getTotalPrice();
-  const shippingCost = deliveryMethod === "kurier" ? 19.99 : 19.99;
+  const shippingCost = paymentMethod === "vinted" ? 0 : 19.99;
   const total = subtotal + shippingCost;
+
+  useEffect(() => {
+    if (paymentMethod === "vinted") {
+      setValue("deliveryMethod", "vinted");
+    } else if (deliveryMethod === "vinted") {
+      setValue("deliveryMethod", "paczkomat");
+    }
+  }, [paymentMethod, deliveryMethod, setValue]);
 
   const onSubmit = async (data: CheckoutFormValues) => {
     if (items.length === 0) {
@@ -190,82 +201,93 @@ export function CheckoutForm() {
           {/* Sekcja B: Dostawa */}
           <div className="bg-card border border-border/70 rounded-2xl p-8 shadow-sm">
             <h2 className="text-2xl font-extrabold mb-6">2. Adres i metoda dostawy</h2>
-            <div className="flex flex-col gap-4 mb-6">
-              <label className={`flex items-center p-4 border rounded-2xl cursor-pointer transition-all ${deliveryMethod === "paczkomat" ? "border-primary bg-primary/5 text-foreground shadow-none" : "border-border/60 bg-card text-foreground hover:bg-muted/30"}`}>
-                <input type="radio" value="paczkomat" {...register("deliveryMethod")} className="mr-4 w-5 h-5 text-foreground focus:ring-foreground" />
-                <div className="flex-1">
-                  <p className="font-extrabold text-lg">Paczkomat InPost</p>
-                  <p className={`font-medium text-sm ${deliveryMethod === "paczkomat" ? "text-primary" : "text-muted-foreground"}`}>Wysyłka do punktu (19,99 zł)</p>
-                </div>
-              </label>
-              <label className={`flex items-center p-4 border rounded-2xl cursor-pointer transition-all ${deliveryMethod === "kurier" ? "border-primary bg-primary/5 text-foreground shadow-none" : "border-border/60 bg-card text-foreground hover:bg-muted/30"}`}>
-                <input type="radio" value="kurier" {...register("deliveryMethod")} className="mr-4 w-5 h-5 text-foreground focus:ring-foreground" />
-                <div className="flex-1">
-                  <p className="font-extrabold text-lg">Przesyłka Kurierska</p>
-                  <p className={`font-medium text-sm ${deliveryMethod === "kurier" ? "text-primary" : "text-muted-foreground"}`}>Kurier pod drzwi (19,99 zł)</p>
-                </div>
-              </label>
-            </div>
-            {deliveryMethod === "paczkomat" && (
-              <div className="space-y-4">
-                <div className="bg-muted/20 p-6 rounded-xl border border-border/40">
-                  <p className="font-bold text-muted-foreground mb-1">Wybrany punkt:</p>
-                  {lockerId ? (
-                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                      <div>
-                        <p className="text-[#FFCD08] font-extrabold text-xl">{lockerId}</p>
-                        <p className="font-medium text-foreground">{lockerAddress}</p>
-                      </div>
-                      <button
-                        type="button"
-                        onClick={() => setShowPaczkomatModal(true)}
-                        className="bg-[#FFCD08] hover:bg-[#FFCD08]/90 text-black font-black px-4 py-2 rounded-xl text-xs transition-all cursor-pointer border border-[#FFCD08]/20 shrink-0 self-start sm:self-center"
-                      >
-                        Zmień Paczkomat
-                      </button>
-                    </div>
-                  ) : (
-                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                      <p className="inline-block bg-muted/40 text-muted-foreground text-sm font-bold px-4 py-2 rounded-xl border border-border/40">
-                        Brak wybranego Paczkomatu
-                      </p>
-                      <button
-                        type="button"
-                        onClick={() => setShowPaczkomatModal(true)}
-                        className="bg-[#FFCD08] hover:bg-[#FFCD08]/90 text-black font-black px-5 py-3 rounded-2xl text-sm transition-all cursor-pointer border border-[#FFCD08]/20 shrink-0 self-start sm:self-center hover:scale-[1.02] active:scale-[0.98]"
-                      >
-                        Wybierz Paczkomat
-                      </button>
-                    </div>
-                  )}
-                  {errors.lockerId && <p className="inline-block bg-destructive/10 text-destructive border border-destructive/20 text-xs font-bold px-3 py-1 rounded-lg mt-2">{errors.lockerId.message}</p>}
-                </div>
+            {paymentMethod === "vinted" ? (
+              <div className="bg-primary/5 border border-primary/20 rounded-2xl p-6 text-center">
+                <p className="font-extrabold text-lg text-primary animate-pulse">Wysyłka przez Vinted</p>
+                <p className="text-sm font-medium text-muted-foreground mt-2">
+                  Naklejki nadamy zgodnie z danymi wysyłkowimi przez Vinted.
+                </p>
               </div>
-            )}
+            ) : (
+              <>
+                <div className="flex flex-col gap-4 mb-6">
+                  <label className={`flex items-center p-4 border rounded-2xl cursor-pointer transition-all ${deliveryMethod === "paczkomat" ? "border-primary bg-primary/5 text-foreground shadow-none" : "border-border/60 bg-card text-foreground hover:bg-muted/30"}`}>
+                    <input type="radio" value="paczkomat" {...register("deliveryMethod")} className="mr-4 w-5 h-5 text-foreground focus:ring-foreground" />
+                    <div className="flex-1">
+                      <p className="font-extrabold text-lg">Paczkomat InPost</p>
+                      <p className={`font-medium text-sm ${deliveryMethod === "paczkomat" ? "text-primary" : "text-muted-foreground"}`}>Wysyłka do punktu (19,99 zł)</p>
+                    </div>
+                  </label>
+                  <label className={`flex items-center p-4 border rounded-2xl cursor-pointer transition-all ${deliveryMethod === "kurier" ? "border-primary bg-primary/5 text-foreground shadow-none" : "border-border/60 bg-card text-foreground hover:bg-muted/30"}`}>
+                    <input type="radio" value="kurier" {...register("deliveryMethod")} className="mr-4 w-5 h-5 text-foreground focus:ring-foreground" />
+                    <div className="flex-1">
+                      <p className="font-extrabold text-lg">Przesyłka Kurierska</p>
+                      <p className={`font-medium text-sm ${deliveryMethod === "kurier" ? "text-primary" : "text-muted-foreground"}`}>Kurier pod drzwi (19,99 zł)</p>
+                    </div>
+                  </label>
+                </div>
+                {deliveryMethod === "paczkomat" && (
+                  <div className="space-y-4">
+                    <div className="bg-muted/20 p-6 rounded-xl border border-border/40">
+                      <p className="font-bold text-muted-foreground mb-1">Wybrany punkt:</p>
+                      {lockerId ? (
+                        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                          <div>
+                            <p className="text-[#FFCD08] font-extrabold text-xl">{lockerId}</p>
+                            <p className="font-medium text-foreground">{lockerAddress}</p>
+                          </div>
+                          <button
+                            type="button"
+                            onClick={() => setShowPaczkomatModal(true)}
+                            className="bg-[#FFCD08] hover:bg-[#FFCD08]/90 text-black font-black px-4 py-2 rounded-xl text-xs transition-all cursor-pointer border border-[#FFCD08]/20 shrink-0 self-start sm:self-center"
+                          >
+                            Zmień Paczkomat
+                          </button>
+                        </div>
+                      ) : (
+                        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                          <p className="inline-block bg-muted/40 text-muted-foreground text-sm font-bold px-4 py-2 rounded-xl border border-border/40">
+                            Brak wybranego Paczkomatu
+                          </p>
+                          <button
+                            type="button"
+                            onClick={() => setShowPaczkomatModal(true)}
+                            className="bg-[#FFCD08] hover:bg-[#FFCD08]/90 text-black font-black px-5 py-3 rounded-2xl text-sm transition-all cursor-pointer border border-[#FFCD08]/20 shrink-0 self-start sm:self-center hover:scale-[1.02] active:scale-[0.98]"
+                          >
+                            Wybierz Paczkomat
+                          </button>
+                        </div>
+                      )}
+                      {errors.lockerId && <p className="inline-block bg-destructive/10 text-destructive border border-destructive/20 text-xs font-bold px-3 py-1 rounded-lg mt-2">{errors.lockerId.message}</p>}
+                    </div>
+                  </div>
+                )}
 
-            {deliveryMethod === "kurier" && (
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4 animate-in fade-in">
-                <div className="md:col-span-2">
-                  <label className="text-sm font-bold mb-2 block">Ulica<span className="text-destructive"> *</span></label>
-                  <input {...register("street")} className="flex h-12 w-full rounded-xl border border-slate-300 dark:border-white/20 bg-background px-4 py-2 text-base font-medium focus-visible:outline-none focus-visible:border-primary focus-visible:ring-2 focus-visible:ring-primary/20" />
-                  {errors.street && <p className="inline-block bg-destructive/30 text-destructive-foreground text-xs font-bold px-3 py-1 rounded-lg border border-destructive/40 mt-1.5">{errors.street.message}</p>}
-                </div>
-                <div>
-                  <label className="text-sm font-bold mb-2 block">Numer lokalu/domu<span className="text-destructive"> *</span></label>
-                  <input {...register("building")} className="flex h-12 w-full rounded-xl border border-slate-300 dark:border-white/20 bg-background px-4 py-2 text-base font-medium focus-visible:outline-none focus-visible:border-primary focus-visible:ring-2 focus-visible:ring-primary/20" />
-                  {errors.building && <p className="inline-block bg-destructive/30 text-destructive-foreground text-xs font-bold px-3 py-1 rounded-lg border border-destructive/40 mt-1.5">{errors.building.message}</p>}
-                </div>
-                <div>
-                  <label className="text-sm font-bold mb-2 block">Kod pocztowy<span className="text-destructive"> *</span></label>
-                  <input {...register("postalCode")} placeholder="00-000" className="flex h-12 w-full rounded-xl border border-slate-300 dark:border-white/20 bg-background px-4 py-2 text-base font-medium focus-visible:outline-none focus-visible:border-primary focus-visible:ring-2 focus-visible:ring-primary/20" />
-                  {errors.postalCode && <p className="inline-block bg-destructive/30 text-destructive-foreground text-xs font-bold px-3 py-1 rounded-lg border border-destructive/40 mt-1.5">{errors.postalCode.message}</p>}
-                </div>
-                <div className="md:col-span-2">
-                  <label className="text-sm font-bold mb-2 block">Miejscowość<span className="text-destructive"> *</span></label>
-                  <input {...register("city")} className="flex h-12 w-full rounded-xl border border-slate-300 dark:border-white/20 bg-background px-4 py-2 text-base font-medium focus-visible:outline-none focus-visible:border-primary focus-visible:ring-2 focus-visible:ring-primary/20" />
-                  {errors.city && <p className="inline-block bg-destructive/30 text-destructive-foreground text-xs font-bold px-3 py-1 rounded-lg border border-destructive/40 mt-1.5">{errors.city.message}</p>}
-                </div>
-              </div>
+                {deliveryMethod === "kurier" && (
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4 animate-in fade-in">
+                    <div className="md:col-span-2">
+                      <label className="text-sm font-bold mb-2 block">Ulica<span className="text-destructive"> *</span></label>
+                      <input {...register("street")} className="flex h-12 w-full rounded-xl border border-slate-300 dark:border-white/20 bg-background px-4 py-2 text-base font-medium focus-visible:outline-none focus-visible:border-primary focus-visible:ring-2 focus-visible:ring-primary/20" />
+                      {errors.street && <p className="inline-block bg-destructive/30 text-destructive-foreground text-xs font-bold px-3 py-1 rounded-lg border border-destructive/40 mt-1.5">{errors.street.message}</p>}
+                    </div>
+                    <div>
+                      <label className="text-sm font-bold mb-2 block">Numer lokalu/domu<span className="text-destructive"> *</span></label>
+                      <input {...register("building")} className="flex h-12 w-full rounded-xl border border-slate-300 dark:border-white/20 bg-background px-4 py-2 text-base font-medium focus-visible:outline-none focus-visible:border-primary focus-visible:ring-2 focus-visible:ring-primary/20" />
+                      {errors.building && <p className="inline-block bg-destructive/30 text-destructive-foreground text-xs font-bold px-3 py-1 rounded-lg border border-destructive/40 mt-1.5">{errors.building.message}</p>}
+                    </div>
+                    <div>
+                      <label className="text-sm font-bold mb-2 block">Kod pocztowy<span className="text-destructive"> *</span></label>
+                      <input {...register("postalCode")} placeholder="00-000" className="flex h-12 w-full rounded-xl border border-slate-300 dark:border-white/20 bg-background px-4 py-2 text-base font-medium focus-visible:outline-none focus-visible:border-primary focus-visible:ring-2 focus-visible:ring-primary/20" />
+                      {errors.postalCode && <p className="inline-block bg-destructive/30 text-destructive-foreground text-xs font-bold px-3 py-1 rounded-lg border border-destructive/40 mt-1.5">{errors.postalCode.message}</p>}
+                    </div>
+                    <div className="md:col-span-2">
+                      <label className="text-sm font-bold mb-2 block">Miejscowość<span className="text-destructive"> *</span></label>
+                      <input {...register("city")} className="flex h-12 w-full rounded-xl border border-slate-300 dark:border-white/20 bg-background px-4 py-2 text-base font-medium focus-visible:outline-none focus-visible:border-primary focus-visible:ring-2 focus-visible:ring-primary/20" />
+                      {errors.city && <p className="inline-block bg-destructive/30 text-destructive-foreground text-xs font-bold px-3 py-1 rounded-lg border border-destructive/40 mt-1.5">{errors.city.message}</p>}
+                    </div>
+                  </div>
+                )}
+              </>
             )}
           </div>
 
@@ -335,10 +357,12 @@ export function CheckoutForm() {
                 <span className="text-muted-foreground">Naklejki</span>
                 <span>{subtotal.toFixed(2).replace('.', ',')} zł</span>
               </div>
-              <div className="flex justify-between font-medium">
-                <span className="text-muted-foreground">Dostawa</span>
-                <span>{shippingCost.toFixed(2).replace('.', ',')} zł</span>
-              </div>
+              {paymentMethod !== "vinted" && (
+                <div className="flex justify-between font-medium">
+                  <span className="text-muted-foreground">Dostawa</span>
+                  <span>{shippingCost.toFixed(2).replace('.', ',')} zł</span>
+                </div>
+              )}
               <div className="pt-3 border-t border-border/40 flex justify-between font-bold text-xl text-primary">
                 <span>Razem</span>
                 <span>{total.toFixed(2).replace('.', ',')} zł</span>
@@ -371,6 +395,16 @@ export function CheckoutForm() {
                     <p className="text-xs text-muted-foreground">Dane do przelewu otrzymasz na e-mail</p>
                   </div>
                 </label>
+                {/* 
+                <label className={`flex items-center p-3 border rounded-xl cursor-pointer transition-all ${paymentMethod === "vinted" ? "border-primary bg-primary/5 text-foreground shadow-sm" : "border-border/60 bg-card text-foreground hover:bg-muted/30"}`}>
+                  <input type="radio" value="vinted" {...register("paymentMethod")} className="mr-3 w-4 h-4 text-foreground focus:ring-foreground" />
+                  <div className="flex-1">
+                    <p className="font-bold text-sm">Przez Vinted</p>
+                    <p className="text-xs text-muted-foreground">Realizacja po kupieniu przez Vinted</p>
+                  </div>
+                  <img src="/images/payment-icons/vinted-logo.png" alt="Vinted" className="h-5 w-auto object-contain opacity-90" />
+                </label>
+                */}
               </div>
             </div>
 

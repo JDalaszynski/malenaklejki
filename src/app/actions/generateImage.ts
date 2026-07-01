@@ -10,6 +10,50 @@ const genAI = new GoogleGenAI({
   apiKey: process.env.GEMINI_API_KEY || 'dummy_gemini_key_for_build',
 });
 
+async function callGeminiWithRetry(
+  params: {
+    contents: any[];
+    config?: any;
+  },
+  maxRetries = 2
+) {
+  const models = ["gemini-2.5-flash-image", "gemini-3.1-flash-image"];
+  let lastError: any = null;
+
+  for (let modelIndex = 0; modelIndex < models.length; modelIndex++) {
+    const currentModel = models[modelIndex];
+    for (let attempt = 0; attempt <= maxRetries; attempt++) {
+      try {
+        console.log(`Calling model ${currentModel} (Attempt ${attempt + 1}/${maxRetries + 1})...`);
+        return await genAI.models.generateContent({
+          model: currentModel,
+          ...params,
+        });
+      } catch (error: any) {
+        lastError = error;
+        console.warn(`Attempt ${attempt + 1} for ${currentModel} failed:`, error.message || error);
+        
+        const isTransient = error.status === 503 || error.status === 429 || 
+                            (error.message && (
+                              error.message.includes("503") || 
+                              error.message.includes("429") || 
+                              error.message.includes("unavailable") || 
+                              error.message.includes("overloaded")
+                            ));
+        
+        if (isTransient && attempt < maxRetries) {
+          const delay = (attempt + 1) * 1500;
+          console.log(`Waiting ${delay}ms before retrying...`);
+          await new Promise((resolve) => setTimeout(resolve, delay));
+        } else {
+          break;
+        }
+      }
+    }
+  }
+  throw lastError;
+}
+
 interface ImageData {
   base64: string;
   mimeType: string;
@@ -98,8 +142,7 @@ export async function generateStickerImage(
 
     parts.push({ text: fullPrompt });
 
-    const response = await genAI.models.generateContent({
-      model: "gemini-2.5-flash-image",
+    const response = await callGeminiWithRetry({
       contents: [{ role: "user", parts }],
       config: {
         responseModalities: ["TEXT", "IMAGE"],
@@ -167,8 +210,7 @@ export async function removeStickerBackground(
       { text: prompt },
     ];
 
-    const response = await genAI.models.generateContent({
-      model: "gemini-2.5-flash-image",
+    const response = await callGeminiWithRetry({
       contents: [{ role: "user", parts }],
       config: {
         responseModalities: ["TEXT", "IMAGE"],
@@ -234,8 +276,7 @@ export async function enhanceStickerQuality(
       { text: prompt },
     ];
 
-    const response = await genAI.models.generateContent({
-      model: "gemini-2.5-flash-image",
+    const response = await callGeminiWithRetry({
       contents: [{ role: "user", parts }],
       config: {
         responseModalities: ["TEXT", "IMAGE"],

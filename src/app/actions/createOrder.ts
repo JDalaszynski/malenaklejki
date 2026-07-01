@@ -23,8 +23,8 @@ const CreateOrderSchema = z.object({
   firstName: z.string().min(1).max(100),
   lastName: z.string().min(1).max(100),
   phone: z.string().regex(/^[0-9+\s\-()]{7,20}$/),
-  deliveryMethod: z.enum(["kurier", "paczkomat"]),
-  paymentMethod: z.enum(["przelewy24", "blik", "przelew"]),
+  deliveryMethod: z.enum(["kurier", "paczkomat", "vinted"]),
+  paymentMethod: z.enum(["przelewy24", "blik", "przelew", "vinted"]),
   street: z.string().max(100).optional(),
   building: z.string().max(20).optional(),
   city: z.string().max(100).optional(),
@@ -38,7 +38,7 @@ const CreateOrderSchema = z.object({
 });
 
 import { registerTransaction } from "@/lib/p24";
-import { buildManualTransferEmailHtml, buildNewOrderSellerEmailHtml, buildOrderAttachments } from "@/lib/emails";
+import { buildManualTransferEmailHtml, buildNewOrderSellerEmailHtml, buildOrderAttachments, buildVintedOrderCustomerEmailHtml, buildVintedOrderSellerEmailHtml } from "@/lib/emails";
 
 /**
  * Generates a human-readable order number: MNK-YYYYMMDD-XXXX
@@ -130,7 +130,7 @@ export async function createOrder(rawData: any) {
       (sum, item) => sum + item.pricePerSheet * item.sheetQuantity,
       0
     );
-    const shippingCost = 19.99;
+    const shippingCost = data.paymentMethod === "vinted" ? 0 : 19.99;
     const serverTotal = serverSubtotal + shippingCost;
 
     // Build the final data object with trusted totals
@@ -214,11 +214,19 @@ export async function createOrder(rawData: any) {
 
       const attachments = await buildOrderAttachments(finalData.items, orderNumber);
 
+      const htmlContent = finalData.paymentMethod === "vinted"
+        ? buildVintedOrderSellerEmailHtml(finalData, orderNumber)
+        : buildNewOrderSellerEmailHtml(finalData, orderNumber);
+
+      const subject = finalData.paymentMethod === "vinted"
+        ? `👗 Nowe zamówienie VINTED ${orderNumber} – ${finalData.firstName} ${finalData.lastName} (${finalData.total.toFixed(2).replace('.', ',')} zł)`
+        : `🛒 Nowe zamówienie ${orderNumber} – ${finalData.firstName} ${finalData.lastName} (${finalData.total.toFixed(2).replace('.', ',')} zł)`;
+
       const sellerEmailPayload: any = {
         sender: { name: "MałeNaklejki – System zamówień", email: siteFromEmail },
         to: [{ email: adminEmail, name: "MałeNaklejki – Sprzedawca" }],
-        subject: `🛒 Nowe zamówienie ${orderNumber} – ${finalData.firstName} ${finalData.lastName} (${finalData.total.toFixed(2).replace('.', ',')} zł)`,
-        htmlContent: buildNewOrderSellerEmailHtml(finalData, orderNumber),
+        subject,
+        htmlContent,
       };
       if (attachments.length > 0) {
         sellerEmailPayload.attachment = attachments;
@@ -232,6 +240,7 @@ export async function createOrder(rawData: any) {
     // 6. Handle Payment Routing
     const appUrl = process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000";
     const returnUrl = `${appUrl}/zamowienie-sukces?orderNumber=${encodeURIComponent(orderNumber)}&orderId=${orderRef.id}`;
+    const offlineReturnUrl = `${returnUrl}&paymentMethod=${finalData.paymentMethod}`;
 
     if (finalData.paymentMethod === "przelew") {
       // Wyślij e-mail z danymi do przelewu
@@ -243,13 +252,29 @@ export async function createOrder(rawData: any) {
         htmlContent: emailHtml,
       });
 
+      return {
+        success: true,
+        orderId: orderRef.id,
+        orderNumber,
+        redirectUrl: offlineReturnUrl, // Bezpośrednio na ekran sukcesu
+      };
+    }
 
+    if (finalData.paymentMethod === "vinted") {
+      // Wyślij e-mail z instrukcją zakupu przez Vinted
+      const emailHtml = buildVintedOrderCustomerEmailHtml(finalData, orderNumber);
+      await sendEmail({
+        sender: { name: "MałeNaklejki", email: "kontakt@malenaklejki.pl" },
+        to: [{ email: finalData.email, name: `${finalData.firstName} ${finalData.lastName}` }],
+        subject: `Zamówienie ${orderNumber} - płatność przez Vinted`,
+        htmlContent: emailHtml,
+      });
 
       return {
         success: true,
         orderId: orderRef.id,
         orderNumber,
-        redirectUrl: returnUrl, // Bezpośrednio na ekran sukcesu
+        redirectUrl: offlineReturnUrl, // Bezpośrednio na ekran sukcesu
       };
     }
 
