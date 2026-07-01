@@ -1,13 +1,25 @@
 import { MetadataRoute } from "next";
+import { getBlogPosts } from "@/lib/blog";
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = "https://www.malenaklejki.pl";
-  const routes = ["", "/kontakt", "/regulamin", "/polityka-prywatnosci", "/pliki-cookies"];
+  const staticRoutes = ["", "/kontakt", "/regulamin", "/polityka-prywatnosci", "/pliki-cookies", "/blog"];
 
-  return routes.map((route) => ({
+  const posts = await getBlogPosts();
+
+  const staticEntries = staticRoutes.map((route) => ({
     url: `${baseUrl}${route}`,
     lastModified: new Date(),
-    changeFrequency: "weekly",
+    changeFrequency: "weekly" as const,
     priority: route === "" ? 1.0 : 0.8,
   }));
+
+  const blogEntries = posts.map((post) => ({
+    url: `${baseUrl}/blog/${post.slug}`,
+    lastModified: new Date(post.date),
+    changeFrequency: "monthly" as const,
+    priority: 0.6,
+  }));
+
+  return [...staticEntries, ...blogEntries];
 }

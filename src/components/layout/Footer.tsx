@@ -81,6 +81,9 @@ export function Footer({ children }: FooterProps = {}) {
             <Link href="/pliki-cookies" className="hover:underline font-semibold transition-colors">
               Pliki cookies
             </Link>
+            <Link href="/blog" className="hover:underline font-semibold transition-colors">
+              Blog
+            </Link>
             <Link href="/zamow-projekt" className="hover:underline font-semibold transition-colors">
               Zamów Projekt
             </Link>

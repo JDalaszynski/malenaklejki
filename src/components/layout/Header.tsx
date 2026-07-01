@@ -83,6 +83,14 @@ export function Header({ zen = false, sticky = true }: HeaderProps) {
                 Zamów Projekt
               </Link>
 
+              {/* Blog Button */}
+              <Link
+                href="/blog"
+                className="hidden md:inline-flex px-4 py-2 text-[15px] font-extrabold text-foreground hover:text-primary bg-muted/40 hover:bg-muted/85 rounded-xl border border-border/30 transition-all cursor-pointer hover:scale-[1.01] active:scale-[0.99] whitespace-nowrap"
+              >
+                Blog
+              </Link>
+
               {/* Kontakt Button */}
               <Link
                 href="/kontakt"
