@@ -52,13 +52,24 @@ export default async function BlogPostPage({ params }: PageProps) {
     notFound();
   }
 
+  const allPosts = await getBlogPosts();
+  const relatedPosts = allPosts
+    .filter((p) => p.slug !== slug)
+    .map((p) => {
+      const overlap = p.tags ? p.tags.filter((t) => post.tags?.includes(t)).length : 0;
+      return { post: p, overlap };
+    })
+    .sort((a, b) => b.overlap - a.overlap)
+    .slice(0, 3)
+    .map((item) => item.post);
+
   return (
     <div className="flex flex-col min-h-screen text-foreground bg-[#edf6f2] dark:bg-[#002c2e] transition-colors duration-300">
       <Header />
 
-      <main className="flex-1 py-12 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto w-full">
+      <main className="flex-1 py-12 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto w-full space-y-12">
         {/* Back Link */}
-        <div className="mb-8">
+        <div>
           <Link
             href="/blog"
             className="inline-flex items-center gap-2 text-sm font-bold text-muted-foreground hover:text-primary transition-colors cursor-pointer group"
@@ -131,6 +142,39 @@ export default async function BlogPostPage({ params }: PageProps) {
             dangerouslySetInnerHTML={{ __html: post.content }}
           />
         </article>
+
+        {/* Related Posts Widget */}
+        {relatedPosts.length > 0 && (
+          <div className="space-y-6 pt-6">
+            <h3 className="text-2xl font-black text-foreground font-heading">
+              Powiązane artykuły
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {relatedPosts.map((rp) => (
+                <Link
+                  key={rp.slug}
+                  href={`/blog/${rp.slug}`}
+                  className="group flex flex-col bg-white dark:bg-[#003a3b] rounded-2xl border border-border/40 overflow-hidden p-5 shadow-sm hover:shadow-md hover:border-primary/20 transition-all duration-300"
+                >
+                  <div className="space-y-2 flex-1 flex flex-col justify-between">
+                    <div className="space-y-2">
+                      <div className="text-[10px] font-bold text-primary flex items-center gap-1">
+                        <Calendar className="w-3 h-3" />
+                        {rp.date}
+                      </div>
+                      <h4 className="text-base font-black text-foreground group-hover:text-primary transition-colors line-clamp-2 leading-snug">
+                        {rp.title}
+                      </h4>
+                    </div>
+                    <p className="text-muted-foreground text-xs font-semibold line-clamp-2 pt-2 leading-relaxed">
+                      {rp.description}
+                    </p>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </div>
+        )}
       </main>
 
       <Footer />

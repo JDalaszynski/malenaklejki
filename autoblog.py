@@ -29,6 +29,24 @@ def read_file_or_empty(filepath):
             return f.read()
     return ""
 
+# Get titles and slugs of already written posts
+def get_existing_posts_metadata():
+    if not os.path.exists(BLOG_DIR):
+        return []
+    posts = []
+    for file in os.listdir(BLOG_DIR):
+        if file.endswith(".md"):
+            slug = file.replace(".md", "")
+            # temporarily open file to read title
+            filePath = os.path.join(BLOG_DIR, file)
+            if os.path.exists(filePath):
+                with open(filePath, "r", encoding="utf-8") as f:
+                    content = f.read()
+                    title_match = re.search(r'title:\s*"(.*?)"', content)
+                    title = title_match.group(1) if title_match else slug
+                    posts.append({"slug": slug, "title": title})
+    return posts
+
 # Main logic
 def run_agent():
     # 1. Pull latest plan and files from Windows/GitHub
@@ -55,6 +73,12 @@ def run_agent():
             selected_topic = line.replace("- [ ]", "").strip()
             break
 
+    # Fetch existing posts for internal linking
+    existing_posts = get_existing_posts_metadata()
+    existing_links_str = ""
+    if existing_posts:
+        existing_links_str = "\n".join([f"- {p['title']} (link: /blog/{p['slug']})" for p in existing_posts])
+
     # Setup prompt instructions
     if selected_topic:
         print(f"Wybrany temat z planu: '{selected_topic}'")
@@ -62,9 +86,7 @@ def run_agent():
     else:
         print("Brak zaplanowanych tematów o statusie '- [ ]' w plan.md. Generuję temat autonomicznie...")
         # Get list of already existing files to avoid duplicates
-        existing_files = []
-        if os.path.exists(BLOG_DIR):
-            existing_files = [f.replace(".md", "") for f in os.listdir(BLOG_DIR) if f.endswith(".md")]
+        existing_files = [p["slug"] for p in existing_posts]
         existing_str = ", ".join(existing_files) if existing_files else "brak"
         
         topic_instruction = f"""
@@ -93,7 +115,18 @@ description: "Meta description pod SEO (120-160 znaków, zawierający słowo klu
 image: ""
 tags: ["naklejki", "marketing", "poradnik"]
 ---
+"""
 
+    if existing_links_str:
+        prompt += f"""
+LINKOWANIE WEWNĘTRZNE (SEO):
+Oto lista innych artykułów już opublikowanych na naszym blogu:
+{existing_links_str}
+
+ZADANIE DODATKOWE: Jeśli w tekście nowego artykułu nawiążesz do tematów opisanych w powyższych artykułach, WSTAW do nich naturalny link w formacie Markdown, np. [słowa kluczowe](/blog/slug). Wstaw maksymalnie 1-2 takie linki w całym artykule, tylko w miejscach, gdzie ma to sens dla czytelnika i pasuje do kontekstu zdania. Nie wstawiaj linków na siłę.
+"""
+
+    prompt += """
 Zwróć WYŁĄCZNIE wygenerowany artykuł w formacie Markdown z blokiem YAML na samej górze. Nie dodawaj żadnych dopisków od siebie.
 """
 
