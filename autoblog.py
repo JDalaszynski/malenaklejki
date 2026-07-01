@@ -1,7 +1,7 @@
 import os
 import re
-import json
 import urllib.request
+import json
 import subprocess
 from datetime import datetime
 
@@ -9,10 +9,9 @@ from datetime import datetime
 PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
 BLOG_DIR = os.path.join(PROJECT_DIR, "src/content/blog")
 AGENT_DIR = os.path.join(PROJECT_DIR, "blog-agent")
-PLAN_FILE = os.path.join(AGENT_DIR, "plan.json")
+PLAN_MD_FILE = os.path.join(AGENT_DIR, "plan.md")
 RULES_FILE = os.path.join(AGENT_DIR, "rules.md")
 STRATEGY_FILE = os.path.join(AGENT_DIR, "strategy.md")
-KEYWORDS_FILE = os.path.join(AGENT_DIR, "keywords.md")
 MODEL_NAME = "qwen2.5:32b"  # Local Ollama model
 
 # Pull latest changes from remote repository first
@@ -35,36 +34,33 @@ def run_agent():
     # 1. Pull latest plan and files from Windows/GitHub
     git_pull()
 
-    # 2. Read instructions, strategy, and keywords
+    # 2. Read strategy and rules
     rules = read_file_or_empty(RULES_FILE)
     strategy = read_file_or_empty(STRATEGY_FILE)
-    keywords = read_file_or_empty(KEYWORDS_FILE)
 
-    # 3. Read topics plan
-    plan = []
-    if os.path.exists(PLAN_FILE):
-        try:
-            with open(PLAN_FILE, "r", encoding="utf-8") as f:
-                plan = json.load(f)
-        except Exception as e:
-            print(f"Błąd podczas czytania plan.json: {e}")
+    # 3. Read plan.md checklist
+    plan_content = read_file_or_empty(PLAN_MD_FILE)
+    if not plan_content:
+        print("Błąd: Nie znaleziono pliku plan.md!")
+        return
 
-    # Find first unwritten topic
+    lines = plan_content.splitlines()
+    selected_line_idx = -1
     selected_topic = None
-    for item in plan:
-        if item.get("status") == "todo":
-            selected_topic = item
+
+    # Find the first line starting with "- [ ]"
+    for idx, line in enumerate(lines):
+        if line.strip().startswith("- [ ]"):
+            selected_line_idx = idx
+            selected_topic = line.replace("- [ ]", "").strip()
             break
 
-    # Setup the prompt
+    # Setup prompt instructions
     if selected_topic:
-        print(f"Wybrany temat z planu: '{selected_topic['title']}' (ID: {selected_topic['id']})")
-        topic_instruction = f"""
-Napisz artykuł o następującym tytule: "{selected_topic['title']}"
-Główne słowa kluczowe z planu: {', '.join(selected_topic.get('keywords', []))}.
-"""
+        print(f"Wybrany temat z planu: '{selected_topic}'")
+        topic_instruction = f"Napisz artykuł o następującym tytule: \"{selected_topic}\""
     else:
-        print("Brak zaplanowanych tematów o statusie 'todo'. Generuję temat autonomicznie...")
+        print("Brak zaplanowanych tematów o statusie '- [ ]' w plan.md. Generuję temat autonomicznie...")
         # Get list of already existing files to avoid duplicates
         existing_files = []
         if os.path.exists(BLOG_DIR):
@@ -86,9 +82,6 @@ STRATEGIA MARKETINGOWA:
 ZASADY PISANIA ARTYKUŁÓW:
 {rules}
 
-BAZA SŁÓW KLUCZOWYCH SEO:
-{keywords}
-
 ZADANIE:
 {topic_instruction}
 
@@ -100,11 +93,6 @@ description: "Krótka, zachęcająca zajawka artykułu do wyświetlenia na liśc
 image: ""
 tags: ["naklejki", "marketing", "poradnik"]
 ---
-
-Zasady korzystania ze słów kluczowych:
-- Z bazy słów kluczowych SEO wybierz te frazy, które pasują tematycznie do Twojego artykułu.
-- Wpleć je w treść artykułu (w nagłówkach, akapitach, listach) w naturalny, poprawny gramatycznie sposób.
-- Nie stosuj techniki "keyword stuffing" – czytelność i wartość dla czytelnika są zawsze priorytetem.
 
 Zwróć WYŁĄCZNIE wygenerowany artykuł w formacie Markdown z blokiem YAML na samej górze. Nie dodawaj żadnych dopisków od siebie.
 """
@@ -134,7 +122,7 @@ Zwróć WYŁĄCZNIE wygenerowany artykuł w formacie Markdown z blokiem YAML na 
     if title_match:
         title = title_match.group(1)
     elif selected_topic:
-        title = selected_topic['title']
+        title = selected_topic
     else:
         title = f"artykul-{datetime.now().strftime('%Y%m%d-%H%M%S')}"
 
@@ -154,21 +142,41 @@ Zwróć WYŁĄCZNIE wygenerowany artykuł w formacie Markdown z blokiem YAML na 
         f.write(content.strip())
     print(f"Artykuł zapisany jako: {file_path}")
 
-    # 6. Update plan.json if we wrote a topic from the list
-    if selected_topic:
-        selected_topic["status"] = "done"
-        selected_topic["published_date"] = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+    # 6. Update plan.md if we wrote a topic from the list
+    if selected_line_idx != -1:
+        date_str = datetime.now().strftime('%Y-%m-%d')
+        # Format the line as checked [x] and move to completed log or just update it in place
+        lines[selected_line_idx] = f"- [x] {selected_topic} (opublikowano {date_str})"
+        
+        # Optionally move the completed item under the "## Zrealizowane Artykuły" section
+        completed_line = lines.pop(selected_line_idx)
+        
+        # Find where the completed section starts
+        completed_section_idx = -1
+        for idx, line in enumerate(lines):
+            if "## Zrealizowane Artykuły" in line:
+                completed_section_idx = idx
+                break
+                
+        if completed_section_idx != -1:
+            # Insert the completed post after the header of the completed section
+            lines.insert(completed_section_idx + 1, completed_line)
+        else:
+            # Fallback: append at the end
+            lines.append(completed_line)
+
+        new_plan_content = "\n".join(lines)
         try:
-            with open(PLAN_FILE, "w", encoding="utf-8") as f:
-                json.dump(plan, f, indent=2, ensure_ascii=False)
-            print("Zaktualizowano status tematu w plan.json.")
+            with open(PLAN_MD_FILE, "w", encoding="utf-8") as f:
+                f.write(new_plan_content)
+            print("Zaktualizowano plan.md o status zrealizowanego wpisu.")
         except Exception as e:
-            print(f"Błąd podczas zapisu plan.json: {e}")
+            print(f"Błąd podczas zapisu plan.md: {e}")
 
     # 7. Commit changes and push to GitHub
     try:
         print("Rozpoczynanie synchronizacji Git...")
-        subprocess.run(["git", "add", "src/content/blog/*.md", "blog-agent/plan.json"], cwd=PROJECT_DIR, check=True)
+        subprocess.run(["git", "add", "src/content/blog/*.md", "blog-agent/plan.md"], cwd=PROJECT_DIR, check=True)
         subprocess.run(["git", "commit", "-m", f"auto(blog): opublikowano wpis o '{title}'"], cwd=PROJECT_DIR, check=True)
         subprocess.run(["git", "push", "origin", "main"], cwd=PROJECT_DIR, check=True)
         print("Pomyślnie wypchnięto zmiany na GitHub!")

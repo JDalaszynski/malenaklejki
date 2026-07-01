@@ -1,39 +1,101 @@
-# 🔑 Lista Słów Kluczowych (SEO Keywords)
+# Baza Słów Kluczowych (SEO)
 
-Poniżej znajduje się baza fraz kluczowych wyszukiwanych przez użytkowników. Są one uszeregowane według popularności i priorytetu biznesowego.
-
-> [!IMPORTANT]
-> **Zasada działania dla Agenta AI:** 
-> Przed wygenerowaniem artykułu zapoznaj się z poniższymi frazami. Wyszukaj te, które są semantycznie powiązane z tematem artykułu i **wpleć je w naturalny sposób** do tekstu (w nagłówkach, akapitach lub jako synonimy). Dbaj o zachowanie poprawności językowej – nie wpychaj fraz na siłę (no keyword stuffing).
+Oto lista rzeczywistych fraz kluczowych wyszukiwanych przez użytkowników w naszej niszy. Lista jest uporządkowana od najbardziej popularnych (największy wolumen wyszukiwań) do niszowych (long-tail). Wszystkie są istotne dla budowania autorytetu tematycznego (Topical Authority).
 
 ---
 
-## 🌟 Priorytet 1: Frazy Główne (Wysoka popularność)
-*Najpopularniejsze, ogólne słowa kluczowe budujące zasięg:*
-- naklejki na zamówienie
-- naklejki z własnym nadrukiem
-- druk naklejek
-- projektowanie naklejek online
-- naklejki z logo firmy
+## 1. Główne i Ogólne Frazy (Wysoki wolumen)
+* `naklejki na zamówienie`
+* `naklejka z własnym nadrukiem`
+* `naklejki z własnym nadrukiem`
+* `personalizowane naklejki`
+* `małe naklejki`
+* `drukowanie naklejek online`
+* `naklejki własne`
+* `własne naklejki na zamówienie`
+* `naklejki na zamówienie online`
 
 ---
 
-## 📈 Priorytet 2: Frazy Szczegółowe (Średnia popularność)
-*Frazy precyzujące technologię i wykończenie:*
-- naklejki wycinane po obrysie
-- naklejki die-cut
-- naklejki kiss-cut
-- arkusz naklejek a4
-- naklejki folia winylowa
+## 2. Branding i Logo Firmowe
+* `naklejka z logo firmy`
+* `naklejka z własnym logo`
+* `naklejki z własnym logo`
+* `naklejki firmowe z logo`
+* `naklejki z logo na zamówienie`
+* `wlepki z własnym logo`
+* `naklejki własne logo`
+* `naklejki logo na zamówienie`
+* `zamów naklejki z logo`
 
 ---
 
-## 🎯 Priorytet 3: Długi Ogon (Long Tail - Niska popularność, wysoka konwersja)
-*Bardzo precyzyjne frazy o wysokim intencie zakupowym. Te niszowe frazy są dla nas niezwykle wartościowe!*
-- tanie naklejki mały nakład
-- naklejki na opakowania kraft
-- etykiety na kosmetyki naturalne
-- naklejki imienne na bidon dla dzieci
-- naklejki na świece skład
-- wlepki na laptopa dla programistów
-- naklejki na koperty ślubne
+## 3. Projekty Indywidualne i Wzory
+* `naklejka z własnym napisem`
+* `naklejki z własnym napisem`
+* `naklejki własny projekt`
+* `naklejki z własnym wzorem`
+* `naklejki własnego projektu`
+* `wzory na naklejki do druku`
+* `naklejki własny wzór`
+* `naklejki z własną grafiką`
+* `własne naklejki allegro`
+* `naklejka z własnym zdjęciem`
+* `naklejka sztuka`
+* `naklejka z własnego zdjęcia`
+* `naklejka ze zdjęcia`
+* `naklejka ze zdjęciem`
+
+---
+
+## 4. Nisze Tematyczne (Alkohol, Śluby, Edukacja, Gadżety)
+* **Śluby i Imprezy:**
+  * `personalizowane naklejki na alkohol`
+  * `personalizowane naklejki ślubne`
+  * `personalizowane naklejki na wódkę`
+  * `personalizowane naklejki na butelki`
+  * `personalizowane naklejki na whisky`
+  * `personalizowane naklejki na wino`
+  * `personalizowane naklejki do księgi gości`
+* **Dom i Spiżarnia:**
+  * `naklejki na nalewki domowe`
+  * `naklejki na nalewki do druku`
+  * `naklejki na nalewki do wydrukowania`
+  * `naklejki na słoiki z własnym nadrukiem`
+  * `małe naklejki na przyprawy`
+  * `naklejki na przyprawy na zamówienie`
+* **Szkoła, Ubrania i Meble:**
+  * `naklejki na ubrania dla dorosłych`
+  * `personalizowane naklejki na zeszyty`
+  * `personalizowane naklejki do przedszkola`
+  * `małe naklejki z imionami`
+  * `małe naklejki na meble`
+  * `małe naklejki na drzwi`
+* **Laptopy i Rowery:**
+  * `małe naklejki na laptopa`
+  * `personalizowane naklejki na rower`
+
+---
+
+## 5. Formaty i Specyfikacja Techniczna
+* `die cut sticker`
+* `die cut naklejki`
+* `naklejki okrągłe z własnym nadrukiem`
+* `wlepki z własnym nadrukiem`
+* `wlepy z własnym nadrukiem`
+* `małe naklejki do druku`
+* `małe naklejki z własnym nadrukiem`
+* `małe naklejki na zamówienie`
+* `małe obrazki do druku na naklejki`
+* `produkty z własnym nadrukiem`
+
+---
+
+## 6. Intencje Zakupowe (Cena i Ilość)
+* `naklejki na zamówienie allegro`
+* `naklejki na zamówienie cena`
+* `naklejki na zamówienie z własnym nadrukiem`
+* `naklejki mały nakład`
+* `naklejki na zamówienie pojedyncze`
+* `naklejki na zamówienie na sztuki`
+* `jak zrobić własne naklejki w telefonie`
