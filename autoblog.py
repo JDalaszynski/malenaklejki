@@ -162,6 +162,7 @@ date: "{datetime.now().strftime('%Y-%m-%d')}"
 description: "Meta description pod SEO (120-160 znaków, zawierający słowo kluczowe, zachęcający do kliknięcia w wynikach wyszukiwania)"
 image: ""
 tags: ["naklejki", "marketing", "poradnik"]
+cta_text: "Krótkie wezwanie do akcji na przycisk (max 4-5 słów, dopasowane do kontekstu np. 'Zaprojektuj naklejki na auto')"
 ---
 """
 
@@ -215,6 +216,17 @@ Zwróć WYŁĄCZNIE wygenerowany artykuł w formacie Markdown z blokiem YAML na 
     content = re.sub(r'^```(yaml|markdown)?\n', '', content)
     content = re.sub(r'\n```$', '', content)
     content = content.strip()
+
+    # Extract dynamic CTA text if provided
+    cta_text = "Zaprojektuj własne naklejki online"
+    cta_match = re.search(r'cta_text:\s*"(.*?)"', content)
+    if cta_match:
+        cta_text = cta_match.group(1)
+
+    # Automatycznie dodaj przycisk CTA na samym końcu artykułu (wymóg System Design)
+    cta_button_html = f'\n\n<a href="/" style="display: inline-block; background-color: #02af7a; color: #ffffff; padding: 14px 28px; text-decoration: none; border-radius: 8px; font-weight: 600; font-size: 18px; margin-top: 24px; text-align: center;">{cta_text}</a>\n'
+    if '<a href="/"' not in content:
+        content += cta_button_html
 
     # 5. Extract title and write post to src/content/blog/
     title_match = re.search(r'title:\s*"(.*?)"', content)
@@ -287,6 +299,18 @@ Zwróć WYŁĄCZNIE wygenerowany artykuł w formacie Markdown z blokiem YAML na 
         print("Pomyślnie wypchnięto zmiany na GitHub!")
     except Exception as e:
         print(f"Błąd podczas operacji Git push: {e}")
+
+    # 8. Ping Google to index the new sitemap
+    try:
+        print("Wysyłanie powiadomienia (ping) do Google o aktualizacji sitemap...")
+        req = urllib.request.Request("https://www.google.com/ping?sitemap=https://www.malenaklejki.pl/sitemap.xml", method="GET")
+        with urllib.request.urlopen(req) as response:
+            if response.status == 200:
+                print("Pomyślnie powiadomiono Google o nowym artykule!")
+            else:
+                print(f"Ping do Google zwrócił status: {response.status}")
+    except Exception as e:
+        print(f"Ostrzeżenie: Nie udało się powiadomić Google o mapie strony: {e}")
 
 if __name__ == "__main__":
     try:

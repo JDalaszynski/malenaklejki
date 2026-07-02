@@ -8,18 +8,6 @@ Możesz dodawać nowe tematy, zachowując format wcięć pod spodem.
 
 ## 📝 Zaplanowane Artykuły (Do napisania przez AI)
 
-- [ ] **Jak zamówić idealne naklejki na zamówienie z własnym nadrukiem?**
-    - **Format:** Pillar Page
-    - **Główna Fraza Kluczowa:** `naklejki na zamówienie` / `naklejki z własnym nadrukiem`
-    - **Cel:** Sprzedaż / Edukacja
-    - **Persona:** Klienci indywidualni, mikroprzedsiębiorstwa, e-commerce
-
-- [ ] **Naklejka z logo firmy – jak skutecznie brandować swoje produkty?**
-    - **Format:** Supporting Article
-    - **Główna Fraza Kluczowa:** `naklejka z logo firmy` / `naklejka z własnym logo`
-    - **Cel:** Sprzedaż
-    - **Persona:** B2B, Mikroprzedsiębiorstwa, E-commerce
-    - **Link nadrzędny (Filar):** `/blog/jak-zamowic-idealne-naklejki-na-zamowienie-z-wlasnym-nadrukiem`
 
 - [ ] **Personalizowane naklejki na alkohol – wyjątkowy dodatek na wesela i imprezy**
     - **Format:** Supporting Article
@@ -115,3 +103,15 @@ Możesz dodawać nowe tematy, zachowując format wcięć pod spodem.
 
 ## 📈 Zrealizowane Artykuły
 
+- [x] **Jak zamówić idealne naklejki na zamówienie z własnym nadrukiem?** (opublikowano 2026-07-02)
+    - **Format:** Pillar Page
+    - **Główna Fraza Kluczowa:** `naklejki na zamówienie` / `naklejki z własnym nadrukiem`
+    - **Cel:** Sprzedaż / Edukacja
+    - **Persona:** Klienci indywidualni, mikroprzedsiębiorstwa, e-commerce
+
+- [x] **Naklejka z logo firmy – jak skutecznie brandować swoje produkty?** (opublikowano 2026-07-02)
+    - **Format:** Supporting Article
+    - **Główna Fraza Kluczowa:** `naklejka z logo firmy` / `naklejka z własnym logo`
+    - **Cel:** Sprzedaż
+    - **Persona:** B2B, Mikroprzedsiębiorstwa, E-commerce
+    - **Link nadrzędny (Filar):** `/blog/jak-zamowic-idealne-naklejki-na-zamowienie-z-wlasnym-nadrukiem`

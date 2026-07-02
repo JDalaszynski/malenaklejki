@@ -50,3 +50,9 @@ Konwersja i E-E-A-T: Zawsze wplatam kontekstowe CTA kierujące do kreatora onlin
 ## 5. Dane meta pod SEO (Nagłówek YAML)
 * **Tytuł (`title`):** Chwytliwy tytuł (50-60 znaków) zawierający główną frazę kluczową.
 * **Opis (`description`):** To Twój tag **meta description** dla Google. Musi zawierać 120-160 znaków, wplatać naturalnie najważniejszą frazę kluczową oraz zachęcać do kliknięcia (wysokie CTR). Pisz go zwięźle i konkretnie.
+
+---
+
+## 6. Żelazna zasada linkowania wewnętrznego (Struktura "Piasty w Kole")
+* **Z Wpisu Wspierającego do Filaru:** Wpis wspierający bezwzględnie musi zawierać mocny link wewnętrzny prowadzący z powrotem do nadrzędnego Pillar Page. Link ten umieszczaj w miarę możliwości na samym początku tekstu (najlepiej w 1. akapicie), podpinając go w sposób naturalny pod najważniejszą, główną frazę kluczową (link kontekstowy).
+* **Z Filaru do Wpisu Wspierającego:** Przy publikacji każdego nowego "Wpisu wspierającego", MUSISZ również zaktualizować odpowiedni nadrzędny "Pillar Page" i dodać w nim bezpośredni link wewnętrzny prowadzący do nowo opublikowanego artykułu wspierającego. Dzięki temu budujemy strukturę hub-and-spoke, przekazując przepływ PageRank i autorytet wewnątrz naszej domeny.
