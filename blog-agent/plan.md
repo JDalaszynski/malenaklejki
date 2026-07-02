@@ -8,6 +8,12 @@ Możesz dodawać nowe tematy, zachowując format wcięć pod spodem.
 
 ## 📝 Zaplanowane Artykuły (Do napisania przez AI)
 
+- [ ] **Jak zamówić idealne naklejki na zamówienie z własnym nadrukiem?**
+    - **Format:** Pillar Page
+    - **Główna Fraza Kluczowa:** `naklejki na zamówienie` / `naklejki z własnym nadrukiem`
+    - **Cel:** Sprzedaż / Edukacja
+    - **Persona:** Klienci indywidualni, mikroprzedsiębiorstwa, e-commerce
+
 - [ ] **Naklejka z logo firmy – jak skutecznie brandować swoje produkty?**
     - **Format:** Supporting Article
     - **Główna Fraza Kluczowa:** `naklejka z logo firmy` / `naklejka z własnym logo`
@@ -108,9 +114,4 @@ Możesz dodawać nowe tematy, zachowując format wcięć pod spodem.
 ---
 
 ## 📈 Zrealizowane Artykuły
-- [x] **Jak zamówić idealne naklejki na zamówienie z własnym nadrukiem?** (opublikowano 2026-07-01)
-    - **Format:** Pillar Page
-    - **Główna Fraza Kluczowa:** `naklejki na zamówienie` / `naklejki z własnym nadrukiem`
-    - **Cel:** Sprzedaż / Edukacja
-    - **Persona:** Klienci indywidualni, mikroprzedsiębiorstwa, e-commerce
 
