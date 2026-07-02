@@ -42,37 +42,33 @@ export default async function BlogIndexPage() {
                 className="group flex flex-col bg-white dark:bg-[#003a3b] rounded-3xl border border-border/40 overflow-hidden shadow-sm hover:shadow-xl hover:border-primary/20 transition-all duration-300 transform hover:-translate-y-1"
               >
                 {/* Visual Header / Image Placeholder with gradient if no image */}
-                <div className="relative aspect-[16/9] w-full overflow-hidden bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center">
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent z-10" />
-                  
-                  {post.image ? (
-                    // eslint-disable-next-line @next/next/no-img-element
+                {post.image && (
+                  <div className="relative aspect-[16/9] w-full overflow-hidden bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center">
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent z-10" />
+                    
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img 
                       src={post.image} 
                       alt={post.title}
                       className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-500"
                       loading="lazy"
                     />
-                  ) : (
-                    <div className="text-primary/70 font-heading text-4xl font-extrabold tracking-wider select-none p-4 text-center">
-                      MałeNaklejki
-                    </div>
-                  )}
 
-                  {/* Tags Overlay */}
-                  {post.tags && post.tags.length > 0 && (
-                    <div className="absolute top-4 left-4 z-20 flex flex-wrap gap-1.5">
-                      {post.tags.slice(0, 2).map((tag) => (
-                        <span 
-                          key={tag} 
-                          className="px-2.5 py-1 bg-white/95 dark:bg-[#002c2e]/95 text-foreground text-[10px] font-black tracking-wide uppercase rounded-lg shadow-sm border border-border/10"
-                        >
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-                  )}
-                </div>
+                    {/* Tags Overlay */}
+                    {post.tags && post.tags.length > 0 && (
+                      <div className="absolute top-4 left-4 z-20 flex flex-wrap gap-1.5">
+                        {post.tags.slice(0, 2).map((tag) => (
+                          <span 
+                            key={tag} 
+                            className="px-2.5 py-1 bg-white/95 dark:bg-[#002c2e]/95 text-foreground text-[10px] font-black tracking-wide uppercase rounded-lg shadow-sm border border-border/10"
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                )}
 
                 {/* Content */}
                 <div className="flex-1 p-6 flex flex-col justify-between space-y-4">
