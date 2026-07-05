@@ -34,4 +34,15 @@ Sklepy e-commerce, które dbają o detale, rzadziej zmagają się ze zwrotami. K
 Stworzenie własnych wlepek z logo w naszym kreatorze zajmuje zaledwie kilka minut. Nie potrzebujesz zaawansowanych programów graficznych ani doświadczenia w przygotowaniu plików do druku. Wykorzystaj potencjał personalizacji, wybierz polską produkcję i ciesz się wysoką jakością winylu, który nie zostawia śladów po odklejeniu. Rozpocznij projektowanie i przenieś branding swojej marki na wyższy poziom.
 
 
+## Naklejki z własnym logo – Najczęściej zadawane pytania (FAQ)
+
+### Ile kosztuje wydrukowanie naklejek z logo firmy?
+Oferujemy stałą cenę 49,00 zł za jeden, w pełni zadrukowany arkusz A4. Niezależnie od tego, czy zmieścisz na nim kilka dużych wlepek, czy kilkadziesiąt małych etykiet produktowych – cena pozostaje niezmienna.
+
+### Jaki jest minimalny nakład na naklejki firmowe z logo?
+Nie wymagamy zamawiania hurtowych ilości. Realizujemy wydruki już od jednego arkusza A4. To idealne rozwiązanie do testowania nowych projektów w Twoim sklepie e-commerce lub rzemieślniczej manufakturze.
+
+### Jak przygotować naklejkę z własnym logo do druku?
+Nie potrzebujesz doświadczenia graficznego. Wystarczy załączyć plik graficzny w naszym kreatorze online bezpośrednio z komputera lub telefonu. System sam usunie tło i wygeneruje obrys dopasowany do kształtu Twojego znaku firmowego.
+
 <a href="/" style="display: inline-block; background-color: #02af7a; color: #ffffff; padding: 14px 28px; text-decoration: none; border-radius: 8px; font-weight: 600; font-size: 18px; margin-top: 24px; text-align: center;">Zaprojektuj naklejki z logo</a>

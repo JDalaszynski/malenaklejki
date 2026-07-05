@@ -44,4 +44,15 @@ Nie musisz zamawiać tysięcy sztuk, aby uzyskać opłacalną ofertę. Jesteśmy
 
 Wiesz już, że wydrukowanie profesjonalnych i wytrzymałych etykiet wcale nie musi wymagać skomplikowanych przygotowań ani wysokich nakładów finansowych. Czas na realizację Twojej wizji. Przejdź do naszego kreatora online i zobacz, jak łatwo zaprojektować naklejki z własnym nadrukiem, które wyróżnią Twoje produkty na tle konkurencji. Realizacja zamówienia zajmuje nam tylko 3 dni robocze.
 
+## Naklejki na zamówienie – Najczęściej zadawane pytania (FAQ)
+
+### Ile kosztują naklejki z własnym nadrukiem?
+W MałeNaklejki.pl obowiązuje prosta zasada – płacisz zawsze 49,00 zł za w pełni zadrukowany arkusz A4. Brak u nas minimalnych nakładów oraz ukrytych kosztów przygotowalni w drukarni. Niezależnie od tego, ile naklejek zmieścisz na arkuszu, cena pozostaje ta sama.
+
+### Jakie pliki przygotować do kreatora online?
+Możesz użyć dowolnego popularnego formatu graficznego, np. bezpośrednio zdjęcia z telefonu (JPG czy PNG). Nasze algorytmy oparte na sztucznej inteligencji potrafią same usunąć tło ze zdjęcia i wygenerować idealną ścieżkę cięcia po obrysie, więc nie potrzebujesz zaawansowanych plików wektorowych przygotowanych przez grafika.
+
+### Czy moje naklejki na zamówienie są wytrzymałe?
+Tak! Drukujemy wyłącznie na trwałej folii winylowej ze wzmocnionym klejem. W efekcie gotowe etykiety samoprzylepne są wodoodporne i wyjątkowo odporne na ścieranie oraz tłuszcze. Sprawia to, że nadają się perfekcyjnie na paczki wysyłkowe, kubki, butelki i rzemieślnicze wyroby e-commerce, bijąc na głowę trwałość zwykłego papieru.
+
 <a href="/" style="display: inline-block; background-color: #02af7a; color: #ffffff; padding: 14px 28px; text-decoration: none; border-radius: 8px; font-weight: 600; font-size: 18px; margin-top: 24px; text-align: center;">Zamów naklejki z własnym nadrukiem</a>

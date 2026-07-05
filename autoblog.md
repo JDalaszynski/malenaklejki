@@ -41,7 +41,16 @@ Na samym końcu pliku dopisz kod HTML przycisku CTA wykorzystujący tekst z `cta
 <a href="/" style="display: inline-block; background-color: #02af7a; color: #ffffff; padding: 14px 28px; text-decoration: none; border-radius: 8px; font-weight: 600; font-size: 18px; margin-top: 24px; text-align: center;">{cta_text}</a>
 ```
 
-## Krok 3: Zapis i Aktualizacja
+## Krok 3: Weryfikacja i Optymalizacja (Self-Correction)
+Zanim przejdziesz do zapisu i publikacji, przeczytaj ponownie wygenerowany przez siebie artykuł i sprawdź go pod kątem pełnej zgodności z dokumentacją:
+1. **Zgodność z `rules.md`**: Upewnij się, że tekst zachowuje styl ekspercki i język korzyści. Sprawdź, czy kategorycznie nie użyto zakazanych zwrotów (np. "W dzisiejszych czasach...", "Podsumowanie"), czy nie ma pustych ogólników oraz czy dodano obowiązkową sekcję FAQ.
+2. **Zgodność z `keywords.md`**: Sprawdź naturalne nasycenie i wplecenie głównych i pobocznych słów kluczowych w nagłówkach (H2/H3) oraz w treści.
+3. **Zgodność z `strategy.md`**: Upewnij się, że artykuł trafia do docelowej persony i odpowiednio uwzględnia kontekst biznesowy marki "MałeNaklejki".
+4. **Linkowanie wewnętrzne**: Zweryfikuj, czy wpis wspierający posiada mocny link zwrotny do nadrzędnego "Pillar Page", a nadrzędny Pillar Page został przez Ciebie zaktualizowany o link do nowego wpisu.
+
+Jeśli wykryjesz jakiekolwiek braki, wprowadź niezbędne poprawki.
+
+## Krok 4: Zapis i Aktualizacja
 1. **Zapisz artykuł:** Zapisz wygenerowany artykuł w formacie Markdown w pliku `src/content/blog/{slug}.md`.
 2. **Aktualizacja planu:** W pliku `blog-agent/plan.md`:
    - Przenieś napisany artykuł (wraz z jego wciętymi metadanymi) do sekcji `## 📈 Zrealizowane Artykuły`.
