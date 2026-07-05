@@ -10,6 +10,7 @@ export interface BlogPost {
   description: string;
   content: string; // Markdown or HTML string
   image?: string;
+  imageAlt?: string;
   tags?: string[];
   readingTime?: string;
 }
@@ -42,6 +43,7 @@ export async function getBlogPosts(): Promise<BlogPost[]> {
             description: data.description || "",
             content: content, // For list, raw content is fine
             image: data.image || undefined,
+            imageAlt: data.imageAlt || undefined,
             tags: data.tags || [],
             readingTime,
           };
@@ -75,6 +77,7 @@ export async function getBlogPostBySlug(slug: string): Promise<BlogPost | null> 
       description: data.description || "",
       content: htmlContent,
       image: data.image || undefined,
+      imageAlt: data.imageAlt || undefined,
       tags: data.tags || [],
       readingTime,
     };

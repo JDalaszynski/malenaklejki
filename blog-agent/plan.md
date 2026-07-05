@@ -9,13 +9,6 @@ Możesz dodawać nowe tematy, zachowując format wcięć pod spodem.
 ## 📝 Zaplanowane Artykuły (Do napisania przez AI)
 
 
-- [ ] **Personalizowane naklejki na alkohol – wyjątkowy dodatek na wesela i imprezy**
-    - **Format:** Supporting Article
-    - **Główna Fraza Kluczowa:** `personalizowane naklejki na alkohol` / `personalizowane naklejki na wodke`
-    - **Cel:** Sprzedaż
-    - **Persona:** Pary młode, klienci okolicznościowi, wedding plannerzy
-    - **Link nadrzędny (Filar):** `/blog/jak-zamowic-idealne-naklejki-na-zamowienie-z-wlasnym-nadrukiem`
-
 - [ ] **Naklejki z własnym logo na słoiki i opakowania – przewodnik dla małych manufaktur**
     - **Format:** Supporting Article
     - **Główna Fraza Kluczowa:** `naklejki z logo na zamowienie` / `naklejki na sloiki z wlasnym nadrukiem`
@@ -102,6 +95,13 @@ Możesz dodawać nowe tematy, zachowując format wcięć pod spodem.
 ---
 
 ## 📈 Zrealizowane Artykuły
+
+- [x] **Personalizowane naklejki na alkohol – wyjątkowy dodatek na wesela i imprezy** (opublikowano 2026-07-05)
+    - **Format:** Supporting Article
+    - **Główna Fraza Kluczowa:** `personalizowane naklejki na alkohol` / `personalizowane naklejki na wodke`
+    - **Cel:** Sprzedaż
+    - **Persona:** Pary młode, klienci okolicznościowi, wedding plannerzy
+    - **Link nadrzędny (Filar):** `/blog/jak-zamowic-idealne-naklejki-na-zamowienie-z-wlasnym-nadrukiem`
 
 - [x] **Jak zamówić idealne naklejki na zamówienie z własnym nadrukiem?** (opublikowano 2026-07-02)
     - **Format:** Pillar Page
