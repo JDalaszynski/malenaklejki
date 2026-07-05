@@ -9,13 +9,6 @@ Możesz dodawać nowe tematy, zachowując format wcięć pod spodem.
 ## 📝 Zaplanowane Artykuły (Do napisania przez AI)
 
 
-- [ ] **Naklejki z własnym logo na słoiki i opakowania – przewodnik dla małych manufaktur**
-    - **Format:** Supporting Article
-    - **Główna Fraza Kluczowa:** `naklejki z logo na zamowienie` / `naklejki na sloiki z wlasnym nadrukiem`
-    - **Cel:** Edukacja / Sprzedaż
-    - **Persona:** Rękodzielnicy, producenci świec i kosmetyków naturalnych
-    - **Link nadrzędny (Filar):** `/blog/jak-zamowic-idealne-naklejki-na-zamowienie-z-wlasnym-nadrukiem`
-
 - [ ] **Małe naklejki na laptopa – jak wyrazić siebie i stworzyć własny styl?**
     - **Format:** Supporting Article
     - **Główna Fraza Kluczowa:** `małe naklejki na laptopa` / `wlepki z wlasnym logo`
@@ -114,4 +107,11 @@ Możesz dodawać nowe tematy, zachowując format wcięć pod spodem.
     - **Główna Fraza Kluczowa:** `naklejka z logo firmy` / `naklejka z własnym logo`
     - **Cel:** Sprzedaż
     - **Persona:** B2B, Mikroprzedsiębiorstwa, E-commerce
+    - **Link nadrzędny (Filar):** `/blog/jak-zamowic-idealne-naklejki-na-zamowienie-z-wlasnym-nadrukiem`
+
+- [x] **Naklejki z własnym logo na słoiki i opakowania – przewodnik dla małych manufaktur** (opublikowano 2026-07-05)
+    - **Format:** Supporting Article
+    - **Główna Fraza Kluczowa:** `naklejki z logo na zamowienie` / `naklejki na sloiki z wlasnym nadrukiem`
+    - **Cel:** Edukacja / Sprzedaż
+    - **Persona:** Rękodzielnicy, producenci świec i kosmetyków naturalnych
     - **Link nadrzędny (Filar):** `/blog/jak-zamowic-idealne-naklejki-na-zamowienie-z-wlasnym-nadrukiem`
