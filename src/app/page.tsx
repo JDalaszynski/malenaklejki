@@ -1,11 +1,12 @@
 "use client";
 
 import { getUUID } from "@/lib/uuid";
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useMemo, useRef } from "react";
 import Link from "next/link";
 import NextImage from "next/image";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
+import { LatestBlogPosts } from "@/components/blog/LatestBlogPosts";
 import { NewA4Visualizer } from "@/components/creator/NewA4Visualizer";
 import { A4Visualizer3D } from "@/components/creator/A4Visualizer3D";
 import { StickerEditModal } from "@/components/creator/StickerEditModal";
@@ -45,6 +46,17 @@ import {
   Eye
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+
+const StickerIcon = ({ className }: { className?: string }) => (
+  <svg
+    viewBox="0 0 24 24"
+    className={className}
+    fill="currentColor"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path d="m23.967 10.417a12.04 12.04 0 1 0 -13.55 13.55 3.812 3.812 0 0 0 .489.032 3.993 3.993 0 0 0 2.805-1.184l9.1-9.1a3.962 3.962 0 0 0 1.156-3.298zm-21.9.474a10.034 10.034 0 0 1 19.8-.884 12.006 12.006 0 0 0 -11.86 11.852 9.988 9.988 0 0 1 -7.944-10.968zm10.233 10.509a2.121 2.121 0 0 1 -.278.225 10 10 0 0 1 9.606-9.607 2.043 2.043 0 0 1 -.224.279z" />
+  </svg>
+);
 
 const compressPNGOnServer = async (dataUrl: string): Promise<Blob> => {
   const response = await fetch("/api/compress-png", {
@@ -106,6 +118,41 @@ export default function Home() {
       }
     }
   }, [mounted, editCartItemId, cartItems]);
+
+  const summaryRef = useRef<HTMLDivElement>(null);
+  const [isSummaryVisible, setIsSummaryVisible] = useState(false);
+
+  const visualizerRef = useRef<HTMLDivElement>(null);
+  const [isVisualizerVisible, setIsVisualizerVisible] = useState(false);
+
+  useEffect(() => {
+    if (!mounted) return;
+
+    const summaryObserver = new IntersectionObserver(
+      ([entry]) => {
+        setIsSummaryVisible(entry.isIntersecting);
+      },
+      { threshold: 0.1 }
+    );
+    if (summaryRef.current) {
+      summaryObserver.observe(summaryRef.current);
+    }
+
+    const visualizerObserver = new IntersectionObserver(
+      ([entry]) => {
+        setIsVisualizerVisible(entry.isIntersecting);
+      },
+      { threshold: 0.05 }
+    );
+    if (visualizerRef.current) {
+      visualizerObserver.observe(visualizerRef.current);
+    }
+
+    return () => {
+      summaryObserver.disconnect();
+      visualizerObserver.disconnect();
+    };
+  }, [mounted]);
 
   const [showStickyHeader, setShowStickyHeader] = useState(false);
   const getTotalPrice = useCartStore((state) => state.getTotalPrice);
@@ -1701,13 +1748,13 @@ export default function Home() {
             <div className="lg:col-span-6 space-y-3 sm:space-y-6 order-2 lg:order-1">
 
               {/* 1. Tool selection: Add Sticker */}
-              <div className="liquid-glass border border-border/40 rounded-3xl p-4 sm:p-6 shadow-sm space-y-3 sm:space-y-4">
-                <h3 className="text-lg font-black text-foreground flex items-center gap-2">
-                  <Plus className="w-5 h-5 text-primary" />
-                  Dodaj naklejkę na arkusz
-                </h3>
+              {addingMethod === "none" && (
+                <div className="liquid-glass border border-border/40 rounded-3xl p-4 sm:p-6 shadow-sm space-y-3 sm:space-y-4">
+                  <h3 className="text-lg font-black text-foreground flex items-center gap-2">
+                    <Plus className="w-5 h-5 text-primary" />
+                    Dodaj naklejkę na arkusz
+                  </h3>
 
-                {addingMethod === "none" ? (
                   <div className="grid grid-cols-2 gap-4">
                     {/* Unified Direct File Picker */}
                     <label
@@ -1737,41 +1784,54 @@ export default function Home() {
                       <span className="text-[10px] font-semibold text-muted-foreground mt-0.5">Opisz swój pomysł</span>
                     </button>
                   </div>
-                ) : (
-                  <div className="space-y-4">
-                    <div className="flex justify-between items-center pb-2 border-b border-border/20">
-                      <span className="text-xs font-black uppercase tracking-wider text-muted-foreground">
-                        Tworzenie przez AI
+                </div>
+              )}
+
+              {addingMethod === "ai" && (
+                <>
+                  {/* Mobile Background Overlay */}
+                  <div
+                    className="fixed inset-0 z-[9998] bg-background/60 backdrop-blur-[2px] sm:hidden animate-in fade-in duration-300"
+                    onClick={() => setAddingMethod("none")}
+                  />
+                  {/* Modal / Desktop Panel */}
+                  <div className="fixed inset-x-0 bottom-0 z-[9999] max-h-[85dvh] rounded-t-[2rem] border-t border-border/50 shadow-[0_-10px_40px_rgba(0,0,0,0.1)] dark:shadow-[0_-10px_40px_rgba(0,0,0,0.5)] flex flex-col p-5 sm:relative sm:z-auto sm:max-h-none sm:rounded-3xl sm:border sm:border-border/40 sm:shadow-sm sm:p-6 liquid-glass sm:block animate-in slide-in-from-bottom-full sm:animate-none space-y-4">
+                    <div className="flex justify-between items-center pb-4 sm:pb-2 border-b border-border/20 sm:mb-4 pt-2 sm:pt-0">
+                      <span className="text-sm sm:text-xs font-black uppercase tracking-wider text-muted-foreground">
+                        Tworzenie przez Generator
                       </span>
                       <button
                         onClick={() => setAddingMethod("none")}
-                        className="text-xs font-bold text-muted-foreground hover:text-foreground bg-muted/40 hover:bg-muted/70 px-2.5 py-1 rounded-md"
+                        className="text-muted-foreground hover:text-foreground bg-muted/40 hover:bg-muted/70 p-1.5 sm:px-3 sm:py-1.5 rounded-md transition-all active:scale-95"
                       >
-                        Anuluj
+                        <X className="w-5 h-5 sm:hidden" />
+                        <span className="hidden sm:inline text-xs font-bold">Anuluj</span>
                       </button>
                     </div>
 
-                    <AIGenerator
-                      onImageGenerated={(url) => {
-                        setPendingImageUrl(url);
-                        // Open crop/bg removal modal for AI generated sticker immediately
-                        setActiveEditSticker({
-                          id: "new-ai",
-                          imageUrl: url,
-                          x: 15,
-                          y: 15,
-                          widthCm: 5,
-                          heightCm: 5,
-                          aspectRatio: 1,
-                          cutLineType: "none",
-                        });
-                        setShowEditModal(true);
-                        setVisualizerMode("2d");
-                      }}
-                    />
+                    <div className="flex-1 overflow-y-auto sm:overflow-visible pb-10 sm:pb-0">
+                      <AIGenerator
+                        onImageGenerated={(url) => {
+                          setPendingImageUrl(url);
+                          // Open crop/bg removal modal for AI generated sticker immediately
+                          setActiveEditSticker({
+                            id: "new-ai",
+                            imageUrl: url,
+                            x: 15,
+                            y: 15,
+                            widthCm: 5,
+                            heightCm: 5,
+                            aspectRatio: 1,
+                            cutLineType: "none",
+                          });
+                          setShowEditModal(true);
+                          setVisualizerMode("2d");
+                        }}
+                      />
+                    </div>
                   </div>
-                )}
-              </div>
+                </>
+              )}
 
               {/* 2. Selected Sticker Manager */}
               {selectedSticker ? (
@@ -2075,11 +2135,12 @@ export default function Home() {
 
             {/* Right Column: Visualizer Sheet */}
             <div
+              ref={visualizerRef}
               id="sheet-preview-section"
               onDragOver={handleDragOver}
               onDragLeave={handleDragLeave}
               onDrop={handleDrop}
-              className={`relative lg:col-span-6 flex flex-col items-center justify-center rounded-3xl p-6 sm:p-8 min-h-[500px] order-1 lg:order-2 transition-all liquid-glass border border-border/40 shadow-[0_8px_30px_rgba(0,0,0,0.02)] ${shouldHighlightSheet ? "highlight-flash" : ""
+              className={`relative lg:col-span-6 flex flex-col items-center justify-center -mx-4 sm:mx-0 rounded-none sm:rounded-3xl px-2 py-6 sm:p-8 min-h-[500px] order-1 lg:order-2 transition-all liquid-glass border-y border-x-0 sm:border border-border/40 shadow-[0_8px_30px_rgba(0,0,0,0.02)] ${shouldHighlightSheet ? "highlight-flash" : ""
                 }`}
             >
               {/* Local Drag Overlay */}
@@ -2186,7 +2247,7 @@ export default function Home() {
           </div>
 
           {/* Floating/Sticky Bottom Summary Bar */}
-          <div className="relative sm:sticky bottom-0 sm:bottom-4 z-40 liquid-glass border border-border/40 shadow-[0_8px_30px_rgba(0,0,0,0.04)] py-3 sm:py-4 px-4 sm:px-8 rounded-2xl mt-2 sm:mt-4">
+          <div ref={summaryRef} className="relative sm:sticky bottom-0 sm:bottom-4 z-40 liquid-glass border border-border/40 shadow-[0_8px_30px_rgba(0,0,0,0.04)] py-3 sm:py-4 px-4 sm:px-8 rounded-2xl mt-2 sm:mt-4 mb-32 sm:mb-0">
             <div className="flex flex-col md:flex-row items-center justify-between gap-4">
               {/* Left: Summary Info */}
               <div className="flex flex-col sm:flex-row items-center gap-4 text-center sm:text-left">
@@ -2273,6 +2334,34 @@ export default function Home() {
               </div>
             </div>
           </div>
+
+          {/* Sticky Mobile Add/Generate buttons */}
+          <AnimatePresence>
+            {!selectedStickerId && isVisualizerVisible && (
+              <motion.div
+                initial={{ y: 150, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                exit={{ y: 150, opacity: 0 }}
+                className="fixed bottom-0 left-0 right-0 z-[100] sm:hidden pointer-events-none"
+              >
+                <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background/95 via-background/70 to-transparent pointer-events-none" />
+
+                <div className="relative px-4 pb-5 pt-2 pointer-events-auto">
+                  <div className="w-full flex gap-2 liquid-glass border border-border/40 p-2 rounded-[28px] shadow-[0_-8px_30px_rgba(0,0,0,0.08)] dark:shadow-[0_-8px_30px_rgba(0,0,0,0.3)]">
+                    <label className="flex-1 flex items-center justify-center gap-2 py-3 px-3 rounded-3xl bg-primary hover:bg-primary/90 border border-primary/20 transition-all active:scale-[0.98] cursor-pointer shadow-sm">
+                      <input type="file" accept="image/*" className="hidden" onChange={(e) => { const file = e.target.files?.[0]; if (file) handleMobileFileUpload(file); e.target.value = ""; }} />
+                      <UploadCloud className="w-6 h-6 text-white" />
+                      <span className="text-[12px] font-extrabold text-white leading-tight text-left">Dodaj<br />naklejkę</span>
+                    </label>
+                    <button onClick={() => { setAddingMethod("ai"); }} className="flex-1 flex items-center justify-center gap-2 py-3 px-3 rounded-3xl bg-primary hover:bg-primary/90 border border-primary/20 transition-all active:scale-[0.98] cursor-pointer shadow-sm">
+                      <Wand2 className="w-[22px] h-[22px] text-white" />
+                      <span className="text-[12px] font-extrabold text-white leading-tight text-left">Wygeneruj<br />naklejkę</span>
+                    </button>
+                  </div>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
 
         </main>
       </div>
@@ -2582,6 +2671,8 @@ export default function Home() {
           </div>
         </section>
 
+        <LatestBlogPosts />
+
         <Footer>
           {stickers.length > 0 && (
             <div className="flex flex-wrap justify-center gap-4 mb-2 text-xs font-semibold text-muted-foreground/75">
@@ -2674,9 +2765,10 @@ export default function Home() {
                 <button
                   type="button"
                   onClick={scrollToAndHighlightSheet}
-                  className="hidden md:inline-flex px-3.5 py-1.5 text-[13px] font-extrabold text-foreground hover:text-primary bg-muted/40 hover:bg-muted/85 rounded-lg border border-border/30 transition-all cursor-pointer hover:scale-[1.01] active:scale-[0.99] whitespace-nowrap"
+                  className="hidden md:inline-flex items-center justify-center px-4 py-1.5 border border-primary text-[13px] font-extrabold rounded-lg text-primary bg-primary/10 hover:bg-primary hover:text-primary-foreground transition-all duration-300 shadow-sm hover:shadow-md whitespace-nowrap cursor-pointer"
                 >
-                  Stwórz Własne Naklejki
+                  <StickerIcon className="w-3.5 h-3.5 mr-1.5" />
+                  Zamów Zestaw Naklejek
                 </button>
 
                 {/* Zamów Projekt Button */}

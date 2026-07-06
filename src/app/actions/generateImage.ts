@@ -87,9 +87,11 @@ export async function generateStickerImage(
   prompt: string,
   imageData?: ImageData | null
 ) {
+  console.log("[generateStickerImage] Starting...");
   const rateLimitError = await checkGenRateLimit();
   if (rateLimitError) return { success: false, error: rateLimitError };
 
+  console.log("[generateStickerImage] Rate limit checked");
   const validationError = validateImageData(imageData);
   if (validationError) return { success: false, error: validationError };
 
@@ -98,81 +100,61 @@ export async function generateStickerImage(
   }
 
   try {
-    let fullPrompt: string;
-
     if (imageData) {
-      if (prompt.trim()) {
-        // Image + style hint
-        fullPrompt =
-          "Take the subject from this photo and convert it into a flat illustration. " +
-          "Place it on a perfectly solid, pure white background (#FFFFFF). " +
-          "Do NOT add any white outline borders, die-cut borders, shadows, or halos around the subject. " +
-          "Preserve the exact likeness, proportions and key features of the subject. " +
-          `Apply this style: ${prompt.trim()}. ` +
-          "No background scenery, perfectly clean edges.";
-      } else {
-        // Image only — preserve subject exactly
-        fullPrompt =
-          "Isolate the subject of this photo and place it on a perfectly solid, pure white background (#FFFFFF). " +
-          "Keep the subject EXACTLY as it appears — same colors, same proportions, same details. " +
-          "Do NOT add any white outline borders, die-cut borders, shadows, or halos around the subject. " +
-          "Do NOT change the style, do NOT make it cartoonish or illustrated. " +
-          "Just cleanly isolate the subject on a solid pure white background.";
-      }
-    } else {
-      // Text-only mode
-      fullPrompt =
-        `Create a flat vector illustration of: ${prompt}. ` +
-        "Place it on a perfectly solid, pure white background (#FFFFFF). " +
-        "Do NOT add any white outline borders, die-cut borders, shadows, or halos around the subject. " +
-        "Style: bold clean outlines, no shadows, no background scenery, " +
-        "vibrant colors, kawaii/fun aesthetic.";
+      // Image-to-image is not supported by Google AI Studio's Imagen 3/4 endpoint,
+      // and Gemini 2.5 Flash image generation is region-blocked in Europe.
+      return { 
+        success: false, 
+        error: "Przetwarzanie wgranego zdjęcia (style transfer) nie jest obecnie dostępne w Twoim regionie przez API Gemini. Proszę wygenerować naklejkę używając tylko opisu tekstowego." 
+      };
     }
 
-    const parts: object[] = [];
+    // Text-only mode
+    const fullPrompt =
+      `Create a flat vector illustration of: ${prompt}. ` +
+      "Place it on a perfectly solid, pure white background (#FFFFFF). " +
+      "Do NOT add any white outline borders, die-cut borders, shadows, or halos around the subject. " +
+      "Style: bold clean outlines, no shadows, no background scenery, " +
+      "vibrant colors, kawaii/fun aesthetic.";
 
-    if (imageData) {
-      parts.push({
-        inlineData: {
-          mimeType: imageData.mimeType,
-          data: imageData.base64,
-        },
-      });
-    }
-
-    parts.push({ text: fullPrompt });
-
-    const response = await callGeminiWithRetry({
-      contents: [{ role: "user", parts }],
+    console.log("[generateStickerImage] Calling genAI.models.generateImages...");
+    const response = await genAI.models.generateImages({
+      model: "imagen-4.0-generate-001",
+      prompt: fullPrompt,
       config: {
-        responseModalities: ["TEXT", "IMAGE"],
-      },
+        numberOfImages: 1,
+        aspectRatio: "1:1",
+        outputMimeType: "image/png"
+      }
     });
 
-    // Find the image part in the response
-    const responseParts = response.candidates?.[0]?.content?.parts ?? [];
-    const imagePart = responseParts.find((p: any) => p.inlineData?.data);
-
-    if (!imagePart?.inlineData?.data) {
+    console.log("[generateStickerImage] Got response from genAI");
+    const generatedImage = response.generatedImages?.[0];
+    if (!generatedImage || !generatedImage.image?.imageBytes) {
+      console.log("[generateStickerImage] No image returned");
       return {
         success: false,
         error: "Generator nie stworzył obrazu. Spróbuj innego opisu.",
       };
     }
 
+    console.log("[generateStickerImage] Preparing Blob for upload...");
     // Convert base64 → Buffer → Blob and upload to Firebase Storage
-    const base64 = imagePart.inlineData.data as string;
-    const mimeType = (imagePart.inlineData.mimeType as string) || "image/png";
+    const base64 = generatedImage.image.imageBytes;
+    const mimeType = "image/png";
     const buffer = Buffer.from(base64, "base64");
     const blob = new Blob([buffer], { type: mimeType });
 
-    const ext = mimeType.split("/")[1] || "png";
+    const ext = "png";
     const fileName = `${crypto.randomUUID()}.${ext}`;
     const storageRef = ref(storage, `uploads/${fileName}`);
 
+    console.log("[generateStickerImage] Uploading to Firebase Storage...");
     const snapshot = await uploadBytes(storageRef, blob);
+    console.log("[generateStickerImage] Getting Download URL...");
     const url = await getDownloadURL(snapshot.ref);
 
+    console.log("[generateStickerImage] Done! URL:", url);
     return { success: true, url };
   } catch (error: any) {
     console.error("Generation Error:", error);

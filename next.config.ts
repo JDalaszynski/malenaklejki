@@ -1,3 +1,4 @@
+// Trigger restart
 import type { NextConfig } from "next";
 
 const securityHeaders = [

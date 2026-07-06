@@ -300,12 +300,12 @@ export function AIGenerator({ onImageGenerated }: AIGeneratorProps) {
             placeholder={
               attachedImage
                 ? "Opcjonalnie: dodaj styl, opis... (np. cyberpunk, pastele)"
-                : "np. Śpiący, fioletowy smok..."
+                : "np. Cool żaba w okularach..."
             }
             value={prompt}
             onChange={(e) => setPrompt(e.target.value)}
             disabled={isGenerating || isUploadingReference}
-            className="flex h-14 w-full rounded-xl border border-slate-200 dark:border-border/70 bg-background px-4 py-2 text-base font-semibold placeholder:text-muted-foreground focus-visible:outline-none focus-visible:border-primary focus-visible:ring-2 focus-visible:ring-primary/20 disabled:opacity-50 flex-1 shadow-none"
+            className="flex h-14 w-full rounded-xl border border-slate-200 dark:border-border/70 bg-background px-4 py-2 text-base font-semibold placeholder:text-slate-400 dark:placeholder:text-slate-500 focus-visible:outline-none focus-visible:border-primary focus-visible:ring-2 focus-visible:ring-primary/20 disabled:opacity-50 flex-1 shadow-none"
           />
           <motion.button
             whileTap={canGenerate ? { scale: 0.98 } : {}}

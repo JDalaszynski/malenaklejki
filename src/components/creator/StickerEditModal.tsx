@@ -344,7 +344,7 @@ export function StickerEditModal({ imageSrc, onSave, onCancel }: StickerEditModa
   if (!mounted) return null;
 
   return createPortal(
-    <div className="fixed inset-0 z-[100] bg-foreground/30 backdrop-blur-sm flex items-center justify-center p-4">
+    <div className="fixed inset-0 z-[10000] bg-foreground/30 backdrop-blur-sm flex items-center justify-center p-4">
       <motion.div
         initial={{ scale: 0.95, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}

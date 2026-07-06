@@ -1,0 +1,27 @@
+rules_version = '2';
+
+// Craft rules based on data in your Firestore database
+// allow write: if firestore.get(
+//    /databases/(default)/documents/users/$(request.auth.uid)).data.isAdmin;
+service firebase.storage {
+  match /b/{bucket}/o {
+    
+    // Allow public read and restricted creation in the uploads directory
+    match /uploads/{imageId} {
+      // Anyone can read images to preview their stickers
+      allow read: if true;
+      
+      // Anyone can upload files, but only images under 10MB
+      allow create: if request.resource.size < 10 * 1024 * 1024
+                    && request.resource.contentType.matches('image/.*');
+                    
+      // Disallow updating existing files and deleting them
+      allow update, delete: if false;
+    }
+    
+    // Explicitly deny access to any other paths
+    match /{allPaths=**} {
+      allow read, write: if false;
+    }
+  }
+}

@@ -10,7 +10,7 @@ Możesz dodawać nowe tematy, zachowując format wcięć pod spodem.
 
 
 
-- [ ] **Naklejka ze zdjęcia lub własnego rysunku – jak przenieść wspomnienia na folię?**
+- [ ] **Naklejka ze zdjęcia lub własnego rysunku – jak przenieść wspomnienia na naklejkę?**
     - **Format:** Supporting Article
     - **Główna Fraza Kluczowa:** `naklejka ze zdjecia` / `naklejka ze zdjeciem`
     - **Cel:** Edukacja
