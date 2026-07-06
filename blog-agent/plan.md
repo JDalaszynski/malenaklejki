@@ -9,12 +9,6 @@ Możesz dodawać nowe tematy, zachowując format wcięć pod spodem.
 ## 📝 Zaplanowane Artykuły (Do napisania przez AI)
 
 
-- [ ] **Małe naklejki na laptopa – jak wyrazić siebie i stworzyć własny styl?**
-    - **Format:** Supporting Article
-    - **Główna Fraza Kluczowa:** `małe naklejki na laptopa` / `wlepki z wlasnym logo`
-    - **Cel:** Edukacja
-    - **Persona:** Programiści, graficy, gracze, studenci
-    - **Link nadrzędny (Filar):** `/blog/jak-zamowic-idealne-naklejki-na-zamowienie-z-wlasnym-nadrukiem`
 
 - [ ] **Naklejka ze zdjęcia lub własnego rysunku – jak przenieść wspomnienia na folię?**
     - **Format:** Supporting Article
@@ -88,6 +82,13 @@ Możesz dodawać nowe tematy, zachowując format wcięć pod spodem.
 ---
 
 ## 📈 Zrealizowane Artykuły
+
+- [x] **Małe naklejki na laptopa – jak wyrazić siebie i stworzyć własny styl?** (opublikowano 2026-07-06)
+    - **Format:** Supporting Article
+    - **Główna Fraza Kluczowa:** `małe naklejki na laptopa` / `wlepki z wlasnym logo`
+    - **Cel:** Edukacja
+    - **Persona:** Programiści, graficy, gracze, studenci
+    - **Link nadrzędny (Filar):** `/blog/jak-zamowic-idealne-naklejki-na-zamowienie-z-wlasnym-nadrukiem`
 
 - [x] **Personalizowane naklejki na alkohol – wyjątkowy dodatek na wesela i imprezy** (opublikowano 2026-07-05)
     - **Format:** Supporting Article
