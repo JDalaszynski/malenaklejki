@@ -45,13 +45,13 @@ Niezależnie od tego, czy potrzebujesz **małych naklejek na laptopa** dla siebi
 
 ## FAQ – Najczęściej zadawane pytania
 
-**Czy naklejki zostawiają ślady po odklejeniu z obudowy laptopa?**
+### Czy małe naklejki na laptopa zostawiają ślady po odklejeniu z obudowy?
 Nie. Używamy wysokiej jakości folii ze specjalistycznym klejem. Dzięki temu naklejka mocno i trwale trzyma się powierzchni, ale w razie potrzeby możesz ją usunąć bez ryzyka pozostawienia trudnych do zmycia zabrudzeń.
 
-**Jaki rozmiar małych naklejek na laptopa jest najlepszy?**
+### Jaki rozmiar małych naklejek na laptopa jest najlepszy?
 Najbardziej uniwersalne są wlepki w rozmiarze od 3 do 5 centymetrów. Pozwalają one na swobodne układanie tzw. "sticker bomb", czyli gęstej kompozycji z wielu różnych naklejek. Na naszym arkuszu A4 zmieścisz nawet kilkadziesiąt takich sztuk.
 
-**Czy mogę wydrukować tylko kilka sztuk wlepek z własnym logo?**
+### Czy mogę wydrukować tylko kilka sztuk wlepek z własnym logo?
 Oczywiście! Nie wymagamy minimalnego zamówienia w tysiącach sztuk. Możesz zapełnić zaledwie jeden arkusz A4 wybranymi grafikami, co jest idealnym rozwiązaniem dla freelancerów i małych firm.
 
-<a href="/" style="display: inline-block; background-color: #02af7a; color: #ffffff; padding: 14px 28px; text-decoration: none; border-radius: 8px; font-weight: 600; font-size: 18px; margin-top: 24px; text-align: center;">{cta_text}</a>
+<a href="/" style="display: inline-block; background-color: #02af7a; color: #ffffff; padding: 14px 28px; text-decoration: none; border-radius: 8px; font-weight: 600; font-size: 18px; margin-top: 24px; text-align: center;">Zaprojektuj swoje naklejki</a>
