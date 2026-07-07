@@ -10,12 +10,7 @@ Możesz dodawać nowe tematy, zachowując format wcięć pod spodem.
 
 
 
-- [ ] **Naklejka ze zdjęcia lub własnego rysunku – jak przenieść wspomnienia na naklejkę?**
-    - **Format:** Supporting Article
-    - **Główna Fraza Kluczowa:** `naklejka ze zdjecia` / `naklejka ze zdjeciem`
-    - **Cel:** Edukacja
-    - **Persona:** Rodzice, hobbyści, osoby kupujące prezenty
-    - **Link nadrzędny (Filar):** `/blog/jak-zamowic-idealne-naklejki-na-zamowienie-z-wlasnym-nadrukiem`
+
 
 - [ ] **Jak zaprojektować naklejki z własnym napisem w prosty sposób?**
     - **Format:** Supporting Article
@@ -82,6 +77,13 @@ Możesz dodawać nowe tematy, zachowując format wcięć pod spodem.
 ---
 
 ## 📈 Zrealizowane Artykuły
+
+- [x] **Naklejka ze zdjęcia lub własnego rysunku – jak przenieść wspomnienia na naklejkę?** (opublikowano 2026-07-07)
+    - **Format:** Supporting Article
+    - **Główna Fraza Kluczowa:** `naklejka ze zdjecia` / `naklejka ze zdjeciem`
+    - **Cel:** Edukacja
+    - **Persona:** Rodzice, hobbyści, osoby kupujące prezenty
+    - **Link nadrzędny (Filar):** `/blog/jak-zamowic-idealne-naklejki-na-zamowienie-z-wlasnym-nadrukiem`
 
 - [x] **Małe naklejki na laptopa – jak wyrazić siebie i stworzyć własny styl?** (opublikowano 2026-07-06)
     - **Format:** Supporting Article
