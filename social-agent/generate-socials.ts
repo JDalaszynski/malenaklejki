@@ -97,7 +97,8 @@ Zwróć wynik jako sformatowany Markdown (używając nagłówków H2 dla każdeg
     
     // Szukanie pierwszego CTA z wygenerowanego tekstu
     const ctaMatch = outputText.match(/\*\*CTA na grafikę(?:[\s\S]*?)(?:1\.\s+|\*\s+)(.*)/);
-    const cta = ctaMatch ? ctaMatch[1].replace(/[*`]/g, '').trim() : "Zamów online!";
+    // Usuwamy cyfry na początku (np. "1. "), znaki specjalne i trimujemy
+    const cta = ctaMatch ? ctaMatch[1].replace(/[*`]/g, '').replace(/^\d+\.\s*/, '').trim() : "Zamów online!";
     console.log(`Wykryto CTA: "${cta}"`);
 
     // Szukanie linków do obrazków w markdown (np. ![alt](/blog/obraz.jpg))
@@ -115,7 +116,7 @@ Zwróć wynik jako sformatowany Markdown (używając nagłówków H2 dla każdeg
     }
 
     const publicBlogDir = path.join(__dirname, '..', 'public', 'blog');
-    const logoPath = path.join(__dirname, '..', 'public', 'images', 'logo', 'malenaklejki-logo-dark.png');
+    const logoPath = path.join(__dirname, '..', 'public', 'images', 'logo', 'malenaklejki-logo-light.png');
     const fontPath = path.join(__dirname, '..', 'public', 'fonts', 'Nunito-Bold.ttf');
     
     let fontBase64 = '';
@@ -144,14 +145,22 @@ Zwróć wynik jako sformatowany Markdown (używając nagłówków H2 dla każdeg
             })
             .toBuffer();
 
-          // Przygotowanie logo w Base64 do SVG
-          const logoWidth = 250;
+          // Przygotowanie logo (wersja jasna)
+          const logoWidth = 350;
           const logoBuffer = await sharp(logoPath).resize(logoWidth).toBuffer();
           const logoBase64 = logoBuffer.toString('base64');
 
-          const fontSize = 56;
+          // Ustawienia wyśrodkowanego CTA (outline button)
+          const fontSize = 36;
+          const textLengthEst = cta.length * (fontSize * 0.55); // szacunkowa szerokość tekstu
+          const buttonWidth = textLengthEst + 80; // padding
+          const buttonHeight = fontSize * 2.2;
+          const buttonX = (pinWidth - buttonWidth) / 2;
+          // Obniżamy przycisk, aby był wyśrodkowany w dolnej przestrzeni (ok. 25px od krawędzi)
+          const buttonY = pinHeight - buttonHeight - 25;
+          const textX = pinWidth / 2;
+          const textY = buttonY + buttonHeight / 2 + fontSize * 0.35;
           
-          // Używamy opacity 0.8 na logo by oddać "przeźroczystość na 20%"
           const svgOverlay = `
             <svg width="${pinWidth}" height="${pinHeight}">
               <defs>
@@ -162,21 +171,16 @@ Zwróć wynik jako sformatowany Markdown (używając nagłówków H2 dla każdeg
                     font-weight: 900;
                   }
                 </style>
-                <linearGradient id="grad" x1="0%" y1="100%" x2="0%" y2="0%">
-                  <stop offset="0%" style="stop-color:#EDF6F2;stop-opacity:1" />
-                  <stop offset="60%" style="stop-color:#EDF6F2;stop-opacity:0.9" />
-                  <stop offset="100%" style="stop-color:#EDF6F2;stop-opacity:0" />
-                </linearGradient>
               </defs>
 
-              <!-- Znak wodny logo w prawym górnym rogu z marginesem 40px -->
-              <image href="data:image/png;base64,${logoBase64}" x="${pinWidth - logoWidth - 40}" y="40" width="${logoWidth}" opacity="0.8" />
+              <!-- Logo na samej górze wyśrodkowane -->
+              <image href="data:image/png;base64,${logoBase64}" x="${(pinWidth - logoWidth) / 2}" y="30" width="${logoWidth}" opacity="1" />
 
-              <!-- Subtelny gradient u dołu pod napis -->
-              <rect x="0" y="${pinHeight - 250}" width="${pinWidth}" height="250" fill="url(#grad)" />
-
-              <!-- Tekst CTA w lewym dolnym rogu (Nunito Black, #004749) -->
-              <text x="50" y="${pinHeight - 60}" font-family="Nunito, sans-serif" font-weight="900" font-size="${fontSize}" fill="#004749">${cta}</text>
+              <!-- Wyśrodkowany przycisk (Outline Button) -->
+              <rect x="${buttonX}" y="${buttonY}" width="${buttonWidth}" height="${buttonHeight}" rx="${buttonHeight / 2}" fill="rgba(0,71,73,0.05)" stroke="#004749" stroke-width="2" />
+              
+              <!-- Tekst CTA -->
+              <text x="${textX}" y="${textY}" font-family="Nunito, sans-serif" font-weight="900" font-size="${fontSize}" fill="#004749" text-anchor="middle">${cta}</text>
             </svg>
           `;
 
@@ -198,7 +202,7 @@ Zwróć wynik jako sformatowany Markdown (używając nagłówków H2 dla każdeg
 
     // Dodanie ukrytych Pinów do pliku bloga
     if (generatedPins.length > 0) {
-      let hiddenHtml = `\n\n<!-- Pinterest Hidden Pins -->\n<div style="display: none;" data-pin-media="true">\n`;
+      let hiddenHtml = `\n\n<!-- Pinterest Hidden Pins -->\n<div style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;" data-pin-media="true">\n`;
       for (const pin of generatedPins) {
         hiddenHtml += `  <img src="/blog/${pin}" alt="${cta}" />\n`;
       }

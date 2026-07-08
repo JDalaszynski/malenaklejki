@@ -110,7 +110,7 @@ Jeśli zdjęcie jest dobrze oświetlone i wyraźne, efekt jest bardzo dobry. Kre
 
 
 <!-- Pinterest Hidden Pins -->
-<div style="display: none;" data-pin-media="true">
-  <img src="/blog/naklejka-ze-zdjecia-jak-przeniesc-wspomnienia-na-naklejke-pin-1.png" alt="1.  Twoje zdjęcie na naklejce" />
-  <img src="/blog/naklejka-ze-zdjecia-jak-przeniesc-wspomnienia-na-naklejke-pin-2.png" alt="1.  Twoje zdjęcie na naklejce" />
+<div style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;" data-pin-media="true">
+  <img src="/blog/naklejka-ze-zdjecia-jak-przeniesc-wspomnienia-na-naklejke-pin-1.png" alt="Twoje zdjęcie, Twoja naklejka" data-pin-media="true" />
+  <img src="/blog/naklejka-ze-zdjecia-jak-przeniesc-wspomnienia-na-naklejke-pin-2.png" alt="Twoje zdjęcie, Twoja naklejka" data-pin-media="true" />
 </div>
