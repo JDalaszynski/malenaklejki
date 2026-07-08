@@ -26,6 +26,20 @@ async function generateSocials() {
   }
 
   const blogContent = fs.readFileSync(blogPath, 'utf8');
+
+  // Szukanie linków do obrazków w markdown (np. ![alt](/blog/obraz.jpg))
+  const imgRegex = /!\[.*?\]\((.*?)\)/g;
+  const images: string[] = [];
+  let match;
+  while ((match = imgRegex.exec(blogContent)) !== null) {
+    if (match[1].startsWith('/')) {
+      images.push(match[1]);
+    }
+  }
+
+  if (images.length === 0) {
+    console.log(`Brak zdjęć w artykule do przetworzenia.`);
+  }
   
   const rulesPath = path.join(__dirname, 'social-rules.md');
   let rulesContent = '';
@@ -41,7 +55,7 @@ async function generateSocials() {
     keywordsContent = fs.readFileSync(keywordsPath, 'utf8');
   }
 
-  console.log(`Generowanie treści Social Media dla: ${blogFilename}...`);
+  console.log(`Generowanie treści Social Media dla: ${blogFilename}... (Wykryto zdjęć: ${images.length})`);
 
   const prompt = `
 Jesteś ekspertem ds. Social Media dla firmy "MałeNaklejki". Twoim zadaniem jest przetworzenie poniższego artykułu z bloga na gotowe formaty social media.
@@ -65,13 +79,44 @@ Wygeneruj 4 formaty na podstawie powyższego artykułu:
 3. Scenariusz TikTok / Reels
 4. Pinterest Pin
 
+Dla formatu "4. Pinterest Pin": W artykule znajduje się dokładnie ${images.length} zdjęć w treści. Dołączyłem je do tego zapytania (jako pliki graficzne w kolejności występowania). Wygeneruj DOKŁADNIE ${images.length} odrębnych, unikalnych zestawów danych (oznaczonych jako Zestaw 1, Zestaw 2, ..., Zestaw ${images.length}).
+Każdy zestaw musi zawierać:
+- **Tytuł Pinu [Numer Zestawu]:** (unikalny chwytliwy tytuł, nawiązujący DO TEGO CO JEST NA KONKRETNYM ZDJĘCIU)
+- **Opis Pinu [Numer Zestawu]:** (unikalny opis ze słowami kluczowymi, mocno osadzony w kontekście danego zdjęcia)
+- **CTA [Numer Zestawu]:** (DOKŁADNIE 1 unikalne, bardzo krótkie, silnie sprzedażowe wezwanie do akcji na grafikę, np. 2-4 słowa. MUSI WPROST NAWIĄZYWAĆ DO TEGO CO JEST NA ZDJĘCIU, np. jeśli na zdjęciu jest ślub, użyj "ZAMÓW NAKLEJKI NA WESELE", jeśli kot, "WGRAJ ZDJĘCIE KOTA" itp. CTA musi być napisane W CAŁOŚCI WIELKIMI LITERAMI / KAPITALIKAMI).
+
+Koniecznie przypilnuj, aby każdy zestaw miał zupełnie inne CTA na grafikę. Kategorycznie unikaj słów związanych z projektowaniem (np. "zaprojektuj", "projektuj", "zaprojektować", "projektowanie") we wszystkich tytułach, opisach oraz CTA! Klient nie projektuje naklejek - po prostu wgrywa zdjęcie z telefonu, a my sami wycinamy je po obrysie w kreatorze. Używaj zamiast tego: "wgraj", "zamów", "stwórz", "zrób". Wszystkie CTA muszą mieć wydźwięk sprzedażowy (sprzedaż/zamówienie/wgranie zdjęcia) i być zapisane KAPITALIKAMI. Nie używaj pogrubień wewnątrz tekstu tytułu, opisu ani CTA.
+
 Zwróć wynik jako sformatowany Markdown (używając nagłówków H2 dla każdego formatu).
 `;
 
   try {
+    const contentsArr: any[] = [prompt];
+    
+    // Dodajemy zdjęcia jako InlineData do promptu (Multimodal)
+    for (const imgUrl of images) {
+      // Usunięcie ewentualnego pierwszego slasha dla prawidłowej ścieżki
+      const safeImgUrl = imgUrl.startsWith('/') ? imgUrl.substring(1) : imgUrl;
+      const imageAbsPath = path.join(__dirname, '..', 'public', safeImgUrl);
+      if (fs.existsSync(imageAbsPath)) {
+        const ext = path.extname(imageAbsPath).toLowerCase();
+        let mimeType = 'image/jpeg';
+        if (ext === '.png') mimeType = 'image/png';
+        else if (ext === '.webp') mimeType = 'image/webp';
+        
+        const base64 = fs.readFileSync(imageAbsPath).toString('base64');
+        contentsArr.push({
+          inlineData: {
+            data: base64,
+            mimeType: mimeType
+          }
+        });
+      }
+    }
+
     const response = await genAI.models.generateContent({
       model: "gemini-2.5-pro",
-      contents: prompt,
+      contents: contentsArr,
     });
     
     const outputText = response.text;
@@ -94,28 +139,13 @@ Zwróć wynik jako sformatowany Markdown (używając nagłówków H2 dla każdeg
 
     // --- AUTOMATYZACJA GRAFIK (PINTEREST 4:5) ---
     console.log(`🖼️  Rozpoczynam przetwarzanie grafik 4:5...`);
-    
-    // Szukanie pierwszego CTA z wygenerowanego tekstu
-    const ctaMatch = outputText.match(/\*\*CTA na grafikę(?:[\s\S]*?)(?:1\.\s+|\*\s+)(.*)/);
-    // Usuwamy cyfry na początku (np. "1. "), znaki specjalne i trimujemy
-    const cta = ctaMatch ? ctaMatch[1].replace(/[*`]/g, '').replace(/^\d+\.\s*/, '').trim() : "Zamów online!";
-    console.log(`Wykryto CTA: "${cta}"`);
 
-    // Szukanie linków do obrazków w markdown (np. ![alt](/blog/obraz.jpg))
-    const imgRegex = /!\[.*?\]\((.*?)\)/g;
-    const images: string[] = [];
-    let match;
-    while ((match = imgRegex.exec(blogContent)) !== null) {
-      if (match[1].startsWith('/')) {
-        images.push(match[1]);
-      }
+    const articleSlug = blogFilename.replace('.md', '');
+    const pinterestDir = path.join(__dirname, '..', 'public', 'pinterest', articleSlug);
+    if (!fs.existsSync(pinterestDir)) {
+      fs.mkdirSync(pinterestDir, { recursive: true });
     }
 
-    if (images.length === 0) {
-      console.log(`Brak zdjęć w artykule do przetworzenia.`);
-    }
-
-    const publicBlogDir = path.join(__dirname, '..', 'public', 'blog');
     const logoPath = path.join(__dirname, '..', 'public', 'images', 'logo', 'malenaklejki-logo-light.png');
     const fontPath = path.join(__dirname, '..', 'public', 'fonts', 'Nunito-Bold.ttf');
     
@@ -123,6 +153,19 @@ Zwróć wynik jako sformatowany Markdown (używając nagłówków H2 dla każdeg
     if (fs.existsSync(fontPath)) {
       fontBase64 = fs.readFileSync(fontPath).toString('base64');
     }
+
+    // Wyciąganie zestawów danych dla każdego Pinu (zatrzymujemy się na końcu linii dla tytułów/CTA, a dla opisu przed kolejnym nagłówkiem lub boldem)
+    const titleMatches = [...outputText.matchAll(/\*\*Tytuł [pP]inu\s*(?:\[?\d+\]?)?\s*:\*\*\s*\n?\s*([^\n\r]+)/gi)];
+    const descMatches = [...outputText.matchAll(/\*\*Opis [pP]inu\s*(?:\[?\d+\]?)?\s*:\*\*\s*\n?\s*([\s\S]*?)(?=\*\*|##|$)/gi)];
+    const ctaMatches = [...outputText.matchAll(/\*\*CTA\s*(?:\[?\d+\]?)?\s*:\*\*\s*\n?\s*([^\n\r]+)/gi)];
+
+    const titles = titleMatches.map(m => m[1].trim());
+    const descriptions = descMatches.map(m => m[1].trim().replace(/[\s\*-]+$/, ''));
+    const ctas = ctaMatches.map(m => m[1].trim().replace(/[*`]/g, '').replace(/^\d+\.\s*/, ''));
+
+    const fallbackTitle = titles[0] || "Małe Naklejki";
+    const fallbackDesc = descriptions[0] || "Zamów spersonalizowane naklejki ze zdjęcia.";
+    const fallbackCta = ctas[0] || "Zamów online!";
 
     let imgCounter = 1;
     const generatedPins: string[] = [];
@@ -133,9 +176,13 @@ Zwróć wynik jako sformatowany Markdown (używając nagłówków H2 dla każdeg
         try {
           const pinWidth = 1000;
           const pinHeight = 1250; // Format 4:5
-          const outFilename = `${blogFilename.replace('.md', '')}-pin-${imgCounter}.png`;
-          const outPngPath = path.join(publicBlogDir, outFilename);
+          const outFilename = `pin-${imgCounter}.png`;
+          const outPngPath = path.join(pinterestDir, outFilename);
           generatedPins.push(outFilename);
+
+          // Dobieramy dedykowane CTA dla danego pinu i wymuszamy wersję wielkimi literami (KAPITALIKAMI)
+          const pinIndex = imgCounter - 1;
+          const cta = (ctas[pinIndex] || fallbackCta).toUpperCase();
 
           // Przygotowanie bazowego płótna 4:5 ze zdjęciem (contain) i tłem #EDF6F2
           const baseImageBuffer = await sharp(fullImgPath)
@@ -190,7 +237,7 @@ Zwróć wynik jako sformatowany Markdown (używając nagłówków H2 dla każdeg
             ])
             .toFile(outPngPath);
             
-          console.log(`✅ Utworzono Pin 4:5: ${outPngPath}`);
+          console.log(`✅ Utworzono Pin 4:5: ${outPngPath} (CTA: "${cta}")`);
           imgCounter++;
         } catch (err: any) {
           console.error(`Błąd podczas przetwarzania obrazu ${fullImgPath}:`, err.message);
@@ -200,20 +247,24 @@ Zwróć wynik jako sformatowany Markdown (używając nagłówków H2 dla każdeg
       }
     }
 
-    // Dodanie ukrytych Pinów do pliku bloga
+    // Zapisywanie informacji o Pinach (Tytuł i Opis) w folderze Pinteresta
     if (generatedPins.length > 0) {
-      let hiddenHtml = `\n\n<!-- Pinterest Hidden Pins -->\n<div style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;" data-pin-media="true">\n`;
-      for (const pin of generatedPins) {
-        hiddenHtml += `  <img src="/blog/${pin}" alt="${cta}" />\n`;
+      let infoMarkdown = `# Dane do Pinów Pinterest\n\n`;
+      for (let i = 0; i < generatedPins.length; i++) {
+        const pinTitle = titles[i] || fallbackTitle;
+        const pinDesc = descriptions[i] || fallbackDesc;
+        const pinCta = ctas[i] || fallbackCta;
+
+        infoMarkdown += `## Pin ${i + 1} (${generatedPins[i]})\n`;
+        infoMarkdown += `**Tytuł Pinu:**\n${pinTitle}\n\n`;
+        infoMarkdown += `**Opis Pinu:**\n${pinDesc}\n\n`;
+        infoMarkdown += `**Napis CTA na grafice:**\n${pinCta}\n\n`;
+        infoMarkdown += `---\n\n`;
       }
-      hiddenHtml += `</div>\n`;
-      
-      if (!blogContent.includes('<!-- Pinterest Hidden Pins -->')) {
-        fs.appendFileSync(blogPath, hiddenHtml, 'utf8');
-        console.log(`✅ Dodano ukryte Piny do pliku markdown: ${blogPath}`);
-      } else {
-        console.log(`⚠️ Ukryte Piny już istnieją w pliku ${blogFilename}.`);
-      }
+
+      const infoFilePath = path.join(pinterestDir, 'pinterest-info.md');
+      fs.writeFileSync(infoFilePath, infoMarkdown, 'utf8');
+      console.log(`✅ Zapisano informacje o Pinach do pliku: ${infoFilePath}`);
     }
     
   } catch(e: any) {

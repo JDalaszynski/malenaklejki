@@ -5,6 +5,9 @@ import { Footer } from "@/components/layout/Footer";
 export const metadata = {
   title: "Zamów Projekt Naklejki - MałeNaklejki",
   description: "Zaprojektujemy dla Ciebie idealną grafikę na naklejkę według Twojego pomysłu! Indywidualne projekty, profesjonalny grafik, cena już od 100 zł. Skontaktuj się z nami!",
+  alternates: {
+    canonical: "/zamow-projekt",
+  },
 };
 
 export default function ZamowProjektPage() {

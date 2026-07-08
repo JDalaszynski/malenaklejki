@@ -4,6 +4,9 @@ import { Building2, Mail, Phone, ShieldCheck, Database, Landmark, UserCheck, Eye
 
 export const metadata = {
   title: "Polityka Prywatności - MałeNaklejki",
+  alternates: {
+    canonical: "/polityka-prywatnosci",
+  },
 };
 
 export default function PrivacyPolicyPage() {
@@ -142,7 +145,7 @@ export default function PrivacyPolicyPage() {
                 <div className="w-7 h-7 rounded-lg bg-primary/10 flex items-center justify-center border border-primary/20">
                   <span className="text-primary font-bold text-xs">6</span>
                 </div>
-                <h4 className="font-black text-foreground text-sm">Analiza ruchu i statystyki (art. 6 ust. 1 lit. a RODO – dobrowolna zgoda)</h4>
+                <h4 className="font-black text-foreground text-sm">Analiza ruchu i statystyki (art. 6 ust. 1 lit. a RODO - dobrowolna zgoda)</h4>
               </div>
               <ul className="text-sm space-y-1 pl-9">
                 <li><strong className="text-primary">Zakres danych:</strong> identyfikator online (Client ID), adres IP, przybliżona lokalizacja geograficzna, parametry techniczne urządzenia i przeglądarki, zachowanie w serwisie.</li>

@@ -52,12 +52,15 @@ Jeśli wykryjesz jakiekolwiek braki, wprowadź niezbędne poprawki.
 
 ## Krok 4: Zapis i Aktualizacja
 1. **Zapisz artykuł:** Zapisz wygenerowany artykuł w formacie Markdown w pliku `src/content/blog/{slug}.md`.
+1.5. **Generuj Social Media i Piny:** Uruchom skrypt generujący materiały social-media i grafiki na Pinterest, wpisując w terminalu:
+   `npx tsx social-agent/generate-socials.ts {slug}.md`
+   Skrypt ten automatycznie wygeneruje Piny w dedykowanym folderze `/public/pinterest/{slug}/` na podstawie zdjęć z treści wpisu, a także stworzy plik opisów `pinterest-info.md`.
 2. **Aktualizacja planu:** W pliku `blog-agent/plan.md`:
    - Przenieś napisany artykuł (wraz z jego wciętymi metadanymi) do sekcji `## 📈 Zrealizowane Artykuły`.
    - Zmień jego status na ukończony: `- [x] **Tytuł** (opublikowano YYYY-MM-DD)`.
 3. **Synchronizacja Git:**
    - Wykonaj polecenia w terminalu:
-     `git add src/content/blog/{slug}.md blog-agent/plan.md`
+     `git add src/content/blog/{slug}.md blog-agent/plan.md public/pinterest/{slug}/ social-agent/outputs/{slug}-socials.md`
      `git commit -m "auto(blog): opublikowano wpis o '{tytuł}'"`
      `git push origin main`
 4. **Ping Google:**

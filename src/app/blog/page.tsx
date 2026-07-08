@@ -7,6 +7,9 @@ import { Calendar, Clock, ArrowRight } from "lucide-react";
 export const metadata = {
   title: "Blog - MałeNaklejki",
   description: "Baza wiedzy o projektowaniu naklejek, marketingu i brandingu. Porady techniczne, inspiracje i przewodniki krok po kroku.",
+  alternates: {
+    canonical: "/blog",
+  },
 };
 
 export default async function BlogIndexPage() {

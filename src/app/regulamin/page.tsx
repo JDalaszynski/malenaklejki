@@ -3,6 +3,9 @@ import { Building2, Mail, Phone, ShieldCheck, MapPin } from "lucide-react";
 
 export const metadata = {
   title: "Regulamin - MałeNaklejki",
+  alternates: {
+    canonical: "/regulamin",
+  },
 };
 
 export default function RegulaminPage() {
@@ -86,19 +89,19 @@ export default function RegulaminPage() {
       content: (
         <ul className="space-y-4">
           <li>
-            <strong>Klient</strong> – osoba fizyczna, osoba prawna lub jednostka organizacyjna nieposiadająca osobowości prawnej, składająca zamówienie w Sklepie.
+            <strong>Klient</strong> - osoba fizyczna, osoba prawna lub jednostka organizacyjna nieposiadająca osobowości prawnej, składająca zamówienie w Sklepie.
           </li>
           <li>
-            <strong>Konsument</strong> – osoba fizyczna dokonująca ze Sprzedawcą czynności prawnej niezwiązanej bezpośrednio z jej działalnością gospodarczą lub zawodową.
+            <strong>Konsument</strong> - osoba fizyczna dokonująca ze Sprzedawcą czynności prawnej niezwiązanej bezpośrednio z jej działalnością gospodarczą lub zawodową.
           </li>
           <li>
-            <strong>Produkt / Naklejka</strong> – nieprefabrykowany towar personalizowany (arkusz A4 z naklejkami o określonej przez Klienta szerokości, wysokości, kącie obrotu oraz linii cięcia) wyprodukowany według specyfikacji Klienta.
+            <strong>Produkt / Naklejka</strong> - nieprefabrykowany towar personalizowany (arkusz A4 z naklejkami o określonej przez Klienta szerokości, wysokości, kącie obrotu oraz linii cięcia) wyprodukowany według specyfikacji Klienta.
           </li>
           <li>
-            <strong>Kreator</strong> – narzędzie internetowe dostępne w Sklepie umożliwiające Klientowi wgranie własnej grafiki, edycję (usuwanie tła za pomocą sztucznej inteligencji, kadrowanie), wybór konturu cięcia oraz pozycjonowanie na arkuszu.
+            <strong>Kreator</strong> - narzędzie internetowe dostępne w Sklepie umożliwiające Klientowi wgranie własnej grafiki, edycję (usuwanie tła za pomocą sztucznej inteligencji, kadrowanie), wybór konturu cięcia oraz pozycjonowanie na arkuszu.
           </li>
           <li>
-            <strong>Generator AI</strong> – opcjonalna funkcja Sklepu umożliwiająca generowanie grafik na podstawie opisów tekstowych (promptów) przy użyciu sztucznej inteligencji, z możliwością ich późniejszego umieszczenia na arkuszu jako Naklejki.
+            <strong>Generator AI</strong> - opcjonalna funkcja Sklepu umożliwiająca generowanie grafik na podstawie opisów tekstowych (promptów) przy użyciu sztucznej inteligencji, z możliwością ich późniejszego umieszczenia na arkuszu jako Naklejki.
           </li>
         </ul>
       ),
@@ -239,7 +242,7 @@ export default function RegulaminPage() {
             2. Dane osobowe Klienta przetwarzane są w celu realizacji zamówienia, rozliczeń finansowo-księgowych oraz ewentualnego dochodzenia roszczeń, zgodnie z Ogólnym Rozporządzeniem o Ochronie Danych (RODO). Szczegółowe zasady przetwarzania danych określa Polityka Prywatności.
           </p>
           <p>
-            3. Serwis wykorzystuje pliki cookies (ciasteczka) niezbędne do prawidłowego działania sklepu (np. koszyk, sesja) oraz – za dobrowolną zgodą Klienta – pliki cookies o charakterze analitycznym i marketingowym (np. Google Analytics).
+            3. Serwis wykorzystuje pliki cookies (ciasteczka) niezbędne do prawidłowego działania sklepu (np. koszyk, sesja) oraz - za dobrowolną zgodą Klienta - pliki cookies o charakterze analitycznym i marketingowym (np. Google Analytics).
           </p>
           <p>
             4. Klient ma możliwość zarządzania zgodami na pliki cookies w dowolnym momencie za pomocą panelu preferencji cookies dostępnego w serwisie lub za pośrednictwem ustawień swojej przeglądarki. Szczegółowe informacje znajdują się w Polityce Cookies.

@@ -149,7 +149,7 @@ export async function createOrder(rawData: any) {
 
     // Usuwamy pole `stickers` (które zawiera zagnieżdżone tablice, np. contourPolygons[][]), 
     // ponieważ Firebase Firestore nie obsługuje tablic w tablicach. Ponadto, nie potrzebujemy
-    // zapamiętywać ułożenia pojedynczych naklejek w bazie – wystarczą nam wygenerowane pliki PDF.
+    // zapamiętywać ułożenia pojedynczych naklejek w bazie - wystarczą nam wygenerowane pliki PDF.
     const itemsToSave = finalData.items.map((item) => {
       const { stickers, ...rest } = item as any;
       return rest;
@@ -219,12 +219,12 @@ export async function createOrder(rawData: any) {
         : buildNewOrderSellerEmailHtml(finalData, orderNumber);
 
       const subject = finalData.paymentMethod === "vinted"
-        ? `👗 Nowe zamówienie VINTED ${orderNumber} – ${finalData.firstName} ${finalData.lastName} (${finalData.total.toFixed(2).replace('.', ',')} zł)`
-        : `🛒 Nowe zamówienie ${orderNumber} – ${finalData.firstName} ${finalData.lastName} (${finalData.total.toFixed(2).replace('.', ',')} zł)`;
+        ? `👗 Nowe zamówienie VINTED ${orderNumber} - ${finalData.firstName} ${finalData.lastName} (${finalData.total.toFixed(2).replace('.', ',')} zł)`
+        : `🛒 Nowe zamówienie ${orderNumber} - ${finalData.firstName} ${finalData.lastName} (${finalData.total.toFixed(2).replace('.', ',')} zł)`;
 
       const sellerEmailPayload: any = {
-        sender: { name: "MałeNaklejki – System zamówień", email: siteFromEmail },
-        to: [{ email: adminEmail, name: "MałeNaklejki – Sprzedawca" }],
+        sender: { name: "MałeNaklejki - System zamówień", email: siteFromEmail },
+        to: [{ email: adminEmail, name: "MałeNaklejki - Sprzedawca" }],
         subject,
         htmlContent,
       };

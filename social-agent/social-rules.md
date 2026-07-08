@@ -38,14 +38,16 @@ Zawsze generuj zestaw składający się z poniższych formatów z jednego źród
 * Cel: Inspiracja wizualna. Bezpośrednie przekierowanie ruchu ze zdjęcia prosto do malenaklejki.pl.
 * Struktura: 
   * **Tytuł Pinu:** Estetyczny tytuł zachęcający do kliknięcia.
-  * **Opis Pinu:** Krótki, inspirujący opis zawierający 3-4 mocne słowa kluczowe z bloga. Kategorycznie ZAKAZUJE się używania znaków odwrotnego apostrofu/backticków (`) do wyróżniania słów kluczowych – pisz normalnym tekstem.
-  * **CTA na grafikę (3 propozycje):** Podaj dokładnie 3 propozycje maksymalnie krótkich, trafnych tekstów (2-4 słowa), które użytkownik sam umieści jako napis na grafice.
-  * **Prompty do grafiki (AI):** Podaj dokładnie 3 maksymalnie krótkie, konkretne propozycje promptów **w języku polskim** do wygenerowania wizualizacji naklejki powiązanej z tematem. Prompty MUSZĄ skupiać się na wygenerowaniu **realistycznych zdjęć naklejek** oraz **realistycznych ujęć naklejek** (np. naklejka w naturalnym użyciu, oświetleniu, przyklejona do jakiegoś przedmiotu). Nie dodawaj żadnych napisów CTA wewnątrz promptu.
+  * **Opis Pinu:** Krótki, inspirujący opis zawierający 3-4 mocne słowa kluczowe z bloga. Kategorycznie ZAKAZUJE się używania znaków odwrotnego apostrofu/backticków (`) do wyróżniania słów kluczowych - pisz normalnym tekstem.
+  * **CTA na grafikę:** Bardzo krótkie (2-4 słowa), silnie sprzedażowe wezwanie do działania, które bezpośrednio nawiązuje do tego, co widać na danej grafice (np. jeśli na zdjęciu jest pies, napisz "ZAMÓW WLEPKĘ Z PSEM"). **Bezwzględnie musi być napisane w całości WIELKIMI LITERAMI (KAPITALIKAMI)** (np. "KUP TERAZ", "ZAMÓW NAKLEJKI", "WGRAJ ZDJĘCIE").
 
 ---
 
 ## 3. Czego kategorycznie unikam:
 * ❌ "Cześć, dzisiaj przychodzimy do Was z..."
 * ❌ Długich wstępów.
-* ❌ Używania zbyt biznesowego żargonu z bloga (np. "Topical Authority", "Optymalizacja GEO" – zostaw to dla botów).
+* ❌ Używania zbyt biznesowego żargonu z bloga (np. "Topical Authority", "Optymalizacja GEO" - zostaw to dla botów).
 * ❌ Braku CTA (każdy post musi mówić, co odbiorca ma zrobić: zapisać, polubić, skomentować, wejść na stronę).
+* ❌ Używania znaku półpauzy (długiego myślnika "–"). Zawsze zastępuj ten znak zwykłym dywizem/krótkim myślnikiem ("-").
+* ❌ Słów związanych z "projektowaniem" (np. "zaprojektuj", "projektuj", "zaprojektować"). Klient nie projektuje naklejek - po prostu wgrywa zdjęcie z telefonu, a my wycinamy je po obrysie w kreatorze. Używaj zamiast tego: "wgraj", "zamów", "stwórz", "zrób".
+

@@ -1,84 +1,67 @@
-Jasne, oto zestaw gotowych formatów social media na podstawie dostarczonego artykułu, przygotowany zgodnie z wytycznymi.
+Jasne, oto zestaw gotowych formatów social media na podstawie dostarczonego artykułu, przygotowany zgodnie z Twoimi wytycznymi.
 
 ---
 
 ## A. Krótka Zajawka (Post FB / Instagram)
 
-Masz w telefonie zdjęcie, które uwielbiasz? 📸
+Masz w telefonie zdjęcie swojego zwierzaka, rysunek dziecka albo ulubione selfie? 🐶🎨
 
-Zamień je w trwałą, wodoodporną naklejkę w mniej niż 5 minut! Idealna na laptopa, bidon, a nawet jako wyjątkowy prezent. 🎁
+Zamiast trzymać je tylko w galerii, zamień je w trwałą, wodoodporną naklejkę w mniej niż 5 minut!
 
-Nasz kreator online sam usunie tło z Twojego zdjęcia, a Ty wybierzesz idealny kształt. Żadnego Photoshopa, żadnych skomplikowanych narzędzi. Proste, prawda? 😎
+Wystarczy, że wgrasz plik do naszego kreatora, a nasza sztuczna inteligencja sama usunie tło i przygotuje idealne cięcie po obrysie. Zero zabawy w Photoshopie, zero skomplikowanych opcji. ✨
 
-Zobacz, jakie to łatwe i przenieś swoje wspomnienia na naklejkę! 👇
+Chcesz dowiedzieć się, jak łatwo przenieść swoje wspomnienia na naklejki? 👇
 
-Czytaj więcej na naszym blogu: [Link w bio!]
+Czytaj więcej na naszym blogu! Link w bio!
 
-#naklejkazezdjęcia #naklejkazwłasnymzdjęciem #personalizowanenaklejki #naklejkinazamówienie #pomysłnaprezent #własnyprojekt #MałeNaklejki
-
----
+#naklejkazezdjęcia #personalizowanenaklejki #naklejkinazamówienie #naklejkazwłasnymnadrukiem #pomysłnaprezent #diecut #malenaklejki
 
 ## B. Merytoryczna Karuzela (Instagram / LinkedIn)
 
 **Slajd 1 (Tytuł):**
-Twoje zdjęcie ➡️ NAKLEJKA w 4 prostych krokach! 🚀
-Przenieś dowolną fotkę na trwałą wlepkę bez wychodzenia z domu.
+Twoje zdjęcie -> Idealna naklejka w 3 krokach! 🚀
+Przesuń w lewo i zobacz, jakie to proste.
 
-**Slajd 2 (Kroki 1 i 2):**
-KROK 1: Wgraj zdjęcie 📲
-Wybierz dowolny plik JPG lub PNG prosto z telefonu. Może to być portret, rysunek dziecka lub fotka z wakacji!
+**Slajd 2 (Krok 1):**
+1. Wgraj dowolne zdjęcie 📲
 
-KROK 2: Usuń tło jednym kliknięciem ✨
-Nasza sztuczna inteligencja automatycznie wykryje główny motyw i usunie tło, aby Twoja naklejka wyglądała profesjonalnie.
+Wybierz fotkę z telefonu, komputera, a nawet zdjęcie rysunku Twojego dziecka. Nasz kreator poradzi sobie z każdym plikiem JPG lub PNG.
 
-**Slajd 3 (Krok 3):**
-KROK 3: Wybierz kształt cięcia ✂️
-Dopasuj naklejkę do swoich potrzeb:
-*   **Po obrysie (die cut)** – idealna do sylwetek i logo.
-*   **Koło** – klasyczna wlepka na laptopa.
-*   **Prostokąt** – świetna jako etykieta.
+**Slajd 3 (Krok 2):**
+2. Zobacz magię! ✨
 
-**Slajd 4 (Krok 4):**
-KROK 4: Zobacz podgląd 3D i zamów! 📦
-Sprawdź, jak Twoja naklejka będzie wyglądać w rzeczywistości, zanim trafi do druku. Gotowe! Paczka będzie u Ciebie w 3 dni robocze.
+Nasza AI w kilka sekund automatycznie usunie tło z Twojego zdjęcia. Ty wybierasz tylko ostateczny kształt cięcia: po obrysie, koło czy prostokąt.
+
+**Slajd 4 (Krok 3):**
+3. Sprawdź efekt w 3D 🔄
+
+Zanim złożysz zamówienie, zobacz interaktywny podgląd. Masz 100% pewności, jak Twoja naklejka będzie wyglądać w rzeczywistości. Zero niespodzianek!
 
 **Slajd 5 (CTA):**
-Podoba Ci się ten pomysł? 🤔
-Zapisz ten post na później i stwórz własną, niepowtarzalną naklejkę na naszej stronie!
-🔥 Wejdź na malenaklejki.pl!
+Podoba Ci się ten proces? Zapisz post na później! 📌
 
----
+Gotowy, by zrobić własną naklejkę ze zdjęcia? Wejdź na malenaklejki.pl i zamień wspomnienia w coś trwałego!
 
 ## C. Scenariusz TikTok / Reels
 
-**Czas trwania:** ~18 sekund
-**Dźwięk:** Dynamiczna, trendingowa muzyka w tle + głos lektora.
-
 | Obraz (Video) | Dźwięk/Lektor (Audio) |
 | :--- | :--- |
-| **0-3s:** Osoba scrolluje galerię w telefonie, zatrzymuje się na uroczym zdjęciu psa. | **Lektor (energicznie):** Masz takie zdjęcie w telefonie? Nie trzymaj go w ukryciu! 🤫 |
-| **3-8s:** Szybkie ujęcie ekranu: plik ze zdjęciem psa jest wgrywany do kreatora MałeNaklejki. Jedno kliknięcie i tło magicznie znika. | **Lektor:** Zamień je w super naklejkę... w 15 sekund! Nasz kreator zrobi wszystko za Ciebie. |
-| **8-12s:** Dynamiczne, krótkie ujęcia: gotowa naklejka z psem jest odklejana z arkusza, a następnie przyklejana na laptopa. Zbliżenie na wodoodporną powierzchnię. | **Lektor:** Idealnie wycięta po obrysie i wodoodporna! 🤩 |
-| **12-18s:** Ręka trzyma gotowy arkusz A4 z kilkoma różnymi naklejkami ze zdjęć (pies, rysunek dziecka, zdjęcie z wakacji). Na ekranie pojawia się napis: **malenaklejki.pl** | **Lektor:** Zobacz, jakie to proste. Link w bio! |
-
----
+| **0-3s:** Osoba scrolluje galerię w telefonie, zatrzymując się na uroczym zdjęciu psa. Na ekranie pojawia się tekst: "Masz TO zdjęcie?". | (Dynamiczna, chwytliwa muzyka w tle) **Lektor:** Masz w telefonie zdjęcie, które uwielbiasz? |
+| **3-6s:** Zbliżenie na palec klikający "Wgraj plik" na stronie malenaklejki.pl na ekranie telefonu. Wgrywa się zdjęcie psa na tle pokoju. | **Lektor:** Pokażę Ci, jak w 15 sekund zrobić z niego coś WOW! 👀 |
+| **6-9s:** Animacja "przed i po". Zdjęcie psa z tłem, po czym tło magicznie znika, a wokół psa pojawia się linia cięcia. | **Lektor:** Wchodzisz na naszą stronę, wgrywasz fotkę... a nasza apka SAMA usuwa tło! |
+| **9-12s:** Szybkie ujęcie drukarki wycinającej naklejkę. Następnie dłoń odkleja gotową, idealnie wyciętą naklejkę psa z arkusza. | **Lektor:** I gotowe! Wodoodporna naklejka wycięta idealnie po obrysie. 🔥 |
+| **12-15s:** Naklejka jest przyklejana na laptopa lub butelkę z wodą. Na ekranie pojawia się napis: "malenaklejki.pl". | **Lektor:** Wpadaj na malenaklejki.pl i zrób swoją! Link w bio! |
 
 ## D. Pinterest Pin
 
-**Tytuł Pinu:**
-Naklejka z Własnego Zdjęcia | Zamień Wspomnienia w Trwałe Wlepki
+### Zestaw 1
 
-**Opis Pinu:**
-Zamień swoje ulubione zdjęcie w personalizowaną naklejkę. Idealna pamiątka, prezent lub sposób na ozdobienie laptopa i butelki. Stwórz swoją naklejkę z własnym nadrukiem w naszym kreatorze online – bez minimum zamówienia i z wysyłką w 3 dni.
+*   **Tytuł Pinu 1:** Zrób naklejkę ze zdjęciem swojego kota! 🐾
+*   **Opis Pinu 1:** Zamień zdjęcie swojego pupila w personalizowane naklejki! Idealna naklejka z własnym zdjęciem kota na laptopa, telefon czy bidon. Wgraj zdjęcie, a my zrobimy trwałą, wodoodporną wlepkę wyciętą po obrysie. To świetny pomysł na prezent dla każdego miłośnika zwierząt.
+*   **CTA 1:** Zamów wlepkę z kotem
 
-#naklejkazezdjęcia #naklejkazwłasnymnadrukiem #personalizowanenaklejki #diecutsticker #pomysłnaprezent #diy
+### Zestaw 2
 
-**CTA na grafikę (3 propozycje):**
-1.  Stwórz Własną Naklejkę
-2.  Twoje Zdjęcie na Wlepce
-3.  Zamów z Własnej Fotki
-
-**Prompty do grafiki (AI):**
-1.  Realistyczne zdjęcie naklejki ze zdjęciem kota, wyciętej po obrysie, przyklejonej na czarnym termosie, naturalne oświetlenie w plenerze.
-2.  Fotografia produktu, arkusz A4 z kilkoma małymi naklejkami ze zdjęć rodzinnych, leżący na drewnianym stole obok otwartego albumu, ujęcie z góry.
-3.  Zbliżenie na dłoń przyklejającą naklejkę z dziecięcym rysunkiem na okładkę notatnika, styl die-cut, tło lekko rozmyte, ciepłe światło dzienne.
+*   **Tytuł Pinu 2:** Personalizowana naklejka z psem - wgraj zdjęcie i zamów!
+*   **Opis Pinu 2:** Stwórz niepowtarzalną naklejkę z własnym nadrukiem, używając zdjęcia swojego psa. Nasze naklejki na zamówienie są idealne jako pamiątka lub ozdoba. Wystarczy wgrać plik, a my stworzymy dla Ciebie trwałą naklejkę die cut, idealnie wyciętą wokół sylwetki Twojego pupila.
+*   **CTA 2:** Wlepka ze swoim psem

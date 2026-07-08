@@ -113,16 +113,16 @@ export async function GET(req: NextRequest) {
         const customerEmailPayload = {
           sender: { name: "MałeNaklejki", email: siteFromEmail },
           to: [{ email: order.customer.email, name: `${order.customer.firstName} ${order.customer.lastName}` }],
-          subject: `Opłacono zamówienie ${order.orderNumber} – MałeNaklejki`,
+          subject: `Opłacono zamówienie ${order.orderNumber} - MałeNaklejki`,
           htmlContent: buildCustomerEmailHtml(order, order.orderNumber),
         };
         await sendEmail(customerEmailPayload);
 
         // Email do sprzedawcy
         const sellerEmailPayload: any = {
-          sender: { name: "MałeNaklejki – System zamówień", email: siteFromEmail },
-          to: [{ email: adminEmail, name: "MałeNaklejki – Sprzedawca" }],
-          subject: `🛒 Nowe OPŁACONE zamówienie ${order.orderNumber} – ${order.customer.firstName} ${order.customer.lastName} (${order.totals.total.toFixed(2).replace('.', ',')} zł)`,
+          sender: { name: "MałeNaklejki - System zamówień", email: siteFromEmail },
+          to: [{ email: adminEmail, name: "MałeNaklejki - Sprzedawca" }],
+          subject: `🛒 Nowe OPŁACONE zamówienie ${order.orderNumber} - ${order.customer.firstName} ${order.customer.lastName} (${order.totals.total.toFixed(2).replace('.', ',')} zł)`,
           htmlContent: buildSellerEmailHtml(order, order.orderNumber),
         };
         if (attachments.length > 0) {
@@ -142,8 +142,8 @@ export async function GET(req: NextRequest) {
 
         // Wyślij e-mail o braku płatności do sprzedawcy
         const unpaidEmailPayload = {
-          sender: { name: "MałeNaklejki – Alert płatności", email: siteFromEmail },
-          to: [{ email: adminEmail, name: "MałeNaklejki – Sprzedawca" }],
+          sender: { name: "MałeNaklejki - Alert płatności", email: siteFromEmail },
+          to: [{ email: adminEmail, name: "MałeNaklejki - Sprzedawca" }],
           subject: `⚠️ Brak płatności dla zamówienia ${order.orderNumber} (${order.totals.total.toFixed(2).replace('.', ',')} zł)`,
           htmlContent: buildUnpaidOrderSellerEmailHtml(order, order.orderNumber),
         };

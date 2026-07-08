@@ -31,7 +31,7 @@ export function buildCustomerEmailHtml(data: any, orderNumber: string): string {
       (item: any, i: number) => `
     <tr>
       <td style="padding: 12px 0; border-bottom: 1px solid #f1f5f9; font-size: 14px; color: #334155; font-weight: 600;">
-        Zestaw – ${item.stickersPerSheet} naklejek (${String(item.widthCm).replace('.', ',')}×${String(item.heightCm).replace('.', ',')} cm)<br/>
+        Zestaw - ${item.stickersPerSheet} naklejek (${String(item.widthCm).replace('.', ',')}×${String(item.heightCm).replace('.', ',')} cm)<br/>
         <span style="font-size: 12px; color: #64748b; font-weight: 500;">
           Sposób dostarczenia: ${item.deliveryForm === "individual" ? "Pocięte na sztuki (pojedyncze)" : "W jednym arkuszu A4"}
         </span>
@@ -199,7 +199,7 @@ export function buildSellerEmailHtml(data: any, orderNumber: string): string {
       (item: any, i: number) => `
     <tr>
       <td style="padding:10px 0;border-bottom:1px solid #f1f5f9;font-size:13px;color:#334155;">
-        ${i + 1}. Zestaw – ${item.stickersPerSheet} naklejek (${String(item.widthCm).replace('.', ',')}×${(item.heightCm?.toFixed ? item.heightCm.toFixed(1) : String(item.heightCm)).replace('.', ',')} cm)<br/>
+        ${i + 1}. Zestaw - ${item.stickersPerSheet} naklejek (${String(item.widthCm).replace('.', ',')}×${(item.heightCm?.toFixed ? item.heightCm.toFixed(1) : String(item.heightCm)).replace('.', ',')} cm)<br/>
         <strong style="color: ${item.deliveryForm === "individual" ? "#3b82f6" : "#02af7a"}; font-size: 11px; text-transform: uppercase;">
           Format: ${item.deliveryForm === "individual" ? "POCIĘTE NA SZTUKI" : "NA ARKUSZU"}
         </strong>
@@ -349,7 +349,7 @@ export function buildNewOrderSellerEmailHtml(data: any, orderNumber: string): st
       (item: any, i: number) => `
     <tr>
       <td style="padding:10px 0;border-bottom:1px solid #f1f5f9;font-size:13px;color:#334155;">
-        ${i + 1}. Zestaw – ${item.stickersPerSheet} naklejek (${String(item.widthCm).replace('.', ',')}×${(item.heightCm?.toFixed ? item.heightCm.toFixed(1) : String(item.heightCm)).replace('.', ',')} cm)<br/>
+        ${i + 1}. Zestaw - ${item.stickersPerSheet} naklejek (${String(item.widthCm).replace('.', ',')}×${(item.heightCm?.toFixed ? item.heightCm.toFixed(1) : String(item.heightCm)).replace('.', ',')} cm)<br/>
         <strong style="color: ${item.deliveryForm === "individual" ? "#3b82f6" : "#02af7a"}; font-size: 11px; text-transform: uppercase;">
           Format: ${item.deliveryForm === "individual" ? "POCIĘTE NA SZTUKI" : "NA ARKUSZU"}
         </strong>
@@ -498,7 +498,7 @@ export function buildUnpaidOrderSellerEmailHtml(data: any, orderNumber: string):
       (item: any, i: number) => `
     <tr>
       <td style="padding:10px 0;border-bottom:1px solid #f1f5f9;font-size:13px;color:#334155;">
-        ${i + 1}. Zestaw – ${item.stickersPerSheet} naklejek (${String(item.widthCm).replace('.', ',')}×${(item.heightCm?.toFixed ? item.heightCm.toFixed(1) : String(item.heightCm)).replace('.', ',')} cm)<br/>
+        ${i + 1}. Zestaw - ${item.stickersPerSheet} naklejek (${String(item.widthCm).replace('.', ',')}×${(item.heightCm?.toFixed ? item.heightCm.toFixed(1) : String(item.heightCm)).replace('.', ',')} cm)<br/>
         <strong style="color: ${item.deliveryForm === "individual" ? "#3b82f6" : "#02af7a"}; font-size: 11px; text-transform: uppercase;">
           Format: ${item.deliveryForm === "individual" ? "POCIĘTE NA SZTUKI" : "NA ARKUSZU"}
         </strong>
@@ -791,7 +791,7 @@ export function buildVintedOrderCustomerEmailHtml(data: any, orderNumber: string
       (item: any, i: number) => `
     <tr>
       <td style="padding: 12px 0; border-bottom: 1px solid #f1f5f9; font-size: 14px; color: #334155; font-weight: 600;">
-        Zestaw – ${item.stickersPerSheet} naklejek (${String(item.widthCm).replace('.', ',')}×${String(item.heightCm).replace('.', ',')} cm)<br/>
+        Zestaw - ${item.stickersPerSheet} naklejek (${String(item.widthCm).replace('.', ',')}×${String(item.heightCm).replace('.', ',')} cm)<br/>
         <span style="font-size: 12px; color: #64748b; font-weight: 500;">
           Sposób dostarczenia: ${item.deliveryForm === "individual" ? "Pocięte na sztuki (pojedyncze)" : "W jednym arkuszu A4"}
         </span>
@@ -932,7 +932,7 @@ export function buildVintedOrderSellerEmailHtml(data: any, orderNumber: string):
       (item: any, i: number) => `
     <tr>
       <td style="padding:10px 0;border-bottom:1px solid #f1f5f9;font-size:13px;color:#334155;">
-        ${i + 1}. Zestaw – ${item.stickersPerSheet} naklejek (${String(item.widthCm).replace('.', ',')}×${(item.heightCm?.toFixed ? item.heightCm.toFixed(1) : String(item.heightCm)).replace('.', ',')} cm)<br/>
+        ${i + 1}. Zestaw - ${item.stickersPerSheet} naklejek (${String(item.widthCm).replace('.', ',')}×${(item.heightCm?.toFixed ? item.heightCm.toFixed(1) : String(item.heightCm)).replace('.', ',')} cm)<br/>
         <strong style="color: ${item.deliveryForm === "individual" ? "#3b82f6" : "#02af7a"}; font-size: 11px; text-transform: uppercase;">
           Format: ${item.deliveryForm === "individual" ? "POCIĘTE NA SZTUKI" : "NA ARKUSZU"}
         </strong>

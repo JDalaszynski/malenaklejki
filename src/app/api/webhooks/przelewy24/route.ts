@@ -93,16 +93,16 @@ export async function POST(req: NextRequest) {
     const customerEmailPayload = {
       sender: { name: "MałeNaklejki", email: siteFromEmail },
       to: [{ email: orderData.customer.email, name: `${orderData.customer.firstName} ${orderData.customer.lastName}` }],
-      subject: `Opłacono zamówienie ${orderData.orderNumber} – MałeNaklejki`,
+      subject: `Opłacono zamówienie ${orderData.orderNumber} - MałeNaklejki`,
       htmlContent: buildCustomerEmailHtml(orderData, orderData.orderNumber),
     };
     await sendEmail(customerEmailPayload);
 
     // E-mail do sprzedawcy
     const sellerEmailPayload: any = {
-      sender: { name: "MałeNaklejki – System zamówień", email: siteFromEmail },
-      to: [{ email: adminEmail, name: "MałeNaklejki – Sprzedawca" }],
-      subject: `🛒 Nowe OPŁACONE zamówienie ${orderData.orderNumber} – ${orderData.customer.firstName} ${orderData.customer.lastName} (${orderData.totals.total.toFixed(2).replace('.', ',')} zł)`,
+      sender: { name: "MałeNaklejki - System zamówień", email: siteFromEmail },
+      to: [{ email: adminEmail, name: "MałeNaklejki - Sprzedawca" }],
+      subject: `🛒 Nowe OPŁACONE zamówienie ${orderData.orderNumber} - ${orderData.customer.firstName} ${orderData.customer.lastName} (${orderData.totals.total.toFixed(2).replace('.', ',')} zł)`,
       htmlContent: buildSellerEmailHtml(orderData, orderData.orderNumber),
     };
     if (attachments.length > 0) {

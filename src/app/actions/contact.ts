@@ -91,7 +91,7 @@ export async function sendContactMessage(formData: {
 </html>`;
 
     const payload = {
-      sender: { name: "MałeNaklejki – Formularz Kontaktowy", email: adminEmail },
+      sender: { name: "MałeNaklejki - Formularz Kontaktowy", email: adminEmail },
       to: [{ email: adminEmail, name: "Kontakt MałeNaklejki" }],
       replyTo: { email: formData.email, name: formData.name },
       subject: `[Kontakt] ${formData.subject} — od ${formData.name}`,
@@ -196,7 +196,7 @@ export async function sendDesignInquiry(formData: {
 </html>`;
 
     const payload = {
-      sender: { name: "MałeNaklejki – Zamówienie Projektu", email: adminEmail },
+      sender: { name: "MałeNaklejki - Zamówienie Projektu", email: adminEmail },
       to: [{ email: adminEmail, name: "Kontakt MałeNaklejki" }],
       replyTo: { email: formData.email, name: formData.email },
       subject: `[Projekt Naklejki] Nowe zapytanie od ${formData.email}`,

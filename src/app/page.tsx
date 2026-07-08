@@ -2570,7 +2570,7 @@ export default function Home() {
             <div className="space-y-6 sm:space-y-8 bg-muted/10 border border-border/20 rounded-3xl p-6 sm:p-8">
               <div className="space-y-4">
                 <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-foreground">
-                  Praktyczne zastosowania – wybierz naklejki na zamówienie online
+                  Praktyczne zastosowania - wybierz naklejki na zamówienie online
                 </h2>
                 <p className="text-muted-foreground text-sm sm:text-base font-semibold leading-relaxed">
                   Nasi klienci wykorzystują kreator do najbardziej nietypowych i codziennych zadań. Sprawdź, co możesz stworzyć:

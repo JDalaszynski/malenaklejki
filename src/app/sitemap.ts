@@ -3,7 +3,7 @@ import { getBlogPosts } from "@/lib/blog";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = "https://www.malenaklejki.pl";
-  const staticRoutes = ["", "/kontakt", "/regulamin", "/polityka-prywatnosci", "/pliki-cookies", "/blog"];
+  const staticRoutes = ["", "/kontakt", "/regulamin", "/polityka-prywatnosci", "/pliki-cookies", "/blog", "/zamow-projekt"];
 
   const posts = await getBlogPosts();
 

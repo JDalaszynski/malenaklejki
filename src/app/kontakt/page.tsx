@@ -5,6 +5,9 @@ import { Footer } from "@/components/layout/Footer";
 export const metadata = {
   title: "Kontakt - MałeNaklejki",
   description: "Skontaktuj się z nami! Odpowiemy na wszystkie Twoje pytania dotyczące zamówienia, kreatora naklejek lub opcji personalizacji.",
+  alternates: {
+    canonical: "/kontakt",
+  },
 };
 
 export default function KontaktPage() {
