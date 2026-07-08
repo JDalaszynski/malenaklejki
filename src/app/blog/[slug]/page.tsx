@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { Calendar, Clock, ChevronLeft } from "lucide-react";
 import { Metadata } from "next";
+import { JsonLd } from "@/components/seo/JsonLd";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -39,7 +40,6 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       type: "article",
       url: `https://www.malenaklejki.pl/blog/${post.slug}`,
       publishedTime: post.date,
-      images: post.image ? [{ url: post.image }] : undefined,
     },
   };
 }
@@ -65,6 +65,21 @@ export default async function BlogPostPage({ params }: PageProps) {
 
   return (
     <div className="flex flex-col min-h-screen text-foreground bg-[#edf6f2] dark:bg-[#002c2e] transition-colors duration-300">
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "BlogPosting",
+          headline: post.title,
+          description: post.description,
+          image: post.image ? [post.image] : [],
+          datePublished: post.date,
+          author: [{
+            "@type": "Organization",
+            name: "MałeNaklejki",
+            url: "https://www.malenaklejki.pl"
+          }]
+        }}
+      />
       <Header />
 
       <main className="flex-1 py-12 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto w-full space-y-12">

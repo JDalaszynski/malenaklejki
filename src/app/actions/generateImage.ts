@@ -118,15 +118,37 @@ export async function generateStickerImage(
       "vibrant colors, kawaii/fun aesthetic.";
 
     console.log("[generateStickerImage] Calling genAI.models.generateImages...");
-    const response = await genAI.models.generateImages({
-      model: "imagen-4.0-generate-001",
-      prompt: fullPrompt,
-      config: {
-        numberOfImages: 1,
-        aspectRatio: "1:1",
-        outputMimeType: "image/png"
+    let response: any = null;
+    let attempts = 0;
+    const maxAttempts = 3;
+    while (attempts < maxAttempts) {
+      try {
+        console.log(`[generateStickerImage] Calling genAI.models.generateImages (Attempt ${attempts + 1}/${maxAttempts})...`);
+        response = await genAI.models.generateImages({
+          model: "imagen-4.0-generate-001",
+          prompt: fullPrompt,
+          config: {
+            numberOfImages: 1,
+            aspectRatio: "1:1",
+            outputMimeType: "image/png"
+          }
+        });
+        break;
+      } catch (error: any) {
+        attempts++;
+        console.warn(`[generateStickerImage] Generation attempt ${attempts} failed:`, error.message || error);
+        if (attempts >= maxAttempts) {
+          throw error;
+        }
+        const delay = attempts * 1500;
+        console.log(`Waiting ${delay}ms before retrying image generation...`);
+        await new Promise((resolve) => setTimeout(resolve, delay));
       }
-    });
+    }
+
+    if (!response) {
+      throw new Error("Pusta odpowiedź z API generacji.");
+    }
 
     console.log("[generateStickerImage] Got response from genAI");
     const generatedImage = response.generatedImages?.[0];

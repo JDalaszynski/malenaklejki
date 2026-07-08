@@ -31,6 +31,7 @@ const blobToBase64 = (blob: Blob): Promise<string> =>
 export function StickerEditModal({ imageSrc, onSave, onCancel }: StickerEditModalProps) {
   const [mounted, setMounted] = useState(false);
   const [currentUrl, setCurrentUrl] = useState(imageSrc);
+  const [blobUrl, setBlobUrl] = useState<string | null>(null);
   const [isProcessing, setIsProcessing] = useState(false);
   const [processingMessage, setProcessingMessage] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -49,10 +50,11 @@ export function StickerEditModal({ imageSrc, onSave, onCancel }: StickerEditModa
   const resizeStart = useRef({ x: 0, y: 0, w: 0, h: 0, posX: 0, posY: 0, handle: "br" });
   const imageRef = useRef<HTMLImageElement>(null);
   const viewportRef = useRef<HTMLDivElement>(null);
+  const lastInitializedUrl = useRef<string | null>(null);
 
   // Reset position and size
   const initializeLayout = (imgEl: HTMLImageElement, forceReset = true) => {
-    if (!imgEl) return;
+    if (!imgEl || !imgEl.naturalWidth || !imgEl.naturalHeight) return;
     const naturalAspect = imgEl.naturalWidth / imgEl.naturalHeight;
 
     let targetVw = customWidth;
@@ -107,11 +109,60 @@ export function StickerEditModal({ imageSrc, onSave, onCancel }: StickerEditModa
     });
   };
 
+  // Pre-fetch the image as a Blob URL to avoid browser CORS/caching/0x0 dimensions bugs
   useEffect(() => {
-    if (imageRef.current && imageRef.current.complete) {
-      initializeLayout(imageRef.current, false);
-    }
+    if (!currentUrl) return;
+
+    let isMounted = true;
+    let objectUrl: string | null = null;
+
+    const fetchImage = async () => {
+      try {
+        setBlobUrl(null);
+        
+        let urlToFetch = currentUrl;
+        if (currentUrl.startsWith("http") && !currentUrl.startsWith("blob:")) {
+          urlToFetch = `/api/proxy-image?url=${encodeURIComponent(currentUrl)}`;
+        } else if (currentUrl.startsWith("blob:")) {
+          // If it's already a blob, just use it
+          if (isMounted) setBlobUrl(currentUrl);
+          return;
+        }
+
+        const res = await fetch(urlToFetch);
+        if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
+        
+        const blob = await res.blob();
+        if (isMounted) {
+          objectUrl = URL.createObjectURL(blob);
+          setBlobUrl(objectUrl);
+        }
+      } catch (e: any) {
+        console.error("Failed to fetch image for editor:", e);
+        if (isMounted) setError("Nie udało się wczytać obrazu do edytora.");
+      }
+    };
+
+    fetchImage();
+
+    return () => {
+      isMounted = false;
+      if (objectUrl) {
+        URL.revokeObjectURL(objectUrl);
+      }
+    };
   }, [currentUrl]);
+
+  useEffect(() => {
+    if (mounted && blobUrl && imageRef.current && imageRef.current.complete) {
+      const img = imageRef.current;
+      if (img.naturalWidth && img.naturalHeight && lastInitializedUrl.current !== blobUrl) {
+        const isInitial = lastInitializedUrl.current === null;
+        lastInitializedUrl.current = blobUrl;
+        initializeLayout(img, isInitial);
+      }
+    }
+  }, [blobUrl, mounted]);
 
   useEffect(() => {
     setMounted(true);
@@ -211,11 +262,13 @@ export function StickerEditModal({ imageSrc, onSave, onCancel }: StickerEditModa
     setError(null);
 
     try {
-      // Get cropped image via proxy first to prevent tainted canvas
-      const proxiedUrl = `/api/proxy-image?url=${encodeURIComponent(currentUrl)}`;
+      // Get cropped image via blobUrl to prevent tainted canvas and double network request
+      const proxiedUrl = blobUrl || `/api/proxy-image?url=${encodeURIComponent(currentUrl)}`;
       const imgLoadPromise = new Promise<HTMLImageElement>((resolve, reject) => {
         const i = new Image();
-        i.crossOrigin = "anonymous";
+        if (!blobUrl) {
+          i.crossOrigin = "anonymous";
+        }
         i.onload = () => resolve(i);
         i.onerror = reject;
         i.src = proxiedUrl;
@@ -286,8 +339,9 @@ export function StickerEditModal({ imageSrc, onSave, onCancel }: StickerEditModa
     setError(null);
 
     try {
-      const response = await fetch(`/api/proxy-image?url=${encodeURIComponent(currentUrl)}`);
-      if (!response.ok) throw new Error("Failed to fetch image via proxy");
+      const targetUrl = blobUrl || currentUrl;
+      const response = await fetch(targetUrl);
+      if (!response.ok) throw new Error("Failed to fetch image data");
       const blob = await response.blob();
       const base64 = await blobToBase64(blob);
 
@@ -317,8 +371,9 @@ export function StickerEditModal({ imageSrc, onSave, onCancel }: StickerEditModa
     setError(null);
 
     try {
-      const response = await fetch(`/api/proxy-image?url=${encodeURIComponent(currentUrl)}`);
-      if (!response.ok) throw new Error("Failed to fetch image via proxy");
+      const targetUrl = blobUrl || currentUrl;
+      const response = await fetch(targetUrl);
+      if (!response.ok) throw new Error("Failed to fetch image data");
       const blob = await response.blob();
       const base64 = await blobToBase64(blob);
 
@@ -385,8 +440,8 @@ export function StickerEditModal({ imageSrc, onSave, onCancel }: StickerEditModa
           {/* Crop Container (handles can spill out of this) */}
           <div
             style={{
-              width: customWidth,
-              height: customHeight,
+              width: `${customWidth}px`,
+              height: `${customHeight}px`,
             }}
             className="relative"
           >
@@ -406,21 +461,30 @@ export function StickerEditModal({ imageSrc, onSave, onCancel }: StickerEditModa
               onPointerCancel={handlePointerUp}
               className="w-full h-full overflow-hidden bg-[#eaeaea] select-none shadow-[inset_0_2px_8px_rgba(0,0,0,0.02)] cursor-grab active:cursor-grabbing touch-none"
             >
-              <img
-                ref={imageRef}
-                src={currentUrl}
-                alt="Workspace image"
-                draggable={false}
-                onLoad={(e) => initializeLayout(e.currentTarget, true)}
-                style={{
-                  width: imgSize.width,
-                  height: imgSize.height,
-                  transform: `translate(${position.x}px, ${position.y}px) scale(${zoom}) rotate(${rotation}deg)`,
-                  transformOrigin: "center center",
-                  pointerEvents: "none",
-                }}
-                className="absolute top-0 left-0 max-w-none"
-              />
+              {blobUrl && (
+                <img
+                  ref={imageRef}
+                  src={blobUrl}
+                  alt="Workspace image"
+                  draggable={false}
+                  onLoad={(e) => {
+                    const img = e.currentTarget;
+                    if (img.naturalWidth && img.naturalHeight && lastInitializedUrl.current !== blobUrl) {
+                      const isInitial = lastInitializedUrl.current === null;
+                      lastInitializedUrl.current = blobUrl;
+                      initializeLayout(img, isInitial);
+                    }
+                  }}
+                  style={{
+                    width: `${imgSize.width}px`,
+                    height: `${imgSize.height}px`,
+                    transform: `translate(${position.x}px, ${position.y}px) scale(${zoom}) rotate(${rotation}deg)`,
+                    transformOrigin: "center center",
+                    pointerEvents: "none",
+                  }}
+                  className="absolute top-0 left-0 max-w-none"
+                />
+              )}
 
               {/* Guidelines */}
               <div className="absolute inset-0 border border-foreground/5 pointer-events-none grid grid-cols-3 grid-rows-3 animate-in fade-in duration-100">

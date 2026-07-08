@@ -5,6 +5,7 @@ import { CookieBanner } from "@/components/layout/CookieBanner";
 import { Analytics } from "@vercel/analytics/react";
 import { InteractiveBackground } from "@/components/layout/InteractiveBackground";
 import Script from "next/script";
+import { JsonLd } from "@/components/seo/JsonLd";
 
 const nunito = Nunito({
   variable: "--font-sans",
@@ -123,6 +124,23 @@ export default function RootLayout({
             }}
           />
         )}
+        <JsonLd
+          data={{
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            name: "MałeNaklejki",
+            url: "https://www.malenaklejki.pl",
+          }}
+        />
+        <JsonLd
+          data={{
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            name: "MałeNaklejki",
+            url: "https://www.malenaklejki.pl",
+            logo: "https://www.malenaklejki.pl/images/logo/favicon.png",
+          }}
+        />
       </head>
       <body className="min-h-full flex flex-col font-sans relative">
         {process.env.NEXT_PUBLIC_GA_ID && (

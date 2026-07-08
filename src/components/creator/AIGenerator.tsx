@@ -1,529 +1,420 @@
 "use client";
 
-import { getUUID } from "@/lib/uuid";
-import { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { createPortal } from "react-dom";
-import { generateStickerImage } from "@/app/actions/generateImage";
-import {
-  Loader2,
-  Sparkles,
-  Bot,
-  Check,
-  RefreshCw,
-  X,
-  ImagePlus,
-  Crop,
-} from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { X, Wand2, Sparkles, Loader2, Image as ImageIcon, UploadCloud, Check, RotateCcw, ChevronDown } from "lucide-react";
+import { generateStickerImage } from "@/app/actions/generateImage";
 import { StickerEditModal } from "./StickerEditModal";
-import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
-import { storage } from "@/lib/firebase/client";
-
-interface AIGeneratorProps {
-  onImageGenerated: (url: string) => void;
-}
-
-interface AttachedImage {
-  base64: string;
-  mimeType: string;
-  previewUrl: string;
-  fileName: string;
-}
-
-// Compress and resize image on the client to stay within Server Action payload limits
-const compressImage = (
-  file: File,
-  maxPx = 1024,
-  quality = 0.85
-): Promise<{ base64: string; mimeType: string; previewUrl: string }> =>
-  new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.onerror = reject;
-    reader.onload = (e) => {
-      const img = new Image();
-      img.onerror = reject;
-      img.onload = () => {
-        let { width, height } = img;
-        if (width > maxPx || height > maxPx) {
-          if (width >= height) {
-            height = Math.round((height * maxPx) / width);
-            width = maxPx;
-          } else {
-            width = Math.round((width * maxPx) / height);
-            height = maxPx;
-          }
-        }
-        const canvas = document.createElement("canvas");
-        canvas.width = width;
-        canvas.height = height;
-        canvas.getContext("2d")!.drawImage(img, 0, 0, width, height);
-        const dataUrl = canvas.toDataURL("image/jpeg", quality);
-        const [, base64] = dataUrl.split(",");
-        resolve({ base64, mimeType: "image/jpeg", previewUrl: dataUrl });
-      };
-      img.src = e.target?.result as string;
-    };
-    reader.readAsDataURL(file);
-  });
-
-// Convert a Blob to base64 without uploading (used for pre-generation crop)
-const blobToBase64 = (blob: Blob): Promise<{ base64: string; mimeType: string; previewUrl: string }> =>
-  new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.onerror = reject;
-    reader.onload = () => {
-      const dataUrl = reader.result as string;
-      const [, base64] = dataUrl.split(",");
-      resolve({ base64, mimeType: blob.type || "image/png", previewUrl: dataUrl });
-    };
-    reader.readAsDataURL(blob);
-  });
-
-const uploadFileToFirebase = async (file: File): Promise<string> => {
-  const fileName = `ai-ref-${getUUID()}-${file.name}`;
-  const storageRef = ref(storage, `uploads/${fileName}`);
-  const snapshot = await uploadBytes(storageRef, file);
-  return await getDownloadURL(snapshot.ref);
-};
 
 const STYLES = [
-  { id: "none", label: "Domyślny", prompt: "" },
-  { id: "monochromatic", label: "Monochromatyczny", prompt: ", monochromatic illustration style, single unified color tone, minimalist aesthetic, clean negative space" },
-  { id: "risograph", label: "Risografia", prompt: ", risograph print style, retro grainy texture, overlapping bold ink colors, misaligned screen-print look" },
-  { id: "technicolor", label: "Technikolor", prompt: ", vintage technicolor movie style, high-contrast saturated colors, 1950s cinematic saturation, classic film photo style" },
-  { id: "claymation", label: "Gotycka plastelina", prompt: ", gothic claymation style, stop-motion clay texture, eerie dark tones, handmade sculpt look, Tim Burton design style" },
-  { id: "watercolor", label: "Akwarela", prompt: ", watercolor paint style, soft bleeding pigment washes, wet-on-wet watercolor texture, gentle brush strokes, light artistic paint drops" },
-  { id: "sketch", label: "Szkic", prompt: ", hand-drawn pencil sketch, crosshatching pencil shading, paper texture, graphite outline style" },
-  { id: "pastels", label: "Pastele", prompt: ", soft pastel color drawing, chalky texture, gentle muted colors, soft lines, dreamy atmosphere" },
-  { id: "anime", label: "Anime", prompt: ", modern anime illustration style, clean line art, vibrant cel-shaded colors, studio anime aesthetic" },
-  { id: "cartoon", label: "Kreskówka", prompt: ", playful cartoon style, bold outlines, bright solid colors, simple vector cartoon look" },
-  { id: "render3d", label: "Render 3D", prompt: ", 3D clay render style, smooth octane render look, glossy toy plastic material, cute soft studio lighting" },
-  { id: "surrealist", label: "Surrealistyczny", prompt: ", surrealist art style, dreamlike bizarre composition, weird fantastical combinations, Salvador Dali aesthetic" },
-  { id: "photo", label: "Zdjęcie", prompt: ", realistic photographic sticker style, real-world texture, photorealistic rendering, detailed studio product photo style" }
+  { id: "default", label: "Domyślny", suffix: "", icon: "✨" },
+  { id: "monochrome", label: "Monochromatyczny", suffix: ", monochromatic illustration style, single unified color tone, minimalist aesthetic, clean negative space", icon: "🖤" },
+  { id: "riso", label: "Risografia", suffix: ", risograph print style, retro grainy texture, overlapping bold ink colors, misaligned screen-print look", icon: "🖨️" },
+  { id: "technicolor", label: "Technikolor", suffix: ", vintage technicolor movie style, high-contrast saturated colors, 1950s cinematic saturation, classic film photo style", icon: "🎬" },
+  { id: "clay", label: "Gotycka plastelina", suffix: ", gothic claymation style, stop-motion clay texture, eerie dark tones, handmade sculpt look, Tim Burton design style", icon: "🦇" },
+  { id: "watercolor", label: "Akwarela", suffix: ", watercolor paint style, soft bleeding pigment washes, wet-on-wet watercolor texture, gentle brush strokes, light artistic paint drops", icon: "🎨" },
+  { id: "sketch", label: "Szkic", suffix: ", hand-drawn pencil sketch, crosshatching pencil shading, paper texture, graphite outline style", icon: "✏️" },
+  { id: "pastel", label: "Pastele", suffix: ", soft pastel color drawing, chalky texture, gentle muted colors, soft lines, dreamy atmosphere", icon: "🖍️" },
+  { id: "anime", label: "Anime", suffix: ", modern anime illustration style, clean line art, vibrant cel-shaded colors, studio anime aesthetic", icon: "🌸" },
+  { id: "cartoon", label: "Kreskówka", suffix: ", playful cartoon style, bold outlines, bright solid colors, simple vector cartoon look", icon: "🤪" },
+  { id: "3d", label: "Render 3D", suffix: ", 3D clay render style, smooth octane render look, glossy toy plastic material, cute soft studio lighting", icon: "🧊" },
+  { id: "surreal", label: "Surrealistyczny", suffix: ", surrealist art style, dreamlike bizarre composition, weird fantastical combinations, Salvador Dali aesthetic", icon: "👁️" },
+  { id: "photo", label: "Zdjęcie", suffix: ", realistic photographic sticker style, real-world texture, photorealistic rendering, detailed studio product photo style", icon: "📸" },
 ];
 
-export function AIGenerator({ onImageGenerated }: AIGeneratorProps) {
-  const [isMounted, setIsMounted] = useState(false);
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
+interface AIGeneratorProps {
+  onClose: () => void;
+  onStickerGenerated: (url: string) => void;
+}
+
+export function AIGenerator({ onClose, onStickerGenerated }: AIGeneratorProps) {
+  const [mounted, setMounted] = useState(false);
   const [prompt, setPrompt] = useState("");
+  const [selectedStyleId, setSelectedStyleId] = useState("default");
+  const [isStyleDropdownOpen, setIsStyleDropdownOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  const currentStyle = STYLES.find((s) => s.id === selectedStyleId) || STYLES[0];
+
+  // Close dropdown on click outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setIsStyleDropdownOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
   const [isGenerating, setIsGenerating] = useState(false);
+  const [generatedUrl, setGeneratedUrl] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
-  const [previewUrl, setPreviewUrl] = useState<string | null>(null);
-  const [attachedImage, setAttachedImage] = useState<AttachedImage | null>(null);
 
-  const [showCropModal, setShowCropModal] = useState(false);
-  const [cropBlobSrc, setCropBlobSrc] = useState<string | null>(null);
-
-  const [pendingAttachUrl, setPendingAttachUrl] = useState<string | null>(null);
-  const [pendingFileName, setPendingFileName] = useState<string>("");
-  const [isUploadingReference, setIsUploadingReference] = useState(false);
-
+  // Reference Image State
+  const [referenceImageUrl, setReferenceImageUrl] = useState<string | null>(null);
+  const [isCropModalOpen, setIsCropModalOpen] = useState(false);
+  const [rawUploadUrl, setRawUploadUrl] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
-  const [selectedStyleId, setSelectedStyleId] = useState("none");
-  const [isDraggingFile, setIsDraggingFile] = useState(false);
 
-  const handleDragOver = (e: React.DragEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
-    if (e.dataTransfer.types.includes("Files")) {
-      setIsDraggingFile(true);
+  useEffect(() => {
+    setMounted(true);
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, []);
+
+  const handleGenerate = async () => {
+    if (!prompt.trim()) {
+      setError("Proszę wpisać opis naklejki.");
+      return;
     }
-  };
-
-  const handleDragLeave = (e: React.DragEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
-    setIsDraggingFile(false);
-  };
-
-  const handleDrop = async (e: React.DragEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
-    setIsDraggingFile(false);
-
-    const file = e.dataTransfer.files?.[0];
-    if (!file || !file.type.startsWith("image/")) return;
-
-    setIsUploadingReference(true);
-    setError(null);
-    try {
-      const downloadUrl = await uploadFileToFirebase(file);
-      setPendingFileName(file.name);
-      setPendingAttachUrl(downloadUrl);
-    } catch (err) {
-      console.error(err);
-      setError("Nie udało się przesłać zdjęcia referencyjnego.");
-    } finally {
-      setIsUploadingReference(false);
-    }
-  };
-
-  const handleOpenCrop = () => {
-    if (previewUrl) {
-      setCropBlobSrc(previewUrl);
-      setShowCropModal(true);
-    }
-  };
-
-  const handleCropComplete = (newUrl: string) => {
-    setShowCropModal(false);
-    setCropBlobSrc(null);
-    setPreviewUrl(newUrl);
-  };
-
-  const handleCropCancel = () => {
-    setShowCropModal(false);
-    setCropBlobSrc(null);
-  };
-
-  const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (!file) return;
-    if (!file.type.startsWith("image/")) return;
-    e.target.value = "";
-
-    setIsUploadingReference(true);
-    setError(null);
-    try {
-      const downloadUrl = await uploadFileToFirebase(file);
-      setPendingFileName(file.name);
-      setPendingAttachUrl(downloadUrl);
-    } catch (err) {
-      console.error(err);
-      setError("Nie udało się przesłać zdjęcia referencyjnego.");
-    } finally {
-      setIsUploadingReference(false);
-    }
-  };
-
-  const handleAttachEditComplete = async (newUrl: string) => {
-    setPendingAttachUrl(null);
-    setIsUploadingReference(true);
-    try {
-      const response = await fetch(`/api/proxy-image?url=${encodeURIComponent(newUrl)}`);
-      if (!response.ok) throw new Error("Failed to fetch proxy image");
-      const blob = await response.blob();
-      const result = await blobToBase64(blob);
-      setAttachedImage({
-        base64: result.base64,
-        mimeType: result.mimeType,
-        previewUrl: result.previewUrl,
-        fileName: pendingFileName || "reference.png",
-      });
-    } catch (err) {
-      console.error(err);
-      setError("Nie udało się zapisać wykadrowanego zdjęcia referencyjnego.");
-    } finally {
-      setIsUploadingReference(false);
-    }
-  };
-
-  const handleAttachEditCancel = () => {
-    setPendingAttachUrl(null);
-    setPendingFileName("");
-  };
-
-  const handleGenerate = async (e?: React.FormEvent) => {
-    e?.preventDefault();
-    if (!prompt.trim() && !attachedImage) return;
 
     setIsGenerating(true);
     setError(null);
-    setPreviewUrl(null);
 
     try {
       const selectedStyle = STYLES.find((s) => s.id === selectedStyleId);
-      const stylePrompt = selectedStyle ? selectedStyle.prompt : "";
-      const finalPrompt = prompt.trim() + stylePrompt;
+      const fullPrompt = `${prompt}${selectedStyle?.suffix || ""}`;
 
-      const result = await generateStickerImage(
-        finalPrompt,
-        attachedImage
-          ? { base64: attachedImage.base64, mimeType: attachedImage.mimeType }
-          : null
-      );
+      let imageData = null;
+      if (referenceImageUrl) {
+        // Fetch and convert reference image to base64
+        const res = await fetch(referenceImageUrl);
+        const blob = await res.blob();
+        const reader = new FileReader();
+        const base64 = await new Promise<string>((resolve, reject) => {
+          reader.onload = () => {
+            const result = reader.result as string;
+            resolve(result.split(",")[1]);
+          };
+          reader.onerror = reject;
+          reader.readAsDataURL(blob);
+        });
+        imageData = {
+          base64,
+          mimeType: blob.type || "image/png",
+        };
+      }
+
+      const result = await generateStickerImage(fullPrompt, imageData);
+
       if (result.success && result.url) {
-        setPreviewUrl(result.url);
+        setGeneratedUrl(result.url);
       } else {
-        setError(
-          result.error || "Ups! Coś poszło nie tak. Spróbuj jeszcze raz!"
-        );
+        setError(result.error || "Wystąpił nieznany błąd podczas generowania.");
       }
     } catch (err: any) {
-      setError(err?.message || "Wystąpił nieoczekiwany błąd. Bot chyba zasnął.");
+      setError(err?.message || "Błąd sieci lub serwera.");
     } finally {
       setIsGenerating(false);
     }
   };
 
-  const handleAccept = () => {
-    if (previewUrl) {
-      onImageGenerated(previewUrl);
-      setPreviewUrl(null);
+  const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    if (file.size > 4 * 1024 * 1024) {
+      setError("Plik jest zbyt duży (max 4MB).");
+      return;
+    }
+
+    const objectUrl = URL.createObjectURL(file);
+    setRawUploadUrl(objectUrl);
+    setIsCropModalOpen(true);
+
+    // Reset input
+    if (fileInputRef.current) {
+      fileInputRef.current.value = "";
     }
   };
 
-  const handleRegenerate = () => {
-    setPreviewUrl(null);
-    handleGenerate();
+  const handleDrop = (e: React.DragEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+
+    const file = e.dataTransfer.files?.[0];
+    if (file && file.type.startsWith("image/")) {
+      if (file.size > 4 * 1024 * 1024) {
+        setError("Plik jest zbyt duży (max 4MB).");
+        return;
+      }
+      const objectUrl = URL.createObjectURL(file);
+      setRawUploadUrl(objectUrl);
+      setIsCropModalOpen(true);
+    }
   };
 
-  const canGenerate = !isGenerating && !isUploadingReference && (!!prompt.trim() || !!attachedImage);
+  const handleDragOver = (e: React.DragEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+  };
 
-  return (
-    <>
-      <div
-        onDragOver={handleDragOver}
-        onDragLeave={handleDragLeave}
-        onDrop={handleDrop}
-        className={`relative flex flex-col gap-4 w-full p-4 rounded-3xl transition-all duration-300 border-2 ${isDraggingFile
-          ? "border-dashed border-primary bg-primary/5 scale-[1.01]"
-          : "border-transparent"
-          }`}
-      >
-        {isUploadingReference && (
-          <div className="absolute inset-0 z-50 bg-background/80 backdrop-blur-sm flex flex-col items-center justify-center rounded-3xl">
-            <Loader2 className="w-10 h-10 animate-spin text-primary" />
-            <p className="text-sm font-bold text-primary mt-2">Przetwarzanie zdjęcia...</p>
-          </div>
-        )}
+  if (!mounted) return null;
 
-        {/* Prompt input + generate button */}
-        <form
-          onSubmit={handleGenerate}
-          className="flex flex-col sm:flex-row gap-3 w-full"
+  const renderContent = () => {
+    if (isGenerating) {
+      return (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          className="flex flex-col items-center justify-center py-20 gap-6"
         >
-          <input
-            type="text"
-            placeholder={
-              attachedImage
-                ? "Opcjonalnie: dodaj styl, opis... (np. cyberpunk, pastele)"
-                : "np. Cool żaba w okularach..."
-            }
+          <div className="relative w-24 h-24">
+            <div className="absolute inset-0 bg-primary/20 rounded-full animate-ping" />
+            <div className="absolute inset-0 bg-primary/10 rounded-full animate-pulse" />
+            <div className="absolute inset-0 flex items-center justify-center">
+              <Sparkles className="w-10 h-10 text-primary animate-pulse" />
+            </div>
+          </div>
+          <div className="text-center">
+            <h3 className="text-xl font-extrabold text-foreground mb-2">Magia działa...</h3>
+            <p className="text-sm font-semibold text-muted-foreground max-w-xs mx-auto">
+              Sztuczna inteligencja tworzy unikalną naklejkę na podstawie Twojego opisu.
+            </p>
+          </div>
+        </motion.div>
+      );
+    }
+
+    if (generatedUrl) {
+      return (
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          className="flex flex-col items-center gap-6"
+        >
+          <div className="relative w-64 h-64 sm:w-80 sm:h-80 bg-white rounded-3xl shadow-[0_20px_60px_-15px_rgba(0,0,0,0.1)] p-4 border border-border/50">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={generatedUrl}
+              alt="Wygenerowana naklejka"
+              className="w-full h-full object-contain rounded-2xl"
+            />
+          </div>
+
+          <div className="flex flex-col sm:flex-row gap-3 w-full max-w-sm mt-4">
+            <button
+              onClick={() => {
+                setGeneratedUrl(null);
+                handleGenerate();
+              }}
+              className="flex-1 h-12 inline-flex items-center justify-center gap-2 rounded-xl text-sm font-bold bg-muted text-muted-foreground hover:bg-muted/80 transition-all active:scale-[0.98] cursor-pointer"
+            >
+              <RotateCcw className="w-4 h-4" />
+              Wygeneruj ponownie
+            </button>
+            <button
+              onClick={() => onStickerGenerated(generatedUrl)}
+              className="flex-1 h-12 inline-flex items-center justify-center gap-2 rounded-xl text-sm font-bold bg-primary text-primary-foreground hover:bg-primary/95 shadow-lg shadow-primary/20 transition-all active:scale-[0.98] cursor-pointer"
+            >
+              <Check className="w-4 h-4" />
+              Dodaj do arkusza
+            </button>
+          </div>
+        </motion.div>
+      );
+    }
+
+    return (
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        className="flex flex-col gap-6"
+      >
+        {/* Prompt Input */}
+        <div className="space-y-3">
+          <label className="text-sm font-bold text-foreground">Co chcesz wygenerować?</label>
+          <textarea
             value={prompt}
             onChange={(e) => setPrompt(e.target.value)}
-            disabled={isGenerating || isUploadingReference}
-            className="flex h-14 w-full rounded-xl border border-slate-200 dark:border-border/70 bg-background px-4 py-2 text-base font-semibold placeholder:text-slate-400 dark:placeholder:text-slate-500 focus-visible:outline-none focus-visible:border-primary focus-visible:ring-2 focus-visible:ring-primary/20 disabled:opacity-50 flex-1 shadow-none"
+            placeholder="np. Cool żaba w okularach"
+            className="w-full min-h-[100px] bg-muted/30 border border-border/50 rounded-2xl p-4 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 resize-none font-medium"
           />
-          <motion.button
-            whileTap={canGenerate ? { scale: 0.98 } : {}}
-            type="submit"
-            disabled={!canGenerate}
-            className="inline-flex items-center justify-center whitespace-nowrap rounded-xl text-base font-bold bg-primary text-primary-foreground hover:bg-primary/95 active:scale-[0.98] h-14 px-6 shadow-sm transition-all disabled:pointer-events-none disabled:opacity-50"
-          >
-            {isGenerating ? (
-              <Loader2 className="w-5 h-5 mr-2 animate-spin" />
-            ) : (
-              <Sparkles className="w-5 h-5 mr-2" />
-            )}
-            Stwórz!
-          </motion.button>
-        </form>
+        </div>
 
-        {/* Photo attachment row */}
-        <div className="flex items-center gap-3">
-          <input
-            ref={fileInputRef}
-            type="file"
-            accept="image/*"
-            className="hidden"
-            onChange={handleFileChange}
-            disabled={isGenerating || isUploadingReference}
-          />
-
-          {attachedImage ? (
-            /* Thumbnail of attached image */
-            <div className="flex items-center gap-3 bg-muted/40 border border-slate-200 dark:border-border/60 rounded-xl px-3 py-2 flex-1">
-              <div className="w-10 h-10 rounded-lg overflow-hidden border border-border/50 flex-shrink-0 bg-white">
-                <img
-                  src={attachedImage.previewUrl}
-                  alt="Załączone zdjęcie"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <div className="flex-1 min-w-0">
-                <p className="text-xs font-bold text-foreground truncate">
-                  {attachedImage.fileName}
-                </p>
-                <p className="text-[10px] text-muted-foreground font-medium mt-0.5">
-                  Generator przetworzy to zdjęcie na naklejkę
-                </p>
-              </div>
+        {/* Reference Image Zone */}
+        <div className="space-y-3">
+          <label className="text-sm font-bold text-foreground">Zdjęcie referencyjne (opcjonalnie)</label>
+          {referenceImageUrl ? (
+            <div className="relative w-24 h-24 rounded-xl border border-border/50 overflow-hidden group">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={referenceImageUrl} alt="Reference" className="w-full h-full object-cover" />
               <button
-                type="button"
-                onClick={() => setAttachedImage(null)}
-                className="p-1 rounded-full hover:bg-muted/60 text-muted-foreground hover:text-foreground transition-colors flex-shrink-0"
-                title="Usuń zdjęcie"
+                onClick={() => setReferenceImageUrl(null)}
+                className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity cursor-pointer"
               >
-                <X className="w-4 h-4" />
+                <X className="w-6 h-6 text-white" />
               </button>
             </div>
           ) : (
-            /* Attach button */
+            <label
+              onDrop={handleDrop}
+              onDragOver={handleDragOver}
+              className="flex flex-col items-center justify-center p-6 border-2 border-dashed border-border/50 hover:border-primary/50 rounded-2xl bg-muted/10 hover:bg-muted/30 transition-all cursor-pointer group"
+            >
+              <input
+                type="file"
+                accept="image/*"
+                className="hidden"
+                ref={fileInputRef}
+                onChange={handleFileUpload}
+              />
+              <UploadCloud className="w-6 h-6 text-muted-foreground group-hover:text-primary mb-2" />
+              <span className="text-xs font-bold text-foreground">Wgraj zdjęcie referencyjne</span>
+              <span className="text-[10px] text-muted-foreground mt-1 text-center max-w-[200px]">
+                Użyj własnego zdjęcia jako bazy. (Uwaga: w UE ta funkcja może być ograniczona)
+              </span>
+            </label>
+          )}
+        </div>
+
+        {/* Style Selection */}
+        <div className="space-y-3 relative" ref={dropdownRef}>
+          <label className="text-sm font-bold text-foreground">Wybierz styl naklejki</label>
+          <div className="relative">
             <button
               type="button"
-              onClick={() => fileInputRef.current?.click()}
-              disabled={isGenerating || isUploadingReference}
-              className="inline-flex items-center gap-2 text-sm font-semibold text-muted-foreground hover:text-primary border border-slate-200 dark:border-border/60 hover:border-primary/40 bg-muted/30 hover:bg-muted/50 transition-all px-4 py-2.5 rounded-xl disabled:opacity-40 disabled:pointer-events-none w-full justify-center"
+              onClick={() => setIsStyleDropdownOpen(!isStyleDropdownOpen)}
+              className="w-full h-12 flex items-center justify-between px-4 bg-muted/30 border border-border/50 rounded-2xl text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 text-sm font-bold text-left cursor-pointer transition-all hover:bg-muted/40"
             >
-              <ImagePlus className="w-4 h-4" />
-              Wgraj swoje zdjęcie<span className="hidden sm:inline"> (lub przeciągnij tutaj)</span>
+              <div className="flex items-center gap-2">
+                <span className="text-lg">{currentStyle.icon}</span>
+                <span>{currentStyle.label}</span>
+              </div>
+              <ChevronDown className={`w-4 h-4 text-muted-foreground transition-transform duration-200 ${isStyleDropdownOpen ? "rotate-180" : ""}`} />
             </button>
-          )}
-        </div>
 
-        {/* Style Selection Dropdown */}
-        <div className="space-y-2">
-          <label htmlFor="ai-style-select" className="text-xs font-black uppercase text-muted-foreground tracking-wider block">
-            Styl naklejki
-          </label>
-          <select
-            id="ai-style-select"
-            value={selectedStyleId}
-            onChange={(e) => setSelectedStyleId(e.target.value)}
-            disabled={isGenerating || isUploadingReference}
-            className="flex h-12 w-full rounded-xl border border-slate-200 dark:border-border/70 bg-background px-4 py-2 text-sm font-semibold focus-visible:outline-none focus-visible:border-primary focus-visible:ring-2 focus-visible:ring-primary/20 disabled:opacity-50 shadow-none cursor-pointer"
+            <AnimatePresence>
+              {isStyleDropdownOpen && (
+                <motion.div
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  transition={{ duration: 0.15 }}
+                  className="absolute z-[1010] left-0 right-0 mt-2 bg-card border border-border/50 rounded-2xl shadow-xl max-h-[200px] overflow-y-auto custom-scrollbar"
+                >
+                  <div className="p-1.5 space-y-1">
+                    {STYLES.map((style) => {
+                      const isSelected = selectedStyleId === style.id;
+                      return (
+                        <button
+                          key={style.id}
+                          type="button"
+                          onClick={() => {
+                            setSelectedStyleId(style.id);
+                            setIsStyleDropdownOpen(false);
+                          }}
+                          className={`w-full h-11 flex items-center gap-2 px-3 rounded-xl text-sm font-bold text-left cursor-pointer transition-colors ${isSelected
+                              ? "bg-primary/10 text-primary"
+                              : "hover:bg-muted text-foreground"
+                            }`}
+                        >
+                          <span className="text-lg">{style.icon}</span>
+                          <span>{style.label}</span>
+                        </button>
+                      );
+                    })}
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+        </div>
+      </motion.div>
+    );
+  };
+
+  return createPortal(
+    <div className="fixed inset-0 z-[1000] bg-background/30 dark:bg-background/20 backdrop-blur-md flex items-end sm:items-center justify-center p-0 sm:p-6">
+      {/* Tap outside to close on backdrop area */}
+      <div className="absolute inset-0 -z-10" onClick={onClose} />
+
+      <motion.div
+        initial={{ y: "100%" }}
+        animate={{ y: 0 }}
+        exit={{ y: "100%" }}
+        transition={{ type: "spring", damping: 30, stiffness: 300 }}
+        className="bg-card w-full sm:max-w-2xl max-h-[85vh] sm:max-h-[95vh] rounded-t-3xl rounded-b-none sm:rounded-3xl shadow-2xl border-t sm:border border-border/50 flex flex-col overflow-hidden relative"
+      >
+        {/* Header */}
+        <div className="flex items-center justify-between p-5 border-b border-border/30 shrink-0">
+          <div className="flex items-center gap-2.5">
+            <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center">
+              <Wand2 className="w-4 h-4 text-primary" />
+            </div>
+            <h2 className="text-lg font-black text-foreground">Generator AI</h2>
+          </div>
+          <button
+            onClick={onClose}
+            disabled={isGenerating}
+            className="p-2 rounded-full hover:bg-muted/50 transition-colors disabled:opacity-50 cursor-pointer"
           >
-            {STYLES.map((style) => (
-              <option key={style.id} value={style.id}>
-                {style.label}
-              </option>
-            ))}
-          </select>
+            <X className="w-5 h-5 text-muted-foreground" />
+          </button>
         </div>
 
-        {error && (
-          <div className="bg-destructive/40 border border-destructive/60 text-destructive-foreground p-4 rounded-xl font-bold">
-            {error}
+        {/* Scrollable Content */}
+        <div className="p-5 sm:p-6 overflow-y-auto shrink overflow-x-hidden relative custom-scrollbar">
+          <AnimatePresence mode="wait">
+            {error && !isGenerating && !generatedUrl && (
+              <motion.div
+                initial={{ opacity: 0, height: 0 }}
+                animate={{ opacity: 1, height: "auto" }}
+                exit={{ opacity: 0, height: 0 }}
+                className="mb-4 bg-destructive/10 text-destructive-foreground p-3 rounded-xl border border-destructive/20 text-sm font-bold flex items-center justify-between"
+              >
+                <span>{error}</span>
+                <button onClick={() => setError(null)} className="p-1 hover:bg-destructive/10 rounded-md cursor-pointer">
+                  <X className="w-4 h-4" />
+                </button>
+              </motion.div>
+            )}
+            {renderContent()}
+          </AnimatePresence>
+        </div>
+
+        {/* Footer Actions */}
+        {!isGenerating && !generatedUrl && (
+          <div className="p-5 border-t border-border/30 shrink-0 flex gap-3">
+            <button
+              onClick={onClose}
+              className="flex-1 h-12 rounded-xl text-sm font-bold bg-muted text-muted-foreground hover:bg-muted/80 transition-all active:scale-[0.98] cursor-pointer"
+            >
+              Anuluj
+            </button>
+            <button
+              onClick={handleGenerate}
+              className="flex-[2] h-12 inline-flex items-center justify-center gap-2 rounded-xl text-sm font-bold bg-primary text-primary-foreground hover:bg-primary/95 shadow-lg shadow-primary/20 transition-all active:scale-[0.98] cursor-pointer"
+            >
+              <Sparkles className="w-4 h-4" />
+              Generuj Naklejkę
+            </button>
           </div>
         )}
+      </motion.div>
 
-        <AnimatePresence mode="wait">
-          {isGenerating && (
-            <motion.div
-              key="generating"
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.9 }}
-              className="w-full aspect-square bg-secondary/10 border-2 border-secondary/30 rounded-[2rem] flex flex-col items-center justify-center gap-4 text-foreground"
-            >
-              <motion.div
-                animate={{ y: [0, -15, 0], rotate: [0, 5, -5, 0] }}
-                transition={{
-                  duration: 2,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
-              >
-                <Bot className="w-24 h-24 text-secondary" />
-              </motion.div>
-              <p className="font-extrabold text-xl">
-                {attachedImage ? "Przekształcamy zdjęcie..." : "Mieszamy kolory..."}
-              </p>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </div>
-
-      {/* Result Preview Modal */}
-      <AnimatePresence>
-        {isMounted && previewUrl && createPortal(
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[100] bg-foreground/30 backdrop-blur-sm flex items-center justify-center p-4"
-            onClick={(e) => {
-              if (e.target === e.currentTarget) setPreviewUrl(null);
-            }}
-          >
-            <motion.div
-              initial={{ scale: 0.92, opacity: 0, y: 16 }}
-              animate={{ scale: 1, opacity: 1, y: 0 }}
-              exit={{ scale: 0.92, opacity: 0, y: 16 }}
-              transition={{ duration: 0.22, ease: "easeOut" }}
-              className="bg-card border border-border/80 rounded-3xl w-full max-w-lg p-6 flex flex-col items-center gap-5 shadow-[0_20px_60px_rgba(0,0,0,0.08)] relative"
-            >
-              {/* Close */}
-              <button
-                onClick={() => setPreviewUrl(null)}
-                className="absolute top-4 right-4 p-1.5 rounded-full border border-border hover:bg-muted/50 transition-colors"
-              >
-                <X className="w-4 h-4 text-foreground" />
-              </button>
-
-              {/* Header */}
-              <div className="flex items-center gap-2 self-start">
-                <Sparkles className="w-5 h-5 text-primary" />
-                <h3 className="text-lg font-extrabold text-foreground">
-                  Gotowe!
-                </h3>
-              </div>
-
-              {/* Generated sticker — always full size */}
-              <div className="w-full aspect-square rounded-2xl overflow-hidden border border-border/60 bg-white shadow-sm">
-                <img
-                  src={previewUrl!}
-                  alt="Wygenerowana naklejka"
-                  className="w-full h-full object-contain"
-                />
-              </div>
-
-              {/* Actions */}
-              <div className="grid grid-cols-3 gap-2 w-full">
-                <button
-                  onClick={handleRegenerate}
-                  disabled={isGenerating}
-                  className="inline-flex items-center justify-center gap-1.5 rounded-xl text-sm font-bold bg-muted text-muted-foreground hover:bg-muted/80 h-12 transition-all active:scale-[0.98] disabled:opacity-50"
-                >
-                  <RefreshCw className="w-4 h-4" />
-                  Generuj
-                </button>
-                <button
-                  onClick={handleOpenCrop}
-                  disabled={isGenerating}
-                  className="inline-flex items-center justify-center gap-1.5 rounded-xl text-sm font-bold bg-muted text-foreground hover:bg-muted/80 h-12 transition-all active:scale-[0.98] disabled:opacity-50"
-                >
-                  <Crop className="w-4 h-4" />
-                  Kadruj
-                </button>
-                <button
-                  onClick={handleAccept}
-                  className="inline-flex items-center justify-center gap-1.5 rounded-xl text-sm font-bold bg-primary text-primary-foreground hover:bg-primary/95 h-12 shadow-sm transition-all active:scale-[0.98] disabled:opacity-50"
-                >
-                  <Check className="w-4 h-4" />
-                  Użyj tej!
-                </button>
-              </div>
-            </motion.div>
-          </motion.div>,
-          document.body
-        )}
-      </AnimatePresence>
-
-      {/* Sticker Edit/Crop Modal for generated result */}
-      <AnimatePresence>
-        {showCropModal && cropBlobSrc && (
-          <StickerEditModal
-            imageSrc={cropBlobSrc}
-            onSave={handleCropComplete}
-            onCancel={handleCropCancel}
-          />
-        )}
-      </AnimatePresence>
-
-      {/* Sticker Edit/Crop Modal for photo attachment (pre-generation) */}
-      <AnimatePresence>
-        {pendingAttachUrl && (
-          <StickerEditModal
-            imageSrc={pendingAttachUrl}
-            onSave={handleAttachEditComplete}
-            onCancel={handleAttachEditCancel}
-          />
-        )}
-      </AnimatePresence>
-    </>
+      {isCropModalOpen && rawUploadUrl && (
+        <StickerEditModal
+          imageSrc={rawUploadUrl}
+          onSave={(croppedUrl) => {
+            setReferenceImageUrl(croppedUrl);
+            setIsCropModalOpen(false);
+          }}
+          onCancel={() => {
+            setIsCropModalOpen(false);
+            setRawUploadUrl(null);
+          }}
+        />
+      )}
+    </div>,
+    document.body
   );
 }

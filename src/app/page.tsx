@@ -11,6 +11,7 @@ import { NewA4Visualizer } from "@/components/creator/NewA4Visualizer";
 import { A4Visualizer3D } from "@/components/creator/A4Visualizer3D";
 import { StickerEditModal } from "@/components/creator/StickerEditModal";
 import { AIGenerator } from "@/components/creator/AIGenerator";
+import { JsonLd } from "@/components/seo/JsonLd";
 import { PlacedSticker } from "@/types/creator";
 import { useCartStore } from "@/store/cartStore";
 import { checkOverlap, getRotatedSize, getCutLineMargins, getOuterMargins, getCutLineBoundingBox, checkStickersCollision, clampToUsableArea } from "@/lib/utils/collision";
@@ -21,7 +22,6 @@ import { storage } from "@/lib/firebase/client";
 import { useRouter } from "next/navigation";
 import {
   UploadCloud,
-  Wand2,
   Plus,
   Minus,
   ShoppingCart,
@@ -43,7 +43,8 @@ import {
   ChevronDown,
   ChevronUp,
   Edit3,
-  Eye
+  Eye,
+  Wand2
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -85,6 +86,7 @@ export default function Home() {
   const [visualizerMode, setVisualizerMode] = useState<"2d" | "3d">("2d");
   const [editCartItemId, setEditCartItemId] = useState<string | null>(null);
   const [overlappingStickerIds, setOverlappingStickerIds] = useState<string[]>([]);
+  const [isAIGeneratorOpen, setIsAIGeneratorOpen] = useState(false);
 
   // Mount state for hydration check
   const [mounted, setMounted] = useState(false);
@@ -244,7 +246,7 @@ export default function Home() {
   // Modals & Panels
   const [showEditModal, setShowEditModal] = useState(false);
   const [activeEditSticker, setActiveEditSticker] = useState<PlacedSticker | null>(null);
-  const [addingMethod, setAddingMethod] = useState<"none" | "upload" | "ai">("none");
+  const [addingMethod, setAddingMethod] = useState<"none" | "upload">("none");
   const [pendingImageUrl, setPendingImageUrl] = useState<string | null>(null);
 
   // Loaders
@@ -1702,6 +1704,25 @@ export default function Home() {
 
   return (
     <div className="flex flex-col min-h-screen text-foreground relative">
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "Product",
+          name: "Personalizowane naklejki A4 wycinane po obrysie",
+          description: "Wydrukuj swoje własne, personalizowane naklejki na arkuszach A4 w prosty i przyjemny sposób. Wytniemy je idealnie po kształcie Twoich grafik.",
+          image: "https://www.malenaklejki.pl/images/logo/favicon.png",
+          offers: {
+            "@type": "Offer",
+            url: "https://www.malenaklejki.pl",
+            priceCurrency: "PLN",
+            availability: "https://schema.org/InStock",
+            seller: {
+              "@type": "Organization",
+              name: "MałeNaklejki"
+            }
+          }
+        }}
+      />
       {/* Sticky Top Notification */}
       {error && (
         <div className="fixed top-5 left-1/2 -translate-x-1/2 z-[100] max-w-md w-full px-4 animate-in fade-in slide-in-from-top duration-300">
@@ -1709,7 +1730,7 @@ export default function Home() {
             <span className="text-sm font-extrabold">{error}</span>
             <button
               onClick={() => setError(null)}
-              className="text-xs bg-red-100 hover:bg-red-200 dark:bg-red-900/30 dark:hover:bg-red-900 text-red-600 dark:text-red-300 p-1 px-2.5 rounded-lg transition-all"
+              className="text-xs bg-red-100 hover:bg-red-200 dark:bg-red-900/30 dark:hover:bg-red-900 text-red-600 dark:text-red-300 p-1 px-2.5 rounded-lg transition-all cursor-pointer"
             >
               Zamknij
             </button>
@@ -1738,7 +1759,7 @@ export default function Home() {
               Dodaj Naklejki na Arkusz
             </h1>
             <p className="text-muted-foreground text-sm font-semibold mt-1 theme-subtitle">
-              Dodaj różne naklejki lub stwórz je za pomocą naszego generatora obrazów.
+              Dodaj własne naklejki i spersonalizuj swój arkusz.
             </p>
           </div>
 
@@ -1758,7 +1779,7 @@ export default function Home() {
                   <div className="grid grid-cols-2 gap-4">
                     {/* Unified Direct File Picker */}
                     <label
-                      className="flex flex-col items-center justify-center p-6 border-2 border-dashed border-foreground/20 dark:border-foreground/30 hover:border-primary/45 rounded-2xl bg-muted/10 hover:bg-muted/30 transition-all hover:scale-[1.01] active:scale-[0.99] cursor-pointer"
+                      className="flex flex-col items-center justify-center p-6 border-2 border-dashed border-foreground/20 dark:border-foreground/30 hover:border-primary/45 rounded-2xl bg-muted/10 hover:bg-muted/30 transition-all hover:scale-[1.01] active:scale-[0.99] cursor-pointer h-full group"
                     >
                       <input
                         type="file"
@@ -1771,66 +1792,21 @@ export default function Home() {
                         }}
                       />
                       <UploadCloud className="w-8 h-8 text-muted-foreground group-hover:text-primary mb-2 opacity-75" />
-                      <span className="text-sm font-bold text-foreground">Dodaj naklejkę</span>
-                      <span className="text-[10px] font-semibold text-muted-foreground mt-0.5">Zdjęcie JPG / PNG</span>
+                      <span className="text-sm font-bold text-foreground text-center">Dodaj Naklejkę</span>
+                      <span className="text-[10px] font-semibold text-muted-foreground mt-0.5 text-center">Zdjęcie JPG / PNG</span>
                     </label>
 
+                    {/* AI Generator Button */}
                     <button
-                      onClick={() => setAddingMethod("ai")}
-                      className="flex flex-col items-center justify-center p-6 border-2 border-dashed border-foreground/20 dark:border-foreground/30 hover:border-secondary/45 rounded-2xl bg-muted/10 hover:bg-muted/30 transition-all hover:scale-[1.01] cursor-pointer"
+                      onClick={() => setIsAIGeneratorOpen(true)}
+                      className="flex flex-col items-center justify-center p-6 border-2 border-dashed border-foreground/20 dark:border-foreground/30 hover:border-primary/45 rounded-2xl bg-muted/10 hover:bg-muted/30 transition-all hover:scale-[1.01] active:scale-[0.99] cursor-pointer h-full group"
                     >
-                      <Wand2 className="w-8 h-8 text-muted-foreground group-hover:text-secondary mb-2 opacity-75" />
-                      <span className="text-sm font-bold text-foreground">Wygeneruj naklejkę</span>
-                      <span className="text-[10px] font-semibold text-muted-foreground mt-0.5">Opisz swój pomysł</span>
+                      <Wand2 className="w-8 h-8 text-muted-foreground group-hover:text-primary mb-2 opacity-75" />
+                      <span className="text-sm font-bold text-foreground text-center">Wygeneruj Naklejkę</span>
+                      <span className="text-[10px] font-semibold text-muted-foreground mt-0.5 text-center">Opisz co chcesz stworzyć</span>
                     </button>
                   </div>
                 </div>
-              )}
-
-              {addingMethod === "ai" && (
-                <>
-                  {/* Mobile Background Overlay */}
-                  <div
-                    className="fixed inset-0 z-[9998] bg-background/60 backdrop-blur-[2px] sm:hidden animate-in fade-in duration-300"
-                    onClick={() => setAddingMethod("none")}
-                  />
-                  {/* Modal / Desktop Panel */}
-                  <div className="fixed inset-x-0 bottom-0 z-[9999] max-h-[85dvh] rounded-t-[2rem] border-t border-border/50 shadow-[0_-10px_40px_rgba(0,0,0,0.1)] dark:shadow-[0_-10px_40px_rgba(0,0,0,0.5)] flex flex-col p-5 sm:relative sm:z-auto sm:max-h-none sm:rounded-3xl sm:border sm:border-border/40 sm:shadow-sm sm:p-6 liquid-glass sm:block animate-in slide-in-from-bottom-full sm:animate-none space-y-4">
-                    <div className="flex justify-between items-center pb-4 sm:pb-2 border-b border-border/20 sm:mb-4 pt-2 sm:pt-0">
-                      <span className="text-sm sm:text-xs font-black uppercase tracking-wider text-muted-foreground">
-                        Tworzenie przez Generator
-                      </span>
-                      <button
-                        onClick={() => setAddingMethod("none")}
-                        className="text-muted-foreground hover:text-foreground bg-muted/40 hover:bg-muted/70 p-1.5 sm:px-3 sm:py-1.5 rounded-md transition-all active:scale-95"
-                      >
-                        <X className="w-5 h-5 sm:hidden" />
-                        <span className="hidden sm:inline text-xs font-bold">Anuluj</span>
-                      </button>
-                    </div>
-
-                    <div className="flex-1 overflow-y-auto sm:overflow-visible pb-10 sm:pb-0">
-                      <AIGenerator
-                        onImageGenerated={(url) => {
-                          setPendingImageUrl(url);
-                          // Open crop/bg removal modal for AI generated sticker immediately
-                          setActiveEditSticker({
-                            id: "new-ai",
-                            imageUrl: url,
-                            x: 15,
-                            y: 15,
-                            widthCm: 5,
-                            heightCm: 5,
-                            aspectRatio: 1,
-                            cutLineType: "none",
-                          });
-                          setShowEditModal(true);
-                          setVisualizerMode("2d");
-                        }}
-                      />
-                    </div>
-                  </div>
-                </>
               )}
 
               {/* 2. Selected Sticker Manager */}
@@ -2347,16 +2323,21 @@ export default function Home() {
                 <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background/95 via-background/70 to-transparent pointer-events-none" />
 
                 <div className="relative px-4 pb-5 pt-2 pointer-events-auto">
-                  <div className="w-full flex gap-2 liquid-glass border border-border/40 p-2 rounded-[28px] shadow-[0_-8px_30px_rgba(0,0,0,0.08)] dark:shadow-[0_-8px_30px_rgba(0,0,0,0.3)]">
-                    <label className="flex-1 flex items-center justify-center gap-2 py-3 px-3 rounded-3xl bg-primary hover:bg-primary/90 border border-primary/20 transition-all active:scale-[0.98] cursor-pointer shadow-sm">
-                      <input type="file" accept="image/*" className="hidden" onChange={(e) => { const file = e.target.files?.[0]; if (file) handleMobileFileUpload(file); e.target.value = ""; }} />
-                      <UploadCloud className="w-6 h-6 text-white" />
-                      <span className="text-[12px] font-extrabold text-white leading-tight text-left">Dodaj<br />naklejkę</span>
-                    </label>
-                    <button onClick={() => { setAddingMethod("ai"); }} className="flex-1 flex items-center justify-center gap-2 py-3 px-3 rounded-3xl bg-primary hover:bg-primary/90 border border-primary/20 transition-all active:scale-[0.98] cursor-pointer shadow-sm">
-                      <Wand2 className="w-[22px] h-[22px] text-white" />
-                      <span className="text-[12px] font-extrabold text-white leading-tight text-left">Wygeneruj<br />naklejkę</span>
-                    </button>
+                  <div className="w-full liquid-glass border border-border/40 p-2 rounded-[28px] shadow-[0_-8px_30px_rgba(0,0,0,0.08)] dark:shadow-[0_-8px_30px_rgba(0,0,0,0.3)]">
+                    <div className="grid grid-cols-2 gap-2">
+                      <label className="w-full flex items-center justify-center gap-2 py-3.5 px-2 rounded-3xl bg-primary hover:bg-primary/90 border border-primary/20 transition-all active:scale-[0.98] cursor-pointer shadow-sm">
+                        <input type="file" accept="image/*" className="hidden" onChange={(e) => { const file = e.target.files?.[0]; if (file) handleMobileFileUpload(file); e.target.value = ""; }} />
+                        <UploadCloud className="w-5 h-5 text-white" />
+                        <span className="text-xs font-extrabold text-white">Dodaj naklejkę</span>
+                      </label>
+                      <button
+                        onClick={() => setIsAIGeneratorOpen(true)}
+                        className="w-full flex items-center justify-center gap-2 py-3.5 px-2 rounded-3xl bg-primary hover:bg-primary/90 border border-primary/20 transition-all active:scale-[0.98] cursor-pointer shadow-sm text-white"
+                      >
+                        <Wand2 className="w-5 h-5 text-white" />
+                        <span className="text-xs font-extrabold text-white text-center">Wygeneruj Naklejkę</span>
+                      </button>
+                    </div>
                   </div>
                 </div>
               </motion.div>
@@ -2818,6 +2799,19 @@ export default function Home() {
           >
             <ArrowUp className="w-5 h-5" />
           </motion.button>
+        )}
+      </AnimatePresence>
+
+      {/* AI Generator Modal */}
+      <AnimatePresence>
+        {isAIGeneratorOpen && (
+          <AIGenerator
+            onClose={() => setIsAIGeneratorOpen(false)}
+            onStickerGenerated={(url) => {
+              processAndAddSticker(url);
+              setIsAIGeneratorOpen(false);
+            }}
+          />
         )}
       </AnimatePresence>
 
