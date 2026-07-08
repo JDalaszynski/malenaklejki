@@ -107,3 +107,10 @@ Realizacja trwa do 3 dni roboczych od momentu złożenia i opłacenia zamówieni
 Jeśli zdjęcie jest dobrze oświetlone i wyraźne, efekt jest bardzo dobry. Kreator wytnie naklejkę po obrysie rysunku, dzięki czemu wygląda jak miniaturowe dzieło sztuki na folii.
 
 <a href="/" style="display: inline-block; background-color: #02af7a; color: #ffffff; padding: 14px 28px; text-decoration: none; border-radius: 8px; font-weight: 600; font-size: 18px; margin-top: 24px; text-align: center;">Zrób naklejkę ze zdjęcia</a>
+
+
+<!-- Pinterest Hidden Pins -->
+<div style="display: none;" data-pin-media="true">
+  <img src="/blog/naklejka-ze-zdjecia-jak-przeniesc-wspomnienia-na-naklejke-pin-1.png" alt="1.  Twoje zdjęcie na naklejce" />
+  <img src="/blog/naklejka-ze-zdjecia-jak-przeniesc-wspomnienia-na-naklejke-pin-2.png" alt="1.  Twoje zdjęcie na naklejce" />
+</div>
