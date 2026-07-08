@@ -154,7 +154,13 @@ export default async function BlogPostPage({ params }: PageProps) {
               [&_ol]:list-decimal [&_ol]:pl-6 [&_ol]:space-y-2 [&_ol]:mb-6
               [&_li]:text-sm [&_li]:sm:text-base
               [&_blockquote]:border-l-4 [&_blockquote]:border-primary [&_blockquote]:pl-4 [&_blockquote]:italic [&_blockquote]:text-muted-foreground
-              [&_hr]:border-t [&_hr]:border-border/60 [&_hr]:my-8"
+              [&_hr]:border-t [&_hr]:border-border/60 [&_hr]:my-8
+              [&_img]:rounded-2xl [&_img]:shadow-sm [&_img]:border [&_img]:border-border/40 [&_img]:mx-auto [&_img]:my-8 [&_img]:block [&_img]:w-full [&_img]:md:max-w-2xl
+              [&_table]:w-full [&_table]:my-8 [&_table]:border-separate [&_table]:border-spacing-0 [&_table]:border [&_table]:border-border/60 [&_table]:rounded-2xl [&_table]:overflow-hidden [&_table]:shadow-sm [&_table]:bg-white [&_table]:dark:bg-[#003a3b]/40
+              [&_th]:bg-[#edf6f2] [&_th]:dark:bg-[#002c2e] [&_th]:text-foreground [&_th]:font-black [&_th]:p-3 [&_th]:sm:p-4 [&_th]:text-left [&_th]:border-b [&_th]:border-border/60
+              [&_td]:p-3 [&_td]:sm:p-4 [&_td]:border-b [&_td]:border-border/60 [&_td]:text-foreground/80 [&_td]:dark:text-[#a0d4c8] [&_td]:font-semibold
+              [&_tr:nth-child(even)]:bg-[#edf6f2]/20 [&_tr:nth-child(even)]:dark:bg-[#002c2e]/10
+              [&_tr:last-child_td]:border-b-0"
             dangerouslySetInnerHTML={{ __html: post.content }}
           />
         </article>

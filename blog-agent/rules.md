@@ -71,5 +71,6 @@ Konwersja i E-E-A-T: Zawsze wplatam kontekstowe CTA kierujące do kreatora onlin
 
 ## 8. Organizacja plików zdjęć (Struktura folderów)
 * **Podział na foldery artykułów:** Wszystkie grafiki powiązane z danym wpisem na blogu (zarówno zdjęcie główne/okładkowe `image`, jak i zdjęcia w treści) muszą być umieszczone w dedykowanym folderze o nazwie sluga tego artykułu: `/public/blog/<slug-artykulu>/`.
+* **Zasada tworzenia folderu:** Kiedy zostaniesz poproszony o wygenerowanie nowego artykułu, pierwszym krokiem przed rozpoczęciem pisania musi być ustalenie sluga artykułu i utworzenie dla niego pustego katalogu `public/blog/<slug-artykulu>/`, tak aby użytkownik mógł od razu wgrać tam zdjęcia.
 * **Ścieżki w Markdown:** W nagłówku YAML oraz w treści artykułu odnoś się do grafik za pomocą ścieżek relatywnych do katalogu publicznego: `/blog/<slug-artykulu>/nazwa-obrazu.jpg` (np. `/blog/naklejka-ze-zdjecia-jak-przeniesc-wspomnienia-na-naklejke/moje-zdjecie.jpg`).
 * **Przykłady nazw plików:** Staraj się nazywać zdjęcia w sposób czytelny i SEO-friendly, oddzielając wyrazy dywizami (np. `kreator-online-usuwanie-tla.jpg`), i zawsze umieszczaj je wyłącznie w folderze tego konkretnego wpisu.

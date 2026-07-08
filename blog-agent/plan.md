@@ -8,22 +8,25 @@ Możesz dodawać nowe tematy, zachowując format wcięć pod spodem.
 
 ## 📝 Zaplanowane Artykuły (Do napisania przez AI)
 
-
-
-
-
-- [ ] **Naklejki z własnym napisem - jak przygotować plik i zamówić online**
+- [x] **Naklejki z własnym napisem - jak przygotować plik i zamówić online** (opublikowano 2026-07-08)
     - **Format:** Supporting Article
     - **Główna Fraza Kluczowa:** `naklejka z wlasnym napisem` / `naklejki z wlasnym napisem`
     - **Cel:** Edukacja
     - **Persona:** Klienci indywidualni, pary młode, organizatorzy imprez
     - **Link nadrzędny (Filar):** `/blog/jak-zamowic-idealne-naklejki-na-zamowienie-z-wlasnym-nadrukiem`
 
+
 - [ ] **Drukowanie naklejek online - na co zwrócić uwagę przed wysyłką projektu?**
     - **Format:** Pillar Page
     - **Główna Fraza Kluczowa:** `drukowanie naklejek online` / `naklejki na zamowienie cena`
     - **Cel:** Edukacja
     - **Persona:** Mikroprzedsiębiorstwa, artyści, graficy, agencje reklamowe
+    - **Prompty do generowania zdjęć:**
+        - "Zdjęcie z bliska przedstawiające arkusz A4 z wydrukowanymi, błyszczącymi naklejkami o różnych wzorach i kolorach leżący na biurku grafika komputerowego obok klawiatury i myszki, ostre szczegóły."
+        - "Projektant przy pracy w jasnym studiu, na ekranie monitora widać otwarty program graficzny z projektem kolorowych naklejek z liniami cięcia, obok na biurku leżą wydrukowane próbki, realistyczne zdjęcie."
+        - "Zbliżenie na arkusz zadrukowanej folii samoprzylepnej wysuwający się z nowoczesnej, profesjonalnej cyfrowej maszyny drukarskiej, żywe kolory, widoczna tekstura materiału."
+        - "Zbliżenie na arkusz próbny z wydrukowanymi naklejkami przedstawiającymi klasyczny obraz 'Gwiaździsta Noc' Van Gogha oraz urocze zdjęcie kota rasy brytyjski krótkowłosy w wysokiej rozdzielczości, widoczne linie cięcia, jasne studio."
+        - "Dłoń trzymająca świeżo wydrukowaną naklejkę wyciętą po obrysie ze zdjęcia z wakacji, na której widać parę stojącą na szczycie góry Giewont w Tatrach, w tle rozmyte biurko drukarni, ostre detale."
 
 - [ ] **Naklejki własnego projektu na słoiki z przyprawami - zorganizuj swoją kuchnię**
     - **Format:** Supporting Article
@@ -31,6 +34,12 @@ Możesz dodawać nowe tematy, zachowując format wcięć pod spodem.
     - **Cel:** Edukacja
     - **Persona:** Fani organizacji domu, panie/panowie domu, pasjonaci kulinarni
     - **Link nadrzędny (Filar):** `/blog/drukowanie-naklejek-online-na-co-zwrocic-uwage-przed-wysylka-projektu`
+    - **Prompty do generowania zdjęć:**
+        - "Estetyczna, nowoczesna kuchnia. Na drewnianej półce stoi rząd identycznych szklanych słoiczków z przyprawami, każdy z nich ma naklejoną minimalistyczną, czarną naklejkę z białą nazwą przyprawy (np. 'BAZYLIA', 'OREGANO'), jasny i czysty kadr."
+        - "Zbliżenie na dłoń trzymającą szklany słoiczek z czerwoną papryką w proszku, na słoiczku naklejona jest estetyczna etykieta w stylu skandynawskim, w tle inne uporządkowane słoiki na kuchennym blacie."
+        - "Zorganizowana szuflada kuchenna z przyprawami widziana z góry. Szklane słoiczki leżą obok siebie, a na ich zakrętkach naklejone są okrągłe, beżowe etykiety z wyraźnymi napisami, styl minimalistyczny."
+        - "Półka w spiżarni z poukładanymi słoikami z przyprawami i suchymi produktami, każdy słoik z czystą białą naklejką o czytelnym kroju pisma, w tle ciepłe oświetlenie w stylu skandynawskim."
+        - "Zbliżenie na szklany słoiczek z przyprawą stojący na drewnianym blacie, na słoiczku naklejona jest etykieta z realistyczną, klasyczną ilustracją botaniczną przedstawiającą krzew cynamonowca w stylu dawnych rycin naukowych."
 
 - [ ] **Co to jest die cut i kiss-cut? Różnice w cięciu naklejek reklamowych**
     - **Format:** Supporting Article
@@ -38,6 +47,12 @@ Możesz dodawać nowe tematy, zachowując format wcięć pod spodem.
     - **Cel:** Edukacja
     - **Persona:** Artyści, e-commerce, firmy zamawiające merch
     - **Link nadrzędny (Filar):** `/blog/drukowanie-naklejek-online-na-co-zwrocic-uwage-przed-wysylka-projektu`
+    - **Prompty do generowania zdjęć:**
+        - "Zdjęcie porównawcze na jasnym tle: po lewej naklejka die-cut wycięta całkowicie wraz z papierem podkładowym po obrysie, po prawej naklejka kiss-cut odklejana z większego prostokątnego arkusza folii, ostre oświetlenie studyjne."
+        - "Dłoń trzymająca kolorową naklejkę w kształcie rysunkowego kota wyciętą po obrysie (die-cut), lekko odklejany róg odsłaniający biały papier podkładowy, profesjonalne zdjęcie makro."
+        - "Stosik gotowych, kolorowych naklejek reklamowych o nieregularnych kształtach leżących na białym stole roboczym, widoczne precyzyjne krawędzie cięcia, ostre detale, realistyczne zdjęcie produktowe."
+        - "Dłoń trzymająca wyciętą po obrysie (die-cut) naklejkę wykonaną z prywatnego zdjęcia wesołego psa rasy Pembroke Welsh Corgi siedzącego na zielonej trawie, widoczny biały margines i róg papieru podkładowego, jasne tło."
+        - "Kolekcja naklejek kiss-cut na jednym arkuszu, przedstawiających miniaturowe wersje słynnych dzieł sztuki, w tym obrazów 'Krzyk' Muncha oraz 'Mona Lisa' Leonarda da Vinci, leżący na biurku artysty."
 
 - [ ] **Personalizowane naklejki na zeszyty i do przedszkola - ułatw życie swojemu dziecku**
     - **Format:** Supporting Article
@@ -45,6 +60,12 @@ Możesz dodawać nowe tematy, zachowując format wcięć pod spodem.
     - **Cel:** Sprzedaż
     - **Persona:** Rodzice dzieci w wieku przedszkolnym i szkolnym
     - **Link nadrzędny (Filar):** `/blog/jak-zamowic-idealne-naklejki-na-zamowienie-z-wlasnym-nadrukiem`
+    - **Prompty do generowania zdjęć:**
+        - "Kolorowe naklejki z imieniem dziecka i małą ikonką rakiety naklejone na zeszyt szkolny, plastikowy bidon oraz piórnik leżące na biurku ucznia, jasne i przyjazne oświetlenie."
+        - "Zdjęcie z góry przedstawiające otwarty plecak dziecięcy, z którego wystaje bidon i pudełko śniadaniowe z naklejonymi trwałymi, kolorowymi etykietami imiennymi, styl skandynawski, pastelowe barwy."
+        - "Dziecięca dłoń naklejająca małą, okrągłą naklejkę z rysunkiem misia i imieniem dziecka na niebieski zeszyt szkolny, zbliżenie, ciepłe domowe światło."
+        - "Kolorowy zeszyt szkolny z naklejoną na okładce etykietą ze zdjęciem domowego pupila - puszystego chomika syryjskiego w trocinach - obok napisu 'Zeszyt do przyrody, Emilka', zdjęcie w ciepłym świetle na biurku."
+        - "Pamiętnik z wakacji oklejony prostokątną naklejką ze wspólnego zdjęcia rodzeństwa na piaszczystej plaży nad Bałtykiem przy zachodzie słońca (naturalna poza), obok pamiętnika leżą muszelki i kolorowe pisaki."
 
 - [ ] **Naklejki na nalewki domowe - jak estetycznie ozdobić butelki na nalewki?**
     - **Format:** Supporting Article
@@ -52,6 +73,12 @@ Możesz dodawać nowe tematy, zachowując format wcięć pod spodem.
     - **Cel:** Sprzedaż / Edukacja
     - **Persona:** Pasjonaci domowych alkoholi, twórcy nalewek, pszczelarze
     - **Link nadrzędny (Filar):** `/blog/jak-zamowic-idealne-naklejki-na-zamowienie-z-wlasnym-nadrukiem`
+    - **Prompty do generowania zdjęć:**
+        - "Trzy szklane butelki wypełnione bursztynową nalewką stojące na rustykalnym, drewnianym stole. Na każdej butelce naklejona jest ozdobna, papierowa naklejka w stylu retro z napisem 'Nalewka Wiśniowa 2026', obok leżą świeże owoce wiśni."
+        - "Zbliżenie na dłoń naklejającą elegancką, prostokątną etykietę z motywem roślinnym na butelkę z domową nalewką z pigwy, w tle rozmyte butelki w piwniczce, ciepłe i klimatyczne oświetlenie."
+        - "Estetyczne zdjęcie produktowe butelki z domowym alkoholem z ozdobną naklejką o nieregularnym kształcie, na naklejce widnieje napis 'Domowy Likier' i miejsce na wpisanie daty, w tle zielone gałązki ziół."
+        - "Rząd butelek z domowymi nalewkami o głębokich, rubinowych i złotych kolorach, stojących na półce w ciemnej piwnicy, każda z klasyczną, czarno-białą etykietą z kaligraficznym pismem."
+        - "Butelka domowego wina z naklejoną etykietą ozdobioną motywem malarskim w stylu impresjonizmu Claude Moneta przedstawiającym winobranie, na drewnianym stole obok kiści ciemnych winogron, nastrojowe oświetlenie."
 
 - [ ] **Jak zrobić własne naklejki w telefonie - proste aplikacje i triki**
     - **Format:** Supporting Article
@@ -59,6 +86,12 @@ Możesz dodawać nowe tematy, zachowując format wcięć pod spodem.
     - **Cel:** Edukacja
     - **Persona:** Nastolatki, twórcy social media, klienci indywidualni
     - **Link nadrzędny (Filar):** `/blog/drukowanie-naklejek-online-na-co-zwrocic-uwage-przed-wysylka-projektu`
+    - **Prompty do generowania zdjęć:**
+        - "Dłoń trzymająca nowoczesny smartfon nad jasnym biurkiem. Na ekranie telefonu widać aplikację do wycinania tła ze zdjęcia psa, aby stworzyć z niego naklejkę. Obok telefonu leży gotowa, wydrukowana fizyczna nakkejka z tym samym psem."
+        - "Nastolatka siedząca na kanapie w pokoju, trzymająca smartfon i projektująca naklejkę, naturalne światło dzienne, kadr z boku pokazujący uśmiechniętą twarz i telefon."
+        - "Z bliska ekran smartfona z aplikacją graficzną, na którym wyświetlany jest kolorowy kolaż z napisami przygotowywany jako projekt naklejek, w tle rozmyty pokój młodzieżowy."
+        - "Ekran telefonu, na którym użytkownik wycina w aplikacji naklejkę z prywatnego zdjęcia ze wspólnego citybreaku w Rzymie (uśmiechnięta para przed Koloseum), w tle na stole leżą gotowe wydrukowane naklejki."
+        - "Smartfon z otwartym edytorem zdjęć pokazujący proces zamiany zdjęcia puszystego kota rasy Ragdoll w naklejkę poprzez automatyczne usuwanie tła, wokół telefonu leżą inne naklejki ze zwierzętami."
 
 - [ ] **Naklejki mały nakład - jak zamówić pojedyncze sztuki bez przepłacania?**
     - **Format:** Supporting Article
@@ -66,6 +99,12 @@ Możesz dodawać nowe tematy, zachowując format wcięć pod spodem.
     - **Cel:** Sprzedaż
     - **Persona:** Klienci indywidualni, mikro-brandy, fani wlepek
     - **Link nadrzędny (Filar):** `/blog/drukowanie-naklejek-online-na-co-zwrocic-uwage-przed-wysylka-projektu`
+    - **Prompty do generowania zdjęć:**
+        - "Zdjęcie przedstawiające zaledwie kilka sztuk różnych naklejek z autorskimi grafikami leżących obok siebie na tekturowym pudełku wysyłkowym, minimalistyczna kompozycja, profesjonalna fotografia produktowa."
+        - "Dłoń wyjmująca z małej koperty bąbelkowej kilka kolorowych naklejek z logo lokalnej kawiarni, w tle rozmyte wnętrze kawiarni, naturalne oświetlenie."
+        - "Kilka różnych, unikalnych naklejek na zamówienie naklejonych obok siebie na pokrywę zamkniętego laptopa stojącego na stoliku w kawiarni, zbliżenie, nowoczesny styl."
+        - "Kilka pojedynczych naklejek leżących na biurku, w tym jedna w kształcie głowy psa rasy Jack Russell Terrier wycięta ze zdjęcia, druga ze zdjęciem z wakacji na skuterze w Barcelonie na tle kościoła Sagrada Familia, a trzecia z własną grafiką."
+        - "Dłoń naklejająca na obudowę tabletu unikalną, pojedynczą naklejkę będącą reprodukcją fragmentu obrazu 'Stworzenie Adama' Michała Anioła, nowoczesna, minimalistyczna aranżacja."
 
 - [ ] **Wklepki i wlepy z własnym nadrukiem dla artystów i społeczności**
     - **Format:** Supporting Article
@@ -73,6 +112,14 @@ Możesz dodawać nowe tematy, zachowując format wcięć pod spodem.
     - **Cel:** Sprzedaż
     - **Persona:** Artyści, ilustratorzy, fani muzyki, kluby sportowe
     - **Link nadrzędny (Filar):** `/blog/drukowanie-naklejek-online-na-co-zwrocic-uwage-przed-wysylka-projektu`
+    - **Prompty do generowania zdjęć:**
+        - "Młody artysta siedzący przy biurku w swoim studiu pełnym plakatów i farb, trzymający w rękach plik świeżo wydrukowanych, kolorowych wlepek z własnymi grafikami, naturalne, artystyczne światło."
+        - "Zbliżenie na czarną deskorolkę i kask rowerowy gęsto oklejone różnorodnymi, kolorowymi wlepkami o tematyce streetwear i skate, zdjęcie wykonane na tle szarego betonu."
+        - "Stosik grubych, matowych wlepek z komiksowymi postaciami i wyrazistymi napisami leżący na stole obok czarnego szkicownika i markerów graficznych, ostre cienie, styl miejski."
+        - "Zbliżenie na czarną okładkę notesu artysty leżącego na stole, na której naklejone są wlepki z reprodukcjami klasycznych rzeźb w stylu glitch art oraz rysunkami przedstawiającymi koty rasy Maine Coon w zabawnych pozach."
+        - "Dłonie artysty przygotowującego paczki z merchem dla fanów: wkładanie kolorowych wlep do kopert obok plakatów, w tym wlepki z reprodukcją obrazu Vincenta van Gogha oraz logotypami zespołów muzycznych."
+        - "Widok z bliska na tył gitary elektrycznej, na której naklejone są liczne, alternatywne wklepki muzyczne i artystyczne o różnych fakturach, rockowy klimat, nastrojowe oświetlenie."
+        - "Dłonie artysty przygotowującego paczki z merchem dla fanów: wkładanie kolorowych wlep do kopert obok plakatów, zorganizowane stanowisko pracy, ujęcie z góry."
 
 ---
 

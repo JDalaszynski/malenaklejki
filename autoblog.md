@@ -7,6 +7,7 @@ Jako agent AI jesteś odpowiedzialny za proces tworzenia i publikacji nowych art
 2. Otwórz plik `blog-agent/plan.md` i znajdź pierwszy niezrealizowany temat z listy (oznaczony jako `- [ ]`).
 3. Odczytaj wszystkie metadane podpięte pod ten temat (Format, Główna Fraza Kluczowa, Cel, Persona, Link nadrzędny).
 4. Przeanalizuj istniejące już artykuły w katalogu `src/content/blog/` (tytuły i ich webowe "slugi"), aby mieć bazę do linkowania wewnętrznego.
+5. **UTWÓRZ PUSTY FOLDER NA ZDJĘCIA:** Określ ostateczny slug dla artykułu i przed przystąpieniem do pisania utwórz pusty katalog pod ścieżką `public/blog/{slug}/`. Poinformuj użytkownika, że folder został stworzony i poproś o ewentualne wgranie zdjęć.
 
 ## Krok 2: Pisanie Artykułu
 Na podstawie zebranych informacji wygeneruj treść artykułu.
