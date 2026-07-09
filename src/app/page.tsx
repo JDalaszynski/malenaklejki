@@ -497,6 +497,16 @@ export default function Home() {
       setSelectedStickerId(newSticker.id);
       setAddingMethod("none");
       setIsPlacingSticker(false);
+
+      // Scroll to the visualizer sheet on mobile devices when adding a sticker
+      if (typeof window !== "undefined" && window.matchMedia("(max-width: 639px)").matches) {
+        setTimeout(() => {
+          const target = visualizerRef.current || document.getElementById("sheet-preview-section");
+          if (target) {
+            target.scrollIntoView({ behavior: "smooth", block: "start" });
+          }
+        }, 150);
+      }
     };
 
     img.onerror = () => {

@@ -3,6 +3,11 @@ import path from 'path';
 import sharp from 'sharp';
 import { GoogleGenAI } from "@google/genai";
 import * as dotenv from 'dotenv';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 dotenv.config({ path: path.join(__dirname, '..', '.env.local') });
 
 const genAI = new GoogleGenAI({
@@ -83,9 +88,9 @@ Dla formatu "4. Pinterest Pin": W artykule znajduje się dokładnie ${images.len
 Każdy zestaw musi zawierać:
 - **Tytuł Pinu [Numer Zestawu]:** (unikalny chwytliwy tytuł, nawiązujący DO TEGO CO JEST NA KONKRETNYM ZDJĘCIU)
 - **Opis Pinu [Numer Zestawu]:** (unikalny opis ze słowami kluczowymi, mocno osadzony w kontekście danego zdjęcia)
-- **CTA [Numer Zestawu]:** (DOKŁADNIE 1 unikalne, bardzo krótkie, silnie sprzedażowe wezwanie do akcji na grafikę, np. 2-4 słowa. MUSI WPROST NAWIĄZYWAĆ DO TEGO CO JEST NA ZDJĘCIU, np. jeśli na zdjęciu jest ślub, użyj "ZAMÓW NAKLEJKI NA WESELE", jeśli kot, "WGRAJ ZDJĘCIE KOTA" itp. CTA musi być napisane W CAŁOŚCI WIELKIMI LITERAMI / KAPITALIKAMI).
+- **CTA [Numer Zestawu]:** (DOKŁADNIE 1 unikalne, bardzo krótkie, silnie sprzedażowe wezwanie do akcji na grafikę, np. 2-4 słowa. MUSI WPROST NAWIĄZYWAĆ DO TEGO CO JEST NA ZDJĘCIU, np. jeśli na zdjęciu jest ślub, użyj "Zamów Naklejki na Wesele", jeśli kot, "Wgraj Zdjęcie Kota" itp. CTA musi być napisane w stylu Title Case, czyli z wielkich liter, np. "Zamów Naklejki na Wesele").
 
-Koniecznie przypilnuj, aby każdy zestaw miał zupełnie inne CTA na grafikę. Kategorycznie unikaj słów związanych z projektowaniem (np. "zaprojektuj", "projektuj", "zaprojektować", "projektowanie") we wszystkich tytułach, opisach oraz CTA! Klient nie projektuje naklejek - po prostu wgrywa zdjęcie z telefonu, a my sami wycinamy je po obrysie w kreatorze. Używaj zamiast tego: "wgraj", "zamów", "stwórz", "zrób". Wszystkie CTA muszą mieć wydźwięk sprzedażowy (sprzedaż/zamówienie/wgranie zdjęcia) i być zapisane KAPITALIKAMI. Nie używaj pogrubień wewnątrz tekstu tytułu, opisu ani CTA.
+Koniecznie przypilnuj, aby każdy zestaw miał zupełnie inne CTA na grafikę. Kategorycznie unikaj słów związanych z projektowaniem (np. "zaprojektuj", "projektuj", "zaprojektować", "projektowanie") we wszystkich tytułach, opisach oraz CTA! Klient nie projektuje naklejek - po prostu wgrywa zdjęcie z telefonu, a my sami wycinamy je po obrysie w kreatorze. Używaj zamiast tego: "wgraj", "zamów", "stwórz", "zrób". Wszystkie CTA muszą mieć wydźwięk sprzedażowy (sprzedaż/zamówienie/wgranie zdjęcia) i być zapisane w stylu Title Case (z wielkich liter, np. "Zamów Naklejki na Wesele"). Nie używaj pogrubień wewnątrz tekstu tytułu, opisu ani CTA.
 
 Zwróć wynik jako sformatowany Markdown (używając nagłówków H2 dla każdego formatu).
 `;
@@ -155,9 +160,9 @@ Zwróć wynik jako sformatowany Markdown (używając nagłówków H2 dla każdeg
     }
 
     // Wyciąganie zestawów danych dla każdego Pinu (zatrzymujemy się na końcu linii dla tytułów/CTA, a dla opisu przed kolejnym nagłówkiem lub boldem)
-    const titleMatches = [...outputText.matchAll(/\*\*Tytuł [pP]inu\s*(?:\[?\d+\]?)?\s*:\*\*\s*\n?\s*([^\n\r]+)/gi)];
-    const descMatches = [...outputText.matchAll(/\*\*Opis [pP]inu\s*(?:\[?\d+\]?)?\s*:\*\*\s*\n?\s*([\s\S]*?)(?=\*\*|##|$)/gi)];
-    const ctaMatches = [...outputText.matchAll(/\*\*CTA\s*(?:\[?\d+\]?)?\s*:\*\*\s*\n?\s*([^\n\r]+)/gi)];
+    const titleMatches = [...outputText.matchAll(/\*\*Tytuł [pP]inu\s*(?:\[[^\]]+\])?\s*:\*\*\s*\n?\s*([^\n\r]+)/gi)];
+    const descMatches = [...outputText.matchAll(/\*\*Opis [pP]inu\s*(?:\[[^\]]+\])?\s*:\*\*\s*\n?\s*([\s\S]*?)(?=\*\*|##|$)/gi)];
+    const ctaMatches = [...outputText.matchAll(/\*\*CTA\s*(?:\[[^\]]+\])?\s*:\*\*\s*\n?\s*([^\n\r]+)/gi)];
 
     const titles = titleMatches.map(m => m[1].trim());
     const descriptions = descMatches.map(m => m[1].trim().replace(/[\s\*-]+$/, ''));
@@ -165,7 +170,7 @@ Zwróć wynik jako sformatowany Markdown (używając nagłówków H2 dla każdeg
 
     const fallbackTitle = titles[0] || "Małe Naklejki";
     const fallbackDesc = descriptions[0] || "Zamów spersonalizowane naklejki ze zdjęcia.";
-    const fallbackCta = ctas[0] || "Zamów online!";
+    const fallbackCta = ctas[0] || "Zamów Online";
 
     let imgCounter = 1;
     const generatedPins: string[] = [];
@@ -180,9 +185,9 @@ Zwróć wynik jako sformatowany Markdown (używając nagłówków H2 dla każdeg
           const outPngPath = path.join(pinterestDir, outFilename);
           generatedPins.push(outFilename);
 
-          // Dobieramy dedykowane CTA dla danego pinu i wymuszamy wersję wielkimi literami (KAPITALIKAMI)
+          // Dobieramy dedykowane CTA dla danego pinu
           const pinIndex = imgCounter - 1;
-          const cta = (ctas[pinIndex] || fallbackCta).toUpperCase();
+          const cta = ctas[pinIndex] || fallbackCta;
 
           // Przygotowanie bazowego płótna 4:5 ze zdjęciem (contain) i tłem #EDF6F2
           const baseImageBuffer = await sharp(fullImgPath)

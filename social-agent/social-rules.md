@@ -39,7 +39,7 @@ Zawsze generuj zestaw składający się z poniższych formatów z jednego źród
 * Struktura: 
   * **Tytuł Pinu:** Estetyczny tytuł zachęcający do kliknięcia.
   * **Opis Pinu:** Krótki, inspirujący opis zawierający 3-4 mocne słowa kluczowe z bloga. Kategorycznie ZAKAZUJE się używania znaków odwrotnego apostrofu/backticków (`) do wyróżniania słów kluczowych - pisz normalnym tekstem.
-  * **CTA na grafikę:** Bardzo krótkie (2-4 słowa), silnie sprzedażowe wezwanie do działania, które bezpośrednio nawiązuje do tego, co widać na danej grafice (np. jeśli na zdjęciu jest pies, napisz "ZAMÓW WLEPKĘ Z PSEM"). **Bezwzględnie musi być napisane w całości WIELKIMI LITERAMI (KAPITALIKAMI)** (np. "KUP TERAZ", "ZAMÓW NAKLEJKI", "WGRAJ ZDJĘCIE").
+  * **CTA na grafikę:** Bardzo krótkie (2-4 słowa), silnie sprzedażowe wezwanie do działania, które bezpośrednio nawiązuje do tego, co widać na danej grafice (np. jeśli na zdjęciu jest ślub, napisz "Zamów Naklejki na Wesele"). **Musi być napisane w stylu Title Case (z wielkich liter, np. "Zamów Naklejki na Wesele")**.
 
 ---
 

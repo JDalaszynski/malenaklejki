@@ -82,7 +82,7 @@ export default async function BlogPostPage({ params }: PageProps) {
       />
       <Header />
 
-      <main className="flex-1 py-12 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto w-full space-y-12">
+      <main className="flex-1 pt-6 pb-12 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto w-full space-y-12">
         {/* Back Link */}
         <div>
           <Link
@@ -95,7 +95,7 @@ export default async function BlogPostPage({ params }: PageProps) {
         </div>
 
         {/* Article Wrapper */}
-        <article className="bg-white dark:bg-[#003a3b] rounded-3xl border border-border/40 p-6 sm:p-10 md:p-12 shadow-sm space-y-8">
+        <article className="!mt-4 bg-white dark:bg-[#003a3b] rounded-3xl border border-border/40 p-6 sm:p-10 md:p-12 shadow-sm space-y-8">
           {/* Header */}
           <div className="space-y-4 border-b border-border/40 pb-6">
             {post.tags && post.tags.length > 0 && (

@@ -110,12 +110,26 @@ export async function generateStickerImage(
     }
 
     // Text-only mode
+    const isPhoto = prompt.toLowerCase().includes("photo") || prompt.toLowerCase().includes("zdjęc");
+    const is3d = prompt.toLowerCase().includes("3d") || prompt.toLowerCase().includes("render");
+
+    let prefix = "Create a flat vector illustration of: ";
+    let styleRules = "Style: bold clean outlines, no shadows, no background scenery, vibrant colors, kawaii/fun aesthetic.";
+
+    if (isPhoto) {
+      prefix = "Create a realistic product photograph of: ";
+      styleRules = "Style: realistic texture, detailed studio lighting, no background scenery, sharp focus.";
+    } else if (is3d) {
+      prefix = "Create a 3D render illustration of: ";
+      styleRules = "Style: smooth textures, octane render look, cute toy plastic material, no background scenery.";
+    }
+
     const fullPrompt =
-      `Create a flat vector illustration of: ${prompt}. ` +
-      "Place it on a perfectly solid, pure white background (#FFFFFF). " +
-      "Do NOT add any white outline borders, die-cut borders, shadows, or halos around the subject. " +
-      "Style: bold clean outlines, no shadows, no background scenery, " +
-      "vibrant colors, kawaii/fun aesthetic.";
+      `${prefix}${prompt}. ` +
+      "The subject must be completely isolated on a solid, flat, pure white background (#FFFFFF). " +
+      "Clean borderless edges directly against the white background. " +
+      "There must be absolutely no white borders, no outline frames, no die-cut lines, and no shadows around the subject. " +
+      styleRules;
 
     console.log("[generateStickerImage] Calling genAI.models.generateImages...");
     let response: any = null;
