@@ -16,7 +16,7 @@ Możesz dodawać nowe tematy, zachowując format wcięć pod spodem.
     - **Link nadrzędny (Filar):** `/blog/jak-zamowic-idealne-naklejki-na-zamowienie-z-wlasnym-nadrukiem`
 
 
-- [ ] **Drukowanie naklejek online - na co zwrócić uwagę przed wysyłką projektu?**
+- [x] **Drukowanie naklejek online - na co zwrócić uwagę przed wysyłką projektu?** (opublikowano 2026-07-10)
     - **Format:** Pillar Page
     - **Główna Fraza Kluczowa:** `drukowanie naklejek online` / `naklejki na zamowienie cena`
     - **Cel:** Edukacja

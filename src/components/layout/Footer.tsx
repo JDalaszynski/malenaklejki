@@ -11,7 +11,7 @@ interface FooterProps {
 
 export function Footer({ children }: FooterProps = {}) {
   const [mounted, setMounted] = useState(false);
-  const [theme, setTheme] = useState<"light" | "dark" | "system">("system");
+  const [theme, setTheme] = useState<"light" | "dark" | "system">("light");
 
   useEffect(() => {
     setMounted(true);
@@ -19,7 +19,7 @@ export function Footer({ children }: FooterProps = {}) {
       if ("theme" in localStorage) {
         setTheme(localStorage.theme as "light" | "dark" | "system");
       } else {
-        setTheme("system");
+        setTheme("light");
       }
     }
   }, []);
