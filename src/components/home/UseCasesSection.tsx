@@ -5,7 +5,6 @@ import {
   Reveal,
   SectionHeading,
   HighlightWord,
-  PhotoPlaceholder,
   scrollToCreator,
   displayFont,
 } from "./primitives";
@@ -18,6 +17,7 @@ type Tile = {
   desc: string;
   className: string;
   ratio: string;
+  image: string;
   big?: boolean;
 };
 
@@ -28,6 +28,7 @@ const TILES: readonly Tile[] = [
     desc: "Logo na słoiczkach, butelkach i pudełkach wysyłkowych.",
     className: "sm:col-span-7 sm:row-span-2",
     ratio: "aspect-[4/3] sm:aspect-auto sm:h-full",
+    image: "/images/zastosowania/naklejki-firmowe-z-logo.jpg",
     big: true,
   },
   {
@@ -36,6 +37,7 @@ const TILES: readonly Tile[] = [
     desc: "Pamiątkowe podziękowania dla gości.",
     className: "sm:col-span-5",
     ratio: "aspect-[16/9]",
+    image: "/images/zastosowania/personalizowane-naklejki-slubne.jpeg",
   },
   {
     label: "Wlepki na laptopie, butelce i deskorolce",
@@ -43,6 +45,7 @@ const TILES: readonly Tile[] = [
     desc: "Wytrzymałe wlepki z Twoich grafik.",
     className: "sm:col-span-5",
     ratio: "aspect-[16/9]",
+    image: "/images/zastosowania/wlepki-z-wlasnym-nadrukiem.png",
   },
   {
     label: "Naklejki ze zdjęcia wycięte po konturze postaci",
@@ -50,6 +53,7 @@ const TILES: readonly Tile[] = [
     desc: "System sam usunie tło i wytnie po obrysie.",
     className: "sm:col-span-4",
     ratio: "aspect-[4/3]",
+    image: "/images/zastosowania/naklejka-ze-zdjecia.jpg",
   },
   {
     label: "Podpisane zeszyty i ubrania dziecka w przedszkolu",
@@ -57,6 +61,7 @@ const TILES: readonly Tile[] = [
     desc: "Naklejki na zeszyty, metki i przybory.",
     className: "sm:col-span-4",
     ratio: "aspect-[4/3]",
+    image: "/images/zastosowania/personalizowane-naklejki-do-przedszkola.jpg",
   },
   {
     label: "Planner ozdobiony naklejkami motywacyjnymi",
@@ -64,6 +69,7 @@ const TILES: readonly Tile[] = [
     desc: "Motywacyjne napisy i dekoracje pakowania.",
     className: "sm:col-span-4",
     ratio: "aspect-[4/3]",
+    image: "/images/zastosowania/naklejki-z-wlasnym-napisem.jpg",
   },
 ];
 
@@ -102,12 +108,14 @@ export function UseCasesSection() {
               transition={{ type: "spring", stiffness: 320, damping: 22 }}
               className="group relative w-full h-full text-left rounded-3xl overflow-hidden border border-border/70 dark:border-white/10 bg-card shadow-sm hover:shadow-xl hover:shadow-primary/5 hover:border-primary/30 transition-[box-shadow,border-color] duration-300 cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
             >
-              <PhotoPlaceholder
-                label={tile.label}
-                ratio={tile.ratio}
-                className="!rounded-none"
-                iconSize={tile.big ? "w-9 h-9" : "w-6 h-6"}
-              />
+              <div className={`relative w-full ${tile.ratio} overflow-hidden bg-muted dark:bg-[#00393b]`}>
+                <img
+                  src={tile.image}
+                  alt={tile.label}
+                  loading="lazy"
+                  className="w-full h-full object-cover transform transition-transform duration-500 ease-out group-hover:scale-105"
+                />
+              </div>
               {/* Pasek tytułu na dole kafla */}
               <span className="absolute inset-x-0 bottom-0 flex flex-col gap-0.5 p-4 pt-8 bg-gradient-to-t from-[#004749]/95 via-[#004749]/35 to-transparent">
                 <span className={`text-white text-base sm:text-lg font-extrabold leading-tight ${displayFont}`}>
@@ -118,7 +126,7 @@ export function UseCasesSection() {
                 </span>
               </span>
               <span className="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-white/90 dark:bg-white/90 text-[10px] font-black uppercase tracking-wide text-[#004749] opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                Stwórz w kreatorze
+                Zamów w kreatorze
               </span>
             </motion.button>
           </Reveal>
@@ -170,7 +178,7 @@ export function UseCasesSection() {
       {/* Praktyczne zastosowania — zachowana treść SEO w formie listy */}
       <Reveal className="space-y-6 rounded-3xl border border-border/60 dark:border-white/10 bg-muted/40 dark:bg-white/[0.03] p-6 sm:p-8">
         <h2 className={`text-2xl sm:text-3xl font-extrabold tracking-tight text-foreground ${displayFont}`}>
-          Praktyczne zastosowania — wybierz naklejki na zamówienie online
+          Praktyczne zastosowania - wybierz naklejki na zamówienie online
         </h2>
         <ul className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-3.5">
           {PRACTICAL_USES.map((text) => (
