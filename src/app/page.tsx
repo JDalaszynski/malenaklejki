@@ -12,6 +12,15 @@ import { A4Visualizer3D } from "@/components/creator/A4Visualizer3D";
 import { StickerEditModal } from "@/components/creator/StickerEditModal";
 import { AIGenerator } from "@/components/creator/AIGenerator";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { TrustBar } from "@/components/home/TrustBar";
+import { UseCasesSection } from "@/components/home/UseCasesSection";
+import { WhyUsSection } from "@/components/home/WhyUsSection";
+import { PaymentsBar } from "@/components/home/PaymentsBar";
+import { HowItWorksSection } from "@/components/home/HowItWorksSection";
+import { PricingSection } from "@/components/home/PricingSection";
+import { CreatorPowersSection } from "@/components/home/CreatorPowersSection";
+import { FAQSection } from "@/components/home/FAQSection";
+import { FinalCTASection } from "@/components/home/FinalCTASection";
 import { PlacedSticker } from "@/types/creator";
 import { useCartStore } from "@/store/cartStore";
 import { checkOverlap, getRotatedSize, getCutLineMargins, getOuterMargins, getCutLineBoundingBox, checkStickersCollision, clampToUsableArea } from "@/lib/utils/collision";
@@ -39,7 +48,6 @@ import {
   Circle,
   AlertTriangle,
   Truck,
-  X,
   ChevronDown,
   ChevronUp,
   Edit3,
@@ -2359,307 +2367,16 @@ export default function Home() {
 
       {/* Sekcja SEO i marketingowa na białym tle */}
       <div className="w-full bg-white dark:bg-[#004749] z-10 flex flex-col flex-grow">
-        <section id="seo-marketing-section" className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12 sm:space-y-16 pt-12 sm:pt-16 pb-12 sm:pb-16">
-
-          {/* USP Badges */}
-          <div className="space-y-6 sm:space-y-8">
-            <div className="text-center max-w-2xl mx-auto space-y-2">
-              <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-foreground">
-                Dlaczego Naklejki w MałeNaklejki?
-              </h2>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 pb-4 w-full">
-              {[
-                {
-                  icon: Sparkles,
-                  text: "Naklejki po Twojemu w 100%",
-                  image: "/images/naklejki-z-wlasnym-nadrukiem-na-arkuszu.png"
-                },
-                {
-                  icon: Scissors,
-                  text: "Wycinane po dowolnym kształcie",
-                  image: "/images/ksztalt-dowolny-naklejki-z-wlasnym-ksztaltem.jpg"
-                },
-                {
-                  icon: Layers,
-                  text: "Naklejki w małych ilościach",
-                  image: "/images/naklejki-od-1-szt-niski-naklad-male-ilosci-malenaklejkii.jpg"
-                }
-              ].map((usp, index) => {
-                const IconComponent = usp.icon;
-                return (
-                  <motion.div
-                    key={index}
-                    whileHover={{ y: -6, scale: 1.02 }}
-                    transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                    className="group relative overflow-hidden rounded-[32px] border border-border/60 dark:border-white/10 bg-gradient-to-b from-card to-card/95 dark:from-[#005254] dark:to-[#003a3c] p-5 flex flex-col justify-between shadow-xl shadow-slate-100/50 dark:shadow-none transition-all duration-300 hover:shadow-2xl hover:shadow-slate-200/50 dark:hover:border-primary/40"
-                  >
-                    {/* Subtle Top Light Accent */}
-                    <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-primary/20 dark:via-primary/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-
-                    {/* Decorative radial background light */}
-                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(var(--primary),0.02),transparent_70%)] pointer-events-none" />
-
-                    {/* Image Container */}
-                    <div className="relative w-full aspect-[4/3] rounded-2xl bg-white dark:bg-white flex items-center justify-center p-6 overflow-hidden">
-                      <img
-                        src={usp.image}
-                        alt={usp.text}
-                        className={`w-full h-full object-contain transform transition-transform duration-500 group-hover:scale-105 ${usp.text === "Naklejki w małych ilościach" ? "scale-[0.7] group-hover:scale-[0.75]" :
-                          usp.text === "Naklejki po Twojemu w 100%" ? "scale-[1.45] group-hover:scale-[1.5]" : ""
-                          }`}
-                      />
-                    </div>
-
-                    {/* Badge and Text Row */}
-                    <div className="flex items-center gap-3 w-full mt-5 bg-muted/30 dark:bg-[#004749]/60 p-3.5 rounded-2xl border border-border/40 dark:border-white/5 transition-colors duration-300 group-hover:bg-primary/5 dark:group-hover:bg-[#005c5f]">
-                      <div className="p-2 rounded-xl bg-primary/10 dark:bg-primary/20 text-primary flex items-center justify-center shrink-0">
-                        <IconComponent className="w-4.5 h-4.5" />
-                      </div>
-                      <span className="text-sm font-extrabold text-foreground tracking-tight leading-snug">
-                        {usp.text}
-                      </span>
-                    </div>
-                  </motion.div>
-                );
-              })}
-            </div>
-          </div>
-
-          {/* Sekcja 2: Jak to działa (Krok po kroku) */}
-          <div className="space-y-6 sm:space-y-8 bg-muted/10 border border-border/20 rounded-3xl p-6 sm:p-8">
-            <div className="text-center max-w-2xl mx-auto space-y-2">
-              <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-foreground" id="seo-how-it-works-title">
-                Twoje naklejki w 3 prostych krokach
-              </h2>
-              <p className="text-muted-foreground text-sm font-semibold">
-                Zajmie Ci zaledwie kilka minut!
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 relative">
-              {[
-                {
-                  title: "Dodaj i dostosuj grafiki",
-                  desc: "Wgraj zdjęcia/grafiki z telefonu lub komputera albo stwórz je za pomocą AI. Wybierz rozmiar każdej naklejki oraz jej linię cięcia (kontur, koło lub prostokąt).",
-                  image: "/images/kroki/krok-1-dodaj-dostosuj-naklejki.png"
-                },
-                {
-                  title: "Rozmieść na arkuszu A4",
-                  desc: "Układaj i przeciągaj naklejki na podglądzie arkusza. Inteligentny kreator dopilnuje, aby naklejki na siebie nie nachodziły i optymalnie wykorzystały miejsce.",
-                  image: "/images/kroki/krok-2-rozmiesc-na-arkuszu-a4-naklejki.png"
-                },
-                {
-                  title: "Sprawdź w 3D i zamów",
-                  desc: "Obejrzyj realistyczną wizualizację 3D gotowego arkusza, dodaj go do koszyka i sfinalizuj bezpieczne zamówienie za pomocą BLIK/Przelewy24.",
-                  image: "/images/kroki/krok-3-sprawdz-3d-i-zamow-naklejki.png"
-                }
-              ].map((step, idx) => (
-                <div key={idx} className="space-y-4 relative group">
-                  {/* Image Container */}
-                  <div className="relative w-full aspect-[4/3] rounded-2xl bg-white dark:bg-white flex items-center justify-center p-0 overflow-hidden">
-                    <img
-                      src={step.image}
-                      alt={step.title}
-                      className={`w-full h-full object-contain ${idx === 2 ? "scale-125" : ""
-                        }`}
-                    />
-                  </div>
-                  <div className="space-y-2">
-                    <div className="text-xs font-black uppercase text-primary tracking-widest">
-                      Krok 0{idx + 1}
-                    </div>
-                    <h3 className="text-base font-black text-foreground">
-                      {step.title}
-                    </h3>
-                    <p className="text-muted-foreground text-xs font-semibold leading-relaxed">
-                      {step.desc}
-                    </p>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            {/* Payment info */}
-            <div className="border-t border-border/20 pt-6 flex flex-col items-center justify-center gap-4 text-center">
-              <div className="flex items-center justify-center gap-3">
-                <span className="text-xs sm:text-sm font-extrabold text-muted-foreground">Płatności obsługuje:</span>
-                <img
-                  src="/images/payment-icons/Przelewy24_logo.png"
-                  alt="Przelewy24 Logo"
-                  className="h-6 sm:h-7 object-contain"
-                />
-              </div>
-              <img
-                src="/images/payment-icons/metody-platnosci-przelewy24.png"
-                alt="Metody płatności Przelewy24"
-                className="w-full max-w-[450px] sm:max-w-[600px] h-auto object-contain opacity-90 dark:brightness-90 dark:invert-[0.05]"
-              />
-            </div>
-          </div>
-
-          {/* Sekcja SEO: Informacje o naklejkach personalizowanych */}
-          <div className="space-y-12 sm:space-y-16 mt-8">
-            {/* Blok 1: Gdzie kupić */}
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
-              <div className="lg:col-span-8 space-y-4">
-                <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-foreground">
-                  Gdzie kupić pojedyncze naklejki personalizowane online?
-                </h2>
-                <p className="text-muted-foreground text-sm sm:text-base font-semibold leading-relaxed">
-                  Najlepszym rozwiązaniem dla zamówień niskonakładowych jest platforma <Link href="/" className="text-primary hover:underline font-bold">malenaklejki.pl</Link>. To tutaj szybko zaprojektujesz i kupisz naklejki personalizowane bez minimalnych limitów zamówienia. Za stałą kwotę 49,00 zł otrzymujesz w pełni zagospodarowany arkusz naklejek w formacie A4. Możesz umieścić na nim dowolną liczbę różnych grafik, a nasz zaawansowany system automatycznie zadba o to, aby elementy nie nachodziły na siebie. To Ty decydujesz, co drukujesz.
-                </p>
-              </div>
-              <div className="lg:col-span-4 bg-primary/5 border border-primary/15 rounded-3xl p-6 text-center space-y-2">
-                <p className="text-3xl font-black text-primary">49,00 zł</p>
-                <p className="text-xs font-bold text-muted-foreground uppercase tracking-wider">Stała cena za cały zestaw</p>
-              </div>
-            </div>
-
-            {/* Blok 2: Jak zrobić własne wlepki i etykiety */}
-            <div className="space-y-6 sm:space-y-8 bg-muted/10 border border-border/20 rounded-3xl p-6 sm:p-8">
-              <div className="max-w-3xl space-y-4">
-                <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-foreground">
-                  Jak zrobić własne wlepki i etykiety w kilku prostych krokach?
-                </h2>
-                <p className="text-muted-foreground text-sm sm:text-base font-semibold leading-relaxed">
-                  Jeśli zastanawiasz się jak zrobić własne wlepki bez profesjonalnego oprogramowania graficznego, nasz interaktywny naklejki kreator to odpowiedź na Twoje potrzeby. Cały proces odbywa się bezpośrednio w przeglądarce:
-                </p>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div className="bg-card border border-border/40 rounded-2xl p-5 space-y-3">
-                  <div className="text-xs font-black uppercase text-primary tracking-widest">Sztuczna Inteligencja (AI)</div>
-                  <p className="text-muted-foreground text-xs sm:text-sm font-semibold leading-relaxed">
-                    Opisz swój pomysł zwykłym tekstem, a wbudowany generator stworzy dla Ciebie unikalne wzory na naklejki do druku. W ten sposób łatwo stworzysz imponujące własne wlepki nawet bez umiejętności rysowania.
-                  </p>
-                </div>
-                <div className="bg-card border border-border/40 rounded-2xl p-5 space-y-3">
-                  <div className="text-xs font-black uppercase text-primary tracking-widest">Szybkie naklejki ze zdjęciem</div>
-                  <p className="text-muted-foreground text-xs sm:text-sm font-semibold leading-relaxed">
-                    Wgraj dowolną fotografię z dysku lub telefonu. System natychmiast usunie tło, dzięki czemu powstaną precyzyjnie wycięte po obrysie kształty (tzw. naklejki die cut). Możesz ułożyć całe grupowe naklejki ze zdjęć na jednym panelu.
-                  </p>
-                </div>
-                <div className="bg-card border border-border/40 rounded-2xl p-5 space-y-3">
-                  <div className="text-xs font-black uppercase text-primary tracking-widest">Szybkie kadrowanie</div>
-                  <p className="text-muted-foreground text-xs sm:text-sm font-semibold leading-relaxed">
-                    Wrzucasz przygotowane wcześniej małe obrazki do druku na naklejki, a system sam dostosowuje ścieżki cięcia (koła, zaokrąglone prostokąty lub nieregularne obrysy). To najkrótsza droga, by wyprodukować własne, domowe naklejki diy i wytrzymałe własne wlepy na laptopa czy motocykl.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            {/* Blok 3: Dla małych firm & Wyjątkowe okazje */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
-              <div className="space-y-4">
-                <h3 className="text-xl sm:text-2xl font-extrabold tracking-tight text-foreground">
-                  Profesjonalny arkusz naklejek na zamówienie dla małych firm
-                </h3>
-                <p className="text-muted-foreground text-sm font-semibold leading-relaxed">
-                  Prowadzisz małą gastronomię, tworzysz rękodzieło albo produkujesz naturalne kosmetyki? Profesjonalny druk naklejek na zamówienie na arkuszach A4 to model stworzony dla Ciebie. Zamiast inwestować w tysiące sztuk etykiet, których jeszcze nie potrzebujesz, kupujesz jeden wielofunkcyjny arkusz z naklejkami.
-                </p>
-                <p className="text-muted-foreground text-sm font-semibold leading-relaxed">
-                  Wgrywasz własne logo i jednym kliknięciem tworzysz unikalne naklejki z własną grafiką oraz informacyjne naklejki z własnym napisem opisujące skład produktu. To idealne i ekonomiczne małe naklejki z własnym nadrukiem na słoiczki, butelki czy opakowania wysyłkowe. Każdy produkt prezentuje się u klienta o wiele lepiej, gdy zdobią go precyzyjnie docięte naklejki samoprzylepne na zamówienie. Jeśli w przyszłości rozwiniesz ofertę, bez problemu skonfigurujesz w koszyku również większe naklejki na zamówienie z własnym nadrukiem.
-                </p>
-              </div>
-
-              <div className="space-y-4">
-                <h3 className="text-xl sm:text-2xl font-extrabold tracking-tight text-foreground">
-                  Wyjątkowe okazje i naklejki z własnym zdjęciem
-                </h3>
-                <p className="text-muted-foreground text-sm font-semibold leading-relaxed">
-                  Nasz pojedynczy arkusz naklejek do druku to absolutny hit podczas rodzinnych i religijnych uroczystości. W zaledwie kilka minut zaprojektujesz u nas pamiątkowe naklejki personalizowane na chrzest jako naklejki na podziękowania dla gości lub stworzysz eleganckie naklejki personalizowane komunia pasujące do zaproszeń.
-                </p>
-                <p className="text-muted-foreground text-sm font-semibold leading-relaxed">
-                  Nic nie stoi na przeszkodzie, aby wykorzystać wykadrowane naklejki ze zdjęcia jubilata do dekoracji prezentów. Niezależnie od tego, czy system ma przetworzyć klasyczne naklejki ze zdjeciem bez skomplikowanego tła, czy wyciąć portret całej rodziny, efekt zawsze jest perfekcyjny.
-                </p>
-              </div>
-            </div>
-
-            {/* Blok 4: Praktyczne zastosowania */}
-            <div className="space-y-6 sm:space-y-8 bg-muted/10 border border-border/20 rounded-3xl p-6 sm:p-8">
-              <div className="space-y-4">
-                <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-foreground">
-                  Praktyczne zastosowania - wybierz naklejki na zamówienie online
-                </h2>
-                <p className="text-muted-foreground text-sm sm:text-base font-semibold leading-relaxed">
-                  Nasi klienci wykorzystują kreator do najbardziej nietypowych i codziennych zadań. Sprawdź, co możesz stworzyć:
-                </p>
-              </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
-                {[
-                  "Kolorowe naklejki z grafiką na prezenty urodzinowe i sprzęt elektroniczny.",
-                  "Dedykowane naklejki z własnym wzorem do oznaczania organizerów i pudełek w biurze.",
-                  "Wytrzymałe naklejki na zeszyty personalizowane z wizerunkami ulubionych bohaterów z gier lub bajek.",
-                  "Funkcjonalne naklejki na ubrania dla dzieci (idealne do naklejania na nylonowe metki z instrukcją prania), ułatwiające organizację rzeczy w przedszkolu i żłobku.",
-                  "Pamiątkowe dekoracje plannerów, gdzie główną rolę gra motywacyjna naklejka z własnym napisem."
-                ].map((text, idx) => (
-                  <div key={idx} className="bg-card border border-border/40 rounded-3xl p-5 flex flex-col items-start text-left space-y-3">
-                    <span className="px-2.5 py-1 text-[10px] font-black bg-primary/10 text-primary rounded-lg">
-                      Zastosowanie 0{idx + 1}
-                    </span>
-                    <p className="text-muted-foreground text-xs font-semibold leading-relaxed">
-                      {text}
-                    </p>
-                  </div>
-                ))}
-              </div>
-
-              <div className="border-t border-border/20 pt-6">
-                <p className="text-muted-foreground text-sm sm:text-base font-semibold leading-relaxed">
-                  Wybierając elastyczny produkt, jakim jest naklejki arkusz, płacisz raz, a na kartce A4 zyskujesz dziesiątki różnorodnych wlepek. Gwarantujemy, że nasze naklejki z własnym nadrukiem to najwyższa jakość winylu i mocny klej. Drukujemy Twoje gotowe naklejki arkusze błyskawicznie, a integracja z bezpieczną bramką płatniczą Przelewy24 oznacza natychmiastowe przekazanie pliku do produkcji. Przetestuj nasze naklejki na zamówienie już dziś i stwórz swój pierwszy projekt powyżej!
-                </p>
-              </div>
-            </div>
-          </div>
-
-          {/* Sekcja 4: FAQ */}
-          <div className="space-y-6 sm:space-y-8">
-            <div className="text-center max-w-2xl mx-auto space-y-2">
-              <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-foreground" id="seo-faq-title">
-                Często zadawane pytania (FAQ)
-              </h2>
-              <p className="text-muted-foreground text-sm font-semibold">
-                Wszystko, co musisz wiedzieć o tworzeniu, drukowaniu i dostawie naklejek na arkuszach.
-              </p>
-            </div>
-
-            <div className="max-w-3xl mx-auto space-y-4">
-              {[
-                {
-                  q: "Jakiej jakości pliki powinienem wgrać do kreatora?",
-                  a: "Najlepsze rezultaty uzyskasz wgrywając pliki w formacie PNG lub JPG o rozdzielczości 300 DPI. Kreator automatycznie ocenia jakość grafiki i ostrzeże Cię komunikatem, jeśli rozdzielczość będzie zbyt niska (poniżej 100 DPI)."
-                },
-                {
-                  q: "Co oznacza cięcie po konturze (obrysie)?",
-                  a: "Nasze maszyny plotujące wytną naklejkę dokładnie wzdłuż krawędzi Twojego obrazka (z pominięciem przezroczystego tła). W kreatorze możesz wybrać opcję „Kontur”, aby zobaczyć podgląd linii cięcia naniesiony na Twoją grafikę."
-                },
-                {
-                  q: "Ile naklejek zmieści się na jednym arkuszu A4?",
-                  a: "To zależy od Ciebie! Możesz umieścić jedną ogromną naklejkę (do 19 cm szerokości) lub kilkadziesiąt mniejszych (np. o średnicy 3-4 cm). Nasz system automatycznie pilnuje, aby naklejki nie nakładały się na siebie."
-                },
-                {
-                  q: "Czy mogę edytować arkusz po dodaniu do koszyka?",
-                  a: "Po dodaniu arkusza do koszyka kompozycja jest zapisywana i generowany jest plik produkcyjny. Wszelkie poprawki wymagają ponownego ułożenia arkusza, dlatego przed zatwierdzeniem upewnij się w podglądzie 2D/3D, że wszystko wygląda poprawnie."
-                },
-                {
-                  q: "Jaki jest czas realizacji i koszt dostawy?",
-                  a: "Wszystkie zamówienia drukujemy i wysyłamy w ciągu 3 dni roboczych. Koszt dostawy wynosi 19,99 zł, a bezpieczną i szybką płatność realizujemy za pośrednictwem Przelewy24 (karta, BLIK, przelew)."
-                }
-              ].map((faq, idx) => (
-                <div key={idx} className="bg-card border border-border/40 rounded-2xl p-5 shadow-sm space-y-2">
-                  <h3 className="text-sm sm:text-base font-black text-foreground flex items-start gap-2">
-                    <span className="text-primary font-extrabold">Q:</span>
-                    <span>{faq.q}</span>
-                  </h3>
-                  <div className="text-xs sm:text-sm text-muted-foreground font-semibold leading-relaxed pl-6">
-                    <p>{faq.a}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
+        <section id="seo-marketing-section" className="max-w-6xl mx-auto w-full px-4 sm:px-6 lg:px-8 space-y-16 sm:space-y-24 pt-10 sm:pt-14 pb-16 sm:pb-20">
+          <TrustBar />
+          <WhyUsSection />
+          <PaymentsBar />
+          <UseCasesSection />
+          <HowItWorksSection />
+          <PricingSection />
+          <CreatorPowersSection />
+          <FAQSection />
+          <FinalCTASection />
         </section>
 
         <LatestBlogPosts />
