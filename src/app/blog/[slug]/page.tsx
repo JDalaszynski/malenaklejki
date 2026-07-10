@@ -95,9 +95,9 @@ export default async function BlogPostPage({ params }: PageProps) {
         </div>
 
         {/* Article Wrapper */}
-        <article className="!mt-4 bg-white dark:bg-[#003a3b] rounded-3xl border border-border/40 p-6 sm:p-10 md:p-12 shadow-sm space-y-8">
+        <article className="!mt-2 bg-white dark:bg-[#003a3b] rounded-3xl border border-border/40 p-6 sm:p-10 md:p-12 shadow-sm space-y-6">
           {/* Header */}
-          <div className="space-y-4 border-b border-border/40 pb-6">
+          <div className="space-y-4 border-b border-border/40 pb-4">
             {post.tags && post.tags.length > 0 && (
               <div className="flex flex-wrap gap-1.5">
                 {post.tags.map((tag) => (

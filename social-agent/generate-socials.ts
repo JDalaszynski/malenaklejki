@@ -32,13 +32,30 @@ async function generateSocials() {
 
   const blogContent = fs.readFileSync(blogPath, 'utf8');
 
-  // Szukanie linków do obrazków w markdown (np. ![alt](/blog/obraz.jpg))
+  // Wyciągnięcie głównego zdjęcia z frontmattera YAML (pole image:)
+  const coverImageMatch = blogContent.match(/^image:\s*["']?([^"'\n]+)["']?\s*$/m);
+  const coverImage = coverImageMatch ? coverImageMatch[1].trim() : null;
+
+  // Szukanie linków do obrazków w treści markdown (np. ![alt](/blog/obraz.jpg))
   const imgRegex = /!\[.*?\]\((.*?)\)/g;
-  const images: string[] = [];
+  const inlineImages: string[] = [];
   let match;
   while ((match = imgRegex.exec(blogContent)) !== null) {
     if (match[1].startsWith('/')) {
-      images.push(match[1]);
+      inlineImages.push(match[1]);
+    }
+  }
+
+  // Łączymy: główne zdjęcie (cover) na początku + zdjęcia z treści
+  const images: string[] = [];
+  if (coverImage && coverImage.startsWith('/')) {
+    images.push(coverImage);
+    console.log(`📸 Znaleziono zdjęcie główne (cover): ${coverImage}`);
+  }
+  for (const img of inlineImages) {
+    // Unikamy duplikatu jeśli cover pojawia się też w treści
+    if (!images.includes(img)) {
+      images.push(img);
     }
   }
 
