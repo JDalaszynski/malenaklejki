@@ -266,3 +266,18 @@
 .red-shadow-pulse {
   animation: redGlowPulse 1.6s infinite ease-in-out;
 }
+
+@keyframes subtlePulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 10px 25px -5px rgba(2, 175, 122, 0.15), 0 8px 16px -6px rgba(2, 175, 122, 0.1);
+  }
+  50% {
+    transform: scale(1.008);
+    box-shadow: 0 20px 35px -5px rgba(2, 175, 122, 0.3), 0 12px 24px -6px rgba(2, 175, 122, 0.2);
+  }
+}
+
+.subtle-pulse {
+  animation: subtlePulse 3s infinite ease-in-out;
+}

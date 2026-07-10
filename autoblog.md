@@ -64,6 +64,10 @@ Jeśli wykryjesz jakiekolwiek braki, wprowadź niezbędne poprawki.
      `git add src/content/blog/{slug}.md blog-agent/plan.md public/pinterest/{slug}/ social-agent/outputs/{slug}-socials.md`
      `git commit -m "auto(blog): opublikowano wpis o '{tytuł}'"`
      `git push origin main`
-4. **Ping Google:**
-   - Wykonaj polecenie typu curl w terminalu, aby wysłać ping do Google:
-     `curl -s "https://www.google.com/ping?sitemap=https://www.malenaklejki.pl/sitemap.xml"`
+4. **Ping (IndexNow API):**
+   - Wykonaj polecenie w terminalu (Bing/IndexNow - Google deprecated swój endpoint w 2023):
+     ```
+     Invoke-WebRequest -Uri "https://api.indexnow.org/IndexNow" -Method POST -ContentType "application/json; charset=utf-8" -Body '{"host":"www.malenaklejki.pl","key":"ping-sitemap","keyLocation":"https://www.malenaklejki.pl/ping-sitemap.txt","urlList":["https://www.malenaklejki.pl/sitemap.xml"]}' -UseBasicParsing
+     ```
+   - Oczekiwana odpowiedź: **HTTP 202 Accepted**
+   - Aby Google zaindeksowało szybciej: wejdź do **Google Search Console → URL Inspection** i kliknij "Request indexing" dla nowego artykułu.
