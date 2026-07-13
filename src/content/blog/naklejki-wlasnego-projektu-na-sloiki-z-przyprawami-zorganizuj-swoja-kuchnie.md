@@ -3,7 +3,8 @@ title: "Naklejki na przyprawy na zamówienie - zorganizuj kuchnię"
 slug: "naklejki-wlasnego-projektu-na-sloiki-z-przyprawami-zorganizuj-swoja-kuchnie"
 date: "2026-07-13"
 description: "Małe naklejki na przyprawy na zamówienie od 1 sztuki. Zaprojektuj etykiety na słoiczki, wydrukuj na trwałej folii i zorganizuj kuchnię raz na zawsze."
-image: ""
+image: "/blog/naklejki-wlasnego-projektu-na-sloiki-z-przyprawami-zorganizuj-swoja-kuchnie/naklejki-na-przyprawy-na-zamowienie-minimalistyczne-etykiety.png"
+imageAlt: "Dłoń trzymająca szklany słoiczek z papryką w proszku z minimalistyczną naklejką na przyprawy na zamówienie, w tle uporządkowana półka kuchenna z etykietowanymi słoikami"
 tags: ["naklejki na przyprawy", "organizacja kuchni", "naklejki na zamówienie", "etykiety na słoiki"]
 cta_text: "Stwórz naklejki na przyprawy"
 ---
@@ -20,6 +21,8 @@ Gotowe zestawy naklejek na przyprawy z marketbudowlanych czy Allegro mają jedn�
 - **Własny styl graficzny** - dopasowany do Twojej kuchni, a nie do masowej produkcji.
 - **Dokładnie tyle sztuk, ile potrzebujesz** - masz 12 słoiczków? Zamawiasz 12 naklejek. Masz 40? Zmieścisz je na dwóch arkuszach A4.
 - **Trwały materiał** - folia winylowa z mocnym klejem, która nie rozmaka przy kontakcie z wilgotną dłonią.
+
+![Okrągła naklejka na przyprawy w stylu boho z ilustracją papryki na szklanym słoiczku z papryką w proszku stojącym na drewnianym blacie kuchennym](/blog/naklejki-wlasnego-projektu-na-sloiki-z-przyprawami-zorganizuj-swoja-kuchnie/okragla-naklejka-na-sloik-z-papryka-styl-boho.png)
 
 ## Jak przygotować projekt naklejek na słoiczki z przyprawami?
 
@@ -47,6 +50,8 @@ Otwórz Canva (darmowa wersja wystarcza w zupełności), ustaw niestandardowy ro
 Zapisz gotowy projekt jako plik PNG (najlepiej z przezroczystym tłem, jeśli chcesz cięcie po obrysie) lub PDF.
 
 **Wskazówka:** Na jednej stronie Canva możesz umieścić wiele naklejek obok siebie - dzięki temu na jednym arkuszu A4 zmieścisz cały komplet etykiet do kuchni.
+
+![Szklany słoiczek z cynamonem i etykietą z klasyczną ilustracją botaniczną krzewu cynamonowca w stylu dawnych rycin naukowych - inspiracja na naklejki na przyprawy](/blog/naklejki-wlasnego-projektu-na-sloiki-z-przyprawami-zorganizuj-swoja-kuchnie/etykieta-botaniczna-cynamon-na-sloiczek-z-przyprawa.png)
 
 ### Krok 3 - Wgraj plik do kreatora MałeNaklejki
 
@@ -80,11 +85,15 @@ Nasze naklejki drukujemy na **folii winylowej z mocnym klejem**, co oznacza:
 
 To ten sam materiał, którego używają [małe manufaktury do etykietowania słoików z własnymi produktami](/blog/naklejki-z-wlasnym-logo-na-sloiki-i-opakowania) - przetestowany w warunkach codziennego użytkowania.
 
+![Szklany słoiczek z papryką i okrągłą naklejką z wieńcem kwiatowym i ilustracjami papryczek chili na kuchennej półce obok suszonych ziół](/blog/naklejki-wlasnego-projektu-na-sloiki-z-przyprawami-zorganizuj-swoja-kuchnie/naklejka-na-sloik-z-przyprawami-wieniec-kwiatowy.png)
+
 ## Inspiracje na organizację kuchni naklejkami - 5 sprawdzonych pomysłów
 
 ### 1. Komplet jednolitych etykiet na szklane słoiczki z przyprawami
 
 Najbardziej klasyczne zastosowanie. Kup zestaw identycznych słoiczków (np. IKEA RAJTAN lub Hendi 100 ml), przesyp do nich przyprawy ze sklepowych opakowań i oklej jednolitymi etykietami. Efekt "wow" gwarantowany - kuchnia wygląda jak z katalogu wnętrzarskiego.
+
+![Minimalistyczna prostokątna naklejka na przyprawy z napisem Pieprz Czarny Ziarnisty naklejona na szklany słoiczek stojący na jasnym drewnianym blacie w skandynawskiej kuchni](/blog/naklejki-wlasnego-projektu-na-sloiki-z-przyprawami-zorganizuj-swoja-kuchnie/naklejka-na-przyprawy-pieprz-czarny-ziarnisty-minimalistyczna.png)
 
 ### 2. Naklejki na wieczka - widok z góry w szufladzie
 
@@ -105,6 +114,8 @@ Nadaj różnym kategoriom przypraw osobny kolor tła etykiety. Na przykład:
 ### 5. Etykiety z ilustracjami botanicznymi
 
 Dla osób, które cenią rzemieślniczy charakter - etykiety z klasycznymi rycinami przedstawiającymi roślinę danej przyprawy (np. gałązka tymianku, kwiat lawendy, korzenie imbiru). Taki projekt świetnie przygotujesz w Canva, korzystając z darmowych ilustracji.
+
+![Nowoczesna minimalistyczna naklejka z napisem Pieprz na szklanym młynku do przypraw w eleganckim stylu, jasne tło z ceramicznymi wazonami](/blog/naklejki-wlasnego-projektu-na-sloiki-z-przyprawami-zorganizuj-swoja-kuchnie/minimalistyczna-naklejka-pieprz-na-mlynek-nowoczesna-kuchnia.jpeg)
 
 ## Naklejki na przyprawy na zamówienie - FAQ
 
