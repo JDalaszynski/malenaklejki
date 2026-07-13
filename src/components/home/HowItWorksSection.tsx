@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { Reveal, SectionHeading, HighlightWord, displayFont } from "./primitives";
 
 const STEPS = [
@@ -42,10 +43,11 @@ export function HowItWorksSection() {
             <article className="group relative h-full flex flex-col rounded-3xl border border-border/70 dark:border-white/10 bg-card overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300">
               {/* Obrazek kroku (istniejący asset projektu) */}
               <div className="relative w-full aspect-[4/3] bg-white dark:bg-white overflow-hidden flex items-center justify-center">
-                <img
+                <Image
                   src={step.image}
                   alt={step.title}
-                  loading="lazy"
+                  fill
+                  sizes="(max-width: 768px) 100vw, 33vw"
                   className={`w-full h-full object-contain ${idx === 2 ? "scale-125" : ""}`}
                 />
                 {/* Duży numer kroku */}

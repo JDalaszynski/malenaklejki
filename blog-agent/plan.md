@@ -8,25 +8,7 @@ Możesz dodawać nowe tematy, zachowując format wcięć pod spodem.
 
 ## 📝 Zaplanowane Artykuły (Do napisania przez AI)
 
-- [x] **Naklejki z własnym napisem - jak przygotować plik i zamówić online** (opublikowano 2026-07-08)
-    - **Format:** Supporting Article
-    - **Główna Fraza Kluczowa:** `naklejka z wlasnym napisem` / `naklejki z wlasnym napisem`
-    - **Cel:** Edukacja
-    - **Persona:** Klienci indywidualni, pary młode, organizatorzy imprez
-    - **Link nadrzędny (Filar):** `/blog/jak-zamowic-idealne-naklejki-na-zamowienie-z-wlasnym-nadrukiem`
 
-
-- [x] **Drukowanie naklejek online - na co zwrócić uwagę przed wysyłką projektu?** (opublikowano 2026-07-10)
-    - **Format:** Pillar Page
-    - **Główna Fraza Kluczowa:** `drukowanie naklejek online` / `naklejki na zamowienie cena`
-    - **Cel:** Edukacja
-    - **Persona:** Mikroprzedsiębiorstwa, artyści, graficy, agencje reklamowe
-    - **Prompty do generowania zdjęć:**
-        - "Zdjęcie z bliska przedstawiające arkusz A4 z wydrukowanymi, błyszczącymi naklejkami o różnych wzorach i kolorach leżący na biurku grafika komputerowego obok klawiatury i myszki, ostre szczegóły."
-        - "Projektant przy pracy w jasnym studiu, na ekranie monitora widać otwarty program graficzny z projektem kolorowych naklejek z liniami cięcia, obok na biurku leżą wydrukowane próbki, realistyczne zdjęcie."
-        - "Zbliżenie na arkusz zadrukowanej folii samoprzylepnej wysuwający się z nowoczesnej, profesjonalnej cyfrowej maszyny drukarskiej, żywe kolory, widoczna tekstura materiału."
-        - "Zbliżenie na arkusz próbny z wydrukowanymi naklejkami przedstawiającymi klasyczny obraz 'Gwiaździsta Noc' Van Gogha oraz urocze zdjęcie kota rasy brytyjski krótkowłosy w wysokiej rozdzielczości, widoczne linie cięcia, jasne studio."
-        - "Dłoń trzymająca świeżo wydrukowaną naklejkę wyciętą po obrysie ze zdjęcia z wakacji, na której widać parę stojącą na szczycie góry Giewont w Tatrach, w tle rozmyte biurko drukarni, ostre detale."
 
 
 
@@ -127,6 +109,27 @@ Możesz dodawać nowe tematy, zachowując format wcięć pod spodem.
     - **Cel:** Edukacja
     - **Persona:** Rodzice, hobbyści, osoby kupujące prezenty
     - **Link nadrzędny (Filar):** `/blog/jak-zamowic-idealne-naklejki-na-zamowienie-z-wlasnym-nadrukiem`
+
+
+    - [x] **Naklejki z własnym napisem - jak przygotować plik i zamówić online** (opublikowano 2026-07-08)
+    - **Format:** Supporting Article
+    - **Główna Fraza Kluczowa:** `naklejka z wlasnym napisem` / `naklejki z wlasnym napisem`
+    - **Cel:** Edukacja
+    - **Persona:** Klienci indywidualni, pary młode, organizatorzy imprez
+    - **Link nadrzędny (Filar):** `/blog/jak-zamowic-idealne-naklejki-na-zamowienie-z-wlasnym-nadrukiem`
+
+
+- [x] **Drukowanie naklejek online - na co zwrócić uwagę przed wysyłką projektu?** (opublikowano 2026-07-10)
+    - **Format:** Pillar Page
+    - **Główna Fraza Kluczowa:** `drukowanie naklejek online` / `naklejki na zamowienie cena`
+    - **Cel:** Edukacja
+    - **Persona:** Mikroprzedsiębiorstwa, artyści, graficy, agencje reklamowe
+    - **Prompty do generowania zdjęć:**
+        - "Zdjęcie z bliska przedstawiające arkusz A4 z wydrukowanymi, błyszczącymi naklejkami o różnych wzorach i kolorach leżący na biurku grafika komputerowego obok klawiatury i myszki, ostre szczegóły."
+        - "Projektant przy pracy w jasnym studiu, na ekranie monitora widać otwarty program graficzny z projektem kolorowych naklejek z liniami cięcia, obok na biurku leżą wydrukowane próbki, realistyczne zdjęcie."
+        - "Zbliżenie na arkusz zadrukowanej folii samoprzylepnej wysuwający się z nowoczesnej, profesjonalnej cyfrowej maszyny drukarskiej, żywe kolory, widoczna tekstura materiału."
+        - "Zbliżenie na arkusz próbny z wydrukowanymi naklejkami przedstawiającymi klasyczny obraz 'Gwiaździsta Noc' Van Gogha oraz urocze zdjęcie kota rasy brytyjski krótkowłosy w wysokiej rozdzielczości, widoczne linie cięcia, jasne studio."
+        - "Dłoń trzymająca świeżo wydrukowaną naklejkę wyciętą po obrysie ze zdjęcia z wakacji, na której widać parę stojącą na szczycie góry Giewont w Tatrach, w tle rozmyte biurko drukarni, ostre detale."
 
 - [x] **Małe naklejki na laptopa - jak wyrazić siebie i stworzyć własny styl?** (opublikowano 2026-07-06)
     - **Format:** Supporting Article

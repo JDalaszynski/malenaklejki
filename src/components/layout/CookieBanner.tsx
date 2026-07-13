@@ -80,7 +80,7 @@ export function CookieBanner() {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed bottom-6 left-6 z-[90] w-[calc(100%-3rem)] sm:w-full sm:max-w-md animate-in fade-in slide-in-from-bottom duration-500">
+    <div className="fixed bottom-6 left-6 z-[200] w-[calc(100%-3rem)] sm:w-full sm:max-w-md animate-in fade-in slide-in-from-bottom duration-500">
       <div className="bg-background/95 backdrop-blur-xl border border-border/80 shadow-[0_15px_40px_rgba(0,0,0,0.1)] rounded-3xl p-5 md:p-6 flex flex-col gap-5 relative">
         
         {/* Close button */}

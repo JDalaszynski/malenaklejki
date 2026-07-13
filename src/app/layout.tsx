@@ -21,8 +21,9 @@ const fredoka = Fredoka({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.malenaklejki.pl"),
-  title: "MałeNaklejki - Stwórz własne naklejki!",
-  description: "Wydrukuj swoje własne naklejki na arkuszach A4 w prosty i przyjemny sposób.",
+  title: "Naklejki z własnym nadrukiem | Zamów od 1 szt. online — MałeNaklejki",
+  description:
+    "Zaprojektuj personalizowane naklejki w kreatorze online — cięcie po konturze, druk na trwałym winylu, od 49 zł/arkusz A4. Wysyłka w 3 dni robocze. Generator AI w cenie!",
   icons: {
     icon: "/images/logo/favicon.png?v=2",
   },
@@ -30,26 +31,28 @@ export const metadata: Metadata = {
     canonical: "/",
   },
   openGraph: {
-    title: "MałeNaklejki - Stwórz własne naklejki!",
-    description: "Wydrukuj swoje własne naklejki na arkuszach A4 w prosty i przyjemny sposób.",
+    title: "Naklejki z własnym nadrukiem | Zamów od 1 szt. online — MałeNaklejki",
+    description:
+      "Zaprojektuj personalizowane naklejki w kreatorze online — cięcie po konturze, druk na trwałym winylu, od 49 zł/arkusz A4. Wysyłka w 3 dni robocze.",
     url: "https://www.malenaklejki.pl",
     siteName: "MałeNaklejki",
     locale: "pl_PL",
     type: "website",
     images: [
       {
-        url: "/images/logo/favicon.png?v=2",
-        width: 512,
-        height: 512,
-        alt: "MałeNaklejki - Kreator Naklejek A4",
+        url: "/images/og-main.jpg",
+        width: 1200,
+        height: 630,
+        alt: "MałeNaklejki — kreator personalizowanych naklejek na arkuszach A4",
       },
     ],
   },
   twitter: {
-    card: "summary",
-    title: "MałeNaklejki - Stwórz własne naklejki!",
-    description: "Wydrukuj swoje własne naklejki na arkuszach A4 w prosty i przyjemny sposób.",
-    images: ["/images/logo/favicon.png?v=2"],
+    card: "summary_large_image",
+    title: "Naklejki z własnym nadrukiem | Zamów od 1 szt. — MałeNaklejki",
+    description:
+      "Zaprojektuj personalizowane naklejki w kreatorze online — cięcie po konturze, druk na trwałym winylu, od 49 zł/arkusz A4. Generator AI w cenie!",
+    images: ["/images/og-main.jpg"],
   },
   verification: {
     google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION || "",
@@ -139,6 +142,14 @@ export default function RootLayout({
             name: "MałeNaklejki",
             url: "https://www.malenaklejki.pl",
             logo: "https://www.malenaklejki.pl/images/logo/favicon.png",
+            description:
+              "Kreator personalizowanych naklejek z własnym nadrukiem na arkuszach A4. Cięcie po konturze, druk na trwałym winylu, wysyłka w 3 dni robocze.",
+            contactPoint: {
+              "@type": "ContactPoint",
+              contactType: "customer service",
+              url: "https://www.malenaklejki.pl/kontakt",
+              availableLanguage: "Polish",
+            },
           }}
         />
       </head>

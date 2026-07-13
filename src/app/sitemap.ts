@@ -7,9 +7,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   const posts = await getBlogPosts();
 
+  // Use a fixed date for static pages to avoid signaling Google
+  // that content changes on every build (spam signal).
+  // Update this date manually when you make real content changes.
+  const staticLastModified = new Date("2026-07-13");
+
   const staticEntries = staticRoutes.map((route) => ({
     url: `${baseUrl}${route}`,
-    lastModified: new Date(),
+    lastModified: staticLastModified,
     changeFrequency: "weekly" as const,
     priority: route === "" ? 1.0 : 0.8,
   }));

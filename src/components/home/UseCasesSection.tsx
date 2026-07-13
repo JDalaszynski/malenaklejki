@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
 import {
   Reveal,
@@ -109,10 +110,11 @@ export function UseCasesSection() {
               className="group relative w-full h-full text-left rounded-3xl overflow-hidden border border-border/70 dark:border-white/10 bg-card shadow-sm hover:shadow-xl hover:shadow-primary/5 hover:border-primary/30 transition-[box-shadow,border-color] duration-300 cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
             >
               <div className={`relative w-full ${tile.ratio} overflow-hidden bg-muted dark:bg-[#00393b]`}>
-                <img
+                <Image
                   src={tile.image}
                   alt={tile.label}
-                  loading="lazy"
+                  fill
+                  sizes={tile.big ? "(max-width: 640px) 100vw, 58vw" : "(max-width: 640px) 100vw, 42vw"}
                   className="w-full h-full object-cover transform transition-transform duration-500 ease-out group-hover:scale-105"
                 />
               </div>
@@ -177,9 +179,9 @@ export function UseCasesSection() {
 
       {/* Praktyczne zastosowania — zachowana treść SEO w formie listy */}
       <Reveal className="space-y-6 rounded-3xl border border-border/60 dark:border-white/10 bg-muted/40 dark:bg-white/[0.03] p-6 sm:p-8">
-        <h2 className={`text-2xl sm:text-3xl font-extrabold tracking-tight text-foreground ${displayFont}`}>
+        <h3 className={`text-2xl sm:text-3xl font-extrabold tracking-tight text-foreground ${displayFont}`}>
           Praktyczne zastosowania - wybierz naklejki na zamówienie online
-        </h2>
+        </h3>
         <ul className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-3.5">
           {PRACTICAL_USES.map((text) => (
             <li key={text} className="flex items-start gap-3">

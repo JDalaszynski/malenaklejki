@@ -5,9 +5,9 @@ import Link from "next/link";
 import { Calendar, Clock, ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 import { motion } from "framer-motion";
 
-export function LatestBlogPosts() {
-  const [posts, setPosts] = useState<any[]>([]);
-  const [loading, setLoading] = useState(true);
+export function LatestBlogPosts({ initialPosts }: { initialPosts: any[] }) {
+  const [posts, setPosts] = useState<any[]>(initialPosts || []);
+  const [loading, setLoading] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
 
   const scroll = (direction: "left" | "right") => {
@@ -26,20 +26,7 @@ export function LatestBlogPosts() {
     }
   };
 
-  useEffect(() => {
-    fetch("/api/blog/latest")
-      .then((res) => res.json())
-      .then((data) => {
-        if (Array.isArray(data)) {
-          setPosts(data);
-        }
-        setLoading(false);
-      })
-      .catch((err) => {
-        console.error("Failed to fetch latest blog posts:", err);
-        setLoading(false);
-      });
-  }, []);
+
 
   if (loading || posts.length === 0) {
     return null;

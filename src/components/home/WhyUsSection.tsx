@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { motion, useReducedMotion } from "framer-motion";
 import { Sparkles, Scissors, Layers } from "lucide-react";
 import { Reveal, SectionHeading, HighlightWord } from "./primitives";
@@ -65,10 +66,11 @@ export function WhyUsSection() {
             >
               {/* Zdjęcie produktowe (istniejący asset projektu) */}
               <div className={`relative w-full ${aspect} rounded-2xl bg-white overflow-hidden flex items-center justify-center`}>
-                <img
+                <Image
                   src={image}
                   alt={title}
-                  loading="lazy"
+                  fill
+                  sizes="(max-width: 768px) 100vw, 33vw"
                   className={`w-full h-full ${objectFit} transform transition-transform duration-500 ${imageScale}`}
                 />
               </div>
