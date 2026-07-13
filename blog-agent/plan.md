@@ -28,18 +28,7 @@ Możesz dodawać nowe tematy, zachowując format wcięć pod spodem.
         - "Zbliżenie na arkusz próbny z wydrukowanymi naklejkami przedstawiającymi klasyczny obraz 'Gwiaździsta Noc' Van Gogha oraz urocze zdjęcie kota rasy brytyjski krótkowłosy w wysokiej rozdzielczości, widoczne linie cięcia, jasne studio."
         - "Dłoń trzymająca świeżo wydrukowaną naklejkę wyciętą po obrysie ze zdjęcia z wakacji, na której widać parę stojącą na szczycie góry Giewont w Tatrach, w tle rozmyte biurko drukarni, ostre detale."
 
-- [ ] **Naklejki własnego projektu na słoiki z przyprawami - zorganizuj swoją kuchnię**
-    - **Format:** Supporting Article
-    - **Główna Fraza Kluczowa:** `małe naklejki na przyprawy` / `naklejki na przyprawy na zamowienie`
-    - **Cel:** Edukacja
-    - **Persona:** Fani organizacji domu, panie/panowie domu, pasjonaci kulinarni
-    - **Link nadrzędny (Filar):** `/blog/drukowanie-naklejek-online-na-co-zwrocic-uwage-przed-wysylka-projektu`
-    - **Prompty do generowania zdjęć:**
-        - "Estetyczna, nowoczesna kuchnia. Na drewnianej półce stoi rząd identycznych szklanych słoiczków z przyprawami, każdy z nich ma naklejoną minimalistyczną, czarną naklejkę z białą nazwą przyprawy (np. 'BAZYLIA', 'OREGANO'), jasny i czysty kadr."
-        - "Zbliżenie na dłoń trzymającą szklany słoiczek z czerwoną papryką w proszku, na słoiczku naklejona jest estetyczna etykieta w stylu skandynawskim, w tle inne uporządkowane słoiki na kuchennym blacie."
-        - "Zorganizowana szuflada kuchenna z przyprawami widziana z góry. Szklane słoiczki leżą obok siebie, a na ich zakrętkach naklejone są okrągłe, beżowe etykiety z wyraźnymi napisami, styl minimalistyczny."
-        - "Półka w spiżarni z poukładanymi słoikami z przyprawami i suchymi produktami, każdy słoik z czystą białą naklejką o czytelnym kroju pisma, w tle ciepłe oświetlenie w stylu skandynawskim."
-        - "Zbliżenie na szklany słoiczek z przyprawą stojący na drewnianym blacie, na słoiczku naklejona jest etykieta z realistyczną, klasyczną ilustracją botaniczną przedstawiającą krzew cynamonowca w stylu dawnych rycin naukowych."
+
 
 - [ ] **Co to jest die cut i kiss-cut? Różnice w cięciu naklejek reklamowych**
     - **Format:** Supporting Article
@@ -124,6 +113,13 @@ Możesz dodawać nowe tematy, zachowując format wcięć pod spodem.
 ---
 
 ## 📈 Zrealizowane Artykuły
+
+- [x] **Naklejki własnego projektu na słoiki z przyprawami - zorganizuj swoją kuchnię** (opublikowano 2026-07-13)
+    - **Format:** Supporting Article
+    - **Główna Fraza Kluczowa:** `małe naklejki na przyprawy` / `naklejki na przyprawy na zamowienie`
+    - **Cel:** Edukacja
+    - **Persona:** Fani organizacji domu, panie/panowie domu, pasjonaci kulinarni
+    - **Link nadrzędny (Filar):** `/blog/drukowanie-naklejek-online-na-co-zwrocic-uwage-przed-wysylka-projektu`
 
 - [x] **Naklejka ze zdjęcia lub własnego rysunku - jak przenieść wspomnienia na naklejkę?** (opublikowano 2026-07-07)
     - **Format:** Supporting Article
