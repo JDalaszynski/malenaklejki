@@ -41,20 +41,20 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       type: "article",
       url: `https://www.malenaklejki.pl/blog/${post.slug}`,
       publishedTime: post.date,
-      images: [
+      images: post.image ? [
         {
           url: post.image,
           width: 1200,
           height: 630,
           alt: post.title,
         },
-      ],
+      ] : [],
     },
     twitter: {
       card: "summary_large_image",
       title: post.title,
       description: post.description,
-      images: [post.image],
+      images: post.image ? [post.image] : [],
     },
   };
 }
