@@ -142,7 +142,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="min-h-full flex flex-col font-sans relative">
+      <body className="min-h-full flex flex-col font-sans relative" suppressHydrationWarning>
         {process.env.NEXT_PUBLIC_GA_ID && (
           <>
             <Script
