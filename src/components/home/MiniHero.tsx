@@ -3,6 +3,7 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowDown } from "lucide-react";
 import React from "react";
+import Image from "next/image";
 
 /**
  * Client-only interactive scroll button for the MiniHero.
@@ -97,11 +98,13 @@ export function MiniHeroContent() {
 
       {/* Central-left background image */}
       <div className="absolute bottom-0 left-0 h-[60%] aspect-square sm:left-0 sm:top-1/2 sm:bottom-auto sm:-translate-y-1/2 sm:w-[400px] sm:h-[400px] md:w-[600px] md:h-[600px] opacity-90 sm:opacity-50 dark:opacity-80 dark:sm:opacity-40 -rotate-6 pointer-events-none -z-10 sm:[mask-image:radial-gradient(circle_at_center,black_50%,transparent_75%)]">
-        <img
+        <Image
           src="/images/hero-background-image-central.jpg"
           alt=""
-          className="w-full h-full object-cover rounded-2xl sm:rounded-full"
-          loading="eager"
+          fill
+          priority
+          sizes="(max-width: 640px) 400px, 600px"
+          className="object-cover rounded-2xl sm:rounded-full"
         />
       </div>
 
@@ -112,11 +115,13 @@ export function MiniHeroContent() {
           className={`absolute pointer-events-none bg-white flex items-center justify-center border-[6px] sm:border-[10px] border-white dark:border-white/90 overflow-hidden opacity-[0.95] ${sticker.className}`}
           style={sticker.style}
         >
-          <img
+          <Image
             src={sticker.src}
             alt=""
-            className="w-full h-full object-cover"
-            loading="eager"
+            fill
+            sizes="(max-width: 640px) 150px, 350px"
+            priority={idx < 4}
+            className="object-cover"
           />
         </div>
       ))}
