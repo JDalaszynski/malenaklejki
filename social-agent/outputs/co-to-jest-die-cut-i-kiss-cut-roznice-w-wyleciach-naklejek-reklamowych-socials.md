@@ -1,104 +1,85 @@
-Jasne, oto zestaw gotowych formatów social media na podstawie dostarczonego artykułu, przygotowany zgodnie z wytycznymi.
+Jasne, oto zestaw gotowych formatów social media na podstawie dostarczonego artykułu, przygotowany zgodnie z Twoimi wytycznymi.
+
+---
 
 ## A. Krótka Zajawka (Post FB / Instagram)
 
-Die-cut czy kiss-cut? 🤔 Brzmi skomplikowanie, a to tylko dwa sposoby wycinania Twoich naklejek!
+Wiesz, czym się różni naklejka DIE CUT od KISS-CUT? 🤔
 
-Jeden sprawia, że Twoje wlepki wyglądają jak profesjonalny merch, a drugi jest idealny do etykiet na produkty. Jeden błąd i możesz utrudnić sobie życie. 😬
+To nie jest tylko techniczny detal! Jedna wygląda jak profesjonalny merch wycięty idealnie po kształcie, a druga ułatwia masowe i szybkie naklejanie etykiet. To klucz do idealnego efektu. ✂️
 
-Chcesz wiedzieć, który typ cięcia wybrać dla swoich naklejek? Wszystko wyjaśniamy krok po kroku w naszym najnowszym artykule. Koniec z pomyłkami! 👇
+W naszym nowym wpisie na blogu wyjaśniamy wszystko krok po kroku. Dowiedz się, które cięcie wybrać dla Twoich wlepek, a które dla etykiet firmowych, żeby w pełni wykorzystać ich potencjał.
 
-Czytaj więcej na blogu! Link w bio 🚀
+Chcesz poznać wszystkie sekrety? 🔥 Czytaj więcej na naszym blogu! Link w bio.
 
-#diecut #kisscut #naklejkinazamówienie #cięciepoobrysie #wlepki #naklejkizwłasnymlogo #malenaklejki #naklejkiwłasnyprojekt
+#diecut #kisscut #naklejkinazamówienie #własnenaklejki #naklejkizwłasnymnadrukiem #drukowanienaklejekonline #małenaklejki
 
 ---
 
 ## B. Merytoryczna Karuzela (Instagram / LinkedIn)
 
-**Opis do posta:**
-Wybór cięcia naklejki ma znaczenie! ✂️ Zapisz tę ściągawkę, żeby zawsze wiedzieć, czy dla Twoich potrzeb lepszy będzie die-cut, czy kiss-cut.
+**(Grafiki do karuzeli)**
 
-Chcesz zamówić swoje? Wejdź na malenaklejki.pl! 🔥
+**Slajd 1 (Tytuł):**
+DIE CUT vs. KISS-CUT 🤔
+Które cięcie naklejek wybrać dla siebie? Sprawdź naszą ściągawkę!
 
-#diecutsticker #naklejkizwłasnymnadrukiem #personalizowanenaklejki #etykiety #wlepki #naklejkifirmowe #drukowanienaklejekonline
+**Slajd 2 (Die Cut):**
+**DIE CUT - CIĘCIE NA WYLOT**
+✅ Naklejka i papier podkładowy są wycięte po obrysie Twojej grafiki.
+✅ Wygląda jak profesjonalny gadżet, bez zbędnego tła.
+✅ Idealna na merch, wlepki i personalizację laptopa. 💻
 
----
-**Treść slajdów:**
+**Slajd 3 (Kiss-Cut):**
+**KISS-CUT - CIĘCIE "PO CAŁUSIE"**
+✅ Ostrze nacina tylko folię, a papier podkładowy zostaje w całości.
+✅ Super szybkie i wygodne odklejanie z arkusza.
+✅ Sprawdzi się jako etykiety na produkty i opakowania. 📦
 
-**[SLIDE 1]**
-(Tytuł na grafice)
-Die-Cut vs. Kiss-Cut
-Które cięcie wybrać do swoich naklejek? ✂️
+**Slajd 4 (Podsumowanie):**
+**GŁÓWNA RÓŻNICA?**
+Die cut to pojedyncze sztuki, idealne do rozdawania. Kiss-cut to cały arkusz gotowy do pracy.
+A najlepsze? U nas obie opcje kosztują tyle samo! 💸
 
----
-**[SLIDE 2]**
-(Grafika przedstawiająca pojedynczą naklejkę die-cut)
-**Co to jest DIE-CUT?**
-✅ Naklejka wycięta razem z papierem podkładowym.
-✅ Każda sztuka jest osobnym produktem.
-✅ Idealna jako wlepka, merch lub gadżet.
-✅ Świetnie podkreśla unikalny kształt Twojej grafiki.
+**Slajd 5 (CTA):**
+Wiedza w pigułce! ✨
+Zapisz ten post na później, żeby nie zapomnieć.
+A jeśli już wiesz, czego potrzebujesz - wpadaj na naszą stronę i stwórz swoje naklejki! 👇
+malenaklejki.pl
 
----
-**[SLIDE 3]**
-(Grafika przedstawiająca arkusz z naklejkami kiss-cut)
-**Co to jest KISS-CUT?**
-✅ Wycięta jest tylko folia, a podkład zostaje w całości.
-✅ Wiele naklejek na jednym, prostokątnym arkuszu.
-✅ Perfekcyjna do etykiet produktowych.
-✅ Ułatwia szybkie i seryjne odklejanie.
+**(Opis pod postem karuzelowym):**
+Die cut czy kiss-cut? Już nie musisz się zastanawiać! Zobacz naszą ściągawkę i wybierz idealne cięcie dla swoich naklejek. 😎
 
----
-**[SLIDE 4]**
-(Grafika z dwiema kolumnami porównawczymi)
-**Kiedy wybrać które?**
-👉 **DIE-CUT**, gdy:
-Chcesz rozdawać pojedyncze wlepki fanom.
-Personalizujesz laptopa lub auto.
-Sprzedajesz naklejki jako oddzielny produkt.
-
-👉 **KISS-CUT**, gdy:
-Oklejasz serię produktów (np. słoiki, butelki).
-Potrzebujesz etykiet, które łatwo odkleić z arkusza.
-Przechowujesz zapas naklejek w jednym miejscu.
-
----
-**[SLIDE 5]**
-(Grafika z logo MałeNaklejki i wyraźnym CTA)
-Wiesz już wszystko! 😎
-
-Teraz stwórz swoje idealne naklejki. Niezależnie od wyboru, cena jest ta sama!
-
-**Zapisz ten post na później! 💡**
-**Wejdź na stronę, by zamówić! 🚀**
+#diecutsticker #cięciepoobrysie #naklejkifirmowe #etykietynaprodukty #personalizowanenaklejki #małenaklejki #naklejkazwłasnymlogo
 
 ---
 
 ## C. Scenariusz TikTok / Reels
 
 **Czas trwania:** ~15 sekund
-**Dźwięk:** Dynamiczna, trendująca muzyka z krótkimi bitami.
-**Opis posta:** Die-cut czy Kiss-cut? 🤔 Teraz już wiesz! Zamów naklejki z własnym nadrukiem na malenaklejki.pl 🔥 #diecut #kisscut #naklejkinazamówienie #wlepki #jakzrobićwłasnenaklejki #własnenaklejki
+**Dźwięk:** Dynamiczny, popularny utwór (np. z gatunku phonk lub upbeat pop)
 
 | Obraz (Video) | Dźwięk/Lektor (Audio) |
 | :--- | :--- |
-| **(0-2s)** Zbliżenie na rękę trzymającą pojedynczą, idealnie wyciętą naklejkę (die-cut). Na ekranie duży napis: **TO JEST DIE-CUT** | (dynamiczny, krótki lektorski głos) **Naklejka wycięta RAZEM z papierem!** |
-| **(3-5s)** Ręka obraca naklejkę, pokazując, że papier pod spodem ma ten sam kształt. Na ekranie napis: **IDEALNA NA WLEPKI** | **Każda sztuka osobno! Wygląda pro!** 🔥 |
-| **(6-8s)** Szybkie cięcie. Widzimy cały arkusz A4 z naklejkami. Palec z łatwością odkleja jedną z nich (kiss-cut). Na ekranie napis: **A TO JEST KISS-CUT** | **A tu? Cięcie tylko w folii!** |
-| **(9-11s)** Palec przykleja odklejoną naklejkę na słoik lub pudełko. Na ekranie napis: **NAJLEPSZA DO ETYKIET** | **Super do szybkiego oklejania produktów!** 🚀 |
-| **(12-15s)** Finalne ujęcie: ekran telefonu z otwartym kreatorem MałeNaklejki.pl, a obok leżą oba rodzaje naklejek. Napis na ekranie: **U NAS OBIE OPCJE W TEJ SAMEJ CENIE!** | **Wybierz, co wolisz na malenaklejki.pl!** |
+| **0-2s:** Zbliżenie na rękę wahającą się między dwoma typami naklejek: jedną wyciętą po kształcie (die cut), a drugą na arkuszu (kiss-cut). | Myślisz, że wszystkie naklejki są takie same? Błąd! ❌ |
+| **2-5s:** Dynamiczne, satysfakcjonujące ujęcie plotera tnącego naklejkę DIE CUT (przecina papier i folię). | To jest DIE CUT. Wycinamy ją w całości po kształcie. Idealna na merch! 🔥 |
+| **5-7s:** Ręka z łatwością odrywa całą naklejkę z podkładem w kształcie grafiki (np. psa corgi). | |
+| **7-10s:** Ujęcie plotera delikatnie nacinającego naklejkę KISS-CUT (tylko folia, papier zostaje nietknięty). | A to KISS-CUT. Nacinamy tylko folię. Błyskawicznie odklejasz z arkusza! 🚀 |
+| **10-12s:** Palec z łatwością odkleja naklejkę z dużego, prostokątnego arkusza. | |
+| **12-15s:** Osoba przykleja efektowną naklejkę die-cut na laptopa. Pojawia się animowany napis: MałeNaklejki.pl | Nieważne, którą wybierzesz. U nas zrobisz je od jednej sztuki. Wejdź na MałeNaklejki.pl! ✨ |
 
 ---
 
 ## D. Pinterest Pin
 
-### Zestaw 1 (na podstawie zdjęcia z psem corgi)
-*   **Tytuł Pinu 1:** Zmień Zdjęcie Psa w Wyjątkową Naklejkę Die Cut
-*   **Opis Pinu 1:** Zobacz, jak Twoje ulubione zdjęcie może stać się naklejką wyciętą idealnie po obrysie. Tworzymy personalizowane naklejki ze zdjęcia, idealne na laptopa, auto czy prezent. Wgraj własną grafikę i zamów naklejki z własnym nadrukiem już od jednej sztuki.
-*   **CTA 1:** Wgraj Zdjęcie Swojego Pupila
+### Zestaw 1
 
-### Zestaw 2 (na podstawie zdjęcia z arkuszem naklejek)
-*   **Tytuł Pinu 2:** Dowolny Kształt i Grafika - Zamów Swój Arkusz Naklejek Online
-*   **Opis Pinu 2:** Stwórz własne naklejki na zamówienie! Na jednym arkuszu możesz umieścić wiele różnych wzorów - zdjęcia, memy, napisy czy logo firmy. Oferujemy drukowanie naklejek online w dowolnym kształcie, nawet w małym nakładzie. Idealne jako wlepki lub naklejki firmowe z logo.
-*   **CTA 2:** Zamów Arkusz Własnych Wlepek
+*   **Tytuł Pinu [Zestaw 1]:** Zmień Zdjęcie Psa w Naklejkę Die Cut!
+*   **Opis Pinu [Zestaw 1]:** Twoje ulubione zdjęcie zamienione w personalizowane naklejki! Stwórz wyjątkową naklejkę z własnym zdjęciem psa, kota lub dowolnej grafiki. Idealna naklejka sztuka na laptopa czy telefon. Zamów naklejki na zamówienie online, wycięte idealnie po obrysie.
+*   **CTA [Zestaw 1]:** Wgraj Zdjęcie Swojego Pupila
+
+### Zestaw 2
+
+*   **Tytuł Pinu [Zestaw 2]:** Dowolny Kształt, Własny Wzór - Zamów Arkusz Naklejek!
+*   **Opis Pinu [Zestaw 2]:** Stwórz własne naklejki na zamówienie, nawet od jednej sztuki! Wgraj swoje grafiki, memy, zdjęcia czy logo firmowe na jeden arkusz. Drukujemy naklejki z własnym nadrukiem w dowolnym kształcie. Idealne jako wlepki lub naklejki firmowe z logo.
+*   **CTA [Zestaw 2]:** Stwórz Swój Własny Arkusz

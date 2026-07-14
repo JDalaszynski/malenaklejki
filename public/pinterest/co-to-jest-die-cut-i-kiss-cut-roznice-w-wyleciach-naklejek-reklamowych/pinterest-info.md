@@ -2,25 +2,25 @@
 
 ## Pin 1 (pin-1.png)
 **Tytuł Pinu:**
-Małe Naklejki
+Zmień Zdjęcie Psa w Naklejkę Die Cut!
 
 **Opis Pinu:**
-Zamów spersonalizowane naklejki ze zdjęcia.
+Twoje ulubione zdjęcie zamienione w personalizowane naklejki! Stwórz wyjątkową naklejkę z własnym zdjęciem psa, kota lub dowolnej grafiki. Idealna naklejka sztuka na laptopa czy telefon. Zamów naklejki na zamówienie online, wycięte idealnie po obrysie.
 
 **Napis CTA na grafice:**
-Zamów Online
+Wgraj Zdjęcie Swojego Pupila
 
 ---
 
 ## Pin 2 (pin-2.png)
 **Tytuł Pinu:**
-Małe Naklejki
+Dowolny Kształt, Własny Wzór - Zamów Arkusz Naklejek!
 
 **Opis Pinu:**
-Zamów spersonalizowane naklejki ze zdjęcia.
+Stwórz własne naklejki na zamówienie, nawet od jednej sztuki! Wgraj swoje grafiki, memy, zdjęcia czy logo firmowe na jeden arkusz. Drukujemy naklejki z własnym nadrukiem w dowolnym kształcie. Idealne jako wlepki lub naklejki firmowe z logo.
 
 **Napis CTA na grafice:**
-Zamów Online
+Stwórz Swój Własny Arkusz
 
 ---
 

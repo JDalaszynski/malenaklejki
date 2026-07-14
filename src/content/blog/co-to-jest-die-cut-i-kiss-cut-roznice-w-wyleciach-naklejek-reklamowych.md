@@ -3,7 +3,7 @@ title: "Die cut i kiss-cut - różnice w cięciu naklejek reklamowych"
 slug: "co-to-jest-die-cut-i-kiss-cut-roznice-w-wyleciach-naklejek-reklamowych"
 date: "2026-07-14"
 description: "Die cut sticker to naklejka wycięta po obrysie grafiki, kiss-cut zostaje na całym arkuszu. Poznaj różnice, koszty i podpowiedzi, które cięcie wybrać."
-image: "/blog/co-to-jest-die-cut-i-kiss-cut-roznice-w-wyleciach-naklejek-reklamowych/okladka.png"
+image: "/blog/co-to-jest-die-cut-i-kiss-cut-roznice-w-wyleciach-naklejek-reklamowych/naklejka-die-cut-pies-corgi-wycieta-po-obrysie.png"
 imageAlt: "Dłoń trzymająca naklejkę die-cut przedstawiającą uśmiechniętego psa rasy corgi, wyciętą dokładnie po obrysie sylwetki, na tle zielonych liści"
 tags: ["die cut", "kiss-cut", "cięcie po obrysie", "naklejki reklamowe"]
 cta_text: "Zamów naklejki die cut"
@@ -44,7 +44,7 @@ Praktyczny skutek: naklejka ma kształt Twojej grafiki, ale cały arkusz pozosta
 | Wygląd krawędzi | Nieregularny, dopasowany do grafiki | Prostokątny arkusz, naklejka w środku |
 | Wygoda przechowywania | Do rozdania lub naklejenia od razu | Cały komplet w jednym miejscu, do wykorzystania stopniowo |
 
-![Arkusz z kilkunastoma różnymi naklejkami die-cut o odmiennych kształtach - zdjęcia, ilustracje i logotypy wycięte po obrysie, z napisem "od 1 szt." i "Kształt Dowolny"](/blog/co-to-jest-die-cut-i-kiss-cut-roznice-w-wyleciach-naklejek-reklamowych/w-tresci-1.jpg)
+![Arkusz z kilkunastoma różnymi naklejkami die-cut o odmiennych kształtach - zdjęcia, ilustracje i logotypy wycięte po obrysie, z napisem "od 1 szt." i "Kształt Dowolny"](/blog/co-to-jest-die-cut-i-kiss-cut-roznice-w-wyleciach-naklejek-reklamowych/arkusz-naklejek-die-cut-rozne-ksztalty-wlasny-projekt.jpg)
 
 Jedna z największych zalet die cut to dowolność kształtów na jednym zamówieniu - możesz zestawić zdjęcie zwierzaka, cytat, logo i rysunkowy motyw na jednym arkuszu, a każdy element zostanie wycięty osobno, dokładnie po swoim obrysie. Bez minimalnego nakładu zamawiasz dokładnie tyle wzorów, ile potrzebujesz - nawet pojedyncze sztuki.
 

@@ -177,9 +177,9 @@ Zwróć wynik jako sformatowany Markdown (używając nagłówków H2 dla każdeg
     }
 
     // Wyciąganie zestawów danych dla każdego Pinu (zatrzymujemy się na końcu linii dla tytułów/CTA, a dla opisu przed kolejnym nagłówkiem lub boldem)
-    const titleMatches = [...outputText.matchAll(/\*\*Tytuł [pP]inu\s*(?:\[[^\]]+\])?\s*:\*\*\s*\n?\s*([^\n\r]+)/gi)];
-    const descMatches = [...outputText.matchAll(/\*\*Opis [pP]inu\s*(?:\[[^\]]+\])?\s*:\*\*\s*\n?\s*([\s\S]*?)(?=\*\*|##|$)/gi)];
-    const ctaMatches = [...outputText.matchAll(/\*\*CTA\s*(?:\[[^\]]+\])?\s*:\*\*\s*\n?\s*([^\n\r]+)/gi)];
+    const titleMatches = [...outputText.matchAll(/\*\*Tytuł [pP]inu[^:\n]*:\*\*\s*\n?\s*([^\n\r]+)/gi)];
+    const descMatches = [...outputText.matchAll(/\*\*Opis [pP]inu[^:\n]*:\*\*\s*\n?\s*([\s\S]*?)(?=\*\*|##|$)/gi)];
+    const ctaMatches = [...outputText.matchAll(/\*\*CTA[^:\n]*:\*\*\s*\n?\s*([^\n\r]+)/gi)];
 
     const titles = titleMatches.map(m => m[1].trim());
     const descriptions = descMatches.map(m => m[1].trim().replace(/[\s\*-]+$/, ''));
