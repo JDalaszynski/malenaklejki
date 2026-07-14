@@ -2,6 +2,7 @@
 
 import { useEffect, useState, useRef } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { Calendar, Clock, ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 import { motion } from "framer-motion";
 
@@ -100,12 +101,12 @@ export function LatestBlogPosts({ initialPosts }: { initialPosts: any[] }) {
                 <div className="relative aspect-[16/9] w-full overflow-hidden bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center">
                   <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent z-10" />
                   
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img 
+                  <Image 
                     src={post.image} 
                     alt={post.title}
+                    fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-700 ease-out"
-                    loading="lazy"
                   />
 
                   {/* Tags Overlay */}

@@ -163,18 +163,74 @@ export default async function BlogPostPage({ params }: PageProps) {
       <JsonLd
         data={{
           "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          itemListElement: [
+            {
+              "@type": "ListItem",
+              position: 1,
+              name: "Strona główna",
+              item: "https://www.malenaklejki.pl",
+            },
+            {
+              "@type": "ListItem",
+              position: 2,
+              name: "Blog",
+              item: "https://www.malenaklejki.pl/blog",
+            },
+            {
+              "@type": "ListItem",
+              position: 3,
+              name: post.title,
+            },
+          ],
+        }}
+      />
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
           "@type": "BlogPosting",
           headline: post.title,
           description: post.description,
-          image: post.image ? [post.image] : [],
+          image: post.image ? [`https://www.malenaklejki.pl${post.image}`] : [],
           datePublished: post.date,
+          dateModified: post.date,
+          mainEntityOfPage: {
+            "@type": "WebPage",
+            "@id": `https://www.malenaklejki.pl/blog/${slug}`,
+          },
           author: [{
             "@type": "Organization",
             name: "MałeNaklejki",
             url: "https://www.malenaklejki.pl"
-          }]
+          }],
+          publisher: {
+            "@type": "Organization",
+            name: "MałeNaklejki",
+            url: "https://www.malenaklejki.pl",
+            logo: {
+              "@type": "ImageObject",
+              url: "https://www.malenaklejki.pl/images/logo/favicon.png",
+            },
+          },
+          wordCount: post.content.replace(/<[^>]*>/g, '').trim().split(/\s+/).length,
         }}
       />
+      {post.faq && (
+        <JsonLd
+          data={{
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            mainEntity: post.faq.map((faq) => ({
+              "@type": "Question",
+              name: faq.question,
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: faq.answer,
+              },
+            })),
+          }}
+        />
+      )}
       <Header />
 
       <main className="flex-1 pt-6 pb-12 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto w-full">

@@ -90,7 +90,7 @@ export function UseCasesSection() {
           eyebrow="Inspiracje"
           title={
             <>
-              Jedna kartka A4, <HighlightWord>tysiąc zastosowań</HighlightWord>
+              Personalizowane naklejki i ich <HighlightWord>tysiąc zastosowań</HighlightWord>
             </>
           }
           sub="Nasi klienci wykorzystują kreator do najbardziej nietypowych i codziennych zadań. Sprawdź, co możesz stworzyć:"

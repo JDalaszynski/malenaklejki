@@ -3,6 +3,11 @@ import path from "path";
 import matter from "gray-matter";
 import { marked } from "marked";
 
+export interface FAQItem {
+  question: string;
+  answer: string;
+}
+
 export interface BlogPost {
   slug: string;
   title: string;
@@ -13,6 +18,7 @@ export interface BlogPost {
   imageAlt?: string;
   tags?: string[];
   readingTime?: string;
+  faq?: FAQItem[];
 }
 
 const postsDirectory = path.join(process.cwd(), "src/content/blog");
@@ -36,17 +42,38 @@ export async function getBlogPosts(): Promise<BlogPost[]> {
           const wordCount = content.trim().split(/\s+/).length;
           const readingTime = Math.ceil(wordCount / 200) + " min";
 
-          return {
-            slug,
-            title: data.title || "Bez tytułu",
-            date: data.date || new Date().toISOString().split("T")[0],
-            description: data.description || "",
-            content: content, // For list, raw content is fine
-            image: data.image || undefined,
-            imageAlt: data.imageAlt || undefined,
-            tags: data.tags || [],
-            readingTime,
-          };
+            // Parse FAQs
+            const faq: FAQItem[] = [];
+            const faqSectionRegex = /##.*FAQ.*([\s\S]*)/i;
+            const faqMatch = content.match(faqSectionRegex);
+            if (faqMatch) {
+              const faqText = faqMatch[1];
+              const qaRegex = /###\s+(.+?)\s*\n+([\s\S]+?)(?=(?:\n###\s+)|\n##\s+|$)/g;
+              let qaMatch;
+              while ((qaMatch = qaRegex.exec(faqText)) !== null) {
+                const question = qaMatch[1].trim();
+                let answer = qaMatch[2].trim();
+                // Simple markdown cleanup for the JSON-LD
+                answer = answer.replace(/\*\*(.*?)\*\*/g, '$1');
+                answer = answer.replace(/_(.*?)_/g, '$1');
+                answer = answer.replace(/\[(.*?)\]\(.*?\)/g, '$1');
+                answer = answer.replace(/>\s?/g, '');
+                faq.push({ question, answer });
+              }
+            }
+
+            return {
+              slug,
+              title: data.title || "Bez tytułu",
+              date: data.date || new Date().toISOString().split("T")[0],
+              description: data.description || "",
+              content: content, // For list, raw content is fine
+              image: data.image || undefined,
+              imageAlt: data.imageAlt || undefined,
+              tags: data.tags || [],
+              readingTime,
+              faq: faq.length > 0 ? faq : undefined,
+            };
         })
     );
 
@@ -70,6 +97,26 @@ export async function getBlogPostBySlug(slug: string): Promise<BlogPost | null> 
     const wordCount = content.trim().split(/\s+/).length;
     const readingTime = Math.ceil(wordCount / 200) + " min";
 
+    // Parse FAQs
+    const faq: FAQItem[] = [];
+    const faqSectionRegex = /##.*FAQ.*([\s\S]*)/i;
+    const faqMatch = content.match(faqSectionRegex);
+    if (faqMatch) {
+      const faqText = faqMatch[1];
+      const qaRegex = /###\s+(.+?)\s*\n+([\s\S]+?)(?=(?:\n###\s+)|\n##\s+|$)/g;
+      let qaMatch;
+      while ((qaMatch = qaRegex.exec(faqText)) !== null) {
+        const question = qaMatch[1].trim();
+        let answer = qaMatch[2].trim();
+        // Simple markdown cleanup for the JSON-LD
+        answer = answer.replace(/\*\*(.*?)\*\*/g, '$1');
+        answer = answer.replace(/_(.*?)_/g, '$1');
+        answer = answer.replace(/\[(.*?)\]\(.*?\)/g, '$1');
+        answer = answer.replace(/>\s?/g, '');
+        faq.push({ question, answer });
+      }
+    }
+
     return {
       slug,
       title: data.title || "Bez tytułu",
@@ -80,6 +127,7 @@ export async function getBlogPostBySlug(slug: string): Promise<BlogPost | null> 
       imageAlt: data.imageAlt || undefined,
       tags: data.tags || [],
       readingTime,
+      faq: faq.length > 0 ? faq : undefined,
     };
   } catch (error) {
     console.error(`Error reading blog post ${slug}:`, error);

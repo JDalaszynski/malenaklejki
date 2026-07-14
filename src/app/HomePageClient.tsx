@@ -4,14 +4,26 @@ import { getUUID } from "@/lib/uuid";
 import { useState, useEffect, useMemo, useRef } from "react";
 import Link from "next/link";
 import NextImage from "next/image";
+import dynamic from "next/dynamic";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { MiniHero } from "@/components/home/MiniHero";
 import { LatestBlogPosts } from "@/components/blog/LatestBlogPosts";
 import { NewA4Visualizer } from "@/components/creator/NewA4Visualizer";
-import { A4Visualizer3D } from "@/components/creator/A4Visualizer3D";
-import { StickerEditModal } from "@/components/creator/StickerEditModal";
-import { AIGenerator } from "@/components/creator/AIGenerator";
+
+// Heavy components loaded on-demand to reduce initial bundle size (~110KB → ~60KB)
+const A4Visualizer3D = dynamic(
+  () => import("@/components/creator/A4Visualizer3D").then(mod => ({ default: mod.A4Visualizer3D })),
+  { ssr: false, loading: () => <div className="w-full aspect-[210/297] rounded-2xl bg-muted animate-pulse" /> }
+);
+const StickerEditModal = dynamic(
+  () => import("@/components/creator/StickerEditModal").then(mod => ({ default: mod.StickerEditModal })),
+  { ssr: false }
+);
+const AIGenerator = dynamic(
+  () => import("@/components/creator/AIGenerator").then(mod => ({ default: mod.AIGenerator })),
+  { ssr: false }
+);
 import { JsonLd } from "@/components/seo/JsonLd";
 import { TrustBar } from "@/components/home/TrustBar";
 import { UseCasesSection } from "@/components/home/UseCasesSection";
@@ -2215,10 +2227,10 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
                         e.target.value = "";
                       }}
                     />
-                    <div className="flex flex-col items-center justify-center bg-background/95 backdrop-blur-sm border border-border/80 py-4 px-6 rounded-2xl shadow-lg animate-bounce">
-                      <UploadCloud className="w-6 h-6 text-primary mb-1.5" />
-                      <span className="text-xs font-extrabold text-foreground">Dodaj naklejkę</span>
-                      <span className="text-[9px] font-semibold text-muted-foreground mt-0.5">Wgraj zdjęcie z galerii</span>
+                    <div className="flex flex-col items-center justify-center bg-background/95 backdrop-blur-sm border-2 border-primary/30 py-8 px-10 rounded-[2rem] shadow-xl animate-bounce">
+                      <UploadCloud className="w-10 h-10 text-primary mb-3" />
+                      <span className="text-base font-black text-foreground">Dodaj naklejkę</span>
+                      <span className="text-xs font-semibold text-muted-foreground mt-1">Wgraj zdjęcie z galerii</span>
                     </div>
                   </label>
                 )}

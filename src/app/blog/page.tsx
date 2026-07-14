@@ -2,13 +2,21 @@ import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { getBlogPosts } from "@/lib/blog";
 import Link from "next/link";
+import Image from "next/image";
 import { Calendar, Clock, ArrowRight } from "lucide-react";
+import { JsonLd } from "@/components/seo/JsonLd";
 
 export const metadata = {
-  title: "Blog - MałeNaklejki",
-  description: "Baza wiedzy o projektowaniu naklejek, marketingu i brandingu. Porady techniczne, inspiracje i przewodniki krok po kroku.",
+  title: "Blog o naklejkach | Poradniki, inspiracje i porady — MałeNaklejki",
+  description: "Dowiedz się, jak projektować naklejki z własnym nadrukiem, przygotować pliki do druku i wykorzystać naklejki w brandingu. Porady krok po kroku od MałeNaklejki.",
   alternates: {
     canonical: "/blog",
+  },
+  openGraph: {
+    title: "Blog o naklejkach | Poradniki, inspiracje i porady — MałeNaklejki",
+    description: "Dowiedz się, jak projektować naklejki z własnym nadrukiem, przygotować pliki do druku i wykorzystać naklejki w brandingu.",
+    url: "https://www.malenaklejki.pl/blog",
+    type: "website",
   },
 };
 
@@ -17,6 +25,39 @@ export default async function BlogIndexPage() {
 
   return (
     <div className="flex flex-col min-h-screen text-foreground bg-[#edf6f2] dark:bg-[#002c2e] transition-colors duration-300">
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          itemListElement: [
+            {
+              "@type": "ListItem",
+              position: 1,
+              name: "Strona główna",
+              item: "https://www.malenaklejki.pl",
+            },
+            {
+              "@type": "ListItem",
+              position: 2,
+              name: "Blog",
+            },
+          ],
+        }}
+      />
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "CollectionPage",
+          name: "Blog o naklejkach — MałeNaklejki",
+          description: "Dowiedz się, jak projektować naklejki z własnym nadrukiem, przygotować pliki do druku i wykorzystać naklejki w brandingu.",
+          url: "https://www.malenaklejki.pl/blog",
+          isPartOf: {
+            "@type": "WebSite",
+            name: "MałeNaklejki",
+            url: "https://www.malenaklejki.pl",
+          },
+        }}
+      />
       <Header />
 
       <main className="flex-1 py-12 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto w-full space-y-12">
@@ -49,12 +90,12 @@ export default async function BlogIndexPage() {
                   <div className="relative aspect-[16/9] w-full overflow-hidden bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center">
                     <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent z-10" />
                     
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img 
+                    <Image 
                       src={post.image} 
                       alt={post.title}
+                      fill
+                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                       className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-500"
-                      loading="lazy"
                     />
 
                     {/* Tags Overlay */}

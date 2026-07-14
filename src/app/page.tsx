@@ -99,7 +99,43 @@ export default async function Home() {
           ],
         }}
       />
-
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "HowTo",
+          name: "Jak zamówić naklejki z własnym nadrukiem online",
+          description: "Stwórz własne naklejki na arkuszu A4 w 3 prostych krokach — od wgrania pliku do odbioru paczki.",
+          totalTime: "PT5M",
+          estimatedCost: {
+            "@type": "MonetaryAmount",
+            currency: "PLN",
+            value: "49.00",
+          },
+          step: [
+            {
+              "@type": "HowToStep",
+              position: 1,
+              name: "Dodaj i dostosuj grafiki",
+              text: "Wgraj zdjęcia lub grafiki z telefonu albo komputera, lub stwórz je za pomocą wbudowanego generatora AI. Wybierz rozmiar każdej naklejki oraz jej linię cięcia (kontur, koło lub prostokąt).",
+              image: "https://www.malenaklejki.pl/images/kroki/krok-1-dodaj-dostosuj-naklejki.png",
+            },
+            {
+              "@type": "HowToStep",
+              position: 2,
+              name: "Rozmieść na arkuszu A4",
+              text: "Układaj i przeciągaj naklejki na podglądzie arkusza. Inteligentny kreator dopilnuje, aby naklejki na siebie nie nachodziły i optymalnie wykorzystały miejsce.",
+              image: "https://www.malenaklejki.pl/images/kroki/krok-2-rozmiesc-na-arkuszu-a4-naklejki.png",
+            },
+            {
+              "@type": "HowToStep",
+              position: 3,
+              name: "Sprawdź w 3D i zamów",
+              text: "Obejrzyj realistyczną wizualizację 3D gotowego arkusza, dodaj go do koszyka i sfinalizuj bezpieczne zamówienie za pomocą BLIK lub Przelewy24. Wysyłka w 3 dni robocze.",
+              image: "https://www.malenaklejki.pl/images/kroki/krok-3-sprawdz-3d-i-zamow-naklejki.png",
+            },
+          ],
+        }}
+      />
       <HomePageClient>
         <section id="seo-marketing-section" className="max-w-6xl mx-auto w-full px-4 sm:px-6 lg:px-8 space-y-16 sm:space-y-24 pt-10 sm:pt-14 pb-16 sm:pb-20">
           <TrustBar />
