@@ -136,9 +136,8 @@ export function A4Visualizer3D({ stickers, deliveryForm = "sheet" }: A4Visualize
         {stickers.map((st) => {
           const wMm = st.widthCm * 10;
           const hMm = st.heightCm * 10;
-          const baseOffsetMm = Math.max(2, Math.max(wMm, hMm) * (8 / 120));
           const isInside = st.cutLineType === "rounded_inside" || st.cutLineType === "circle_inside";
-          const offsetMm = isInside ? -2 : baseOffsetMm;
+          const offsetMm = isInside ? -2 : 2;
           const offsetPercentX = (offsetMm / wMm) * 100;
           const offsetPercentY = (offsetMm / hMm) * 100;
 

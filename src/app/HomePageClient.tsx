@@ -65,7 +65,8 @@ import {
   ChevronUp,
   Edit3,
   Eye,
-  Wand2
+  Wand2,
+  LayoutGrid
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -538,6 +539,44 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
     img.src = url;
   };
 
+  const handleFillSheet = () => {
+    if (!selectedSticker) return;
+
+    let currentStickers = [...stickers];
+    const wMm = selectedSticker.widthCm * 10;
+    const hMm = selectedSticker.heightCm * 10;
+    let added = 0;
+
+    while (true) {
+      const pos = findFreePosition(
+        wMm,
+        hMm,
+        selectedSticker.rotation || 0,
+        currentStickers,
+        selectedSticker.cutLineType,
+        selectedSticker.contourPolygons
+      );
+      if (!pos) break;
+
+      const newSticker: PlacedSticker = {
+        ...selectedSticker,
+        id: getUUID(),
+        x: pos.x,
+        y: pos.y,
+      };
+      currentStickers.push(newSticker);
+      added++;
+
+      if (currentStickers.length > 300) break;
+    }
+
+    if (added > 0) {
+      setStickers(currentStickers);
+    } else {
+      setError("Brak miejsca na arkuszu na więcej naklejek.");
+    }
+  };
+
   // Open edit modal for selected sticker
   const handleOpenEdit = () => {
     if (selectedSticker) {
@@ -1001,7 +1040,7 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
       const relY = -drawH / 2;
       let offsetPx = 0;
       if (st.cutLineType === "rounded" || st.cutLineType === "circle") {
-        offsetPx = Math.max(2, Math.max(st.widthCm, st.heightCm) * 10 * (8 / 120)) * MM_TO_PX;
+        offsetPx = 2 * MM_TO_PX;
       } else if (st.cutLineType === "rounded_inside" || st.cutLineType === "circle_inside") {
         offsetPx = -2 * MM_TO_PX;
       }
@@ -1220,9 +1259,8 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
 
       const wMm = st.widthCm * 10;
       const hMm = st.heightCm * 10;
-      const baseOffsetMm = Math.max(2, Math.max(wMm, hMm) * (8 / 120));
       const isInside = st.cutLineType === "rounded_inside" || st.cutLineType === "circle_inside" || st.cutLineType === "contour_inside";
-      const offsetMm = isInside ? -2 : baseOffsetMm;
+      const offsetMm = isInside ? -2 : 2;
 
       let sx = 1;
       let sy = 1;
@@ -1914,6 +1952,15 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
                       </button>
                       <button
                         type="button"
+                        onClick={handleFillSheet}
+                        className="flex-1 inline-flex items-center justify-center gap-1 px-2 py-1.5 text-[11px] font-bold bg-muted hover:bg-muted/80 dark:bg-white/10 dark:hover:bg-white/20 text-foreground border border-border/40 rounded-xl transition-all active:scale-95 cursor-pointer"
+                        title="Wypełnij arkusz"
+                      >
+                        <LayoutGrid className="w-3.5 h-3.5" />
+                        <span>Wypełnij</span>
+                      </button>
+                      <button
+                        type="button"
                         onClick={handleDownloadSticker}
                         className="flex-1 inline-flex items-center justify-center gap-1 px-2 py-1.5 text-[11px] font-bold bg-muted hover:bg-muted/80 dark:bg-white/10 dark:hover:bg-white/20 text-foreground border border-border/40 rounded-xl transition-all active:scale-95 cursor-pointer"
                         title="Pobierz"
@@ -2204,6 +2251,7 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
                     onError={setError}
                     onEditSticker={handleOpenEdit}
                     onDuplicateSticker={handleDuplicateSticker}
+                    onFillSheet={handleFillSheet}
                     onDeleteSticker={handleDeleteSticker}
                     onCutLineChange={handleCutLineChange}
                     onRotationChange={handleRotationChange}

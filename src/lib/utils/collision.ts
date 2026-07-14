@@ -135,8 +135,7 @@ export function getCutLineMargins(
     cutLineType === "rounded_inside" ||
     cutLineType === "circle_inside"
   ) {
-    const baseOffset = Math.max(2, Math.max(widthCm, heightCm) * 10 * (8 / 120));
-    const offsetMm = (cutLineType === "rounded_inside" || cutLineType === "circle_inside") ? -2 : baseOffset;
+    const offsetMm = (cutLineType === "rounded_inside" || cutLineType === "circle_inside") ? -2 : 2;
     const cutW = wMm + 2 * offsetMm;
     const cutH = hMm + 2 * offsetMm;
     const size = getRotatedSize(cutW, cutH, rotation);
@@ -329,11 +328,20 @@ export function checkStickersCollision(
     contourPolygons?: { x: number; y: number }[][];
   }
 ): boolean {
-  // 1. Graphics must not overlap (0 padding)
-  const g1 = getGraphicBoundingBox(s1, overrideParams1);
-  const g2 = getGraphicBoundingBox(s2);
-  if (checkOverlap(g1, g2, 0)) {
-    return true;
+  const t1 = overrideParams1?.cutLineType ?? s1.cutLineType;
+  const t2 = s2.cutLineType;
+  
+  const allowedOverlapTypes = ["contour", "rounded", "circle"];
+  const canGraphicsOverlap = allowedOverlapTypes.includes(t1) && allowedOverlapTypes.includes(t2);
+
+  if (!canGraphicsOverlap) {
+    // 1. Graphics and Cut lines must not overlap each other
+    // We check the outer bounding box (which encompasses both graphic and cutline)
+    const o1 = getCutLineBoundingBox(s1, overrideParams1);
+    const o2 = getCutLineBoundingBox(s2);
+    if (checkOverlap(o1, o2, 0)) {
+      return true;
+    }
   }
 
   // 2. Cut lines must not overlap and need safety spacing (1.0mm padding)
