@@ -186,6 +186,11 @@ export function getOuterMargins(
   const graphicMargins = getContourMargins(wMm, hMm, rotation, undefined);
   const cutMargins = getCutLineMargins(st, overrideParams);
 
+  const cutLineType = overrideParams?.cutLineType !== undefined ? overrideParams.cutLineType : st.cutLineType;
+  if (cutLineType === "contour" || cutLineType === "contour_inside") {
+    return cutMargins;
+  }
+
   return {
     left: Math.max(graphicMargins.left, cutMargins.left),
     right: Math.max(graphicMargins.right, cutMargins.right),
@@ -433,6 +438,66 @@ export function clampToUsableArea(
   return { x: cx, y: cy };
 }
 
+/**
+ * Calculates the displayed width of a sticker (in cm), which corresponds to the width of its cut line.
+ * If there is no cut line, it returns the graphic width.
+ * This is an intrinsic width (calculated with 0 rotation) so it makes sense to the user.
+ */
+export function getDisplayedWidthCm(
+  st: {
+    widthCm: number;
+    heightCm: number;
+    rotation?: number;
+    cutLineType: "none" | "contour" | "rounded" | "circle" | "contour_inside" | "rounded_inside" | "circle_inside";
+    contourPolygons?: { x: number; y: number }[][];
+  }
+): number {
+  if (st.cutLineType === "none") {
+    return st.widthCm;
+  }
+  const margins = getCutLineMargins(st, { rotation: 0 });
+  const wMm = margins.left + margins.right;
+  return Math.round(wMm) / 10;
+}
 
-
-
+/**
+ * Calculates the graphic width required to achieve a specific target outer cut line width.
+ * Uses binary search because cut line margins can be non-linear (e.g. contour scale clamping).
+ */
+export function getGraphicWidthFromDisplayed(
+  st: {
+    widthCm: number;
+    heightCm: number;
+    rotation?: number;
+    cutLineType: "none" | "contour" | "rounded" | "circle" | "contour_inside" | "rounded_inside" | "circle_inside";
+    contourPolygons?: { x: number; y: number }[][];
+  },
+  targetOuterWidthCm: number
+): number {
+  if (st.cutLineType === "none") {
+    return targetOuterWidthCm;
+  }
+  const aspect = st.widthCm / st.heightCm;
+  let low = 0.1;
+  let high = 40.0;
+  let bestW = st.widthCm;
+  
+  for (let i = 0; i < 20; i++) {
+    const mid = (low + high) / 2;
+    const margins = getCutLineMargins(st, {
+      widthCm: mid,
+      heightCm: mid / aspect,
+      rotation: 0
+    });
+    const currentOuterWidthCm = (margins.left + margins.right) / 10;
+    
+    if (currentOuterWidthCm < targetOuterWidthCm) {
+      low = mid;
+    } else {
+      high = mid;
+    }
+    bestW = mid;
+  }
+  
+  return bestW;
+}

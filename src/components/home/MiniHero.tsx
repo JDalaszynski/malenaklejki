@@ -130,21 +130,21 @@ export function MiniHeroContent() {
           className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight text-foreground max-w-4xl font-heading leading-[1.15] drop-shadow-sm"
         >
           Naklejki z własnym nadrukiem <br className="hidden sm:block" />
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-emerald-400">idealnie wycięte po obrysie</span>
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-emerald-400">po Twojemu</span>
         </h1>
 
         <p
           className="text-muted-foreground text-sm sm:text-base font-semibold mt-4 max-w-2xl mx-auto leading-relaxed"
         >
-          Wgraj zdjęcie z telefonu, a my sami wytniemy naklejkę idealnie po jej kształcie.
-          Stwórz własny arkusz w kilku prostych krokach poniżej.
+          Po prostu: wgraj zdjęcia z telefonu, <br />a my zrobimy z nich naklejki o dowolnym kształcie.
+
         </p>
 
         <div className="mt-2">
           <MiniHeroButton />
         </div>
       </div>
-    </section>
+    </section >
   );
 }
 

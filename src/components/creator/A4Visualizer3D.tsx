@@ -109,11 +109,10 @@ export function A4Visualizer3D({ stickers, deliveryForm = "sheet" }: A4Visualize
 
       {/* 3D Floating Sheet Wrapper */}
       <div
-        className={`relative w-full h-full transition-transform duration-300 ease-out overflow-hidden cmyk-preview ${
-          deliveryForm === "individual"
-            ? "bg-transparent"
-            : "bg-[#fcfcfc] border border-border/40 shadow-[0_20px_50px_rgba(0,0,0,0.12),0_10px_20px_rgba(0,0,0,0.06)]"
-        }`}
+        className={`relative w-full h-full transition-transform duration-300 ease-out overflow-hidden cmyk-preview ${deliveryForm === "individual"
+          ? "bg-transparent"
+          : "bg-[#fffffc] border border-border/40 shadow-[0_20px_50px_rgba(0,0,0,0.12),0_10px_20px_rgba(0,0,0,0.06)]"
+          }`}
         style={{
           transformStyle: "preserve-3d",
           transform: deliveryForm === "individual"

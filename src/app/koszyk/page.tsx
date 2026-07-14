@@ -64,13 +64,13 @@ export default function CartPage() {
             </div>
             <h2 className="text-2xl font-extrabold mb-3 text-foreground">Koszyk jest jeszcze pusty</h2>
             <p className="text-muted-foreground mb-8 font-medium">
-              Zaprojektuj odlotowe naklejki z własnym zdjęciem lub stwórz je za pomocą AI!
+              Zamów naklejki z własnymi zdjęciami i grafikami!
             </p>
             <Link
               href="/"
               className="w-full inline-flex items-center justify-center rounded-xl text-base font-bold bg-primary text-primary-foreground hover:bg-primary/95 active:scale-[0.98] h-14 px-8 shadow-sm transition-all"
             >
-              Stwórz naklejkę!
+              Stwórz naklejki
             </Link>
           </motion.div>
         ) : (

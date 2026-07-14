@@ -36,7 +36,7 @@ import { FAQSection } from "@/components/home/FAQSection";
 import { FinalCTASection } from "@/components/home/FinalCTASection";
 import { PlacedSticker } from "@/types/creator";
 import { useCartStore } from "@/store/cartStore";
-import { checkOverlap, getRotatedSize, getCutLineMargins, getOuterMargins, getCutLineBoundingBox, checkStickersCollision, clampToUsableArea } from "@/lib/utils/collision";
+import { checkOverlap, getRotatedSize, getCutLineMargins, getOuterMargins, getCutLineBoundingBox, checkStickersCollision, clampToUsableArea, getDisplayedWidthCm, getGraphicWidthFromDisplayed } from "@/lib/utils/collision";
 import { getContourPoints } from "@/lib/utils/contour";
 import { getStickersNoun, getIndividualStickersLabel } from "@/lib/utils/polish";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
@@ -395,26 +395,26 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     if (selectedSticker) {
-      setWidthInputValue(selectedSticker.widthCm.toString().replace('.', ','));
+      setWidthInputValue(getDisplayedWidthCm(selectedSticker).toString().replace('.', ','));
     } else {
       setWidthInputValue("");
     }
-  }, [selectedStickerId, selectedSticker?.widthCm]);
+  }, [selectedSticker]);
 
   const handleManualWidthCommit = (valStr: string) => {
     const sanitized = valStr.replace(",", ".");
     const num = parseFloat(sanitized);
     if (!isNaN(num)) {
-      const clamped = Math.max(3, Math.min(19, num));
+      const clamped = Math.max(1, Math.min(19, num));
       const rounded = Math.round(clamped * 10) / 10;
       handleWidthChange(rounded);
       // Force sync widthInputValue in case handleWidthChange did not update the value
       if (selectedSticker) {
-        setWidthInputValue(selectedSticker.widthCm.toString().replace('.', ','));
+        setWidthInputValue(getDisplayedWidthCm(selectedSticker).toString().replace('.', ','));
       }
     } else {
       if (selectedSticker) {
-        setWidthInputValue(selectedSticker.widthCm.toString().replace('.', ','));
+        setWidthInputValue(getDisplayedWidthCm(selectedSticker).toString().replace('.', ','));
       }
     }
   };
@@ -758,18 +758,14 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
   const handleWidthChange = (val: number) => {
     if (!selectedSticker) return;
 
-    const clampedVal = Math.max(1, Math.min(19, val));
+    const clampedDisplayedVal = Math.max(1, Math.min(19, val));
+    const targetGraphicWidth = getGraphicWidthFromDisplayed(selectedSticker, clampedDisplayedVal);
     const aspect = selectedSticker.aspectRatio;
 
     const otherStickers = stickers.filter((s) => s.id !== selectedSticker.id);
 
     const testFits = (w: number) => {
       const h = w / aspect;
-      const wMm = w * 10;
-      const hMm = h * 10;
-      const size = getRotatedSize(wMm, hMm, selectedSticker.rotation || 0);
-      const offsetX = (size.w - wMm) / 2;
-      const offsetY = (size.h - hMm) / 2;
       const margins = getOuterMargins(selectedSticker, { widthCm: w, heightCm: h });
 
       let tx = selectedSticker.x;
@@ -812,7 +808,7 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
     let fitY = selectedSticker.y;
     let found = false;
 
-    const result = testFits(clampedVal);
+    const result = testFits(targetGraphicWidth);
     if (result) {
       fitWidthCm = result.w;
       fitHeightCm = result.h;
@@ -820,9 +816,9 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
       fitY = result.y;
       found = true;
     } else {
-      // Binary search for the maximum width that fits
+      // Binary search for the maximum graphic width that fits
       let low = selectedSticker.widthCm;
-      let high = clampedVal;
+      let high = targetGraphicWidth;
       if (high < low) {
         const shrinkResult = testFits(high);
         if (shrinkResult) {
@@ -1438,7 +1434,7 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
     const pBL_bg = project(0, A4_H);
 
     destCtx.save();
-    destCtx.fillStyle = "#ffffff";
+    destCtx.fillStyle = "#fffffc";
     destCtx.beginPath();
     destCtx.moveTo(pTL_bg.x, pTL_bg.y);
     destCtx.lineTo(pTR_bg.x, pTR_bg.y);
@@ -1914,7 +1910,7 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
                         </span>
                       </p>
                       <div className="text-xs font-bold text-foreground mt-0.5 space-y-0.5">
-                        <p>Szerokość: {String(selectedSticker.widthCm).replace('.', ',')} cm</p>
+                        <p>Szerokość: {String(getDisplayedWidthCm(selectedSticker)).replace('.', ',')} cm</p>
                         <p>Wysokość: {selectedSticker.heightCm.toFixed(1).replace('.', ',')} cm</p>
                         <p>Linia cięcia: {
                           selectedSticker.cutLineType === "none" ? "Brak" :
@@ -2015,10 +2011,10 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
                       </div>
                       <input
                         type="range"
-                        min={3}
+                        min={1}
                         max={19}
                         step={0.1}
-                        value={selectedSticker.widthCm}
+                        value={getDisplayedWidthCm(selectedSticker)}
                         onChange={(e) => handleWidthChange(Number(e.target.value))}
                         className="w-full h-2 bg-foreground/10 dark:bg-muted-foreground/40 rounded-lg appearance-none cursor-pointer accent-primary focus:outline-none"
                       />
@@ -2143,7 +2139,7 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
                         </div>
                       </div>
                       <p className="text-[12px] leading-relaxed font-medium">
-                        Naklejki otrzymasz na arkuszu A4. Wygodne do przechowywania i odklejania.
+                        Naklejki otrzymasz na arkuszu A4. Wygodne do przechowywania i odklejania (kiss-cut).
                       </p>
                     </button>
 
@@ -2170,7 +2166,7 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
                         </div>
                       </div>
                       <p className="text-[12px] leading-relaxed font-medium">
-                        Każda naklejka zostanie docięta osobno do jej kształtu i dostarczona luzem.
+                        Każda naklejka zostanie docięta osobno do jej kształtu i dostarczona luzem (die-cut).
                       </p>
                     </button>
                   </div>
@@ -2289,6 +2285,23 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
               <p className="text-[11px] text-muted-foreground bg-muted/20 border border-border/40 p-3 rounded-2xl font-bold mt-2 sm:mt-4 text-center max-w-md mx-auto">
                 Uwaga: Po zmniejszeniu rozmiaru naklejki tekst i małe elementy mogą stać się nieczytelne.
               </p>
+
+              {stickers.length > 0 && (
+                <div className="flex justify-center mt-1.5 mb-0">
+                  <button
+                    onClick={() => {
+                      if (window.confirm("Czy na pewno chcesz usunąć wszystkie naklejki z arkusza?")) {
+                        setStickers([]);
+                        setSelectedStickerId(null);
+                      }
+                    }}
+                    className="text-xs font-semibold text-muted-foreground hover:text-destructive transition-colors flex items-center gap-1.5 cursor-pointer px-2 py-1"
+                  >
+                    <Trash2 className="w-3.5 h-3.5" />
+                    Wyczyść arkusz
+                  </button>
+                </div>
+              )}
             </div>
 
           </div>

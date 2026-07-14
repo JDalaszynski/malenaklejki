@@ -3,7 +3,7 @@
 import React, { useRef, useState, useEffect } from "react";
 import { createPortal } from "react-dom";
 import { PlacedSticker } from "@/types/creator";
-import { checkOverlap, getRotatedSize, getCutLineMargins, getOuterMargins, getCutLineBoundingBox, checkStickersCollision, clampToUsableArea, getContourMargins } from "@/lib/utils/collision";
+import { checkOverlap, getRotatedSize, getCutLineMargins, getOuterMargins, getCutLineBoundingBox, checkStickersCollision, clampToUsableArea, getContourMargins, getDisplayedWidthCm } from "@/lib/utils/collision";
 import { MoreVertical, Scissors, RotateCw, Crop, Copy, Trash2, Ban, Sparkles, Square, Circle, LayoutGrid } from "lucide-react";
 
 interface NewA4VisualizerProps {
@@ -461,7 +461,7 @@ export function NewA4Visualizer({
       const dxCm = dxMm / 10;
 
       let targetWidthCm = activeResize.initWidthCm + dxCm;
-      targetWidthCm = Math.max(2, Math.min(19, targetWidthCm)); // limit max width to 19cm
+      targetWidthCm = Math.max(0.5, Math.min(19, targetWidthCm)); // limit max width to 19cm
       const targetHeightCm = targetWidthCm / activeResize.aspectRatio;
 
       const otherStickers = stickers.filter((s) => s.id !== resizeSticker.id);
@@ -596,15 +596,14 @@ export function NewA4Visualizer({
     <div
       ref={containerRef}
       onClick={handleSheetClick}
-      className={`relative aspect-[210/297] w-full max-w-[480px] rounded-lg select-none cursor-default overflow-visible transition-all duration-300 ${
-        deliveryForm === "individual"
-          ? "border-transparent shadow-none"
-          : "border border-border/80 shadow-[0_15px_45px_rgba(0,71,73,0.08),_0_4px_12px_rgba(0,71,73,0.03)] dark:shadow-[0_15px_45px_rgba(0,0,0,0.35),_0_4px_12px_rgba(0,0,0,0.2)] hover:shadow-[0_22px_60px_rgba(0,71,73,0.14),_0_6px_20px_rgba(0,71,73,0.05)] dark:hover:shadow-[0_22px_60px_rgba(0,0,0,0.45),_0_6px_20px_rgba(0,0,0,0.25)]"
-      }`}
+      className={`relative aspect-[210/297] w-full max-w-[480px] rounded-lg select-none cursor-default overflow-visible transition-all duration-300 ${deliveryForm === "individual"
+        ? "border-transparent shadow-none"
+        : "border border-border/80 shadow-[0_15px_45px_rgba(0,71,73,0.08),_0_4px_12px_rgba(0,71,73,0.03)] dark:shadow-[0_15px_45px_rgba(0,0,0,0.35),_0_4px_12px_rgba(0,0,0,0.2)] hover:shadow-[0_22px_60px_rgba(0,71,73,0.14),_0_6px_20px_rgba(0,71,73,0.05)] dark:hover:shadow-[0_22px_60px_rgba(0,0,0,0.45),_0_6px_20px_rgba(0,0,0,0.25)]"
+        }`}
       style={{
         containerType: "inline-size",
         transform: "translate3d(0,0,0)",
-        backgroundColor: deliveryForm === "individual" ? "transparent" : "#ffffff",
+        backgroundColor: deliveryForm === "individual" ? "transparent" : "#ffffffff",
       }}
     >
       {/* Grid pattern background */}
@@ -646,6 +645,17 @@ export function NewA4Visualizer({
         const offsetMm = isInside ? -2 : 2;
         const offsetPercentX = (offsetMm / wMm) * 100;
         const offsetPercentY = (offsetMm / hMm) * 100;
+        const unrotatedMargins = getCutLineMargins(st, { rotation: 0 });
+        const localX = -unrotatedMargins.left;
+        const localY = -unrotatedMargins.top;
+        const localW = unrotatedMargins.left + unrotatedMargins.right;
+        const localH = unrotatedMargins.top + unrotatedMargins.bottom;
+        const uiFrameStyle = {
+          left: `${(localX / wMm) * 100}%`,
+          top: `${(localY / hMm) * 100}%`,
+          width: `${(localW / wMm) * 100}%`,
+          height: `${(localH / hMm) * 100}%`,
+        };
 
         return (
           <React.Fragment key={st.id}>
@@ -653,13 +663,13 @@ export function NewA4Visualizer({
               onPointerDown={(e) => handlePointerDown(e, st)}
               onPointerMove={handlePointerMove}
               onPointerUp={handlePointerUp}
-              className={`absolute flex items-center justify-center transition-shadow touch-none ${isSelected
-                ? (showQuickMenu || showCutMenu ? "z-[60]" : "z-30") + " ring-2 ring-primary ring-offset-2 rounded-none"
+              className={`absolute flex items-center justify-center transition-shadow touch-none group ${isSelected
+                ? "z-50"
                 : isPresentationMode
-                  ? "pointer-events-none rounded-none"
+                  ? "pointer-events-none"
                   : overlappingStickerIds.includes(st.id)
-                    ? "cursor-grab active:cursor-grabbing group ring-2 ring-red-500 ring-offset-2 shadow-[0_0_15px_rgba(239,68,68,0.6)] z-20 rounded-none animate-pulse"
-                    : "cursor-grab active:cursor-grabbing group hover:ring-1 hover:ring-primary/40 hover:ring-offset-1 rounded-none"
+                    ? "cursor-grab active:cursor-grabbing z-20 animate-pulse"
+                    : "cursor-grab active:cursor-grabbing hover:z-20"
                 } ${isPresentationMode ? "animate-in fade-in zoom-in-50 duration-300 ease-out" : ""}`}
               style={{
                 left: `${(st.x / SHEET_WIDTH_MM) * 100}%`,
@@ -679,14 +689,23 @@ export function NewA4Visualizer({
                 }}
               />
 
-
-
-              {/* Quick Action Badges on hover */}
-              {isSelected && (
-                <div className="absolute -top-6 left-1/2 -translate-x-1/2 bg-primary text-primary-foreground text-[10px] font-extrabold px-2 py-0.5 rounded-md shadow-md pointer-events-none">
-                  {st.widthCm} cm
-                </div>
-              )}
+              {/* Inner UI Frame (matches cut line bounds) */}
+              <div
+                className={`absolute pointer-events-none ${isSelected
+                  ? "ring-2 ring-primary ring-offset-2 rounded-none"
+                  : isPresentationMode
+                    ? "rounded-none"
+                    : overlappingStickerIds.includes(st.id)
+                      ? "ring-2 ring-red-500 ring-offset-2 shadow-[0_0_15px_rgba(239,68,68,0.6)] rounded-none"
+                      : "group-hover:ring-1 group-hover:ring-primary/40 group-hover:ring-offset-1 rounded-none"
+                  }`}
+                style={uiFrameStyle}
+              >
+                {isSelected && (
+                  <div className="absolute -top-6 left-1/2 -translate-x-1/2 bg-primary text-primary-foreground text-[10px] font-extrabold px-2 py-0.5 rounded-md shadow-md pointer-events-none whitespace-nowrap">
+                    {getDisplayedWidthCm(st)} cm
+                  </div>
+                )}
 
               {/* Quick Action Menu Button */}
               {isSelected && (
@@ -772,8 +791,8 @@ export function NewA4Visualizer({
                     onPointerDown={(e) => e.stopPropagation()}
                     onClick={toggleCutMenu}
                     className={`w-6 h-6 rounded-full flex items-center justify-center shadow-md active:scale-95 transition-all duration-300 border ${st.cutLineType === "none"
-                        ? "bg-red-400 text-white border-red-400 hover:bg-red-500 red-shadow-pulse z-50"
-                        : "bg-background text-foreground hover:bg-muted border-border"
+                      ? "bg-red-400 text-white border-red-400 hover:bg-red-500 red-shadow-pulse z-50"
+                      : "bg-background text-foreground hover:bg-muted border-border"
                       }`}
                     title="Wybierz linię cięcia"
                   >
@@ -833,6 +852,7 @@ export function NewA4Visualizer({
                   </svg>
                 </div>
               )}
+              </div>
             </div>
 
             {/* No Cut Line Minimalist Warning Label (Centered under unrotated sticker boundaries) */}
@@ -865,7 +885,7 @@ export function NewA4Visualizer({
         return (
           <div
             key={`cutline-${st.id}`}
-            className="absolute flex items-center justify-center transition-shadow touch-none pointer-events-none z-50 rounded-none"
+            className="absolute flex items-center justify-center transition-shadow touch-none pointer-events-none z-40 rounded-none"
             style={{
               left: `${(st.x / SHEET_WIDTH_MM) * 100}%`,
               top: `${(st.y / SHEET_HEIGHT_MM) * 100}%`,
