@@ -12,19 +12,6 @@ Możesz dodawać nowe tematy, zachowując format wcięć pod spodem.
 
 
 
-- [ ] **Co to jest die cut i kiss-cut? Różnice w cięciu naklejek reklamowych**
-    - **Format:** Supporting Article
-    - **Główna Fraza Kluczowa:** `die cut sticker` / `die cut naklejki` / `ciecie po obrysie`
-    - **Cel:** Edukacja
-    - **Persona:** Artyści, e-commerce, firmy zamawiające merch
-    - **Link nadrzędny (Filar):** `/blog/drukowanie-naklejek-online-na-co-zwrocic-uwage-przed-wysylka-projektu`
-    - **Prompty do generowania zdjęć:**
-        - "Zdjęcie porównawcze na jasnym tle: po lewej naklejka die-cut wycięta całkowicie wraz z papierem podkładowym po obrysie, po prawej naklejka kiss-cut odklejana z większego prostokątnego arkusza folii, ostre oświetlenie studyjne."
-        - "Dłoń trzymająca kolorową naklejkę w kształcie rysunkowego kota wyciętą po obrysie (die-cut), lekko odklejany róg odsłaniający biały papier podkładowy, profesjonalne zdjęcie makro."
-        - "Stosik gotowych, kolorowych naklejek reklamowych o nieregularnych kształtach leżących na białym stole roboczym, widoczne precyzyjne krawędzie cięcia, ostre detale, realistyczne zdjęcie produktowe."
-        - "Dłoń trzymająca wyciętą po obrysie (die-cut) naklejkę wykonaną z prywatnego zdjęcia wesołego psa rasy Pembroke Welsh Corgi siedzącego na zielonej trawie, widoczny biały margines i róg papieru podkładowego, jasne tło."
-        - "Kolekcja naklejek kiss-cut na jednym arkuszu, przedstawiających miniaturowe wersje słynnych dzieł sztuki, w tym obrazów 'Krzyk' Muncha oraz 'Mona Lisa' Leonarda da Vinci, leżący na biurku artysty."
-
 - [ ] **Personalizowane naklejki na zeszyty i do przedszkola - ułatw życie swojemu dziecku**
     - **Format:** Supporting Article
     - **Główna Fraza Kluczowa:** `personalizowane naklejki do przedszkola` / `personalizowane naklejki na zeszyty`
@@ -95,6 +82,13 @@ Możesz dodawać nowe tematy, zachowując format wcięć pod spodem.
 ---
 
 ## 📈 Zrealizowane Artykuły
+
+- [x] **Co to jest die cut i kiss-cut? Różnice w cięciu naklejek reklamowych** (opublikowano 2026-07-14)
+    - **Format:** Supporting Article
+    - **Główna Fraza Kluczowa:** `die cut sticker` / `die cut naklejki` / `ciecie po obrysie`
+    - **Cel:** Edukacja
+    - **Persona:** Artyści, e-commerce, firmy zamawiające merch
+    - **Link nadrzędny (Filar):** `/blog/drukowanie-naklejek-online-na-co-zwrocic-uwage-przed-wysylka-projektu`
 
 - [x] **Naklejki własnego projektu na słoiki z przyprawami - zorganizuj swoją kuchnię** (opublikowano 2026-07-13)
     - **Format:** Supporting Article
