@@ -12,19 +12,6 @@ Możesz dodawać nowe tematy, zachowując format wcięć pod spodem.
 
 
 
-- [ ] **Personalizowane naklejki na zeszyty i do przedszkola - ułatw życie swojemu dziecku**
-    - **Format:** Supporting Article
-    - **Główna Fraza Kluczowa:** `personalizowane naklejki do przedszkola` / `personalizowane naklejki na zeszyty`
-    - **Cel:** Sprzedaż
-    - **Persona:** Rodzice dzieci w wieku przedszkolnym i szkolnym
-    - **Link nadrzędny (Filar):** `/blog/jak-zamowic-idealne-naklejki-na-zamowienie-z-wlasnym-nadrukiem`
-    - **Prompty do generowania zdjęć:**
-        - "Kolorowe naklejki z imieniem dziecka i małą ikonką rakiety naklejone na zeszyt szkolny, plastikowy bidon oraz piórnik leżące na biurku ucznia, jasne i przyjazne oświetlenie."
-        - "Zdjęcie z góry przedstawiające otwarty plecak dziecięcy, z którego wystaje bidon i pudełko śniadaniowe z naklejonymi trwałymi, kolorowymi etykietami imiennymi, styl skandynawski, pastelowe barwy."
-        - "Dziecięca dłoń naklejająca małą, okrągłą naklejkę z rysunkiem misia i imieniem dziecka na niebieski zeszyt szkolny, zbliżenie, ciepłe domowe światło."
-        - "Kolorowy zeszyt szkolny z naklejoną na okładce etykietą ze zdjęciem domowego pupila - puszystego chomika syryjskiego w trocinach - obok napisu 'Zeszyt do przyrody, Emilka', zdjęcie w ciepłym świetle na biurku."
-        - "Pamiętnik z wakacji oklejony prostokątną naklejką ze wspólnego zdjęcia rodzeństwa na piaszczystej plaży nad Bałtykiem przy zachodzie słońca (naturalna poza), obok pamiętnika leżą muszelki i kolorowe pisaki."
-
 - [ ] **Naklejki na nalewki domowe - jak estetycznie ozdobić butelki na nalewki?**
     - **Format:** Supporting Article
     - **Główna Fraza Kluczowa:** `naklejki na nalewki domowe` / `naklejki na nalewki do druku`
@@ -82,6 +69,13 @@ Możesz dodawać nowe tematy, zachowując format wcięć pod spodem.
 ---
 
 ## 📈 Zrealizowane Artykuły
+
+- [x] **Personalizowane naklejki na zeszyty i do przedszkola - ułatw życie swojemu dziecku** (opublikowano 2026-07-15)
+    - **Format:** Supporting Article
+    - **Główna Fraza Kluczowa:** `personalizowane naklejki do przedszkola` / `personalizowane naklejki na zeszyty`
+    - **Cel:** Sprzedaż
+    - **Persona:** Rodzice dzieci w wieku przedszkolnym i szkolnym
+    - **Link nadrzędny (Filar):** `/blog/jak-zamowic-idealne-naklejki-na-zamowienie-z-wlasnym-nadrukiem`
 
 - [x] **Co to jest die cut i kiss-cut? Różnice w cięciu naklejek reklamowych** (opublikowano 2026-07-14)
     - **Format:** Supporting Article
