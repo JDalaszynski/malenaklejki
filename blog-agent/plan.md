@@ -12,19 +12,6 @@ Możesz dodawać nowe tematy, zachowując format wcięć pod spodem.
 
 
 
-- [ ] **Naklejki na nalewki domowe - jak estetycznie ozdobić butelki na nalewki?**
-    - **Format:** Supporting Article
-    - **Główna Fraza Kluczowa:** `naklejki na nalewki domowe` / `naklejki na nalewki do druku`
-    - **Cel:** Sprzedaż / Edukacja
-    - **Persona:** Pasjonaci domowych alkoholi, twórcy nalewek, pszczelarze
-    - **Link nadrzędny (Filar):** `/blog/jak-zamowic-idealne-naklejki-na-zamowienie-z-wlasnym-nadrukiem`
-    - **Prompty do generowania zdjęć:**
-        - "Trzy szklane butelki wypełnione bursztynową nalewką stojące na rustykalnym, drewnianym stole. Na każdej butelce naklejona jest ozdobna, papierowa naklejka w stylu retro z napisem 'Nalewka Wiśniowa 2026', obok leżą świeże owoce wiśni."
-        - "Zbliżenie na dłoń naklejającą elegancką, prostokątną etykietę z motywem roślinnym na butelkę z domową nalewką z pigwy, w tle rozmyte butelki w piwniczce, ciepłe i klimatyczne oświetlenie."
-        - "Estetyczne zdjęcie produktowe butelki z domowym alkoholem z ozdobną naklejką o nieregularnym kształcie, na naklejce widnieje napis 'Domowy Likier' i miejsce na wpisanie daty, w tle zielone gałązki ziół."
-        - "Rząd butelek z domowymi nalewkami o głębokich, rubinowych i złotych kolorach, stojących na półce w ciemnej piwnicy, każda z klasyczną, czarno-białą etykietą z kaligraficznym pismem."
-        - "Butelka domowego wina z naklejoną etykietą ozdobioną motywem malarskim w stylu impresjonizmu Claude Moneta przedstawiającym winobranie, na drewnianym stole obok kiści ciemnych winogron, nastrojowe oświetlenie."
-
 - [ ] **Jak zrobić własne naklejki w telefonie - proste aplikacje i triki**
     - **Format:** Supporting Article
     - **Główna Fraza Kluczowa:** `jak zrobic wlasne naklejki w telefonie` / `naklejka z wlasnego zdjecia`
@@ -69,6 +56,13 @@ Możesz dodawać nowe tematy, zachowując format wcięć pod spodem.
 ---
 
 ## 📈 Zrealizowane Artykuły
+
+- [x] **Naklejki na nalewki domowe - jak estetycznie ozdobić butelki na nalewki?** (opublikowano 2026-07-16)
+    - **Format:** Supporting Article
+    - **Główna Fraza Kluczowa:** `naklejki na nalewki domowe` / `naklejki na nalewki do druku`
+    - **Cel:** Sprzedaż / Edukacja
+    - **Persona:** Pasjonaci domowych alkoholi, twórcy nalewek, pszczelarze
+    - **Link nadrzędny (Filar):** `/blog/jak-zamowic-idealne-naklejki-na-zamowienie-z-wlasnym-nadrukiem`
 
 - [x] **Personalizowane naklejki na zeszyty i do przedszkola - ułatw życie swojemu dziecku** (opublikowano 2026-07-15)
     - **Format:** Supporting Article
