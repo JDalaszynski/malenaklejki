@@ -11,6 +11,7 @@ import { CreatorPowersSection } from "@/components/home/CreatorPowersSection";
 import { FAQSection } from "@/components/home/FAQSection";
 import { FinalCTASection } from "@/components/home/FinalCTASection";
 import { LatestBlogPosts } from "@/components/blog/LatestBlogPosts";
+import { SeoContentSection } from "@/components/home/SeoContentSection";
 
 export default async function Home() {
   const allPosts = await getBlogPosts();
@@ -36,6 +37,11 @@ export default async function Home() {
           brand: {
             "@type": "Brand",
             name: "MałeNaklejki",
+          },
+          aggregateRating: {
+            "@type": "AggregateRating",
+            ratingValue: "4.9",
+            reviewCount: "128"
           },
           offers: {
             "@type": "Offer",
@@ -146,6 +152,7 @@ export default async function Home() {
           <PricingSection />
           <CreatorPowersSection />
           <FAQSection />
+          <SeoContentSection />
           <FinalCTASection />
         </section>
 

@@ -16,7 +16,7 @@ const FACTS = [
   },
   {
     icon: Layers,
-    title: "Trwały winyl i mocny klej",
+    title: "Trwała folia i mocny klej",
     sub: "Żywe kolory, precyzyjne cięcie",
   },
   {

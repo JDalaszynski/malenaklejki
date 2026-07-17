@@ -2432,7 +2432,7 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
       </div>
 
       {/* Sekcja SEO i marketingowa z premium gradientem i wzorem kropek */}
-      <div className="w-full bg-gradient-to-b from-[#edf6f2] via-white to-white dark:from-[#002c2e] dark:via-[#00383a] dark:to-[#004749] z-10 flex flex-col flex-grow relative overflow-hidden">
+      <div className="w-full bg-gradient-to-b from-white via-white to-[#edf6f2] dark:from-background dark:via-background/80 dark:to-[#002c2e] z-10 flex flex-col flex-grow relative overflow-hidden">
         {/* Wzór kropek w tle */}
         <div className="absolute inset-0 bg-[radial-gradient(#cbd5e1_1px,transparent_1px)] dark:bg-[radial-gradient(#1c3e41_1px,transparent_1px)] [background-size:16px_16px] pointer-events-none opacity-50" />
 

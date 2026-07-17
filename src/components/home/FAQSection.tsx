@@ -6,23 +6,23 @@ import { Reveal, SectionHeading, HighlightWord } from "./primitives";
 const FAQS = [
   {
     q: "Jakiej jakości pliki powinienem wgrać do kreatora?",
-    a: "Najlepsze rezultaty uzyskasz wgrywając pliki w formacie PNG lub JPG o rozdzielczości 300 DPI. Kreator automatycznie ocenia jakość grafiki i ostrzeże Cię komunikatem, jeśli rozdzielczość będzie zbyt niska (poniżej 100 DPI).",
+    a: "Zalecamy wgrywanie plików w formacie PNG lub JPG o rozdzielczości 300 DPI. Kreator automatycznie ocenia jakość grafiki i ostrzeże Cię komunikatem, jeśli rozdzielczość będzie zbyt niska (poniżej 100 DPI).",
   },
   {
     q: "Co oznacza cięcie po konturze (obrysie)?",
-    a: "Nasze maszyny plotujące wytną naklejkę dokładnie wzdłuż krawędzi Twojego obrazka (z pominięciem przezroczystego tła). W kreatorze możesz wybrać opcję „Kontur”, aby zobaczyć podgląd linii cięcia naniesiony na Twoją grafikę.",
+    a: "Cięcie po konturze (die-cut) to proces, w którym ploter wycina naklejkę idealnie wzdłuż kształtu grafiki, pomijając tło. W kreatorze możesz wybrać opcję „Kontur”, aby zobaczyć wygenerowaną linię cięcia.",
   },
   {
     q: "Ile naklejek zmieści się na jednym arkuszu A4?",
-    a: "To zależy od Ciebie! Możesz umieścić jedną ogromną naklejkę (do 19 cm szerokości) lub kilkadziesiąt mniejszych (np. o średnicy 3-4 cm). Nasz system automatycznie pilnuje, aby naklejki nie nakładały się na siebie.",
+    a: "Na jednym arkuszu A4 zmieścisz dowolną liczbę naklejek – ogranicza Cię tylko miejsce. Możesz umieścić jedną ogromną naklejkę (do 19 cm) lub kilkadziesiąt mniejszych (np. 3-4 cm). System sam pilnuje, by na siebie nie nachodziły.",
   },
   {
     q: "Czy mogę edytować arkusz po dodaniu do koszyka?",
-    a: "Po dodaniu arkusza do koszyka kompozycja jest zapisywana i generowany jest plik produkcyjny. Wszelkie poprawki wymagają ponownego ułożenia arkusza, dlatego przed zatwierdzeniem upewnij się w podglądzie 2D/3D, że wszystko wygląda poprawnie.",
+    a: "Nie, po dodaniu arkusza do koszyka generowany jest plik produkcyjny i edycja jest niemożliwa. Wszelkie poprawki wymagają ponownego ułożenia arkusza, dlatego przed zatwierdzeniem sprawdź projekt w wizualizacji 3D.",
   },
   {
     q: "Jaki jest czas realizacji i koszt dostawy?",
-    a: "Wszystkie zamówienia drukujemy i wysyłamy w ciągu 3 dni roboczych. Koszt dostawy wynosi 19,99 zł, a bezpieczną i szybką płatność realizujemy za pośrednictwem Przelewy24 (karta, BLIK, przelew).",
+    a: "Czas realizacji zamówienia wynosi do 3 dni roboczych, a koszt dostawy to 19,99 zł. Obsługujemy bezpieczne płatności za pośrednictwem Przelewy24 (karta, BLIK, przelew).",
   },
 ] as const;
 
