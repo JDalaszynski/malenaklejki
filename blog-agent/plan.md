@@ -12,19 +12,6 @@ Możesz dodawać nowe tematy, zachowując format wcięć pod spodem.
 
 
 
-- [ ] **Jak zrobić własne naklejki w telefonie - proste aplikacje i triki**
-    - **Format:** Supporting Article
-    - **Główna Fraza Kluczowa:** `jak zrobic wlasne naklejki w telefonie` / `naklejka z wlasnego zdjecia`
-    - **Cel:** Edukacja
-    - **Persona:** Nastolatki, twórcy social media, klienci indywidualni
-    - **Link nadrzędny (Filar):** `/blog/drukowanie-naklejek-online-na-co-zwrocic-uwage-przed-wysylka-projektu`
-    - **Prompty do generowania zdjęć:**
-        - "Dłoń trzymająca nowoczesny smartfon nad jasnym biurkiem. Na ekranie telefonu widać aplikację do wycinania tła ze zdjęcia psa, aby stworzyć z niego naklejkę. Obok telefonu leży gotowa, wydrukowana fizyczna nakkejka z tym samym psem."
-        - "Nastolatka siedząca na kanapie w pokoju, trzymająca smartfon i projektująca naklejkę, naturalne światło dzienne, kadr z boku pokazujący uśmiechniętą twarz i telefon."
-        - "Z bliska ekran smartfona z aplikacją graficzną, na którym wyświetlany jest kolorowy kolaż z napisami przygotowywany jako projekt naklejek, w tle rozmyty pokój młodzieżowy."
-        - "Ekran telefonu, na którym użytkownik wycina w aplikacji naklejkę z prywatnego zdjęcia ze wspólnego citybreaku w Rzymie (uśmiechnięta para przed Koloseum), w tle na stole leżą gotowe wydrukowane naklejki."
-        - "Smartfon z otwartym edytorem zdjęć pokazujący proces zamiany zdjęcia puszystego kota rasy Ragdoll w naklejkę poprzez automatyczne usuwanie tła, wokół telefonu leżą inne naklejki ze zwierzętami."
-
 - [ ] **Naklejki mały nakład - jak zamówić pojedyncze sztuki bez przepłacania?**
     - **Format:** Supporting Article
     - **Główna Fraza Kluczowa:** `naklejki maly naklad` / `naklejki na zamowienie pojedyncze`
@@ -56,6 +43,13 @@ Możesz dodawać nowe tematy, zachowując format wcięć pod spodem.
 ---
 
 ## 📈 Zrealizowane Artykuły
+
+- [x] **Jak zrobić własne naklejki w telefonie - proste triki** (opublikowano 2026-07-17)
+    - **Format:** Supporting Article
+    - **Główna Fraza Kluczowa:** `jak zrobic wlasne naklejki w telefonie` / `naklejka z wlasnego zdjecia`
+    - **Cel:** Edukacja
+    - **Persona:** Nastolatki, twórcy social media, klienci indywidualni
+    - **Link nadrzędny (Filar):** `/blog/drukowanie-naklejek-online-na-co-zwrocic-uwage-przed-wysylka-projektu`
 
 - [x] **Naklejki na nalewki domowe - jak estetycznie ozdobić butelki na nalewki?** (opublikowano 2026-07-16)
     - **Format:** Supporting Article
