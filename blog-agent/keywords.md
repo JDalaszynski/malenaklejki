@@ -14,6 +14,7 @@ Oto lista rzeczywistych fraz kluczowych wyszukiwanych przez użytkowników w nas
 * `naklejki własne`
 * `własne naklejki na zamówienie`
 * `naklejki na zamówienie online`
+* `własne naklejki`
 
 ---
 
@@ -91,7 +92,9 @@ Oto lista rzeczywistych fraz kluczowych wyszukiwanych przez użytkowników w nas
 
 ---
 
-## 6. Intencje Zakupowe (Cena i Ilość)
+## 6. Intencje Zakupowe (Cena, Ilość i Działanie - Action-Intent)
+* `stwórz własne naklejki`
+* `spersonalizuj naklejkę`
 * `naklejki na zamówienie allegro`
 * `naklejki na zamówienie cena`
 * `naklejki na zamówienie z własnym nadrukiem`

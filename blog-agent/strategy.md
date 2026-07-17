@@ -82,3 +82,10 @@ To wysoce wyspecjalizowany tekst, który rozszerza i szczegółowo omawia jeden,
 * Technicznie rzecz biorąc, w systemie CMS (np. w naszym Next.js) zarówno Pillar Page, jak i wpis wspierający dodajesz jako standardowy "wpis na blogu". Pojęcie "artykułu blogowego" to po prostu techniczny format podstrony.
 * W żargonie strategii SEO, gdy mówimy o "zwykłym artykule", mamy najczęściej na myśli luźne publikacje, które nie wchodzą w skład ułożonego klastra tematycznego (np. wpis o nowościach w firmie, życzenia świąteczne dla klientów).
 * W profesjonalnym SEO dąży się jednak do tego, aby każdy artykuł blogowy miał odgórnie przydzieloną rolę - albo Filara, albo Wsparcia.
+
+---
+
+## 🚀 5. Strategia Konwersji na Stronie Głównej (Action-Oriented SEO)
+Głównym celem biznesowym (konwersją) jest nakłonienie użytkownika do skorzystania z kreatora na Stronie Głównej. Z tego powodu optymalizujemy nie tylko blog, ale również architekturę wezwań do działania (CTA) w artykułach.
+* **Aktywne Anchory (Do-Intent):** Zamiast pisać ogólnikowe linki (np. "kliknij tutaj", "strona główna"), linkuj do strony głównej wykorzystując dokładne frazy nastawione na akcję: `stwórz własne naklejki`, `spersonalizuj naklejkę` czy `zamów naklejki ze zdjęcia`.
+* **Przejęcie ruchu intencyjnego:** Artykuł o tym "jak spersonalizować naklejkę" musi bezpośrednio oferować rozwiązanie – czyli odesłanie do darmowego i prostego kreatora na stronie głównej, budując jego autorytet ("Link Juice") pod te właśnie słowa w oczach wyszukiwarek.

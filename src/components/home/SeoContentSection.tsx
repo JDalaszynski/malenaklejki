@@ -22,7 +22,7 @@ export function SeoContentSection() {
             <section className="space-y-3">
               <h3 className={`text-xl font-extrabold text-foreground ${displayFont}`}>Czym jest cięcie po obrysie (die-cut)?</h3>
               <p>
-                Cięcie po obrysie (tzw. die-cut) to zaawansowana technika produkcji, w której ploter precyzyjnie wycina naklejkę wzdłuż kształtu Twojej grafiki, całkowicie ignorując przezroczyste tło. Dzięki temu Twoje <strong>wlepki z logo</strong>, grafiki czy zdjęcia przybierają unikalny kształt, a nie standardowego kwadratu. Nasz inteligentny kreator online samodzielnie wygeneruje ścieżkę cięcia, pozwalając na zamówienie <strong>naklejek o dowolnym kształcie</strong> bez znajomości programów graficznych.
+                Cięcie po obrysie (tzw. die-cut) to zaawansowana technika produkcji, w której ploter precyzyjnie wycina naklejkę wzdłuż kształtu Twojej grafiki, całkowicie ignorując przezroczyste tło. Dzięki temu Twoje <strong>wlepki z logo</strong>, grafiki czy zdjęcia przybierają unikalny kształt, a nie standardowego kwadratu. Otrzymujesz <strong>własne naklejki</strong>, które wyglądają w 100% profesjonalnie. Nasz inteligentny kreator online samodzielnie wygeneruje ścieżkę cięcia, pozwalając na zamówienie <strong>naklejek o dowolnym kształcie</strong> bez znajomości programów graficznych.
               </p>
             </section>
 
@@ -38,22 +38,22 @@ export function SeoContentSection() {
         <Reveal delay={0.2}>
           <div className="space-y-6">
             <section className="space-y-3">
-              <h3 className={`text-xl font-extrabold text-foreground ${displayFont}`}>Jak zamówić naklejki ze zdjęcia online?</h3>
+              <h3 className={`text-xl font-extrabold text-foreground ${displayFont}`}>Stwórz własne naklejki w 4 prostych krokach</h3>
               <p>
-                W MałeNaklejki proces zamawiania <strong>naklejek na arkuszach A4</strong> został maksymalnie uproszczony. Nie musisz wymieniać dziesiątek maili z drukarnią.
+                Zastanawiasz się, jak zamówić <strong>małe naklejki na zamówienie</strong> bez zatrudniania grafika? <strong>Spersonalizuj naklejkę</strong> samodzielnie – wystarczy jakikolwiek plik, a nawet zwykła <strong>naklejka ze zdjęcia</strong> z telefonu. Nasz darmowy kreator krok po kroku poprowadzi Cię przez proces, dzięki czemu otrzymasz <strong>własne naklejki</strong> o idealnym kształcie i bez przezroczystego tła.
               </p>
               <ol className="list-decimal pl-5 space-y-2 font-medium text-foreground/80">
-                <li>Wgraj grafikę w formacie PNG lub JPG bezpośrednio do naszego kreatora.</li>
-                <li>Ustal rozmiar i wybierz rodzaj cięcia (kontur, koło, prostokąt).</li>
-                <li>Rozmieść dowolną liczbę naklejek na arkuszu A4 i sprawdź projekt w podglądzie 3D.</li>
-                <li>Opłać zamówienie (BLIK, karta, przelew), a my wyślemy je do Ciebie w 72 godziny!</li>
+                <li>Wgraj grafikę w formacie PNG, JPG lub zrób zdjęcie telefonem.</li>
+                <li>System samodzielnie usunie tło i wygeneruje precyzyjne linie cięcia (kontur).</li>
+                <li>Ustal wymiary i rozmieść dowolną liczbę wlepek na arkuszu w trybie 3D.</li>
+                <li>Sfinalizuj zamówienie (BLIK, przelew), a my zajmiemy się ekspresowym drukiem w 72h!</li>
               </ol>
             </section>
 
             <section className="space-y-3">
               <h3 className={`text-xl font-extrabold text-foreground ${displayFont}`}>Idealne do biznesu i zabawy</h3>
               <p>
-                Nasze rozwiązanie idealnie sprawdza się w biznesie jako <strong>personalizowane naklejki firmowe z logo</strong> do oznaczania paczek (tzw. plomby lub podziękowania za zamówienie), jak i w życiu prywatnym: do ozdabiania zeszytów, oznaczania ubrań do przedszkola czy jako pamiątkowe naklejki ślubne. Nie wymagamy minimalnego nakładu – drukujemy już od 1 arkusza A4. Z nami zrealizujesz naklejki w niskim nakładzie w profesjonalnej jakości.
+                Nasze rozwiązanie idealnie sprawdza się w biznesie jako <strong>personalizowane naklejki firmowe z logo</strong> do oznaczania paczek (tzw. plomby lub podziękowania za zamówienie), jak i w życiu prywatnym: do ozdabiania zeszytów, oznaczania ubrań do przedszkola czy jako pamiątkowe naklejki ślubne. Nie wymagamy minimalnego nakładu – drukujemy już od 1 arkusza A4. Z nami zrealizujesz <strong>małe naklejki na zamówienie</strong> w niskim nakładzie i profesjonalnej jakości.
               </p>
             </section>
           </div>

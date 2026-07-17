@@ -141,8 +141,7 @@ export function MiniHeroContent() {
         <p
           className="text-muted-foreground text-sm sm:text-base font-semibold mt-4 max-w-2xl mx-auto leading-relaxed"
         >
-          Po prostu: wgraj zdjęcia z telefonu, <br />a my zrobimy z nich naklejki o dowolnym kształcie.
-
+          Po prostu: wgraj zdjęcia z telefonu i          <strong>Stwórz własne naklejki</strong> <br /> o dowolnym kształcie, bez minimalnego nakładu.
         </p>
 
         <div className="mt-2">
