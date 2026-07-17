@@ -3,7 +3,7 @@ title: "Jak zrobić własne naklejki w telefonie - proste triki"
 slug: "jak-zrobic-wlasne-naklejki-w-telefonie-proste-aplikacje-i-triki"
 date: "2026-07-17"
 description: "Jak zrobić własne naklejki w telefonie? Poznaj proste aplikacje do wycinania tła i zamień zdjęcie w naklejkę wyciętą po obrysie w kilka minut, bez komputera."
-image: "/blog/jak-zrobic-wlasne-naklejki-w-telefonie-proste-aplikacje-i-triki/glowne.jpg"
+image: "/blog/jak-zrobic-wlasne-naklejki-w-telefonie-proste-aplikacje-i-triki/naklejka-ze-zdjecia-psa-zrobiona-telefonem-na-laptopie.jpg"
 imageAlt: "Naklejka wycięta po obrysie ze zdjęcia psa rasy golden retriever zrobionego telefonem, naklejona na pokrywie laptopa obok smartfona z tym samym zdjęciem w galerii."
 tags: ["naklejki", "smartfon", "DIY", "poradnik"]
 cta_text: "Zrób naklejkę z telefonu"
@@ -30,7 +30,7 @@ Zero instalowania Photoshopa i zero przegrywania zdjęć kablem USB na komputer.
 | **Aparat i galeria telefonu** | Zrobienie ostrego zdjęcia na jednolitym tle - podstawa dobrej naklejki | Wbudowane, bezpłatne |
 | **Kreator MałeNaklejki (przeglądarka)** | Wgranie pliku, automatyczne usunięcie tła, wbudowany generator AI i cięcie po obrysie | Bezpłatny podgląd, płatność dopiero przy zamówieniu |
 
-![Naklejki wycięte po obrysie stworzone w telefonie bez zdjęcia - ilustrowany portret kota, naklejka z logo kanału podróżniczego i naklejka z cytatem motywacyjnym wygenerowane w aplikacji graficznej.](/blog/jak-zrobic-wlasne-naklejki-w-telefonie-proste-aplikacje-i-triki/w-tresci-1.jpeg)
+![Naklejki wycięte po obrysie stworzone w telefonie bez zdjęcia - ilustrowany portret kota, naklejka z logo kanału podróżniczego i naklejka z cytatem motywacyjnym wygenerowane w aplikacji graficznej.](/blog/jak-zrobic-wlasne-naklejki-w-telefonie-proste-aplikacje-i-triki/naklejki-wygenerowane-w-telefonie-bez-zdjecia-ai.jpeg)
 
 ## Naklejka z własnego zdjęcia w telefonie - krok po kroku
 
@@ -46,13 +46,13 @@ W Canvie lub innej darmowej aplikacji przytnij zdjęcie, dodaj ewentualny napis 
 
 Otwórz kreator MałeNaklejki w przeglądarce telefonu i wgraj przygotowany plik. Jeśli nie masz pod ręką dobrego zdjęcia, skorzystaj z wbudowanego generatora obrazów AI - opisz pomysł słowami, a system stworzy gotową grafikę bez instalowania dodatkowych aplikacji.
 
-![Etui na telefon z naklejoną naklejką tekstową Enjoy Every Moment stworzoną w wbudowanym generatorze obrazów AI bez potrzeby wgrywania własnego zdjęcia.](/blog/jak-zrobic-wlasne-naklejki-w-telefonie-proste-aplikacje-i-triki/w-tresci-5.png)
+![Etui na telefon z naklejoną naklejką tekstową Enjoy Every Moment stworzoną w wbudowanym generatorze obrazów AI bez potrzeby wgrywania własnego zdjęcia.](/blog/jak-zrobic-wlasne-naklejki-w-telefonie-proste-aplikacje-i-triki/naklejka-z-napisem-ai-na-etui-telefonu.png)
 
 ### Krok 4 - Wybierz kształt cięcia i zamów
 
 Zdecyduj, czy naklejka ma być wycięta po obrysie, w kole czy w prostokącie, sprawdź podgląd 3D i złóż zamówienie. Jeden zadrukowany arkusz A4 kosztuje stałe 49,00 zł, bez minimalnego nakładu, a realizacja trwa do 3 dni roboczych.
 
-![Dziesiątki małych naklejek wyciętych po obrysie z prawdziwych zdjęć z telefonu - portrety zwierząt, zdjęcia z wakacji i ze spotkań ze znajomymi ułożone gęsto obok siebie.](/blog/jak-zrobic-wlasne-naklejki-w-telefonie-proste-aplikacje-i-triki/w-tresci-4.png)
+![Dziesiątki małych naklejek wyciętych po obrysie z prawdziwych zdjęć z telefonu - portrety zwierząt, zdjęcia z wakacji i ze spotkań ze znajomymi ułożone gęsto obok siebie.](/blog/jak-zrobic-wlasne-naklejki-w-telefonie-proste-aplikacje-i-triki/wiele-naklejek-z-prawdziwych-zdjec-z-telefonu.png)
 
 ## Triki, które poprawią jakość naklejki zrobionej telefonem
 
@@ -61,7 +61,7 @@ Zdecyduj, czy naklejka ma być wycięta po obrysie, w kole czy w prostokącie, s
 - **Zbliżenie bez cyfrowego zoomu** - podejdź bliżej obiektu zamiast zbliżać obraz cyfrowo, żeby zachować ostrość przy cięciu po obrysie.
 - **Eksport w PNG zamiast zrzutu ekranu** - zrzut ekranu ma zwykle zbyt niską rozdzielczość jak na potrzeby druku.
 
-![Notes z naklejoną małą naklejką z rodzinnym zdjęciem z wakacji zrobionym telefonem - przykład dobrze oświetlonego kadru, który daje ostry efekt po wycięciu.](/blog/jak-zrobic-wlasne-naklejki-w-telefonie-proste-aplikacje-i-triki/w-tresci-3.jpeg)
+![Notes z naklejoną małą naklejką z rodzinnym zdjęciem z wakacji zrobionym telefonem - przykład dobrze oświetlonego kadru, który daje ostry efekt po wycięciu.](/blog/jak-zrobic-wlasne-naklejki-w-telefonie-proste-aplikacje-i-triki/naklejka-z-rodzinnym-zdjeciem-na-notesie.jpeg)
 
 ## Pomysły na naklejki zrobione telefonem
 
@@ -70,9 +70,9 @@ Zdecyduj, czy naklejka ma być wycięta po obrysie, w kole czy w prostokącie, s
 - Logo własnego kanału na TikToku lub Instagramie do rozdania obserwującym.
 - Kadr z wakacji zamieniony w [naklejkę ze zdjęcia](/blog/naklejka-ze-zdjecia-jak-przeniesc-wspomnienia-na-naklejke) na pamiątkę.
 
-![Metalowa butelka z naklejoną naklejką ze zdjęciem pary oglądającej zachód słońca nad morzem - pomysł na naklejkę z wakacyjnego zdjęcia zrobionego telefonem.](/blog/jak-zrobic-wlasne-naklejki-w-telefonie-proste-aplikacje-i-triki/w-tresci-2.jpeg)
+![Metalowa butelka z naklejoną naklejką ze zdjęciem pary oglądającej zachód słońca nad morzem - pomysł na naklejkę z wakacyjnego zdjęcia zrobionego telefonem.](/blog/jak-zrobic-wlasne-naklejki-w-telefonie-proste-aplikacje-i-triki/naklejka-ze-zdjecia-z-wakacji-na-butelce.jpeg)
 
-![Kolekcja naklejek wyciętych po obrysie z autentycznych zdjęć z telefonu - portrety zwierząt, zdjęcia ślubne, wakacyjne i ze spotkań towarzyskich rozrzucone na jasnym tle.](/blog/jak-zrobic-wlasne-naklejki-w-telefonie-proste-aplikacje-i-triki/w-tresci-6.jpeg)
+![Kolekcja naklejek wyciętych po obrysie z autentycznych zdjęć z telefonu - portrety zwierząt, zdjęcia ślubne, wakacyjne i ze spotkań towarzyskich rozrzucone na jasnym tle.](/blog/jak-zrobic-wlasne-naklejki-w-telefonie-proste-aplikacje-i-triki/kolekcja-naklejek-ze-zdjec-zrobionych-telefonem.jpeg)
 
 ## Zamień telefon w mini-studio graficzne i zamów naklejkę już dziś
 
