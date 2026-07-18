@@ -12,19 +12,6 @@ Możesz dodawać nowe tematy, zachowując format wcięć pod spodem.
 
 
 
-- [ ] **Naklejki mały nakład - jak zamówić pojedyncze sztuki bez przepłacania?**
-    - **Format:** Supporting Article
-    - **Główna Fraza Kluczowa:** `naklejki maly naklad` / `naklejki na zamowienie pojedyncze`
-    - **Cel:** Sprzedaż
-    - **Persona:** Klienci indywidualni, mikro-brandy, fani wlepek
-    - **Link nadrzędny (Filar):** `/blog/drukowanie-naklejek-online-na-co-zwrocic-uwage-przed-wysylka-projektu`
-    - **Prompty do generowania zdjęć:**
-        - "Zdjęcie przedstawiające zaledwie kilka sztuk różnych naklejek z autorskimi grafikami leżących obok siebie na tekturowym pudełku wysyłkowym, minimalistyczna kompozycja, profesjonalna fotografia produktowa."
-        - "Dłoń wyjmująca z małej koperty bąbelkowej kilka kolorowych naklejek z logo lokalnej kawiarni, w tle rozmyte wnętrze kawiarni, naturalne oświetlenie."
-        - "Kilka różnych, unikalnych naklejek na zamówienie naklejonych obok siebie na pokrywę zamkniętego laptopa stojącego na stoliku w kawiarni, zbliżenie, nowoczesny styl."
-        - "Kilka pojedynczych naklejek leżących na biurku, w tym jedna w kształcie głowy psa rasy Jack Russell Terrier wycięta ze zdjęcia, druga ze zdjęciem z wakacji na skuterze w Barcelonie na tle kościoła Sagrada Familia, a trzecia z własną grafiką."
-        - "Dłoń naklejająca na obudowę tabletu unikalną, pojedynczą naklejkę będącą reprodukcją fragmentu obrazu 'Stworzenie Adama' Michała Anioła, nowoczesna, minimalistyczna aranżacja."
-
 - [ ] **Wklepki i wlepy z własnym nadrukiem dla artystów i społeczności**
     - **Format:** Supporting Article
     - **Główna Fraza Kluczowa:** `wlepki z wlasnym nadrukiem` / `wlepy z wlasnym nadrukiem`
@@ -43,6 +30,13 @@ Możesz dodawać nowe tematy, zachowując format wcięć pod spodem.
 ---
 
 ## 📈 Zrealizowane Artykuły
+
+- [x] **Naklejki mały nakład - jak zamówić pojedyncze sztuki bez przepłacania?** (opublikowano 2026-07-18)
+    - **Format:** Supporting Article
+    - **Główna Fraza Kluczowa:** `naklejki maly naklad` / `naklejki na zamowienie pojedyncze`
+    - **Cel:** Sprzedaż
+    - **Persona:** Klienci indywidualni, mikro-brandy, fani wlepek
+    - **Link nadrzędny (Filar):** `/blog/drukowanie-naklejek-online-na-co-zwrocic-uwage-przed-wysylka-projektu`
 
 - [x] **Jak zrobić własne naklejki w telefonie - proste triki** (opublikowano 2026-07-17)
     - **Format:** Supporting Article
