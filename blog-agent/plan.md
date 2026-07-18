@@ -8,6 +8,7 @@ Możesz dodawać nowe tematy, zachowując format wcięć pod spodem.
 
 ## 📝 Zaplanowane Artykuły (Do napisania przez AI)
 
+> **Faza 2 (dopisano 2026-07-18):** kolejka domykała się do jednego tematu, więc przeprowadziłem audyt strategii (patrz `strategy.md`, sekcja 6 "Korekta Kursu - Faza 2") i dopisałem 9 kolejnych tematów zamykających realne luki: brak jakiejkolwiek treści o generatorze AI w kreatorze oraz dwie całkowicie nieobsłużone persony B2B (rzemiosło/serwis i korporacje/eventy). Kolejność poniżej odzwierciedla priorytet.
 
 
 
@@ -26,6 +27,110 @@ Możesz dodawać nowe tematy, zachowując format wcięć pod spodem.
         - "Dłonie artysty przygotowującego paczki z merchem dla fanów: wkładanie kolorowych wlep do kopert obok plakatów, w tym wlepki z reprodukcją obrazu Vincenta van Gogha oraz logotypami zespołów muzycznych."
         - "Widok z bliska na tył gitary elektrycznej, na której naklejone są liczne, alternatywne wklepki muzyczne i artystyczne o różnych fakturach, rockowy klimat, nastrojowe oświetlenie."
         - "Dłonie artysty przygotowującego paczki z merchem dla fanów: wkładanie kolorowych wlep do kopert obok plakatów, zorganizowane stanowisko pracy, ujęcie z góry."
+
+- [ ] **Generator naklejek AI - jak stworzyć unikalny wzór bez umiejętności rysowania?**
+    - **Format:** Supporting Article
+    - **Główna Fraza Kluczowa:** `generator naklejek AI` / `jak wygenerować naklejkę AI`
+    - **Cel:** Sprzedaż / Edukacja
+    - **Persona:** Klienci indywidualni bez gotowej grafiki, artyści szukający inspiracji, freelancerzy
+    - **Link nadrzędny (Filar):** `/blog/drukowanie-naklejek-online-na-co-zwrocic-uwage-przed-wysylka-projektu`
+    - **Uwaga contentowa:** to pierwszy artykuł opisujący wbudowany generator AI (opis tekstowy → gotowa grafika, style: monochromatyczny, ryso, technicolor, gotycka plastelina, akwarela, szkic, pastele, anime, kreskówka, render 3D, surrealistyczny, zdjęcie). **Nigdy nie nazywaj tego "projektowaniem w kreatorze"** - generator AI tylko tworzy gotowy obraz (dokładnie jak wgrane zdjęcie), a projektowanie w kreatorze to wyłącznie kadrowanie, wycięcie po kształcie i układanie arkusza. Używaj czasowników "wygeneruj", "stwórz obraz/wzór opisem tekstowym" - nigdy "zaprojektuj naklejkę/grafikę". Patrz zaktualizowana zasada w `rules.md`.
+    - **Prompty do generowania zdjęć:**
+        - "Ekran laptopa z otwartym kreatorem online, widoczne pole tekstowe z opisem naklejki oraz wygenerowany kolorowy wzór w stylu kreskówkowym, jasne biurko, naturalne światło z okna."
+        - "Kolaż dziewięciu różnych naklejek wygenerowanych przez sztuczną inteligencję w różnych stylach - akwarela, anime, szkic ołówkiem, render 3D - ułożonych siatką na jasnym tle."
+        - "Osoba bez umiejętności rysowania siedząca przy biurku, uśmiechnięta, patrząca na ekran komputera z gotowym, kolorowym wzorem naklejki wygenerowanym z opisu tekstowego."
+        - "Zbliżenie na wydrukowany arkusz naklejek z różnorodnymi, fantazyjnymi grafikami stworzonymi przez generator AI - smoki, kwiaty, abstrakcyjne wzory - leżący obok klawiatury."
+
+- [ ] **Naklejki serwisowe dla firm - hydraulicy, elektrycy i instalatorzy**
+    - **Format:** Supporting Article
+    - **Główna Fraza Kluczowa:** `naklejki serwisowe` / `naklejka serwisowana przez`
+    - **Cel:** Sprzedaż
+    - **Persona:** Lokalne Usługi i Rzemiosło (hydraulicy, elektrycy, instalatorzy klimatyzacji, serwisanci pieców)
+    - **Link nadrzędny (Filar):** `/blog/drukowanie-naklejek-online-na-co-zwrocic-uwage-przed-wysylka-projektu`
+    - **Prompty do generowania zdjęć:**
+        - "Hydraulik w roboczym kombinezonie naklejający trwałą, białą naklejkę z numerem telefonu i datą przeglądu na metalowej obudowie pieca gazowego, wnętrze kotłowni, naturalne światło."
+        - "Zbliżenie na klimatyzator ścienny z naklejoną małą, czytelną etykietą serwisową zawierającą logo firmy instalatorskiej i numer telefonu, jasne wnętrze biura."
+        - "Elektryk trzymający w dłoni arkusz białych, prostokątnych naklejek z napisem 'Serwisowane przez' i polem na datę, na tle otwartej skrzynki bezpiecznikowej."
+        - "Van serwisowy z logo firmy hydraulicznej zaparkowany przed domem, technik wychodzący z tylnych drzwi z narzędziami i rolką naklejek identyfikacyjnych."
+
+- [ ] **Etykiety ze składem i plomby na paczki wysyłkowe - unboxing dla małych marek**
+    - **Format:** Supporting Article
+    - **Główna Fraza Kluczowa:** `etykiety ze składem` / `plomby na paczki wysyłkowe`
+    - **Cel:** Sprzedaż
+    - **Persona:** Mikroprzedsiębiorstwa, producenci kosmetyków naturalnych i żywności, e-commerce
+    - **Link nadrzędny (Filar):** `/blog/drukowanie-naklejek-online-na-co-zwrocic-uwage-przed-wysylka-projektu`
+    - **Prompty do generowania zdjęć:**
+        - "Dłonie pakujące kartonowe pudełko wysyłkowe, zaklejające je taśmą oraz okrągłą naklejką-plombą z logo marki, minimalistyczne domowe biuro, ciepłe światło."
+        - "Zbliżenie na słoik kremu kosmetycznego z czytelną, białą etykietą zawierającą listę składników (INCI) oraz logo małej marki naturalnych kosmetyków."
+        - "Rząd eleganckich pudełek e-commerce z naklejonymi na wieczkach okrągłymi plombami z logo, ułożonych na drewnianym stole, gotowych do wysyłki."
+        - "Właścicielka małej manufaktury kosmetycznej naklejająca etykiety ze składem na rząd buteleczek z olejkiem, jasne, przytulne studio produkcyjne."
+
+- [ ] **Naklejki i gadżety na eventy firmowe - Welcome Pack dla nowych pracowników**
+    - **Format:** Supporting Article
+    - **Główna Fraza Kluczowa:** `naklejki firmowe na eventy` / `welcome pack naklejki`
+    - **Cel:** Sprzedaż
+    - **Persona:** Działy HR, Office Managery, organizatorzy eventów firmowych
+    - **Link nadrzędny (Filar):** `/blog/jak-zamowic-idealne-naklejki-na-zamowienie-z-wlasnym-nadrukiem`
+    - **Prompty do generowania zdjęć:**
+        - "Nowoczesny zestaw powitalny (Welcome Pack) dla nowego pracownika na biurku w biurze - notes, kubek, długopis i laptop oklejone spójnymi, firmowymi wlepkami z logo."
+        - "Stół konferencyjny podczas małego eventu firmowego, na którym leżą stosy kolorowych naklejek z logo firmy obok identyfikatorów gości i długopisów."
+        - "Zespół pracowników w biurze open space, jeden z nich naklejający firmową wlepkę na obudowę laptopa, nowoczesne wnętrze startupu, naturalne światło dzienne."
+        - "Zbliżenie na dłoń Office Managera układającą pudełka z gadżetami firmowymi, w tym arkusze naklejek z logo, przygotowywane na konferencję branżową."
+
+- [ ] **Naklejki na rower i akcesoria sportowe - personalizacja dla pasjonatów**
+    - **Format:** Supporting Article
+    - **Główna Fraza Kluczowa:** `naklejki na rower` / `personalizowane naklejki na rower`
+    - **Cel:** Sprzedaż
+    - **Persona:** Hobbyści, rowerzyści, pasjonaci sportów outdoorowych
+    - **Link nadrzędny (Filar):** `/blog/jak-zamowic-idealne-naklejki-na-zamowienie-z-wlasnym-nadrukiem`
+    - **Prompty do generowania zdjęć:**
+        - "Miejski rower z aluminiową ramą oklejoną kilkoma kolorowymi, wyciętymi po obrysie naklejkami o motywach przyrody i gór, zdjęcie na tle parku, naturalne światło."
+        - "Zbliżenie na kask rowerowy i bidon sportowy oklejone personalizowanymi wlepkami z imieniem i motywem górskim, tło rozmyte, plenerowe ujęcie."
+        - "Rowerzysta w stroju kolarskim opierający rower o ścianę, na ramie i widelcu widoczne świeże, błyszczące naklejki z autorskim wzorem."
+
+- [ ] **Naklejki motoryzacyjne i tuningowe z własnym nadrukiem**
+    - **Format:** Supporting Article
+    - **Główna Fraza Kluczowa:** `naklejki motoryzacyjne` / `wlepki tuningowe`
+    - **Cel:** Sprzedaż
+    - **Persona:** Hobbyści, fani motoryzacji i tuningu, motocykliści
+    - **Link nadrzędny (Filar):** `/blog/jak-zamowic-idealne-naklejki-na-zamowienie-z-wlasnym-nadrukiem`
+    - **Prompty do generowania zdjęć:**
+        - "Zbliżenie na czarny zderzak samochodu sportowego oklejony rzędem kolorowych, wyciętych po obrysie naklejek tuningowych i logotypów zespołów wyścigowych."
+        - "Motocyklista w garażu nakładający dużą naklejkę z płomieniami na bak motocykla typu cafe racer, ciepłe światło warsztatowe, narzędzia w tle."
+        - "Deska rozdzielcza samochodu z małą, personalizowaną naklejką na szybie oraz kluczykami leżącymi obok, ostre, kontrastowe światło."
+
+- [ ] **Naklejki z imionami na meble, drzwi i pojemniki - organizacja domu**
+    - **Format:** Supporting Article
+    - **Główna Fraza Kluczowa:** `małe naklejki na meble` / `małe naklejki na drzwi` / `małe naklejki z imionami`
+    - **Cel:** Edukacja / Sprzedaż
+    - **Persona:** Rodzice, fani home organizing, osoby urządzające pokój dziecięcy
+    - **Link nadrzędny (Filar):** `/blog/jak-zamowic-idealne-naklejki-na-zamowienie-z-wlasnym-nadrukiem`
+    - **Prompty do generowania zdjęć:**
+        - "Wnętrze zorganizowanej szafy z pojemnikami plastikowymi opisanymi estetycznymi, jednolitymi naklejkami z nazwami kategorii, jasne, minimalistyczne wnętrze w stylu skandynawskim."
+        - "Drzwi dziecięcego pokoju z naklejoną, kolorową naklejką z imieniem dziecka wyciętą w kształcie chmurki, jasne wnętrze, miękkie światło."
+        - "Zbliżenie na białe szuflady kuchenne z małymi, jednolitymi etykietami opisującymi zawartość (sztućce, ściereczki, przyprawy), porządek w stylu minimalistycznym."
+
+- [ ] **Podziękowania dla gości i naklejki na koperty ślubne**
+    - **Format:** Supporting Article
+    - **Główna Fraza Kluczowa:** `naklejki na koperty ślubne` / `podziękowania dla gości naklejki`
+    - **Cel:** Sprzedaż
+    - **Persona:** Pary młode, wedding plannerzy, organizatorzy wieczorów panieńskich
+    - **Link nadrzędny (Filar):** `/blog/jak-zamowic-idealne-naklejki-na-zamowienie-z-wlasnym-nadrukiem`
+    - **Prompty do generowania zdjęć:**
+        - "Elegancki stół weselny z rzędem białych kopert dla gości oklejonych delikatną, złotą naklejką z monogramem pary młodej, kwiatowa dekoracja w tle."
+        - "Zbliżenie na małe pudełeczka z podziękowaniami dla gości weselnych, każde zaklejone pastelową naklejką z imionami pary młodej i datą ślubu."
+        - "Panna młoda podpisująca stos zaproszeń ślubnych leżących obok arkusza delikatnych, okrągłych naklejek z ornamentem, jasne, romantyczne wnętrze."
+
+- [ ] **Naklejki okrągłe z własnym nadrukiem - kiedy wybrać kształt koła?**
+    - **Format:** Supporting Article
+    - **Główna Fraza Kluczowa:** `naklejki okrągłe z własnym nadrukiem` / `naklejki w kształcie koła`
+    - **Cel:** Edukacja
+    - **Persona:** Mikroprzedsiębiorstwa, artyści, klienci indywidualni porównujący formaty
+    - **Link nadrzędny (Filar):** `/blog/drukowanie-naklejek-online-na-co-zwrocic-uwage-przed-wysylka-projektu`
+    - **Prompty do generowania zdjęć:**
+        - "Zbliżenie na trzy różne kształty naklejek - okrągłą, kwadratową i wyciętą po obrysie - ułożone obok siebie na jasnym tle, widoczne różnice w liniach cięcia."
+        - "Dłoń odklejająca idealnie okrągłą naklejkę z logo z arkusza ochronnego, makro ujęcie z widocznymi krawędziami cięcia."
+        - "Zestaw okrągłych naklejek z jednolitym wzorem graficznym naklejonych na słoikach z miodem, ustawionych rzędem na drewnianej półce."
 
 ---
 

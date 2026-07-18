@@ -834,6 +834,73 @@ export function NewA4Visualizer({
                 </div>
               )}
 
+              {/* Cut line visualizer */}
+              <div className="absolute inset-0 pointer-events-none rounded-none z-30">
+                {(st.cutLineType === "contour" || st.cutLineType === "contour_inside") && (
+                  st.contourPolygons && st.contourPolygons.length > 0 ? (
+                    <svg
+                      className="absolute inset-0 w-full h-full pointer-events-none overflow-visible animate-pulse"
+                      viewBox="0 0 1 1"
+                      preserveAspectRatio="none"
+                      style={{
+                        filter: "drop-shadow(0 0 2px #ff5ebb)",
+                        transformOrigin: "center",
+                        transform: (st.cutLineType === "contour" && Math.max(wMm, hMm) * (8 / 120) < 2)
+                          ? `scaleX(${(wMm / 2 + 2) / (wMm / 2 + Math.max(wMm, hMm) * (8 / 120))}) scaleY(${(hMm / 2 + 2) / (hMm / 2 + Math.max(wMm, hMm) * (8 / 120))})`
+                          : "none",
+                      }}
+                    >
+                      {st.contourPolygons.map((poly, idx) => {
+                        const pointsStr = poly.map((p) => `${p.x},${p.y}`).join(" ");
+                        return (
+                          <polygon
+                            key={idx}
+                            points={pointsStr}
+                            fill="none"
+                            stroke="#ff5ebb"
+                            strokeWidth="2"
+                            strokeDasharray="4 3"
+                            vectorEffect="non-scaling-stroke"
+                          />
+                        );
+                      })}
+                    </svg>
+                  ) : (
+                    <div
+                      className="absolute inset-0 pointer-events-none rounded-lg border border-dashed border-[#ff5ebb] animate-pulse"
+                      style={{ filter: "drop-shadow(0 0 2px #ff5ebb)" }}
+                    />
+                  )
+                )}
+                {(st.cutLineType === "rounded" || st.cutLineType === "rounded_inside") && (
+                  <div
+                    className="absolute pointer-events-none border-2 border-dashed border-[#ff5ebb] animate-pulse"
+                    style={{
+                      left: "50%",
+                      top: "50%",
+                      width: `calc(100% + ${2 * offsetPercentX}%)`,
+                      height: `calc(100% + ${2 * offsetPercentY}%)`,
+                      borderRadius: "1.008cqw",
+                      transform: "translate(-50%, -50%)",
+                      filter: "drop-shadow(0 0 2px #ff5ebb)",
+                    }}
+                  />
+                )}
+                {(st.cutLineType === "circle" || st.cutLineType === "circle_inside") && (
+                  <div
+                    className="absolute pointer-events-none border-2 border-dashed border-[#ff5ebb] rounded-[50%] animate-pulse"
+                    style={{
+                      left: "50%",
+                      top: "50%",
+                      width: `calc(100% + ${2 * offsetPercentX}%)`,
+                      height: `calc(100% + ${2 * offsetPercentY}%)`,
+                      transform: "translate(-50%, -50%)",
+                      filter: "drop-shadow(0 0 2px #ff5ebb)",
+                    }}
+                  />
+                )}
+              </div>
+              
               {/* Scale Handle on Selected Sticker */}
               {isSelected && (
                 <div
@@ -870,99 +937,6 @@ export function NewA4Visualizer({
               </div>
             )}
           </React.Fragment>
-        );
-      })}
-
-      {/* Render Cut Lines on Top */}
-      {displayStickers.map((st) => {
-        const wMm = st.widthCm * 10;
-        const hMm = st.heightCm * 10;
-        const isInside = st.cutLineType === "rounded_inside" || st.cutLineType === "circle_inside";
-        const offsetMm = isInside ? -2 : 2;
-        const offsetPercentX = (offsetMm / wMm) * 100;
-        const offsetPercentY = (offsetMm / hMm) * 100;
-
-        return (
-          <div
-            key={`cutline-${st.id}`}
-            className="absolute flex items-center justify-center transition-shadow touch-none pointer-events-none z-40 rounded-none"
-            style={{
-              left: `${(st.x / SHEET_WIDTH_MM) * 100}%`,
-              top: `${(st.y / SHEET_HEIGHT_MM) * 100}%`,
-              width: `${(wMm / SHEET_WIDTH_MM) * 100}%`,
-              height: `${(hMm / SHEET_HEIGHT_MM) * 100}%`,
-              transform: `rotate(${st.rotation || 0}deg)`,
-            }}
-          >
-            {/* Cut line visualizer */}
-            {(st.cutLineType === "contour" || st.cutLineType === "contour_inside") && (
-              st.contourPolygons && st.contourPolygons.length > 0 ? (
-                <svg
-                  className="absolute inset-0 w-full h-full pointer-events-none overflow-visible animate-pulse z-10"
-                  viewBox="0 0 1 1"
-                  preserveAspectRatio="none"
-                  style={{
-                    filter: "drop-shadow(0 0 2px #ff5ebb)",
-                    transformOrigin: "center",
-                    transform: (st.cutLineType === "contour" && Math.max(wMm, hMm) * (8 / 120) < 2)
-                      ? `scaleX(${(wMm / 2 + 2) / (wMm / 2 + Math.max(wMm, hMm) * (8 / 120))}) scaleY(${(hMm / 2 + 2) / (hMm / 2 + Math.max(wMm, hMm) * (8 / 120))})`
-                      : "none",
-                  }}
-                >
-                  {st.contourPolygons.map((poly, idx) => {
-                    const pointsStr = poly
-                      .map((p) => `${p.x},${p.y}`)
-                      .join(" ");
-                    return (
-                      <polygon
-                        key={idx}
-                        points={pointsStr}
-                        fill="none"
-                        stroke="#ff5ebb"
-                        strokeWidth="2"
-                        strokeDasharray="4 3"
-                        vectorEffect="non-scaling-stroke"
-                      />
-                    );
-                  })}
-                </svg>
-              ) : (
-                <div
-                  className="absolute inset-0 pointer-events-none rounded-lg border border-dashed border-[#ff5ebb] animate-pulse z-10"
-                  style={{
-                    filter: "drop-shadow(0 0 2px #ff5ebb)",
-                  }}
-                />
-              )
-            )}
-            {(st.cutLineType === "rounded" || st.cutLineType === "rounded_inside") && (
-              <div
-                className="absolute pointer-events-none border-2 border-dashed border-[#ff5ebb] animate-pulse z-10"
-                style={{
-                  left: "50%",
-                  top: "50%",
-                  width: `calc(100% + ${2 * offsetPercentX}%)`,
-                  height: `calc(100% + ${2 * offsetPercentY}%)`,
-                  borderRadius: "1.008cqw",
-                  transform: "translate(-50%, -50%)",
-                  filter: "drop-shadow(0 0 2px #ff5ebb)",
-                }}
-              />
-            )}
-            {(st.cutLineType === "circle" || st.cutLineType === "circle_inside") && (
-              <div
-                className="absolute pointer-events-none border-2 border-dashed border-[#ff5ebb] rounded-[50%] animate-pulse z-10"
-                style={{
-                  left: "50%",
-                  top: "50%",
-                  width: `calc(100% + ${2 * offsetPercentX}%)`,
-                  height: `calc(100% + ${2 * offsetPercentY}%)`,
-                  transform: "translate(-50%, -50%)",
-                  filter: "drop-shadow(0 0 2px #ff5ebb)",
-                }}
-              />
-            )}
-          </div>
         );
       })}
 

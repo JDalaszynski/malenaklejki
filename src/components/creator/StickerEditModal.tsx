@@ -119,7 +119,7 @@ export function StickerEditModal({ imageSrc, onSave, onCancel }: StickerEditModa
     const fetchImage = async () => {
       try {
         setBlobUrl(null);
-        
+
         let urlToFetch = currentUrl;
         if (currentUrl.startsWith("http") && !currentUrl.startsWith("blob:")) {
           urlToFetch = `/api/proxy-image?url=${encodeURIComponent(currentUrl)}`;
@@ -131,7 +131,7 @@ export function StickerEditModal({ imageSrc, onSave, onCancel }: StickerEditModa
 
         const res = await fetch(urlToFetch);
         if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
-        
+
         const blob = await res.blob();
         if (isMounted) {
           objectUrl = URL.createObjectURL(blob);
@@ -284,7 +284,8 @@ export function StickerEditModal({ imageSrc, onSave, onCancel }: StickerEditModa
       const ctx = canvas.getContext("2d");
       if (!ctx) throw new Error("Could not get 2d context");
 
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = "#ffffff";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
       ctx.scale(dpr, dpr);
 
       const centerX = position.x + imgSize.width / 2;
@@ -332,32 +333,25 @@ export function StickerEditModal({ imageSrc, onSave, onCancel }: StickerEditModa
     }
   };
 
-  // AI Background Removal
+  // AI Background Removal (Client-side)
   const handleRemoveBackground = async () => {
     setIsProcessing(true);
-    setProcessingMessage("Usuwanie tła...");
+    setProcessingMessage("Inicjalizacja modelu (może chwilę potrwać za pierwszym razem)...");
     setError(null);
 
     try {
       const targetUrl = blobUrl || currentUrl;
-      const response = await fetch(targetUrl);
-      if (!response.ok) throw new Error("Failed to fetch image data");
-      const blob = await response.blob();
-      const base64 = await blobToBase64(blob);
+      const { removeBackground } = await import("@imgly/background-removal");
 
-      const result = await removeStickerBackground({
-        base64,
-        mimeType: blob.type || "image/png",
-      });
+      setProcessingMessage("Wycinanie tła");
+      const blob = await removeBackground(targetUrl);
 
-      if (result.success && result.url) {
-        setCurrentUrl(result.url);
-      } else {
-        setError(result.error || "Nie udało się usunąć tła.");
-      }
+      const newBlobUrl = URL.createObjectURL(blob);
+      setBlobUrl(newBlobUrl);
+      setCurrentUrl(newBlobUrl);
     } catch (err: any) {
       console.error(err);
-      setError(err?.message || "Wystąpił błąd podczas usuwania tła.");
+      setError("Wystąpił błąd podczas usuwania tła. Spróbuj innego zdjęcia.");
     } finally {
       setIsProcessing(false);
       setProcessingMessage(null);
@@ -461,6 +455,12 @@ export function StickerEditModal({ imageSrc, onSave, onCancel }: StickerEditModa
               onPointerCancel={handlePointerUp}
               className="w-full h-full overflow-hidden bg-[#eaeaea] select-none shadow-[inset_0_2px_8px_rgba(0,0,0,0.02)] cursor-grab active:cursor-grabbing touch-none"
             >
+              {!blobUrl && !error && (
+                <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 z-10 text-muted-foreground/50">
+                  <Loader2 className="w-6 h-6 animate-spin text-primary/70" />
+                  <span className="text-xs font-bold text-primary/70">Wczytywanie zdjęcia...</span>
+                </div>
+              )}
               {blobUrl && (
                 <img
                   ref={imageRef}

@@ -41,10 +41,14 @@ Maksymalna czytelność. Krótkie akapity, zagnieżdżone nagłówki, tabele, wy
   * ❌ ŹLE: "Zamówienie naklejek na zamówienie z własnym nadrukiem to proces prosty i intuicyjny."
   * ✅ DOBRZE: "Stworzenie własnych wlepek z logo w naszym kreatorze zajmuje zaledwie kilka minut."
 
-* **Pisania o projektowaniu od zera bezpośrednio w naszym kreatorze:**
-  Nasz kreator nie posiada edytora tekstu, dodawania grafik ani innych narzędzi do projektowania od zera. Służy on do wgrywania gotowych plików/projektów, kadrowania ich, usuwania tła i konfiguracji zamówienia.
-  * ❌ ŹLE: "Zaprojektuj swój napis lub dodaj grafiki bezpośrednio w naszym kreatorze online na stronie."
-  * ✅ DOBRZE: "Stwórz prosty projekt z napisem w darmowym programie Canva lub Word, zapisz go w formacie PDF, PNG lub JPG i wgraj plik do naszego kreatora. My zajmiemy się automatycznym wycięciem po obrysie!"
+* **Pisania o "projektowaniu" naklejki/grafiki w kreatorze (KATEGORYCZNY ZAKAZ - dotyczy też generatora AI):**
+  Kreator nie służy do projektowania naklejek ani grafiki. Kreator służy do **projektowania arkusza** z naklejkami: wgrywania gotowego obrazu, kadrowania go, wyboru kształtu cięcia oraz układania i konfiguracji całego arkusza A4. Nie posiada ręcznego edytora tekstu, dodawania kształtów ani biblioteki grafik do składania projektu "klocek po klocku" - taki gotowy plik trzeba przygotować w zewnętrznym programie (Canva, Word, telefon) i wgrać go do kreatora.
+  Ta sama zasada obowiązuje dla **generatora AI**: to funkcja, która na podstawie opisu tekstowego (promptu) i wybranego stylu graficznego (m.in. akwarela, anime, render 3D, szkic) **tworzy gotowy obraz** - ale sam ten obraz trafia potem do kreatora dokładnie tak samo jak wgrane zdjęcie czy plik z Canvy: do kadrowania, wycięcia po kształcie i ułożenia na arkuszu. Generowanie obrazu przez AI to nie jest "projektowanie w kreatorze" - to alternatywne źródło gotowej grafiki. Nigdy nie używaj słowa "projektować"/"zaprojektuj" w odniesieniu do samej naklejki lub grafiki (także w kontekście AI) - to słowo rezerwujemy wyłącznie dla układania arkusza.
+  * ❌ ŹLE: "Zaprojektuj swój napis lub dodaj kształty ręcznie bezpośrednio w naszym kreatorze online na stronie."
+  * ❌ ŹLE: "Zaprojektuj naklejkę w kreatorze za pomocą generatora AI."
+  * ❌ ŹLE: "W kreatorze możesz swobodnie projektować własną grafikę dzięki sztucznej inteligencji."
+  * ✅ DOBRZE (własny plik): "Stwórz prosty projekt z napisem w darmowym programie Canva lub Word, zapisz go w formacie PDF, PNG lub JPG i wgraj plik do naszego kreatora. My zajmiemy się automatycznym wycięciem po obrysie!"
+  * ✅ DOBRZE (generator AI jako źródło grafiki, nie jako "projektowanie"): "Nie masz gotowego zdjęcia ani grafiki? Opisz swój pomysł zwykłym tekstem, wybierz styl (np. akwarela lub anime), a wbudowana sztuczna inteligencja wygeneruje gotowy obraz - dokładnie tak, jakbyś wgrywał własne zdjęcie. Wycięciem po kształcie i ułożeniem na arkuszu zajmiesz się już w kreatorze."
 ---
 
 ## 4. 

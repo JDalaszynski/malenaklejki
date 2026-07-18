@@ -216,7 +216,7 @@ export async function removeStickerBackground(
 
   try {
     const prompt =
-      "Remove the background from this image. Keep the main subject exactly as it is, with its original colors, lighting, texture, and details. Make the entire background completely white (#FFFFFF). Do not add any shadows, vignettes, outline borders, or additional elements. Just the isolated subject on a solid pure white background.";
+      "Remove the background from this image. Keep the main subject exactly as it is, with its original colors, lighting, texture, and details. The background MUST be completely solid white (RGB 255, 255, 255 or #FFFFFF). Do not leave it transparent. Do not make it gray, black, or any other color. Just the isolated subject on a perfect, bright, solid pure white background. No shadows, no borders, no vignettes.";
 
     const parts: object[] = [
       {

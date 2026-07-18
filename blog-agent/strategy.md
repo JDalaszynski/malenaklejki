@@ -89,3 +89,21 @@ To wysoce wyspecjalizowany tekst, który rozszerza i szczegółowo omawia jeden,
 Głównym celem biznesowym (konwersją) jest nakłonienie użytkownika do skorzystania z kreatora na Stronie Głównej. Z tego powodu optymalizujemy nie tylko blog, ale również architekturę wezwań do działania (CTA) w artykułach.
 * **Aktywne Anchory (Do-Intent):** Zamiast pisać ogólnikowe linki (np. "kliknij tutaj", "strona główna"), linkuj do strony głównej wykorzystując dokładne frazy nastawione na akcję: `stwórz własne naklejki`, `spersonalizuj naklejkę` czy `zamów naklejki ze zdjęcia`.
 * **Przejęcie ruchu intencyjnego:** Artykuł o tym "jak spersonalizować naklejkę" musi bezpośrednio oferować rozwiązanie – czyli odesłanie do darmowego i prostego kreatora na stronie głównej, budując jego autorytet ("Link Juice") pod te właśnie słowa w oczach wyszukiwarek.
+
+---
+
+## 🔄 6. Korekta Kursu Strategii - Faza 2 (audyt 2026-07-18)
+
+Po opublikowaniu 14 artykułów i wyczerpaniu kolejki w `plan.md` do jednego tematu przeprowadziłem pełny audyt: pokrycia person z sekcji 2, zgodności `rules.md`/`.agents/AGENTS.md` z realnym stanem produktu (`src/components/creator/`, `src/components/home/`) oraz nasycenia keywordów z `keywords.md` w opublikowanych treściach.
+
+### Kluczowe ustalenia
+1. **Luka contentowa wokół generatora AI (zakaz "projektowania w kreatorze" pozostaje w mocy):** Produkt ma **wbudowany generator AI** (`AIGenerator.tsx`, akcja `generateStickerImage`) - tekst → gotowa grafika, 13 stylów graficznych. Żaden z 14 artykułów, ani nawet sekcja SEO strony głównej, nie celuje w to zapytanie - mimo że funkcja jest wyeksponowana na stronie głównej (`CreatorPowersSection.tsx`). To realna luka contentowa, ale **kategoryczny zakaz pisania o "projektowaniu" naklejki/grafiki w kreatorze pozostaje w pełni w mocy i obejmuje też generator AI** - właściciel doprecyzował: kreator służy do projektowania *arkusza* (kadrowanie, cięcie, układanie), nie samej naklejki/grafiki. Generator AI to tylko alternatywne źródło gotowego obrazu (traktowane jak wgrane zdjęcie), nie funkcja "projektowania". `rules.md` i `.agents/AGENTS.md` zaktualizowane tak, by o tej funkcji można było pisać ("wygeneruj/stwórz obraz opisem tekstowym"), ale bez używania słowa "projektuj/zaprojektuj" w odniesieniu do samej grafiki.
+2. **Dwie persony ze strategii bez żadnego wpisu:** "🔧 Lokalne Usługi i Rzemiosło" (hydraulicy, elektrycy, serwisanci) oraz "🏢 Działy HR i Eventy Firmowe" (Welcome Pack, employer branding) - obie B2B, wysoka wartość zamówienia, zero contentu.
+3. **Zasygnalizowane w strategii, ale nieopisane potrzeby:** plomby na paczki wysyłkowe i etykiety ze składem (persona Mikroprzedsiębiorstwa), naklejki na rower/moto/kask (persona Hobbyści), organizacja domu (meble/drzwi/imiona), rozszerzenie klastra ślubnego o koperty i podziękowania dla gości.
+4. **Luka formatowa:** fraza `naklejki okrągłe z własnym nadrukiem` istnieje w bazie od początku, ale nigdy nie doczekała się własnego wpisu (tylko wzmianki w zdjęciach innych artykułów).
+
+### Decyzje
+* `keywords.md` rozszerzony o sekcje 7 (Generator AI) i 8 (B2B: Rzemiosło, Korporacje, Opakowania) oraz rozbudowane podklastry Moto/Rower i Dom/Wesele.
+* `plan.md` uzupełniony o 9 nowych tematów w kolejce, uszeregowanych priorytetowo - generator AI na czele (zero konkurencji wewnętrznej, realna luka contentowa), dalej dwie nowe persony B2B, potem luki tematyczne i formatowe.
+* Nowe wpisy B2B (serwisowe, etykiety/plomby, generator AI) podpięte pod filar `drukowanie-naklejek-online...` (charakter techniczno-edukacyjny), pozostałe (eventy firmowe, rower, moto, dom, wesele) pod filar `jak-zamowic-idealne-naklejki...` (charakter sprzedażowo-personowy) - zgodnie z dotychczasowym podziałem tematycznym między filarami.
+* **Rekomendacja na przyszłość:** gdy klaster B2B (rzemiosło + korporacje + opakowania) urośnie do 4-5 opublikowanych wpisów, rozważ wydzielenie **trzeciego Pillar Page** (np. "Naklejki dla firm i rzemiosła") zamiast dalszego podczepiania pod istniejące filary - w tym momencie jest to przedwczesne (za mało treści, by uzasadnić nowy, szeroki filar) i rozproszyłoby budowany dotąd autorytet.

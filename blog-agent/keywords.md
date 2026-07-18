@@ -72,9 +72,19 @@ Oto lista rzeczywistych fraz kluczowych wyszukiwanych przez użytkowników w nas
   * `małe naklejki z imionami`
   * `małe naklejki na meble`
   * `małe naklejki na drzwi`
-* **Laptopy i Rowery:**
+  * `naklejki na pojemniki do organizacji`
+  * `naklejki na koperty ślubne`
+  * `podziękowania dla gości naklejki`
+  * `naklejki na wieczór panieński`
+* **Laptopy, Rowery i Moto (rozszerzone - Faza 2):**
   * `małe naklejki na laptopa`
   * `personalizowane naklejki na rower`
+  * `naklejki na rower`
+  * `wlepki motoryzacyjne`
+  * `naklejki motoryzacyjne z własnym nadrukiem`
+  * `naklejki tuningowe`
+  * `naklejki na kask`
+  * `naklejki na deskorolkę`
 
 ---
 
@@ -82,6 +92,8 @@ Oto lista rzeczywistych fraz kluczowych wyszukiwanych przez użytkowników w nas
 * `die cut sticker`
 * `die cut naklejki`
 * `naklejki okrągłe z własnym nadrukiem`
+* `naklejki w kształcie koła`
+* `naklejki kwadratowe na zamówienie`
 * `wlepki z własnym nadrukiem`
 * `wlepy z własnym nadrukiem`
 * `małe naklejki do druku`
@@ -102,3 +114,41 @@ Oto lista rzeczywistych fraz kluczowych wyszukiwanych przez użytkowników w nas
 * `naklejki na zamówienie pojedyncze`
 * `naklejki na zamówienie na sztuki`
 * `jak zrobić własne naklejki w telefonie`
+
+---
+
+## 7. Generator AI (Nowy klaster - Faza 2, priorytet wysoki)
+Klaster wokół realnej, ale dotąd niewykorzystanej w treściach funkcji kreatora - generowania grafiki z opisu tekstowego. Zerowe pokrycie contentowe na blogu i stronie głównej mimo obecności funkcji w produkcie.
+* `generator naklejek AI`
+* `generator naklejek online`
+* `naklejki AI`
+* `jak wygenerować naklejkę AI`
+* `wzory na naklejki AI`
+* `naklejka z opisu tekstowego`
+* `sticker generator online`
+* `naklejki bez umiejętności rysowania`
+* `jak zrobić naklejkę bez grafika`
+
+---
+
+## 8. B2B: Rzemiosło, Usługi Lokalne i Korporacje (Nowy klaster - Faza 2)
+Persony "Lokalne Usługi i Rzemiosło" oraz "Działy HR i Eventy Firmowe" ze strategy.md nie miały dotąd żadnego dedykowanego wpisu.
+* **Rzemiosło i serwis (utility B2B):**
+  * `naklejki serwisowe`
+  * `naklejka serwisowana przez`
+  * `naklejki z numerem telefonu na urządzenia`
+  * `naklejki instalatorskie`
+  * `naklejki dla hydraulika`
+  * `naklejki dla elektryka`
+* **Firmy i eventy (corporate B2B):**
+  * `naklejki firmowe na eventy`
+  * `welcome pack naklejki`
+  * `gadżety firmowe z logo`
+  * `personalizowane naklejki firmowe na konferencje`
+  * `naklejki dla pracowników`
+* **Opakowania i e-commerce (etykiety/plomby):**
+  * `etykiety ze składem`
+  * `plomby na paczki wysyłkowe`
+  * `naklejki zabezpieczające paczki`
+  * `naklejki unboxing`
+  * `etykiety na kosmetyki naturalne`
