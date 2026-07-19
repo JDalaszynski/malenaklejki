@@ -13,21 +13,6 @@ Możesz dodawać nowe tematy, zachowując format wcięć pod spodem.
 
 
 
-- [ ] **Wklepki i wlepy z własnym nadrukiem dla artystów i społeczności**
-    - **Format:** Supporting Article
-    - **Główna Fraza Kluczowa:** `wlepki z wlasnym nadrukiem` / `wlepy z wlasnym nadrukiem`
-    - **Cel:** Sprzedaż
-    - **Persona:** Artyści, ilustratorzy, fani muzyki, kluby sportowe
-    - **Link nadrzędny (Filar):** `/blog/drukowanie-naklejek-online-na-co-zwrocic-uwage-przed-wysylka-projektu`
-    - **Prompty do generowania zdjęć:**
-        - "Młody artysta siedzący przy biurku w swoim studiu pełnym plakatów i farb, trzymający w rękach plik świeżo wydrukowanych, kolorowych wlepek z własnymi grafikami, naturalne, artystyczne światło."
-        - "Zbliżenie na czarną deskorolkę i kask rowerowy gęsto oklejone różnorodnymi, kolorowymi wlepkami o tematyce streetwear i skate, zdjęcie wykonane na tle szarego betonu."
-        - "Stosik grubych, matowych wlepek z komiksowymi postaciami i wyrazistymi napisami leżący na stole obok czarnego szkicownika i markerów graficznych, ostre cienie, styl miejski."
-        - "Zbliżenie na czarną okładkę notesu artysty leżącego na stole, na której naklejone są wlepki z reprodukcjami klasycznych rzeźb w stylu glitch art oraz rysunkami przedstawiającymi koty rasy Maine Coon w zabawnych pozach."
-        - "Dłonie artysty przygotowującego paczki z merchem dla fanów: wkładanie kolorowych wlep do kopert obok plakatów, w tym wlepki z reprodukcją obrazu Vincenta van Gogha oraz logotypami zespołów muzycznych."
-        - "Widok z bliska na tył gitary elektrycznej, na której naklejone są liczne, alternatywne wklepki muzyczne i artystyczne o różnych fakturach, rockowy klimat, nastrojowe oświetlenie."
-        - "Dłonie artysty przygotowującego paczki z merchem dla fanów: wkładanie kolorowych wlep do kopert obok plakatów, zorganizowane stanowisko pracy, ujęcie z góry."
-
 - [ ] **Generator naklejek AI - jak stworzyć unikalny wzór bez umiejętności rysowania?**
     - **Format:** Supporting Article
     - **Główna Fraza Kluczowa:** `generator naklejek AI` / `jak wygenerować naklejkę AI`
@@ -135,6 +120,14 @@ Możesz dodawać nowe tematy, zachowując format wcięć pod spodem.
 ---
 
 ## 📈 Zrealizowane Artykuły
+
+- [x] **Wlepki z własnym nadrukiem dla artystów i fanklubów** (opublikowano 2026-07-19)
+    - **Format:** Supporting Article
+    - **Główna Fraza Kluczowa:** `wlepki z wlasnym nadrukiem` / `wlepy z wlasnym nadrukiem`
+    - **Cel:** Sprzedaż
+    - **Persona:** Artyści, ilustratorzy, fani muzyki, kluby sportowe
+    - **Link nadrzędny (Filar):** `/blog/drukowanie-naklejek-online-na-co-zwrocic-uwage-przed-wysylka-projektu`
+    - **Uwaga:** opublikowano bez zdjęć na wyraźne polecenie - folder `public/blog/wklepki-i-wlepy-z-wlasnym-nadrukiem-dla-artystow-i-spolecznosci/` czeka na wgranie grafik.
 
 - [x] **Naklejki mały nakład - jak zamówić pojedyncze sztuki bez przepłacania?** (opublikowano 2026-07-18)
     - **Format:** Supporting Article
