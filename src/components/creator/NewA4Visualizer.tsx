@@ -573,7 +573,7 @@ export function NewA4Visualizer({
           if (!resizeContourTimerRef.current) {
             resizeContourTimerRef.current = setTimeout(() => {
               import("@/lib/utils/contour").then(({ getContourPoints }) => {
-                getContourPoints(resizeSticker.imageUrl, resizeSticker.cutLineType, fitWidthCm * 10, fitHeightCm * 10)
+                getContourPoints(resizeSticker.imageUrl, resizeSticker.cutLineType as "contour" | "contour_inside", fitWidthCm * 10, fitHeightCm * 10)
                   .then(polys => {
                     onUpdateStickers(prev => 
                       prev.map(s => 
@@ -611,7 +611,7 @@ export function NewA4Visualizer({
         }
         // Fetch exact contour for final size
         import("@/lib/utils/contour").then(({ getContourPoints }) => {
-          getContourPoints(resizeSticker.imageUrl, resizeSticker.cutLineType, resizeSticker.widthCm * 10, resizeSticker.heightCm * 10)
+          getContourPoints(resizeSticker.imageUrl, resizeSticker.cutLineType as "contour" | "contour_inside", resizeSticker.widthCm * 10, resizeSticker.heightCm * 10)
             .then(polys => {
               onUpdateStickers(prev => 
                 prev.map(s => 
