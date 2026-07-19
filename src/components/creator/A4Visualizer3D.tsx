@@ -80,12 +80,13 @@ export function A4Visualizer3D({ stickers, deliveryForm = "sheet" }: A4Visualize
             ) {
               const wMm = st.widthCm * 10;
               const hMm = st.heightCm * 10;
-              const scaleX = (st.cutLineType === "contour" && Math.max(wMm, hMm) * (8 / 120) < 2)
-                ? (wMm / 2 + 2) / (wMm / 2 + Math.max(wMm, hMm) * (8 / 120))
-                : 1;
-              const scaleY = (st.cutLineType === "contour" && Math.max(wMm, hMm) * (8 / 120) < 2)
-                ? (hMm / 2 + 2) / (hMm / 2 + Math.max(wMm, hMm) * (8 / 120))
-                : 1;
+              const offsetMm = st.cutLineType === "contour_inside" ? -2 : 2;
+              // The clip path is expressed in objectBoundingBox units relative to the
+              // enlarged sticker body box (which is scaled up/down by this same ratio),
+              // so contour points (normalized to the raw image box) must be converted
+              // into that box's coordinate space.
+              const scaleX = (wMm + 2 * offsetMm) / wMm;
+              const scaleY = (hMm + 2 * offsetMm) / hMm;
 
               return (
                 <clipPath id={`clip-${st.id}`} clipPathUnits="objectBoundingBox" key={st.id}>
@@ -135,32 +136,23 @@ export function A4Visualizer3D({ stickers, deliveryForm = "sheet" }: A4Visualize
         {stickers.map((st) => {
           const wMm = st.widthCm * 10;
           const hMm = st.heightCm * 10;
-          const isInside = st.cutLineType === "rounded_inside" || st.cutLineType === "circle_inside";
+          const isInside =
+            st.cutLineType === "rounded_inside" ||
+            st.cutLineType === "circle_inside" ||
+            st.cutLineType === "contour_inside";
           const offsetMm = isInside ? -2 : 2;
           const offsetPercentX = (offsetMm / wMm) * 100;
           const offsetPercentY = (offsetMm / hMm) * 100;
 
-          // Determine scale factors sx and sy
+          // Determine scale factors sx and sy (the sticker body/shadow box is enlarged
+          // or shrunk by an exact 2mm ratio to fit the cut line, the same way for every
+          // cut line type since contour polygons now already bake in an exact 2mm margin)
           let sx = 1;
           let sy = 1;
 
-          if (
-            st.cutLineType === "rounded" ||
-            st.cutLineType === "rounded_inside" ||
-            st.cutLineType === "circle" ||
-            st.cutLineType === "circle_inside"
-          ) {
+          if (st.cutLineType !== "none") {
             sx = (wMm + 2 * offsetMm) / wMm;
             sy = (hMm + 2 * offsetMm) / hMm;
-          } else if (st.cutLineType === "contour" || st.cutLineType === "contour_inside") {
-            const scaleX = (st.cutLineType === "contour" && Math.max(wMm, hMm) * (8 / 120) < 2)
-              ? (wMm / 2 + 2) / (wMm / 2 + Math.max(wMm, hMm) * (8 / 120))
-              : 1;
-            const scaleY = (st.cutLineType === "contour" && Math.max(wMm, hMm) * (8 / 120) < 2)
-              ? (hMm / 2 + 2) / (hMm / 2 + Math.max(wMm, hMm) * (8 / 120))
-              : 1;
-            sx = scaleX;
-            sy = scaleY;
           }
 
           const getClipPathStyle = () => {
@@ -215,9 +207,7 @@ export function A4Visualizer3D({ stickers, deliveryForm = "sheet" }: A4Visualize
                   preserveAspectRatio="none"
                   style={{
                     transformOrigin: "center",
-                    transform: (st.cutLineType === "contour" && Math.max(wMm, hMm) * (8 / 120) < 2)
-                      ? `translateZ(0.1px) scaleX(${(wMm / 2 + 2) / (wMm / 2 + Math.max(wMm, hMm) * (8 / 120))}) scaleY(${(hMm / 2 + 2) / (hMm / 2 + Math.max(wMm, hMm) * (8 / 120))})`
-                      : "translateZ(0.1px)",
+                    transform: "translateZ(0.1px)",
                   }}
                 >
                   {st.contourPolygons.map((poly, idx) => {
@@ -274,9 +264,7 @@ export function A4Visualizer3D({ stickers, deliveryForm = "sheet" }: A4Visualize
                     preserveAspectRatio="none"
                     style={{
                       transformOrigin: "center",
-                      transform: (st.cutLineType === "contour" && Math.max(wMm, hMm) * (8 / 120) < 2)
-                        ? `translateZ(1px) scaleX(${(wMm / 2 + 2) / (wMm / 2 + Math.max(wMm, hMm) * (8 / 120))}) scaleY(${(hMm / 2 + 2) / (hMm / 2 + Math.max(wMm, hMm) * (8 / 120))})`
-                        : "translateZ(1px)",
+                      transform: "translateZ(1px)",
                     }}
                   >
                     {st.contourPolygons.map((poly, idx) => {

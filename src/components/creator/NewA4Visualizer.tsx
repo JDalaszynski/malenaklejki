@@ -10,7 +10,7 @@ interface NewA4VisualizerProps {
   stickers: PlacedSticker[];
   selectedStickerId: string | null;
   onSelectSticker: (id: string | null) => void;
-  onUpdateStickers: (stickers: PlacedSticker[]) => void;
+  onUpdateStickers: React.Dispatch<React.SetStateAction<PlacedSticker[]>>;
   onError?: (msg: string | null) => void;
   onEditSticker?: () => void;
   onDuplicateSticker?: () => void;
@@ -40,6 +40,7 @@ export function NewA4Visualizer({
   deliveryForm = "sheet",
 }: NewA4VisualizerProps) {
   const containerRef = useRef<HTMLDivElement>(null);
+  const resizeContourTimerRef = useRef<NodeJS.Timeout | null>(null);
   const selectedSticker = stickers.find((s) => s.id === selectedStickerId);
   const [isMounted, setIsMounted] = useState(false);
 
@@ -567,6 +568,24 @@ export function NewA4Visualizer({
               : s
           )
         );
+
+        if (resizeSticker.cutLineType === 'contour' || resizeSticker.cutLineType === 'contour_inside') {
+          if (!resizeContourTimerRef.current) {
+            resizeContourTimerRef.current = setTimeout(() => {
+              import("@/lib/utils/contour").then(({ getContourPoints }) => {
+                getContourPoints(resizeSticker.imageUrl, resizeSticker.cutLineType, fitWidthCm * 10, fitHeightCm * 10)
+                  .then(polys => {
+                    onUpdateStickers(prev => 
+                      prev.map(s => 
+                        s.id === resizeSticker.id ? { ...s, contourPolygons: polys } : s
+                      )
+                    );
+                    resizeContourTimerRef.current = null;
+                  });
+              });
+            }, 100);
+          }
+        }
       } else {
         onError?.("Brak miejsca na zmianę rozmiaru w tym ułożeniu!");
       }
@@ -579,8 +598,29 @@ export function NewA4Visualizer({
       (e.target as HTMLElement).releasePointerCapture(e.pointerId);
     }
     if (activeResize) {
+      const resizeSticker = stickers.find(s => s.id === activeResize.id);
+      
       setActiveResize(null);
       (e.target as HTMLElement).releasePointerCapture(e.pointerId);
+      
+      if (resizeSticker && (resizeSticker.cutLineType === 'contour' || resizeSticker.cutLineType === 'contour_inside')) {
+        // Clear any pending throttled fetches
+        if (resizeContourTimerRef.current) {
+          clearTimeout(resizeContourTimerRef.current);
+          resizeContourTimerRef.current = null;
+        }
+        // Fetch exact contour for final size
+        import("@/lib/utils/contour").then(({ getContourPoints }) => {
+          getContourPoints(resizeSticker.imageUrl, resizeSticker.cutLineType, resizeSticker.widthCm * 10, resizeSticker.heightCm * 10)
+            .then(polys => {
+              onUpdateStickers(prev => 
+                prev.map(s => 
+                  s.id === resizeSticker.id ? { ...s, contourPolygons: polys } : s
+                )
+              );
+            });
+        });
+      }
     }
   };
 
@@ -663,7 +703,7 @@ export function NewA4Visualizer({
               onPointerDown={(e) => handlePointerDown(e, st)}
               onPointerMove={handlePointerMove}
               onPointerUp={handlePointerUp}
-              className={`absolute flex items-center justify-center transition-shadow touch-none group ${isSelected
+              className={`absolute flex items-center justify-center transition-shadow touch-none group overflow-visible ${isSelected
                 ? "z-50"
                 : isPresentationMode
                   ? "pointer-events-none"
@@ -683,9 +723,10 @@ export function NewA4Visualizer({
                 src={st.imageUrl}
                 alt="Naklejka"
                 draggable={false}
-                className="max-w-full max-h-full object-contain pointer-events-none select-none border border-zinc-200 dark:border-zinc-700/80"
+                className="absolute inset-0 w-full h-full pointer-events-none select-none border border-zinc-200 dark:border-zinc-700/80"
                 style={{
                   borderRadius: "1.008cqw",
+                  mixBlendMode: "multiply",
                 }}
               />
 
@@ -835,19 +876,15 @@ export function NewA4Visualizer({
               )}
 
               {/* Cut line visualizer */}
-              <div className="absolute inset-0 pointer-events-none rounded-none z-30">
+              <div className="absolute inset-0 pointer-events-none rounded-none z-30 overflow-visible">
                 {(st.cutLineType === "contour" || st.cutLineType === "contour_inside") && (
                   st.contourPolygons && st.contourPolygons.length > 0 ? (
                     <svg
                       className="absolute inset-0 w-full h-full pointer-events-none overflow-visible animate-pulse"
-                      viewBox="0 0 1 1"
+                      viewBox={`${localX / wMm} ${localY / hMm} ${localW / wMm} ${localH / hMm}`}
                       preserveAspectRatio="none"
                       style={{
                         filter: "drop-shadow(0 0 2px #ff5ebb)",
-                        transformOrigin: "center",
-                        transform: (st.cutLineType === "contour" && Math.max(wMm, hMm) * (8 / 120) < 2)
-                          ? `scaleX(${(wMm / 2 + 2) / (wMm / 2 + Math.max(wMm, hMm) * (8 / 120))}) scaleY(${(hMm / 2 + 2) / (hMm / 2 + Math.max(wMm, hMm) * (8 / 120))})`
-                          : "none",
                       }}
                     >
                       {st.contourPolygons.map((poly, idx) => {
@@ -874,27 +911,17 @@ export function NewA4Visualizer({
                 )}
                 {(st.cutLineType === "rounded" || st.cutLineType === "rounded_inside") && (
                   <div
-                    className="absolute pointer-events-none border-2 border-dashed border-[#ff5ebb] animate-pulse"
+                    className="absolute inset-0 pointer-events-none border-2 border-dashed border-[#ff5ebb] animate-pulse"
                     style={{
-                      left: "50%",
-                      top: "50%",
-                      width: `calc(100% + ${2 * offsetPercentX}%)`,
-                      height: `calc(100% + ${2 * offsetPercentY}%)`,
                       borderRadius: "1.008cqw",
-                      transform: "translate(-50%, -50%)",
                       filter: "drop-shadow(0 0 2px #ff5ebb)",
                     }}
                   />
                 )}
                 {(st.cutLineType === "circle" || st.cutLineType === "circle_inside") && (
                   <div
-                    className="absolute pointer-events-none border-2 border-dashed border-[#ff5ebb] rounded-[50%] animate-pulse"
+                    className="absolute inset-0 pointer-events-none border-2 border-dashed border-[#ff5ebb] rounded-[50%] animate-pulse"
                     style={{
-                      left: "50%",
-                      top: "50%",
-                      width: `calc(100% + ${2 * offsetPercentX}%)`,
-                      height: `calc(100% + ${2 * offsetPercentY}%)`,
-                      transform: "translate(-50%, -50%)",
                       filter: "drop-shadow(0 0 2px #ff5ebb)",
                     }}
                   />

@@ -284,8 +284,7 @@ export function StickerEditModal({ imageSrc, onSave, onCancel }: StickerEditModa
       const ctx = canvas.getContext("2d");
       if (!ctx) throw new Error("Could not get 2d context");
 
-      ctx.fillStyle = "#ffffff";
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
       ctx.scale(dpr, dpr);
 
       const centerX = position.x + imgSize.width / 2;

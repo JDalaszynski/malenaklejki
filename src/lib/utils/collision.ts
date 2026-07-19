@@ -40,8 +40,7 @@ export function getContourMargins(
   wMm: number,
   hMm: number,
   rotationDegrees: number,
-  contourPolygons?: Point[][],
-  cutLineType?: "none" | "contour" | "rounded" | "circle" | "contour_inside" | "rounded_inside" | "circle_inside"
+  contourPolygons?: Point[][]
 ): { left: number; right: number; top: number; bottom: number } {
   const rad = (rotationDegrees * Math.PI) / 180;
   const size = getRotatedSize(wMm, hMm, rotationDegrees);
@@ -85,17 +84,11 @@ export function getContourMargins(
     });
   });
 
-  let extraMm = 0;
-  if (cutLineType === "contour") {
-    const baseOffsetMm = Math.max(wMm, hMm) * (8 / 120);
-    extraMm = Math.max(0, 2 - baseOffsetMm);
-  }
-
   return {
-    left: -cx - minRotX + extraMm,
-    right: cx + maxRotX + extraMm,
-    top: -cy - minRotY + extraMm,
-    bottom: cy + maxRotY + extraMm,
+    left: -cx - minRotX,
+    right: cx + maxRotX,
+    top: -cy - minRotY,
+    bottom: cy + maxRotY,
   };
 }
 
@@ -151,8 +144,7 @@ export function getCutLineMargins(
     wMm,
     hMm,
     rotation,
-    (cutLineType === "contour" || cutLineType === "contour_inside") ? contourPolygons : undefined,
-    cutLineType
+    (cutLineType === "contour" || cutLineType === "contour_inside") ? contourPolygons : undefined
   );
 }
 

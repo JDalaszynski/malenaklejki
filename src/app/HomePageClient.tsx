@@ -347,12 +347,13 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
 
     const promises = stickersToCalculate.map(async (st) => {
       try {
-        const polys = await getContourPoints(st.imageUrl);
         const idx = updatedStickers.findIndex((s) => s.id === st.id);
         if (idx !== -1) {
           const currentSt = updatedStickers[idx];
           const wMm = currentSt.widthCm * 10;
           const hMm = currentSt.heightCm * 10;
+
+          const polys = await getContourPoints(st.imageUrl, "contour", wMm, hMm);
 
           // Clamp using the new contour if the sticker uses custom contour cut line
           const margins = getOuterMargins(currentSt, { contourPolygons: polys });
@@ -867,7 +868,9 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
     if (type === "contour" || type === "contour_inside") {
       try {
         const contourType = type === "contour_inside" ? "contour_inside" : "contour";
-        polys = await getContourPoints(selectedSticker.imageUrl, contourType);
+        const wMm = selectedSticker.widthCm * 10;
+        const hMm = selectedSticker.heightCm * 10;
+        polys = await getContourPoints(selectedSticker.imageUrl, contourType, wMm, hMm);
       } catch (err) {
         console.error("Failed to compute contour points:", err);
       }
@@ -1068,17 +1071,12 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
           ctx.fill();
         } else if (st.cutLineType === "contour" || st.cutLineType === "contour_inside") {
           if (st.contourPolygons && st.contourPolygons.length > 0) {
-            const baseOffsetMm = Math.max(st.widthCm * 10, st.heightCm * 10) * (8 / 120);
-            const extraMm = st.cutLineType === "contour" ? Math.max(0, 2 - baseOffsetMm) : 0;
-            const scaleX = (st.widthCm * 10 / 2 + baseOffsetMm + extraMm) / (st.widthCm * 10 / 2 + baseOffsetMm);
-            const scaleY = (st.heightCm * 10 / 2 + baseOffsetMm + extraMm) / (st.heightCm * 10 / 2 + baseOffsetMm);
-
             st.contourPolygons.forEach((poly) => {
               if (poly.length < 2) return;
               ctx.beginPath();
-              ctx.moveTo(relX + (0.5 + (poly[0].x - 0.5) * scaleX) * drawW, relY + (0.5 + (poly[0].y - 0.5) * scaleY) * drawH);
+              ctx.moveTo(relX + poly[0].x * drawW, relY + poly[0].y * drawH);
               for (let i = 1; i < poly.length; i++) {
-                ctx.lineTo(relX + (0.5 + (poly[i].x - 0.5) * scaleX) * drawW, relY + (0.5 + (poly[i].y - 0.5) * scaleY) * drawH);
+                ctx.lineTo(relX + poly[i].x * drawW, relY + poly[i].y * drawH);
               }
               ctx.closePath();
               ctx.fill();
@@ -1126,17 +1124,12 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
             ctx.lineJoin = "round";
 
             if (st.contourPolygons && st.contourPolygons.length > 0) {
-              const baseOffsetMm = Math.max(st.widthCm * 10, st.heightCm * 10) * (8 / 120);
-              const extraMm = st.cutLineType === "contour" ? Math.max(0, 2 - baseOffsetMm) : 0;
-              const scaleX = (st.widthCm * 10 / 2 + baseOffsetMm + extraMm) / (st.widthCm * 10 / 2 + baseOffsetMm);
-              const scaleY = (st.heightCm * 10 / 2 + baseOffsetMm + extraMm) / (st.heightCm * 10 / 2 + baseOffsetMm);
-
               st.contourPolygons.forEach((poly) => {
                 if (poly.length < 2) return;
                 ctx.beginPath();
-                ctx.moveTo(relX + (0.5 + (poly[0].x - 0.5) * scaleX) * drawW, relY + (0.5 + (poly[0].y - 0.5) * scaleY) * drawH);
+                ctx.moveTo(relX + poly[0].x * drawW, relY + poly[0].y * drawH);
                 for (let i = 1; i < poly.length; i++) {
-                  ctx.lineTo(relX + (0.5 + (poly[i].x - 0.5) * scaleX) * drawW, relY + (0.5 + (poly[i].y - 0.5) * scaleY) * drawH);
+                  ctx.lineTo(relX + poly[i].x * drawW, relY + poly[i].y * drawH);
                 }
                 ctx.closePath();
                 ctx.stroke();
@@ -1260,18 +1253,9 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
 
       let sx = 1;
       let sy = 1;
-      if (st.cutLineType === "rounded" || st.cutLineType === "rounded_inside" || st.cutLineType === "circle" || st.cutLineType === "circle_inside") {
+      if (st.cutLineType !== "none") {
         sx = (wMm + 2 * offsetMm) / wMm;
         sy = (hMm + 2 * offsetMm) / hMm;
-      } else if (st.cutLineType === "contour" || st.cutLineType === "contour_inside") {
-        const scaleX = (st.cutLineType === "contour" && Math.max(wMm, hMm) * (8 / 120) < 2)
-          ? (wMm / 2 + 2) / (wMm / 2 + Math.max(wMm, hMm) * (8 / 120))
-          : 1;
-        const scaleY = (st.cutLineType === "contour" && Math.max(wMm, hMm) * (8 / 120) < 2)
-          ? (hMm / 2 + 2) / (hMm / 2 + Math.max(wMm, hMm) * (8 / 120))
-          : 1;
-        sx = scaleX;
-        sy = scaleY;
       }
 
       // Helper to define cut path
@@ -1296,19 +1280,22 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
           ctx.quadraticCurveTo(rx, ry, rx + radius, ry);
           ctx.closePath();
         } else if (type === "contour" || type === "contour_inside") {
+          // Contour points are normalized to the RAW (unscaled) sticker box and already
+          // bake in the exact 2mm margin, so they must be mapped using drawW/drawH
+          // (not the passed-in w/h, which may be pre-enlarged for rounded/circle shapes).
           if (st.contourPolygons && st.contourPolygons.length > 0) {
             ctx.beginPath();
             st.contourPolygons.forEach((poly) => {
               if (poly.length < 2) return;
-              ctx.moveTo(rx + poly[0].x * w, ry + poly[0].y * h);
+              ctx.moveTo((poly[0].x - 0.5) * drawW, (poly[0].y - 0.5) * drawH);
               for (let i = 1; i < poly.length; i++) {
-                ctx.lineTo(rx + poly[i].x * w, ry + poly[i].y * h);
+                ctx.lineTo((poly[i].x - 0.5) * drawW, (poly[i].y - 0.5) * drawH);
               }
             });
             ctx.closePath();
           } else {
             ctx.beginPath();
-            ctx.rect(rx, ry, w, h);
+            ctx.rect(-drawW / 2, -drawH / 2, drawW, drawH);
             ctx.closePath();
           }
         }
