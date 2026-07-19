@@ -21,13 +21,15 @@ export default async function Image({ params }: { params: Promise<{ slug: string
   let imageBase64 = null;
   if (post.image) {
     try {
-      const imagePath = path.join(process.cwd(), "public", post.image);
-      const imageBuffer = await fs.readFile(imagePath);
-      const ext = path.extname(post.image).toLowerCase();
-      const mime = ext === '.png' ? 'image/png' : ext === '.webp' ? 'image/webp' : 'image/jpeg';
-      imageBase64 = `data:${mime};base64,${imageBuffer.toString("base64")}`;
+      const res = await fetch(`https://www.malenaklejki.pl${post.image}`);
+      if (res.ok) {
+        const imageBuffer = Buffer.from(await res.arrayBuffer());
+        const ext = path.extname(post.image).toLowerCase();
+        const mime = ext === '.png' ? 'image/png' : ext === '.webp' ? 'image/webp' : 'image/jpeg';
+        imageBase64 = `data:${mime};base64,${imageBuffer.toString("base64")}`;
+      }
     } catch (e) {
-      console.error("Error reading OG image background:", e);
+      console.error("Error fetching OG image background:", e);
     }
   }
 
