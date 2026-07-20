@@ -6,6 +6,7 @@ const ALLOWED_HOSTS = [
   "firebasestorage.googleapis.com",
   "storage.googleapis.com",
   "lh3.googleusercontent.com",
+  "replicate.delivery",
 ];
 
 export async function GET(request: NextRequest) {

@@ -66,7 +66,15 @@ import {
   Edit3,
   Eye,
   Wand2,
-  LayoutGrid
+  LayoutGrid,
+  ClipboardPaste,
+  MousePointerClick,
+  Keyboard,
+  SmilePlus,
+  ArrowRight,
+  X,
+  Maximize,
+  Settings
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -109,6 +117,9 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
   const [editCartItemId, setEditCartItemId] = useState<string | null>(null);
   const [overlappingStickerIds, setOverlappingStickerIds] = useState<string[]>([]);
   const [isAIGeneratorOpen, setIsAIGeneratorOpen] = useState(false);
+  const [showPasteModal, setShowPasteModal] = useState(false);
+  const [isCalculatingContour, setIsCalculatingContour] = useState<string | null>(null);
+  const [isPasteFocused, setIsPasteFocused] = useState(false);
 
   // Mount state for hydration check
   const [mounted, setMounted] = useState(false);
@@ -238,9 +249,11 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
 
   const [hasUserEverAddedStickers, setHasUserEverAddedStickers] = useState(false);
   const [isMobileStickerDetailsExpanded, setIsMobileStickerDetailsExpanded] = useState(false);
+  const [mobileActiveTab, setMobileActiveTab] = useState<"resize" | "options" | "cutline">("resize");
 
   useEffect(() => {
     setIsMobileStickerDetailsExpanded(false);
+    setMobileActiveTab("resize");
   }, [selectedStickerId]);
 
   useEffect(() => {
@@ -864,6 +877,8 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
   const handleCutLineChange = async (type: PlacedSticker["cutLineType"]) => {
     if (!selectedSticker) return;
 
+    setIsCalculatingContour(type);
+
     let polys = selectedSticker.contourPolygons;
     if (type === "contour" || type === "contour_inside") {
       try {
@@ -909,6 +924,7 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
 
     if (!fitsInBounds) {
       setError("Brak miejsca na zmianę linii cięcia (kontur wychodzi poza arkusz)!");
+      setIsCalculatingContour(null);
       return;
     }
 
@@ -919,6 +935,7 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
           : s
       )
     );
+    setIsCalculatingContour(null);
   };
 
   // Duplicate selected sticker
@@ -1281,7 +1298,7 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
           ctx.closePath();
         } else if (type === "contour" || type === "contour_inside") {
           // Contour points are normalized to the RAW (unscaled) sticker box and already
-          // bake in the exact 2mm margin, so they must be mapped using drawW/drawH
+          // bake in the scaled margin, so they must be mapped using drawW/drawH
           // (not the passed-in w/h, which may be pre-enlarged for rounded/circle shapes).
           if (st.contourPolygons && st.contourPolygons.length > 0) {
             ctx.beginPath();
@@ -1713,31 +1730,46 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
   };
 
   // Mobile upload file helper
-  const handleMobileFileUpload = async (file: File) => {
+  const handleMobileFileUpload = async (file: File, isPasted = false) => {
     if (!file || !file.type.startsWith("image/")) return;
+
+    if (file.size > 10 * 1024 * 1024) {
+      setError("Wybrany obraz jest za duży (maksymalnie 10 MB). Spróbuj użyć pliku o mniejszej rozdzielczości.");
+      return;
+    }
+
     setIsPageUploading(true);
     setError(null);
 
     try {
       const fileName = `mobile-upload-${getUUID()}-${file.name}`;
       const storageRef = ref(storage, `uploads/${fileName}`);
-      const snapshot = await uploadBytes(storageRef, file);
+      const snapshot = await uploadBytes(storageRef, file, {
+        contentType: file.type || "image/png"
+      });
       const downloadUrl = await getDownloadURL(snapshot.ref);
 
       setPendingImageUrl(downloadUrl);
-      // Open crop/bg removal modal for the newly uploaded sticker immediately
-      setActiveEditSticker({
-        id: "new-upload",
-        imageUrl: downloadUrl,
-        x: 15,
-        y: 15,
-        widthCm: 5,
-        heightCm: 5,
-        aspectRatio: 1,
-        cutLineType: "none",
-      });
-      setShowEditModal(true);
-      setVisualizerMode("2d");
+      setShowPasteModal(false); // Close paste modal if open
+
+      if (isPasted) {
+        // Skip background removal/crop modal for pasted stickers
+        processAndAddSticker(downloadUrl);
+      } else {
+        // Open crop/bg removal modal for the newly uploaded sticker immediately
+        setActiveEditSticker({
+          id: "new-upload",
+          imageUrl: downloadUrl,
+          x: 15,
+          y: 15,
+          widthCm: 5,
+          heightCm: 5,
+          aspectRatio: 1,
+          cutLineType: "none",
+        });
+        setShowEditModal(true);
+        setVisualizerMode("2d");
+      }
     } catch (err) {
       console.error(err);
       setError("Nie udało się przesłać pliku.");
@@ -1745,6 +1777,68 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
       setIsPageUploading(false);
     }
   };
+
+  useEffect(() => {
+    const handlePaste = (e: ClipboardEvent) => {
+      // Don't intercept paste if user is typing in an input or textarea
+      if (
+        e.target instanceof HTMLInputElement ||
+        e.target instanceof HTMLTextAreaElement ||
+        (e.target as HTMLElement).isContentEditable
+      ) {
+        return;
+      }
+
+      const items = e.clipboardData?.items;
+      if (!items) return;
+
+      for (let i = 0; i < items.length; i++) {
+        if (items[i].type.startsWith("image/")) {
+          const file = items[i].getAsFile();
+          if (file) {
+            e.preventDefault();
+            handleMobileFileUpload(file, true);
+            break;
+          }
+        }
+      }
+    };
+
+    window.addEventListener("paste", handlePaste);
+    return () => window.removeEventListener("paste", handlePaste);
+  }, []);
+
+  const triggerPasteFromClipboard = async () => {
+    try {
+      if (!navigator.clipboard || !navigator.clipboard.read) {
+        // Safe fallback without throwing a red screen error in dev
+        setShowPasteModal(true);
+        return;
+      }
+
+      const clipboardItems = await navigator.clipboard.read();
+      let foundImage = false;
+      for (const item of clipboardItems) {
+        const imageTypes = item.types.filter(type => type.startsWith("image/"));
+        if (imageTypes.length > 0) {
+          const blob = await item.getType(imageTypes[0]);
+          const ext = imageTypes[0] === "image/png" ? "png" : "jpg";
+          const file = new File([blob], `pasted-sticker.${ext}`, { type: imageTypes[0] });
+          handleMobileFileUpload(file, true);
+          foundImage = true;
+          break;
+        }
+      }
+      if (!foundImage) {
+        setError("Schowek jest pusty lub nie zawiera obrazu. Skopiuj obrazek i spróbuj ponownie.");
+      }
+    } catch (err) {
+      console.warn("Clipboard API:", err);
+      // Safari blocks clipboard API on HTTP/Mobile. Fallback to manual paste modal.
+      setShowPasteModal(true);
+    }
+  };
+
 
   if (!mounted) {
     return (
@@ -1814,8 +1908,8 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
 
               {/* 1. Tool selection: Add Sticker */}
               {addingMethod === "none" && (
-                <div className="liquid-glass border border-border/40 rounded-3xl p-4 sm:p-6 shadow-sm space-y-3 sm:space-y-4">
-                  <h3 className="text-lg font-black text-foreground flex items-center gap-2">
+                <div className="hidden sm:block liquid-glass border border-border/40 rounded-3xl p-4 sm:p-6 shadow-sm space-y-3 sm:space-y-4">
+                  <h3 className="hidden sm:flex text-lg font-black text-foreground items-center gap-2">
                     <Plus className="w-5 h-5 text-primary" />
                     Dodaj naklejkę na arkusz
                   </h3>
@@ -1846,7 +1940,7 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
                       className="flex flex-col items-center justify-center p-6 border-2 border-dashed border-foreground/20 dark:border-foreground/30 hover:border-primary/45 rounded-2xl bg-muted/10 hover:bg-muted/30 transition-all hover:scale-[1.01] active:scale-[0.99] cursor-pointer h-full group"
                     >
                       <Wand2 className="w-8 h-8 text-muted-foreground group-hover:text-primary mb-2 opacity-75" />
-                      <span className="text-sm font-bold text-foreground text-center">Wygeneruj Naklejkę</span>
+                      <span className="text-sm font-bold text-foreground text-center">Generator AI</span>
                       <span className="text-[10px] font-semibold text-muted-foreground mt-0.5 text-center">Opisz co chcesz stworzyć</span>
                     </button>
                   </div>
@@ -1858,7 +1952,7 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
                 <motion.div
                   initial={{ opacity: 0, y: 15 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className="liquid-glass border-2 border-primary/40 rounded-3xl p-4 sm:p-6 shadow-sm space-y-4 sm:space-y-6"
+                  className="hidden sm:block liquid-glass border-2 border-primary/40 rounded-3xl p-4 sm:p-6 shadow-sm space-y-4 sm:space-y-6"
                 >
                   <div
                     className="flex justify-between items-center border-b border-border/40 pb-3 cursor-pointer sm:cursor-default select-none"
@@ -2066,12 +2160,17 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
                             <button
                               key={opt.type}
                               onClick={() => handleCutLineChange(opt.type as any)}
+                              disabled={isCalculatingContour !== null}
                               className={`py-3 px-1 text-[10px] sm:text-xs font-bold rounded-xl border text-center transition-all flex flex-col items-center justify-center gap-1.5 active:scale-95 whitespace-nowrap cursor-pointer ${selectedSticker.cutLineType === opt.type
                                 ? "bg-primary text-primary-foreground border-primary shadow-sm"
                                 : "bg-background text-muted-foreground border-border hover:bg-muted/40"
-                                }`}
+                                } ${isCalculatingContour === opt.type ? "opacity-70 pointer-events-none" : ""}`}
                             >
-                              <Icon className="w-4 h-4" />
+                              {isCalculatingContour === opt.type ? (
+                                <Loader2 className="w-4 h-4 animate-spin" />
+                              ) : (
+                                <Icon className="w-4 h-4" />
+                              )}
                               <span>{opt.label}</span>
                             </button>
                           );
@@ -2081,7 +2180,7 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
                   </div>
                 </motion.div>
               ) : stickers.length === 0 ? (
-                <div className="liquid-glass border border-border/40 rounded-3xl p-6 shadow-sm text-center py-8 text-muted-foreground font-semibold flex flex-col items-center gap-3 animate-pulse">
+                <div className="hidden sm:flex liquid-glass border border-border/40 rounded-3xl p-6 shadow-sm text-center py-8 text-muted-foreground font-semibold flex-col items-center gap-3 animate-pulse">
                   <ArrowUp className="w-6 h-6 text-primary" />
                   <span>Dodaj swoją pierwszą naklejkę na arkusz!</span>
                 </div>
@@ -2395,19 +2494,194 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
 
                 <div className="relative px-4 pb-5 pt-2 pointer-events-auto">
                   <div className="w-full liquid-glass border border-border/40 p-2 rounded-[28px] shadow-[0_-8px_30px_rgba(0,0,0,0.08)] dark:shadow-[0_-8px_30px_rgba(0,0,0,0.3)]">
-                    <div className="grid grid-cols-2 gap-2">
-                      <label className="w-full flex items-center justify-center gap-2 py-3.5 px-2 rounded-3xl bg-primary hover:bg-primary/90 border border-primary/20 transition-all active:scale-[0.98] cursor-pointer shadow-sm">
+                    <div className="grid grid-cols-3 gap-2">
+                      <label className="w-full flex flex-col items-center justify-center gap-1 py-2 px-1 rounded-3xl bg-primary hover:bg-primary/90 border border-primary/20 transition-all active:scale-[0.98] cursor-pointer shadow-sm">
                         <input type="file" accept="image/*" className="hidden" onChange={(e) => { const file = e.target.files?.[0]; if (file) handleMobileFileUpload(file); e.target.value = ""; }} />
                         <UploadCloud className="w-5 h-5 text-white" />
-                        <span className="text-xs font-extrabold text-white">Dodaj naklejkę</span>
+                        <span className="text-[10px] font-extrabold text-white leading-tight">Dodaj z pliku</span>
                       </label>
                       <button
+                        onClick={triggerPasteFromClipboard}
+                        className="w-full flex flex-col items-center justify-center gap-1 py-2 px-1 rounded-3xl bg-primary hover:bg-primary/90 border border-primary/20 transition-all active:scale-[0.98] cursor-pointer shadow-sm text-white"
+                      >
+                        <SmilePlus className="w-5 h-5 text-white" />
+                        <span className="text-[10px] font-extrabold text-white text-center leading-tight">Z klawiatury<br />(Naklejki i Emoji)</span>
+                      </button>
+                      <button
                         onClick={() => setIsAIGeneratorOpen(true)}
-                        className="w-full flex items-center justify-center gap-2 py-3.5 px-2 rounded-3xl bg-primary hover:bg-primary/90 border border-primary/20 transition-all active:scale-[0.98] cursor-pointer shadow-sm text-white"
+                        className="w-full flex flex-col items-center justify-center gap-1 py-2 px-1 rounded-3xl bg-primary hover:bg-primary/90 border border-primary/20 transition-all active:scale-[0.98] cursor-pointer shadow-sm text-white"
                       >
                         <Wand2 className="w-5 h-5 text-white" />
-                        <span className="text-xs font-extrabold text-white text-center">Wygeneruj Naklejkę</span>
+                        <span className="text-[10px] font-extrabold text-white text-center leading-tight">Stwórz w AI</span>
                       </button>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+
+          {/* Sticky Mobile Panel for Selected Sticker */}
+          <AnimatePresence>
+            {selectedSticker && isVisualizerVisible && (
+              <motion.div
+                initial={{ y: 150, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                exit={{ y: 150, opacity: 0 }}
+                className="fixed bottom-0 left-0 right-0 z-[100] sm:hidden pointer-events-none"
+              >
+                <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-background/95 via-background/70 to-transparent pointer-events-none" />
+
+                <div className="relative px-3 pb-5 pt-2 pointer-events-auto">
+                  <div className="w-full liquid-glass border border-border/40 p-3 rounded-[28px] shadow-[0_-8px_30px_rgba(0,0,0,0.08)] dark:shadow-[0_-8px_30px_rgba(0,0,0,0.3)] bg-background flex flex-col gap-3">
+
+                    {/* Title & Close Button */}
+                    <div className="flex justify-between items-start px-2">
+                      <div className="flex flex-col">
+                        <h3 className="text-sm font-black text-foreground flex items-center gap-1.5">
+                          <Layers className="w-4 h-4 text-primary" />
+                          Wybrana naklejka
+                        </h3>
+                        {selectedSticker.cutLineType === "none" && (
+                          <span className="text-[10px] font-bold text-destructive mt-0.5 animate-pulse">
+                            Ustaw linie cięcia
+                          </span>
+                        )}
+                      </div>
+                      <button
+                        onClick={() => setSelectedStickerId(null)}
+                        className="p-1.5 rounded-full bg-muted hover:bg-muted/80 text-muted-foreground hover:text-foreground transition-all active:scale-95"
+                      >
+                        <X className="w-4 h-4" />
+                      </button>
+                    </div>
+
+                    {/* Tabs */}
+                    <div className="flex bg-[#004749]/5 dark:bg-[#002224] p-1 rounded-2xl border border-[#004749]/10 dark:border-white/10 relative shadow-[inset_0_1.5px_3px_rgba(0,44,46,0.06)] gap-1">
+                      <button
+                        onClick={() => setMobileActiveTab("resize")}
+                        className={`relative flex-1 py-1.5 flex flex-col items-center gap-0.5 text-[10px] font-bold rounded-xl transition-all cursor-pointer ${mobileActiveTab === "resize" ? "text-[#004749] dark:text-white" : "text-muted-foreground/80 hover:text-foreground"}`}
+                      >
+                        {mobileActiveTab === "resize" && (
+                          <motion.div
+                            layoutId="mobileActiveTabIndicator"
+                            className="absolute inset-0 bg-white dark:bg-[#004749] rounded-xl shadow-[0_3px_10px_rgba(0,71,73,0.12),_0_1px_3px_rgba(0,71,73,0.04)] dark:shadow-[0_4px_12px_rgba(0,0,0,0.3)] border border-[#004749]/5 dark:border-white/10"
+                            transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                          />
+                        )}
+                        <Maximize className="w-4 h-4 mb-0.5 relative z-10" />
+                        <span className="relative z-10">Rozmiar</span>
+                      </button>
+                      <button
+                        onClick={() => setMobileActiveTab("cutline")}
+                        className={`relative flex-1 py-1.5 flex flex-col items-center gap-0.5 text-[10px] font-bold rounded-xl transition-all cursor-pointer ${
+                          mobileActiveTab === "cutline" 
+                            ? "text-[#004749] dark:text-white" 
+                            : selectedSticker.cutLineType === "none" 
+                              ? "text-destructive animate-pulse scale-[1.05]" 
+                              : "text-muted-foreground/80 hover:text-foreground"
+                        }`}
+                      >
+                        {mobileActiveTab === "cutline" && (
+                          <motion.div
+                            layoutId="mobileActiveTabIndicator"
+                            className="absolute inset-0 bg-white dark:bg-[#004749] rounded-xl shadow-[0_3px_10px_rgba(0,71,73,0.12),_0_1px_3px_rgba(0,71,73,0.04)] dark:shadow-[0_4px_12px_rgba(0,0,0,0.3)] border border-[#004749]/5 dark:border-white/10"
+                            transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                          />
+                        )}
+                        <Scissors className="w-4 h-4 mb-0.5 relative z-10" />
+                        <span className="relative z-10">Linia Cięcia</span>
+                      </button>
+                      <button
+                        onClick={() => setMobileActiveTab("options")}
+                        className={`relative flex-1 py-1.5 flex flex-col items-center gap-0.5 text-[10px] font-bold rounded-xl transition-all cursor-pointer ${mobileActiveTab === "options" ? "text-[#004749] dark:text-white" : "text-muted-foreground/80 hover:text-foreground"}`}
+                      >
+                        {mobileActiveTab === "options" && (
+                          <motion.div
+                            layoutId="mobileActiveTabIndicator"
+                            className="absolute inset-0 bg-white dark:bg-[#004749] rounded-xl shadow-[0_3px_10px_rgba(0,71,73,0.12),_0_1px_3px_rgba(0,71,73,0.04)] dark:shadow-[0_4px_12px_rgba(0,0,0,0.3)] border border-[#004749]/5 dark:border-white/10"
+                            transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                          />
+                        )}
+                        <Settings className="w-4 h-4 mb-0.5 relative z-10" />
+                        <span className="relative z-10">Opcje</span>
+                      </button>
+                    </div>
+
+                    {/* Content */}
+                    <div className="px-1 pb-1 h-[116px] flex flex-col justify-center">
+                      {mobileActiveTab === "resize" && (
+                        <div className="flex flex-col gap-4 animate-in fade-in duration-200">
+                          <div className="flex justify-between items-center text-sm font-bold px-1">
+                            <span className="text-foreground flex items-center gap-2">
+                              Szerokość:
+                              <span className="text-primary font-black">{String(getDisplayedWidthCm(selectedSticker)).replace('.', ',')} cm</span>
+                            </span>
+                            <span className="text-muted-foreground flex items-center gap-1 text-xs">
+                              Wysokość: <span className="font-semibold">{selectedSticker.heightCm.toFixed(1).replace('.', ',')} cm</span>
+                            </span>
+                          </div>
+                          <input
+                            type="range"
+                            min={1}
+                            max={19}
+                            step={0.1}
+                            value={getDisplayedWidthCm(selectedSticker)}
+                            onChange={(e) => handleWidthChange(Number(e.target.value))}
+                            className="w-full h-2.5 bg-foreground/10 dark:bg-muted-foreground/40 rounded-lg appearance-none cursor-pointer accent-primary focus:outline-none"
+                          />
+                        </div>
+                      )}
+
+                      {mobileActiveTab === "cutline" && (
+                        <div className="grid grid-cols-3 gap-2 animate-in fade-in duration-200">
+                          {[
+                            { type: "none", label: "Brak", icon: Ban },
+                            { type: "contour", label: "Kontur", icon: Sparkles },
+                            { type: "rounded", label: "Prostokąt", icon: Square },
+                            { type: "circle", label: "Koło", icon: Circle },
+                            { type: "rounded_inside", label: "Prost. wew.", icon: Square },
+                            { type: "circle_inside", label: "Koło wew.", icon: Circle },
+                          ].map((opt) => {
+                            const Icon = opt.icon;
+                            return (
+                              <button
+                                key={opt.type}
+                                onClick={() => handleCutLineChange(opt.type as any)}
+                                disabled={isCalculatingContour !== null}
+                                className={`py-2 px-1 text-[10px] font-bold rounded-xl border text-center transition-all flex flex-col items-center justify-center gap-1.5 active:scale-95 ${selectedSticker.cutLineType === opt.type
+                                  ? "bg-primary text-primary-foreground border-primary shadow-sm"
+                                  : "bg-background text-muted-foreground border-border"
+                                  } ${isCalculatingContour === opt.type ? "opacity-70 pointer-events-none" : ""}`}
+                              >
+                                {isCalculatingContour === opt.type ? <Loader2 className="w-4 h-4 animate-spin" /> : <Icon className="w-4 h-4" />}
+                                <span className="leading-tight">{opt.label}</span>
+                              </button>
+                            );
+                          })}
+                        </div>
+                      )}
+
+                      {mobileActiveTab === "options" && (
+                        <div className="flex flex-wrap items-center gap-2 w-full animate-in fade-in duration-200">
+                          <button type="button" onClick={handleOpenEdit} className="flex-1 inline-flex flex-col items-center justify-center gap-1.5 px-1 py-2.5 text-[10px] font-bold bg-muted hover:bg-muted/80 text-foreground border border-border/40 rounded-2xl transition-all active:scale-95">
+                            <Crop className="w-4.5 h-4.5" />
+                            <span>Kadruj/Tło</span>
+                          </button>
+                          <button type="button" onClick={handleDuplicateSticker} className="flex-1 inline-flex flex-col items-center justify-center gap-1.5 px-1 py-2.5 text-[10px] font-bold bg-muted hover:bg-muted/80 text-foreground border border-border/40 rounded-2xl transition-all active:scale-95">
+                            <Copy className="w-4.5 h-4.5" />
+                            <span>Zduplikuj</span>
+                          </button>
+                          <button type="button" onClick={handleFillSheet} className="flex-1 inline-flex flex-col items-center justify-center gap-1.5 px-1 py-2.5 text-[10px] font-bold bg-muted hover:bg-muted/80 text-foreground border border-border/40 rounded-2xl transition-all active:scale-95">
+                            <LayoutGrid className="w-4.5 h-4.5" />
+                            <span>Wypełnij Arkusz</span>
+                          </button>
+                          <button type="button" onClick={handleDeleteSticker} className="flex-1 inline-flex flex-col items-center justify-center gap-1.5 px-1 py-2.5 text-[10px] font-bold bg-destructive/10 text-destructive border border-destructive/20 rounded-2xl transition-all active:scale-95">
+                            <Trash2 className="w-4.5 h-4.5" />
+                            <span>Usuń</span>
+                          </button>
+                        </div>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -2610,6 +2884,157 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
               setPendingImageUrl(null);
             }}
           />
+        )}
+      </AnimatePresence>
+
+      {/* Manual Paste Modal for Safari/Mobile Fallback */}
+      <AnimatePresence>
+        {showPasteModal && (
+          <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4">
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setShowPasteModal(false)}
+              className="absolute inset-0 bg-background/80 backdrop-blur-sm"
+            />
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: 10 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 10 }}
+              className="relative w-full max-w-md rounded-3xl p-6 border border-border bg-background shadow-xl flex flex-col"
+            >
+              <div>
+                <h2 className="text-xl font-extrabold flex items-center gap-2 text-foreground">
+                  <SmilePlus className="w-6 h-6 text-primary" />
+                  Dodaj naklejkę lub emoji z klawiatury
+                </h2>
+                <p className="text-sm font-semibold text-muted-foreground pt-1 pb-2">
+                  Zmień swoje emoji i systemowe naklejki z telefonu w prawdziwe! Postępuj zgodnie z instrukcją:
+                </p>
+
+                <div className="flex items-start justify-between gap-1 mt-2 mb-4 p-3 bg-muted/40 rounded-2xl text-[10px] sm:text-[11px] font-bold text-muted-foreground border border-border/50">
+                  <div className="flex flex-col items-center text-center gap-2 flex-1">
+                    <div className="w-10 h-10 rounded-full bg-background border border-border shadow-sm text-primary flex items-center justify-center">
+                      <MousePointerClick className="w-5 h-5" />
+                    </div>
+                    <span className="leading-tight">1. Dotknij pola poniżej</span>
+                  </div>
+                  <ArrowRight className="w-4 h-4 text-muted-foreground/30 flex-shrink-0 mt-3" />
+                  <div className="flex flex-col items-center text-center gap-2 flex-1">
+                    <div className="w-10 h-10 rounded-full bg-background border border-border shadow-sm text-primary flex items-center justify-center">
+                      <Keyboard className="w-5 h-5" />
+                    </div>
+                    <span className="leading-tight">2. Wybierz naklejki lub emoji z klawiatury</span>
+                  </div>
+                  <ArrowRight className="w-4 h-4 text-muted-foreground/30 flex-shrink-0 mt-3" />
+                  <div className="flex flex-col items-center text-center gap-2 flex-1">
+                    <div className="w-10 h-10 rounded-full bg-background border border-border shadow-sm text-primary flex items-center justify-center">
+                      <SmilePlus className="w-5 h-5" />
+                    </div>
+                    <span className="leading-tight">3. Stuknij w wybraną, by dodać na arkusz!</span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="flex flex-col items-center justify-center w-full mt-4">
+                <div className="relative w-full h-40 border-2 border-dashed border-primary/40 rounded-2xl bg-muted/20 focus-within:border-primary focus-within:bg-primary/5 transition-all overflow-hidden">
+
+                  {/* Placeholder Layer */}
+                  <div className={`pointer-events-none absolute inset-0 flex flex-col items-center justify-center font-bold transition-opacity duration-300 ${isPasteFocused ? "opacity-20 text-muted-foreground/50" : "opacity-60 text-muted-foreground"}`}>
+                    <ClipboardPaste className="w-8 h-8 mb-2" />
+                    <span className="text-center px-4">Dotknij tutaj, a następnie stuknij ponownie, by Wkleić</span>
+                  </div>
+
+                  {/* Input Layer */}
+                  <div
+                    contentEditable
+                    suppressContentEditableWarning={true}
+                    onFocus={() => setIsPasteFocused(true)}
+                    onBlur={() => setIsPasteFocused(false)}
+                    className="absolute inset-0 w-full h-full outline-none text-transparent caret-primary text-center pt-[92px] text-base"
+                    onInput={(e) => {
+                      const target = e.currentTarget as HTMLDivElement;
+                      const img = target.querySelector('img');
+                      if (img && img.src) {
+                        fetch(img.src)
+                          .then(res => res.blob())
+                          .then(blob => {
+                            const file = new File([blob], "sticker.png", { type: blob.type });
+                            setShowPasteModal(false);
+                            handleMobileFileUpload(file, true);
+                          });
+                      } else {
+                        const inputEvent = e.nativeEvent as InputEvent;
+                        let fileFound = false;
+                        if (inputEvent.dataTransfer && inputEvent.dataTransfer.files.length > 0) {
+                           for (let i = 0; i < inputEvent.dataTransfer.files.length; i++) {
+                             const file = inputEvent.dataTransfer.files[i];
+                             if (file.type.startsWith("image/")) {
+                               setShowPasteModal(false);
+                               handleMobileFileUpload(file, true);
+                               fileFound = true;
+                               break;
+                             }
+                           }
+                        }
+                        
+                        if (!fileFound) {
+                          const text = target.innerText.trim();
+                          if (text && text.length <= 8) {
+                            const canvas = document.createElement("canvas");
+                            canvas.width = 512;
+                            canvas.height = 512;
+                            const ctx = canvas.getContext("2d");
+                            if (ctx) {
+                              ctx.clearRect(0, 0, 512, 512);
+                              ctx.font = "400px sans-serif";
+                              ctx.textAlign = "center";
+                              ctx.textBaseline = "middle";
+                              ctx.fillText(text, 256, 290);
+                              canvas.toBlob((blob) => {
+                                if (blob) {
+                                  const file = new File([blob], "emoji.png", { type: "image/png" });
+                                  setShowPasteModal(false);
+                                  handleMobileFileUpload(file, true);
+                                }
+                              });
+                            }
+                          }
+                        }
+                      }
+                      setTimeout(() => { target.innerHTML = ''; }, 10);
+                    }}
+                    onPaste={(e) => {
+                      let fileFound = false;
+                      for (let i = 0; i < e.clipboardData.items.length; i++) {
+                        const item = e.clipboardData.items[i];
+                        if (item.type.startsWith("image/")) {
+                          const file = item.getAsFile();
+                          if (file) {
+                            e.preventDefault();
+                            setShowPasteModal(false);
+                            handleMobileFileUpload(file, true);
+                            fileFound = true;
+                            return;
+                          }
+                        }
+                      }
+                      // Do not call e.preventDefault() if no image found.
+                      // This allows Gboard on Android to insert images into contenteditable
+                      // or standard text emoji to be pasted, which triggers onInput!
+                    }}
+                  />
+                </div>
+                <button
+                  onClick={() => setShowPasteModal(false)}
+                  className="mt-6 w-full py-3 rounded-2xl bg-muted text-foreground font-bold hover:bg-muted/80 transition-all cursor-pointer z-20 relative"
+                >
+                  Anuluj
+                </button>
+              </div>
+            </motion.div>
+          </div>
         )}
       </AnimatePresence>
     </div>

@@ -751,7 +751,7 @@ export function NewA4Visualizer({
               {/* Quick Action Menu Button */}
               {isSelected && (
                 <div
-                  className={`absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 ${showQuickMenu ? "z-[70]" : "z-[40]"} pointer-events-auto`}
+                  className={`hidden sm:block absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 ${showQuickMenu ? "z-[70]" : "z-[40]"} pointer-events-auto`}
                   style={{ transform: `rotate(${-(st.rotation || 0)}deg)` }}
                 >
                   <button
@@ -824,7 +824,7 @@ export function NewA4Visualizer({
               {/* Cut Line Selection Menu Button */}
               {isSelected && (
                 <div
-                  className={`absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 ${showCutMenu ? "z-[70]" : "z-[40]"} pointer-events-auto`}
+                  className={`hidden sm:block absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 ${showCutMenu ? "z-[70]" : "z-[40]"} pointer-events-auto`}
                   style={{ transform: `rotate(${-(st.rotation || 0)}deg)` }}
                 >
                   <button

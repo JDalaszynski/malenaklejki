@@ -244,8 +244,11 @@ export function getContourPoints(
         const gridMaxDim = Math.max(imgW, imgH) || maxDimension;
         const pixelsPerMm = gridMaxDim / maxDimensionMm;
 
-        // Calculate the 4mm margin in grid pixels (must be an integer for the raster dilate/erode ops)
-        const marginMm = 4.0;
+        // Calculate the margin in grid pixels (must be an integer for the raster dilate/erode ops)
+        // Make the margin smaller for scaled-down stickers
+        let marginMm = (maxDimensionMm / 50.0) * 4.0;
+        marginMm = Math.min(4.0, Math.max(1.5, marginMm)); // Cap at 4mm, min 1.5mm
+
         const dilationPixels = Math.max(1, Math.round(marginMm * pixelsPerMm));
         
         // Add dynamic padding on all sides to allow the dilated outline to expand without clipping

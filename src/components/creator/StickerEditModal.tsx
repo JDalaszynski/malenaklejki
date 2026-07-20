@@ -332,22 +332,31 @@ export function StickerEditModal({ imageSrc, onSave, onCancel }: StickerEditModa
     }
   };
 
-  // AI Background Removal (Client-side)
+  // AI Background Removal (Server-side via Gemini)
   const handleRemoveBackground = async () => {
     setIsProcessing(true);
-    setProcessingMessage("Inicjalizacja modelu (może chwilę potrwać za pierwszym razem)...");
+    setProcessingMessage("Wycinanie tła...");
     setError(null);
 
     try {
       const targetUrl = blobUrl || currentUrl;
-      const { removeBackground } = await import("@imgly/background-removal");
+      const response = await fetch(targetUrl);
+      if (!response.ok) throw new Error("Failed to fetch image data");
+      const blob = await response.blob();
+      const base64Full = await blobToBase64(blob);
+      const rawBase64 = base64Full.includes(",") ? base64Full.split(",")[1] : base64Full;
 
-      setProcessingMessage("Wycinanie tła");
-      const blob = await removeBackground(targetUrl);
+      const result = await removeStickerBackground({
+        base64: rawBase64,
+        mimeType: blob.type || "image/png"
+      });
 
-      const newBlobUrl = URL.createObjectURL(blob);
-      setBlobUrl(newBlobUrl);
-      setCurrentUrl(newBlobUrl);
+      if (result.success && result.url) {
+        setCurrentUrl(result.url);
+        setBlobUrl(result.url);
+      } else {
+        setError(result.error || "Wystąpił błąd podczas usuwania tła.");
+      }
     } catch (err: any) {
       console.error(err);
       setError("Wystąpił błąd podczas usuwania tła. Spróbuj innego zdjęcia.");

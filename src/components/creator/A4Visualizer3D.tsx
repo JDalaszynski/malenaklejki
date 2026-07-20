@@ -146,7 +146,7 @@ export function A4Visualizer3D({ stickers, deliveryForm = "sheet" }: A4Visualize
 
           // Determine scale factors sx and sy (the sticker body/shadow box is enlarged
           // or shrunk by an exact 2mm ratio to fit the cut line, the same way for every
-          // cut line type since contour polygons now already bake in an exact 2mm margin)
+          // cut line type since contour polygons now already bake in a scaled margin)
           let sx = 1;
           let sy = 1;
 

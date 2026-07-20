@@ -3,7 +3,7 @@ import { Footer } from "@/components/layout/Footer";
 import { getBlogPosts } from "@/lib/blog";
 import Link from "next/link";
 import Image from "next/image";
-import { Calendar, Clock, ArrowRight } from "lucide-react";
+import { Calendar, Clock, ArrowRight, ChevronLeft, ChevronRight, BookOpen } from "lucide-react";
 import { JsonLd } from "@/components/seo/JsonLd";
 
 export const metadata = {
@@ -20,8 +20,30 @@ export const metadata = {
   },
 };
 
-export default async function BlogIndexPage() {
+export default async function BlogIndexPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+}) {
   const posts = await getBlogPosts();
+  const params = await searchParams;
+  
+  const page = typeof params.page === 'string' ? parseInt(params.page, 10) : 1;
+  const currentPage = isNaN(page) || page < 1 ? 1 : page;
+  
+  const POSTS_PER_PAGE = 15;
+  const totalPages = Math.max(1, Math.ceil(posts.length / POSTS_PER_PAGE));
+  const currentPosts = posts.slice((currentPage - 1) * POSTS_PER_PAGE, currentPage * POSTS_PER_PAGE);
+
+  const getArticlesWord = (count: number) => {
+    if (count === 1) return 'artykuł';
+    const lastDigit = count % 10;
+    const lastTwoDigits = count % 100;
+    if (lastDigit >= 2 && lastDigit <= 4 && (lastTwoDigits < 10 || lastTwoDigits >= 20)) {
+      return 'artykuły';
+    }
+    return 'artykułów';
+  };
 
   return (
     <div className="flex flex-col min-h-screen text-foreground bg-[#edf6f2] dark:bg-[#002c2e] transition-colors duration-300">
@@ -63,6 +85,12 @@ export default async function BlogIndexPage() {
       <main className="flex-1 py-12 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto w-full space-y-12">
         {/* Header Hero */}
         <div className="text-center max-w-2xl mx-auto space-y-4">
+          <div className="inline-flex items-center justify-center gap-2 px-3 py-1.5 bg-primary/10 text-primary rounded-full text-xs font-bold tracking-wide mb-2 transition-all hover:bg-primary/20">
+            <BookOpen className="w-4 h-4" />
+            <span>
+              W bazie posiadamy łącznie {posts.length} {getArticlesWord(posts.length)}
+            </span>
+          </div>
           <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight text-foreground font-heading">
             Baza Wiedzy i Inspiracji
           </h1>
@@ -79,10 +107,11 @@ export default async function BlogIndexPage() {
             </p>
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {posts.map((post) => (
-              <article 
-                key={post.slug}
+          <div className="space-y-12">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {currentPosts.map((post) => (
+                <article 
+                  key={post.slug}
                 className="group flex flex-col bg-white dark:bg-[#003a3b] rounded-3xl border border-border/40 overflow-hidden shadow-sm hover:shadow-xl hover:border-primary/20 transition-all duration-300 transform hover:-translate-y-1"
               >
                 {/* Visual Header / Image Placeholder with gradient if no image */}
@@ -152,8 +181,77 @@ export default async function BlogIndexPage() {
                     </Link>
                   </div>
                 </div>
-              </article>
-            ))}
+                </article>
+              ))}
+            </div>
+
+            {/* Pagination Controls */}
+            {totalPages > 1 && (
+              <div className="flex items-center justify-center gap-2 pt-8">
+                {currentPage > 1 ? (
+                  <Link
+                    href={`/blog?page=${currentPage - 1}`}
+                    className="flex items-center gap-1.5 px-4 py-2 text-sm font-bold text-foreground bg-white dark:bg-[#003a3b] border border-border/40 rounded-xl hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all duration-200 shadow-sm"
+                  >
+                    <ChevronLeft className="w-4 h-4" />
+                    <span className="hidden sm:inline">Poprzednia</span>
+                  </Link>
+                ) : (
+                  <span className="flex items-center gap-1.5 px-4 py-2 text-sm font-bold text-muted-foreground bg-muted/50 border border-border/20 rounded-xl cursor-not-allowed">
+                    <ChevronLeft className="w-4 h-4" />
+                    <span className="hidden sm:inline">Poprzednia</span>
+                  </span>
+                )}
+
+                <div className="flex items-center gap-1 mx-1 sm:mx-2">
+                  {Array.from({ length: totalPages }).map((_, i) => {
+                    const pageNum = i + 1;
+                    const isActive = pageNum === currentPage;
+                    
+                    if (
+                      pageNum === 1 || 
+                      pageNum === totalPages ||
+                      (pageNum >= currentPage - 1 && pageNum <= currentPage + 1)
+                    ) {
+                      return (
+                        <Link
+                          key={pageNum}
+                          href={`/blog?page=${pageNum}`}
+                          className={`w-9 h-9 sm:w-10 sm:h-10 flex items-center justify-center text-sm font-bold rounded-xl transition-all duration-200 shadow-sm border ${
+                            isActive 
+                              ? "bg-primary text-primary-foreground border-primary" 
+                              : "bg-white dark:bg-[#003a3b] text-foreground border-border/40 hover:border-primary/50 hover:text-primary"
+                          }`}
+                        >
+                          {pageNum}
+                        </Link>
+                      );
+                    }
+                    
+                    if (pageNum === currentPage - 2 || pageNum === currentPage + 2) {
+                      return <span key={pageNum} className="text-muted-foreground px-0.5 sm:px-1">...</span>;
+                    }
+                    
+                    return null;
+                  })}
+                </div>
+
+                {currentPage < totalPages ? (
+                  <Link
+                    href={`/blog?page=${currentPage + 1}`}
+                    className="flex items-center gap-1.5 px-4 py-2 text-sm font-bold text-foreground bg-white dark:bg-[#003a3b] border border-border/40 rounded-xl hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all duration-200 shadow-sm"
+                  >
+                    <span className="hidden sm:inline">Następna</span>
+                    <ChevronRight className="w-4 h-4" />
+                  </Link>
+                ) : (
+                  <span className="flex items-center gap-1.5 px-4 py-2 text-sm font-bold text-muted-foreground bg-muted/50 border border-border/20 rounded-xl cursor-not-allowed">
+                    <span className="hidden sm:inline">Następna</span>
+                    <ChevronRight className="w-4 h-4" />
+                  </span>
+                )}
+              </div>
+            )}
           </div>
         )}
       </main>
