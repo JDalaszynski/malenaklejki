@@ -6,7 +6,7 @@ description: "Estetyczne naklejki na nalewki domowe z własnym projektem - wodoo
 image: "/blog/naklejki-na-nalewki-domowe-jak-ozdobic-butelki-na-nalewki/naklejki-na-nalewki-domowe-komplet-butelek-z-owocowymi-etykietami.png"
 imageAlt: "Komplet butelek z domowymi nalewkami owocowymi (wiśniowa, jagodowa, malinowa, morelowa) z estetycznymi naklejkami na nalewki domowe stojący na drewnianym stole."
 tags: ["naklejki na nalewki", "nalewki domowe", "etykiety na butelki", "naklejki na zamówienie"]
-cta_text: "Zaprojektuj naklejki na nalewki"
+cta_text: "Zamów naklejki na nalewki"
 ---
 
 Wydrukuj **naklejki na nalewki domowe** z własnym projektem na wodoodpornej folii winylowej - bez minimalnego nakładu i za stałą cenę 49,00 zł od arkusza A4. Wgrywasz gotowy plik z etykietą, a my wycinamy naklejkę idealnie po kształcie, jaki wybierzesz. Jeśli zamawiasz naklejki po raz pierwszy, zajrzyj do naszego przewodnika [jak zamówić idealne naklejki na zamówienie z własnym nadrukiem](/blog/jak-zamowic-idealne-naklejki-na-zamowienie-z-wlasnym-nadrukiem), aby poznać cały proces krok po kroku.
@@ -119,4 +119,4 @@ Do smukłych butelek po winie najlepiej pasuje prostokątna etykieta pionowa lub
 
 Wystarczy jeden wieczór na przygotowanie projektu w Canva i jedno zamówienie w MałeNaklejki, aby Twoje domowe trunki zyskały wygląd rzemieślniczego produktu. Wgraj plik z etykietą do naszego kreatora, wybierz kształt dopasowany do butelki, a gotowe naklejki na nalewki domowe dostaniesz w 3 dni robocze.
 
-<a href="/" style="display: inline-block; background-color: #02af7a; color: #ffffff; padding: 14px 28px; text-decoration: none; border-radius: 8px; font-weight: 600; font-size: 18px; margin-top: 24px; text-align: center;">Zaprojektuj naklejki na nalewki</a>
+<a href="/" style="display: inline-block; background-color: #02af7a; color: #ffffff; padding: 14px 28px; text-decoration: none; border-radius: 8px; font-weight: 600; font-size: 18px; margin-top: 24px; text-align: center;">Zamów naklejki na nalewki</a>

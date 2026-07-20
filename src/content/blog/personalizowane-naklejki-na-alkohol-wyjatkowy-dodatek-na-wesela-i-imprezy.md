@@ -6,7 +6,7 @@ image: "/blog/personalizowane-naklejki-na-alkohol-wyjatkowy-dodatek-na-wesela-i-
 imageAlt: "Personalizowane naklejki na wódkę weselną, butelki i wino z własnym projektem oraz autorskim napisem. Etykiety samoprzylepne i naklejki na nalewki drukowane na trwałej folii winylowej."
 slug: "personalizowane-naklejki-na-alkohol-wyjatkowy-dodatek-na-wesela-i-imprezy"
 tags: ["naklejki", "ślub", "imprezy", "poradnik"]
-cta_text: "Zaprojektuj naklejki na alkohol"
+cta_text: "Zamów naklejki na alkohol"
 ---
 
 Planujesz wesele, huczne urodziny, a może przygotowujesz upominki dla bliskich i szukasz sposobu na urozmaicenie stołu? Wydrukuj **personalizowane naklejki na alkohol** w dowolnym kształcie na trwałej folii. Bez minimalnego zamówienia i ukrytych kosztów - przygotuj projekt w darmowym Canva lub Word, wgraj gotowy plik, a my wytniemy naklejkę idealnie po jej kształcie. Jeżeli zastanawiasz się, od czego zacząć, sprawdź nasz kompletny przewodnik: [jak zamówić idealne naklejki na zamówienie z własnym nadrukiem](/blog/jak-zamowic-idealne-naklejki-na-zamowienie-z-wlasnym-nadrukiem).
@@ -96,4 +96,4 @@ Możesz wybrać cięcie po obrysie projektu (die-cut), okrągłe, owalne, prosto
 ### Czy mogę umieścić na naklejce własne zdjęcie?
 Tak. Przygotuj plik ze zdjęciem (np. portret pary młodej lub zdjęcie z zaręczyn), a system automatycznie usunie tło i zaproponuje cięcie po obrysie fotografii. Więcej o naklejkach ze zdjęcia przeczytasz tutaj: [naklejka ze zdjęcia - jak przenieść wspomnienia na naklejkę](/blog/naklejka-ze-zdjecia-jak-przeniesc-wspomnienia-na-naklejke).
 
-<a href="/" style="display: inline-block; background-color: #02af7a; color: #ffffff; padding: 14px 28px; text-decoration: none; border-radius: 8px; font-weight: 600; font-size: 18px; margin-top: 24px; text-align: center;">Zaprojektuj naklejki na alkohol</a>
+<a href="/" style="display: inline-block; background-color: #02af7a; color: #ffffff; padding: 14px 28px; text-decoration: none; border-radius: 8px; font-weight: 600; font-size: 18px; margin-top: 24px; text-align: center;">Zamów naklejki na alkohol</a>

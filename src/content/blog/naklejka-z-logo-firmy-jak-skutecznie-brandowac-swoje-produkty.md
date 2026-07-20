@@ -5,7 +5,7 @@ description: "Naklejki z logo firmy bez minimalnego nakładu od 49 zł za arkusz
 image: "/blog/naklejka-z-logo-firmy-jak-skutecznie-brandowac-swoje-produkty/naklejki-firmowe-z-logo-na-zamowienie.jpg"
 imageAlt: "Naklejki firmowe z logo na zamówienie - profesjonalne wlepki i etykiety ułatwiające skuteczny branding w e-commerce i mikroprzedsiębiorstwach."
 tags: ["naklejki", "marketing", "poradnik"]
-cta_text: "Zaprojektuj naklejki z logo"
+cta_text: "Zamów naklejki z logo"
 slug: "naklejka-z-logo-firmy-jak-skutecznie-brandowac-swoje-produkty"
 ---
 
@@ -70,4 +70,4 @@ Tak. Drukujemy wyłącznie na trwałej folii winylowej ze wzmocnionym klejem. Na
 Tak. Nasz kreator oferuje cięcie po obrysie grafiki (tzw. die-cut). Jeśli Twoje logo ma nieregularny kształt, system automatycznie wykryje jego krawędzie i poprowadzi linię cięcia tuż przy grafice.
 
 
-<a href="/" style="display: inline-block; background-color: #02af7a; color: #ffffff; padding: 14px 28px; text-decoration: none; border-radius: 8px; font-weight: 600; font-size: 18px; margin-top: 24px; text-align: center;">Zaprojektuj naklejki z logo</a>
+<a href="/" style="display: inline-block; background-color: #02af7a; color: #ffffff; padding: 14px 28px; text-decoration: none; border-radius: 8px; font-weight: 600; font-size: 18px; margin-top: 24px; text-align: center;">Zamów naklejki z logo</a>
