@@ -78,7 +78,7 @@ Zdecyduj, czy naklejka ma być wycięta po obrysie, w kole czy w prostokącie, s
 
 Cały proces - od zdjęcia po złożenie zamówienia - zajmuje mniej niż 10 minut. Jeden zadrukowany arkusz A4 kosztuje stałe 49,00 zł niezależnie od liczby, kształtu i liczby wzorów naklejek, jakie na nim umieścisz.
 
-## Naklejki zrobione telefonem - najczęściej zadawane pytania
+## Naklejki zrobione telefonem - najczęściej zadawane pytania (FAQ)
 
 ### Czy mogę zrobić naklejkę bez komputera, tylko telefonem?
 

@@ -70,7 +70,7 @@ Nie musisz szukać drukarni akceptującej zamówienia poniżej 50 sztuk ani dop�
 
 <a href="/" style="display: inline-block; background-color: #02af7a; color: #ffffff; padding: 14px 28px; text-decoration: none; border-radius: 8px; font-weight: 600; font-size: 18px; margin-top: 24px; text-align: center;">Zamów naklejki bez minimum</a>
 
-## Naklejki mały nakład - najczęściej zadawane pytania
+## Naklejki mały nakład - najczęściej zadawane pytania (FAQ)
 
 ### Jaki jest minimalny nakład zamówienia naklejek?
 

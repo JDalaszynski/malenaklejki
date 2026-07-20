@@ -57,7 +57,7 @@ Jeśli dopiero testujesz nowy wzór przed większym nakładem, zamów jeden arku
 
 ![Kolaż wlepek klubowych z własnym nadrukiem dla kibiców - hasła klubowe, herby drużyn i zdjęcia sportowe wycięte po obrysie.](/blog/wklepki-i-wlepy-z-wlasnym-nadrukiem-dla-artystow-i-spolecznosci/wlepki-kibicowskie-klubowe-kolaz-wzorow.jpg)
 
-## Wlepki z własnym nadrukiem - najczęściej zadawane pytania
+## Wlepki z własnym nadrukiem - najczęściej zadawane pytania (FAQ)
 
 ### Czy wlepka musi być wycięta po obrysie grafiki?
 

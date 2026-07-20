@@ -72,7 +72,7 @@ Wymagania techniczne różnią się w zależności od wybranej opcji:
 
 Obie opcje wybierasz w tym samym kreatorze, bez dodatkowych opłat za typ cięcia - płacisz stałe 49,00 zł za cały arkusz A4, niezależnie od tego, ile naklejek na nim umieścisz.
 
-## Die cut i kiss-cut - najczęstsze pytania
+## Die cut i kiss-cut - najczęstsze pytania (FAQ)
 
 ### Czy cięcie die cut jest droższe niż kiss-cut?
 
