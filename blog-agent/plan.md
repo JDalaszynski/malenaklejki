@@ -113,7 +113,7 @@ Możesz dodawać nowe tematy, zachowując format wcięć pod spodem.
     - **Cel:** Sprzedaż
     - **Persona:** Lokalne Usługi i Rzemiosło (hydraulicy, elektrycy, instalatorzy klimatyzacji, serwisanci pieców)
     - **Link nadrzędny (Filar):** `/blog/drukowanie-naklejek-online-na-co-zwrocic-uwage-przed-wysylka-projektu`
-    - **Uwaga:** opublikowano bez zdjęć na wyraźne polecenie - folder `public/blog/naklejki-serwisowe-dla-firm-hydraulicy-elektrycy-i-instalatorzy/` czeka na wgranie grafik.
+    - **Uwaga:** artykuł rozbudowany do ~1000-1200 słów, zdjęcia wgrane przez użytkownika i osadzone w treści z nazwami SEO, wygenerowano piny Pinterest w `public/pinterest/naklejki-serwisowe-dla-firm-hydraulicy-elektrycy-i-instalatorzy/`.
 
 - [x] **Wlepki z własnym nadrukiem dla artystów i fanklubów** (opublikowano 2026-07-19)
     - **Format:** Supporting Article
