@@ -2,49 +2,61 @@
 
 ## Pin 1 (pin-1.png)
 **Tytuł Pinu:**
-Naklejki Serwisowe dla Hydraulików i Elektryków
+Profesjonalne Naklejki Serwisowe na Klimatyzację
 
 **Opis Pinu:**
-Zostaw po sobie trwały ślad! Profesjonalne naklejki serwisowe z numerem telefonu i miejscem na datę przeglądu. Idealne dla hydraulika i elektryka. Wodoodporne, z mocnym klejem. Klient zadzwoni do Ciebie, a nie do konkurencji. Zamów naklejki z numerem telefonu na urządzenia.
+Zostaw swój numer telefonu na każdej serwisowanej jednostce. Trwałe, wodoodporne naklejki serwisowe dla instalatorów i firm. Ułatw klientom kontakt przy kolejnym przeglądzie i zbuduj bazę stałych zleceń.
 
 **Napis CTA na grafice:**
-Zamów Naklejki Dla Swojej Firmy
+Zamów Naklejki na Klimatyzatory
 
 ---
 
 ## Pin 2 (pin-2.png)
 **Tytuł Pinu:**
-Trwałe Naklejki dla Elektryka - Twoje Dane Zawsze Widoczne
+Naklejki dla Hydraulika i Elektryka - Wgraj Logo Firmy
 
 **Opis Pinu:**
-Oznacz skrzynki bezpiecznikowe i instalacje. Nasze naklejki dla elektryka mają czytelny druk i mocny klej, który wytrzyma lata. Wgraj własny wzór z logo i numerem telefonu. To lepsze niż wizytówka. Sprawdź personalizowane naklejki firmowe.
+Pokaż charakter swojej firmy! Stwórz własne naklejki firmowe z logo i numerem telefonu. Idealne dla każdego fachowca do oznaczania wykonanych prac. Zamów naklejki dla elektryka lub hydraulika online.
 
 **Napis CTA na grafice:**
-Stwórz Naklejki Dla Elektryka
+Wgraj Logo Swojej Firmy
 
 ---
 
 ## Pin 3 (pin-3.png)
 **Tytuł Pinu:**
-Naklejki Instalatorskie na Piece, Klimatyzatory i Pompy Ciepła
+Naklejki dla Elektryków - Oznacz Skrzynki Bezpiecznikowe
 
 **Opis Pinu:**
-Pracujesz przy instalacjach grzewczych lub wentylacyjnych? Naklejka "serwisowana przez" to gwarancja, że klient nie zapomni o Tobie przy kolejnym przeglądzie. Wytrzymałe naklejki serwisowe na każde warunki. Zamów już od jednego arkusza.
+Niech klienci pamiętają, kto dba o ich instalację. Zamów naklejki dla elektryka z własnym napisem lub numerem kontaktowym. Mocny klej, czytelny druk i szybka realizacja to nasza specjalność.
 
 **Napis CTA na grafice:**
-Zamów Etykiety Instalatorskie
+Zamów Naklejki dla Elektryka
 
 ---
 
 ## Pin 4 (pin-4.png)
 **Tytuł Pinu:**
-Naklejki dla Hydraulika - Twoja Wizytówka na Lata
+Trwałe Naklejki Instalatorskie z Twoimi Danymi Kontaktowymi
 
 **Opis Pinu:**
-Niech Twój numer telefonu zostanie na rurach, zaworach i bojlerach na stałe. Wodoodporne wlepki z własnym logo dla hydraulików i instalatorów to pewność, że przy następnej awarii klient zadzwoni właśnie do Ciebie. Zamów personalizowane naklejki.
+Niezbędne dla każdej firmy instalacyjnej. Zostaw swoje dane kontaktowe na piecu, pompie ciepła czy rekuperatorze. Zamów personalizowane naklejki serwisowe i zdobywaj stałych klientów bez wysiłku.
 
 **Napis CTA na grafice:**
-Wgraj Logo dla Hydraulika
+Zamów Naklejki Instalatorskie
+
+---
+
+## Pin 5 (pin-5.png)
+**Tytuł Pinu:**
+Personalizowane Naklejki dla Hydraulików i Instalatorów
+
+**Opis Pinu:**
+Awaria w środku nocy? Niech klient dzwoni właśnie do Ciebie! Stwórz naklejki dla hydraulika z numerem telefonu i logo firmy. Idealne do oznaczania rur, zaworów i wykonanych instalacji.
+
+**Napis CTA na grafice:**
+Stwórz Naklejki dla Hydraulika
 
 ---
 

@@ -1,92 +1,106 @@
-Jasne, oto zestaw gotowych formatów social media na podstawie dostarczonego artykułu, przygotowany zgodnie z wytycznymi.
+Jasne, oto zestaw gotowych formatów social media na podstawie dostarczonego artykułu blogowego, stworzony zgodnie z wytycznymi.
 
-## A. Krótka Zajawka (Post FB / Instagram)
+---
 
-Twoja wizytówka znowu ląduje w koszu? 🗑️
+## 1. Krótka Zajawka (Post FB / Instagram)
 
-Klienci gubią Twój numer, a gdy zdarza się awaria... dzwonią do konkurencji znalezionej w Google. Jest na to lepszy sposób!
+Twoje wizytówki lądują w koszu? 🗑️
 
-Naklejka serwisowa zostaje na urządzeniu na lata. Z Twoim numerem telefonu, nazwą firmy i datą ostatniego przeglądu. Klient ma Twój kontakt zawsze przed oczami. Proste i genialne. 🔥
+Klient nie może znaleźć Twojego numeru telefonu, gdy piec lub klimatyzator znowu odmawia posłuszeństwa. Awaria nie czeka!
 
-Chcesz wiedzieć więcej? Sprawdź, jak to działa i zamów swój zestaw na naszym blogu! 👇
+Jest na to lepszy sposób! Naklejka serwisowa z Twoim numerem, którą zostawiasz bezpośrednio na urządzeniu. To proste, tanie i działa o niebo lepiej niż papierowa wizytówka. 💪
 
-**Link w bio!**
+Chcesz, żeby klient dzwonił do Ciebie, a nie do konkurencji? Sprawdź, jak to działa. Czytaj więcej na naszym blogu! 👇
 
-#naklejkiserwisowe #naklejkiznumeremtelefonu #naklejkifirmowe #hydraulik #elektryk #serwisant #fachowiec #malenaklejki
+Link w bio!
 
-## B. Merytoryczna Karuzela (Instagram / LinkedIn)
+#naklejkiserwisowe #naklejkifirmowe #hydraulik #elektryk #serwisant #bizneslokalny #marketingdlafirm #naklejkiznumeremtelefonu #naklejkiinstalatorskie #malenaklejki
 
-**[SLAJD 1 - TYTUŁ]**
+---
 
-Twoja wizytówka ląduje w koszu? 🗑️
-Mamy na to sposób: Naklejki Serwisowe!
+## 2. Merytoryczna Karuzela (Instagram / LinkedIn)
 
-**[SLAJD 2 - PROBLEM]**
+**Slajd 1 (Tytuł):**
+Klient zadzwoni do Ciebie, a nie do konkurencji! 📞
+3 powody, dla których naklejki serwisowe działają lepiej niż wizytówki.
 
-Dlaczego naklejka jest lepsza niż wizytówka? 🤔
+---
 
-*   **Zawsze pod ręką** - przyklejona na piecu, klimatyzatorze czy skrzynce. Klient nie musi jej szukać.
-*   **Pierwszy wybór przy awarii** - Twój numer jest widoczny w kryzysowym momencie.
-*   **Profesjonalny wizerunek** - zostawiasz po sobie trwały ślad, a nie kawałek papieru.
+**Slajd 2:**
+**1. Zawsze pod ręką klienta 🖐️**
 
-**[SLAJD 3 - ROZWIĄZANIE]**
+*   Naklejasz ją bezpośrednio na urządzeniu - piecu, klimatyzatorze, skrzynce.
+*   Klient nie musi szukać Twojego numeru w szufladzie czy telefonie.
+*   Przy awarii widzi Twoje dane jako pierwsze!
 
-Co powinno znaleźć się na dobrej naklejce serwisowej? 💡
+---
 
-*   **Nazwa firmy i numer telefonu** (dużą, czytelną czcionką).
-*   **Pole na datę przeglądu** (do wpisania markerem).
-*   **Wysoki kontrast** (np. czarny tekst na białym tle). Prosto i do celu!
+**Slajd 3:**
+**2. Trwałość i funkcjonalność 💪**
 
-**[SLAJD 4 - JAK ZAMÓWIĆ]**
+*   Wodoodporna folia i mocny klej wytrzymają lata w kotłowni.
+*   Specjalne pole na datę ułatwia pilnowanie terminów przeglądów.
+*   Czytelny druk nawet po kilku latach eksploatacji.
 
-Jak zamówić? To proste! 🚀
+---
 
-1.  **Wgraj gotowy plik** (zrobiony w Canva, Wordzie, gdziekolwiek).
-2.  **Wybierz kształt i rozmiar** w naszym kreatorze online.
-3.  **Zamów!** Gotowe naklejki dotrą do Ciebie w 3 dni robocze.
+**Slajd 4:**
+**3. Proste zamawianie online 📲**
 
-**[SLAJD 5 - CTA]**
+*   Wgraj gotowy plik z logo i numerem (PNG, JPG lub PDF).
+*   Wybierz kształt i zdecyduj, ile sztuk chcesz na arkuszu.
+*   Gotowe naklejki odbierzesz w 3 dni robocze.
 
-Zapisz ten post na później! 💾
+---
 
-Gotowy, by klienci dzwonili tylko do Ciebie? Wejdź na malenaklejki.pl i stwórz swoje naklejki serwisowe już od jednego arkusza.
+**Slajd 5 (CTA):**
+Zapisz ten post na później, żeby nie zgubić! 💾
 
-#naklejkiinstalatorskie #naklejkiB2B #naklejkifirmowezlogo #serwis #instalator #usługi #gadżetyfirmowe #własnenaklejki
+Gotowy, by klienci dzwonili właśnie do Ciebie? Wejdź na malenaklejki.pl i stwórz swoje naklejki serwisowe już dziś! 🔥
 
-## C. Scenariusz TikTok / Reels
+#naklejkiserwisowe #naklejkiinstalatorskie #dla hydraulika #dlaelektryka #marketingdlamałejfirmy #malenaklejki #branding #naklejkinazamowienie #naklejkazwlasnymlogo
+
+---
+
+## 3. Scenariusz TikTok / Reels
 
 **Czas trwania:** ok. 18 sekund
-**Dźwięk:** Dynamiczna, "problem-solving" muzyka w tle + lektor
+**Dźwięk:** Dynamiczny, popularny utwór z szybkim bitem, który pasuje do cięć montażowych.
 
 | Obraz (Video) | Dźwięk/Lektor (Audio) |
 | :--- | :--- |
-| **0-3s:** Ujęcie POV (z perspektywy fachowca). W dłoni trzyma wizytówkę. Wręcza ją klientowi, który od niechcenia rzuca ją do szuflady z rupieciami. | **Lektor:** Hydraulik? Elektryk? Przestań rozdawać wizytówki, które i tak zginą! 🗑️ |
-| **3-7s:** Szybkie, dynamiczne cięcie. Ręka w rękawicy roboczej przykleja estetyczną naklejkę serwisową na obudowie pieca gazowego. Zbliżenie na numer telefonu. | **Lektor:** Zamiast tego zostaw klientowi naklejkę prosto na urządzeniu! Z numerem i datą przeglądu. 🔥 |
-| **7-12s:** Scena awarii: migające światło, woda kapiąca z rury. Spanikowany klient podbiega do pieca, jego palec wskazuje na naklejkę i numer telefonu. | **Lektor:** Gdy zdarzy się awaria, Twój numer będzie PIERWSZYM, który zobaczy. Zgadnij, do kogo zadzwoni? 😉 |
-| **12-18s:** Ujęcie na ekran telefonu, gdzie wgrywany jest prosty plik z danymi firmy do kreatora MałeNaklejki.pl. Na koniec ujęcie gotowego arkusza z naklejkami. | **Lektor:** Wejdź na MałeNaklejki.pl, wgraj swój plik i zamów już od 49 zł za arkusz! 🚀 |
+| **(0-3s)** Zbliżenie na rękę, która wręcza klientowi tradycyjną, papierową wizytówkę. Klient bierze ją i od razu chowa do kieszeni/szuflady. | **Lektor:** Zostawiasz klientom wizytówki? |
+| **(3-5s)** Szybkie ujęcie pokazujące tę samą wizytówkę w koszu na śmieci. | **Lektor:** 90% z nich i tak tam ląduje! 🗑️ |
+| **(5-9s)** Dynamiczne ujęcie ręki w rękawicy roboczej, która z satysfakcją przykleja naklejkę serwisową na obudowę pieca gazowego. Zbliżenie na czytelny numer telefonu. | **Lektor:** Jest na to o wiele lepszy sposób! 🔥 Naklejka serwisowa z Twoim numerem telefonu! |
+| **(9-12s)** Ujęcie klienta, który w razie awarii patrzy na urządzenie i od razu wybiera numer z naklejki na swoim telefonie. | **Lektor:** Klient ma Twój numer ZAWSZE pod ręką. |
+| **(12-15s)** Szybkie ujęcie ekranu komputera, na którym ktoś wgrywa plik JPG do kreatora na stronie malenaklejki.pl. | **Lektor:** Po prostu wgraj swój plik... |
+| **(15-18s)** Finalne, satysfakcjonujące ujęcie odklejania gotowej naklejki serwisowej z arkusza. Na ekranie pojawia się napis: malenaklejki.pl | **Lektor:** ...i zamów na malenaklejki.pl! 🚀 |
 
-*(Na ekranie pojawiają się napisy kluczowe: "Problem", "Rozwiązanie", "Twój numer ZAWSZE pod ręką")*
+---
 
-#majster #fachowiec #hydraulik #elektryk #serwis #protip #firmabudowlana #malenaklejki #naklejkiserwisowe
+## 4. Pinterest Pin
 
-## D. Pinterest Pin
+### Zestaw 1 (zdjęcie: naklejka na klimatyzatorze)
+*   **Tytuł Pinu 1:** Profesjonalne Naklejki Serwisowe na Klimatyzację
+*   **Opis Pinu 1:** Zostaw swój numer telefonu na każdej serwisowanej jednostce. Trwałe, wodoodporne naklejki serwisowe dla instalatorów i firm. Ułatw klientom kontakt przy kolejnym przeglądzie i zbuduj bazę stałych zleceń.
+*   **CTA 1:** Zamów Naklejki na Klimatyzatory
 
-### Zestaw 1 (na podstawie obrazka 1)
-*   **Tytuł Pinu 1:** Naklejki Serwisowe dla Hydraulików i Elektryków
-*   **Opis Pinu 1:** Zostaw po sobie trwały ślad! Profesjonalne naklejki serwisowe z numerem telefonu i miejscem na datę przeglądu. Idealne dla hydraulika i elektryka. Wodoodporne, z mocnym klejem. Klient zadzwoni do Ciebie, a nie do konkurencji. Zamów naklejki z numerem telefonu na urządzenia.
-*   **CTA 1:** Zamów Naklejki Dla Swojej Firmy
+### Zestaw 2 (zdjęcie: kolaż naklejek dla hydraulika i elektryka)
+*   **Tytuł Pinu 2:** Naklejki dla Hydraulika i Elektryka - Wgraj Logo Firmy
+*   **Opis Pinu 2:** Pokaż charakter swojej firmy! Stwórz własne naklejki firmowe z logo i numerem telefonu. Idealne dla każdego fachowca do oznaczania wykonanych prac. Zamów naklejki dla elektryka lub hydraulika online.
+*   **CTA 2:** Wgraj Logo Swojej Firmy
 
-### Zestaw 2 (na podstawie obrazka 2)
-*   **Tytuł Pinu 2:** Trwałe Naklejki dla Elektryka - Twoje Dane Zawsze Widoczne
-*   **Opis Pinu 2:** Oznacz skrzynki bezpiecznikowe i instalacje. Nasze naklejki dla elektryka mają czytelny druk i mocny klej, który wytrzyma lata. Wgraj własny wzór z logo i numerem telefonu. To lepsze niż wizytówka. Sprawdź personalizowane naklejki firmowe.
-*   **CTA 2:** Stwórz Naklejki Dla Elektryka
+### Zestaw 3 (zdjęcie: kolaż naklejek dla elektryka)
+*   **Tytuł Pinu 3:** Naklejki dla Elektryków - Oznacz Skrzynki Bezpiecznikowe
+*   **Opis Pinu 3:** Niech klienci pamiętają, kto dba o ich instalację. Zamów naklejki dla elektryka z własnym napisem lub numerem kontaktowym. Mocny klej, czytelny druk i szybka realizacja to nasza specjalność.
+*   **CTA 3:** Zamów Naklejki dla Elektryka
 
-### Zestaw 3 (na podstawie obrazka 3)
-*   **Tytuł Pinu 3:** Naklejki Instalatorskie na Piece, Klimatyzatory i Pompy Ciepła
-*   **Opis Pinu 3:** Pracujesz przy instalacjach grzewczych lub wentylacyjnych? Naklejka "serwisowana przez" to gwarancja, że klient nie zapomni o Tobie przy kolejnym przeglądzie. Wytrzymałe naklejki serwisowe na każde warunki. Zamów już od jednego arkusza.
-*   **CTA 3:** Zamów Etykiety Instalatorskie
+### Zestaw 4 (zdjęcie: kolaż naklejek instalatorskich)
+*   **Tytuł Pinu 4:** Trwałe Naklejki Instalatorskie z Twoimi Danymi Kontaktowymi
+*   **Opis Pinu 4:** Niezbędne dla każdej firmy instalacyjnej. Zostaw swoje dane kontaktowe na piecu, pompie ciepła czy rekuperatorze. Zamów personalizowane naklejki serwisowe i zdobywaj stałych klientów bez wysiłku.
+*   **CTA 4:** Zamów Naklejki Instalatorskie
 
-### Zestaw 4 (na podstawie obrazka 4)
-*   **Tytuł Pinu 4:** Naklejki dla Hydraulika - Twoja Wizytówka na Lata
-*   **Opis Pinu 4:** Niech Twój numer telefonu zostanie na rurach, zaworach i bojlerach na stałe. Wodoodporne wlepki z własnym logo dla hydraulików i instalatorów to pewność, że przy następnej awarii klient zadzwoni właśnie do Ciebie. Zamów personalizowane naklejki.
-*   **CTA 4:** Wgraj Logo dla Hydraulika
+### Zestaw 5 (zdjęcie: kolaż naklejek dla hydraulika)
+*   **Tytuł Pinu 5:** Personalizowane Naklejki dla Hydraulików i Instalatorów
+*   **Opis Pinu 5:** Awaria w środku nocy? Niech klient dzwoni właśnie do Ciebie! Stwórz naklejki dla hydraulika z numerem telefonu i logo firmy. Idealne do oznaczania rur, zaworów i wykonanych instalacji.
+*   **CTA 5:** Stwórz Naklejki dla Hydraulika
