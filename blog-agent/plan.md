@@ -11,8 +11,6 @@ Możesz dodawać nowe tematy, zachowując format wcięć pod spodem.
 > **Faza 2 (dopisano 2026-07-18):** kolejka domykała się do jednego tematu, więc przeprowadziłem audyt strategii (patrz `strategy.md`, sekcja 6 "Korekta Kursu - Faza 2") i dopisałem 9 kolejnych tematów zamykających realne luki: brak jakiejkolwiek treści o generatorze AI w kreatorze oraz dwie całkowicie nieobsłużone persony B2B (rzemiosło/serwis i korporacje/eventy). Kolejność poniżej odzwierciedla priorytet.
 
 
-
-
 - [ ] **Generator naklejek AI - jak stworzyć unikalny wzór bez umiejętności rysowania?**
     - **Format:** Supporting Article
     - **Główna Fraza Kluczowa:** `generator naklejek AI` / `jak wygenerować naklejkę AI`
@@ -25,18 +23,6 @@ Możesz dodawać nowe tematy, zachowując format wcięć pod spodem.
         - "Kolaż dziewięciu różnych naklejek wygenerowanych przez sztuczną inteligencję w różnych stylach - akwarela, anime, szkic ołówkiem, render 3D - ułożonych siatką na jasnym tle."
         - "Osoba bez umiejętności rysowania siedząca przy biurku, uśmiechnięta, patrząca na ekran komputera z gotowym, kolorowym wzorem naklejki wygenerowanym z opisu tekstowego."
         - "Zbliżenie na wydrukowany arkusz naklejek z różnorodnymi, fantazyjnymi grafikami stworzonymi przez generator AI - smoki, kwiaty, abstrakcyjne wzory - leżący obok klawiatury."
-
-- [ ] **Naklejki serwisowe dla firm - hydraulicy, elektrycy i instalatorzy**
-    - **Format:** Supporting Article
-    - **Główna Fraza Kluczowa:** `naklejki serwisowe` / `naklejka serwisowana przez`
-    - **Cel:** Sprzedaż
-    - **Persona:** Lokalne Usługi i Rzemiosło (hydraulicy, elektrycy, instalatorzy klimatyzacji, serwisanci pieców)
-    - **Link nadrzędny (Filar):** `/blog/drukowanie-naklejek-online-na-co-zwrocic-uwage-przed-wysylka-projektu`
-    - **Prompty do generowania zdjęć:**
-        - "Hydraulik w roboczym kombinezonie naklejający trwałą, białą naklejkę z numerem telefonu i datą przeglądu na metalowej obudowie pieca gazowego, wnętrze kotłowni, naturalne światło."
-        - "Zbliżenie na klimatyzator ścienny z naklejoną małą, czytelną etykietą serwisową zawierającą logo firmy instalatorskiej i numer telefonu, jasne wnętrze biura."
-        - "Elektryk trzymający w dłoni arkusz białych, prostokątnych naklejek z napisem 'Serwisowane przez' i polem na datę, na tle otwartej skrzynki bezpiecznikowej."
-        - "Van serwisowy z logo firmy hydraulicznej zaparkowany przed domem, technik wychodzący z tylnych drzwi z narzędziami i rolką naklejek identyfikacyjnych."
 
 - [ ] **Etykiety ze składem i plomby na paczki wysyłkowe - unboxing dla małych marek**
     - **Format:** Supporting Article
@@ -120,6 +106,14 @@ Możesz dodawać nowe tematy, zachowując format wcięć pod spodem.
 ---
 
 ## 📈 Zrealizowane Artykuły
+
+- [x] **Naklejki serwisowe dla firm - hydraulicy, elektrycy i instalatorzy** (opublikowano 2026-07-20)
+    - **Format:** Supporting Article
+    - **Główna Fraza Kluczowa:** `naklejki serwisowe` / `naklejka serwisowana przez`
+    - **Cel:** Sprzedaż
+    - **Persona:** Lokalne Usługi i Rzemiosło (hydraulicy, elektrycy, instalatorzy klimatyzacji, serwisanci pieców)
+    - **Link nadrzędny (Filar):** `/blog/drukowanie-naklejek-online-na-co-zwrocic-uwage-przed-wysylka-projektu`
+    - **Uwaga:** opublikowano bez zdjęć na wyraźne polecenie - folder `public/blog/naklejki-serwisowe-dla-firm-hydraulicy-elektrycy-i-instalatorzy/` czeka na wgranie grafik.
 
 - [x] **Wlepki z własnym nadrukiem dla artystów i fanklubów** (opublikowano 2026-07-19)
     - **Format:** Supporting Article

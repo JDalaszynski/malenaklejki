@@ -127,7 +127,8 @@ Nasz kreator i model bez minimalnego nakładu sprawdza się w bardzo różnych s
 - **Pary młode i organizatorzy imprez** - personalizowane naklejki na alkohol, podziękowania i dekoracje ślubne. Inspiracje znajdziesz w poradniku o [personalizowanych naklejkach na alkohol na wesela i imprezy](/blog/personalizowane-naklejki-na-alkohol-wyjatkowy-dodatek-na-wesela-i-imprezy).
 - **Rodzice i nauczyciele** - naklejki z imionami dla dzieci, etykiety na szkolne wyposażenie i organizacja spiżarni. Przeczytaj, jak zamawiać [naklejki własnego projektu na słoiki z przyprawami](/blog/naklejki-wlasnego-projektu-na-sloiki-z-przyprawami-zorganizuj-swoja-kuchnie).
 - **Fani wlepek i twórcy merchu** - zamawiają [wklepki i wlepy z własnym nadrukiem](/blog/wklepki-i-wlepy-z-wlasnym-nadrukiem-dla-artystow-i-spolecznosci) w małym nakładzie, bez przepłacania za setki sztuk. Sprawdź też, jak zamówić [naklejki w małym nakładzie bez przepłacania](/blog/naklejki-maly-naklad-jak-zamowic-pojedyncze-sztuki-bez-przeplacania).
-- **Nastolatki i twórcy social media** - projektują naklejki wprost z telefonu, bez komputera i programów graficznych. Sprawdź, [jak zrobić własne naklejki w telefonie](/blog/jak-zrobic-wlasne-naklejki-w-telefonie-proste-aplikacje-i-triki) w kilka minut.
+- **Nastolatki i twórcy social media** - tworzą naklejki wprost z telefonu, bez komputera i programów graficznych. Sprawdź, [jak zrobić własne naklejki w telefonie](/blog/jak-zrobic-wlasne-naklejki-w-telefonie-proste-aplikacje-i-triki) w kilka minut.
+- **Hydraulicy, elektrycy i instalatorzy** - zostawiają na obsłużonych urządzeniach trwałe naklejki "serwisowane przez" z numerem telefonu i datą przeglądu. Zobacz, jak zamówić [naklejki serwisowe dla firm](/blog/naklejki-serwisowe-dla-firm-hydraulicy-elektrycy-i-instalatorzy).
 
 ## Jak zamówić naklejki z własnym projektem - krok po kroku
 
