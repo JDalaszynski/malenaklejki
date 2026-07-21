@@ -11,43 +11,6 @@ Możesz dodawać nowe tematy, zachowując format wcięć pod spodem.
 > **Faza 2 (dopisano 2026-07-18):** kolejka domykała się do jednego tematu, więc przeprowadziłem audyt strategii (patrz `strategy.md`, sekcja 6 "Korekta Kursu - Faza 2") i dopisałem 9 kolejnych tematów zamykających realne luki: brak jakiejkolwiek treści o generatorze AI w kreatorze oraz dwie całkowicie nieobsłużone persony B2B (rzemiosło/serwis i korporacje/eventy). Kolejność poniżej odzwierciedla priorytet.
 
 
-- [ ] **Generator naklejek AI - jak stworzyć unikalny wzór bez umiejętności rysowania?**
-    - **Format:** Supporting Article
-    - **Główna Fraza Kluczowa:** `generator naklejek AI` / `jak wygenerować naklejkę AI`
-    - **Cel:** Sprzedaż / Edukacja
-    - **Persona:** Klienci indywidualni bez gotowej grafiki, artyści szukający inspiracji, freelancerzy
-    - **Link nadrzędny (Filar):** `/blog/drukowanie-naklejek-online-na-co-zwrocic-uwage-przed-wysylka-projektu`
-    - **Uwaga contentowa:** to pierwszy artykuł opisujący wbudowany generator AI (opis tekstowy → gotowa grafika, style: monochromatyczny, ryso, technicolor, gotycka plastelina, akwarela, szkic, pastele, anime, kreskówka, render 3D, surrealistyczny, zdjęcie). **Nigdy nie nazywaj tego "projektowaniem w kreatorze"** - generator AI tylko tworzy gotowy obraz (dokładnie jak wgrane zdjęcie), a projektowanie w kreatorze to wyłącznie kadrowanie, wycięcie po kształcie i układanie arkusza. Używaj czasowników "wygeneruj", "stwórz obraz/wzór opisem tekstowym" - nigdy "zaprojektuj naklejkę/grafikę". Patrz zaktualizowana zasada w `rules.md`.
-    - **Prompty do generowania zdjęć:**
-        - "Ekran laptopa z otwartym kreatorem online, widoczne pole tekstowe z opisem naklejki oraz wygenerowany kolorowy wzór w stylu kreskówkowym, jasne biurko, naturalne światło z okna."
-        - "Kolaż dziewięciu różnych naklejek wygenerowanych przez sztuczną inteligencję w różnych stylach - akwarela, anime, szkic ołówkiem, render 3D - ułożonych siatką na jasnym tle."
-        - "Osoba bez umiejętności rysowania siedząca przy biurku, uśmiechnięta, patrząca na ekran komputera z gotowym, kolorowym wzorem naklejki wygenerowanym z opisu tekstowego."
-        - "Zbliżenie na wydrukowany arkusz naklejek z różnorodnymi, fantazyjnymi grafikami stworzonymi przez generator AI - smoki, kwiaty, abstrakcyjne wzory - leżący obok klawiatury."
-
-- [ ] **Etykiety ze składem i plomby na paczki wysyłkowe - unboxing dla małych marek**
-    - **Format:** Supporting Article
-    - **Główna Fraza Kluczowa:** `etykiety ze składem` / `plomby na paczki wysyłkowe`
-    - **Cel:** Sprzedaż
-    - **Persona:** Mikroprzedsiębiorstwa, producenci kosmetyków naturalnych i żywności, e-commerce
-    - **Link nadrzędny (Filar):** `/blog/drukowanie-naklejek-online-na-co-zwrocic-uwage-przed-wysylka-projektu`
-    - **Prompty do generowania zdjęć:**
-        - "Dłonie pakujące kartonowe pudełko wysyłkowe, zaklejające je taśmą oraz okrągłą naklejką-plombą z logo marki, minimalistyczne domowe biuro, ciepłe światło."
-        - "Zbliżenie na słoik kremu kosmetycznego z czytelną, białą etykietą zawierającą listę składników (INCI) oraz logo małej marki naturalnych kosmetyków."
-        - "Rząd eleganckich pudełek e-commerce z naklejonymi na wieczkach okrągłymi plombami z logo, ułożonych na drewnianym stole, gotowych do wysyłki."
-        - "Właścicielka małej manufaktury kosmetycznej naklejająca etykiety ze składem na rząd buteleczek z olejkiem, jasne, przytulne studio produkcyjne."
-
-- [ ] **Naklejki i gadżety na eventy firmowe - Welcome Pack dla nowych pracowników**
-    - **Format:** Supporting Article
-    - **Główna Fraza Kluczowa:** `naklejki firmowe na eventy` / `welcome pack naklejki`
-    - **Cel:** Sprzedaż
-    - **Persona:** Działy HR, Office Managery, organizatorzy eventów firmowych
-    - **Link nadrzędny (Filar):** `/blog/jak-zamowic-idealne-naklejki-na-zamowienie-z-wlasnym-nadrukiem`
-    - **Prompty do generowania zdjęć:**
-        - "Nowoczesny zestaw powitalny (Welcome Pack) dla nowego pracownika na biurku w biurze - notes, kubek, długopis i laptop oklejone spójnymi, firmowymi wlepkami z logo."
-        - "Stół konferencyjny podczas małego eventu firmowego, na którym leżą stosy kolorowych naklejek z logo firmy obok identyfikatorów gości i długopisów."
-        - "Zespół pracowników w biurze open space, jeden z nich naklejający firmową wlepkę na obudowę laptopa, nowoczesne wnętrze startupu, naturalne światło dzienne."
-        - "Zbliżenie na dłoń Office Managera układającą pudełka z gadżetami firmowymi, w tym arkusze naklejek z logo, przygotowywane na konferencję branżową."
-
 - [ ] **Naklejki na rower i akcesoria sportowe - personalizacja dla pasjonatów**
     - **Format:** Supporting Article
     - **Główna Fraza Kluczowa:** `naklejki na rower` / `personalizowane naklejki na rower`
@@ -106,6 +69,14 @@ Możesz dodawać nowe tematy, zachowując format wcięć pod spodem.
 ---
 
 ## 📈 Zrealizowane Artykuły
+
+- [x] **Naklejki i gadżety na eventy firmowe - Welcome Pack dla nowych pracowników** (opublikowano 2026-07-21)
+    - **Format:** Supporting Article
+    - **Główna Fraza Kluczowa:** `naklejki firmowe na eventy` / `welcome pack naklejki`
+    - **Cel:** Sprzedaż
+    - **Persona:** Działy HR, Office Managery, organizatorzy eventów firmowych
+    - **Link nadrzędny (Filar):** `/blog/jak-zamowic-idealne-naklejki-na-zamowienie-z-wlasnym-nadrukiem`
+    - **Uwaga:** opublikowano bez zdjęć na wyraźne polecenie użytkownika - folder `public/blog/naklejki-firmowe-na-eventy-welcome-pack-dla-pracownikow/` czeka na wgranie grafik.
 
 - [x] **Naklejki serwisowe dla firm - hydraulicy, elektrycy i instalatorzy** (opublikowano 2026-07-20)
     - **Format:** Supporting Article
