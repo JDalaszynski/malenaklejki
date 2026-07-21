@@ -76,7 +76,7 @@ Możesz dodawać nowe tematy, zachowując format wcięć pod spodem.
     - **Cel:** Sprzedaż
     - **Persona:** Działy HR, Office Managery, organizatorzy eventów firmowych
     - **Link nadrzędny (Filar):** `/blog/jak-zamowic-idealne-naklejki-na-zamowienie-z-wlasnym-nadrukiem`
-    - **Uwaga:** opublikowano bez zdjęć na wyraźne polecenie użytkownika - folder `public/blog/naklejki-firmowe-na-eventy-welcome-pack-dla-pracownikow/` czeka na wgranie grafik.
+    - **Uwaga:** opublikowano początkowo bez zdjęć na wyraźne polecenie użytkownika; po wgraniu 6 grafik przez użytkownika nazwano je zgodnie z konwencją SEO, osadzono w treści i wygenerowano piny Pinterest w `public/pinterest/naklejki-firmowe-na-eventy-welcome-pack-dla-pracownikow/`.
 
 - [x] **Naklejki serwisowe dla firm - hydraulicy, elektrycy i instalatorzy** (opublikowano 2026-07-20)
     - **Format:** Supporting Article
