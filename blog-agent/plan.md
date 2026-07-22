@@ -65,7 +65,7 @@ Możesz dodawać nowe tematy, zachowując format wcięć pod spodem.
     - **Cel:** Sprzedaż
     - **Persona:** Hobbyści, rowerzyści, pasjonaci sportów outdoorowych
     - **Link nadrzędny (Filar):** `/blog/jak-zamowic-idealne-naklejki-na-zamowienie-z-wlasnym-nadrukiem`
-    - **Uwaga:** opublikowano bez zdjęć na wyraźne polecenie użytkownika ("nie generuj zdjęć"); folder `public/blog/naklejki-na-rower-i-akcesoria-sportowe-dla-pasjonatow/` czeka na wgranie grafik. Piny Pinterest do wygenerowania po dodaniu zdjęć. Artykuł ~1100 słów.
+    - **Uwaga:** artykuł ~1100 słów. Początkowo opublikowany bez zdjęć ("nie generuj zdjęć"); po wgraniu 7 grafik przez użytkownika nazwano je zgodnie z konwencją SEO, osadzono w treści z altami i ustawiono okładkę, a następnie wygenerowano 7 pinów Pinterest w `public/pinterest/naklejki-na-rower-i-akcesoria-sportowe-dla-pasjonatow/`.
 
 - [x] **Naklejki i gadżety na eventy firmowe - Welcome Pack dla nowych pracowników** (opublikowano 2026-07-21)
     - **Format:** Supporting Article
