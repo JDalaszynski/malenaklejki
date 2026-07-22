@@ -392,8 +392,8 @@ export function getAbsolutePolygons(
   const cy = hMm / 2;
 
   if ((cutLineType === "contour" || cutLineType === "contour_inside") && contourPolygons && contourPolygons.length > 0) {
-    return contourPolygons.map(poly => {
-      return poly.map(p => {
+    return contourPolygons.map((poly: { x: number; y: number }[]) => {
+      return poly.map((p: { x: number; y: number }) => {
         const px = p.x * wMm;
         const py = p.y * hMm;
         const rx = px - cx;
