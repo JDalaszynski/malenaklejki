@@ -53,6 +53,8 @@ Jeśli wykryjesz jakiekolwiek braki, wprowadź niezbędne poprawki.
 
 ## Krok 4: Zapis i Aktualizacja
 1. **Zapisz artykuł:** Zapisz wygenerowany artykuł w formacie Markdown w pliku `src/content/blog/{slug}.md`.
+1.2. **Branding Zdjęć:** Po upewnieniu się, że zdjęcia są wgrane w folderze `public/blog/{slug}/`, dodaj do nich automatycznie pasek z logo, wpisując w terminalu:
+   `node add_logo_bar.mjs public/blog/{slug}`
 1.5. **Generuj Social Media i Piny:** Uruchom skrypt generujący materiały social-media i grafiki na Pinterest, wpisując w terminalu:
    `npx tsx social-agent/generate-socials.ts {slug}.md`
    Skrypt ten automatycznie wygeneruje Piny w dedykowanym folderze `/public/pinterest/{slug}/` na podstawie zdjęć z treści wpisu, a także stworzy plik opisów `pinterest-info.md`.

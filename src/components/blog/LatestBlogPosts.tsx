@@ -3,7 +3,7 @@
 import { useEffect, useState, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Calendar, Clock, ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
+import { Calendar, Clock, ArrowRight, ChevronLeft, ChevronRight, Star } from "lucide-react";
 import { motion } from "framer-motion";
 
 export function LatestBlogPosts({ initialPosts }: { initialPosts: any[] }) {
@@ -56,7 +56,7 @@ export function LatestBlogPosts({ initialPosts }: { initialPosts: any[] }) {
           transition={{ delay: 0.1 }}
           className="mt-4 text-muted-foreground text-sm sm:text-base font-semibold max-w-2xl mx-auto"
         >
-          Baza wiedzy o projektowaniu naklejek, marketingu i brandingu. Zobacz najnowsze porady i inspiracje przygotowane przez naszych ekspertów.
+          Zacznij od naszych najważniejszych przewodników po naklejkach — od przygotowania pliku, przez druk, po pomysły na wykorzystanie. Sprawdzone porady w jednym miejscu.
         </motion.p>
       </div>
 
@@ -108,6 +108,16 @@ export function LatestBlogPosts({ initialPosts }: { initialPosts: any[] }) {
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-700 ease-out"
                   />
+
+                  {/* Pillar Badge */}
+                  {post.pillar && (
+                    <div className="absolute top-4 right-4 z-20">
+                      <span className="inline-flex items-center gap-1 px-3 py-1.5 bg-primary text-primary-foreground text-[10px] font-black tracking-wider uppercase rounded-xl shadow-md">
+                        <Star className="w-3 h-3 fill-current" />
+                        Przewodnik
+                      </span>
+                    </div>
+                  )}
 
                   {/* Tags Overlay */}
                   {post.tags && post.tags.length > 0 && (

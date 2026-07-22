@@ -723,9 +723,13 @@ export function NewA4Visualizer({
                 src={st.imageUrl}
                 alt="Naklejka"
                 draggable={false}
-                className="absolute inset-0 w-full h-full pointer-events-none select-none border border-zinc-200 dark:border-zinc-700/80"
+                className={`absolute inset-0 w-full h-full pointer-events-none select-none ${
+                  st.cutLineType === "contour" || st.cutLineType === "contour_inside"
+                    ? ""
+                    : "border border-zinc-200 dark:border-zinc-700/80 bg-white"
+                }`}
                 style={{
-                  borderRadius: "1.008cqw",
+                  borderRadius: st.cutLineType === "contour" || st.cutLineType === "contour_inside" ? "0" : "1.008cqw",
                   mixBlendMode: "multiply",
                 }}
               />

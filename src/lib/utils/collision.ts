@@ -348,10 +348,164 @@ export function checkStickersCollision(
     (overrideParams1?.cutLineType ?? s1.cutLineType) === "none" &&
     s2.cutLineType === "none"
   ) ? 0.0 : 1.0;
-  if (checkOverlap(c1, c2, cutLinePadding)) {
-    return true;
+  
+  // Fast path: if AABBs don't overlap, the polygons definitely don't
+  if (!checkOverlap(c1, c2, cutLinePadding)) {
+    return false;
   }
 
+  // Precise polygon collision check
+  const polys1 = getAbsolutePolygons(s1, overrideParams1);
+  const polys2 = getAbsolutePolygons(s2);
+  
+  return checkPolygonsDistance(polys1, polys2, cutLinePadding);
+}
+
+// --- Precise Collision Helpers ---
+
+export function getAbsolutePolygons(
+  st: {
+    x: number;
+    y: number;
+    widthCm: number;
+    heightCm: number;
+    rotation?: number;
+    cutLineType: string;
+    contourPolygons?: { x: number; y: number }[][];
+  },
+  overrideParams?: any
+): Point[][] {
+  const x = overrideParams?.x !== undefined ? overrideParams.x : st.x;
+  const y = overrideParams?.y !== undefined ? overrideParams.y : st.y;
+  const widthCm = overrideParams?.widthCm !== undefined ? overrideParams.widthCm : st.widthCm;
+  const heightCm = overrideParams?.heightCm !== undefined ? overrideParams.heightCm : st.heightCm;
+  const rotation = overrideParams?.rotation !== undefined ? overrideParams.rotation : (st.rotation || 0);
+  const cutLineType = overrideParams?.cutLineType !== undefined ? overrideParams.cutLineType : st.cutLineType;
+  const contourPolygons = overrideParams?.contourPolygons !== undefined ? overrideParams.contourPolygons : st.contourPolygons;
+
+  const wMm = widthCm * 10;
+  const hMm = heightCm * 10;
+  const rad = (rotation * Math.PI) / 180;
+  const cos = Math.cos(rad);
+  const sin = Math.sin(rad);
+  const cx = wMm / 2;
+  const cy = hMm / 2;
+
+  if ((cutLineType === "contour" || cutLineType === "contour_inside") && contourPolygons && contourPolygons.length > 0) {
+    return contourPolygons.map(poly => {
+      return poly.map(p => {
+        const px = p.x * wMm;
+        const py = p.y * hMm;
+        const rx = px - cx;
+        const ry = py - cy;
+        const rotX = rx * cos - ry * sin;
+        const rotY = rx * sin + ry * cos;
+        return { x: x + rotX, y: y + rotY };
+      });
+    });
+  }
+
+  // Fallback for non-contour: generate rotated rectangle polygon
+  let cutW = wMm;
+  let cutH = hMm;
+  if (
+    cutLineType === "rounded" ||
+    cutLineType === "circle" ||
+    cutLineType === "rounded_inside" ||
+    cutLineType === "circle_inside"
+  ) {
+    const offsetMm = (cutLineType === "rounded_inside" || cutLineType === "circle_inside") ? -2 : 2;
+    cutW = wMm + 2 * offsetMm;
+    cutH = hMm + 2 * offsetMm;
+  }
+  
+  const rectCx = cutW / 2;
+  const rectCy = cutH / 2;
+  const corners = [
+    { x: -rectCx, y: -rectCy },
+    { x: rectCx, y: -rectCy },
+    { x: rectCx, y: rectCy },
+    { x: -rectCx, y: rectCy }
+  ];
+  
+  const poly = corners.map(c => {
+    const rx = c.x;
+    const ry = c.y;
+    const rotX = rx * cos - ry * sin;
+    const rotY = rx * sin + ry * cos;
+    return { x: x + rotX, y: y + rotY };
+  });
+
+  return [poly];
+}
+
+export function distSquared(v: Point, w: Point): number {
+  return (v.x - w.x) ** 2 + (v.y - w.y) ** 2;
+}
+
+export function distToSegmentSquared(p: Point, v: Point, w: Point): number {
+  const l2 = distSquared(v, w);
+  if (l2 === 0) return distSquared(p, v);
+  let t = ((p.x - v.x) * (w.x - v.x) + (p.y - v.y) * (w.y - v.y)) / l2;
+  t = Math.max(0, Math.min(1, t));
+  return distSquared(p, { x: v.x + t * (w.x - v.x), y: v.y + t * (w.y - v.y) });
+}
+
+export function ccw(A: Point, B: Point, C: Point): boolean {
+  return (C.y - A.y) * (B.x - A.x) > (B.y - A.y) * (C.x - A.x);
+}
+
+export function segmentsIntersect(A: Point, B: Point, C: Point, D: Point): boolean {
+  return ccw(A, C, D) !== ccw(B, C, D) && ccw(A, B, C) !== ccw(A, B, D);
+}
+
+export function pointInPolygon(point: Point, vs: Point[]): boolean {
+  let x = point.x, y = point.y;
+  let inside = false;
+  for (let i = 0, j = vs.length - 1; i < vs.length; j = i++) {
+    let xi = vs[i].x, yi = vs[i].y;
+    let xj = vs[j].x, yj = vs[j].y;
+    let intersect = ((yi > y) !== (yj > y))
+        && (x < (xj - xi) * (y - yi) / (yj - yi) + xi);
+    if (intersect) inside = !inside;
+  }
+  return inside;
+}
+
+export function polygonsIntersectOrClose(poly1: Point[], poly2: Point[], minPadding: number): boolean {
+  let minDistSq = Infinity;
+  for (let i = 0; i < poly1.length; i++) {
+    const v = poly1[i];
+    const w = poly1[(i + 1) % poly1.length];
+    for (let j = 0; j < poly2.length; j++) {
+      const p = poly2[j];
+      const p2 = poly2[(j + 1) % poly2.length];
+      
+      if (segmentsIntersect(v, w, p, p2)) return true;
+
+      const d1 = distToSegmentSquared(p, v, w);
+      if (d1 < minDistSq) minDistSq = d1;
+      const d2 = distToSegmentSquared(v, p, p2);
+      if (d2 < minDistSq) minDistSq = d2;
+    }
+  }
+  
+  if (minDistSq < minPadding * minPadding) return true;
+
+  if (poly1.length > 0 && pointInPolygon(poly1[0], poly2)) return true;
+  if (poly2.length > 0 && pointInPolygon(poly2[0], poly1)) return true;
+
+  return false;
+}
+
+export function checkPolygonsDistance(polys1: Point[][], polys2: Point[][], minPadding: number): boolean {
+  for (const poly1 of polys1) {
+    for (const poly2 of polys2) {
+      if (polygonsIntersectOrClose(poly1, poly2, minPadding)) {
+        return true;
+      }
+    }
+  }
   return false;
 }
 

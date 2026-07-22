@@ -19,6 +19,10 @@ export interface BlogPost {
   tags?: string[];
   readingTime?: string;
   faq?: FAQItem[];
+  /** Artykuł filarowy (cornerstone) — przypinany na stronie głównej zamiast doboru chronologicznego. */
+  pillar?: boolean;
+  /** Kolejność wyświetlania filarów (rosnąco). Bez wartości = po dacie. */
+  pillarOrder?: number;
 }
 
 const postsDirectory = path.join(process.cwd(), "src/content/blog");
@@ -73,6 +77,8 @@ export async function getBlogPosts(): Promise<BlogPost[]> {
               tags: data.tags || [],
               readingTime,
               faq: faq.length > 0 ? faq : undefined,
+              pillar: data.pillar === true,
+              pillarOrder: typeof data.pillarOrder === "number" ? data.pillarOrder : undefined,
             };
         })
     );
@@ -128,9 +134,37 @@ export async function getBlogPostBySlug(slug: string): Promise<BlogPost | null> 
       tags: data.tags || [],
       readingTime,
       faq: faq.length > 0 ? faq : undefined,
+      pillar: data.pillar === true,
+      pillarOrder: typeof data.pillarOrder === "number" ? data.pillarOrder : undefined,
     };
   } catch (error) {
     console.error(`Error reading blog post ${slug}:`, error);
     return null;
   }
+}
+
+/**
+ * Wpisy na stronę główną: najpierw przypięte artykuły filarowe (wg pillarOrder,
+ * potem daty), a gdy jest ich mniej niż `limit` — dobiera najnowszymi wpisami.
+ * Dzięki temu sekcja jest zawsze pełna, a filary pozostają na stałe wyróżnione.
+ */
+export async function getFeaturedPosts(limit = 6): Promise<BlogPost[]> {
+  const posts = await getBlogPosts();
+
+  const pillars = posts
+    .filter((post) => post.pillar)
+    .sort((a, b) => {
+      const ao = a.pillarOrder ?? Number.MAX_SAFE_INTEGER;
+      const bo = b.pillarOrder ?? Number.MAX_SAFE_INTEGER;
+      if (ao !== bo) return ao - bo;
+      return new Date(b.date).getTime() - new Date(a.date).getTime();
+    });
+
+  if (pillars.length >= limit) return pillars.slice(0, limit);
+
+  // Dobierz najnowszymi wpisami spoza filarów (posts jest już posortowane malejąco po dacie).
+  const pillarSlugs = new Set(pillars.map((post) => post.slug));
+  const backfill = posts.filter((post) => !pillarSlugs.has(post.slug));
+
+  return [...pillars, ...backfill].slice(0, limit);
 }

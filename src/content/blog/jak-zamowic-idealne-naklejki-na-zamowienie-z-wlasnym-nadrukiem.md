@@ -5,6 +5,8 @@ description: "Wydrukuj naklejki na zamówienie z własnym nadrukiem bez minimaln
 image: "/blog/jak-zamowic-idealne-naklejki-na-zamowienie-z-wlasnym-nadrukiem/naklejki-na-zamowienie-z-wlasnym-nadrukiem.jpg"
 imageAlt: "Kwadratowe naklejki na zamówienie z własnym nadrukiem - gotowy arkusz A4 z wlepkami z logo firmy wydrukowanymi na trwałej folii winylowej w MałeNaklejki."
 tags: ["naklejki", "poradnik", "ecommerce", "branding"]
+pillar: true
+pillarOrder: 1
 slug: "jak-zamowic-idealne-naklejki-na-zamowienie-z-wlasnym-nadrukiem"
 ---
 

@@ -6,6 +6,8 @@ description: "Zamień ulubione zdjęcie lub rysunek w trwałą naklejkę ze zdj�
 image: "/blog/naklejka-ze-zdjecia-jak-przeniesc-wspomnienia-na-naklejke/naklejka-ze-zdjecia-personalizowana-wlepka-die-cut-na-folii.jpg"
 imageAlt: "Personalizowana naklejka ze zdjęcia wycięta po obrysie - trwała wlepka die-cut na folii winylowej z portretem, zamówiona przez kreator MałeNaklejki."
 tags: ["naklejki", "zdjęcia", "personalizacja", "poradnik"]
+pillar: true
+pillarOrder: 4
 cta_text: "Zrób naklejkę ze zdjęcia"
 ---
 

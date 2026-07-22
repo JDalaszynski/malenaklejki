@@ -1,6 +1,7 @@
 "use client";
 
-import { Reveal, SectionHeading, HighlightWord, displayFont } from "./primitives";
+import Link from "next/link";
+import { Reveal, SectionHeading, HighlightWord, displayFont, inlineLink } from "./primitives";
 
 export function SeoContentSection() {
   return (
@@ -22,14 +23,14 @@ export function SeoContentSection() {
             <section className="space-y-3">
               <h3 className={`text-xl font-extrabold text-foreground ${displayFont}`}>Czym jest cięcie po obrysie (die-cut)?</h3>
               <p>
-                Cięcie po obrysie (tzw. die-cut) to zaawansowana technika produkcji, w której ploter precyzyjnie wycina naklejkę wzdłuż kształtu Twojej grafiki, całkowicie ignorując przezroczyste tło. Dzięki temu Twoje <strong>wlepki z logo</strong>, grafiki czy zdjęcia przybierają unikalny kształt, a nie standardowego kwadratu. Otrzymujesz <strong>własne naklejki</strong>, które wyglądają w 100% profesjonalnie. Nasz inteligentny kreator online samodzielnie wygeneruje ścieżkę cięcia, pozwalając na zamówienie <strong>naklejek o dowolnym kształcie</strong> bez znajomości programów graficznych.
+                Cięcie po obrysie (tzw. <Link href="/blog/co-to-jest-die-cut-i-kiss-cut-roznice-w-wyleciach-naklejek-reklamowych" className={inlineLink}>die-cut</Link>) to zaawansowana technika produkcji, w której ploter precyzyjnie wycina naklejkę wzdłuż kształtu Twojej grafiki, całkowicie ignorując przezroczyste tło. Dzięki temu Twoje <strong>wlepki z logo</strong>, grafiki czy zdjęcia przybierają unikalny kształt, a nie standardowego kwadratu. Otrzymujesz <strong>własne naklejki</strong>, które wyglądają w 100% profesjonalnie. Nasz inteligentny kreator online samodzielnie wygeneruje ścieżkę cięcia, pozwalając na zamówienie <strong>naklejek o dowolnym kształcie</strong> bez znajomości programów graficznych.
               </p>
             </section>
 
             <section className="space-y-3">
               <h3 className={`text-xl font-extrabold text-foreground ${displayFont}`}>Najwyższa jakość druku i trwała folia</h3>
               <p>
-                Dlaczego nasze <strong>naklejki dla firm</strong> i osób prywatnych zbierają tak dobre opinie? Używamy wyłącznie grubego, wodoodpornego winylu oraz sprawdzonych technologii druku (rozdzielczość 300 DPI). To gwarantuje nie tylko soczyste kolory i idealne odwzorowanie detali, ale również całkowitą odporność na wodę, promieniowanie UV oraz zadrapania. Naklejki z własnym napisem czy logo przetrwają na laptopie, bidonie, aucie, a nawet w zmywarce.
+                Dlaczego nasze <strong>naklejki dla firm</strong> i osób prywatnych zbierają tak dobre opinie? Używamy wyłącznie grubego, wodoodpornego winylu oraz sprawdzonych technologii druku (rozdzielczość 300 DPI). To gwarantuje nie tylko soczyste kolory i idealne odwzorowanie detali, ale również całkowitą odporność na wodę, promieniowanie UV oraz zadrapania. <Link href="/blog/naklejki-z-wlasnym-napisem-jak-przygotowac-plik-i-zamowic-online" className={inlineLink}>Naklejki z własnym napisem</Link> czy logo przetrwają na laptopie, bidonie, aucie, a nawet w zmywarce.
               </p>
             </section>
           </div>
@@ -40,7 +41,7 @@ export function SeoContentSection() {
             <section className="space-y-3">
               <h3 className={`text-xl font-extrabold text-foreground ${displayFont}`}>Stwórz własne naklejki w 4 prostych krokach</h3>
               <p>
-                Zastanawiasz się, jak zamówić <strong>małe naklejki na zamówienie</strong> bez zatrudniania grafika? <strong>Spersonalizuj naklejkę</strong> samodzielnie – wystarczy jakikolwiek plik, a nawet zwykła <strong>naklejka ze zdjęcia</strong> z telefonu. Nasz darmowy kreator krok po kroku poprowadzi Cię przez proces, dzięki czemu otrzymasz <strong>własne naklejki</strong> o idealnym kształcie i bez przezroczystego tła.
+                Zastanawiasz się, jak zamówić <Link href="/blog/jak-zamowic-idealne-naklejki-na-zamowienie-z-wlasnym-nadrukiem" className={inlineLink}>małe naklejki na zamówienie</Link> bez zatrudniania grafika? <strong>Spersonalizuj naklejkę</strong> samodzielnie – wystarczy jakikolwiek plik, a nawet zwykła <Link href="/blog/naklejka-ze-zdjecia-jak-przeniesc-wspomnienia-na-naklejke" className={inlineLink}>naklejka ze zdjęcia</Link> z telefonu. Nasz darmowy kreator krok po kroku poprowadzi Cię przez proces, dzięki czemu otrzymasz <strong>własne naklejki</strong> o idealnym kształcie i bez przezroczystego tła.
               </p>
               <ol className="list-decimal pl-5 space-y-2 font-medium text-foreground/80">
                 <li>Wgraj grafikę w formacie PNG, JPG lub zrób zdjęcie telefonem.</li>
@@ -53,7 +54,7 @@ export function SeoContentSection() {
             <section className="space-y-3">
               <h3 className={`text-xl font-extrabold text-foreground ${displayFont}`}>Idealne do biznesu i zabawy</h3>
               <p>
-                Nasze rozwiązanie idealnie sprawdza się w biznesie jako <strong>personalizowane naklejki firmowe z logo</strong> do oznaczania paczek (tzw. plomby lub podziękowania za zamówienie), jak i w życiu prywatnym: do ozdabiania zeszytów, oznaczania ubrań do przedszkola czy jako pamiątkowe naklejki ślubne. Nie wymagamy minimalnego nakładu – drukujemy już od 1 arkusza A4. Z nami zrealizujesz <strong>małe naklejki na zamówienie</strong> w niskim nakładzie i profesjonalnej jakości.
+                Nasze rozwiązanie idealnie sprawdza się w biznesie jako <Link href="/blog/naklejka-z-logo-firmy-jak-skutecznie-brandowac-swoje-produkty" className={inlineLink}>personalizowane naklejki firmowe z logo</Link> do oznaczania paczek (tzw. plomby lub podziękowania za zamówienie), jak i w życiu prywatnym: do ozdabiania zeszytów, <Link href="/blog/personalizowane-naklejki-na-zeszyty-i-do-przedszkola" className={inlineLink}>oznaczania ubrań do przedszkola</Link> czy jako <Link href="/blog/personalizowane-naklejki-na-alkohol-wyjatkowy-dodatek-na-wesela-i-imprezy" className={inlineLink}>pamiątkowe naklejki ślubne</Link>. Nie wymagamy minimalnego nakładu – drukujemy już od 1 arkusza A4. Z nami zrealizujesz <strong>małe naklejki na zamówienie</strong> w niskim nakładzie i profesjonalnej jakości.
               </p>
             </section>
           </div>

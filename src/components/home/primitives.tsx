@@ -13,6 +13,13 @@ export const CUT_LINE_PINK = "#ff5ebb";
 /** Klasa nagłówków display — Nunito (--font-sans), zgodnie z resztą strony (pełne wsparcie polskich znaków). */
 export const displayFont = "[font-family:var(--font-sans)]";
 
+/**
+ * Styl kontekstowego linku w treści SEO (hub → spoke).
+ * Prowadzi ze strony głównej do powiązanego artykułu na blogu.
+ */
+export const inlineLink =
+  "font-bold text-primary underline decoration-primary/40 underline-offset-4 transition-colors hover:decoration-primary hover:text-primary/80";
+
 /** Przewija do podglądu arkusza w kreatorze (listener istnieje w page.tsx). */
 export function scrollToCreator() {
   window.dispatchEvent(new Event("scroll-to-sheet"));

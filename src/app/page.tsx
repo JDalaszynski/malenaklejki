@@ -1,4 +1,4 @@
-import { getBlogPosts } from "@/lib/blog";
+import { getFeaturedPosts } from "@/lib/blog";
 import { HomePageClient } from "./HomePageClient";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { TrustBar } from "@/components/home/TrustBar";
@@ -14,8 +14,7 @@ import { LatestBlogPosts } from "@/components/blog/LatestBlogPosts";
 import { SeoContentSection } from "@/components/home/SeoContentSection";
 
 export default async function Home() {
-  const allPosts = await getBlogPosts();
-  const latestPosts = allPosts.slice(0, 6).map(post => ({
+  const featuredPosts = (await getFeaturedPosts(6)).map(post => ({
     slug: post.slug,
     title: post.title,
     description: post.description,
@@ -23,6 +22,7 @@ export default async function Home() {
     readingTime: post.readingTime,
     image: post.image,
     tags: post.tags,
+    pillar: post.pillar,
   }));
 
   return (
@@ -156,7 +156,7 @@ export default async function Home() {
           <FinalCTASection />
         </section>
 
-        <LatestBlogPosts initialPosts={latestPosts} />
+        <LatestBlogPosts initialPosts={featuredPosts} />
       </HomePageClient>
     </>
   );

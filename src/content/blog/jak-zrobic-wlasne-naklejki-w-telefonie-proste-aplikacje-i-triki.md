@@ -6,6 +6,8 @@ description: "Jak zrobić własne naklejki w telefonie? Poznaj proste aplikacje 
 image: "/blog/jak-zrobic-wlasne-naklejki-w-telefonie-proste-aplikacje-i-triki/naklejka-ze-zdjecia-psa-zrobiona-telefonem-na-laptopie.jpg"
 imageAlt: "Naklejka wycięta po obrysie ze zdjęcia psa rasy golden retriever zrobionego telefonem, naklejona na pokrywie laptopa obok smartfona z tym samym zdjęciem w galerii."
 tags: ["naklejki", "smartfon", "DIY", "poradnik"]
+pillar: true
+pillarOrder: 5
 cta_text: "Zrób naklejkę z telefonu"
 ---
 

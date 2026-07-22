@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { motion } from "framer-motion";
 import {
   Reveal,
@@ -8,6 +9,7 @@ import {
   HighlightWord,
   scrollToCreator,
   displayFont,
+  inlineLink,
 } from "./primitives";
 import { Check } from "lucide-react";
 
@@ -150,7 +152,7 @@ export function UseCasesSection() {
           <p className="text-muted-foreground text-sm font-semibold leading-relaxed">
             Wgrywasz własne logo i jednym kliknięciem tworzysz unikalne naklejki z własną grafiką
             oraz informacyjne naklejki z własnym napisem opisujące skład produktu. To idealne i
-            ekonomiczne małe naklejki z własnym nadrukiem na słoiczki, butelki czy opakowania
+            ekonomiczne małe naklejki z własnym nadrukiem <Link href="/blog/naklejki-z-wlasnym-logo-na-sloiki-i-opakowania" className={inlineLink}>na słoiczki, butelki czy opakowania</Link>
             wysyłkowe. Każdy produkt prezentuje się u klienta o wiele lepiej, gdy zdobią go
             precyzyjnie docięte naklejki samoprzylepne na zamówienie. Jeśli w przyszłości rozwiniesz
             ofertę, bez problemu skonfigurujesz w koszyku również większe naklejki na zamówienie z

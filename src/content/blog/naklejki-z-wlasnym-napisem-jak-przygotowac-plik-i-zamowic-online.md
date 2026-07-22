@@ -5,6 +5,8 @@ description: "Naklejki z własnym napisem bez minimalnego nakładu - jak przygot
 image: "/blog/naklejki-z-wlasnym-napisem-jak-przygotowac-plik-i-zamowic-online/naklejki-z-napisami-motywacyjnymi-na-laptopie.jpg"
 imageAlt: "Zestaw kolorowych, wyciętych po obrysie naklejek z własnymi motywującymi napisami takimi jak Believe in Yourself na obudowie laptopa."
 tags: ["naklejki z napisem", "personalizacja", "poradnik", "wesele"]
+pillar: true
+pillarOrder: 6
 slug: "naklejki-z-wlasnym-napisem-jak-przygotowac-plik-i-zamowic-online"
 ---
 

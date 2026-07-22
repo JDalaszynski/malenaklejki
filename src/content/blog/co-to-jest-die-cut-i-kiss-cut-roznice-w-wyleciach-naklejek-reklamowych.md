@@ -6,6 +6,8 @@ description: "Die cut sticker to naklejka wycięta po obrysie grafiki, kiss-cut 
 image: "/blog/co-to-jest-die-cut-i-kiss-cut-roznice-w-wyleciach-naklejek-reklamowych/naklejka-die-cut-pies-corgi-wycieta-po-obrysie.png"
 imageAlt: "Dłoń trzymająca naklejkę die-cut przedstawiającą uśmiechniętego psa rasy corgi, wyciętą dokładnie po obrysie sylwetki, na tle zielonych liści"
 tags: ["die cut", "kiss-cut", "cięcie po obrysie", "naklejki reklamowe"]
+pillar: true
+pillarOrder: 2
 cta_text: "Zamów naklejki die cut"
 ---
 

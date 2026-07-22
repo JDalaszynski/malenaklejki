@@ -5,6 +5,8 @@ description: "Naklejki z logo firmy bez minimalnego nakładu od 49 zł za arkusz
 image: "/blog/naklejka-z-logo-firmy-jak-skutecznie-brandowac-swoje-produkty/naklejki-firmowe-z-logo-na-zamowienie.jpg"
 imageAlt: "Naklejki firmowe z logo na zamówienie - profesjonalne wlepki i etykiety ułatwiające skuteczny branding w e-commerce i mikroprzedsiębiorstwach."
 tags: ["naklejki", "marketing", "poradnik"]
+pillar: true
+pillarOrder: 3
 cta_text: "Zamów naklejki z logo"
 slug: "naklejka-z-logo-firmy-jak-skutecznie-brandowac-swoje-produkty"
 ---
