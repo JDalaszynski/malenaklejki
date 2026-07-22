@@ -11,17 +11,6 @@ Możesz dodawać nowe tematy, zachowując format wcięć pod spodem.
 > **Faza 2 (dopisano 2026-07-18):** kolejka domykała się do jednego tematu, więc przeprowadziłem audyt strategii (patrz `strategy.md`, sekcja 6 "Korekta Kursu - Faza 2") i dopisałem 9 kolejnych tematów zamykających realne luki: brak jakiejkolwiek treści o generatorze AI w kreatorze oraz dwie całkowicie nieobsłużone persony B2B (rzemiosło/serwis i korporacje/eventy). Kolejność poniżej odzwierciedla priorytet.
 
 
-- [ ] **Naklejki na rower i akcesoria sportowe - personalizacja dla pasjonatów**
-    - **Format:** Supporting Article
-    - **Główna Fraza Kluczowa:** `naklejki na rower` / `personalizowane naklejki na rower`
-    - **Cel:** Sprzedaż
-    - **Persona:** Hobbyści, rowerzyści, pasjonaci sportów outdoorowych
-    - **Link nadrzędny (Filar):** `/blog/jak-zamowic-idealne-naklejki-na-zamowienie-z-wlasnym-nadrukiem`
-    - **Prompty do generowania zdjęć:**
-        - "Miejski rower z aluminiową ramą oklejoną kilkoma kolorowymi, wyciętymi po obrysie naklejkami o motywach przyrody i gór, zdjęcie na tle parku, naturalne światło."
-        - "Zbliżenie na kask rowerowy i bidon sportowy oklejone personalizowanymi wlepkami z imieniem i motywem górskim, tło rozmyte, plenerowe ujęcie."
-        - "Rowerzysta w stroju kolarskim opierający rower o ścianę, na ramie i widelcu widoczne świeże, błyszczące naklejki z autorskim wzorem."
-
 - [ ] **Naklejki motoryzacyjne i tuningowe z własnym nadrukiem**
     - **Format:** Supporting Article
     - **Główna Fraza Kluczowa:** `naklejki motoryzacyjne` / `wlepki tuningowe`
@@ -69,6 +58,14 @@ Możesz dodawać nowe tematy, zachowując format wcięć pod spodem.
 ---
 
 ## 📈 Zrealizowane Artykuły
+
+- [x] **Naklejki na rower i akcesoria sportowe - personalizacja dla pasjonatów** (opublikowano 2026-07-22)
+    - **Format:** Supporting Article
+    - **Główna Fraza Kluczowa:** `naklejki na rower` / `personalizowane naklejki na rower`
+    - **Cel:** Sprzedaż
+    - **Persona:** Hobbyści, rowerzyści, pasjonaci sportów outdoorowych
+    - **Link nadrzędny (Filar):** `/blog/jak-zamowic-idealne-naklejki-na-zamowienie-z-wlasnym-nadrukiem`
+    - **Uwaga:** opublikowano bez zdjęć na wyraźne polecenie użytkownika ("nie generuj zdjęć"); folder `public/blog/naklejki-na-rower-i-akcesoria-sportowe-dla-pasjonatow/` czeka na wgranie grafik. Piny Pinterest do wygenerowania po dodaniu zdjęć. Artykuł ~1100 słów.
 
 - [x] **Naklejki i gadżety na eventy firmowe - Welcome Pack dla nowych pracowników** (opublikowano 2026-07-21)
     - **Format:** Supporting Article
