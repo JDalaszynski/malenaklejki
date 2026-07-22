@@ -43,7 +43,7 @@ import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { storage } from "@/lib/firebase/client";
 import { useRouter } from "next/navigation";
 import {
-  UploadCloud,
+  UploadCloud, ImagePlus,
   Plus,
   Minus,
   ShoppingCart,
@@ -1929,7 +1929,7 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
                           e.target.value = "";
                         }}
                       />
-                      <UploadCloud className="w-8 h-8 text-muted-foreground group-hover:text-primary mb-2 opacity-75" />
+                      <ImagePlus className="w-8 h-8 text-muted-foreground group-hover:text-primary mb-2 opacity-75" />
                       <span className="text-sm font-bold text-foreground text-center">Dodaj Naklejkę</span>
                       <span className="text-[10px] font-semibold text-muted-foreground mt-0.5 text-center">Zdjęcie JPG / PNG</span>
                     </label>
@@ -2358,7 +2358,7 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
                       }}
                     />
                     <div className="flex flex-col items-center justify-center bg-background/95 backdrop-blur-sm border-2 border-primary/30 py-8 px-10 rounded-[2rem] shadow-xl animate-bounce">
-                      <UploadCloud className="w-10 h-10 text-primary mb-3" />
+                      <ImagePlus className="w-10 h-10 text-primary mb-3" />
                       <span className="text-base font-black text-foreground">Dodaj naklejkę</span>
                       <span className="text-xs font-semibold text-muted-foreground mt-1">Wgraj zdjęcie z galerii</span>
                     </div>
@@ -2497,22 +2497,22 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
                     <div className="grid grid-cols-3 gap-2">
                       <label className="w-full flex flex-col items-center justify-center gap-1 py-2 px-1 rounded-3xl bg-primary hover:bg-primary/90 border border-primary/20 transition-all active:scale-[0.98] cursor-pointer shadow-sm">
                         <input type="file" accept="image/*" className="hidden" onChange={(e) => { const file = e.target.files?.[0]; if (file) handleMobileFileUpload(file); e.target.value = ""; }} />
-                        <UploadCloud className="w-5 h-5 text-white" />
-                        <span className="text-[10px] font-extrabold text-white leading-tight">Dodaj z pliku</span>
+                        <ImagePlus className="w-5 h-5 text-white" />
+                        <span className="text-[10px] font-extrabold text-white leading-tight">Dodaj z grafiki/zdjęcia</span>
                       </label>
                       <button
-                        onClick={triggerPasteFromClipboard}
-                        className="w-full flex flex-col items-center justify-center gap-1 py-2 px-1 rounded-3xl bg-primary hover:bg-primary/90 border border-primary/20 transition-all active:scale-[0.98] cursor-pointer shadow-sm text-white"
+                        onClick={() => setShowPasteModal(true)}
+                        className="w-full flex flex-col items-center justify-center gap-1 py-2 px-1 rounded-3xl bg-primary/10 hover:bg-primary border border-primary text-primary hover:text-primary-foreground transition-all active:scale-[0.98] cursor-pointer shadow-sm group"
                       >
-                        <SmilePlus className="w-5 h-5 text-white" />
-                        <span className="text-[10px] font-extrabold text-white text-center leading-tight">Z klawiatury<br />(Naklejki i Emoji)</span>
+                        <SmilePlus className="w-5 h-5 text-primary group-hover:text-primary-foreground" />
+                        <span className="text-[10px] font-extrabold text-primary group-hover:text-primary-foreground text-center leading-tight">Z klawiatury<br />(Naklejki i Emoji)</span>
                       </button>
                       <button
                         onClick={() => setIsAIGeneratorOpen(true)}
-                        className="w-full flex flex-col items-center justify-center gap-1 py-2 px-1 rounded-3xl bg-primary hover:bg-primary/90 border border-primary/20 transition-all active:scale-[0.98] cursor-pointer shadow-sm text-white"
+                        className="w-full flex flex-col items-center justify-center gap-1 py-2 px-1 rounded-3xl bg-primary/10 hover:bg-primary border border-primary text-primary hover:text-primary-foreground transition-all active:scale-[0.98] cursor-pointer shadow-sm group"
                       >
-                        <Wand2 className="w-5 h-5 text-white" />
-                        <span className="text-[10px] font-extrabold text-white text-center leading-tight">Stwórz w AI</span>
+                        <Wand2 className="w-5 h-5 text-primary group-hover:text-primary-foreground" />
+                        <span className="text-[10px] font-extrabold text-primary group-hover:text-primary-foreground text-center leading-tight">Wygeneruj z opisu</span>
                       </button>
                     </div>
                   </div>
@@ -2574,13 +2574,12 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
                       </button>
                       <button
                         onClick={() => setMobileActiveTab("cutline")}
-                        className={`relative flex-1 py-1.5 flex flex-col items-center gap-0.5 text-[10px] font-bold rounded-xl transition-all cursor-pointer ${
-                          mobileActiveTab === "cutline" 
-                            ? "text-[#004749] dark:text-white" 
-                            : selectedSticker.cutLineType === "none" 
-                              ? "text-destructive animate-pulse scale-[1.05]" 
-                              : "text-muted-foreground/80 hover:text-foreground"
-                        }`}
+                        className={`relative flex-1 py-1.5 flex flex-col items-center gap-0.5 text-[10px] font-bold rounded-xl transition-all cursor-pointer ${mobileActiveTab === "cutline"
+                          ? "text-[#004749] dark:text-white"
+                          : selectedSticker.cutLineType === "none"
+                            ? "text-destructive animate-pulse scale-[1.05]"
+                            : "text-muted-foreground/80 hover:text-foreground"
+                          }`}
                       >
                         {mobileActiveTab === "cutline" && (
                           <motion.div
@@ -2968,17 +2967,17 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
                         const inputEvent = e.nativeEvent as InputEvent;
                         let fileFound = false;
                         if (inputEvent.dataTransfer && inputEvent.dataTransfer.files.length > 0) {
-                           for (let i = 0; i < inputEvent.dataTransfer.files.length; i++) {
-                             const file = inputEvent.dataTransfer.files[i];
-                             if (file.type.startsWith("image/")) {
-                               setShowPasteModal(false);
-                               handleMobileFileUpload(file, true);
-                               fileFound = true;
-                               break;
-                             }
-                           }
+                          for (let i = 0; i < inputEvent.dataTransfer.files.length; i++) {
+                            const file = inputEvent.dataTransfer.files[i];
+                            if (file.type.startsWith("image/")) {
+                              setShowPasteModal(false);
+                              handleMobileFileUpload(file, true);
+                              fileFound = true;
+                              break;
+                            }
+                          }
                         }
-                        
+
                         if (!fileFound) {
                           const text = target.innerText.trim();
                           if (text && text.length <= 8) {
