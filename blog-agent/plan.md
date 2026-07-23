@@ -11,17 +11,6 @@ Możesz dodawać nowe tematy, zachowując format wcięć pod spodem.
 > **Faza 2 (dopisano 2026-07-18):** kolejka domykała się do jednego tematu, więc przeprowadziłem audyt strategii (patrz `strategy.md`, sekcja 6 "Korekta Kursu - Faza 2") i dopisałem 9 kolejnych tematów zamykających realne luki: brak jakiejkolwiek treści o generatorze AI w kreatorze oraz dwie całkowicie nieobsłużone persony B2B (rzemiosło/serwis i korporacje/eventy). Kolejność poniżej odzwierciedla priorytet.
 
 
-- [ ] **Naklejki motoryzacyjne i tuningowe z własnym nadrukiem**
-    - **Format:** Supporting Article
-    - **Główna Fraza Kluczowa:** `naklejki motoryzacyjne` / `wlepki tuningowe`
-    - **Cel:** Sprzedaż
-    - **Persona:** Hobbyści, fani motoryzacji i tuningu, motocykliści
-    - **Link nadrzędny (Filar):** `/blog/jak-zamowic-idealne-naklejki-na-zamowienie-z-wlasnym-nadrukiem`
-    - **Prompty do generowania zdjęć:**
-        - "Zbliżenie na czarny zderzak samochodu sportowego oklejony rzędem kolorowych, wyciętych po obrysie naklejek tuningowych i logotypów zespołów wyścigowych."
-        - "Motocyklista w garażu nakładający dużą naklejkę z płomieniami na bak motocykla typu cafe racer, ciepłe światło warsztatowe, narzędzia w tle."
-        - "Deska rozdzielcza samochodu z małą, personalizowaną naklejką na szybie oraz kluczykami leżącymi obok, ostre, kontrastowe światło."
-
 - [ ] **Naklejki z imionami na meble, drzwi i pojemniki - organizacja domu**
     - **Format:** Supporting Article
     - **Główna Fraza Kluczowa:** `małe naklejki na meble` / `małe naklejki na drzwi` / `małe naklejki z imionami`
@@ -58,6 +47,18 @@ Możesz dodawać nowe tematy, zachowując format wcięć pod spodem.
 ---
 
 ## 📈 Zrealizowane Artykuły
+
+- [x] **Naklejki motoryzacyjne i tuningowe z własnym nadrukiem** (opublikowano 2026-07-23)
+    - **Format:** Supporting Article
+    - **Główna Fraza Kluczowa:** `naklejki motoryzacyjne` / `wlepki tuningowe`
+    - **Cel:** Sprzedaż
+    - **Persona:** Hobbyści, fani motoryzacji i tuningu, motocykliści
+    - **Link nadrzędny (Filar):** `/blog/jak-zamowic-idealne-naklejki-na-zamowienie-z-wlasnym-nadrukiem`
+    - **Prompty do generowania zdjęć (niewykorzystane - publikacja bez zdjęć):**
+        - "Zbliżenie na czarny zderzak samochodu sportowego oklejony rzędem kolorowych, wyciętych po obrysie naklejek tuningowych i logotypów zespołów wyścigowych."
+        - "Motocyklista w garażu nakładający dużą naklejkę z płomieniami na bak motocykla typu cafe racer, ciepłe światło warsztatowe, narzędzia w tle."
+        - "Deska rozdzielcza samochodu z małą, personalizowaną naklejką na szybie oraz kluczykami leżącymi obok, ostre, kontrastowe światło."
+    - **Uwaga:** artykuł ~1300 słów. Opublikowany bez zdjęć na wyraźne polecenie użytkownika - folder `public/blog/naklejki-motoryzacyjne-i-tuningowe-z-wlasnym-nadrukiem/` czeka na wgranie grafik (potem: `node add_logo_bar.mjs` + generowanie pinów Pinterest). Zawiera sekcję o przepisach dot. naklejek na szybach i o lustrzanym odbiciu pliku przy naklejaniu od wewnątrz.
 
 - [x] **Naklejki na rower i akcesoria sportowe - personalizacja dla pasjonatów** (opublikowano 2026-07-22)
     - **Format:** Supporting Article
