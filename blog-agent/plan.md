@@ -58,7 +58,8 @@ Możesz dodawać nowe tematy, zachowując format wcięć pod spodem.
         - "Zbliżenie na czarny zderzak samochodu sportowego oklejony rzędem kolorowych, wyciętych po obrysie naklejek tuningowych i logotypów zespołów wyścigowych."
         - "Motocyklista w garażu nakładający dużą naklejkę z płomieniami na bak motocykla typu cafe racer, ciepłe światło warsztatowe, narzędzia w tle."
         - "Deska rozdzielcza samochodu z małą, personalizowaną naklejką na szybie oraz kluczykami leżącymi obok, ostre, kontrastowe światło."
-    - **Uwaga:** artykuł ~1300 słów. Opublikowany bez zdjęć na wyraźne polecenie użytkownika - folder `public/blog/naklejki-motoryzacyjne-i-tuningowe-z-wlasnym-nadrukiem/` czeka na wgranie grafik (potem: `node add_logo_bar.mjs` + generowanie pinów Pinterest). Zawiera sekcję o przepisach dot. naklejek na szybach i o lustrzanym odbiciu pliku przy naklejaniu od wewnątrz.
+    - **Uwaga:** artykuł ~1300 słów. Początkowo opublikowany bez zdjęć ("nie generuj zdjęć"); po wgraniu 6 grafik przez użytkownika nazwano je zgodnie z konwencją SEO, dodano pasek z logo (`add_logo_bar.mjs`), osadzono w treści z altami i ustawiono okładkę, a następnie wygenerowano 6 pinów Pinterest w `public/pinterest/naklejki-motoryzacyjne-i-tuningowe-z-wlasnym-nadrukiem/`. Zawiera sekcję o przepisach dot. naklejek na szybach i o lustrzanym odbiciu pliku przy naklejaniu od wewnątrz.
+    - **Do sprawdzenia przez właściciela:** okładka (zderzak) oraz zdjęcie z numerem startowym pokazują logotypy realnych marek motoryzacyjnych (HKS, GReddy, Yokohama, Mugen, Sparco, Brembo, Motul, Ferodo, Bilstein). Grafiki są ilustracją zastosowania, ale na stronie sprzedającej druk naklejek mogą sugerować, że drukujemy cudze znaki towarowe - warto rozważyć podmianę na wzory własne.
 
 - [x] **Naklejki na rower i akcesoria sportowe - personalizacja dla pasjonatów** (opublikowano 2026-07-22)
     - **Format:** Supporting Article
