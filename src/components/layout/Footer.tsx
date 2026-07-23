@@ -202,7 +202,7 @@ export function Footer({ children }: FooterProps = {}) {
 
           {/* Copyright */}
           <p className="text-xs text-muted-foreground/80 font-medium">
-            &copy; {new Date().getFullYear()} MałeNaklejki. Wszelkie prawa zastrzeżone.
+            &copy; {new Date().getFullYear()} <a href="https://www.jdalaszynski.pl/" target="_blank" rel="noopener noreferrer" className="hover:underline transition-colors">Jakub Dalaszyński</a>. Wszelkie prawa zastrzeżone.
           </p>
         </div>
       </div>

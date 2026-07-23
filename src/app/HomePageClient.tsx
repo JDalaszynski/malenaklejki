@@ -120,6 +120,7 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
   const [showPasteModal, setShowPasteModal] = useState(false);
   const [isCalculatingContour, setIsCalculatingContour] = useState<string | null>(null);
   const [isPasteFocused, setIsPasteFocused] = useState(false);
+  const [isFillingSheet, setIsFillingSheet] = useState(false);
 
   // Mount state for hydration check
   const [mounted, setMounted] = useState(false);
@@ -556,39 +557,44 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
   const handleFillSheet = () => {
     if (!selectedSticker) return;
 
-    let currentStickers = [...stickers];
-    const wMm = selectedSticker.widthCm * 10;
-    const hMm = selectedSticker.heightCm * 10;
-    let added = 0;
+    setIsFillingSheet(true);
 
-    while (true) {
-      const pos = findFreePosition(
-        wMm,
-        hMm,
-        selectedSticker.rotation || 0,
-        currentStickers,
-        selectedSticker.cutLineType,
-        selectedSticker.contourPolygons
-      );
-      if (!pos) break;
+    setTimeout(() => {
+      let currentStickers = [...stickers];
+      const wMm = selectedSticker.widthCm * 10;
+      const hMm = selectedSticker.heightCm * 10;
+      let added = 0;
 
-      const newSticker: PlacedSticker = {
-        ...selectedSticker,
-        id: getUUID(),
-        x: pos.x,
-        y: pos.y,
-      };
-      currentStickers.push(newSticker);
-      added++;
+      while (true) {
+        const pos = findFreePosition(
+          wMm,
+          hMm,
+          selectedSticker.rotation || 0,
+          currentStickers,
+          selectedSticker.cutLineType,
+          selectedSticker.contourPolygons
+        );
+        if (!pos) break;
 
-      if (currentStickers.length > 300) break;
-    }
+        const newSticker: PlacedSticker = {
+          ...selectedSticker,
+          id: getUUID(),
+          x: pos.x,
+          y: pos.y,
+        };
+        currentStickers.push(newSticker);
+        added++;
 
-    if (added > 0) {
-      setStickers(currentStickers);
-    } else {
-      setError("Brak miejsca na arkuszu na więcej naklejek.");
-    }
+        if (currentStickers.length > 300) break;
+      }
+
+      if (added > 0) {
+        setStickers(currentStickers);
+      } else {
+        setError("Brak miejsca na arkuszu na więcej naklejek.");
+      }
+      setIsFillingSheet(false);
+    }, 100);
   };
 
   // Open edit modal for selected sticker
@@ -2030,11 +2036,12 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
                       <button
                         type="button"
                         onClick={handleFillSheet}
-                        className="flex-1 inline-flex items-center justify-center gap-1 px-2 py-1.5 text-[11px] font-bold bg-muted hover:bg-muted/80 dark:bg-white/10 dark:hover:bg-white/20 text-foreground border border-border/40 rounded-xl transition-all active:scale-95 cursor-pointer"
+                        disabled={isFillingSheet}
+                        className={`flex-1 inline-flex items-center justify-center gap-1 px-2 py-1.5 text-[11px] font-bold bg-muted hover:bg-muted/80 dark:bg-white/10 dark:hover:bg-white/20 text-foreground border border-border/40 rounded-xl transition-all active:scale-95 cursor-pointer ${isFillingSheet ? "opacity-70 pointer-events-none" : ""}`}
                         title="Wypełnij arkusz"
                       >
-                        <LayoutGrid className="w-3.5 h-3.5" />
-                        <span>Wypełnij</span>
+                        {isFillingSheet ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <LayoutGrid className="w-3.5 h-3.5" />}
+                        <span>{isFillingSheet ? "Wypełnianie..." : "Wypełnij"}</span>
                       </button>
                       <button
                         type="button"
@@ -2340,6 +2347,7 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
                     isPresentationMode={false}
                     overlappingStickerIds={overlappingStickerIds}
                     deliveryForm={deliveryForm}
+                    isFillingSheet={isFillingSheet}
                   />
                 ) : (
                   <A4Visualizer3D stickers={stickers} deliveryForm={deliveryForm} />
@@ -2671,9 +2679,9 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
                             <Copy className="w-4.5 h-4.5" />
                             <span>Zduplikuj</span>
                           </button>
-                          <button type="button" onClick={handleFillSheet} className="flex-1 inline-flex flex-col items-center justify-center gap-1.5 px-1 py-2.5 text-[10px] font-bold bg-muted hover:bg-muted/80 text-foreground border border-border/40 rounded-2xl transition-all active:scale-95">
-                            <LayoutGrid className="w-4.5 h-4.5" />
-                            <span>Wypełnij Arkusz</span>
+                          <button type="button" onClick={handleFillSheet} disabled={isFillingSheet} className={`flex-1 inline-flex flex-col items-center justify-center gap-1.5 px-1 py-2.5 text-[10px] font-bold bg-muted hover:bg-muted/80 text-foreground border border-border/40 rounded-2xl transition-all active:scale-95 ${isFillingSheet ? "opacity-70 pointer-events-none" : ""}`}>
+                            {isFillingSheet ? <Loader2 className="w-4.5 h-4.5 animate-spin" /> : <LayoutGrid className="w-4.5 h-4.5" />}
+                            <span>{isFillingSheet ? "Wypełnianie..." : "Wypełnij Arkusz"}</span>
                           </button>
                           <button type="button" onClick={handleDeleteSticker} className="flex-1 inline-flex flex-col items-center justify-center gap-1.5 px-1 py-2.5 text-[10px] font-bold bg-destructive/10 text-destructive border border-destructive/20 rounded-2xl transition-all active:scale-95">
                             <Trash2 className="w-4.5 h-4.5" />

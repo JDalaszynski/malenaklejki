@@ -4,7 +4,7 @@ import React, { useRef, useState, useEffect } from "react";
 import { createPortal } from "react-dom";
 import { PlacedSticker } from "@/types/creator";
 import { checkOverlap, getRotatedSize, getCutLineMargins, getOuterMargins, getCutLineBoundingBox, checkStickersCollision, clampToUsableArea, getContourMargins, getDisplayedWidthCm } from "@/lib/utils/collision";
-import { MoreVertical, Scissors, RotateCw, Crop, Copy, Trash2, Ban, Sparkles, Square, Circle, LayoutGrid } from "lucide-react";
+import { MoreVertical, Scissors, RotateCw, Crop, Copy, Trash2, Ban, Sparkles, Square, Circle, LayoutGrid, Loader2 } from "lucide-react";
 
 interface NewA4VisualizerProps {
   stickers: PlacedSticker[];
@@ -21,6 +21,7 @@ interface NewA4VisualizerProps {
   isPresentationMode?: boolean;
   overlappingStickerIds?: string[];
   deliveryForm?: "sheet" | "individual";
+  isFillingSheet?: boolean;
 }
 
 export function NewA4Visualizer({
@@ -38,6 +39,7 @@ export function NewA4Visualizer({
   isPresentationMode,
   overlappingStickerIds = [],
   deliveryForm = "sheet",
+  isFillingSheet = false,
 }: NewA4VisualizerProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const resizeContourTimerRef = useRef<NodeJS.Timeout | null>(null);
@@ -675,6 +677,13 @@ export function NewA4Visualizer({
         </div>
       )}
 
+      {/* Loading Overlay */}
+      {isFillingSheet && (
+        <div className="absolute inset-0 z-50 flex flex-col items-center justify-center bg-background/60 backdrop-blur-[2px] rounded-lg animate-in fade-in duration-200">
+          <Loader2 className="w-10 h-10 text-primary animate-spin mb-3" />
+          <span className="text-[13px] font-black text-foreground uppercase tracking-wider drop-shadow-md">Wypełnianie arkusza...</span>
+        </div>
+      )}
 
       {/* Render Stickers */}
       {displayStickers.map((st) => {
@@ -803,10 +812,11 @@ export function NewA4Visualizer({
                           setShowQuickMenu(false);
                           onFillSheet?.();
                         }}
-                        className="flex items-center gap-2 w-full text-left px-3 py-1.5 text-xs font-bold hover:bg-muted text-foreground transition-colors whitespace-nowrap"
+                        disabled={isFillingSheet}
+                        className={`flex items-center gap-2 w-full text-left px-3 py-1.5 text-xs font-bold hover:bg-muted text-foreground transition-colors whitespace-nowrap ${isFillingSheet ? "opacity-70 pointer-events-none" : ""}`}
                       >
-                        <LayoutGrid className="w-3.5 h-3.5 text-muted-foreground" />
-                        <span>Wypełnij arkusz</span>
+                        {isFillingSheet ? <Loader2 className="w-3.5 h-3.5 text-muted-foreground animate-spin" /> : <LayoutGrid className="w-3.5 h-3.5 text-muted-foreground" />}
+                        <span>{isFillingSheet ? "Wypełnianie..." : "Wypełnij arkusz"}</span>
                       </button>
                       <button
                         type="button"
@@ -1019,10 +1029,11 @@ export function NewA4Visualizer({
                     setShowQuickMenu(false);
                     onFillSheet?.();
                   }}
-                  className="w-full py-3.5 px-4 bg-muted hover:bg-muted/80 rounded-2xl text-sm font-extrabold text-foreground transition-all flex items-center gap-3"
+                  disabled={isFillingSheet}
+                  className={`w-full py-3.5 px-4 bg-muted hover:bg-muted/80 rounded-2xl text-sm font-extrabold text-foreground transition-all flex items-center gap-3 ${isFillingSheet ? "opacity-70 pointer-events-none" : ""}`}
                 >
-                  <LayoutGrid className="w-5 h-5 text-muted-foreground" />
-                  <span>Wypełnij arkusz</span>
+                  {isFillingSheet ? <Loader2 className="w-5 h-5 text-muted-foreground animate-spin" /> : <LayoutGrid className="w-5 h-5 text-muted-foreground" />}
+                  <span>{isFillingSheet ? "Wypełnianie..." : "Wypełnij arkusz"}</span>
                 </button>
                 <button
                   type="button"
