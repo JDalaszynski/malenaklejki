@@ -53,11 +53,17 @@ Jeśli wykryjesz jakiekolwiek braki, wprowadź niezbędne poprawki.
 
 ## Krok 4: Zapis i Aktualizacja
 1. **Zapisz artykuł:** Zapisz wygenerowany artykuł w formacie Markdown w pliku `src/content/blog/{slug}.md`.
-1.2. **Branding Zdjęć:** Po upewnieniu się, że zdjęcia są wgrane w folderze `public/blog/{slug}/`, dodaj do nich automatycznie pasek z logo, wpisując w terminalu:
-   `node add_logo_bar.mjs public/blog/{slug}`
-1.5. **Generuj Social Media i Piny:** Uruchom skrypt generujący materiały social-media i grafiki na Pinterest, wpisując w terminalu:
+
+> [!IMPORTANT]
+> **KOLEJNOŚĆ KROKÓW 1.2 i 1.5 JEST OBOWIĄZKOWA: NAJPIERW PINY, POTEM PASEK Z LOGO.**
+> `add_logo_bar.mjs` **wypala** pasek z logo na stałe w pliku źródłowym (nadpisuje oryginał). Generator pinów dokłada własny pasek z logo i CTA, więc uruchomiony na już obrandowanym zdjęciu produkuje pin z **dwoma logotypami** - jednym u góry i drugim tuż nad przyciskiem CTA. Zawsze generuj Piny z **surowych** obrazów, a dopiero potem brandinguj zdjęcia do artykułu.
+
+1.2. **Generuj Social Media i Piny (NAJPIERW - z surowych zdjęć):** Po upewnieniu się, że zdjęcia są wgrane w folderze `public/blog/{slug}/` i **przed** dodaniem paska z logo, uruchom skrypt generujący materiały social-media i grafiki na Pinterest:
    `npx tsx social-agent/generate-socials.ts {slug}.md`
    Skrypt ten automatycznie wygeneruje Piny w dedykowanym folderze `/public/pinterest/{slug}/` na podstawie zdjęć z treści wpisu, a także stworzy plik opisów `pinterest-info.md`.
+1.5. **Branding Zdjęć (DOPIERO TERAZ):** Gdy Piny są już gotowe, dodaj do zdjęć artykułu pasek z logo:
+   `node add_logo_bar.mjs public/blog/{slug}`
+   Uruchom ten skrypt **dokładnie raz** - każde kolejne wywołanie dokłada kolejny pasek. Jeśli przez pomyłkę pasek trafił na zdjęcia przed wygenerowaniem Pinów, oryginał da się odzyskać bezstratnie: pasek ma wysokość `floor(szerokość * 0.15)` i jest doklejany **pod** obrazem, więc wystarczy przyciąć plik do górnych `wysokość - floor(szerokość * 0.15)` pikseli, ponownie wygenerować Piny i dopiero potem uruchomić branding.
 2. **Aktualizacja planu:** W pliku `blog-agent/plan.md`:
    - Przenieś napisany artykuł (wraz z jego wciętymi metadanymi) do sekcji `## 📈 Zrealizowane Artykuły`.
    - Zmień jego status na ukończony: `- [x] **Tytuł** (opublikowano YYYY-MM-DD)`.

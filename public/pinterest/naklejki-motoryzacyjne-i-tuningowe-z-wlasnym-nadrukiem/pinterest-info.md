@@ -2,73 +2,73 @@
 
 ## Pin 1 (pin-1.png)
 **Tytuł Pinu:**
-Pomysły na naklejki tuningowe na zderzak.
+Stwórz Własny Zestaw Naklejek Tuningowych na Zderzak
 
 **Opis Pinu:**
-Własne naklejki motoryzacyjne z logo ulubionych marek. Stwórz zestaw wlepek tuningowych na jednym arkuszu i personalizuj swoje auto. Idealne naklejki z własnym nadrukiem.
+Personalizuj swoje auto! Zamów naklejki motoryzacyjne z własnym nadrukiem. Idealne na logotypy sponsorów i ulubionych marek. Drukujemy wlepki tuningowe na trwałej, wodoodpornej folii.
 
 **Napis CTA na grafice:**
-Zamów Wlepki Sponsoringowe
+Zamów Wlepki Sponsorów
 
 ---
 
 ## Pin 2 (pin-2.png)
 **Tytuł Pinu:**
-Naklejki w stylu JDM i Stance z własnej grafiki.
+Naklejki JDM i Stance - Wgraj Własny Wzór Online
 
 **Opis Pinu:**
-Inspiracje na wlepki tuningowe dla fanów japońskiej motoryzacji. Zamów naklejki z własnym wzorem - turbo, hasła, sylwetki aut. Personalizowane naklejki na zamówienie online.
+Inspiracje na wlepki w stylu JDM. Zamów naklejki z własną grafiką - idealne dla fanów japońskiej motoryzacji. Stwórz unikalne naklejki tuningowe na swój projekt bez minimalnego zamówienia.
 
 **Napis CTA na grafice:**
-Wgraj Własną Grafikę JDM
+Wgraj Własną Grafikę Moto
 
 ---
 
 ## Pin 3 (pin-3.png)
 **Tytuł Pinu:**
-Własne numery startowe na Track Day.
+Personalizowane Numery Startowe na Track Day i Zloty
 
 **Opis Pinu:**
-Stwórz własne naklejki na zamówienie na tor i trackday. Personalizowane numery startowe i logo sponsorów na drzwi Twojego auta wyścigowego. Drukujemy naklejki na sztuki.
+Przygotuj się na tor! Zamów personalizowane naklejki z numerem startowym i logotypami sponsorów. Nasze naklejki motoryzacyjne są odporne na trudne warunki i wysokie prędkości.
 
 **Napis CTA na grafice:**
-Stwórz Swój Numer Startowy
+Zamów Swój Numer Startowy
 
 ---
 
 ## Pin 4 (pin-4.png)
 **Tytuł Pinu:**
-Personalizowana naklejka z imieniem na szybę.
+Naklejka z Własnym Imieniem lub Ksywką na Szybę
 
 **Opis Pinu:**
-Małe naklejki z własnym napisem to świetny sposób na personalizację auta. Zamów wlepkę z imieniem, ksywką lub dowolnym tekstem. Idealne naklejki z własnym zdjęciem lub grafiką.
+Dodaj osobisty akcent do swojego samochodu. Zamów naklejki z własnym napisem, idealne na szybę lub karoserię. Wystarczy wgrać gotowy tekst, a my zajmiemy się resztą.
 
 **Napis CTA na grafice:**
-Zamów Naklejkę Z Napisem
+Stwórz Naklejkę z Napisem
 
 ---
 
 ## Pin 5 (pin-5.png)
 **Tytuł Pinu:**
-Naklejki dla klubów motoryzacyjnych i ekip.
+Naklejki dla Klubów Motoryzacyjnych - Bez Minimum Zamówienia
 
 **Opis Pinu:**
-Zamów naklejki z własnym logo dla swojego klubu lub ekipy na zlot. Wlepki z własnym nadrukiem to idealny sposób na integrację i wyróżnienie się na drodze.
+Zjednocz swoją ekipę! Zamów naklejki z logo klubu lub grupy motoryzacyjnej. Drukujemy wlepki z własnym logo nawet w małym nakładzie, idealne na zloty i spoty.
 
 **Napis CTA na grafice:**
-Zamów Naklejki Z Logo Ekipy
+Wgraj Logo Twojego Klubu
 
 ---
 
 ## Pin 6 (pin-6.png)
 **Tytuł Pinu:**
-Jak ozdobić kask motocyklowy? Własne naklejki.
+Własne Naklejki na Kask Motocyklowy i Motocykl
 
 **Opis Pinu:**
-Personalizowane naklejki na kask motocyklowy i owiewki. Wgraj własne wzory i stwórz niepowtarzalny styl. Nasze wlepki motoryzacyjne są trwałe i odporne na warunki pogodowe.
+Spersonalizuj swój kask i motocykl! Zamów małe naklejki z własnym nadrukiem, które idealnie dopasują się do każdej powierzchni. Wytrzymałe i wodoodporne wlepki na kask dla każdego motocyklisty.
 
 **Napis CTA na grafice:**
-Zamów Wlepki Na Kask
+Zamów Naklejki na Kask
 
 ---
 
