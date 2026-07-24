@@ -1,0 +1,4 @@
+# Folder na grafiki landingu /naklejki-dla-firm
+# Wgraj tu zdjęcia do tego landing page. Po wgraniu daj znać - zostaną
+# przemianowane wg konwencji SEO, opisane altami, obrandowane i osadzone
+# w src/app/naklejki-dla-firm/page.tsx (analogicznie do obsługi zdjęć w blog-agent).

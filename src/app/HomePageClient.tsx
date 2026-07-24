@@ -1846,10 +1846,38 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
   };
 
 
+  // Przed hydracją (mounted === false) - także podczas renderu serwerowego - renderujemy
+  // pełną powłokę strony: Header, Mini-Hero, sekcje SEO/marketingowe (children) i Footer.
+  // Dzięki temu treść i linki wewnętrzne są w surowym HTML (SSR) i widzą je crawlery bez JS
+  // (Google + silniki AI/GEO). Interaktywny kreator pojawia się dopiero po hydracji.
+  // Serwer i pierwszy render klienta renderują tę samą gałąź -> brak niezgodności hydracji.
   if (!mounted) {
     return (
-      <div className="min-h-screen text-foreground flex items-center justify-center">
-        <div className="animate-pulse font-extrabold text-xl text-primary">MałeNaklejki...</div>
+      <div className="flex flex-col min-h-screen text-foreground relative">
+        {/* Górna sekcja (Mini-Hero) */}
+        <div className="w-full bg-gradient-to-b from-white via-[#f3faf6] to-[#edf7f3] dark:from-[#021f21] dark:via-[#032a2d] dark:to-[#002c2e] border-b border-primary/10 dark:border-primary/20 flex flex-col relative overflow-hidden">
+          <div className="absolute inset-0 bg-[radial-gradient(#cbd5e1_1px,transparent_1px)] dark:bg-[radial-gradient(#1c3e41_1px,transparent_1px)] [background-size:16px_16px] pointer-events-none opacity-50" />
+          <div className="relative z-10 flex flex-col w-full">
+            <Header sticky={false} />
+            <MiniHero />
+          </div>
+        </div>
+
+        {/* Kreator - placeholder do czasu hydracji (interaktywny kreator wymaga JS) */}
+        <div className="w-full bg-[#edf6f2] dark:bg-[#002c2e] border-b border-primary/15 dark:border-primary/25 pb-8 sm:pb-12 flex flex-col">
+          <div id="creator-section" className="flex-1 flex items-center justify-center py-16 sm:py-24 min-h-[40vh]">
+            <div className="animate-pulse font-extrabold text-xl text-primary">Wczytywanie kreatora...</div>
+          </div>
+        </div>
+
+        {/* Sekcja SEO i marketingowa - renderowana serwerowo (SSR) dla SEO/GEO/AEO */}
+        <div className="w-full bg-gradient-to-b from-white via-white to-[#edf6f2] dark:from-background dark:via-background/80 dark:to-[#002c2e] z-10 flex flex-col flex-grow relative overflow-hidden">
+          <div className="absolute inset-0 bg-[radial-gradient(#cbd5e1_1px,transparent_1px)] dark:bg-[radial-gradient(#1c3e41_1px,transparent_1px)] [background-size:16px_16px] pointer-events-none opacity-50" />
+          <div className="relative z-10 flex flex-col flex-grow w-full">
+            {children}
+            <Footer />
+          </div>
+        </div>
       </div>
     );
   }

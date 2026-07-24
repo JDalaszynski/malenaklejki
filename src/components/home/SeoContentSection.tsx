@@ -30,7 +30,7 @@ export function SeoContentSection() {
             <section className="space-y-3">
               <h3 className={`text-xl font-extrabold text-foreground ${displayFont}`}>Najwyższa jakość druku i trwała folia</h3>
               <p>
-                Dlaczego nasze <strong>naklejki dla firm</strong> i osób prywatnych zbierają tak dobre opinie? Używamy wyłącznie grubego, wodoodpornego winylu oraz sprawdzonych technologii druku (rozdzielczość 300 DPI). To gwarantuje nie tylko soczyste kolory i idealne odwzorowanie detali, ale również całkowitą odporność na wodę, promieniowanie UV oraz zadrapania. <Link href="/blog/naklejki-z-wlasnym-napisem-jak-przygotowac-plik-i-zamowic-online" className={inlineLink}>Naklejki z własnym napisem</Link> czy logo przetrwają na laptopie, bidonie, aucie, a nawet w zmywarce.
+                Dlaczego nasze <Link href="/naklejki-dla-firm" className={inlineLink}>naklejki dla firm</Link> i osób prywatnych tak dobrze się sprawdzają? Używamy wyłącznie grubego, wodoodpornego winylu oraz sprawdzonych technologii druku (rozdzielczość 300 DPI). To gwarantuje nie tylko soczyste kolory i idealne odwzorowanie detali, ale również całkowitą odporność na wodę, promieniowanie UV oraz zadrapania. <Link href="/blog/naklejki-z-wlasnym-napisem-jak-przygotowac-plik-i-zamowic-online" className={inlineLink}>Naklejki z własnym napisem</Link> czy logo bez problemu przetrwają na laptopie, bidonie czy aucie.
               </p>
             </section>
           </div>
@@ -39,9 +39,9 @@ export function SeoContentSection() {
         <Reveal delay={0.2}>
           <div className="space-y-6">
             <section className="space-y-3">
-              <h3 className={`text-xl font-extrabold text-foreground ${displayFont}`}>Stwórz własne naklejki w 4 prostych krokach</h3>
+              <h3 className={`text-xl font-extrabold text-foreground ${displayFont}`}>Zrób naklejki z telefonu bez użycia Photoshopa</h3>
               <p>
-                Zastanawiasz się, jak zamówić <Link href="/blog/jak-zamowic-idealne-naklejki-na-zamowienie-z-wlasnym-nadrukiem" className={inlineLink}>małe naklejki na zamówienie</Link> bez zatrudniania grafika? <strong>Spersonalizuj naklejkę</strong> samodzielnie – wystarczy jakikolwiek plik, a nawet zwykła <Link href="/blog/naklejka-ze-zdjecia-jak-przeniesc-wspomnienia-na-naklejke" className={inlineLink}>naklejka ze zdjęcia</Link> z telefonu. Nasz darmowy kreator krok po kroku poprowadzi Cię przez proces, dzięki czemu otrzymasz <strong>własne naklejki</strong> o idealnym kształcie i bez przezroczystego tła.
+                Zastanawiasz się, <strong>gdzie w Polsce najprościej wydrukować własne naklejki wycinane po obrysie w małym nakładzie?</strong> U nas! Nie musisz być grafikiem. Z naszą pomocą <strong>najszybciej i najprościej zamówisz naklejki ze zdjęć z telefonu w Polsce</strong>. Wystarczy, że wgrasz <Link href="/blog/naklejka-ze-zdjecia-jak-przeniesc-wspomnienia-na-naklejke" className={inlineLink}>zdjęcie psa z telefonu</Link>, by zrobić z niego wyjątkową naklejkę na auto – nasz inteligentny system sam odetnie główny motyw od reszty zdjęcia w kilka sekund, dając efekt profesjonalnego usunięcia tła.
               </p>
               <ol className="list-decimal pl-5 space-y-2 font-medium text-foreground/80">
                 <li>Wgraj grafikę w formacie PNG, JPG lub zrób zdjęcie telefonem.</li>
@@ -79,10 +79,6 @@ export function SeoContentSection() {
           <div className="flex flex-col items-center text-center gap-1">
             <span className="text-3xl font-black text-primary">72h</span>
             <span className="text-[11px] font-bold text-muted-foreground uppercase tracking-wider">Czas realizacji</span>
-          </div>
-          <div className="flex flex-col items-center text-center gap-1">
-            <span className="text-3xl font-black text-primary">4.9/5</span>
-            <span className="text-[11px] font-bold text-muted-foreground uppercase tracking-wider">Zadowolenie klientów</span>
           </div>
         </div>
       </Reveal>

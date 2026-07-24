@@ -9,7 +9,7 @@ tags: ["naklejki serwisowe", "hydraulik", "elektryk", "B2B"]
 cta_text: "Zamów naklejki serwisowe"
 ---
 
-Wydrukuj naklejki serwisowe w [drukowaniu naklejek online](/blog/drukowanie-naklejek-online-na-co-zwrocic-uwage-przed-wysylka-projektu) MałeNaklejki za stałe **49,00 zł** od arkusza A4 - bez minimalnego zamówienia i bez czekania na przygotowalnię. Wgraj plik z numerem telefonu, nazwą firmy i polem na datę przeglądu, wybierz kształt prostokątny lub kwadratowy, a gotowe naklejki "serwisowane przez" odbierzesz w 3 dni robocze, przyklejone później na mocnym kleju wprost na urządzeniach klientów. To rozwiązanie, które w praktyce zastępuje wizytówkę zostawianą klientowi po każdej usłudze - z tą różnicą, że nie ginie w szufladzie.
+Wydrukuj naklejki serwisowe w [drukowaniu naklejek online](/blog/drukowanie-naklejek-online-na-co-zwrocic-uwage-przed-wysylka-projektu) MałeNaklejki za stałe **49,00 zł** od arkusza A4 - bez minimalnego zamówienia i bez czekania na przygotowalnię. Wgraj plik z numerem telefonu, nazwą firmy i polem na datę przeglądu, wybierz kształt prostokątny lub kwadratowy, a gotowe naklejki "serwisowane przez" odbierzesz w 3 dni robocze, przyklejone później na mocnym kleju wprost na urządzeniach klientów. To rozwiązanie, które w praktyce zastępuje wizytówkę zostawianą klientowi po każdej usłudze - z tą różnicą, że nie ginie w szufladzie. Naklejki serwisowe to jedno z wielu zastosowań [naklejek dla firm](/naklejki-dla-firm), które rozliczysz fakturą VAT.
 
 ![Naklejka serwisowa firmy klimatyzacyjnej z numerem telefonu i polem na datę przeglądu przyklejona na białej jednostce klimatyzacji ściennej w biurze.](/blog/naklejki-serwisowe-dla-firm-hydraulicy-elektrycy-i-instalatorzy/naklejka-serwisowa-na-klimatyzatorze-z-numerem-telefonu.png)
 

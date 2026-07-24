@@ -12,6 +12,8 @@ export interface BlogPost {
   slug: string;
   title: string;
   date: string;
+  /** Data ostatniej istotnej aktualizacji treści (frontmatter `updated`). Zasila `dateModified` w schema — sygnał świeżości dla Google/LLM. Bez wartości = artykuł niezmieniany od publikacji. */
+  updated?: string;
   description: string;
   content: string; // Markdown or HTML string
   image?: string;
@@ -70,6 +72,7 @@ export async function getBlogPosts(): Promise<BlogPost[]> {
               slug,
               title: data.title || "Bez tytułu",
               date: data.date || new Date().toISOString().split("T")[0],
+              updated: data.updated || undefined,
               description: data.description || "",
               content: content, // For list, raw content is fine
               image: data.image || undefined,
@@ -127,6 +130,7 @@ export async function getBlogPostBySlug(slug: string): Promise<BlogPost | null> 
       slug,
       title: data.title || "Bez tytułu",
       date: data.date || new Date().toISOString().split("T")[0],
+      updated: data.updated || undefined,
       description: data.description || "",
       content: htmlContent,
       image: data.image || undefined,

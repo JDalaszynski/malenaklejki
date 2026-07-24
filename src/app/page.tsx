@@ -38,11 +38,6 @@ export default async function Home() {
             "@type": "Brand",
             name: "MałeNaklejki",
           },
-          aggregateRating: {
-            "@type": "AggregateRating",
-            ratingValue: "4.9",
-            reviewCount: "128"
-          },
           offers: {
             "@type": "Offer",
             url: "https://www.malenaklejki.pl",

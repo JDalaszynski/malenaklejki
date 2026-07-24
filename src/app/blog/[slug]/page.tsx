@@ -3,7 +3,7 @@ import { Footer } from "@/components/layout/Footer";
 import { getBlogPostBySlug, getBlogPosts } from "@/lib/blog";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { Calendar, Clock, ChevronLeft } from "lucide-react";
+import { Calendar, Clock, ChevronLeft, RefreshCw } from "lucide-react";
 import { Metadata } from "next";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { StickyCTAButton } from "@/components/blog/StickyCTAButton";
@@ -41,6 +41,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       type: "article",
       url: `https://www.malenaklejki.pl/blog/${post.slug}`,
       publishedTime: post.date,
+      modifiedTime: post.updated || post.date,
       images: post.image ? [
         {
           url: post.image,
@@ -188,12 +189,13 @@ export default async function BlogPostPage({ params }: PageProps) {
       <JsonLd
         data={{
           "@context": "https://schema.org",
-          "@type": "BlogPosting",
+          // Filary to evergreenowe zasoby autorytatywne → "Article"; pozostałe wpisy → "BlogPosting".
+          "@type": post.pillar ? "Article" : "BlogPosting",
           headline: post.title,
           description: post.description,
           image: post.image ? [`https://www.malenaklejki.pl${post.image}`] : [],
           datePublished: post.date,
-          dateModified: post.date,
+          dateModified: post.updated || post.date,
           mainEntityOfPage: {
             "@type": "WebPage",
             "@id": `https://www.malenaklejki.pl/blog/${slug}`,
@@ -287,6 +289,12 @@ export default async function BlogPostPage({ params }: PageProps) {
                 <Calendar className="w-4 h-4 text-primary" />
                 {post.date}
               </span>
+              {post.updated && post.updated !== post.date && (
+                <span className="flex items-center gap-1.5">
+                  <RefreshCw className="w-4 h-4 text-primary" />
+                  Zaktualizowano {post.updated}
+                </span>
+              )}
               {post.readingTime && (
                 <span className="flex items-center gap-1.5">
                   <Clock className="w-4 h-4 text-primary" />
