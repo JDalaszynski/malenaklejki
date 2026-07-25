@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/images/MałeNaklejki-Post-Instagram.jpg",
+        url: "/landing/naklejki-foliowe/wodoodporne-naklejki-foliowe.png",
         width: 1200,
         height: 630,
         alt: "Wodoodporne naklejki foliowe i winylowe z własnym nadrukiem w MałeNaklejki",
@@ -52,7 +52,7 @@ export const metadata: Metadata = {
     title: "Naklejki foliowe i winylowe z własnym nadrukiem - wodoodporne",
     description:
       "Trwała folia winylowa odporna na wodę, UV i zadrapania, druk 300 DPI. Stała cena 49 zł brutto za arkusz A4, od 1 sztuki.",
-    images: ["/images/MałeNaklejki-Post-Instagram.jpg"],
+    images: ["/landing/naklejki-foliowe/wodoodporne-naklejki-foliowe.png"],
   },
 };
 
@@ -365,6 +365,11 @@ export default function NaklejkiFoliowePage() {
           <h2 className="text-2xl sm:text-3xl font-black text-foreground font-heading">
             Czym są naklejki foliowe (winylowe)
           </h2>
+          <img 
+            src="/landing/naklejki-foliowe/wodoodporne-naklejki-foliowe.png" 
+            alt="Wodoodporne naklejki foliowe na kasku motocyklowym zabezpieczone przed deszczem" 
+            className="rounded-2xl shadow-sm border border-border/40 w-full mb-6 object-cover aspect-video" 
+          />
           <p className="text-sm sm:text-base text-muted-foreground font-medium leading-relaxed">
             Naklejki foliowe i winylowe to ten sam produkt - drukujemy je na trwałej folii winylowej, a nie na
             zwykłym papierze. To właśnie folia decyduje o wodoodporności: nadruk nie rozmięknie od wody ani
@@ -421,6 +426,11 @@ export default function NaklejkiFoliowePage() {
             Odporność na wodę, UV i zadrapania sprawia, że naklejki foliowe trafiają na przedmioty codziennego
             użytku narażone na wilgoć, słońce i ocieranie - tam, gdzie papierowa naklejka nie przetrwałaby długo.
           </p>
+          <img 
+            src="/landing/naklejki-foliowe/naklejki-winylowe-na-bidon.png" 
+            alt="Naklejki winylowe na bidonie kempingowym zroszonym wodą" 
+            className="rounded-2xl shadow-sm border border-border/40 w-full my-6 object-cover aspect-video" 
+          />
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {USE_CASES.map((uc) => {
               const Icon = uc.icon;
@@ -456,6 +466,11 @@ export default function NaklejkiFoliowePage() {
           <h2 className="text-2xl sm:text-3xl font-black text-foreground font-heading">
             Dlaczego warto wybrać naklejki na folii winylowej
           </h2>
+          <img 
+            src="/landing/naklejki-foliowe/naklejki-foliowe-na-laptopa.png" 
+            alt="Odporne na UV naklejki foliowe na laptopie w pełnym, ostrym słońcu" 
+            className="rounded-2xl shadow-sm border border-border/40 w-full my-6 object-cover aspect-[21/9]" 
+          />
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {ADVANTAGES.map((adv) => {
               const Icon = adv.icon;
@@ -482,6 +497,11 @@ export default function NaklejkiFoliowePage() {
           <h2 className="text-2xl sm:text-3xl font-black text-foreground font-heading">
             Jak zamówić naklejki foliowe krok po kroku
           </h2>
+          <img 
+            src="/landing/naklejki-foliowe/trwale-naklejki-z-wlasnym-nadrukiem.png" 
+            alt="Trwałe naklejki z własnym nadrukiem na grubej folii winylowej wyciętej po obrysie" 
+            className="rounded-2xl shadow-sm border border-border/40 w-full mb-6 object-cover aspect-[21/9]" 
+          />
           <ol className="space-y-4">
             {[
               {
@@ -583,9 +603,7 @@ export default function NaklejkiFoliowePage() {
           </div>
         </section>
 
-        {/* Uwaga: sekcja na zdjęcia. Folder: /public/landing/naklejki-foliowe/.
-            Po wgraniu grafik przez właściciela osadzić je tu z altami SEO nasyconymi
-            frazą (naklejki foliowe / winylowe / wodoodporne) i podmienić OG na dedykowaną. */}
+        {/* Zdjęcia osadzone z zachowaniem proporcji i altów SEO pod frazy foliowe/winylowe/wodoodporne */}
       </main>
 
       <Footer />
