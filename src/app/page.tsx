@@ -12,6 +12,7 @@ import { FAQSection } from "@/components/home/FAQSection";
 import { FinalCTASection } from "@/components/home/FinalCTASection";
 import { LatestBlogPosts } from "@/components/blog/LatestBlogPosts";
 import { SeoContentSection } from "@/components/home/SeoContentSection";
+import { HOME_FAQS } from "@/components/home/homeFaqData";
 
 export default async function Home() {
   const featuredPosts = (await getFeaturedPosts(6)).map(post => ({
@@ -56,48 +57,14 @@ export default async function Home() {
         data={{
           "@context": "https://schema.org",
           "@type": "FAQPage",
-          mainEntity: [
-            {
-              "@type": "Question",
-              name: "Jakiej jakości pliki powinienem wgrać do kreatora?",
-              acceptedAnswer: {
-                "@type": "Answer",
-                text: "Najlepsze rezultaty uzyskasz wgrywając pliki w formacie PNG lub JPG o rozdzielczości 300 DPI. Kreator automatycznie ocenia jakość grafiki i ostrzeże Cię komunikatem, jeśli rozdzielczość będzie zbyt niska (poniżej 100 DPI).",
-              },
+          mainEntity: HOME_FAQS.map((faq) => ({
+            "@type": "Question",
+            name: faq.q,
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: faq.a,
             },
-            {
-              "@type": "Question",
-              name: "Co oznacza cięcie po konturze (obrysie)?",
-              acceptedAnswer: {
-                "@type": "Answer",
-                text: "Nasze maszyny plotujące wytną naklejkę dokładnie wzdłuż krawędzi Twojego obrazka (z pominięciem przezroczystego tła). W kreatorze możesz wybrać opcję 'Kontur', aby zobaczyć podgląd linii cięcia naniesiony na Twoją grafikę.",
-              },
-            },
-            {
-              "@type": "Question",
-              name: "Ile naklejek zmieści się na jednym arkuszu A4?",
-              acceptedAnswer: {
-                "@type": "Answer",
-                text: "To zależy od Ciebie! Możesz umieścić jedną ogromną naklejkę (do 19 cm szerokości) lub kilkadziesiąt mniejszych (np. o średnicy 3-4 cm). Nasz system automatycznie pilnuje, aby naklejki nie nakładały się na siebie.",
-              },
-            },
-            {
-              "@type": "Question",
-              name: "Czy mogę edytować arkusz po dodaniu do koszyka?",
-              acceptedAnswer: {
-                "@type": "Answer",
-                text: "Po dodaniu arkusza do koszyka kompozycja jest zapisywana i generowany jest plik produkcyjny. Wszelkie poprawki wymagają ponownego ułożenia arkusza, dlatego przed zatwierdzeniem upewnij się w podglądzie 2D/3D, że wszystko wygląda poprawnie.",
-              },
-            },
-            {
-              "@type": "Question",
-              name: "Jaki jest czas realizacji i koszt dostawy?",
-              acceptedAnswer: {
-                "@type": "Answer",
-                text: "Wszystkie zamówienia drukujemy i wysyłamy w ciągu 3 dni roboczych. Koszt dostawy wynosi 19,99 zł, a bezpieczną i szybką płatność realizujemy za pośrednictwem Przelewy24 (karta, BLIK, przelew).",
-              },
-            },
-          ],
+          })),
         }}
       />
       <JsonLd
