@@ -35,7 +35,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/images/MałeNaklejki-Post-Instagram.jpg",
+        url: "/landing/alternatywa-dla-sticker-mule-i-stickerapp/polska-alternatywa-dla-sticker-mule.png",
         width: 1200,
         height: 630,
         alt: "Polska alternatywa dla Sticker Mule i StickerApp - naklejki z własnym nadrukiem",
@@ -47,7 +47,7 @@ export const metadata: Metadata = {
     title: "Polska alternatywa dla Sticker Mule i StickerApp",
     description:
       "Naklejki z własnym nadrukiem od 1 arkusza A4 za 49 zł, odbiór w paczkomacie w 3 dni. Bez cła i bariery językowej.",
-    images: ["/images/MałeNaklejki-Post-Instagram.jpg"],
+    images: ["/landing/alternatywa-dla-sticker-mule-i-stickerapp/polska-alternatywa-dla-sticker-mule.png"],
   },
 };
 
@@ -174,6 +174,37 @@ export default function AlternatywaPage() {
       <JsonLd
         data={{
           "@context": "https://schema.org",
+          "@type": "Product",
+          name: "Naklejki z własnym nadrukiem (arkusz A4)",
+          description:
+            "Naklejki z własnym nadrukiem drukowane na trwałej folii winylowej. Stała cena 49,00 zł za arkusz A4, bez minimalnego nakładu. Polska produkcja i odbiór w paczkomacie w 3 dni.",
+          brand: {
+            "@type": "Brand",
+            name: "MałeNaklejki",
+          },
+          category: "Naklejki z własnym nadrukiem",
+          offers: {
+            "@type": "Offer",
+            price: "49.00",
+            priceCurrency: "PLN",
+            availability: "https://schema.org/InStock",
+            url: PAGE_URL,
+            priceValidUntil: "2026-12-31",
+          },
+        }}
+      />
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "WebPage",
+          name: "Polska alternatywa dla Sticker Mule i StickerApp",
+          url: PAGE_URL,
+          dateModified: "2026-07-25T00:00:00+02:00",
+        }}
+      />
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
           "@type": "FAQPage",
           mainEntity: FAQS.map((faq) => ({
             "@type": "Question",
@@ -208,10 +239,15 @@ export default function AlternatywaPage() {
 
         {/* Hero */}
         <section className="bg-white dark:bg-[#003a3b] rounded-3xl border border-border/40 p-6 sm:p-10 md:p-12 shadow-sm space-y-5">
-          <span className="inline-flex items-center gap-2 px-3 py-1.5 bg-primary/10 text-primary rounded-full text-xs font-black tracking-wide uppercase">
-            <Sparkles className="w-4 h-4" />
-            W 100% polska produkcja
-          </span>
+          <div className="flex flex-wrap items-center justify-between gap-4">
+            <span className="inline-flex items-center gap-2 px-3 py-1.5 bg-primary/10 text-primary rounded-full text-xs font-black tracking-wide uppercase">
+              <Sparkles className="w-4 h-4" />
+              W 100% polska produkcja
+            </span>
+            <span className="text-xs font-bold text-muted-foreground/60 flex items-center gap-1.5">
+              <Clock className="w-3.5 h-3.5" /> Ostatnia aktualizacja: 25 lipca 2026
+            </span>
+          </div>
 
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-black leading-tight tracking-tight text-foreground font-heading">
             Polska alternatywa dla Sticker Mule i StickerApp
@@ -232,6 +268,12 @@ export default function AlternatywaPage() {
             </Link>
             .
           </p>
+
+          <img 
+            src="/landing/alternatywa-dla-sticker-mule-i-stickerapp/polska-alternatywa-dla-sticker-mule.png" 
+            alt="Polska alternatywa dla Sticker Mule i StickerApp: grube naklejki die-cut cięte po obrysie" 
+            className="rounded-2xl shadow-sm border border-border/40 w-full object-cover aspect-video" 
+          />
 
           <div id="first-article-banner" className="flex flex-col sm:flex-row gap-3 pt-2">
             <Link
@@ -325,6 +367,11 @@ export default function AlternatywaPage() {
             danego dostawcy. Nazwy Sticker Mule i StickerApp należą do ich właścicieli i służą tu wyłącznie do
             porównania.
           </p>
+          <img 
+            src="/landing/alternatywa-dla-sticker-mule-i-stickerapp/naklejki-premium-wyciete-po-obrysie.png" 
+            alt="Naklejki premium wycięte po obrysie na szybie kawiarni bez pęcherzyków powietrza" 
+            className="rounded-2xl shadow-sm border border-border/40 w-full mt-4 mb-2 object-cover aspect-video" 
+          />
         </section>
 
         {/* Advantages */}
@@ -332,6 +379,11 @@ export default function AlternatywaPage() {
           <h2 className="text-2xl sm:text-3xl font-black text-foreground font-heading">
             Dlaczego malenaklejki.pl to najlepsza polska alternatywa
           </h2>
+          <img 
+            src="/landing/alternatywa-dla-sticker-mule-i-stickerapp/gruba-folia-winylowa-naklejki.png" 
+            alt="Zgięta naklejka wycięta po obrysie demonstrująca sztywność grubej folii winylowej" 
+            className="rounded-2xl shadow-sm border border-border/40 w-full my-6 object-cover aspect-[21/9]" 
+          />
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {ADVANTAGES.map((adv) => {
               const Icon = adv.icon;
@@ -358,6 +410,11 @@ export default function AlternatywaPage() {
           <h2 className="text-2xl sm:text-3xl font-black text-foreground font-heading">
             Jak zamówić naklejki w polskiej drukarni krok po kroku
           </h2>
+          <img 
+            src="/landing/alternatywa-dla-sticker-mule-i-stickerapp/drukowanie-naklejek-wysoka-jakosc.png" 
+            alt="Awers i rewers wysokiej jakości okrągłej naklejki z grubym papierem podkładowym" 
+            className="rounded-2xl shadow-sm border border-border/40 w-full my-6 object-cover aspect-video" 
+          />
           <ol className="space-y-4">
             {[
               {
@@ -404,6 +461,11 @@ export default function AlternatywaPage() {
           <h2 className="text-2xl sm:text-3xl font-black text-foreground font-heading">
             Polska alternatywa dla zagranicznych drukarni - najczęstsze pytania
           </h2>
+          <img 
+            src="/landing/alternatywa-dla-sticker-mule-i-stickerapp/alternatywa-stickerapp-w-polsce.png" 
+            alt="Polska alternatywa dla StickerApp drukująca w rozdzielczości 300 DPI na folii" 
+            className="rounded-2xl shadow-sm border border-border/40 w-full my-6 object-cover aspect-[21/9]" 
+          />
           <div className="flex flex-col gap-3.5">
             {FAQS.map((faq) => (
               <details
