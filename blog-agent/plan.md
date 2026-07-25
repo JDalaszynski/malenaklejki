@@ -59,7 +59,8 @@ Podczas pisania i formatowania **każdego** artykułu lub aktualizacji, Agencie,
     - **Cel:** Edukacja / Sprzedaż
     - **Persona:** Rodzice, fani home organizing, osoby urządzające pokój dziecięcy
     - **Link nadrzędny (Filar):** `/blog/jak-zamowic-idealne-naklejki-na-zamowienie-z-wlasnym-nadrukiem`
-    - **Uwaga:** Artykuł ~1070 słów. Opublikowano bez zdjęć na polecenie użytkownika. Folder `public/blog/naklejki-z-imionami-na-meble-drzwi-i-pojemniki-organizacja-domu/` utworzony i czeka na zdjęcia.
+    - **Uwaga:** Artykuł ~1070 słów. Użytkownik dograł 5 grafik. Zostały one zoptymalizowane (nazwy SEO), wypalone logo przez `add_logo_bar.mjs`, osadzone w treści oraz wygenerowano dla nich 5 pinów do Pinteresta.
+
 
 - [x] **Naklejki motoryzacyjne i tuningowe z własnym nadrukiem** (opublikowano 2026-07-23)
     - **Format:** Supporting Article
