@@ -30,7 +30,7 @@ export function SeoContentSection() {
             <section className="space-y-3">
               <h3 className={`text-xl font-extrabold text-foreground ${displayFont}`}>Najwyższa jakość druku i trwała folia</h3>
               <p>
-                Dlaczego nasze <Link href="/naklejki-dla-firm" className={inlineLink}>naklejki dla firm</Link> i osób prywatnych tak dobrze się sprawdzają? Używamy wyłącznie grubego, wodoodpornego winylu oraz sprawdzonych technologii druku (rozdzielczość 300 DPI). To gwarantuje nie tylko soczyste kolory i idealne odwzorowanie detali, ale również całkowitą odporność na wodę, promieniowanie UV oraz zadrapania. <Link href="/blog/naklejki-z-wlasnym-napisem-jak-przygotowac-plik-i-zamowic-online" className={inlineLink}>Naklejki z własnym napisem</Link> czy logo bez problemu przetrwają na laptopie, bidonie czy aucie.
+                Dlaczego nasze <Link href="/naklejki-dla-firm" className={inlineLink}>naklejki dla firm</Link> i osób prywatnych tak dobrze się sprawdzają? Używamy wyłącznie grubej, <Link href="/naklejki-foliowe" className={inlineLink}>wodoodpornej folii winylowej</Link> oraz sprawdzonych technologii druku (rozdzielczość 300 DPI). To gwarantuje nie tylko soczyste kolory i idealne odwzorowanie detali, ale również całkowitą odporność na wodę, promieniowanie UV oraz zadrapania. <Link href="/blog/naklejki-z-wlasnym-napisem-jak-przygotowac-plik-i-zamowic-online" className={inlineLink}>Naklejki z własnym napisem</Link> czy logo bez problemu przetrwają na laptopie, bidonie czy aucie.
               </p>
             </section>
           </div>

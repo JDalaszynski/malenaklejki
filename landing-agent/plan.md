@@ -43,14 +43,13 @@ Serwis wczesny (max ~44 wyświetlenia na zapytanie), więc **priorytetyzuj strat
 
 ## 🧱 Kolejka landingów (priorytet malejąco)
 
-- [ ] **Tier 1 — Rozbudowa klastra porównawczego** (decyzja: pojedyncze marki vs 1 hub)
-    - **Domyślnie:** wzmacniaj istniejący `/alternatywa-dla-sticker-mule-i-stickerapp` (dodaj `Product`/`Offer` schema, więcej cytowalnych FAQ, "ostatnia aktualizacja").
+- [x] **Tier 1 — Rozbudowa klastra porównawczego** (decyzja: pojedyncze marki vs 1 hub)
+    - **Domyślnie:** wzmacniaj istniejący `/alternatywa-dla-sticker-mule-i-stickerapp` (dodano `Product`/`Offer` schema, znacznik czasu i `dateModified`).
     - Osobne `/alternatywa-dla-stickerapp` lub `/alternatywa-dla-sticker-mule` **tylko** przy potwierdzonym odrębnym wolumenie (GSC) i **unikalnej** treści (nie klon huba).
 
-- [ ] **Tier 2 — `/naklejki-winylowe`** (lub `/naklejki-foliowe`) - atrybut / rdzeń oferty
-    - **Intencja:** atrybutowa zakupowa. **Frazy:** naklejki winylowe, foliowe, trwałe, wodoodporne.
-    - Specyfikacja materiału (300 DPI, woda/UV/zadrapania, mocny klej, bez śladów), zastosowania, FAQ ("czy wodoodporne", "na zewnątrz"[?]).
-    - **DO POTWIERDZENIA:** sufit trwałości zewnętrznej.
+- [x] **Tier 2 — `/naklejki-foliowe`** (zbudowane 2026-07-25) - atrybut / rdzeń oferty. Szczegóły w "Zrealizowane" niżej.
+    - **Intencja:** atrybutowa zakupowa. **Frazy:** naklejki foliowe, winylowe, trwałe, wodoodporne (**scalone w jednej stronie** - decyzja właściciela 2026-07-25: NIE budować osobnego `/naklejki-winylowe` ani `/naklejki-wodoodporne`, near-duplicate).
+    - **Decyzja o trwałości (2026-07-25):** wersja zachowawcza - tylko woda/UV/zadrapania. Bez deklaracji "na zewnątrz przez lata" / "na karoserię". Sufit trwałości zewnętrznej **nadal DO POTWIERDZENIA** (patrz niżej).
 
 - [ ] **Tier 2 — `/naklejki-die-cut`** (cięcie po obrysie) - format
     - **Intencja:** format zakupowy. **Frazy:** die cut naklejki, cięte po obrysie, naklejki w kształcie.
@@ -70,9 +69,14 @@ Serwis wczesny (max ~44 wyświetlenia na zapytanie), więc **priorytetyzuj strat
 ---
 
 ## ✅ Zrealizowane
+- [x] **`/naklejki-foliowe`** (2026-07-25) - Tier 2 landing atrybutowy (rdzeń oferty: folia/winyl). Plik: `src/app/naklejki-foliowe/page.tsx`. Mikro-klaster **foliowe = winylowe = wodoodporne = trwałe** scalony w jednej stronie (decyzja właściciela: nie mnożyć near-duplicate). Struktura: Hero BLUF (49 zł brutto/A4, od 1 szt., 300 DPI, woda/UV/zadrapania, produkcja 2-3 dni, paczkomat) + widoczna "ostatnia aktualizacja" → trust stats (49 zł / od 1 szt. / 300 DPI / Woda·UV·rysy) → "Czym są naklejki foliowe" (foliowe==winylowe, wodoodporność) → tabela specyfikacji (12 wierszy, cytowalna) → 6 zastosowań (butelki/słoiki, laptop, rower/sport, moto, kuchnia, produkty) → 6 zalet → "jak zamówić" 1-2-3 (link die-cut) → 10 FAQ → final CTA. **Schema: `BreadcrumbList`+`Product`/`Offer`(49.00 PLN, material: Folia winylowa)+`FAQPage`+`WebPage`(dateModified).** Bez zdjęć (folder `public/landing/naklejki-foliowe/` gotowy - czeka na grafiki). Dodany do `sitemap.ts`.
+    - **Trwałość - wersja zachowawcza (2026-07-25):** strona twierdzi wyłącznie woda/UV/zadrapania. FAQ "na jakie warunki odporna" odpowiada bez deklaracji wieloletniej zewnętrznej/karoserii; FAQ "zmywarka" jasno mówi NIE. Gdy właściciel potwierdzi sufit trwałości zewnętrznej - można wzmocnić copy (na zewnątrz/lata) i dodać FAQ "na zewnątrz".
+    - **Linkowanie przychodzące (zrobione 2026-07-25):** 1 link ze strony głównej (`SeoContentSection.tsx`, sekcja "trwała folia", anchor "wodoodpornej folii winylowej") + 3 linki "w górę" ze spoke'ów (rower, laptop, moto - anchory sparafrazowane: "wodoodpornej folii winylowej"/"folii winylowej"). Wychodzące: kreator (2× CTA), die-cut (2×), drukowanie online, słoiki/opakowania, laptop, rower, moto, przyprawy.
+    - **TODO po zdjęciach:** osadzić grafiki z altami (naklejki foliowe/winylowe/wodoodporne), podmienić OG z generycznej na dedykowaną.
+    - **TODO strategiczne (opcjonalnie):** gdy potwierdzona trwałość zewnętrzna - rozważ osobny mocny akapit/FAQ; monitoruj GSC, czy "wodoodporne" nie zasługuje jednak na własną stronę (na razie: NIE, scalone).
 - [x] **`/naklejki-dla-firm`** (2026-07-24) - komercyjny hub B2B. Plik: `src/app/naklejki-dla-firm/page.tsx`. Hero BLUF (faktura VAT, 49 zł brutto, brak min. nakładu, produkcja 2-3 dni, paczkomat) → trust stats → 6 zastosowań B2B (z linkami do spoke'ów) → 6 zalet → tabela specyfikacji → "jak zamówić" → 9 FAQ → final CTA. **Schema: `BreadcrumbList`+`Product`/`Offer`(49.00 PLN)+`FAQPage`.** Bez zdjęć (folder `public/landing/naklejki-dla-firm/` gotowy - **czeka na grafiki od właściciela**; po wgraniu: nazwy SEO, alty, branding, OG image). Dodany do `sitemap.ts`. Linkuje do spoke'ów: logo-firmy, sloiki/opakowania, serwisowe, eventy, die-cut, mały nakład.
     - **TODO po zdjęciach:** osadzić grafiki, podmienić OG z generycznej na dedykowaną.
     - **Linkowanie przychodzące (zrobione 2026-07-24):** link z sekcji SEO strony głównej (`SeoContentSection.tsx`, anchor "naklejki dla firm") + linki "w górę" z 4 wpisów B2B (logo-firmy, sloiki/opakowania, serwisowe, eventy). Przy okazji poprawiono na stronie głównej fałszywe "przetrwają w zmywarce" (folia NIE nadaje się do zmywarki).
     - **Naprawa SSR strony głównej (zrobione 2026-07-24, task_dbc976e8):** `HomePageClient.tsx` renderował całą stronę główną dopiero po JS - teraz gałąź `!mounted` renderuje powłokę (Header + Mini-Hero + placeholder kreatora + sekcje SEO/marketing + Footer) serwerowo. Efekt: link przychodzący do `/naklejki-dla-firm` oraz 9 linków do bloga są teraz w surowym HTML (SSR), widoczne dla crawlerów bez JS (GEO/AEO). Usunięto też sfabrykowaną ocenę 4.9/128 (JSON-LD + widoczne "4.9/5").
 - [x] **`/alternatywa-dla-sticker-mule-i-stickerapp`** (2026-07-24) - landing porównawczy GEO/AEO. Hero BLUF, trust stats, tabela porównawcza (z disclaimerem i notą o znakach), 6 zalet, "jak zamówić", 6 FAQ z `FAQPage`, final CTA. `BreadcrumbList`+`FAQPage`. Podlinkowany z: homepage FAQ #3, artykuł moto; dodany do `sitemap.ts`. **Wzorzec referencyjny** dla kolejnych landingów.
-    - **TODO wzmocnienia:** dodać `Product`/`Offer` schema (jak w /naklejki-dla-firm); widoczna "ostatnia aktualizacja" + `dateModified`.
+    - **ZROBIONE wzmocnienia (2026-07-25):** dodano `Product`/`Offer` schema (jak w /naklejki-dla-firm); widoczna "ostatnia aktualizacja" + `dateModified` w obiekcie WebPage.

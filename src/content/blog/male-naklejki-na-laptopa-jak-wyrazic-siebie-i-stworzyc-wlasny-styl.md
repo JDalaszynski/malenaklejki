@@ -33,7 +33,7 @@ Zamiast inwestować w drogie i nieodwracalne grawerowanie, możesz stworzyć wł
 
 Nie każda naklejka nadaje się na sprzęt elektroniczny. Niskiej jakości papierowe etykiety szybko się wycierają, a przy próbie ich usunięcia pozostawiają trudny do zmycia klej, który potrafi zniszczyć estetykę urządzenia. Nasze produkty to zupełnie inna klasa:
 
-* **Trwała folia i mocny klej:** Drukujemy wyłącznie na wytrzymałym materiale, który jest odporny na ścieranie, wilgoć oraz codzienne użytkowanie (np. ciągłe wyciąganie laptopa z torby lub plecaka).
+* **Trwała folia i mocny klej:** Drukujemy wyłącznie na wytrzymałej [folii winylowej](/naklejki-foliowe), odpornej na ścieranie, wilgoć oraz codzienne użytkowanie (np. ciągłe wyciąganie laptopa z torby lub plecaka).
 * **Czyste usuwanie bez śladów:** Gdy zdecydujesz się na zmianę designu, nasze **małe naklejki** odejdą od obudowy w jednym kawałku, nie pozostawiając lepkiej warstwy, która mogłaby uszkodzić sprzęt.
 * **Pełna optymalizacja kosztów:** Oferujemy stałą cenę 49,00 zł za arkusz A4. Oznacza to, że na jednej kartce możesz umieścić kilkanaście lub nawet kilkadziesiąt zupełnie różnych, małych naklejek na laptopa w tej samej cenie.
 

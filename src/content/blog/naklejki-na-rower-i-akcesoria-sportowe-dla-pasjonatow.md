@@ -29,7 +29,7 @@ Najlepsze jest to, że nie musisz zamawiać setek sztuk. Chcesz jedną dużą na
 
 ## Naklejki na rower a deszcz i słońce - jaka folia wytrzyma sezon?
 
-Rower żyje na zewnątrz, więc naklejka na ramie musi znieść to, co pogoda ma do zaoferowania: ulewę, błoto, słońce i mycie pod ciśnieniem. Drukujemy na trwałej folii winylowej z mocnym klejem, która radzi sobie z warunkami znacznie lepiej niż zwykły papier czy tania samoprzylepna etykieta:
+Rower żyje na zewnątrz, więc naklejka na ramie musi znieść to, co pogoda ma do zaoferowania: ulewę, błoto, słońce i mycie pod ciśnieniem. Drukujemy na trwałej, [wodoodpornej folii winylowej](/naklejki-foliowe) z mocnym klejem, która radzi sobie z warunkami znacznie lepiej niż zwykły papier czy tania samoprzylepna etykieta:
 
 - **Wodoodporność** - jazda w deszczu, kałuże i mycie roweru nie rozmywają nadruku ani nie odklejają naklejki.
 - **Odporność na ścieranie** - folia znosi kontakt z nogawką, sakwą czy szczotką do mycia bez blaknięcia wzoru.

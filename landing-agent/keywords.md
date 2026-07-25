@@ -61,4 +61,5 @@ Rzeczywiste zapytania z Search Console (wyświetlenia / pozycja) - do walidacji 
 ## Mapowanie landing → klaster fraz
 * `/naklejki-dla-firm` → naklejki dla firm, naklejki z logo dla firm, naklejki firmowe z logo (semantyczne: słoiki z logo, serwisowe, warsztatowe).
 * `/alternatywa-dla-sticker-mule-i-stickerapp` → polska alternatywa dla sticker mule / stickerapp.
-* *(planowane)* `/naklejki-die-cut` → die cut naklejki, kiss cut, wykroje po obrysie. `/naklejki-winylowe` → winylowe / foliowe / wodoodporne. `fotonaklejki` → foto naklejki, naklejka ze zdjęcia (ujęcie komercyjne/produktowe).
+* `/naklejki-foliowe` (zbudowane 2026-07-25) → naklejki foliowe / winylowe / wodoodporne / trwałe (mikro-klaster scalony - NIE budować osobnego `/naklejki-winylowe` ani `/naklejki-wodoodporne`).
+* *(planowane)* `/naklejki-die-cut` → die cut naklejki, kiss cut, wykroje po obrysie. `fotonaklejki` → foto naklejki, naklejka ze zdjęcia (ujęcie komercyjne/produktowe).
