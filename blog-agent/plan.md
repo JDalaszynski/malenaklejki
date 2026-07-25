@@ -25,16 +25,7 @@ Podczas pisania i formatowania **każdego** artykułu lub aktualizacji, Agencie,
 > **Faza 2 (dopisano 2026-07-18):** kolejka domykała się do jednego tematu, więc przeprowadziłem audyt strategii (patrz `strategy.md`, sekcja 6 "Korekta Kursu - Faza 2") i dopisałem 9 kolejnych tematów zamykających realne luki: brak jakiejkolwiek treści o generatorze AI w kreatorze oraz dwie całkowicie nieobsłużone persony B2B (rzemiosło/serwis i korporacje/eventy). Kolejność poniżej odzwierciedla priorytet.
 
 
-- [ ] **Naklejki z imionami na meble, drzwi i pojemniki - organizacja domu**
-    - **Format:** Supporting Article
-    - **Główna Fraza Kluczowa:** `małe naklejki na meble` / `małe naklejki na drzwi` / `małe naklejki z imionami`
-    - **Cel:** Edukacja / Sprzedaż
-    - **Persona:** Rodzice, fani home organizing, osoby urządzające pokój dziecięcy
-    - **Link nadrzędny (Filar):** `/blog/jak-zamowic-idealne-naklejki-na-zamowienie-z-wlasnym-nadrukiem`
-    - **Prompty do generowania zdjęć:**
-        - "Wnętrze zorganizowanej szafy z pojemnikami plastikowymi opisanymi estetycznymi, jednolitymi naklejkami z nazwami kategorii, jasne, minimalistyczne wnętrze w stylu skandynawskim."
-        - "Drzwi dziecięcego pokoju z naklejoną, kolorową naklejką z imieniem dziecka wyciętą w kształcie chmurki, jasne wnętrze, miękkie światło."
-        - "Zbliżenie na białe szuflady kuchenne z małymi, jednolitymi etykietami opisującymi zawartość (sztućce, ściereczki, przyprawy), porządek w stylu minimalistycznym."
+
 
 - [ ] **Podziękowania dla gości i naklejki na koperty ślubne**
     - **Format:** Supporting Article
@@ -61,6 +52,14 @@ Podczas pisania i formatowania **każdego** artykułu lub aktualizacji, Agencie,
 ---
 
 ## 📈 Zrealizowane Artykuły
+
+- [x] **Naklejki z imionami na meble, drzwi i pojemniki - organizacja domu** (opublikowano 2026-07-25)
+    - **Format:** Supporting Article
+    - **Główna Fraza Kluczowa:** `małe naklejki na meble` / `małe naklejki na drzwi` / `małe naklejki z imionami`
+    - **Cel:** Edukacja / Sprzedaż
+    - **Persona:** Rodzice, fani home organizing, osoby urządzające pokój dziecięcy
+    - **Link nadrzędny (Filar):** `/blog/jak-zamowic-idealne-naklejki-na-zamowienie-z-wlasnym-nadrukiem`
+    - **Uwaga:** Artykuł ~1070 słów. Opublikowano bez zdjęć na polecenie użytkownika. Folder `public/blog/naklejki-z-imionami-na-meble-drzwi-i-pojemniki-organizacja-domu/` utworzony i czeka na zdjęcia.
 
 - [x] **Naklejki motoryzacyjne i tuningowe z własnym nadrukiem** (opublikowano 2026-07-23)
     - **Format:** Supporting Article
