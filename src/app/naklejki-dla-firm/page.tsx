@@ -39,7 +39,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/images/MałeNaklejki-Post-Instagram.jpg",
+        url: "/landing/naklejki-dla-firm/naklejki-dla-firm-na-paczki.png",
         width: 1200,
         height: 630,
         alt: "Naklejki dla firm z własnym logo - druk na zamówienie w MałeNaklejki",
@@ -51,7 +51,7 @@ export const metadata: Metadata = {
     title: "Naklejki dla firm z własnym logo - druk od 1 arkusza A4",
     description:
       "Naklejki firmowe z logo: 49 zł brutto za arkusz A4, faktura VAT, bez minimalnego nakładu, odbiór w paczkomacie w 2-3 dni.",
-    images: ["/images/MałeNaklejki-Post-Instagram.jpg"],
+    images: ["/landing/naklejki-dla-firm/naklejki-dla-firm-na-paczki.png"],
   },
 };
 
@@ -298,6 +298,12 @@ export default function NaklejkiDlaFirmPage() {
             .
           </p>
 
+          <img 
+            src="/landing/naklejki-dla-firm/naklejki-dla-firm-na-paczki.png" 
+            alt="Elegancka naklejka firmowa na kartonie wysyłkowym budująca unboxing experience" 
+            className="rounded-2xl shadow-sm border border-border/40 w-full object-cover aspect-video" 
+          />
+
           <div id="first-article-banner" className="flex flex-col sm:flex-row gap-3 pt-2">
             <Link
               href="/"
@@ -344,6 +350,11 @@ export default function NaklejkiDlaFirmPage() {
             Od brandingu produktów po znakowanie sprzętu - naklejki firmowe z własnym nadrukiem sprawdzają się
             wszędzie tam, gdzie liczy się spójny wizerunek marki bez dużych nakładów i długiego oczekiwania.
           </p>
+          <img 
+            src="/landing/naklejki-dla-firm/etykiety-na-sloiki-dla-firm.png" 
+            alt="Wysokiej jakości etykiety na słoiki z kosmetykami produkowane dla firm" 
+            className="rounded-2xl shadow-sm border border-border/40 w-full my-6 object-cover aspect-video" 
+          />
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {USE_CASES.map((uc) => {
               const Icon = uc.icon;
@@ -379,6 +390,11 @@ export default function NaklejkiDlaFirmPage() {
           <h2 className="text-2xl sm:text-3xl font-black text-foreground font-heading">
             Dlaczego firmy zamawiają naklejki w MałeNaklejki
           </h2>
+          <img 
+            src="/landing/naklejki-dla-firm/naklejki-serwisowe-dla-firm.png" 
+            alt="Bardzo mocna, winylowa naklejka serwisowa dla firm naklejona na piec grzewczy" 
+            className="rounded-2xl shadow-sm border border-border/40 w-full my-6 object-cover aspect-[21/9]" 
+          />
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {ADVANTAGES.map((adv) => {
               const Icon = adv.icon;
@@ -409,6 +425,11 @@ export default function NaklejkiDlaFirmPage() {
             Parametry, które firma powinna znać przed zamówieniem naklejek z logo - materiał, druk, dostępne
             cięcia oraz warunki zamówienia w jednym miejscu.
           </p>
+          <img 
+            src="/landing/naklejki-dla-firm/naklejki-zabezpieczajace-plomby.png" 
+            alt="Naklejki zabezpieczające i plomby firmowe naklejone na pudełko produktowe" 
+            className="rounded-2xl shadow-sm border border-border/40 w-full my-6 object-cover aspect-video" 
+          />
           <div className="overflow-x-auto rounded-2xl border border-border/60 shadow-sm">
             <table className="w-full border-collapse bg-white dark:bg-[#003a3b]/40 text-sm">
               <tbody>
@@ -438,6 +459,11 @@ export default function NaklejkiDlaFirmPage() {
           <h2 className="text-2xl sm:text-3xl font-black text-foreground font-heading">
             Jak zamówić naklejki dla firmy krok po kroku
           </h2>
+          <img 
+            src="/landing/naklejki-dla-firm/naklejki-z-logo-na-opakowania.png" 
+            alt="Kwadratowe naklejki z firmowym logo na papierowych kubkach kawiarnianych" 
+            className="rounded-2xl shadow-sm border border-border/40 w-full mb-6 object-cover aspect-[21/9]" 
+          />
           <ol className="space-y-4">
             {[
               {
@@ -539,9 +565,7 @@ export default function NaklejkiDlaFirmPage() {
           </div>
         </section>
 
-        {/* Uwaga: sekcja na zdjęcia. Folder: /public/landing/naklejki-dla-firm/.
-            Po wgraniu grafik przez właściciela osadzić je tu z altami SEO i obrandować
-            (analogicznie do obsługi zdjęć w blog-agent). */}
+        {/* Zdjęcia osadzone analogicznie do LP foliowych, wraz z wygenerowanymi z nich Pinami */}
       </main>
 
       <Footer />
