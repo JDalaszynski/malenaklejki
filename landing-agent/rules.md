@@ -53,7 +53,7 @@ Używaj wyłącznie potwierdzonych faktów. Zatwierdzone (źródło: produkcyjny
 * **Materiał:** trwała **folia winylowa**, mocny klej, nie zostawia śladów. Druk **300 DPI**. Odporność: **woda, UV, zadrapania**. (MałeNaklejki oferuje **tylko folię/winyl** - nie hologram, transparent, brokat itp.)
 * **Cięcie:** po obrysie (die-cut), koło, prostokąt. Jedna duża naklejka do **19 cm** lub kilkadziesiąt małych na arkuszu.
 * **Wykończenie:** pozostawione na arkuszu A4 **lub** pojedyncze docięte sztuki luzem.
-* **Kreator:** wgranie PDF/PNG/JPG, automatyczne usuwanie tła, generator AI (obraz z opisu tekstowego), podgląd 3D.
+* **Kreator:** wgranie PDF/PNG/JPG, automatyczne usuwanie tła, podgląd 3D. *(Generator AI to realna funkcja produktu, ale jej eksponowanie w NOWYCH treściach jest ⛔ WSTRZYMANE - 2026-07-27, patrz `blog-agent/plan.md` → "Wstrzymane tematy". Nie dodawaj generatora AI do copy/FAQ landingów do zdjęcia holdu.)*
 * **Produkcja:** **2-3 dni robocze** (czas produkcji, NIE całkowity czas dostawy). **Wysyłka:** odbiór w **paczkomacie**, **koszt dostawy 19,99 zł** (brak darmowej dostawy). **Płatność:** BLIK, Przelewy24, przelew.
 
 ❌ **Nadal NIE wolno twierdzić bez dalszego potwierdzenia:** wieloletnia trwałość zewnętrzna / na karoserię, **odporność w zmywarce (potwierdzone: NIE nadaje się do zmywarki - nie obiecuj)**, całkowity czas dostawy (produkcja + czas kuriera). Takie punkty trzymaj w `plan.md` jako "DO POTWIERDZENIA".
@@ -113,6 +113,7 @@ Każdy landing MUSI mieć linki przychodzące - **samo dodanie do `sitemap.ts` N
 * [ ] Zakaz "projektowania"; dywiz "-", nie półpauza.
 * [ ] Header/Footer nietknięte; link w nawigacji tylko za zgodą.
 * [ ] Utworzono folder `public/landing/<slug>/` na grafiki (patrz §11).
+* [ ] Zdjęcia w treści w formie wzorca `/naklejki-foliowe` (`rounded-2xl` + `border` + `object-cover aspect-video`/`aspect-[21/9]`); pary zdjęć w 2 kolumnach, max 2 na rząd (§11).
 * [ ] Zgodność z faktycznym Next.js (przewodnik w `node_modules/next/dist/docs/` sprawdzony).
 
 ---
@@ -121,4 +122,9 @@ Każdy landing MUSI mieć linki przychodzące - **samo dodanie do `sitemap.ts` N
 * **Osobny folder na landing:** przy tworzeniu każdego landingu utwórz katalog `public/landing/<slug>/` (np. `public/landing/naklejki-dla-firm/`), aby właściciel mógł tam wgrać grafiki. Utwórz go od razu (choćby z `.gitkeep`), zanim zgłosi się po zdjęcia.
 * **Domyślnie landing działa BEZ zdjęć** - wzorzec porównawczy nie ma żadnych fotografii, tylko ikony `lucide-react`. Nie blokuj publikacji brakiem grafik.
 * **Obsługa zdjęć po wgraniu (jak w blog-agent):** gdy właściciel wgra pliki i da znać, wykonaj: (a) nazwy plików SEO-friendly z dywizami, (b) osadzenie w treści z `alt` nasyconym frazą, (c) branding / pasek z logo jeśli dotyczy, (d) ustawienie grafiki jako `openGraph`/`twitter` image landingu zamiast generycznej. **Nie generuj zdjęć samodzielnie**, chyba że właściciel poprosi.
+* **Forma osadzania zdjęć w treści (OBOWIĄZKOWY wzorzec: `/naklejki-foliowe`):** każde zdjęcie osadzaj **dokładnie w formie z** [`src/app/naklejki-foliowe/page.tsx`](../src/app/naklejki-foliowe/page.tsx):
+  * Pojedyncze zdjęcie (pełna szerokość): `className="rounded-2xl shadow-sm border border-border/40 w-full my-6 object-cover aspect-video"` (dla szerokiego banera użyj `aspect-[21/9]`). **Zawsze `object-cover` + stały `aspect-*`** (kadrowany, spójny widok) - NIE natywne proporcje obrazu.
+  * Każdy `<img>` poprzedź `{/* eslint-disable-next-line @next/next/no-img-element */}`.
+  * **Kolumny do 2 zdjęć:** gdy w jednym miejscu pokazujesz 2 zdjęcia, układaj je **obok siebie w 2 kolumnach**: `<div className="grid grid-cols-1 sm:grid-cols-2 gap-4 my-6">` z dwoma `<img ... object-cover aspect-video>` (bez `my-6` na samych `img`). **Maksymalnie 2 zdjęcia na rząd** - nie rób siatek 3+ w jednym rzędzie ani stosów pojedynczych zdjęć jedno pod drugim, gdy można je sparować.
+  * Wypalony pasek z logo (`add_logo_bar.mjs`) zostaje **przycięty** przez `object-cover` w widoku on-page - to celowe: brand zostaje w pliku (dla OG i pobrań), a strona pokazuje czysty, kadrowany obraz.
 * **Ścieżki:** odwołuj się relatywnie do katalogu publicznego: `/landing/<slug>/nazwa-obrazu.jpg`.

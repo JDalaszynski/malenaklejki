@@ -2,34 +2,34 @@
 
 ## Pin 1 (pin-1.png)
 **Tytuł Pinu:**
-Stwórz Niezapomniany Unboxing z Własnym Logo
+Etykiety Na Kosmetyki I Słoiki Z Własnym Logo
 
 **Opis Pinu:**
-Podnieś wartość swoich przesyłek! Personalizowane naklejki firmowe z logo to prosty sposób, by zachwycić klientów od pierwszego wejrzenia. Idealne do zaklejania pudełek i bibuły. Zamów naklejki z własnym nadrukiem już dziś.
+Sprzedajesz kosmetyki naturalne albo domowe wyroby? Profesjonalna etykieta z logo od razu podnosi wartość produktu. Drukujemy na wodoodpornej folii winylowej w 300 DPI, więc napisy nie rozmażą się w łazience. Zamawiasz od 1 arkusza A4 za 49 zł brutto, z fakturą VAT i odbiorem w paczkomacie.
 
 **Napis CTA na grafice:**
-Zamów Naklejki Na Paczki
+Zamów Etykiety Na Słoiki
 
 ---
 
 ## Pin 2 (pin-2.png)
 **Tytuł Pinu:**
-Profesjonalne Etykiety na Twoje Rzemieślnicze Produkty
+Naklejki Na Kubki I Opakowania Dla Gastronomii
 
 **Opis Pinu:**
-Sprzedajesz kosmetyki naturalne lub domowe przetwory? Etykiety na słoiki z własnym nadrukiem dodadzą im elegancji i profesjonalnego wyglądu. Wgraj gotową grafikę i zamów online wodoodporne naklejki.
+Prowadzisz kawiarnię, palarnię albo food truck? Oznacz kubki na wynos, torby i opakowania spójną naklejką z logo. Mocny klej i folia odporna na wodę oraz zadrapania trzymają się nawet na papierze i kartonie. Cena 49 zł brutto za arkusz A4, faktura VAT, wysyłka w 2-3 dni.
 
 **Napis CTA na grafice:**
-Stwórz Etykiety Na Słoiki
+Zamów Naklejki Dla Kawiarni
 
 ---
 
 ## Pin 3 (pin-3.png)
 **Tytuł Pinu:**
-Wytrzymałe Naklejki Serwisowe - Zostaw Kontakt Do Siebie
+Naklejki Serwisowe Z Datą Przeglądu I Kontaktem
 
 **Opis Pinu:**
-Nie pozwól, by klient o Tobie zapomniał! Wytrzymałe naklejki serwisowe z numerem telefonu to must-have dla każdego instalatora i serwisanta. Drukujemy na mocnej folii odpornej na trudne warunki.
+Hydraulik, elektryk, instalator? Zostaw na urządzeniu klienta naklejkę "serwisowane przez" z numerem telefonu i datą kolejnego przeglądu. Trwała folia winylowa znosi wilgoć, UV i zadrapania w kotłowni czy na maszynie. Drukujemy od 1 arkusza za 49 zł brutto, z fakturą VAT.
 
 **Napis CTA na grafice:**
 Zamów Naklejki Dla Serwisu
@@ -38,25 +38,25 @@ Zamów Naklejki Dla Serwisu
 
 ## Pin 4 (pin-4.png)
 **Tytuł Pinu:**
-Naklejki Zabezpieczające - Gwarancja dla Twojego Klienta
+Naklejki Firmowe Zamykające Paczki Z Logo
 
 **Opis Pinu:**
-Daj klientom pewność, że produkt jest nowy i nieotwierany. Naklejki zabezpieczające i plomby firmowe to idealne rozwiązanie, by zwiększyć zaufanie do marki. Wgraj swoje logo i zabezpiecz swoje towary.
+Zamień zwykłą wysyłkę w markowy unboxing. Okrągła naklejka z logo elegancko zamyka pudełko i buduje wizerunek Twojej firmy przy każdej przesyłce. Gruba folia z mocnym klejem nie zostawia śladów na kartonie. Zamawiasz od 1 arkusza A4 za 49 zł brutto, z fakturą VAT i paczkomatem.
 
 **Napis CTA na grafice:**
-Wgraj Logo Na Plomby
+Wgraj Logo Na Paczki
 
 ---
 
 ## Pin 5 (pin-5.png)
 **Tytuł Pinu:**
-Oznacz Swoje Opakowania - Naklejki dla Gastronomii
+Naklejki Na Firmowe Gadżety I Butelki Zespołu
 
 **Opis Pinu:**
-Prowadzisz kawiarnię lub restaurację? Naklejki z własnym logo to szybki i tani sposób na branding kubków, toreb na wynos i opakowań. Stwórz spójny wizerunek swojej firmy i zachwyć klientów.
+Zbuduj employer branding własną maskotką lub logo na gadżetach. Wlepki z logo świetnie wyglądają na butelkach, kubkach termicznych i laptopach zespołu, w welcome packach i na eventach. Die-cut na trwałej folii, od 1 arkusza A4 za 49 zł brutto, z fakturą VAT i odbiorem w paczkomacie.
 
 **Napis CTA na grafice:**
-Zamów Naklejki Dla Kawiarni
+Wgraj Logo Na Gadżety
 
 ---
 

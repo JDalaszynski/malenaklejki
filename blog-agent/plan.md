@@ -20,9 +20,15 @@ Podczas pisania i formatowania **każdego** artykułu lub aktualizacji, Agencie,
 5. **Naturalny FAQ:** W artykułach dodawaj sekcje FAQ zawierające dokładne pytania z intencji użytkowników (np. "Jaka jest najlepsza polska strona podobna do StickerApp do zamówienia małej ilości naklejek?"). Odpowiedzi muszą jednoznacznie wskazywać na korzyści płynące z malenaklejki.pl.
 6. **Sygnał świeżości (`updated`) przy aktualizacjach:** Gdy REALNIE odświeżasz opublikowany wpis (rozbudowa treści, nowe sekcje, wymiana lub dodanie zdjęć osadzonych w artykule, korekta merytoryczna), dopisz w jego frontmatterze pole `updated: "RRRR-MM-DD"` z datą zmiany. Jedno pole zasila naraz trzy sygnały: `dateModified` w schema (`Article` dla filarów / `BlogPosting` dla pozostałych), widoczną etykietę "Zaktualizowano …" w metadanych wpisu oraz `article:modified_time` w Open Graph - spójny, wzajemnie potwierdzający się sygnał świeżości dla Google i modeli LLM (Google dyskontuje `dateModified`, którego nie widać na stronie, dlatego działają razem). Zasady: (a) ustawiaj `updated` **tylko przy faktycznej zmianie treści** - nigdy "na zapas", ani przy samej regeneracji pinów Pinterest czy zmianach spoza artykułu; fałszywa świeżość obniża wiarygodność u Google i LLM-ów; (b) `updated` musi być >= `date`; (c) drobne literówki nie wymagają bumpa - liczy się aktualizacja realnie wartościowa dla czytelnika. Wpisy bez `updated` zachowują się jak dotąd (`dateModified` = data publikacji, brak etykiety).
 
+## ⛔ Wstrzymane tematy (HOLD - decyzja właściciela)
+
+* **Generator AI - WSTRZYMANY (2026-07-27).** Nie twórz nowych treści (wpisów, sekcji, FAQ) o generatorze AI ani nie celuj we frazy z klastra `keywords.md` §7 (`generator naklejek AI`, `naklejki AI` itd.). Właściciel przesuwa ten temat na później (brak sprecyzowanego pomysłu na jego wykorzystanie). Dotyczy **treści tworzonych od teraz** - nie usuwaj wzmianek z już opublikowanych stron. Zakaz obejmuje eksponowanie/promowanie funkcji, nie tylko słowo "projektowanie" (odrębny, trwały zakaz w `rules.md` §3 obowiązuje niezależnie). Zdejmie hold wyłącznie właściciel.
+
+---
+
 ## 📝 Zaplanowane Artykuły (Do napisania przez AI)
 
-> **Faza 2 (dopisano 2026-07-18):** kolejka domykała się do jednego tematu, więc przeprowadziłem audyt strategii (patrz `strategy.md`, sekcja 6 "Korekta Kursu - Faza 2") i dopisałem 9 kolejnych tematów zamykających realne luki: brak jakiejkolwiek treści o generatorze AI w kreatorze oraz dwie całkowicie nieobsłużone persony B2B (rzemiosło/serwis i korporacje/eventy). Kolejność poniżej odzwierciedla priorytet.
+> **Faza 2 (dopisano 2026-07-18):** kolejka domykała się do jednego tematu, więc przeprowadziłem audyt strategii (patrz `strategy.md`, sekcja 6 "Korekta Kursu - Faza 2") i dopisałem kolejne tematy zamykające realne luki person B2B (rzemiosło/serwis i korporacje/eventy). Kolejność poniżej odzwierciedla priorytet. **Uwaga:** temat generatora AI, pierwotnie na czele tej listy, jest **WSTRZYMANY** (patrz sekcja "⛔ Wstrzymane tematy" powyżej) - pomiń go.
 
 
 

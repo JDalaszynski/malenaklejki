@@ -178,10 +178,7 @@ export default function AlternatywaPage() {
           name: "Naklejki z własnym nadrukiem (arkusz A4)",
           description:
             "Naklejki z własnym nadrukiem drukowane na trwałej folii winylowej. Stała cena 49,00 zł za arkusz A4, bez minimalnego nakładu. Polska produkcja i odbiór w paczkomacie w 3 dni.",
-          brand: {
-            "@type": "Brand",
-            name: "MałeNaklejki",
-          },
+          brand: { "@id": "https://www.malenaklejki.pl/#organization" },
           category: "Naklejki z własnym nadrukiem",
           offers: {
             "@type": "Offer",
@@ -190,6 +187,7 @@ export default function AlternatywaPage() {
             availability: "https://schema.org/InStock",
             url: PAGE_URL,
             priceValidUntil: "2026-12-31",
+            seller: { "@id": "https://www.malenaklejki.pl/#organization" },
           },
         }}
       />
@@ -199,6 +197,7 @@ export default function AlternatywaPage() {
           "@type": "WebPage",
           name: "Polska alternatywa dla Sticker Mule i StickerApp",
           url: PAGE_URL,
+          isPartOf: { "@id": "https://www.malenaklejki.pl/#website" },
           dateModified: "2026-07-25T00:00:00+02:00",
         }}
       />

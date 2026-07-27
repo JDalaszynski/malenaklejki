@@ -13,7 +13,7 @@ cta_text: "Zrób naklejkę ze zdjęcia"
 
 Ulubione zdjęcie z wakacji, portret psa, rysunek dziecka - wystarczy wgrać plik do naszego kreatora, a w ciągu 3 dni roboczych otworzy Cię paczka z gotową, trwałą naklejką ze zdjęcia wyciętą dokładnie po obrysie. Żadnego minimum nakładu, żadnego Photoshopa - tylko Twój projekt i stała cena 49,00 zł za arkusz A4.
 
-Naklejka ze zdjęciem to jeden z najpopularniejszych wariantów [naklejek na zamówienie z własnym nadrukiem](/blog/jak-zamowic-idealne-naklejki-na-zamowienie-z-wlasnym-nadrukiem), który sprawdza się zarówno jako osobista pamiątka, oryginalny prezent, jak i sposób na personalizację codziennych przedmiotów.
+Naklejka ze zdjęciem, czyli [fotonaklejka](/fotonaklejki), to jeden z najpopularniejszych wariantów [naklejek na zamówienie z własnym nadrukiem](/blog/jak-zamowic-idealne-naklejki-na-zamowienie-z-wlasnym-nadrukiem), który sprawdza się zarówno jako osobista pamiątka, oryginalny prezent, jak i sposób na personalizację codziennych przedmiotów.
 
 ## Naklejka ze zdjęcia - co możesz przenieść na folię?
 

@@ -131,19 +131,33 @@ export default function RootLayout({
           data={{
             "@context": "https://schema.org",
             "@type": "WebSite",
+            "@id": "https://www.malenaklejki.pl/#website",
             name: "MałeNaklejki",
             url: "https://www.malenaklejki.pl",
+            inLanguage: "pl-PL",
+            publisher: { "@id": "https://www.malenaklejki.pl/#organization" },
           }}
         />
         <JsonLd
           data={{
             "@context": "https://schema.org",
             "@type": "Organization",
+            "@id": "https://www.malenaklejki.pl/#organization",
             name: "MałeNaklejki",
             url: "https://www.malenaklejki.pl",
-            logo: "https://www.malenaklejki.pl/images/logo/favicon.png",
+            logo: {
+              "@type": "ImageObject",
+              "@id": "https://www.malenaklejki.pl/#logo",
+              url: "https://www.malenaklejki.pl/images/logo/favicon.png",
+            },
+            image: { "@id": "https://www.malenaklejki.pl/#logo" },
             description:
               "Kreator personalizowanych naklejek z własnym nadrukiem na arkuszach A4. Cięcie po konturze, druk na trwałym winylu, wysyłka w 3 dni robocze.",
+            sameAs: [
+              "https://www.facebook.com/profile.php?id=61591604648504",
+              "https://www.instagram.com/male_naklejki",
+              "https://pl.pinterest.com/MaleNaklejki/",
+            ],
             contactPoint: {
               "@type": "ContactPoint",
               contactType: "customer service",

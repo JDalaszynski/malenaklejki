@@ -225,10 +225,7 @@ export default function NaklejkiDlaFirmPage() {
           name: "Naklejki dla firm z własnym logo",
           description:
             "Naklejki firmowe z własnym logo drukowane na trwałej folii winylowej. Stała cena 49,00 zł brutto za arkusz A4, bez minimalnego nakładu, z fakturą VAT i odbiorem w paczkomacie.",
-          brand: {
-            "@type": "Brand",
-            name: "MałeNaklejki",
-          },
+          brand: { "@id": "https://www.malenaklejki.pl/#organization" },
           category: "Naklejki firmowe z logo",
           offers: {
             "@type": "Offer",
@@ -237,7 +234,18 @@ export default function NaklejkiDlaFirmPage() {
             availability: "https://schema.org/InStock",
             url: PAGE_URL,
             priceValidUntil: "2026-12-31",
+            seller: { "@id": "https://www.malenaklejki.pl/#organization" },
           },
+        }}
+      />
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "WebPage",
+          name: "Naklejki dla firm z własnym logo",
+          url: PAGE_URL,
+          isPartOf: { "@id": "https://www.malenaklejki.pl/#website" },
+          dateModified: "2026-07-24T00:00:00+02:00",
         }}
       />
       <JsonLd

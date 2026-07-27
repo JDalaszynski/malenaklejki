@@ -62,4 +62,5 @@ Rzeczywiste zapytania z Search Console (wyświetlenia / pozycja) - do walidacji 
 * `/naklejki-dla-firm` → naklejki dla firm, naklejki z logo dla firm, naklejki firmowe z logo (semantyczne: słoiki z logo, serwisowe, warsztatowe).
 * `/alternatywa-dla-sticker-mule-i-stickerapp` → polska alternatywa dla sticker mule / stickerapp.
 * `/naklejki-foliowe` (zbudowane 2026-07-25) → naklejki foliowe / winylowe / wodoodporne / trwałe (mikro-klaster scalony - NIE budować osobnego `/naklejki-winylowe` ani `/naklejki-wodoodporne`).
-* *(planowane)* `/naklejki-die-cut` → die cut naklejki, kiss cut, wykroje po obrysie. `fotonaklejki` → foto naklejki, naklejka ze zdjęcia (ujęcie komercyjne/produktowe).
+* `/fotonaklejki` (zbudowane 2026-07-27) → fotonaklejki, foto naklejki, naklejki ze zdjęcia, naklejka z własnego zdjęcia (ujęcie komercyjne/produktowe; różnicowane od edukacyjnego spoke'a `naklejka-ze-zdjecia...`).
+* *(planowane)* `/naklejki-die-cut` → die cut naklejki, kiss cut, wykroje po obrysie.

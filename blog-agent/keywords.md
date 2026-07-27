@@ -117,7 +117,9 @@ Oto lista rzeczywistych fraz kluczowych wyszukiwanych przez użytkowników w nas
 
 ---
 
-## 7. Generator AI (Nowy klaster - Faza 2, priorytet wysoki)
+## 7. Generator AI (⛔ KLASTER WSTRZYMANY - 2026-07-27)
+> **HOLD (decyzja właściciela):** nie celuj we frazy z tego klastra i nie twórz pod nie treści (patrz `plan.md` → "⛔ Wstrzymane tematy"). Właściciel przesunął temat na później. Lista pozostaje jako archiwum na moment zdjęcia holdu.
+
 Klaster wokół realnej, ale dotąd niewykorzystanej w treściach funkcji kreatora - generowania grafiki z opisu tekstowego. Zerowe pokrycie contentowe na blogu i stronie głównej mimo obecności funkcji w produkcie.
 * `generator naklejek AI`
 * `generator naklejek online`

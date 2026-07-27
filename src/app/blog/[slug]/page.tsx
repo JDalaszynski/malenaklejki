@@ -199,21 +199,10 @@ export default async function BlogPostPage({ params }: PageProps) {
           mainEntityOfPage: {
             "@type": "WebPage",
             "@id": `https://www.malenaklejki.pl/blog/${slug}`,
+            isPartOf: { "@id": "https://www.malenaklejki.pl/#website" },
           },
-          author: [{
-            "@type": "Organization",
-            name: "MałeNaklejki",
-            url: "https://www.malenaklejki.pl"
-          }],
-          publisher: {
-            "@type": "Organization",
-            name: "MałeNaklejki",
-            url: "https://www.malenaklejki.pl",
-            logo: {
-              "@type": "ImageObject",
-              url: "https://www.malenaklejki.pl/images/logo/favicon.png",
-            },
-          },
+          author: [{ "@id": "https://www.malenaklejki.pl/#organization" }],
+          publisher: { "@id": "https://www.malenaklejki.pl/#organization" },
           wordCount: post.content.replace(/<[^>]*>/g, '').trim().split(/\s+/).length,
         }}
       />

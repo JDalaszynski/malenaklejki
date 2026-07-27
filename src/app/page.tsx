@@ -35,10 +35,7 @@ export default async function Home() {
           name: "Personalizowane naklejki A4 wycinane po obrysie",
           description: "Wydrukuj swoje własne, personalizowane naklejki na arkuszach A4 w prosty i przyjemny sposób. Wytniemy je idealnie po kształcie Twoich grafik.",
           image: "https://www.malenaklejki.pl/images/logo/favicon.png",
-          brand: {
-            "@type": "Brand",
-            name: "MałeNaklejki",
-          },
+          brand: { "@id": "https://www.malenaklejki.pl/#organization" },
           offers: {
             "@type": "Offer",
             url: "https://www.malenaklejki.pl",
@@ -46,10 +43,7 @@ export default async function Home() {
             priceCurrency: "PLN",
             availability: "https://schema.org/InStock",
             priceValidUntil: "2027-12-31",
-            seller: {
-              "@type": "Organization",
-              name: "MałeNaklejki"
-            }
+            seller: { "@id": "https://www.malenaklejki.pl/#organization" }
           }
         }}
       />

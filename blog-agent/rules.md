@@ -49,6 +49,7 @@ Maksymalna czytelność. Krótkie akapity, zagnieżdżone nagłówki, tabele, wy
   * ❌ ŹLE: "W kreatorze możesz swobodnie projektować własną grafikę dzięki sztucznej inteligencji."
   * ✅ DOBRZE (własny plik): "Stwórz prosty projekt z napisem w darmowym programie Canva lub Word, zapisz go w formacie PDF, PNG lub JPG i wgraj plik do naszego kreatora. My zajmiemy się automatycznym wycięciem po obrysie!"
   * ✅ DOBRZE (generator AI jako źródło grafiki, nie jako "projektowanie"): "Nie masz gotowego zdjęcia ani grafiki? Opisz swój pomysł zwykłym tekstem, wybierz styl (np. akwarela lub anime), a wbudowana sztuczna inteligencja wygeneruje gotowy obraz - dokładnie tak, jakbyś wgrywał własne zdjęcie. Wycięciem po kształcie i ułożeniem na arkuszu zajmiesz się już w kreatorze."
+  > **⚠️ Ta reguła jest o SPOSOBIE pisania (zakaz słowa "projektować") i obowiązuje trwale. Niezależnie od niej: tworzenie NOWYCH treści o generatorze AI jest obecnie ⛔ WSTRZYMANE (2026-07-27, patrz `plan.md` → "Wstrzymane tematy"). Powyższy przykład "✅ DOBRZE" stosuj dopiero po zdjęciu holdu przez właściciela - do tego czasu nie eksponuj generatora AI w nowych wpisach.**
 ---
 
 ## 4. 

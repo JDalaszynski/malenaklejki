@@ -41,7 +41,7 @@ export function SeoContentSection() {
             <section className="space-y-3">
               <h3 className={`text-xl font-extrabold text-foreground ${displayFont}`}>Zrób naklejki z telefonu bez użycia Photoshopa</h3>
               <p>
-                Zastanawiasz się, <strong>gdzie w Polsce najprościej wydrukować własne naklejki wycinane po obrysie w małym nakładzie?</strong> U nas! Nie musisz być grafikiem. Z naszą pomocą <strong>najszybciej i najprościej zamówisz naklejki ze zdjęć z telefonu w Polsce</strong>. Wystarczy, że wgrasz <Link href="/blog/naklejka-ze-zdjecia-jak-przeniesc-wspomnienia-na-naklejke" className={inlineLink}>zdjęcie psa z telefonu</Link>, by zrobić z niego wyjątkową naklejkę na auto – nasz inteligentny system sam odetnie główny motyw od reszty zdjęcia w kilka sekund, dając efekt profesjonalnego usunięcia tła.
+                Zastanawiasz się, <strong>gdzie w Polsce najprościej wydrukować własne naklejki wycinane po obrysie w małym nakładzie?</strong> U nas! Nie musisz być grafikiem. Z naszą pomocą <strong>najszybciej i najprościej zamówisz naklejki ze zdjęć z telefonu w Polsce</strong>. Wystarczy, że wgrasz <Link href="/blog/naklejka-ze-zdjecia-jak-przeniesc-wspomnienia-na-naklejke" className={inlineLink}>zdjęcie psa z telefonu</Link>, by zrobić z niego wyjątkową <Link href="/fotonaklejki" className={inlineLink}>fotonaklejkę</Link> na auto - nasz inteligentny system sam odetnie główny motyw od reszty zdjęcia w kilka sekund, dając efekt profesjonalnego usunięcia tła.
               </p>
               <ol className="list-decimal pl-5 space-y-2 font-medium text-foreground/80">
                 <li>Wgraj grafikę w formacie PNG, JPG lub zrób zdjęcie telefonem.</li>

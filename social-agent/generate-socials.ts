@@ -86,7 +86,7 @@ WYTYCZNE (ZASADY):
 ${rulesContent}
 
 ${keywordsContent ? `BAZA SŁÓW KLUCZOWYCH SEO:
-Poniżej znajduje się oficjalna baza słów kluczowych. Bezwzględnie używaj tych fraz jako hashtagów (bez spacji) na Pintereście i w innych wpisach, oraz wplataj je naturalnie w opisy:
+Poniżej znajduje się oficjalna baza słów kluczowych. Używaj tych fraz jako hashtagów oraz wplataj je naturalnie w opisy:
 ${keywordsContent}` : ''}
 
 ---
@@ -95,29 +95,30 @@ ${blogContent}
 
 ---
 ZADANIE:
-Wygeneruj 4 formaty na podstawie powyższego artykułu:
-1. Krótka Zajawka (Post FB / Instagram)
-2. Merytoryczna Karuzela (Instagram / LinkedIn)
-3. Scenariusz TikTok / Reels
-4. Pinterest Pin
+Wygeneruj 3 bloki na podstawie powyższego artykułu, trzymając się dokładnie poniższego formatu nagłówków H2:
 
-Dla formatu "4. Pinterest Pin": W artykule znajduje się dokładnie ${images.length} zdjęć w treści. Dołączyłem je do tego zapytania (jako pliki graficzne w kolejności występowania). Wygeneruj DOKŁADNIE ${images.length} odrębnych, unikalnych zestawów danych (oznaczonych jako Zestaw 1, Zestaw 2, ..., Zestaw ${images.length}).
-Każdy zestaw musi zawierać:
-- **Tytuł Pinu [Numer Zestawu]:** (unikalny chwytliwy tytuł, nawiązujący DO TEGO CO JEST NA KONKRETNYM ZDJĘCIU)
-- **Opis Pinu [Numer Zestawu]:** (unikalny opis ze słowami kluczowymi, mocno osadzony w kontekście danego zdjęcia)
-- **CTA [Numer Zestawu]:** (DOKŁADNIE 1 unikalne, bardzo krótkie, silnie sprzedażowe wezwanie do akcji na grafikę, np. 2-4 słowa. MUSI WPROST NAWIĄZYWAĆ DO TEGO CO JEST NA ZDJĘCIU, np. jeśli na zdjęciu jest ślub, użyj "Zamów Naklejki na Wesele", jeśli kot, "Wgraj Zdjęcie Kota" itp. CTA musi być napisane w stylu Title Case, czyli z wielkich liter, np. "Zamów Naklejki na Wesele").
+## Facebook-Instagram Post
+Napisz gotową, wciągającą treść posta na Facebook i Instagram (jeden, uniwersalny post dla karuzeli zdjęć lub galerii).
+Użyj języka korzyści, odpowiednich emotikon i dodaj wyraźne Call to Action na końcu kierujące do artykułu na blogu lub do kreatora naklejek, a pod spodem wypisz 5-8 optymalnych hashtagów.
 
-Koniecznie przypilnuj, aby każdy zestaw miał zupełnie inne CTA na grafikę. Kategorycznie unikaj słów związanych z projektowaniem (np. "zaprojektuj", "projektuj", "zaprojektować", "projektowanie") we wszystkich tytułach, opisach oraz CTA! Klient nie projektuje naklejek - po prostu wgrywa zdjęcie z telefonu, a my sami wycinamy je po obrysie w kreatorze. Używaj zamiast tego: "wgraj", "zamów", "stwórz", "zrób". Wszystkie CTA muszą mieć wydźwięk sprzedażowy (sprzedaż/zamówienie/wgranie zdjęcia) i być zapisane w stylu Title Case (z wielkich liter, np. "Zamów Naklejki na Wesele"). Nie używaj pogrubień wewnątrz tekstu tytułu, opisu ani CTA.
+## TikTok Karuzela
+Napisz treść jednego, gotowego posta pod karuzelę zdjęć na TikToku (Slideshow). To musi być krótki, dynamiczny opis do posta z kilkoma zdjęciami (format 9:16).
+Zastosuj krótkie zdania. Dodaj wezwanie do akcji. Wypisz z 5 optymalnych hashtagów.
 
-Zwróć wynik jako sformatowany Markdown (używając nagłówków H2 dla każdego formatu).
+## Lista CTA na grafiki
+W artykule znajduje się ${images.length} zdjęć w treści. Dołączyłem je do zapytania. Musisz wygenerować DOKŁADNIE ${images.length} unikalnych, uderzeniowych wezwań do akcji (CTA), które nałożymy programistycznie na każdą grafikę. 
+Każde CTA musi mieć maksymalnie 2-4 słowa. Musi być zapisane w formacie Title Case, np. "Zamów Naklejki z Psem", "Wgraj Zdjęcie", "Zrób Własne Naklejki".
+Kategorycznie unikaj słowa "zaprojektuj" (używaj "stwórz", "zamów", "wgraj"). CTA musi odnosić się kontekstowo do tego, co jest na konkretnym zdjęciu!
+Wypisz je punktując w formacie (**CTA X:**, gdzie X to kolejny numer od 1):
+**CTA 1:** [wezwanie do akcji dla zdjęcia 1]
+**CTA 2:** [wezwanie do akcji dla zdjęcia 2]
+...itd.
 `;
 
   try {
     const contentsArr: any[] = [prompt];
     
-    // Dodajemy zdjęcia jako InlineData do promptu (Multimodal)
     for (const imgUrl of images) {
-      // Usunięcie ewentualnego pierwszego slasha dla prawidłowej ścieżki
       const safeImgUrl = imgUrl.startsWith('/') ? imgUrl.substring(1) : imgUrl;
       const imageAbsPath = path.join(__dirname, '..', 'public', safeImgUrl);
       if (fs.existsSync(imageAbsPath)) {
@@ -155,18 +156,34 @@ Zwróć wynik jako sformatowany Markdown (używając nagłówków H2 dla każdeg
     
     const outputFilename = blogFilename.replace('.md', '-socials.md');
     const outputPath = path.join(outputsDir, outputFilename);
-    
     fs.writeFileSync(outputPath, outputText, 'utf8');
-    console.log(`✅ Sukces! Wygenerowano treści do pliku: ${outputPath}`);
+    console.log(`✅ Zapisano pełną odpowiedź modelu do pliku: ${outputPath}`);
 
-    // --- AUTOMATYZACJA GRAFIK (PINTEREST 4:5) ---
-    console.log(`🖼️  Rozpoczynam przetwarzanie grafik 4:5...`);
+    // --- WYODRĘBNIANIE TREŚCI ---
+    const fbIgMatch = outputText.match(/## Facebook-Instagram Post\s*([\s\S]*?)(?=##|$)/i);
+    const tiktokMatch = outputText.match(/## TikTok Karuzela\s*([\s\S]*?)(?=##|$)/i);
+    const ctaMatches = [...outputText.matchAll(/\*\*CTA \d+:\*\*\s*\n?\s*([^\n\r]+)/gi)];
+    
+    const fbIgText = fbIgMatch ? fbIgMatch[1].trim() : "Treść FB/IG nie została wygenerowana poprawnie.";
+    const tiktokText = tiktokMatch ? tiktokMatch[1].trim() : "Treść TikTok nie została wygenerowana poprawnie.";
+    const ctas = ctaMatches.map(m => m[1].trim().replace(/[*`]/g, '').replace(/^\[?/, '').replace(/\]?$/, ''));
+
+    const fallbackCta = ctas[0] || "Zamów Online";
+
+    // --- AUTOMATYZACJA GRAFIK I ZAPISU (FB-IG 4:5 oraz TikTok 9:16) ---
+    console.log(`🖼️  Rozpoczynam przetwarzanie folderów i grafik...`);
 
     const articleSlug = blogFilename.replace('.md', '');
-    const pinterestDir = path.join(__dirname, '..', 'public', 'pinterest', articleSlug);
-    if (!fs.existsSync(pinterestDir)) {
-      fs.mkdirSync(pinterestDir, { recursive: true });
-    }
+    const fbIgDir = path.join(__dirname, '..', 'public', 'socials', 'Facebook-Instagram', articleSlug);
+    const tiktokDir = path.join(__dirname, '..', 'public', 'socials', 'Tik-Tok', articleSlug);
+    
+    if (!fs.existsSync(fbIgDir)) fs.mkdirSync(fbIgDir, { recursive: true });
+    if (!fs.existsSync(tiktokDir)) fs.mkdirSync(tiktokDir, { recursive: true });
+
+    // Zapis tekstów
+    fs.writeFileSync(path.join(fbIgDir, 'post.txt'), fbIgText, 'utf8');
+    fs.writeFileSync(path.join(tiktokDir, 'post.txt'), tiktokText, 'utf8');
+    console.log(`✅ Utworzono pliki post.txt z treścią w folderach docelowych.`);
 
     const logoPath = path.join(__dirname, '..', 'public', 'images', 'logo', 'malenaklejki-logo-light.png');
     const fontPath = path.join(__dirname, '..', 'public', 'fonts', 'Nunito-Bold.ttf');
@@ -176,90 +193,83 @@ Zwróć wynik jako sformatowany Markdown (używając nagłówków H2 dla każdeg
       fontBase64 = fs.readFileSync(fontPath).toString('base64');
     }
 
-    // Wyciąganie zestawów danych dla każdego Pinu (zatrzymujemy się na końcu linii dla tytułów/CTA, a dla opisu przed kolejnym nagłówkiem lub boldem)
-    const titleMatches = [...outputText.matchAll(/\*\*Tytuł [pP]inu[^:\n]*:\*\*\s*\n?\s*([^\n\r]+)/gi)];
-    const descMatches = [...outputText.matchAll(/\*\*Opis [pP]inu[^:\n]*:\*\*\s*\n?\s*([\s\S]*?)(?=\*\*|##|$)/gi)];
-    const ctaMatches = [...outputText.matchAll(/\*\*CTA[^:\n]*:\*\*\s*\n?\s*([^\n\r]+)/gi)];
-
-    const titles = titleMatches.map(m => m[1].trim());
-    const descriptions = descMatches.map(m => m[1].trim().replace(/[\s\*-]+$/, ''));
-    const ctas = ctaMatches.map(m => m[1].trim().replace(/[*`]/g, '').replace(/^\d+\.\s*/, ''));
-
-    const fallbackTitle = titles[0] || "Małe Naklejki";
-    const fallbackDesc = descriptions[0] || "Zamów spersonalizowane naklejki ze zdjęcia.";
-    const fallbackCta = ctas[0] || "Zamów Online";
-
     let imgCounter = 1;
-    const generatedPins: string[] = [];
     
     for (const imgUrl of images) {
       const fullImgPath = path.join(__dirname, '..', 'public', imgUrl);
       if (fs.existsSync(fullImgPath) && fs.existsSync(logoPath)) {
         try {
-          const pinWidth = 1000;
-          const pinHeight = 1250; // Format 4:5
-          const outFilename = `pin-${imgCounter}.png`;
-          const outPngPath = path.join(pinterestDir, outFilename);
-          generatedPins.push(outFilename);
-
-          // Dobieramy dedykowane CTA dla danego pinu
+          // Pobranie CTA dla danego zdjęcia
           const pinIndex = imgCounter - 1;
           const cta = ctas[pinIndex] || fallbackCta;
 
-          // Przygotowanie bazowego płótna 4:5 ze zdjęciem (contain) i tłem #EDF6F2
-          const baseImageBuffer = await sharp(fullImgPath)
-            .resize(pinWidth, pinHeight, {
-              fit: 'contain',
-              background: '#EDF6F2'
-            })
-            .toBuffer();
-
-          // Przygotowanie logo (wersja jasna)
-          const logoWidth = 350;
-          const logoBuffer = await sharp(logoPath).resize(logoWidth).toBuffer();
+          // Przygotowanie logo (wersja jasna) - współdzielone
+          const logoBuffer = await sharp(logoPath).resize(350).toBuffer();
           const logoBase64 = logoBuffer.toString('base64');
-
-          // Ustawienia wyśrodkowanego CTA (outline button)
+          
           const fontSize = 36;
-          const textLengthEst = cta.length * (fontSize * 0.55); // szacunkowa szerokość tekstu
+          const textLengthEst = cta.length * (fontSize * 0.55);
           const buttonWidth = textLengthEst + 80; // padding
           const buttonHeight = fontSize * 2.2;
-          const buttonX = (pinWidth - buttonWidth) / 2;
-          // Obniżamy przycisk, aby był wyśrodkowany w dolnej przestrzeni (ok. 25px od krawędzi)
-          const buttonY = pinHeight - buttonHeight - 25;
-          const textX = pinWidth / 2;
-          const textY = buttonY + buttonHeight / 2 + fontSize * 0.35;
+
+          // ======= RENDEROWANIE FB-IG (4:5) =======
+          const fbWidth = 1000;
+          const fbHeight = 1250;
+          const fbOutFilename = `img-${imgCounter}.png`;
+          const fbOutPath = path.join(fbIgDir, fbOutFilename);
+
+          const fbBaseImageBuffer = await sharp(fullImgPath)
+            .resize(fbWidth, fbHeight, { fit: 'contain', background: '#EDF6F2' })
+            .toBuffer();
+
+          const fbButtonX = (fbWidth - buttonWidth) / 2;
+          const fbButtonY = fbHeight - buttonHeight - 25;
+          const fbTextX = fbWidth / 2;
+          const fbTextY = fbButtonY + buttonHeight / 2 + fontSize * 0.35;
           
-          const svgOverlay = `
-            <svg width="${pinWidth}" height="${pinHeight}">
-              <defs>
-                <style>
-                  @font-face {
-                    font-family: 'Nunito';
-                    src: url(data:font/truetype;charset=utf-8;base64,${fontBase64}) format('truetype');
-                    font-weight: 900;
-                  }
-                </style>
-              </defs>
-
-              <!-- Logo na samej górze wyśrodkowane -->
-              <image href="data:image/png;base64,${logoBase64}" x="${(pinWidth - logoWidth) / 2}" y="30" width="${logoWidth}" opacity="1" />
-
-              <!-- Wyśrodkowany przycisk (Outline Button) -->
-              <rect x="${buttonX}" y="${buttonY}" width="${buttonWidth}" height="${buttonHeight}" rx="${buttonHeight / 2}" fill="rgba(0,71,73,0.05)" stroke="#004749" stroke-width="2" />
-              
-              <!-- Tekst CTA -->
-              <text x="${textX}" y="${textY}" font-family="Nunito, sans-serif" font-weight="900" font-size="${fontSize}" fill="#004749" text-anchor="middle">${cta}</text>
+          const fbSvgOverlay = `
+            <svg width="${fbWidth}" height="${fbHeight}">
+              <defs><style>@font-face { font-family: 'Nunito'; src: url(data:font/truetype;charset=utf-8;base64,${fontBase64}) format('truetype'); font-weight: 900; }</style></defs>
+              <image href="data:image/png;base64,${logoBase64}" x="${(fbWidth - 350) / 2}" y="30" width="350" opacity="1" />
+              <rect x="${fbButtonX}" y="${fbButtonY}" width="${buttonWidth}" height="${buttonHeight}" rx="${buttonHeight / 2}" fill="rgba(0,71,73,0.05)" stroke="#004749" stroke-width="2" />
+              <text x="${fbTextX}" y="${fbTextY}" font-family="Nunito, sans-serif" font-weight="900" font-size="${fontSize}" fill="#004749" text-anchor="middle">${cta}</text>
             </svg>
           `;
 
-          await sharp(baseImageBuffer)
-            .composite([
-              { input: Buffer.from(svgOverlay), top: 0, left: 0 }
-            ])
-            .toFile(outPngPath);
-            
-          console.log(`✅ Utworzono Pin 4:5: ${outPngPath} (CTA: "${cta}")`);
+          await sharp(fbBaseImageBuffer)
+            .composite([{ input: Buffer.from(fbSvgOverlay), top: 0, left: 0 }])
+            .toFile(fbOutPath);
+
+          // ======= RENDEROWANIE TIK-TOK (9:16) =======
+          const ttWidth = 1080;
+          const ttHeight = 1920;
+          const ttOutFilename = `img-${imgCounter}.png`;
+          const ttOutPath = path.join(tiktokDir, ttOutFilename);
+
+          const ttBaseImageBuffer = await sharp(fullImgPath)
+            .resize(ttWidth, ttHeight, { fit: 'contain', background: '#EDF6F2' })
+            .toBuffer();
+
+          const ttButtonX = (ttWidth - buttonWidth) / 2;
+          // Przycisk na TT trochę wyżej ze względu na interfejs na dole ekranu w apce (ok 150px od dołu)
+          const ttButtonY = ttHeight - buttonHeight - 150;
+          const ttTextX = ttWidth / 2;
+          const ttTextY = ttButtonY + buttonHeight / 2 + fontSize * 0.35;
+          
+          const ttSvgOverlay = `
+            <svg width="${ttWidth}" height="${ttHeight}">
+              <defs><style>@font-face { font-family: 'Nunito'; src: url(data:font/truetype;charset=utf-8;base64,${fontBase64}) format('truetype'); font-weight: 900; }</style></defs>
+              <image href="data:image/png;base64,${logoBase64}" x="${(ttWidth - 350) / 2}" y="100" width="350" opacity="1" />
+              <rect x="${ttButtonX}" y="${ttButtonY}" width="${buttonWidth}" height="${buttonHeight}" rx="${buttonHeight / 2}" fill="rgba(0,71,73,0.05)" stroke="#004749" stroke-width="2" />
+              <text x="${ttTextX}" y="${ttTextY}" font-family="Nunito, sans-serif" font-weight="900" font-size="${fontSize}" fill="#004749" text-anchor="middle">${cta}</text>
+            </svg>
+          `;
+
+          await sharp(ttBaseImageBuffer)
+            .composite([{ input: Buffer.from(ttSvgOverlay), top: 0, left: 0 }])
+            .toFile(ttOutPath);
+
+          console.log(`✅ Utworzono Grafiki (4:5 oraz 9:16) dla zdjęcia ${imgCounter}. CTA: "${cta}"`);
           imgCounter++;
         } catch (err: any) {
           console.error(`Błąd podczas przetwarzania obrazu ${fullImgPath}:`, err.message);
@@ -268,26 +278,7 @@ Zwróć wynik jako sformatowany Markdown (używając nagłówków H2 dla każdeg
         console.warn(`Pominięto ${imgUrl} - plik obrazu lub logo nie istnieje.`);
       }
     }
-
-    // Zapisywanie informacji o Pinach (Tytuł i Opis) w folderze Pinteresta
-    if (generatedPins.length > 0) {
-      let infoMarkdown = `# Dane do Pinów Pinterest\n\n`;
-      for (let i = 0; i < generatedPins.length; i++) {
-        const pinTitle = titles[i] || fallbackTitle;
-        const pinDesc = descriptions[i] || fallbackDesc;
-        const pinCta = ctas[i] || fallbackCta;
-
-        infoMarkdown += `## Pin ${i + 1} (${generatedPins[i]})\n`;
-        infoMarkdown += `**Tytuł Pinu:**\n${pinTitle}\n\n`;
-        infoMarkdown += `**Opis Pinu:**\n${pinDesc}\n\n`;
-        infoMarkdown += `**Napis CTA na grafice:**\n${pinCta}\n\n`;
-        infoMarkdown += `---\n\n`;
-      }
-
-      const infoFilePath = path.join(pinterestDir, 'pinterest-info.md');
-      fs.writeFileSync(infoFilePath, infoMarkdown, 'utf8');
-      console.log(`✅ Zapisano informacje o Pinach do pliku: ${infoFilePath}`);
-    }
+    console.log('✅ Zakończono proces. Foldery zostały zapisane w public/socials/');
     
   } catch(e: any) {
     console.error("Błąd podczas generowania:", e.message || e);

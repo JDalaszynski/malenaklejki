@@ -230,10 +230,7 @@ export default function NaklejkiFoliowePage() {
           name: "Naklejki foliowe (winylowe) z własnym nadrukiem",
           description:
             "Wodoodporne naklejki foliowe drukowane na trwałej folii winylowej, odpornej na wodę, promieniowanie UV i zadrapania. Druk 300 DPI, stała cena 49,00 zł brutto za arkusz A4, bez minimalnego nakładu, z odbiorem w paczkomacie.",
-          brand: {
-            "@type": "Brand",
-            name: "MałeNaklejki",
-          },
+          brand: { "@id": "https://www.malenaklejki.pl/#organization" },
           category: "Naklejki foliowe i winylowe z własnym nadrukiem",
           material: "Folia winylowa",
           offers: {
@@ -243,6 +240,7 @@ export default function NaklejkiFoliowePage() {
             availability: "https://schema.org/InStock",
             url: PAGE_URL,
             priceValidUntil: "2026-12-31",
+            seller: { "@id": "https://www.malenaklejki.pl/#organization" },
           },
         }}
       />
@@ -266,6 +264,7 @@ export default function NaklejkiFoliowePage() {
           "@type": "WebPage",
           name: "Naklejki foliowe (winylowe) z własnym nadrukiem",
           url: PAGE_URL,
+          isPartOf: { "@id": "https://www.malenaklejki.pl/#website" },
           dateModified: "2026-07-25T00:00:00+02:00",
         }}
       />

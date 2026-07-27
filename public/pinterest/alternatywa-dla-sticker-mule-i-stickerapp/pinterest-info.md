@@ -2,34 +2,34 @@
 
 ## Pin 1 (pin-1.png)
 **Tytuł Pinu:**
-Stwórz Naklejki z Własnym Logo Firmy
+Estetyczne Naklejki Die-Cut Wycinane Po Obrysie
 
 **Opis Pinu:**
-Szukasz sposobu na promocję marki? Zamów personalizowane naklejki z własnym logo. Nasze die cut naklejki to świetny gadżet firmowy. Drukujemy na grubej folii, idealne na laptopy i eventy.
+Kochasz naklejki wycinane idealnie po obrysie, jak z zagranicznych drukarni? Zrobisz je w Polsce. Drukujemy na grubej folii winylowej odpornej na wodę i UV, a każdą naklejkę die-cut tniemy w kształcie Twojej grafiki. Zamawiasz już od 1 arkusza A4 za 49 zł, z odbiorem w paczkomacie - bez przeliczania z dolarów.
 
 **Napis CTA na grafice:**
-Wgraj Logo Twojej Firmy
+Zamów Naklejki Die-Cut
 
 ---
 
 ## Pin 2 (pin-2.png)
 **Tytuł Pinu:**
-Naklejki Firmowe na Drzwi i Okna Biura
+Naklejki Z Logo I Maskotką Marki Die-Cut
 
 **Opis Pinu:**
-Oznacz swoje biuro w profesjonalny sposób. Naklejki z logo na zamówienie to eleganckie i trwałe rozwiązanie. Nasze naklejki firmowe z logo świetnie trzymają się gładkich powierzchni jak szkło.
+Twoja marka zasługuje na własne wlepki z logo albo maskotką. Wgraj grafikę, a my wytniemy naklejki po obrysie na trwałej folii winylowej z mocnym klejem. Polska alternatywa dla StickerApp: płacisz w złotówkach (BLIK), zamawiasz od 1 arkusza i odbierasz paczkę w 3 dni robocze.
 
 **Napis CTA na grafice:**
-Zamów Naklejki Dla Biura
+Wgraj Logo Marki
 
 ---
 
 ## Pin 3 (pin-3.png)
 **Tytuł Pinu:**
-Wydrukuj Własne Wzory Naklejek Artystycznych
+Naklejki Z Logo Firmy Na Szybę I Drzwi
 
 **Opis Pinu:**
-Masz własną grafikę lub zdjęcie? Zamień je w piękne, personalizowane naklejki! Idealne do plannerów, na laptopa lub jako dodatek do zamówień. Stwórz własne naklejki z dowolnego pliku.
+Oznacz witrynę, drzwi biura albo lokal naklejką z logo. Gruba folia winylowa z mocnym klejem trzyma się szkła, jest odporna na wodę, UV i zadrapania, a po odklejeniu nie zostawia śladów. Drukujemy w Polsce od 1 arkusza A4 za 49 zł - bez zagranicznej wysyłki i cła.
 
 **Napis CTA na grafice:**
 Wgraj Własną Grafikę
@@ -38,10 +38,10 @@ Wgraj Własną Grafikę
 
 ## Pin 4 (pin-4.png)
 **Tytuł Pinu:**
-Naklejki z Podziękowaniem dla Klientów
+Naklejki Z Podziękowaniem Do Paczek E-commerce
 
 **Opis Pinu:**
-Dodaj osobisty akcent do swoich paczek. Zamów naklejki firmowe z logo i podziękowaniem. To świetny sposób na budowanie relacji z klientem. Drukujemy naklejki kwadratowe na zamówienie.
+Dodaj do przesyłek naklejkę z logo i podziękowaniem, która zbuduje relację z klientem. To prosty sposób na profesjonalny unboxing w Twoim sklepie. Drukujemy na wodoodpornej folii, już od 1 arkusza A4, z odbiorem w paczkomacie w 3 dni - polska alternatywa dla Sticker Mule.
 
 **Napis CTA na grafice:**
 Dodaj Logo Do Paczki
@@ -50,10 +50,10 @@ Dodaj Logo Do Paczki
 
 ## Pin 5 (pin-5.png)
 **Tytuł Pinu:**
-Okrągłe Naklejki z Własnym Napisem
+Okrągłe Wlepki Z Własnym Nadrukiem Dla Artystów
 
 **Opis Pinu:**
-Wyraź siebie! Stwórz własne naklejki z inspirującym cytatem lub grafiką. Nasze okrągłe naklejki z własnym nadrukiem to hit. Idealne na deskorolkę, kask czy telefon.
+Masz swój wzór, cytat albo streetartową grafikę? Zamień ją w okrągłe wlepki z żywym nadrukiem 300 DPI na wytrzymałej folii. Bez minimalnego nakładu przetestujesz jeden wzór od 1 arkusza A4 za 49 zł. Polska alternatywa dla Sticker Mule dla twórców i małych nakładów.
 
 **Napis CTA na grafice:**
 Stwórz Okrągłą Wlepkę
