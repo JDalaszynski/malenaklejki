@@ -306,11 +306,9 @@ export default function NaklejkiDlaFirmPage() {
             .
           </p>
 
-          <img 
-            src="/landing/naklejki-dla-firm/naklejki-dla-firm-na-paczki.png" 
-            alt="Elegancka naklejka firmowa na kartonie wysyłkowym budująca unboxing experience" 
-            className="rounded-2xl shadow-sm border border-border/40 w-full object-cover aspect-video" 
-          />
+          <div className="relative w-full aspect-square rounded-2xl shadow-sm border border-border/40 overflow-hidden flex items-start justify-center bg-black/5 dark:bg-[#003a3b]/40">
+  <img src="/landing/naklejki-dla-firm/naklejki-dla-firm-na-paczki.png" alt="Elegancka naklejka firmowa na kartonie wysyłkowym budująca unboxing experience" className="w-full h-auto [clip-path:inset(0_0_12%_0)]" />
+</div>
 
           <div id="first-article-banner" className="flex flex-col sm:flex-row gap-3 pt-2">
             <Link
@@ -358,11 +356,9 @@ export default function NaklejkiDlaFirmPage() {
             Od brandingu produktów po znakowanie sprzętu - naklejki firmowe z własnym nadrukiem sprawdzają się
             wszędzie tam, gdzie liczy się spójny wizerunek marki bez dużych nakładów i długiego oczekiwania.
           </p>
-          <img 
-            src="/landing/naklejki-dla-firm/etykiety-na-sloiki-dla-firm.png" 
-            alt="Wysokiej jakości etykiety na słoiki z kosmetykami produkowane dla firm" 
-            className="rounded-2xl shadow-sm border border-border/40 w-full my-6 object-cover aspect-video" 
-          />
+          <div className="relative w-full aspect-square rounded-2xl shadow-sm border border-border/40 overflow-hidden flex items-start justify-center bg-black/5 dark:bg-[#003a3b]/40 my-6">
+  <img src="/landing/naklejki-dla-firm/etykiety-na-sloiki-dla-firm.png" alt="Wysokiej jakości etykiety na słoiki z kosmetykami produkowane dla firm" className="w-full h-auto [clip-path:inset(0_0_12%_0)]" />
+</div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {USE_CASES.map((uc) => {
               const Icon = uc.icon;
@@ -398,11 +394,9 @@ export default function NaklejkiDlaFirmPage() {
           <h2 className="text-2xl sm:text-3xl font-black text-foreground font-heading">
             Dlaczego firmy zamawiają naklejki w MałeNaklejki
           </h2>
-          <img 
-            src="/landing/naklejki-dla-firm/naklejki-serwisowe-dla-firm.png" 
-            alt="Bardzo mocna, winylowa naklejka serwisowa dla firm naklejona na piec grzewczy" 
-            className="rounded-2xl shadow-sm border border-border/40 w-full my-6 object-cover aspect-[21/9]" 
-          />
+          <div className="relative w-full aspect-square rounded-2xl shadow-sm border border-border/40 overflow-hidden flex items-start justify-center bg-black/5 dark:bg-[#003a3b]/40 my-6">
+  <img src="/landing/naklejki-dla-firm/naklejki-serwisowe-dla-firm.png" alt="Bardzo mocna, winylowa naklejka serwisowa dla firm naklejona na piec grzewczy" className="w-full h-auto [clip-path:inset(0_0_12%_0)]" />
+</div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {ADVANTAGES.map((adv) => {
               const Icon = adv.icon;
@@ -433,11 +427,9 @@ export default function NaklejkiDlaFirmPage() {
             Parametry, które firma powinna znać przed zamówieniem naklejek z logo - materiał, druk, dostępne
             cięcia oraz warunki zamówienia w jednym miejscu.
           </p>
-          <img 
-            src="/landing/naklejki-dla-firm/naklejki-zabezpieczajace-plomby.png" 
-            alt="Naklejki zabezpieczające i plomby firmowe naklejone na pudełko produktowe" 
-            className="rounded-2xl shadow-sm border border-border/40 w-full my-6 object-cover aspect-video" 
-          />
+          <div className="relative w-full aspect-square rounded-2xl shadow-sm border border-border/40 overflow-hidden flex items-start justify-center bg-black/5 dark:bg-[#003a3b]/40 my-6">
+  <img src="/landing/naklejki-dla-firm/naklejki-zabezpieczajace-plomby.png" alt="Naklejki zabezpieczające i plomby firmowe naklejone na pudełko produktowe" className="w-full h-auto [clip-path:inset(0_0_12%_0)]" />
+</div>
           <div className="overflow-x-auto rounded-2xl border border-border/60 shadow-sm">
             <table className="w-full border-collapse bg-white dark:bg-[#003a3b]/40 text-sm">
               <tbody>
@@ -467,11 +459,9 @@ export default function NaklejkiDlaFirmPage() {
           <h2 className="text-2xl sm:text-3xl font-black text-foreground font-heading">
             Jak zamówić naklejki dla firmy krok po kroku
           </h2>
-          <img 
-            src="/landing/naklejki-dla-firm/naklejki-z-logo-na-opakowania.png" 
-            alt="Kwadratowe naklejki z firmowym logo na papierowych kubkach kawiarnianych" 
-            className="rounded-2xl shadow-sm border border-border/40 w-full mb-6 object-cover aspect-[21/9]" 
-          />
+          <div className="relative w-full aspect-square rounded-2xl shadow-sm border border-border/40 overflow-hidden flex items-start justify-center bg-black/5 dark:bg-[#003a3b]/40 mb-6">
+  <img src="/landing/naklejki-dla-firm/naklejki-z-logo-na-opakowania.png" alt="Kwadratowe naklejki z firmowym logo na papierowych kubkach kawiarnianych" className="w-full h-auto [clip-path:inset(0_0_12%_0)]" />
+</div>
           <ol className="space-y-4">
             {[
               {

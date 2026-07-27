@@ -92,6 +92,7 @@ Każdy landing MUSI mieć linki przychodzące - **samo dodanie do `sitemap.ts` N
 * **Reużywaj:** `Header`, `Footer`, `StickyCTAButton`, `JsonLd` oraz tokeny wizualne (font `font-heading`, kolory `#edf6f2`/`#002c2e`/`#003a3b`/`#02af7a`, `rounded-2xl`/`3xl`, `border-border/40`). Nie twórz nowego designu - spójność z landingiem porównawczym.
 * **Server Component** (bez `"use client"`) gdy się da; dane w stałych tablicach na górze pliku (jak `FAQS`, `COMPARISON`, `ADVANTAGES` we wzorcu).
 * **A11y:** `<details>/<summary>` dla FAQ, `aria-label` przy breadcrumbach, hierarchia `H1→H2→H3`, kontrast, `alt` dla grafik.
+* **Prezentacja grafik (ukrywanie logo):** Aby ukryć znak wodny generatorów AI (np. DALL-E) u dołu wygenerowanych zdjęć na LP, **zawsze** stosuj strukturę: kontener zewnętrzny `w-full aspect-square flex items-start justify-center overflow-hidden` (z klasami dla ramek i tła `bg-black/5 dark:bg-[#003a3b]/40`) i grafikę `w-full h-auto [clip-path:inset(0_0_12%_0)]`. Zapewnia to renderowanie w idealnym kwadracie 1:1, brak przycięcia szerokości i bezpieczne ukrycie dolnych 12% obrazu.
 
 ---
 

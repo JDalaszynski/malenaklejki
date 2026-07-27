@@ -363,17 +363,13 @@ export default function FotonaklejkiPage() {
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 my-6">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="/landing/fotonaklejki/fotonaklejki-ze-zdjec-arkusz-a4.png"
-              alt="Fotonaklejki ze zdjęć na arkuszu A4 - portret psa, kadr z wakacji i rysunek dziecka wycięte po obrysie, obok telefon ze zdjęciem w galerii."
-              className="rounded-2xl shadow-sm border border-border/40 w-full object-cover aspect-video"
-            />
+            <div className="relative w-full aspect-square rounded-2xl shadow-sm border border-border/40 overflow-hidden flex items-start justify-center bg-black/5 dark:bg-[#003a3b]/40">
+  <img src="/landing/fotonaklejki/fotonaklejki-ze-zdjec-arkusz-a4.png" alt="Fotonaklejki ze zdjęć na arkuszu A4 - portret psa, kadr z wakacji i rysunek dziecka wycięte po obrysie, obok telefon ze zdjęciem w galerii." className="w-full h-auto [clip-path:inset(0_0_12%_0)]" />
+</div>
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="/landing/fotonaklejki/jak-powstaje-fotonaklejka-ze-zdjecia.png"
-              alt="Jak powstaje fotonaklejka ze zdjęcia - zdjęcie z telefonu zamienione w naklejkę wyciętą po obrysie na folii winylowej."
-              className="rounded-2xl shadow-sm border border-border/40 w-full object-cover aspect-video"
-            />
+            <div className="relative w-full aspect-square rounded-2xl shadow-sm border border-border/40 overflow-hidden flex items-start justify-center bg-black/5 dark:bg-[#003a3b]/40">
+  <img src="/landing/fotonaklejki/jak-powstaje-fotonaklejka-ze-zdjecia.png" alt="Jak powstaje fotonaklejka ze zdjęcia - zdjęcie z telefonu zamienione w naklejkę wyciętą po obrysie na folii winylowej." className="w-full h-auto [clip-path:inset(0_0_12%_0)]" />
+</div>
           </div>
           <p className="text-sm sm:text-base text-muted-foreground font-medium leading-relaxed">
             Fotonaklejki to naklejki drukowane z Twojego własnego zdjęcia lub grafiki na trwałej folii winylowej.
@@ -466,29 +462,21 @@ export default function FotonaklejkiPage() {
             </h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src="/landing/fotonaklejki/fotonaklejka-z-pupila-die-cut-na-laptopie.png"
-                alt="Fotonaklejka z pupila - portret śpiącego jamnika wycięty po obrysie (die-cut) naklejony na pokrywie laptopa."
-                className="rounded-2xl shadow-sm border border-border/40 w-full object-cover aspect-video"
-              />
+              <div className="relative w-full aspect-square rounded-2xl shadow-sm border border-border/40 overflow-hidden flex items-start justify-center bg-black/5 dark:bg-[#003a3b]/40">
+  <img src="/landing/fotonaklejki/fotonaklejka-z-pupila-die-cut-na-laptopie.png" alt="Fotonaklejka z pupila - portret śpiącego jamnika wycięty po obrysie (die-cut) naklejony na pokrywie laptopa." className="w-full h-auto [clip-path:inset(0_0_12%_0)]" />
+</div>
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src="/landing/fotonaklejki/fotonaklejka-ze-zdjecia-z-wakacji-na-termosie.png"
-                alt="Wodoodporna fotonaklejka ze zdjęcia z wakacji na stalowym termosie - kadr z pary w górach, odporny na warunki na szlaku."
-                className="rounded-2xl shadow-sm border border-border/40 w-full object-cover aspect-video"
-              />
+              <div className="relative w-full aspect-square rounded-2xl shadow-sm border border-border/40 overflow-hidden flex items-start justify-center bg-black/5 dark:bg-[#003a3b]/40">
+  <img src="/landing/fotonaklejki/fotonaklejka-ze-zdjecia-z-wakacji-na-termosie.png" alt="Wodoodporna fotonaklejka ze zdjęcia z wakacji na stalowym termosie - kadr z pary w górach, odporny na warunki na szlaku." className="w-full h-auto [clip-path:inset(0_0_12%_0)]" />
+</div>
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src="/landing/fotonaklejki/fotonaklejka-ze-zdjeciem-jako-prezent.png"
-                alt="Fotonaklejka ze zdjęciem jako prezent - okrągła naklejka ze wspólnym zdjęciem na pudełku z różową kokardą."
-                className="rounded-2xl shadow-sm border border-border/40 w-full object-cover aspect-video"
-              />
+              <div className="relative w-full aspect-square rounded-2xl shadow-sm border border-border/40 overflow-hidden flex items-start justify-center bg-black/5 dark:bg-[#003a3b]/40">
+  <img src="/landing/fotonaklejki/fotonaklejka-ze-zdjeciem-jako-prezent.png" alt="Fotonaklejka ze zdjęciem jako prezent - okrągła naklejka ze wspólnym zdjęciem na pudełku z różową kokardą." className="w-full h-auto [clip-path:inset(0_0_12%_0)]" />
+</div>
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src="/landing/fotonaklejki/fotonaklejka-ze-zdjeciem-zwierzaka-ze-zoo.png"
-                alt="Fotonaklejka ze zdjęciem zwierzaka - zdjęcie kapibary z zoo zamienione w naklejkę wyciętą po obrysie."
-                className="rounded-2xl shadow-sm border border-border/40 w-full object-cover aspect-video"
-              />
+              <div className="relative w-full aspect-square rounded-2xl shadow-sm border border-border/40 overflow-hidden flex items-start justify-center bg-black/5 dark:bg-[#003a3b]/40">
+  <img src="/landing/fotonaklejki/fotonaklejka-ze-zdjeciem-zwierzaka-ze-zoo.png" alt="Fotonaklejka ze zdjęciem zwierzaka - zdjęcie kapibary z zoo zamienione w naklejkę wyciętą po obrysie." className="w-full h-auto [clip-path:inset(0_0_12%_0)]" />
+</div>
             </div>
           </div>
         </section>
@@ -499,11 +487,9 @@ export default function FotonaklejkiPage() {
             Dlaczego warto zrobić fotonaklejki w MałeNaklejki
           </h2>
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="/landing/fotonaklejki/fotonaklejka-automatyczne-usuwanie-tla.png"
-            alt="Automatyczne usuwanie tła w kreatorze - zdjęcie kota brytyjskiego zamienione w fotonaklejkę wyciętą po obrysie, bez Photoshopa."
-            className="rounded-2xl shadow-sm border border-border/40 w-full my-6 object-cover aspect-[21/9]"
-          />
+          <div className="relative w-full aspect-square rounded-2xl shadow-sm border border-border/40 overflow-hidden flex items-start justify-center bg-black/5 dark:bg-[#003a3b]/40 my-6">
+  <img src="/landing/fotonaklejki/fotonaklejka-automatyczne-usuwanie-tla.png" alt="Automatyczne usuwanie tła w kreatorze - zdjęcie kota brytyjskiego zamienione w fotonaklejkę wyciętą po obrysie, bez Photoshopa." className="w-full h-auto [clip-path:inset(0_0_12%_0)]" />
+</div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {ADVANTAGES.map((adv) => {
               const Icon = adv.icon;
@@ -531,11 +517,9 @@ export default function FotonaklejkiPage() {
             Jak zrobić fotonaklejkę krok po kroku
           </h2>
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="/landing/fotonaklejki/fotonaklejka-ze-zdjecia-hobby-w-kreatorze.png"
-            alt="Fotonaklejka ze zdjęcia hobby - zdjęcie zabytkowej lokomotywy z telefonu zamienione w naklejkę die-cut w kreatorze."
-            className="rounded-2xl shadow-sm border border-border/40 w-full my-6 object-cover aspect-[21/9]"
-          />
+          <div className="relative w-full aspect-square rounded-2xl shadow-sm border border-border/40 overflow-hidden flex items-start justify-center bg-black/5 dark:bg-[#003a3b]/40 my-6">
+  <img src="/landing/fotonaklejki/fotonaklejka-ze-zdjecia-hobby-w-kreatorze.png" alt="Fotonaklejka ze zdjęcia hobby - zdjęcie zabytkowej lokomotywy z telefonu zamienione w naklejkę die-cut w kreatorze." className="w-full h-auto [clip-path:inset(0_0_12%_0)]" />
+</div>
           <ol className="space-y-4">
             {[
               {

@@ -364,11 +364,9 @@ export default function NaklejkiFoliowePage() {
           <h2 className="text-2xl sm:text-3xl font-black text-foreground font-heading">
             Czym są naklejki foliowe (winylowe)
           </h2>
-          <img 
-            src="/landing/naklejki-foliowe/wodoodporne-naklejki-foliowe.png" 
-            alt="Wodoodporne naklejki foliowe na kasku motocyklowym zabezpieczone przed deszczem" 
-            className="rounded-2xl shadow-sm border border-border/40 w-full mb-6 object-cover aspect-video" 
-          />
+          <div className="relative w-full aspect-square rounded-2xl shadow-sm border border-border/40 overflow-hidden flex items-start justify-center bg-black/5 dark:bg-[#003a3b]/40 mb-6">
+  <img src="/landing/naklejki-foliowe/wodoodporne-naklejki-foliowe.png" alt="Wodoodporne naklejki foliowe na kasku motocyklowym zabezpieczone przed deszczem" className="w-full h-auto [clip-path:inset(0_0_12%_0)]" />
+</div>
           <p className="text-sm sm:text-base text-muted-foreground font-medium leading-relaxed">
             Naklejki foliowe i winylowe to ten sam produkt - drukujemy je na trwałej folii winylowej, a nie na
             zwykłym papierze. To właśnie folia decyduje o wodoodporności: nadruk nie rozmięknie od wody ani
@@ -425,11 +423,9 @@ export default function NaklejkiFoliowePage() {
             Odporność na wodę, UV i zadrapania sprawia, że naklejki foliowe trafiają na przedmioty codziennego
             użytku narażone na wilgoć, słońce i ocieranie - tam, gdzie papierowa naklejka nie przetrwałaby długo.
           </p>
-          <img 
-            src="/landing/naklejki-foliowe/naklejki-winylowe-na-bidon.png" 
-            alt="Naklejki winylowe na bidonie kempingowym zroszonym wodą" 
-            className="rounded-2xl shadow-sm border border-border/40 w-full my-6 object-cover aspect-video" 
-          />
+          <div className="relative w-full aspect-square rounded-2xl shadow-sm border border-border/40 overflow-hidden flex items-start justify-center bg-black/5 dark:bg-[#003a3b]/40 my-6">
+  <img src="/landing/naklejki-foliowe/naklejki-winylowe-na-bidon.png" alt="Naklejki winylowe na bidonie kempingowym zroszonym wodą" className="w-full h-auto [clip-path:inset(0_0_12%_0)]" />
+</div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {USE_CASES.map((uc) => {
               const Icon = uc.icon;
@@ -465,11 +461,9 @@ export default function NaklejkiFoliowePage() {
           <h2 className="text-2xl sm:text-3xl font-black text-foreground font-heading">
             Dlaczego warto wybrać naklejki na folii winylowej
           </h2>
-          <img 
-            src="/landing/naklejki-foliowe/naklejki-foliowe-na-laptopa.png" 
-            alt="Odporne na UV naklejki foliowe na laptopie w pełnym, ostrym słońcu" 
-            className="rounded-2xl shadow-sm border border-border/40 w-full my-6 object-cover aspect-[21/9]" 
-          />
+          <div className="relative w-full aspect-square rounded-2xl shadow-sm border border-border/40 overflow-hidden flex items-start justify-center bg-black/5 dark:bg-[#003a3b]/40 my-6">
+  <img src="/landing/naklejki-foliowe/naklejki-foliowe-na-laptopa.png" alt="Odporne na UV naklejki foliowe na laptopie w pełnym, ostrym słońcu" className="w-full h-auto [clip-path:inset(0_0_12%_0)]" />
+</div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {ADVANTAGES.map((adv) => {
               const Icon = adv.icon;
@@ -496,11 +490,9 @@ export default function NaklejkiFoliowePage() {
           <h2 className="text-2xl sm:text-3xl font-black text-foreground font-heading">
             Jak zamówić naklejki foliowe krok po kroku
           </h2>
-          <img 
-            src="/landing/naklejki-foliowe/trwale-naklejki-z-wlasnym-nadrukiem.png" 
-            alt="Trwałe naklejki z własnym nadrukiem na grubej folii winylowej wyciętej po obrysie" 
-            className="rounded-2xl shadow-sm border border-border/40 w-full mb-6 object-cover aspect-[21/9]" 
-          />
+          <div className="relative w-full aspect-square rounded-2xl shadow-sm border border-border/40 overflow-hidden flex items-start justify-center bg-black/5 dark:bg-[#003a3b]/40 mb-6">
+  <img src="/landing/naklejki-foliowe/trwale-naklejki-z-wlasnym-nadrukiem.png" alt="Trwałe naklejki z własnym nadrukiem na grubej folii winylowej wyciętej po obrysie" className="w-full h-auto [clip-path:inset(0_0_12%_0)]" />
+</div>
           <ol className="space-y-4">
             {[
               {

@@ -268,11 +268,9 @@ export default function AlternatywaPage() {
             .
           </p>
 
-          <img 
-            src="/landing/alternatywa-dla-sticker-mule-i-stickerapp/polska-alternatywa-dla-sticker-mule.png" 
-            alt="Polska alternatywa dla Sticker Mule i StickerApp: grube naklejki die-cut cięte po obrysie" 
-            className="rounded-2xl shadow-sm border border-border/40 w-full object-cover aspect-video" 
-          />
+          <div className="relative w-full aspect-square rounded-2xl shadow-sm border border-border/40 overflow-hidden flex items-start justify-center bg-black/5 dark:bg-[#003a3b]/40">
+  <img src="/landing/alternatywa-dla-sticker-mule-i-stickerapp/polska-alternatywa-dla-sticker-mule.png" alt="Polska alternatywa dla Sticker Mule i StickerApp: grube naklejki die-cut cięte po obrysie" className="w-full h-auto [clip-path:inset(0_0_12%_0)]" />
+</div>
 
           <div id="first-article-banner" className="flex flex-col sm:flex-row gap-3 pt-2">
             <Link
@@ -366,11 +364,9 @@ export default function AlternatywaPage() {
             danego dostawcy. Nazwy Sticker Mule i StickerApp należą do ich właścicieli i służą tu wyłącznie do
             porównania.
           </p>
-          <img 
-            src="/landing/alternatywa-dla-sticker-mule-i-stickerapp/naklejki-premium-wyciete-po-obrysie.png" 
-            alt="Naklejki premium wycięte po obrysie na szybie kawiarni bez pęcherzyków powietrza" 
-            className="rounded-2xl shadow-sm border border-border/40 w-full mt-4 mb-2 object-cover aspect-video" 
-          />
+          <div className="relative w-full aspect-square rounded-2xl shadow-sm border border-border/40 overflow-hidden flex items-start justify-center bg-black/5 dark:bg-[#003a3b]/40 mt-4 mb-2">
+  <img src="/landing/alternatywa-dla-sticker-mule-i-stickerapp/naklejki-premium-wyciete-po-obrysie.png" alt="Naklejki premium wycięte po obrysie na szybie kawiarni bez pęcherzyków powietrza" className="w-full h-auto [clip-path:inset(0_0_12%_0)]" />
+</div>
         </section>
 
         {/* Advantages */}
@@ -378,11 +374,9 @@ export default function AlternatywaPage() {
           <h2 className="text-2xl sm:text-3xl font-black text-foreground font-heading">
             Dlaczego malenaklejki.pl to najlepsza polska alternatywa
           </h2>
-          <img 
-            src="/landing/alternatywa-dla-sticker-mule-i-stickerapp/gruba-folia-winylowa-naklejki.png" 
-            alt="Zgięta naklejka wycięta po obrysie demonstrująca sztywność grubej folii winylowej" 
-            className="rounded-2xl shadow-sm border border-border/40 w-full my-6 object-cover aspect-[21/9]" 
-          />
+          <div className="relative w-full aspect-square rounded-2xl shadow-sm border border-border/40 overflow-hidden flex items-start justify-center bg-black/5 dark:bg-[#003a3b]/40 my-6">
+  <img src="/landing/alternatywa-dla-sticker-mule-i-stickerapp/gruba-folia-winylowa-naklejki.png" alt="Zgięta naklejka wycięta po obrysie demonstrująca sztywność grubej folii winylowej" className="w-full h-auto [clip-path:inset(0_0_12%_0)]" />
+</div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {ADVANTAGES.map((adv) => {
               const Icon = adv.icon;
@@ -409,11 +403,9 @@ export default function AlternatywaPage() {
           <h2 className="text-2xl sm:text-3xl font-black text-foreground font-heading">
             Jak zamówić naklejki w polskiej drukarni krok po kroku
           </h2>
-          <img 
-            src="/landing/alternatywa-dla-sticker-mule-i-stickerapp/drukowanie-naklejek-wysoka-jakosc.png" 
-            alt="Awers i rewers wysokiej jakości okrągłej naklejki z grubym papierem podkładowym" 
-            className="rounded-2xl shadow-sm border border-border/40 w-full my-6 object-cover aspect-video" 
-          />
+          <div className="relative w-full aspect-square rounded-2xl shadow-sm border border-border/40 overflow-hidden flex items-start justify-center bg-black/5 dark:bg-[#003a3b]/40 my-6">
+  <img src="/landing/alternatywa-dla-sticker-mule-i-stickerapp/drukowanie-naklejek-wysoka-jakosc.png" alt="Awers i rewers wysokiej jakości okrągłej naklejki z grubym papierem podkładowym" className="w-full h-auto [clip-path:inset(0_0_12%_0)]" />
+</div>
           <ol className="space-y-4">
             {[
               {
@@ -460,11 +452,9 @@ export default function AlternatywaPage() {
           <h2 className="text-2xl sm:text-3xl font-black text-foreground font-heading">
             Polska alternatywa dla zagranicznych drukarni - najczęstsze pytania
           </h2>
-          <img 
-            src="/landing/alternatywa-dla-sticker-mule-i-stickerapp/alternatywa-stickerapp-w-polsce.png" 
-            alt="Polska alternatywa dla StickerApp drukująca w rozdzielczości 300 DPI na folii" 
-            className="rounded-2xl shadow-sm border border-border/40 w-full my-6 object-cover aspect-[21/9]" 
-          />
+          <div className="relative w-full aspect-square rounded-2xl shadow-sm border border-border/40 overflow-hidden flex items-start justify-center bg-black/5 dark:bg-[#003a3b]/40 my-6">
+  <img src="/landing/alternatywa-dla-sticker-mule-i-stickerapp/alternatywa-stickerapp-w-polsce.png" alt="Polska alternatywa dla StickerApp drukująca w rozdzielczości 300 DPI na folii" className="w-full h-auto [clip-path:inset(0_0_12%_0)]" />
+</div>
           <div className="flex flex-col gap-3.5">
             {FAQS.map((faq) => (
               <details
