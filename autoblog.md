@@ -58,9 +58,12 @@ Jeśli wykryjesz jakiekolwiek braki, wprowadź niezbędne poprawki.
 > **KOLEJNOŚĆ KROKÓW 1.2 i 1.5 JEST OBOWIĄZKOWA: NAJPIERW PINY, POTEM PASEK Z LOGO.**
 > `add_logo_bar.mjs` **wypala** pasek z logo na stałe w pliku źródłowym (nadpisuje oryginał). Generator pinów dokłada własny pasek z logo i CTA, więc uruchomiony na już obrandowanym zdjęciu produkuje pin z **dwoma logotypami** - jednym u góry i drugim tuż nad przyciskiem CTA. Zawsze generuj Piny z **surowych** obrazów, a dopiero potem brandinguj zdjęcia do artykułu.
 
-1.2. **Generuj Social Media i Piny (NAJPIERW - z surowych zdjęć):** Po upewnieniu się, że zdjęcia są wgrane w folderze `public/blog/{slug}/` i **przed** dodaniem paska z logo, uruchom skrypt generujący materiały social-media i grafiki na Pinterest:
-   `npx tsx social-agent/generate-socials.ts {slug}.md`
-   Skrypt ten automatycznie wygeneruje Piny w dedykowanym folderze `/public/pinterest/{slug}/` na podstawie zdjęć z treści wpisu, a także stworzy plik opisów `pinterest-info.md`.
+1.1. **Optymalizacja i nazwy zdjęć (ZAWSZE, przed wszystkim innym):** Zdjęcia wgrane przez użytkownika bywają ciężkie - nierzadko są to pliki PNG zapisane z rozszerzeniem `.jpg`, po ~2 MB każdy. Zanim cokolwiek z nimi zrobisz: (a) nadaj im czytelne, SEO-friendly nazwy powiązane z treścią zdjęcia i frazami kluczowymi; (b) przekonwertuj je na realny JPEG i skompresuj bez widocznej utraty jakości (sharp: `.jpeg({ quality: 88, mozjpeg: true })`; rozdzielczość ~1024 px w zupełności wystarcza na bloga). Cel: z ~2 MB zejść do ~100-250 KB na plik. Dopiero na tak przygotowanych zdjęciach osadzaj je w treści, generuj Piny i na końcu dodawaj pasek z logo. **Rób to automatycznie przy każdym artykule - użytkownik nie musi o tym przypominać.**
+
+1.2. **Generuj Social Media i Piny (NAJPIERW - z surowych, zoptymalizowanych zdjęć):** Po nadaniu nazw i optymalizacji zdjęć w folderze `public/blog/{slug}/` oraz osadzeniu ich w treści wpisu, a **przed** dodaniem paska z logo, uruchom skrypty generujące materiały:
+   - `npx tsx social-agent/generate-socials.ts {slug}.md` - materiały na Facebook/Instagram (4:5) i TikTok (9:16) w `/public/socials/`.
+   - `npx tsx social-agent/generate-pinterest.ts {slug}.md` - Piny Pinterest (4:5) w dedykowanym folderze `/public/pinterest/{slug}/` **w formacie JPG** (`pin-N.jpg`) wraz z plikiem opisów `pinterest-info.md`.
+   Oba skrypty czytają cover + zdjęcia z treści wpisu i dokładają własny pasek z logo oraz przycisk CTA, dlatego muszą działać na zdjęciach BEZ wypalonego paska (patrz uwaga o kolejności powyżej).
 1.5. **Branding Zdjęć (DOPIERO TERAZ):** Gdy Piny są już gotowe, dodaj do zdjęć artykułu pasek z logo:
    `node add_logo_bar.mjs public/blog/{slug}`
    Uruchom ten skrypt **dokładnie raz** - każde kolejne wywołanie dokłada kolejny pasek. Jeśli przez pomyłkę pasek trafił na zdjęcia przed wygenerowaniem Pinów, oryginał da się odzyskać bezstratnie: pasek ma wysokość `floor(szerokość * 0.15)` i jest doklejany **pod** obrazem, więc wystarczy przyciąć plik do górnych `wysokość - floor(szerokość * 0.15)` pikseli, ponownie wygenerować Piny i dopiero potem uruchomić branding.

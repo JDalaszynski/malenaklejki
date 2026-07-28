@@ -29,101 +29,85 @@ Są to tematy mocno wizualne, idealne pod format "Before/After" lub treści insp
 ## 📝 Lista Artykułów
 
 - [ ] **co-to-jest-die-cut-i-kiss-cut-roznice-w-wyleciach-naklejek-reklamowych.md**
-    - [ ] FB/IG (4:5)
-    - [ ] TikTok (9:16)
+    - [ ] TikTok (Karuzela/Photo Mode)
     - [x] Pinterest
 
 - [ ] **drukowanie-naklejek-online-na-co-zwrocic-uwage-przed-wysylka-projektu.md**
-    - [ ] FB/IG (4:5)
-    - [ ] TikTok (9:16)
+    - [ ] TikTok (Karuzela/Photo Mode)
     - [x] Pinterest
 
 - [ ] **jak-zamowic-idealne-naklejki-na-zamowienie-z-wlasnym-nadrukiem.md**
-    - [ ] FB/IG (4:5)
-    - [ ] TikTok (9:16)
+    - [ ] TikTok (Karuzela/Photo Mode)
     - [x] Pinterest
 
 - [ ] **jak-zrobic-wlasne-naklejki-w-telefonie-proste-aplikacje-i-triki.md**
-    - [ ] FB/IG (4:5)
-    - [ ] TikTok (9:16)
+    - [ ] TikTok (Karuzela/Photo Mode)
     - [x] Pinterest
 
 - [ ] **male-naklejki-na-laptopa-jak-wyrazic-siebie-i-stworzyc-wlasny-styl.md**
-    - [ ] FB/IG (4:5)
-    - [ ] TikTok (9:16)
+    - [ ] TikTok (Karuzela/Photo Mode)
     - [x] Pinterest
 
 - [ ] **naklejka-z-logo-firmy-jak-skutecznie-brandowac-swoje-produkty.md**
-    - [ ] FB/IG (4:5)
-    - [ ] TikTok (9:16)
+    - [ ] TikTok (Karuzela/Photo Mode)
     - [x] Pinterest
 
 - [x] **naklejka-ze-zdjecia-jak-przeniesc-wspomnienia-na-naklejke.md**
-    - [x] FB/IG (4:5)
-    - [x] TikTok (9:16)
+    - [x] TikTok (Karuzela/Photo Mode)
     - [x] Pinterest
 
 - [ ] **naklejki-firmowe-na-eventy-welcome-pack-dla-pracownikow.md**
-    - [ ] FB/IG (4:5)
-    - [ ] TikTok (9:16)
+    - [ ] TikTok (Karuzela/Photo Mode)
     - [x] Pinterest
 
 - [ ] **naklejki-maly-naklad-jak-zamowic-pojedyncze-sztuki-bez-przeplacania.md**
-    - [ ] FB/IG (4:5)
-    - [ ] TikTok (9:16)
+    - [ ] TikTok (Karuzela/Photo Mode)
     - [x] Pinterest
 
 - [ ] **naklejki-motoryzacyjne-i-tuningowe-z-wlasnym-nadrukiem.md**
-    - [ ] FB/IG (4:5)
-    - [ ] TikTok (9:16)
+    - [ ] TikTok (Karuzela/Photo Mode)
     - [x] Pinterest
 
+- [ ] **naklejki-na-koperty-slubne-i-podziekowania-dla-gosci.md**
+    - [ ] TikTok (Karuzela/Photo Mode)
+    - [x] Pinterest (JPG, 8 pinów)
+
 - [ ] **naklejki-na-nalewki-domowe-jak-ozdobic-butelki-na-nalewki.md**
-    - [ ] FB/IG (4:5)
-    - [ ] TikTok (9:16)
+    - [ ] TikTok (Karuzela/Photo Mode)
     - [x] Pinterest
 
 - [ ] **naklejki-na-rower-i-akcesoria-sportowe-dla-pasjonatow.md**
-    - [ ] FB/IG (4:5)
-    - [ ] TikTok (9:16)
+    - [ ] TikTok (Karuzela/Photo Mode)
     - [x] Pinterest
 
 - [ ] **naklejki-serwisowe-dla-firm-hydraulicy-elektrycy-i-instalatorzy.md**
-    - [ ] FB/IG (4:5)
-    - [ ] TikTok (9:16)
+    - [ ] TikTok (Karuzela/Photo Mode)
     - [x] Pinterest
 
-- [ ] **naklejki-wlasnego-projektu-na-sloiki-z-przyprawami-zorganizuj-swoja-kuchnie.md**
-    - [ ] FB/IG (4:5)
-    - [ ] TikTok (9:16)
+- [x] **naklejki-wlasnego-projektu-na-sloiki-z-przyprawami-zorganizuj-swoja-kuchnie.md**
+    - [x] TikTok (Karuzela/Photo Mode)
     - [x] Pinterest
 
 - [ ] **naklejki-z-imionami-na-meble-drzwi-i-pojemniki-organizacja-domu.md**
-    - [ ] FB/IG (4:5)
-    - [ ] TikTok (9:16)
+    - [ ] TikTok (Karuzela/Photo Mode)
     - [x] Pinterest
 
 - [ ] **naklejki-z-wlasnym-logo-na-sloiki-i-opakowania.md**
-    - [ ] FB/IG (4:5)
-    - [ ] TikTok (9:16)
+    - [ ] TikTok (Karuzela/Photo Mode)
     - [x] Pinterest
 
 - [ ] **naklejki-z-wlasnym-napisem-jak-przygotowac-plik-i-zamowic-online.md**
-    - [ ] FB/IG (4:5)
-    - [ ] TikTok (9:16)
+    - [ ] TikTok (Karuzela/Photo Mode)
     - [x] Pinterest
 
 - [ ] **personalizowane-naklejki-na-alkohol-wyjatkowy-dodatek-na-wesela-i-imprezy.md**
-    - [ ] FB/IG (4:5)
-    - [ ] TikTok (9:16)
+    - [ ] TikTok (Karuzela/Photo Mode)
     - [x] Pinterest
 
 - [ ] **personalizowane-naklejki-na-zeszyty-i-do-przedszkola.md**
-    - [ ] FB/IG (4:5)
-    - [ ] TikTok (9:16)
+    - [ ] TikTok (Karuzela/Photo Mode)
     - [x] Pinterest
 
 - [ ] **wklepki-i-wlepy-z-wlasnym-nadrukiem-dla-artystow-i-spolecznosci.md**
-    - [ ] FB/IG (4:5)
-    - [ ] TikTok (9:16)
+    - [ ] TikTok (Karuzela/Photo Mode)
     - [x] Pinterest

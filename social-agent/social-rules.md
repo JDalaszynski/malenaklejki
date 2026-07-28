@@ -16,30 +16,29 @@ Jako specjalista ds. Social Media (Instagram, Facebook, TikTok, Pinterest) dla m
 
 Zawsze generuj zestaw składający się z poniższych formatów z jednego źródła tekstu:
 
-### A. Krótka Zajawka (Post FB / Instagram)
-* Cel: Skierowanie ruchu na bloga lub przypomnienie o funkcji produktu.
-* Struktura: Haczyk -> Zarysowanie problemu -> Obietnica rozwiązania -> CTA (Call to Action: "Link w bio", "Czytaj więcej na blogu").
+### A. Opis TikTok (Tekst pod Karuzelę)
+* Cel: Przyciągnięcie uwagi algorytmu poprzez słowa kluczowe i skłonienie do interakcji.
+* Struktura: Surowy tekst bez dodawania prefiksów takich jak "Tytuł:" czy "Treść:" (gotowy do skopiowania). Składa się z:
+  * Tytuł: Krótki, chwytliwy (Haczyk) z emotikoną. **Musi być oddzielony od reszty tekstu pustą linią.**
+  * Treść: Zarysowanie problemu / Wartość (krótko, zwięźle).
+  * CTA: Zawsze musi brzmieć dokładnie: "Link do kreatora w bio 👇".
+  * Hashtagi: Dokładnie 5 trafnych hashtagów dobranych według słów kluczowych (keywords).
 
-### B. Merytoryczna Karuzela (Instagram / LinkedIn)
-* Cel: Edukacja w pigułce. Treść do "zapisania na później".
+### B. Merytoryczna Karuzela (TikTok Photo Mode)
+* Cel: Edukacja w pigułce, viralowy potencjał i zasięg organiczny na TikToku.
 * Struktura: 
-  * Slajd 1 (Tytuł): Chwytliwy nagłówek (np. "3 kroki do idealnej naklejki").
-  * Slajd 2, 3, 4: Główne myśli wyciągnięte z nagłówków H2/H3 bloga, ale bardzo skrócone (bullet pointy).
-  * Slajd 5 (CTA): "Zapisz post na później", "Wejdź na stronę, by zamówić".
-
-### C. Scenariusz TikTok / Reels
-* Cel: Viralowy potencjał, budowanie marki, pokazywanie procesu ("behind the scenes").
-* Struktura (Tabela 2-kolumnowa):
-  * **Obraz (Video):** Co widzimy na ekranie (np. "Zbliżenie na cięcie ploterem", "Palec odklejający wlepkę z logo").
-  * **Dźwięk/Lektor (Audio):** Krótki, dynamiczny tekst, np. "Szukasz sposobu na tanie naklejki? Oglądaj do końca! 👀".
-* Czas trwania: Scenariusz pod wideo ~15 do 30 sekund.
+  * Gdzie: TikTok (format grafiki 9:16).
+  * Slajd 1 (Tytuł): Chwytliwy nagłówek na grafice (np. "3 kroki do idealnej naklejki").
+  * Slajdy kolejne: Główne myśli wyciągnięte z nagłówków H2/H3 bloga, zredukowane do 3-6 bardzo krótkich haseł (po 1 zdaniu na slajd). Idealne pod format "Before/After".
+  * Ostatni slajd (CTA): Silne wezwanie do działania na ostatniej grafice (np. "Link do kreatora na moim profilu").
 
 ### D. Pinterest Pin
 * Cel: Inspiracja wizualna. Bezpośrednie przekierowanie ruchu ze zdjęcia prosto do malenaklejki.pl.
+* **Format pliku:** Piny zapisujemy w formacie **JPG** (`pin-N.jpg`) - generuje je skrypt `social-agent/generate-pinterest.ts` do folderu `/public/pinterest/{slug}/`.
 * Struktura: 
   * **Tytuł Pinu:** Estetyczny tytuł zachęcający do kliknięcia.
   * **Opis Pinu:** Krótki, inspirujący opis zawierający 3-4 mocne słowa kluczowe z bloga. Kategorycznie ZAKAZUJE się używania znaków odwrotnego apostrofu/backticków (`) do wyróżniania słów kluczowych - pisz normalnym tekstem.
-  * **CTA na grafikę:** Bardzo krótkie (2-4 słowa), silnie sprzedażowe wezwanie do działania, które bezpośrednio nawiązuje do tego, co widać na danej grafice (np. jeśli na zdjęciu jest ślub, napisz "Zamów Naklejki na Wesele"). **Musi być napisane w stylu Title Case (z wielkich liter, np. "Zamów Naklejki na Wesele")**.
+  * **CTA na grafikę:** Bardzo krótkie (2-4 słowa), silnie sprzedażowe wezwanie do działania, które bezpośrednio nawiązuje do tego, co widać na danej grafice (np. jeśli na zdjęciu jest ślub, napisz "Zamów Naklejki na Wesele"). **Musi być napisane w stylu Title Case, ale z polskimi przyimkami i spójnikami (na, z, w, i, do, o, ze) pisanymi MAŁĄ literą** - np. "Zamów Naklejki na Wesele" (dobrze), NIE "Zamów Naklejki Na Wesele" (źle, sztuczny Title Case).
 
 ---
 

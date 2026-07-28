@@ -33,17 +33,6 @@ Podczas pisania i formatowania **każdego** artykułu lub aktualizacji, Agencie,
 
 
 
-- [ ] **Podziękowania dla gości i naklejki na koperty ślubne**
-    - **Format:** Supporting Article
-    - **Główna Fraza Kluczowa:** `naklejki na koperty ślubne` / `podziękowania dla gości naklejki`
-    - **Cel:** Sprzedaż
-    - **Persona:** Pary młode, wedding plannerzy, organizatorzy wieczorów panieńskich
-    - **Link nadrzędny (Filar):** `/blog/jak-zamowic-idealne-naklejki-na-zamowienie-z-wlasnym-nadrukiem`
-    - **Prompty do generowania zdjęć:**
-        - "Elegancki stół weselny z rzędem białych kopert dla gości oklejonych delikatną, złotą naklejką z monogramem pary młodej, kwiatowa dekoracja w tle."
-        - "Zbliżenie na małe pudełeczka z podziękowaniami dla gości weselnych, każde zaklejone pastelową naklejką z imionami pary młodej i datą ślubu."
-        - "Panna młoda podpisująca stos zaproszeń ślubnych leżących obok arkusza delikatnych, okrągłych naklejek z ornamentem, jasne, romantyczne wnętrze."
-
 - [ ] **Naklejki okrągłe z własnym nadrukiem - kiedy wybrać kształt koła?**
     - **Format:** Supporting Article
     - **Główna Fraza Kluczowa:** `naklejki okrągłe z własnym nadrukiem` / `naklejki w kształcie koła`
@@ -58,6 +47,18 @@ Podczas pisania i formatowania **każdego** artykułu lub aktualizacji, Agencie,
 ---
 
 ## 📈 Zrealizowane Artykuły
+
+- [x] **Podziękowania dla gości i naklejki na koperty ślubne** (opublikowano 2026-07-28)
+    - **Format:** Supporting Article
+    - **Główna Fraza Kluczowa:** `naklejki na koperty ślubne` / `podziękowania dla gości naklejki`
+    - **Cel:** Sprzedaż
+    - **Persona:** Pary młode, wedding plannerzy, organizatorzy wieczorów panieńskich
+    - **Link nadrzędny (Filar):** `/blog/jak-zamowic-idealne-naklejki-na-zamowienie-z-wlasnym-nadrukiem`
+    - **Uwaga:** artykuł ~1320 słów, slug `naklejki-na-koperty-slubne-i-podziekowania-dla-gosci`. Użytkownik dograł 8 grafik (1 cover + 7 w treści) - były to PNG-y z rozszerzeniem .jpg po ~2 MB; zoptymalizowane do realnego JPEG (q88, ~90% mniej: 17 MB -> 1,3 MB), nazwane pod SEO, osadzone w treści z altami. Wygenerowano 8 pinów Pinterest **w JPG** (`public/pinterest/.../pin-N.jpg`, nowy skrypt `generate-pinterest.ts`), potem wypalono pasek z logo (`add_logo_bar.mjs`). Backlink z filaru dodany. Nie eksponuje generatora AI (respektuje HOLD z 2026-07-27).
+    - **Prompty do generowania zdjęć (niewykorzystane - publikacja bez zdjęć):**
+        - "Elegancki stół weselny z rzędem białych kopert dla gości oklejonych delikatną, złotą naklejką z monogramem pary młodej, kwiatowa dekoracja w tle."
+        - "Zbliżenie na małe pudełeczka z podziękowaniami dla gości weselnych, każde zaklejone pastelową naklejką z imionami pary młodej i datą ślubu."
+        - "Panna młoda podpisująca stos zaproszeń ślubnych leżących obok arkusza delikatnych, okrągłych naklejek z ornamentem, jasne, romantyczne wnętrze."
 
 - [x] **Naklejki z imionami na meble, drzwi i pojemniki - organizacja domu** (opublikowano 2026-07-25)
     - **Format:** Supporting Article
