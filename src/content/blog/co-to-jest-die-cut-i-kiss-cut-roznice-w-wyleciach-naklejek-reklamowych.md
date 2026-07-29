@@ -69,10 +69,10 @@ Jeśli masz jeden wzór etykiety powtarzany na wielu słoikach czy butelkach, ki
 Wymagania techniczne różnią się w zależności od wybranej opcji:
 
 - **Do die cut:** najlepiej sprawdzi się plik PNG z przezroczystym tłem (kanał alfa) - kreator automatycznie rozpozna kontur. Zdjęcia w JPG również działają - system usunie tło i wytnie po sylwetce głównego obiektu.
-- **Do kiss-cut:** możesz przygotować kilka wzorów obok siebie w jednym pliku (np. w Canva) - każdy zostanie wycięty osobno, a podkład pozostanie w całości jako jeden arkusz.
+- **Do kiss-cut:** wgraj pliki po kolei lub zestaw kilka wygenerowanych (np. przez Midjourney, ChatGPT lub nasze wbudowane AI) bądź przygotowanych w Canvie wzorów obok siebie - każdy zostanie wycięty osobno, a podkład pozostanie w całości jako jeden arkusz.
 - **Rozdzielczość:** minimum 300 dpi dla małych naklejek (poniżej 5 cm), żeby uniknąć pikselowania przy precyzyjnym cięciu wzdłuż konturu.
 
-Obie opcje wybierasz w tym samym kreatorze, bez dodatkowych opłat za typ cięcia - płacisz stałe 49,00 zł za cały arkusz A4, niezależnie od tego, ile naklejek na nim umieścisz.
+Obie opcje wybierasz w tym samym kreatorze, bez dodatkowych opłat za typ cięcia - płacisz stałe 49,00 zł za cały arkusz A4, niezależnie od tego, ile naklejek na nim umieścisz. Gubisz się w terminach takich jak kanał alfa, DPI czy folia winylowa? Zajrzyj do naszego [słownika pojęć o naklejkach](/slownik-naklejek), gdzie tłumaczymy je krótko i konkretnie.
 
 ## Die cut i kiss-cut - najczęstsze pytania (FAQ)
 
@@ -98,6 +98,6 @@ Do etykiet naklejanych masowo na opakowania (np. słoiki, butelki, kartony wysy�
 
 ## Zamów naklejki die cut lub kiss-cut już dziś
 
-Wybór między die cut a kiss-cut zależy od tego, jak zamierzasz używać naklejek - do rozdania jako merch czy do systematycznego naklejania z jednego arkusza. Oba warianty ustawisz w kilka sekund w naszym kreatorze, bez dodatkowych opłat i bez minimalnego nakładu. Wgraj swój projekt i zobacz podgląd 3D, zanim złożysz zamówienie.
+Wybór między die cut a kiss-cut zależy od tego, jak zamierzasz używać naklejek - do rozdania jako merch czy do systematycznego naklejania z jednego arkusza. Oba warianty ustawisz w kilka sekund w naszym kreatorze, bez dodatkowych opłat i bez minimalnego nakładu. Jeśli wiesz już, że chcesz cięcie po obrysie, przejdź prosto do zamówienia [naklejek wycinanych po obrysie](/naklejki-die-cut) w dowolnym kształcie. Wgraj swój projekt i zobacz podgląd 3D, zanim złożysz zamówienie.
 
 <a href="/" style="display: inline-block; background-color: #02af7a; color: #ffffff; padding: 14px 28px; text-decoration: none; border-radius: 8px; font-weight: 600; font-size: 18px; margin-top: 24px; text-align: center;">Zamów naklejki die cut</a>

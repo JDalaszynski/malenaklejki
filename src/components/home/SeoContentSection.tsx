@@ -23,7 +23,7 @@ export function SeoContentSection() {
             <section className="space-y-3">
               <h3 className={`text-xl font-extrabold text-foreground ${displayFont}`}>Czym jest cięcie po obrysie (die-cut)?</h3>
               <p>
-                Cięcie po obrysie (tzw. <Link href="/blog/co-to-jest-die-cut-i-kiss-cut-roznice-w-wyleciach-naklejek-reklamowych" className={inlineLink}>die-cut</Link>) to zaawansowana technika produkcji, w której ploter precyzyjnie wycina naklejkę wzdłuż kształtu Twojej grafiki, całkowicie ignorując przezroczyste tło. Dzięki temu Twoje <strong>wlepki z logo</strong>, grafiki czy zdjęcia przybierają unikalny kształt, a nie standardowego kwadratu. Otrzymujesz <strong>własne naklejki</strong>, które wyglądają w 100% profesjonalnie. Nasz inteligentny kreator online samodzielnie wygeneruje ścieżkę cięcia, pozwalając na zamówienie <strong>naklejek o dowolnym kształcie</strong> bez znajomości programów graficznych.
+                Cięcie po obrysie (tzw. <Link href="/blog/co-to-jest-die-cut-i-kiss-cut-roznice-w-wyleciach-naklejek-reklamowych" className={inlineLink}>die-cut</Link>) to zaawansowana technika produkcji, w której ploter precyzyjnie wycina naklejkę wzdłuż kształtu Twojej grafiki, całkowicie ignorując przezroczyste tło. Dzięki temu Twoje <strong>wlepki z logo</strong>, grafiki czy zdjęcia przybierają unikalny kształt, a nie standardowego kwadratu. Otrzymujesz <strong>własne naklejki</strong>, które wyglądają w 100% profesjonalnie. Nasz inteligentny kreator online samodzielnie wygeneruje ścieżkę cięcia, pozwalając na zamówienie <Link href="/naklejki-die-cut" className={inlineLink}>naklejek o dowolnym kształcie</Link> bez znajomości programów graficznych.
               </p>
             </section>
 
@@ -45,7 +45,7 @@ export function SeoContentSection() {
               </p>
               <ol className="list-decimal pl-5 space-y-2 font-medium text-foreground/80">
                 <li>Wgraj grafikę w formacie PNG, JPG lub zrób zdjęcie telefonem.</li>
-                <li>System samodzielnie usunie tło i wygeneruje precyzyjne linie cięcia (kontur).</li>
+                <li>System samodzielnie usunie tło i wygeneruje precyzyjne <Link href="/slownik-naklejek" className={inlineLink}>linie cięcia (kontur)</Link>.</li>
                 <li>Ustal wymiary i rozmieść dowolną liczbę wlepek na arkuszu w trybie 3D.</li>
                 <li>Sfinalizuj zamówienie (BLIK, przelew), a my zajmiemy się ekspresowym drukiem w 72h!</li>
               </ol>

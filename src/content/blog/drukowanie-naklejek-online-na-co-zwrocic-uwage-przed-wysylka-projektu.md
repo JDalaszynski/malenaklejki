@@ -31,7 +31,7 @@ To najczęstszy błąd, który popełniają zamawiający po raz pierwszy. Zbyt n
 | Średnia naklejka (6-10 cm) | 200 dpi | 300 dpi |
 | Mała naklejka (poniżej 5 cm) | 300 dpi | 600 dpi |
 
-**Praktyczna wskazówka:** Jeśli tworzysz projekt w Canva, przy pobieraniu zaznacz opcję "Pobierz w wysokiej jakości" lub ustaw rozmiar dokumentu na co najmniej 1200 x 1200 px dla naklejek kwadratowych. Jeśli projektujesz w programie graficznym (np. Adobe Illustrator lub Inkscape), eksportuj plik jako PDF lub SVG wektorowy - wtedy rozdzielczość nie ma znaczenia, bo grafika jest w pełni skalowalna.
+**Praktyczna wskazówka:** Najszybciej stworzysz grafikę wykorzystując generatory AI (Midjourney, ChatGPT, Gemini lub nasz wbudowany). Jeśli jednak wolisz składać projekt ręcznie w programach takich jak Canva, przy pobieraniu zaznacz opcję "Pobierz w wysokiej jakości" lub ustaw rozmiar dokumentu na co najmniej 1200 x 1200 px dla naklejek kwadratowych. Jeśli projektujesz w programie graficznym (np. Adobe Illustrator lub Inkscape), eksportuj plik jako PDF lub SVG wektorowy - wtedy rozdzielczość nie ma znaczenia, bo grafika jest w pełni skalowalna.
 
 ![Arkusz A4 z artystycznymi wlepkami w stylu vaporwave z motywem klasycznych rzeźb greckich i efektami glitch art, pokazujący precyzyjny wydruk naklejek dla artystów](/blog/drukowanie-naklejek-online-na-co-zwrocic-uwage-przed-wysylka-projektu/artystyczne-wlepki-z-wlasnym-nadrukiem-vaporwave.jpg)
 
@@ -41,7 +41,7 @@ Przyjmujemy wszystkie popularne formaty:
 
 - **PNG** - najlepszy wybór, gdy chcesz naklejkę wyciętą po obrysie. Zapisz plik z przezroczystym tłem (kanał alfa), a nasz kreator automatycznie rozpozna kształt i zaproponuje cięcie po jego obrysie.
 - **JPG / JPEG** - idealne dla zdjęć i pełnokolorowych projektów z jednolitym tłem (np. białym). Jeśli chcesz cięcie po obrysie zdjęcia, nasz kreator automatycznie usunie tło za Ciebie.
-- **PDF** - świetny wybór dla projektów tworzonych w Canva, Word czy PowerPoint. Zachowuje ostrość tekstu i wektorowych elementów graficznych.
+- **PDF** - świetny wybór dla plików eksportowanych z programów takich jak Canva, Word czy PowerPoint. Zachowuje ostrość tekstu i wektorowych elementów graficznych.
 - **SVG** - format wektorowy dla zaawansowanych użytkowników. Idealny, gdy Twój projekt zawiera logo lub ilustracje stworzone w Inkscape albo Illustratorze.
 
 > **Czego unikać:** Nie wysyłaj zrzutów ekranu z telefonu (często mają tylko 72 dpi) ani plików z Worda bez eksportu do PDF. Jakość wydruku będzie niska.
@@ -78,7 +78,7 @@ Monitory wyświetlają kolory w przestrzeni RGB (czerwony, zielony, niebieski), 
 - **Elektrycznego niebieskiego** - może wyjść nieco ciemniejszy.
 - **Kolorów Pantone** - jeśli zależy Ci na dokładnym odwzorowaniu koloru marki (np. specyficzny odcień czerwieni dla logo), skontaktuj się z nami przed zamówieniem.
 
-**Praktyczna rada:** Jeśli zależy Ci na kolorach identycznych z Twoją identyfikacją wizualną, zamów najpierw jeden arkusz próbny. Za 49,00 zł sprawdzisz jakość wydruku i dokładność kolorów zanim złożysz większe zamówienie.
+**Praktyczna rada:** Jeśli zależy Ci na kolorach identycznych z Twoją identyfikacją wizualną, zamów najpierw jeden arkusz próbny. Za 49,00 zł sprawdzisz jakość wydruku i dokładność kolorów zanim złożysz większe zamówienie. Nie masz pewności, co oznaczają RGB, CMYK czy DPI? Krótkie definicje znajdziesz w [słowniku pojęć o naklejkach](/slownik-naklejek).
 
 ## Na czym drukujemy? Folia winylowa i jej właściwości
 
@@ -103,7 +103,7 @@ Za 49,00 zł dostajesz jeden pełny arkusz A4 (21 x 29,7 cm). Ty decydujesz, co 
 | ok. 4,5 x 4,5 cm | 16 szt. | ~3,06 zł |
 | ok. 3 x 3 cm | 30 szt. | ~1,63 zł |
 
-Na jednym arkuszu możesz umieścić **wiele różnych wzorów** - wystarczy, że przed wgraniem do kreatora zestawisz je obok siebie w jednym pliku (np. w Canva). To idealne dla twórców, którzy chcą przetestować kilka projektów jednocześnie.
+Na jednym arkuszu możesz umieścić **wiele różnych wzorów** - zestaw je ze sobą lub dodawaj po kolei pliki pobrane np. z ChatGPT, Midjourney lub Canvy. To idealne dla twórców, którzy chcą przetestować kilka grafik jednocześnie.
 
 ![Wydrukowany arkusz A4 z różnymi własnymi naklejkami na zamówienie, w tym zdjęciem pary z wakacji, grafiką psa, deskorolki i gołębia, demonstrujący brak minimalnego nakładu](/blog/drukowanie-naklejek-online-na-co-zwrocic-uwage-przed-wysylka-projektu/wlasne-naklejki-wielowzorowe-arkusz-a4.jpg)
 
@@ -168,7 +168,7 @@ Tak. Drukujemy na folii winylowej z mocnym klejem, która jest w pełni wodoodpo
 
 ### Czy mogę umieścić kilka różnych wzorów na jednym arkuszu?
 
-Tak. Zestawisz różne projekty obok siebie w jednym pliku (np. na jednej stronie Canva lub w programie graficznym) i wgrasz je jako jeden plik. Każda naklejka zostanie wycięta oddzielnie.
+Tak. Wgraj osobne pliki graficzne jeden po drugim do kreatora lub zestaw je wcześniej obok siebie w programie graficznym czy Canvie. Każda naklejka zostanie wycięta oddzielnie.
 
 ### Ile kosztuje drukowanie naklejek online w MałeNaklejki?
 
@@ -180,4 +180,4 @@ Tak. Wgrywasz zdjęcie JPG lub PNG prosto z telefonu, a nasz kreator automatyczn
 
 ### Czy można zamówić naklejkę z własnym tekstem lub napisem?
 
-Tak - wystarczy przygotować projekt z tekstem w darmowym Canva, Word lub aplikacji mobilnej, zapisać jako PNG lub PDF i wgrać do kreatora. Szczegółowy poradnik znajdziesz w artykule o [naklejkach z własnym napisem](/blog/naklejki-z-wlasnym-napisem-jak-przygotowac-plik-i-zamowic-online).
+Tak - najpierw wygeneruj grafikę w ChatGPT, Midjourney (lub naszym wbudowanym AI), albo ułóż własny tekst z tłem w programach takich jak Canva czy Word, a następnie zapisz jako PNG lub PDF i wgraj do kreatora. Szczegółowy poradnik znajdziesz w artykule o [naklejkach z własnym napisem](/blog/naklejki-z-wlasnym-napisem-jak-przygotowac-plik-i-zamowic-online).
