@@ -339,6 +339,59 @@ Pamiętaj: klient nie projektuje naklejek - wgrywa zdjęcie, a my wycinamy je po
       console.error("Błąd podczas generowania tiktok-info.txt:", tErr.message || tErr);
     }
 
+    // --- FACEBOOK: automatyczny post z linkiem (facebook-info.txt) ---
+    try {
+      const fbPrompt = `
+Jesteś specjalistą ds. Social Media marki "MałeNaklejki". Na podstawie poniższego artykułu przygotuj JEDEN gotowy do wklejenia post na fanpage Facebooka (do wrzucenia z obrazkami jako galerią).
+
+WYTYCZNE (ZASADY):
+${rulesContent}
+
+${keywordsContent ? `BAZA SŁÓW KLUCZOWYCH SEO (użyj ich jako hashtagów i wpleć naturalnie):
+${keywordsContent}` : ''}
+
+---
+ARTYKUŁ Z BLOGA:
+${blogContent}
+---
+LINK DO ARTYKUŁU, KTÓRY MUSISZ WSTAWIĆ W POŚCIE:
+https://malenaklejki.pl/blog/${articleSlug}
+
+---
+ZADANIE:
+Zwróć WYŁĄCZNIE surowy tekst posta - bez żadnych prefiksów typu "Post:", bez pogrubień (żadnych gwiazdek ** ani HTML), bez formatowania markdown i bez komentarzy. Struktura dokładnie taka (bloki oddzielone JEDNĄ pustą linią):
+1. Haczyk: krótkie, chwytliwe pytanie lub zarysowanie problemu na początku z 1 emotikoną.
+2. Treść: 2-3 bardzo krótkie zdania wyciągające esencję z artykułu, osadzone w temacie.
+3. Call To Action (CTA): Wyraźne wezwanie do kliknięcia w link, np. "Przeczytaj cały poradnik tutaj: https://malenaklejki.pl/blog/${articleSlug}" (podany wyżej link musi znaleźć się w poście!).
+4. Dokładnie 3 do 5 trafnych hashtagów dobranych ze słów kluczowych w jednej linii, pisanych małą literą i bez spacji, oddzielonych spacją.
+
+Pamiętaj: klient nie projektuje naklejek - wgrywa zdjęcie, a my wycinamy je po obrysie. Kategorycznie unikaj słów "zaprojektuj/projektuj/projektowanie". Nie używaj długiego myślnika "–" (zawsze zwykły "-").
+`;
+
+      const fbResponse = await genAI.models.generateContent({
+        model: "gemini-2.5-pro",
+        contents: [fbPrompt],
+      });
+
+      let fbText = (fbResponse.text || '').trim();
+      // Sprzątanie
+      fbText = fbText
+        .replace(/^```[a-z]*\s*/i, '')
+        .replace(/\s*```$/i, '')
+        .replace(/–/g, '-')
+        .trim();
+
+      if (fbText) {
+        const fbPath = path.join(pinterestDir, 'facebook-info.txt');
+        fs.writeFileSync(fbPath, fbText + '\n', 'utf8');
+        console.log(\`✅ Zapisano post na Facebooka do pliku: \${fbPath}\`);
+      } else {
+        console.warn("Uwaga: model nie zwrócił treści Facebook - pomijam facebook-info.txt.");
+      }
+    } catch (fbErr: any) {
+      console.error("Błąd podczas generowania facebook-info.txt:", fbErr.message || fbErr);
+    }
+
   } catch (e: any) {
     console.error("Błąd podczas generowania:", e.message || e);
   }

@@ -233,6 +233,7 @@ export default function NaklejkiDieCutPage() {
           name: "Naklejki die-cut cięte po obrysie",
           description:
             "Naklejki die-cut wycięte dokładnie po obrysie grafiki na trwałej folii winylowej: dowolny kształt, automatyczne wyznaczanie konturu w kreatorze, druk 300 DPI. Stała cena 49,00 zł brutto za arkusz A4, bez minimalnego nakładu, z odbiorem w paczkomacie.",
+          image: "https://www.malenaklejki.pl/images/logo/favicon.png",
           brand: { "@id": "https://www.malenaklejki.pl/#organization" },
           category: "Naklejki die-cut - cięcie po obrysie",
           material: "Folia winylowa",

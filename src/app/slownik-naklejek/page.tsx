@@ -367,6 +367,7 @@ export default function SlownikNaklejekPage() {
           name: "Naklejki na zamówienie MałeNaklejki",
           description:
             "Naklejki na zamówienie na trwałej folii winylowej: cięcie po obrysie (die-cut) lub kiss-cut, druk 300 DPI, odporność na wodę, UV i zadrapania. Stała cena 49,00 zł brutto za arkusz A4, bez minimalnego nakładu, z odbiorem w paczkomacie.",
+          image: "https://www.malenaklejki.pl/images/logo/favicon.png",
           brand: { "@id": "https://www.malenaklejki.pl/#organization" },
           category: "Naklejki na zamówienie",
           material: "Folia winylowa",

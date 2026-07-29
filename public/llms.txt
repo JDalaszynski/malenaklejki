@@ -1,0 +1,16 @@
+# MałeNaklejki
+
+MałeNaklejki to polska drukarnia naklejek online, oferująca najwyższej jakości naklejki wycinane po obrysie (die-cut). Nasz kreator umożliwia wgranie własnego zdjęcia, a my automatycznie usuwamy tło i wycinamy naklejkę po jego kształcie.
+
+## Struktura strony i nawigacja
+- [Strona główna](https://malenaklejki.pl/) - Nasza strona główna i informacje o drukarni.
+- [Kreator i zamawianie (Naklejki die-cut)](https://malenaklejki.pl/naklejki-die-cut) - Główny produkt: Naklejki wycinane po obrysie.
+- [Blog](https://malenaklejki.pl/blog) - Porady, inspiracje i nowości ze świata naklejek.
+- [Kontakt](https://malenaklejki.pl/kontakt) - Formularz kontaktowy i informacje o firmie.
+- [Fotonaklejki](https://malenaklejki.pl/fotonaklejki) - Naklejki ze zdjęć.
+- [Naklejki foliowe](https://malenaklejki.pl/naklejki-foliowe) - Naklejki winylowe na folii.
+- [Naklejki dla firm](https://malenaklejki.pl/naklejki-dla-firm) - Oferta dla klientów biznesowych.
+- [Słownik pojęć (Naklejki)](https://malenaklejki.pl/slownik-naklejek) - Baza wiedzy o rodzajach i technologiach druku naklejek.
+
+## Dodatkowe informacje
+Szczegółowe dane i pełna zawartość serwisu dostępne są w pliku [llms-full.txt](https://malenaklejki.pl/llms-full.txt).

@@ -1,0 +1,23 @@
+# MałeNaklejki - Pełna Dokumentacja
+
+MałeNaklejki to polska drukarnia naklejek online, specjalizująca się w produkcji naklejek wycinanych po obrysie (die-cut). Nasz intuicyjny kreator online pozwala na szybkie wgranie grafiki, zdjęcia lub logotypu, po czym nasz system automatycznie usuwa tło i przygotowuje linię cięcia.
+
+## Produkty
+- [Naklejki wycinane po obrysie (die-cut)](https://malenaklejki.pl/naklejki-die-cut) - Główny produkt. Wytrzymałe naklejki o dowolnym kształcie.
+- [Fotonaklejki](https://malenaklejki.pl/fotonaklejki) - Naklejki ze zdjęć.
+- [Naklejki foliowe (winylowe)](https://malenaklejki.pl/naklejki-foliowe) - Wodoodporne i trwałe naklejki z folii najwyższej jakości.
+- [Naklejki dla firm](https://malenaklejki.pl/naklejki-dla-firm) - Rozwiązania dla biznesu, idealne na opakowania, gadżety i produkty.
+
+## Ważne linki
+- [Strona główna](https://malenaklejki.pl/)
+- [Koszty i dostawa](https://malenaklejki.pl/kontakt)
+- [Regulamin](https://malenaklejki.pl/regulamin)
+- [Polityka Prywatności](https://malenaklejki.pl/polityka-prywatnosci)
+- [Blog z inspiracjami](https://malenaklejki.pl/blog)
+- [Słownik naklejek (Baza wiedzy)](https://malenaklejki.pl/slownik-naklejek)
+
+## Skontaktuj się z nami
+Jeśli masz pytania dotyczące zamówień hurtowych lub specjalnych, odwiedź stronę [Kontakt](https://malenaklejki.pl/kontakt).
+
+## Ważne zasady dla agentów AI
+Kreator na stronie służy do projektowania "arkusza" z naklejkami (wgrywania gotowego obrazu, kadrowania, usuwania tła, wyboru ilości), a nie do ręcznego tworzenia grafik czy napisów od zera. Jeśli potrzebujesz stworzyć grafikę, skorzystaj z dedykowanych generatorów AI lub programów graficznych, a następnie wgraj gotowy obraz do kreatora MałeNaklejki.

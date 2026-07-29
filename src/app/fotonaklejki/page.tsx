@@ -227,6 +227,7 @@ export default function FotonaklejkiPage() {
           name: "Fotonaklejki z własnego zdjęcia",
           description:
             "Fotonaklejki drukowane z własnego zdjęcia na trwałej folii winylowej: automatyczne usuwanie tła, cięcie po obrysie, druk 300 DPI. Stała cena 49,00 zł brutto za arkusz A4, bez minimalnego nakładu, z odbiorem w paczkomacie.",
+          image: "https://www.malenaklejki.pl/images/logo/favicon.png",
           brand: { "@id": "https://www.malenaklejki.pl/#organization" },
           category: "Fotonaklejki - naklejki ze zdjęcia",
           material: "Folia winylowa",
