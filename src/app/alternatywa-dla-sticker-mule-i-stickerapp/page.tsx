@@ -140,7 +140,7 @@ const ADVANTAGES: { icon: React.ElementType; title: string; text: string }[] = [
   {
     icon: Sparkles,
     title: "Kreator, który robi robotę za Ciebie",
-    text: "Wgraj zdjęcie z telefonu, a kreator sam usunie tło i wytnie naklejkę po kształcie. Nie masz grafiki? Opisz pomysł, a generator AI wygeneruje gotowy obraz.",
+    text: "Wgraj zdjęcie z telefonu, a kreator sam usunie tło i wytnie naklejkę po kształcie. Nie masz grafiki? Opisz pomysł, a narzędzia AI (np. ChatGPT lub nasz generator) wygenerują gotowy obraz.",
   },
   {
     icon: ShieldCheck,
@@ -410,7 +410,7 @@ export default function AlternatywaPage() {
             {[
               {
                 title: "Wgraj grafikę do kreatora",
-                text: "Masz gotowe logo lub zdjęcie? Wgraj plik PNG, JPG albo PDF. Zwykłe zdjęcie z telefonu też wystarczy - sami usuniemy tło i wytniemy naklejkę po kształcie motywu. Nie masz grafiki? Opisz pomysł tekstem, a generator AI wygeneruje gotowy obraz.",
+                text: "Masz gotowe logo lub zdjęcie? Wgraj plik PNG, JPG albo PDF. Zwykłe zdjęcie z telefonu też wystarczy - sami usuniemy tło i wytniemy naklejkę po kształcie motywu. Nie masz grafiki? Opisz pomysł tekstem, a generatory AI (np. Midjourney, ChatGPT) wygenerują gotowy obraz.",
               },
               {
                 title: "Wybierz kształt cięcia i rozmiar",

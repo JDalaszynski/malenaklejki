@@ -1,6 +1,6 @@
 # Dane do Pinów Pinterest
 
-## Pin 1 (pin-1.png)
+## Pin 1 (pin-1.jpg)
 **Tytuł Pinu:**
 Estetyczne Naklejki Die-Cut Wycinane Po Obrysie
 
@@ -12,7 +12,7 @@ Zamów Naklejki Die-Cut
 
 ---
 
-## Pin 2 (pin-2.png)
+## Pin 2 (pin-2.jpg)
 **Tytuł Pinu:**
 Naklejki Z Logo I Maskotką Marki Die-Cut
 
@@ -24,7 +24,7 @@ Wgraj Logo Marki
 
 ---
 
-## Pin 3 (pin-3.png)
+## Pin 3 (pin-3.jpg)
 **Tytuł Pinu:**
 Naklejki Z Logo Firmy Na Szybę I Drzwi
 
@@ -36,7 +36,7 @@ Wgraj Własną Grafikę
 
 ---
 
-## Pin 4 (pin-4.png)
+## Pin 4 (pin-4.jpg)
 **Tytuł Pinu:**
 Naklejki Z Podziękowaniem Do Paczek E-commerce
 
@@ -48,7 +48,7 @@ Dodaj Logo Do Paczki
 
 ---
 
-## Pin 5 (pin-5.png)
+## Pin 5 (pin-5.jpg)
 **Tytuł Pinu:**
 Okrągłe Wlepki Z Własnym Nadrukiem Dla Artystów
 

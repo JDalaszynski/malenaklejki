@@ -33,7 +33,7 @@ Etykieta techniczna rządzi się innymi prawami niż naklejka ozdobna - liczy si
 - **Wysoki kontrast** - ciemny tekst na jasnym tle (lub odwrotnie) czyta się z odległości nawet w słabo oświetlonej kotłowni czy szafce elektrycznej.
 - **Bez cienkich, ozdobnych czcionek** - proste, pogrubione fonty bezszeryfowe zostają czytelne nawet po latach eksploatacji, gdy folia lekko się zabrudzi.
 
-Plik przygotujesz w kilka minut w darmowym Canva lub Wordzie, zapiszesz jako PNG, JPG lub PDF i wgrasz do kreatora - reszta pracy (cięcie i przygotowanie arkusza) zostaje po naszej stronie.
+Wygeneruj logo za pomocą generatorów AI (ChatGPT, Midjourney lub nasz wbudowany) lub w kilka minut złóż plik z tekstem w darmowym Canva czy Wordzie. Zapisz go jako PNG, JPG lub PDF i wgraj do kreatora - reszta pracy (cięcie i przygotowanie arkusza) zostaje po naszej stronie.
 
 ![Zestaw naklejek serwisowych dla elektryków z hasłami 'Elektryk z powołania' i 'Wysokie napięcie, wysokie umiejętności' - trwałe etykiety na skrzynki bezpiecznikowe i liczniki.](/blog/naklejki-serwisowe-dla-firm-hydraulicy-elektrycy-i-instalatorzy/naklejki-serwisowe-dla-elektrykow-kolaz-wzorow.png)
 
@@ -41,7 +41,7 @@ Plik przygotujesz w kilka minut w darmowym Canva lub Wordzie, zapiszesz jako PNG
 
 Cały proces, od pliku do gotowego arkusza, zamyka się w kilku prostych krokach:
 
-1. **Przygotuj plik** z nazwą firmy, numerem telefonu i polem na datę - w Canva, Wordzie lub telefonie, zapisany jako PNG, JPG lub PDF.
+1. **Przygotuj plik** z grafiką (wygenerowaną np. w ChatGPT lub Midjourney), nazwą firmy i numerem telefonu - w Canva, Wordzie lub telefonie, zapisany jako PNG, JPG lub PDF.
 2. **Wgraj plik** do kreatora online na stronie głównej MałeNaklejki.
 3. **Wybierz kształt prostokątny lub kwadratowy** - najczęstszy wybór dla etykiet technicznych z tekstem czytelnym pod każdym kątem.
 4. **Ustaw liczbę naklejek na arkuszu** - im mniejsza naklejka, tym więcej sztuk zmieści się na jednym arkuszu A4 i tym niższy koszt jednostkowy.

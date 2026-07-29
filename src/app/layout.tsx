@@ -23,7 +23,7 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://www.malenaklejki.pl"),
   title: "Naklejki z własnym nadrukiem | Zamów od 1 szt. online — MałeNaklejki",
   description:
-    "Zaprojektuj personalizowane naklejki w kreatorze online — cięcie po konturze, druk na trwałym winylu, od 49 zł/arkusz A4. Wysyłka w 3 dni robocze. Generator AI w cenie!",
+    "Stwórz personalizowane naklejki w kreatorze online — cięcie po konturze, druk na trwałym winylu, od 49 zł/arkusz A4. Wysyłka w 3 dni robocze. Generator AI w cenie!",
   icons: {
     icon: "/images/logo/favicon.png?v=2",
   },
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Naklejki z własnym nadrukiem | Zamów od 1 szt. online — MałeNaklejki",
     description:
-      "Zaprojektuj personalizowane naklejki w kreatorze online — cięcie po konturze, druk na trwałym winylu, od 49 zł/arkusz A4. Wysyłka w 3 dni robocze.",
+      "Stwórz personalizowane naklejki w kreatorze online — cięcie po konturze, druk na trwałym winylu, od 49 zł/arkusz A4. Wysyłka w 3 dni robocze.",
     url: "https://www.malenaklejki.pl",
     siteName: "MałeNaklejki",
     locale: "pl_PL",
@@ -51,7 +51,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Naklejki z własnym nadrukiem | Zamów od 1 szt. — MałeNaklejki",
     description:
-      "Zaprojektuj personalizowane naklejki w kreatorze online — cięcie po konturze, druk na trwałym winylu, od 49 zł/arkusz A4. Generator AI w cenie!",
+      "Stwórz personalizowane naklejki w kreatorze online — cięcie po konturze, druk na trwałym winylu, od 49 zł/arkusz A4. Generator AI w cenie!",
     images: ["/images/og-main.jpg"],
   },
   verification: {

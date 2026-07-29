@@ -64,7 +64,7 @@ Drugi element to strona nadruku. Standardowa naklejka klejona jest od zewnątrz 
 Cała droga od pomysłu do gotowego arkusza zajmuje kilka minut i nie wymaga umiejętności grafika:
 
 1. **Przygotuj plik.** Masz gotowe logo klubu, numer startowy albo wzór od znajomego grafika? Zapisz go jako PNG, JPG lub PDF. Chcesz prosty napis z nazwą ekipy? Złóż go w darmowym Canva, Wordzie albo aplikacji w telefonie i zapisz gotowy plik.
-2. **Nie masz żadnej grafiki?** Skorzystaj z wbudowanego generatora AI - opisz swój pomysł zwykłym tekstem (np. "wąż w stylistyce japońskiej grafiki ulicznej, czerwono-czarny") i wybierz styl, a sztuczna inteligencja wygeneruje gotowy obraz. Trafia on potem do kreatora dokładnie tak samo jak wgrane zdjęcie.
+2. **Nie masz żadnej grafiki?** Skorzystaj z generatorów AI (np. ChatGPT, Midjourney lub naszego wbudowanego w kreator) - opisz swój pomysł zwykłym tekstem (np. "wąż w stylistyce japońskiej grafiki ulicznej, czerwono-czarny") i wygeneruj gotowy obraz. Trafia on potem do kreatora dokładnie tak samo jak wgrane zdjęcie.
 3. **Wgraj plik do kreatora online** na stronie głównej. Jeśli wgrasz zwykłe zdjęcie, sami usuniemy tło i wytniemy naklejkę idealnie po kształcie motywu.
 4. **Wybierz kształt cięcia** - po obrysie grafiki, w koło albo w prostokąt - i ustaw rozmiar oraz liczbę sztuk na arkuszu.
 5. **Sprawdź podgląd 3D i złóż zamówienie.** Naklejki będą gotowe w 3 dni robocze.
@@ -112,7 +112,7 @@ Tak. Naklejki na kask przyklejaj na twardej skorupie zewnętrznej i wybieraj mni
 
 ### Nie mam gotowego wzoru - jak stworzyć grafikę na auto?
 
-Opisz swój pomysł zwykłym tekstem w generatorze AI i wybierz styl graficzny - sztuczna inteligencja wygeneruje gotowy obraz, który wgrywasz do kreatora tak samo jak własne zdjęcie. Alternatywnie złóż prosty napis w darmowym Canva i zapisz plik jako PNG lub PDF.
+Wygeneruj grafikę podając opis tekstowy w narzędziach AI (Midjourney, ChatGPT lub w naszym wbudowanym generatorze). Alternatywnie złóż prosty napis w darmowym programie np. Canva, i zapisz plik jako PNG lub PDF.
 
 ## Zamów własne naklejki motoryzacyjne i wlepki tuningowe
 

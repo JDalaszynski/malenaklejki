@@ -22,11 +22,11 @@ Domowa nalewka wiśniowa, orzechowa czy pigwowa po kilku miesiącach leżakowani
 - **Pomaga w organizacji piwniczki** - przy kilkunastu butelkach różnych smaków etykieta z nazwą i datą oszczędza czas przy szukaniu właściwej butelki.
 - **Sprawdza się też przy miodach i nalewkach pszczelarskich** - pasieki i małe manufaktury miodowe etykietują nimi słoiki z miodem pitnym i nalewkami na własnym miodzie.
 
-## Jak zaprojektować naklejkę na nalewkę krok po kroku?
+## Jak przygotować naklejkę na nalewkę krok po kroku?
 
 Nasz kreator online służy do wgrywania gotowych plików, kadrowania i konfiguracji zamówienia - nie ma w nim edytora tekstu ani narzędzi do rysowania od zera. Projekt etykiety przygotuj wcześniej w darmowym programie:
 
-1. **Otwórz Canva, Word lub aplikację mobilną** i ustaw rozmiar dokumentu odpowiadający Twojej butelce (np. 8 x 5 cm dla prostokątnej etykiety na nalewkę 0,5 l).
+1. **Wygeneruj grafikę w AI lub otwórz Canva, Word czy aplikację mobilną** i ustaw rozmiar dokumentu odpowiadający Twojej butelce (np. 8 x 5 cm dla prostokątnej etykiety na nalewkę 0,5 l).
 2. **Dodaj nazwę trunku, rocznik i skład** - np. "Nalewka Wiśniowa 2026" lub "Nalewka na Pigwie - wyrób domowy".
 3. **Wybierz styl graficzny** dopasowany do charakteru nalewki - patrz inspiracje poniżej.
 4. **Zapisz plik jako PNG** (z przezroczystym tłem, jeśli chcesz cięcie po obrysie etykiety) lub jako **PDF**.
@@ -101,7 +101,7 @@ Tak. Drukujemy je na folii winylowej z mocnym klejem, w pełni odpornej na wilgo
 
 ### Jak przygotować projekt etykiety na nalewkę bez umiejętności grafika?
 
-Wystarczy darmowy program typu Canva lub Word. Wpisz nazwę trunku, rocznik i ewentualny skład, wybierz czytelną czcionkę, zapisz plik jako PNG lub PDF i wgraj go do naszego kreatora online.
+Skorzystaj z generatorów AI (np. ChatGPT, Midjourney), aby wygenerować piękną owocową ilustrację, lub użyj darmowego programu typu Canva czy Word do ułożenia napisu. Wpisz nazwę trunku, rocznik i ewentualny skład, wybierz czytelną czcionkę, zapisz plik jako PNG lub PDF i wgraj go do naszego kreatora online.
 
 ### Ile kosztują naklejki na nalewki do wydrukowania?
 
@@ -117,6 +117,6 @@ Do smukłych butelek po winie najlepiej pasuje prostokątna etykieta pionowa lub
 
 ## Zamów naklejki na nalewki domowe już dziś
 
-Wystarczy jeden wieczór na przygotowanie projektu w Canva i jedno zamówienie w MałeNaklejki, aby Twoje domowe trunki zyskały wygląd rzemieślniczego produktu. Wgraj plik z etykietą do naszego kreatora, wybierz kształt dopasowany do butelki, a gotowe naklejki na nalewki domowe dostaniesz w 3 dni robocze.
+Wystarczy chwila z generatorem AI (ChatGPT, Midjourney) lub wieczór na przygotowanie pliku w Canva i jedno zamówienie w MałeNaklejki, aby Twoje domowe trunki zyskały wygląd rzemieślniczego produktu. Wgraj plik z etykietą do naszego kreatora, wybierz kształt dopasowany do butelki, a gotowe naklejki na nalewki domowe dostaniesz w 3 dni robocze.
 
 <a href="/" style="display: inline-block; background-color: #02af7a; color: #ffffff; padding: 14px 28px; text-decoration: none; border-radius: 8px; font-weight: 600; font-size: 18px; margin-top: 24px; text-align: center;">Zamów naklejki na nalewki</a>

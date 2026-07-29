@@ -1,6 +1,6 @@
 # Dane do Pinów Pinterest
 
-## Pin 1 (pin-1.png)
+## Pin 1 (pin-1.jpg)
 **Tytuł Pinu:**
 Profesjonalne Naklejki Serwisowe na Klimatyzację
 
@@ -12,7 +12,7 @@ Zamów Naklejki na Klimatyzatory
 
 ---
 
-## Pin 2 (pin-2.png)
+## Pin 2 (pin-2.jpg)
 **Tytuł Pinu:**
 Naklejki dla Hydraulika i Elektryka - Wgraj Logo Firmy
 
@@ -24,7 +24,7 @@ Wgraj Logo Swojej Firmy
 
 ---
 
-## Pin 3 (pin-3.png)
+## Pin 3 (pin-3.jpg)
 **Tytuł Pinu:**
 Naklejki dla Elektryków - Oznacz Skrzynki Bezpiecznikowe
 
@@ -36,7 +36,7 @@ Zamów Naklejki dla Elektryka
 
 ---
 
-## Pin 4 (pin-4.png)
+## Pin 4 (pin-4.jpg)
 **Tytuł Pinu:**
 Trwałe Naklejki Instalatorskie z Twoimi Danymi Kontaktowymi
 
@@ -48,7 +48,7 @@ Zamów Naklejki Instalatorskie
 
 ---
 
-## Pin 5 (pin-5.png)
+## Pin 5 (pin-5.jpg)
 **Tytuł Pinu:**
 Personalizowane Naklejki dla Hydraulików i Instalatorów
 

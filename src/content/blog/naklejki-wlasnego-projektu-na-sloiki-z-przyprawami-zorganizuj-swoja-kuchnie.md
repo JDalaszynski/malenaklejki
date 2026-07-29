@@ -2,14 +2,14 @@
 title: "Naklejki na przyprawy na zamówienie - zorganizuj kuchnię"
 slug: "naklejki-wlasnego-projektu-na-sloiki-z-przyprawami-zorganizuj-swoja-kuchnie"
 date: "2026-07-13"
-description: "Małe naklejki na przyprawy na zamówienie od 1 sztuki. Zaprojektuj etykiety na słoiczki, wydrukuj na trwałej folii i zorganizuj kuchnię raz na zawsze."
+description: "Małe naklejki na przyprawy na zamówienie od 1 sztuki. Stwórz etykiety na słoiczki, wydrukuj na trwałej folii i zorganizuj kuchnię raz na zawsze."
 image: "/blog/naklejki-wlasnego-projektu-na-sloiki-z-przyprawami-zorganizuj-swoja-kuchnie/naklejki-na-przyprawy-na-zamowienie-minimalistyczne-etykiety.png"
 imageAlt: "Dłoń trzymająca szklany słoiczek z papryką w proszku z minimalistyczną naklejką na przyprawy na zamówienie, w tle uporządkowana półka kuchenna z etykietowanymi słoikami"
 tags: ["naklejki na przyprawy", "organizacja kuchni", "naklejki na zamówienie", "etykiety na słoiki"]
 cta_text: "Stwórz naklejki na przyprawy"
 ---
 
-Zaprojektuj własne **małe naklejki na przyprawy** w dowolnym stylu - od minimalistycznych czarno-białych po kolorowe z ilustracjami botanicznymi - i zamów wydruk na trwałej folii od jednego arkusza A4. W MałeNaklejki nie ma minimalnego nakładu, a cały proces [drukowania naklejek online](/blog/drukowanie-naklejek-online-na-co-zwrocic-uwage-przed-wysylka-projektu) trwa od wgrania pliku do odbioru paczki zaledwie kilka dni.
+Stwórz własne **małe naklejki na przyprawy** w dowolnym stylu - od minimalistycznych czarno-białych po kolorowe z ilustracjami botanicznymi - i zamów wydruk na trwałej folii od jednego arkusza A4. W MałeNaklejki nie ma minimalnego nakładu, a cały proces [drukowania naklejek online](/blog/drukowanie-naklejek-online-na-co-zwrocic-uwage-przed-wysylka-projektu) trwa od wgrania pliku do odbioru paczki zaledwie kilka dni.
 
 ## Dlaczego naklejki na przyprawy na zamówienie zamiast gotowych etykiet ze sklepu?
 
@@ -26,7 +26,7 @@ Gotowe zestawy naklejek na przyprawy z marketbudowlanych czy Allegro mają jedn�
 
 ## Jak przygotować projekt naklejek na słoiczki z przyprawami?
 
-Nie musisz być grafikiem. Cały projekt przygotujesz w darmowym programie - np. Canva, Word lub nawet w aplikacji na telefonie. Oto sprawdzony przepis w trzech krokach:
+Nie musisz być grafikiem. Grafikę wygenerujesz w narzędziach AI (Midjourney, ChatGPT, Gemini) lub cały plik przygotujesz ręcznie w darmowym programie - np. Canva, Word czy nawet w aplikacji na telefonie. Oto sprawdzony przepis w trzech krokach:
 
 ### Krok 1 - Wybierz wymiary etykiety
 
@@ -39,9 +39,9 @@ Zmierz słoiczek suwmiarką lub zwykłą linijką. Najczęściej stosowane rozmi
 | Prostokąt wysoki | 4 x 6 cm | Smukłe buteleczki typu młynki |
 | Mała etykieta | 3 x 2 cm | Pojemniki na zioła, mini słoiczki |
 
-### Krok 2 - Zaprojektuj etykietę w darmowym programie
+### Krok 2 - Wygeneruj obraz w AI lub przygotuj etykietę ręcznie
 
-Otwórz Canva (darmowa wersja wystarcza w zupełności), ustaw niestandardowy rozmiar dokumentu odpowiadający Twojej naklejce i zacznij tworzyć:
+Skorzystaj z generatorów AI (ChatGPT, Midjourney) do błyskawicznego wygenerowania tła z ilustracją, albo otwórz Canva (darmowa wersja wystarcza w zupełności), ustaw niestandardowy rozmiar dokumentu odpowiadający Twojej naklejce i zacznij tworzyć:
 
 - **Styl minimalistyczny** - białe lub czarne tło, czytelna czcionka bezszeryfowa (np. Montserrat), nazwa przyprawy wycentrowana. Prosty i elegancki.
 - **Styl skandynawski** - beżowe lub lniane tło, delikatna ramka, drobna ilustracja gałązki rozmarynu lub liścia laurowego.
@@ -113,7 +113,7 @@ Nadaj różnym kategoriom przypraw osobny kolor tła etykiety. Na przykład:
 
 ### 5. Etykiety z ilustracjami botanicznymi
 
-Dla osób, które cenią rzemieślniczy charakter - etykiety z klasycznymi rycinami przedstawiającymi roślinę danej przyprawy (np. gałązka tymianku, kwiat lawendy, korzenie imbiru). Taki projekt świetnie przygotujesz w Canva, korzystając z darmowych ilustracji.
+Dla osób, które cenią rzemieślniczy charakter - etykiety z klasycznymi rycinami przedstawiającymi roślinę danej przyprawy (np. gałązka tymianku, kwiat lawendy, korzenie imbiru). Taki obraz świetnie wygenerujesz w narzędziach AI (Midjourney, ChatGPT) lub przygotujesz go ręcznie w Canva, korzystając z darmowych ilustracji.
 
 ![Nowoczesna minimalistyczna naklejka z napisem Pieprz na szklanym młynku do przypraw w eleganckim stylu, jasne tło z ceramicznymi wazonami](/blog/naklejki-wlasnego-projektu-na-sloiki-z-przyprawami-zorganizuj-swoja-kuchnie/minimalistyczna-naklejka-pieprz-na-mlynek-nowoczesna-kuchnia.jpeg)
 
@@ -141,6 +141,6 @@ Realizacja w MałeNaklejki zajmuje 3 dni robocze od zatwierdzenia projektu. Nast
 
 ## Zamów własne naklejki na przyprawy i odmień swoją kuchnię
 
-Uporządkowana kuchnia to nie luksus - wystarczy jeden wieczór na projekt w Canva i jedno zamówienie w MałeNaklejki. Efekt? Jednolity, estetyczny komplet etykiet na lata, wydrukowany na trwałej folii za mniej niż 50 zł. Wgraj swój projekt i przekonaj się, jak drobna zmiana potrafi odmienić całą przestrzeń.
+Uporządkowana kuchnia to nie luksus - wystarczy chwila z generatorem AI lub darmowym programem Canva i jedno zamówienie w MałeNaklejki. Efekt? Jednolity, estetyczny komplet etykiet na lata, wydrukowany na trwałej folii za mniej niż 50 zł. Wgraj swój projekt i przekonaj się, jak drobna zmiana potrafi odmienić całą przestrzeń.
 
 <a href="/" style="display: inline-block; background-color: #02af7a; color: #ffffff; padding: 14px 28px; text-decoration: none; border-radius: 8px; font-weight: 600; font-size: 18px; margin-top: 24px; text-align: center;">Stwórz naklejki na przyprawy</a>

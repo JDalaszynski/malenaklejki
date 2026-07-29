@@ -1,6 +1,6 @@
 # Dane do Pinów Pinterest
 
-## Pin 1 (pin-1.png)
+## Pin 1 (pin-1.jpg)
 **Tytuł Pinu:**
 Pomysł na Idealny Welcome Pack dla Nowego Pracownika
 
@@ -12,7 +12,7 @@ Stwórz Swój Welcome Pack
 
 ---
 
-## Pin 2 (pin-2.png)
+## Pin 2 (pin-2.jpg)
 **Tytuł Pinu:**
 Profesjonalne Naklejki z Logo na Gadżety Firmowe
 
@@ -24,7 +24,7 @@ Wgraj Logo Twojej Firmy
 
 ---
 
-## Pin 3 (pin-3.png)
+## Pin 3 (pin-3.jpg)
 **Tytuł Pinu:**
 Naklejki na Laptopa dla Całego Zespołu Firmowego
 
@@ -36,7 +36,7 @@ Zamów Naklejki Na Laptopy
 
 ---
 
-## Pin 4 (pin-4.png)
+## Pin 4 (pin-4.jpg)
 **Tytuł Pinu:**
 Gadżety i Naklejki na Konferencje i Eventy Firmowe
 
@@ -48,7 +48,7 @@ Zamów Gadżety Na Event
 
 ---
 
-## Pin 5 (pin-5.png)
+## Pin 5 (pin-5.jpg)
 **Tytuł Pinu:**
 Naklejki Wycinane po Obrysie z Twoim Logo
 
@@ -60,7 +60,7 @@ Wgraj Plik Z Logo
 
 ---
 
-## Pin 6 (pin-6.png)
+## Pin 6 (pin-6.jpg)
 **Tytuł Pinu:**
 Eleganckie Naklejki Premium dla Twojej Marki
 

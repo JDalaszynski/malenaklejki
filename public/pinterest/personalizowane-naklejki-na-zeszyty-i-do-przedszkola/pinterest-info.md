@@ -1,6 +1,6 @@
 # Dane do Pinów Pinterest
 
-## Pin 1 (pin-1.png)
+## Pin 1 (pin-1.jpg)
 **Tytuł Pinu:**
 Oznacz Zeszyty na Cały Rok Szkolny! 📚
 
@@ -12,7 +12,7 @@ Oznacz Szkolne Zeszyty
 
 ---
 
-## Pin 2 (pin-2.png)
+## Pin 2 (pin-2.jpg)
 **Tytuł Pinu:**
 Kolorowe Naklejki z Imieniem Dziecka 🌈
 
@@ -24,7 +24,7 @@ Stwórz Naklejki z Imieniem
 
 ---
 
-## Pin 3 (pin-3.png)
+## Pin 3 (pin-3.jpg)
 **Tytuł Pinu:**
 Naklejka z Imieniem na Zeszyt Twojego Dziecka 🐶
 
@@ -36,7 +36,7 @@ Zamów Etykiety na Zeszyty
 
 ---
 
-## Pin 4 (pin-4.png)
+## Pin 4 (pin-4.jpg)
 **Tytuł Pinu:**
 Wodoodporne Naklejki na Bidon i Śniadaniówkę 💧
 
@@ -48,7 +48,7 @@ Oznacz Bidon i Lunchbox
 
 ---
 
-## Pin 5 (pin-5.png)
+## Pin 5 (pin-5.jpg)
 **Tytuł Pinu:**
 Udekoruj Pokój Dziecka Naklejką z Imieniem ⭐
 
@@ -60,7 +60,7 @@ Oznacz Meble w Pokoju
 
 ---
 
-## Pin 6 (pin-6.png)
+## Pin 6 (pin-6.jpg)
 **Tytuł Pinu:**
 Twoja Grafika, Nasza Naklejka! Die Cut ✂️
 
@@ -72,7 +72,7 @@ Wgraj Własną Grafikę
 
 ---
 
-## Pin 7 (pin-7.png)
+## Pin 7 (pin-7.jpg)
 **Tytuł Pinu:**
 Proste i Czytelne Naklejki Imienne dla Dzieci 🚗
 

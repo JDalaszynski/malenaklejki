@@ -5,6 +5,7 @@ date: "2026-07-17"
 description: "Jak zrobić własne naklejki w telefonie? Poznaj proste aplikacje do wycinania tła i zamień zdjęcie w naklejkę wyciętą po obrysie w kilka minut, bez komputera."
 image: "/blog/jak-zrobic-wlasne-naklejki-w-telefonie-proste-aplikacje-i-triki/naklejka-ze-zdjecia-psa-zrobiona-telefonem-na-laptopie.jpg"
 imageAlt: "Naklejka wycięta po obrysie ze zdjęcia psa rasy golden retriever zrobionego telefonem, naklejona na pokrywie laptopa obok smartfona z tym samym zdjęciem w galerii."
+updated: "2026-07-28"
 tags: ["naklejki", "smartfon", "DIY", "poradnik"]
 pillar: true
 pillarOrder: 5
@@ -27,6 +28,7 @@ Zero instalowania Photoshopa i zero przegrywania zdjęć kablem USB na komputer.
 
 | Aplikacja | Do czego służy | Koszt |
 |---|---|---|
+| **Generatory AI (ChatGPT, Midjourney lub wbudowany)** | Tworzenie gotowej grafiki na podstawie opisu słownego w kilka sekund | Darmowe lub w abonamencie |
 | **Canva (wersja mobilna)** | Dodawanie tekstu, ramek i efektów do zdjęcia przed eksportem do PNG | Darmowa wersja podstawowa |
 | **Background Eraser / Remove.bg** | Błyskawiczne usuwanie tła ze zdjęcia wprost na telefonie | Darmowa z limitem, płatna bez limitu |
 | **Aparat i galeria telefonu** | Zrobienie ostrego zdjęcia na jednolitym tle - podstawa dobrej naklejki | Wbudowane, bezpłatne |
@@ -46,7 +48,7 @@ W Canvie lub innej darmowej aplikacji przytnij zdjęcie, dodaj ewentualny napis 
 
 ### Krok 3 - Wgraj plik do kreatora online
 
-Otwórz kreator MałeNaklejki w przeglądarce telefonu i wgraj przygotowany plik. Jeśli nie masz pod ręką dobrego zdjęcia, skorzystaj z wbudowanego generatora obrazów AI - opisz pomysł słowami, a system stworzy gotową grafikę bez instalowania dodatkowych aplikacji.
+Otwórz kreator MałeNaklejki w przeglądarce telefonu i wgraj przygotowany plik. Jeśli nie masz pod ręką dobrego zdjęcia, skorzystaj z zewnętrznych generatorów AI (jak ChatGPT czy Midjourney) lub naszego wbudowanego generatora obrazów AI - opisz pomysł słowami, a system stworzy gotową grafikę bez instalowania dodatkowych aplikacji.
 
 ![Etui na telefon z naklejoną naklejką tekstową Enjoy Every Moment stworzoną w wbudowanym generatorze obrazów AI bez potrzeby wgrywania własnego zdjęcia.](/blog/jak-zrobic-wlasne-naklejki-w-telefonie-proste-aplikacje-i-triki/naklejka-z-napisem-ai-na-etui-telefonu.png)
 
@@ -96,7 +98,7 @@ Tak, jeśli telefon ma aparat od 12 Mpx wzwyż (standard w większości smartfon
 
 ### Czy mogę stworzyć naklejkę bez własnego zdjęcia?
 
-Tak. Wbudowany w kreator generator obrazów AI pozwala stworzyć gotową grafikę na podstawie krótkiego opisu słownego, bez potrzeby wgrywania własnego pliku.
+Tak. Narzędzia takie jak ChatGPT, Midjourney, a także wbudowany w nasz kreator generator AI pozwalają stworzyć gotową grafikę na podstawie krótkiego opisu słownego, bez potrzeby wgrywania własnego pliku.
 
 ### Ile kosztuje zamówienie naklejki zrobionej w telefonie?
 

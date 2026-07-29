@@ -1,6 +1,6 @@
 # Dane do Pinów Pinterest
 
-## Pin 1 (pin-1.png)
+## Pin 1 (pin-1.jpg)
 **Tytuł Pinu:**
 Zamień Swoje Zdjęcia w Wyjątkowe Naklejki!
 
@@ -12,7 +12,7 @@ Wgraj Swoje Wspomnienia
 
 ---
 
-## Pin 2 (pin-2.png)
+## Pin 2 (pin-2.jpg)
 **Tytuł Pinu:**
 Naklejki Dla Twojej Marki - Zamów Mały Nakład.
 
@@ -24,7 +24,7 @@ Zamów Własne Wzory
 
 ---
 
-## Pin 3 (pin-3.png)
+## Pin 3 (pin-3.jpg)
 **Tytuł Pinu:**
 Naklejki Wycinane po Obrysie z Twoich Zdjęć.
 
@@ -36,7 +36,7 @@ Stwórz Naklejki Die Cut
 
 ---
 
-## Pin 4 (pin-4.png)
+## Pin 4 (pin-4.jpg)
 **Tytuł Pinu:**
 Twoje Ilustracje jako Naklejki - Druk bez Minimum.
 

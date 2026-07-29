@@ -98,7 +98,7 @@ Tak. Drukujemy na trwałej folii winylowej z mocnym klejem, która jest wodoodpo
 
 ### Czy mogę umieścić kilka różnych zdjęć na jednym arkuszu A4?
 
-Tak. Możesz zaprojektować kilkanaście małych naklejek z różnymi zdjęciami i zmieścić je wszystkie na jednym arkuszu A4 w cenie 49,00 zł.
+Tak. Możesz ułożyć kilkanaście małych naklejek z różnymi zdjęciami lub grafikami wygenerowanymi przez AI i zmieścić je wszystkie na jednym arkuszu A4 w cenie 49,00 zł.
 
 ### Ile czasu trwa realizacja naklejki ze zdjęcia?
 

@@ -1,6 +1,6 @@
 # Dane do Pinów Pinterest
 
-## Pin 1 (pin-1.png)
+## Pin 1 (pin-1.jpg)
 **Tytuł Pinu:**
 Personalizowane Naklejki na Wódkę Weselną - Styl Rustykalny
 
@@ -12,7 +12,7 @@ Twoja Wódka Weselna
 
 ---
 
-## Pin 2 (pin-2.png)
+## Pin 2 (pin-2.jpg)
 **Tytuł Pinu:**
 Stwórz Własne Etykiety na Alkohol - Dowolny Kształt i Okazja
 

@@ -1,6 +1,6 @@
 # Zasady budowy landing pages (Landing Page Agent)
 
-Dziedziczysz **cały kanon stylu** z `blog-agent/rules.md` (ton BLUF, język korzyści, strona czynna, czarna lista SEO, **zakaz "projektowania" w kreatorze i w generatorze AI**, dywiz "-" zamiast półpauzy "–"). Poniżej reguły **specyficzne dla landingów**. Wzorzec referencyjny w kodzie: [`src/app/alternatywa-dla-sticker-mule-i-stickerapp/page.tsx`](../src/app/alternatywa-dla-sticker-mule-i-stickerapp/page.tsx).
+Dziedziczysz **cały kanon stylu** z `blog-agent/rules.md` (ton BLUF, język korzyści, strona czynna, czarna lista SEO, **zakaz "projektowania" w kreatorze i w generatorach AI** ale z naciskiem na polecanie generatorów AI (ChatGPT, Midjourney, Gemini, i wbudowanego) w pierwszej kolejności, dywiz "-" zamiast półpauzy "–"). Poniżej reguły **specyficzne dla landingów**. Wzorzec referencyjny w kodzie: [`src/app/alternatywa-dla-sticker-mule-i-stickerapp/page.tsx`](../src/app/alternatywa-dla-sticker-mule-i-stickerapp/page.tsx).
 
 > **Punkt wyjścia każdej strony: `landing-agent/keywords.md` + `blog-agent/keywords.md` + dane GSC (`plan.md` → "Wnioski z GSC").** Zanim zaczniesz budować, wybierz docelowy **mikro-klaster fraz** (kilka blisko powiązanych, jedna intencja). Fraza główna → `H1` / URL / `title`; frazy semantyczne/poboczne → `H2`/`H3`/FAQ. Waliduj wolumen i lukę (GSC, `strategy.md` checklist). **Nie buduj landingu "z głowy" bez zakotwiczenia w bazie fraz.**
 
@@ -53,7 +53,7 @@ Używaj wyłącznie potwierdzonych faktów. Zatwierdzone (źródło: produkcyjny
 * **Materiał:** trwała **folia winylowa**, mocny klej, nie zostawia śladów. Druk **300 DPI**. Odporność: **woda, UV, zadrapania**. (MałeNaklejki oferuje **tylko folię/winyl** - nie hologram, transparent, brokat itp.)
 * **Cięcie:** po obrysie (die-cut), koło, prostokąt. Jedna duża naklejka do **19 cm** lub kilkadziesiąt małych na arkuszu.
 * **Wykończenie:** pozostawione na arkuszu A4 **lub** pojedyncze docięte sztuki luzem.
-* **Kreator:** wgranie PDF/PNG/JPG, automatyczne usuwanie tła, podgląd 3D. *(Generator AI to realna funkcja produktu, ale jej eksponowanie w NOWYCH treściach jest ⛔ WSTRZYMANE - 2026-07-27, patrz `blog-agent/plan.md` → "Wstrzymane tematy". Nie dodawaj generatora AI do copy/FAQ landingów do zdjęcia holdu.)*
+* **Kreator:** wgranie PDF/PNG/JPG, automatyczne usuwanie tła, podgląd 3D, **wbudowany generator obrazów AI**. (Generator AI to realna funkcja produktu i ZAWSZE należy wspominać o nim oraz zewnętrznych generatorach (ChatGPT, Midjourney) na pierwszym miejscu, gdy mowa o sposobach na stworzenie własnej grafiki na naklejkę).
 * **Produkcja:** **2-3 dni robocze** (czas produkcji, NIE całkowity czas dostawy). **Wysyłka:** odbiór w **paczkomacie**, **koszt dostawy 19,99 zł** (brak darmowej dostawy). **Płatność:** BLIK, Przelewy24, przelew.
 
 ❌ **Nadal NIE wolno twierdzić bez dalszego potwierdzenia:** wieloletnia trwałość zewnętrzna / na karoserię, **odporność w zmywarce (potwierdzone: NIE nadaje się do zmywarki - nie obiecuj)**, całkowity czas dostawy (produkcja + czas kuriera). Takie punkty trzymaj w `plan.md` jako "DO POTWIERDZENIA".

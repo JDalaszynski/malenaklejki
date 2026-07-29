@@ -75,7 +75,7 @@ const FAQS: { q: string; a: string }[] = [
   },
   {
     q: "Jak przygotować plik z logo do druku?",
-    a: "Wgraj logo w formacie PDF, PNG lub JPG do kreatora. Najlepiej sprawdza się grafika na przezroczystym tle, ale zwykłe zdjęcie też zadziała - kreator sam usunie tło i wytnie naklejkę po obrysie. Nie masz gotowej grafiki? Opisz pomysł tekstem, a wbudowany generator AI wygeneruje gotowy obraz.",
+    a: "Wgraj logo w formacie PDF, PNG lub JPG do kreatora. Najlepiej sprawdza się grafika na przezroczystym tle, ale zwykłe zdjęcie też zadziała - kreator sam usunie tło i wytnie naklejkę po obrysie. Nie masz gotowej grafiki? Opisz pomysł tekstem, a generatory AI (np. ChatGPT, Midjourney lub nasz wbudowany) wygenerują gotowy obraz.",
   },
   {
     q: "Na czym drukujecie naklejki firmowe i czy są trwałe?",
@@ -91,7 +91,7 @@ const FAQS: { q: string; a: string }[] = [
   },
   {
     q: "Jaki plik z logo najlepiej wgrać do druku?",
-    a: "Najlepszy jest plik z logo na przezroczystym tle w formacie PNG lub PDF - naklejka zostanie wtedy wycięta dokładnie po kształcie znaku. Przyjmujemy też JPG i zwykłe zdjęcia, bo kreator sam usunie tło. Gdy nie masz gotowej grafiki, generator AI stworzy obraz na podstawie opisu tekstowego.",
+    a: "Najlepszy jest plik z logo na przezroczystym tle w formacie PNG lub PDF - naklejka zostanie wtedy wycięta dokładnie po kształcie znaku. Przyjmujemy też JPG i zwykłe zdjęcia, bo kreator sam usunie tło. Gdy nie masz gotowej grafiki, narzędzia AI (jak ChatGPT czy wbudowany generator) stworzą obraz na podstawie opisu tekstowego.",
   },
   {
     q: "Jak zapłacić za zamówienie firmowe i dostać fakturę?",
@@ -172,7 +172,7 @@ const ADVANTAGES: { icon: React.ElementType; title: string; text: string }[] = [
   {
     icon: Sparkles,
     title: "Kreator bez grafika",
-    text: "Wgraj logo (PDF, PNG, JPG), a kreator sam usunie tło i wytnie naklejkę po kształcie. Nie masz grafiki? Opisz pomysł, a generator AI wygeneruje obraz.",
+    text: "Wgraj logo (PDF, PNG, JPG), a kreator sam usunie tło i wytnie naklejkę po kształcie. Nie masz grafiki? Opisz pomysł, a narzędzia AI wygenerują gotowy obraz.",
   },
   {
     icon: Truck,
@@ -466,7 +466,7 @@ export default function NaklejkiDlaFirmPage() {
             {[
               {
                 title: "Wgraj logo lub grafikę",
-                text: "Wgraj logo w formacie PDF, PNG lub JPG. Zwykłe zdjęcie z telefonu też wystarczy - kreator sam usunie tło i wytnie naklejkę po kształcie. Nie masz grafiki? Opisz pomysł tekstem, a generator AI wygeneruje gotowy obraz.",
+                text: "Wgraj logo w formacie PDF, PNG lub JPG. Zwykłe zdjęcie z telefonu też wystarczy - kreator sam usunie tło i wytnie naklejkę po kształcie. Nie masz grafiki? Opisz pomysł tekstem, a generatory AI (np. Midjourney, ChatGPT lub wbudowany u nas) wygenerują gotowy obraz.",
               },
               {
                 title: "Wybierz cięcie, rozmiar i liczbę sztuk",

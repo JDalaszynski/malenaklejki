@@ -1,6 +1,6 @@
 # Dane do Pinów Pinterest
 
-## Pin 1 (pin-1.png)
+## Pin 1 (pin-1.jpg)
 **Tytuł Pinu:**
 Estetyczne Naklejki na Laptopa - Wyraź Siebie!
 
@@ -12,7 +12,7 @@ Stwórz własny styl
 
 ---
 
-## Pin 2 (pin-2.png)
+## Pin 2 (pin-2.jpg)
 **Tytuł Pinu:**
 Zmień Zdjęcie Pupila w Naklejkę na Laptopa! 🐱
 

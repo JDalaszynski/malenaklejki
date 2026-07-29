@@ -8,13 +8,13 @@ import { JsonLd } from "@/components/seo/JsonLd";
 
 export const metadata = {
   title: "Blog o naklejkach | Poradniki, inspiracje i porady — MałeNaklejki",
-  description: "Dowiedz się, jak projektować naklejki z własnym nadrukiem, przygotować pliki do druku i wykorzystać naklejki w brandingu. Porady krok po kroku od MałeNaklejki.",
+  description: "Dowiedz się, jak tworzyć naklejki z własnym nadrukiem, przygotować pliki do druku i wykorzystać naklejki w brandingu. Porady krok po kroku od MałeNaklejki.",
   alternates: {
     canonical: "/blog",
   },
   openGraph: {
     title: "Blog o naklejkach | Poradniki, inspiracje i porady — MałeNaklejki",
-    description: "Dowiedz się, jak projektować naklejki z własnym nadrukiem, przygotować pliki do druku i wykorzystać naklejki w brandingu.",
+    description: "Dowiedz się, jak tworzyć naklejki z własnym nadrukiem, przygotować pliki do druku i wykorzystać naklejki w brandingu.",
     url: "https://www.malenaklejki.pl/blog",
     type: "website",
   },
@@ -71,7 +71,7 @@ export default async function BlogIndexPage({
           "@context": "https://schema.org",
           "@type": "CollectionPage",
           name: "Blog o naklejkach — MałeNaklejki",
-          description: "Dowiedz się, jak projektować naklejki z własnym nadrukiem, przygotować pliki do druku i wykorzystać naklejki w brandingu.",
+          description: "Dowiedz się, jak tworzyć naklejki z własnym nadrukiem, przygotować pliki do druku i wykorzystać naklejki w brandingu.",
           url: "https://www.malenaklejki.pl/blog",
           isPartOf: {
             "@type": "WebSite",
@@ -95,7 +95,7 @@ export default async function BlogIndexPage({
             Baza Wiedzy i Inspiracji
           </h1>
           <p className="text-muted-foreground text-sm sm:text-base font-semibold leading-relaxed">
-            Dowiedz się, jak najlepiej projektować naklejki, przygotować pliki do druku oraz wykorzystać materiały reklamowe w promocji swojej marki.
+            Dowiedz się, jak najlepiej tworzyć naklejki, przygotować pliki do druku oraz wykorzystać materiały reklamowe w promocji swojej marki.
           </p>
         </div>
 

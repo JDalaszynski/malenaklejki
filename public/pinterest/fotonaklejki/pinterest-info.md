@@ -2,7 +2,7 @@
 
 Landing docelowy: https://www.malenaklejki.pl/fotonaklejki
 
-## Pin 1 (pin-1.png)
+## Pin 1 (pin-1.jpg)
 **Tytuł Pinu:**
 Fotonaklejki ze zdjęć na arkuszu A4
 
@@ -14,7 +14,7 @@ Zrób fotonaklejki ze zdjęć
 
 ---
 
-## Pin 2 (pin-2.png)
+## Pin 2 (pin-2.jpg)
 **Tytuł Pinu:**
 Zamień zdjęcie z telefonu w naklejkę
 
@@ -26,7 +26,7 @@ Zamień zdjęcie w naklejkę
 
 ---
 
-## Pin 3 (pin-3.png)
+## Pin 3 (pin-3.jpg)
 **Tytuł Pinu:**
 Fotonaklejka z pupila na laptopa
 
@@ -38,7 +38,7 @@ Zamów wlepkę z pupilem
 
 ---
 
-## Pin 4 (pin-4.png)
+## Pin 4 (pin-4.jpg)
 **Tytuł Pinu:**
 Wodoodporna fotonaklejka z wakacji
 
@@ -50,7 +50,7 @@ Zabierz wspomnienia ze sobą
 
 ---
 
-## Pin 5 (pin-5.png)
+## Pin 5 (pin-5.jpg)
 **Tytuł Pinu:**
 Fotonaklejka ze zdjęciem na prezent
 
@@ -62,7 +62,7 @@ Zrób prezent ze zdjęcia
 
 ---
 
-## Pin 6 (pin-6.png)
+## Pin 6 (pin-6.jpg)
 **Tytuł Pinu:**
 Ulubiony zwierzak jako fotonaklejka
 
@@ -74,7 +74,7 @@ Zamów naklejkę ze zwierzakiem
 
 ---
 
-## Pin 7 (pin-7.png)
+## Pin 7 (pin-7.jpg)
 **Tytuł Pinu:**
 Fotonaklejka ze zdjęcia bez Photoshopa
 
@@ -86,7 +86,7 @@ Usuniemy tło ze zdjęcia
 
 ---
 
-## Pin 8 (pin-8.png)
+## Pin 8 (pin-8.jpg)
 **Tytuł Pinu:**
 Fotonaklejka ze zdjęcia hobby
 

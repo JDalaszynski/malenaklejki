@@ -43,7 +43,7 @@ Klienci bardzo często wykorzystują [naklejki własnego projektu na słoiki z p
 
 Chcesz wiedzieć, jak zamówić idealne [naklejki na zamówienie](/blog/jak-zamowic-idealne-naklejki-na-zamowienie-z-wlasnym-nadrukiem) bez stresu i błędów technologicznych? Cały proces jest niezwykle przystępny i zaprojektowany z myślą o osobach, które nie zajmują się na co dzień poligrafią. Zobacz, jak to wygląda w praktyce:
 
-1. **Przygotuj grafikę lub napis:** Stwórz prosty projekt z napisem w darmowym programie Canva lub Word, zapisz go w formacie PDF, PNG lub JPG. Pamiętaj - nasz kreator online nie posiada edytora tekstu, dlatego sam napis musisz ułożyć wcześniej na swoim urządzeniu.
+1. **Przygotuj grafikę lub napis:** Wygeneruj piękną grafikę w generatorach AI (ChatGPT, Midjourney) lub stwórz plik z napisem w darmowym programie Canva czy Word, zapisz w formacie PDF, PNG lub JPG. Pamiętaj - nasz kreator online nie posiada edytora tekstu, dlatego sam napis musisz ułożyć wcześniej na swoim urządzeniu.
 2. **Skorzystaj z wbudowanej sztucznej inteligencji:** Nie masz gotowego zdjęcia ani grafiki? Opisz swój pomysł zwykłym tekstem, wybierz styl (np. akwarela lub anime), a wbudowana sztuczna inteligencja wygeneruje gotowy obraz - dokładnie tak, jakbyś wgrywał własne zdjęcie. Wycięciem po kształcie i ułożeniem na arkuszu zajmiesz się już w kreatorze.
 3. **Załaduj plik do kreatora arkusza:** Wgraj gotowy plik. Nasze oprogramowanie błyskawicznie przeanalizuje kształt.
 4. **Wybierz rodzaj cięcia:** Zdecyduj, czy wolisz **naklejki okrągłe z własnym nadrukiem**, klasyczne prostokąty, czy może cięcie idealnie po obrysie, które precyzyjnie obiega litery Twojego napisu.
@@ -61,7 +61,7 @@ Nie. Używamy profesjonalnej folii z mocnym klejem, który gwarantuje doskonał�
 
 ### Jak zrobić naklejkę bez umiejętności obsługi Photoshopa lub grafika?
 
-To banalnie proste! Jeśli posiadasz zdjęcie z telefonu, po prostu wgraj je w naszym kreatorze arkusza - system automatycznie usunie z niego tło. Jeśli w ogóle nie masz ilustracji, skorzystaj z wbudowanego generatora obrazów AI. Opisz, co chcesz zobaczyć (np. "kolorowy jednorożec"), a następnie przenieś wygenerowany obraz na arkusz. Całość załatwisz w oknie przeglądarki.
+To banalnie proste! Jeśli posiadasz zdjęcie z telefonu, po prostu wgraj je w naszym kreatorze arkusza - system automatycznie usunie z niego tło. Jeśli w ogóle nie masz ilustracji, skorzystaj z generatorów AI (ChatGPT, Midjourney lub z wbudowanego u nas generatora obrazów AI). Opisz, co chcesz zobaczyć (np. "kolorowy jednorożec"), a następnie przenieś wygenerowany obraz na arkusz. Całość załatwisz w oknie przeglądarki.
 
 ### Czy naklejki do łazienki są wodoodporne?
 

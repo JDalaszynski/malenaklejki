@@ -36,7 +36,7 @@ Poniżej realny przykład, ile zapłacisz za pojedynczy arkusz w zależności od
 
 ## Jak zamówić naklejki w małym nakładzie bez przepłacania - krok po kroku
 
-1. **Wgraj plik lub zdjęcie** do kreatora online - PNG, JPG lub PDF, prosto z telefonu lub komputera.
+1. **Wgraj grafikę (np. wygenerowaną w AI), plik lub zdjęcie** do kreatora online - PNG, JPG lub PDF, prosto z telefonu lub komputera.
 2. **Wybierz kształt cięcia** - po obrysie, okrąg, prostokąt lub kwadrat, w zależności od projektu.
 3. **Ustaw liczbę sztuk na arkuszu** - jeśli potrzebujesz tylko kilku naklejek, po prostu zmniejsz ich liczbę w konfiguratorze zamiast dublować wzór.
 4. **Zdecyduj o formie wykończenia** - "pozostawione na arkuszu" albo "pojedyncze sztuki" (więcej w sekcji poniżej).
@@ -82,7 +82,7 @@ Cena arkusza A4 jest stała i wynosi 49,00 zł niezależnie od liczby naklejek, 
 
 ### Czy mogę umieścić różne wzory na jednym arkuszu przy małym nakładzie?
 
-Tak. Wystarczy zestawić różne projekty w jednym pliku przed wgraniem do kreatora - każdy wzór zostanie wycięty osobno, zgodnie z wybranym kształtem cięcia.
+Tak. Wystarczy zestawić ze sobą różne grafiki (np. pobrane z ChatGPT, Midjourney lub Canva) w jednym pliku przed wgraniem do kreatora - każdy wzór zostanie wycięty osobno, zgodnie z wybranym kształtem cięcia.
 
 ### Ile czasu trwa realizacja zamówienia w małym nakładzie?
 

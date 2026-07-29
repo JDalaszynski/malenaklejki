@@ -1,6 +1,6 @@
 # Dane do Pinów Pinterest
 
-## Pin 1 (pin-1.png)
+## Pin 1 (pin-1.jpg)
 **Tytuł Pinu:**
 Eleganckie Naklejki na Podziękowania dla Gości Weselnych
 
@@ -12,7 +12,7 @@ Zamów Naklejki na Wesele
 
 ---
 
-## Pin 2 (pin-2.png)
+## Pin 2 (pin-2.jpg)
 **Tytuł Pinu:**
 Naklejki z Własnym Napisem dla Produktów Handmade
 
@@ -24,7 +24,7 @@ Oznacz Swoje Produkty
 
 ---
 
-## Pin 3 (pin-3.png)
+## Pin 3 (pin-3.jpg)
 **Tytuł Pinu:**
 Stwórz Własne Wlepki z Motywującymi Napisami na Laptopa
 
@@ -36,7 +36,7 @@ Spersonalizuj Swój Sprzęt
 
 ---
 
-## Pin 4 (pin-4.png)
+## Pin 4 (pin-4.jpg)
 **Tytuł Pinu:**
 Naklejka ze Zdjęcia Twojego Psa na Butelkę lub Bidon
 
@@ -48,7 +48,7 @@ Wgraj Zdjęcie Pupila
 
 ---
 
-## Pin 5 (pin-5.png)
+## Pin 5 (pin-5.jpg)
 **Tytuł Pinu:**
 Naklejka w Kształcie Serca z Waszym Zdjęciem z Podróży
 

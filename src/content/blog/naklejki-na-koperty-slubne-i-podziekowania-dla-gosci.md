@@ -9,7 +9,7 @@ tags: ["naklejki", "ślub", "podziękowania", "poradnik"]
 cta_text: "Zamów naklejki ślubne"
 ---
 
-Zadbaj o spójny, dopracowany detal na swoim weselu - **naklejki na koperty ślubne** i podziękowania dla gości wydrukujesz na trwałej folii bez minimalnego zamówienia. Przygotuj projekt z monogramem w darmowej Canvie lub w Wordzie, wgraj gotowy plik prosto z telefonu, a my wytniemy każdą naklejkę idealnie po jej kształcie. Płacisz jedną, stałą cenę 49,00 zł za arkusz A4 - niezależnie od tego, czy potrzebujesz kilkunastu dużych etykiet na koperty, czy stu małych naklejek z inicjałami na pudełeczka dla gości.
+Zadbaj o spójny, dopracowany detal na swoim weselu - **naklejki na koperty ślubne** i podziękowania dla gości wydrukujesz na trwałej folii bez minimalnego zamówienia. Wygeneruj monogram z kwiatami w narzędziach AI (Midjourney, ChatGPT) lub przygotuj plik ręcznie w darmowej Canvie czy Wordzie, wgraj gotowy plik prosto z telefonu, a my wytniemy każdą naklejkę idealnie po jej kształcie. Płacisz jedną, stałą cenę 49,00 zł za arkusz A4 - niezależnie od tego, czy potrzebujesz kilkunastu dużych etykiet na koperty, czy stu małych naklejek z inicjałami na pudełeczka dla gości.
 
 ## Dlaczego naklejki na koperty ślubne robią wrażenie już przy wejściu?
 
@@ -55,9 +55,10 @@ Jeden arkusz A4 pozwala zebrać kilka różnych wzorów naraz - inny na koperty,
 
 Nasz kreator online służy do ułożenia arkusza: wgrywasz gotowy plik, kadrujesz go, wybierasz kształt cięcia i decydujesz, ile sztuk zmieści się na arkuszu A4. Nie znajdziesz w nim edytora tekstu ani biblioteki ozdobników, dlatego sam wzór z monogramem, imionami i datą przygotuj wcześniej w darmowym narzędziu:
 
-1. **Canva** - wybierz szablon zaproszenia lub monogramu, wpisz swoje inicjały i datę ślubu, a następnie pobierz plik jako PNG (z przezroczystym tłem pod cięcie po obrysie) lub PDF (pod naklejkę okrągłą albo prostokątną).
-2. **Microsoft Word lub PowerPoint** - wstaw pole tekstowe z monogramem i ornamentem, po czym zapisz projekt jako PDF lub wyeksportuj do PNG.
-3. **Aplikacja w telefonie** - Canva Mobile lub Adobe Express pozwolą złożyć wzór na telefonie i od razu wgrać plik do kreatora.
+1. **Generatory AI (ChatGPT, Midjourney)** - wygeneruj piękną grafikę z motywem ślubnym podając prosty opis tekstowy (np. "akwarelowe piwonie z monogramem M i J").
+2. **Canva** - wybierz szablon zaproszenia lub monogramu, wpisz swoje inicjały i datę ślubu, a następnie pobierz plik jako PNG (z przezroczystym tłem pod cięcie po obrysie) lub PDF (pod naklejkę okrągłą albo prostokątną).
+3. **Microsoft Word lub PowerPoint** - wstaw pole tekstowe z monogramem i ornamentem, po czym zapisz projekt jako PDF lub wyeksportuj do PNG.
+4. **Aplikacja w telefonie** - Canva Mobile lub Adobe Express pozwolą złożyć wzór na telefonie i od razu wgrać plik do kreatora.
 
 Chcesz dopracować sam napis - imiona, datę lub cytat na pieczęć? Krok po kroku pokazujemy to w poradniku [naklejki z własnym napisem](/blog/naklejki-z-wlasnym-napisem-jak-przygotowac-plik-i-zamowic-online). Po wgraniu pliku wybierzesz w kreatorze kształt cięcia (po obrysie, koło, owal lub prostokąt) i sprawdzisz podgląd 3D, zanim złożysz zamówienie.
 
@@ -89,7 +90,7 @@ Brak minimalnego nakładu oznacza, że możesz zamówić jeden arkusz na próbę
 
 ### Jak zrobić naklejki na koperty ślubne z monogramem?
 
-Przygotuj projekt monogramu w darmowej Canvie lub w Wordzie - dodaj inicjały pary młodej, datę ślubu i ewentualny ornament. Zapisz plik jako PNG (z przezroczystym tłem, jeśli chcesz cięcie po obrysie) lub PDF i wgraj go do naszego kreatora online. Wybierz kształt naklejki, a my wydrukujemy i wytniemy ją za Ciebie. Realizacja trwa do 3 dni roboczych.
+Wygeneruj grafikę z motywem ślubnym w generatorach AI (np. ChatGPT, Midjourney) lub przygotuj gotowy monogram w darmowej Canvie czy Wordzie - dodaj inicjały pary młodej, datę ślubu i ewentualny ornament. Zapisz plik jako PNG (z przezroczystym tłem, jeśli chcesz cięcie po obrysie) lub PDF i wgraj go do naszego kreatora online. Wybierz kształt naklejki, a my wydrukujemy i wytniemy ją za Ciebie. Realizacja trwa do 3 dni roboczych.
 
 ### Ile naklejek na koperty zmieści się na jednym arkuszu A4?
 

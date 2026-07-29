@@ -58,7 +58,7 @@ Naklejki na wąskie, zakrzywione elementy (rurki ramy, kierownica) najlepiej wyc
 Cała droga od pomysłu do gotowego arkusza zajmuje kilka minut i nie wymaga umiejętności grafika:
 
 1. **Przygotuj grafikę.** Masz gotowe logo klubu lub wzór? Zapisz go jako PNG, JPG lub PDF. Chcesz prosty napis z imieniem albo nazwą trasy? Złóż go w darmowym Canva, Wordzie lub aplikacji w telefonie i zapisz plik.
-2. **Nie masz gotowej grafiki?** Skorzystaj z wbudowanego generatora AI - opisz zwykłym tekstem swój pomysł (np. "górski szlak o zachodzie słońca w stylu vintage"), wybierz styl graficzny, a sztuczna inteligencja wygeneruje gotowy obraz. Trafia on potem do kreatora dokładnie tak samo jak wgrane zdjęcie.
+2. **Nie masz gotowej grafiki?** Skorzystaj z generatorów AI (np. ChatGPT, Midjourney lub naszego wbudowanego) - opisz zwykłym tekstem swój pomysł (np. "górski szlak o zachodzie słońca w stylu vintage"), wybierz styl graficzny, a sztuczna inteligencja wygeneruje gotowy obraz. Trafia on potem do kreatora dokładnie tak samo jak wgrane zdjęcie.
 3. **Wgraj plik do kreatora online** na stronie głównej MałeNaklejki. Jeśli wgrasz zdjęcie, sami wytniemy naklejkę idealnie po jej kształcie - bez dodatkowych kroków z Twojej strony.
 4. **Wybierz kształt cięcia** - po obrysie grafiki, w koło albo w prostokąt - i ustaw rozmiar oraz liczbę sztuk na arkuszu.
 5. **Sprawdź podgląd 3D i złóż zamówienie.** Gotowe naklejki na rower odbierzesz w 3 dni robocze.
@@ -96,7 +96,7 @@ To zależy od ich wielkości. Na jednym arkuszu A4 zmieścisz jedną dużą nakl
 
 ### Nie mam gotowej grafiki - jak stworzyć wzór na rower?
 
-Skorzystaj z wbudowanego generatora AI: opisz swój pomysł zwykłym tekstem i wybierz styl, a sztuczna inteligencja wygeneruje gotowy obraz. Możesz też złożyć prosty napis w darmowym Canva lub użyć własnego zdjęcia z wycieczki i wgrać plik do kreatora.
+Skorzystaj z generatorów AI (ChatGPT, Midjourney lub wbudowanego w kreatorze): opisz swój pomysł zwykłym tekstem i wybierz styl, a sztuczna inteligencja wygeneruje gotowy obraz. Możesz też złożyć prosty napis w darmowym Canva lub użyć własnego zdjęcia z wycieczki i wgrać plik do kreatora.
 
 ### Czy naklejka zostawia ślady po odklejeniu z ramy?
 

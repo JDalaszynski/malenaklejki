@@ -1,6 +1,6 @@
 # Dane do Pinów Pinterest
 
-## Pin 1 (pin-1.png)
+## Pin 1 (pin-1.jpg)
 **Tytuł Pinu:**
 Zmień Zdjęcie Psa w Naklejkę Die Cut!
 
@@ -12,7 +12,7 @@ Wgraj Zdjęcie Swojego Pupila
 
 ---
 
-## Pin 2 (pin-2.png)
+## Pin 2 (pin-2.jpg)
 **Tytuł Pinu:**
 Dowolny Kształt, Własny Wzór - Zamów Arkusz Naklejek!
 

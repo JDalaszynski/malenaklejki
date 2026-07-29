@@ -1,6 +1,6 @@
 # Dane do Pinów Pinterest
 
-## Pin 1 (pin-1.png)
+## Pin 1 (pin-1.jpg)
 **Tytuł Pinu:**
 Stwórz Własny Zestaw Naklejek Tuningowych na Zderzak
 
@@ -12,7 +12,7 @@ Zamów Wlepki Sponsorów
 
 ---
 
-## Pin 2 (pin-2.png)
+## Pin 2 (pin-2.jpg)
 **Tytuł Pinu:**
 Naklejki JDM i Stance - Wgraj Własny Wzór Online
 
@@ -24,7 +24,7 @@ Wgraj Własną Grafikę Moto
 
 ---
 
-## Pin 3 (pin-3.png)
+## Pin 3 (pin-3.jpg)
 **Tytuł Pinu:**
 Personalizowane Numery Startowe na Track Day i Zloty
 
@@ -36,7 +36,7 @@ Zamów Swój Numer Startowy
 
 ---
 
-## Pin 4 (pin-4.png)
+## Pin 4 (pin-4.jpg)
 **Tytuł Pinu:**
 Naklejka z Własnym Imieniem lub Ksywką na Szybę
 
@@ -48,7 +48,7 @@ Stwórz Naklejkę z Napisem
 
 ---
 
-## Pin 5 (pin-5.png)
+## Pin 5 (pin-5.jpg)
 **Tytuł Pinu:**
 Naklejki dla Klubów Motoryzacyjnych - Bez Minimum Zamówienia
 
@@ -60,7 +60,7 @@ Wgraj Logo Twojego Klubu
 
 ---
 
-## Pin 6 (pin-6.png)
+## Pin 6 (pin-6.jpg)
 **Tytuł Pinu:**
 Własne Naklejki na Kask Motocyklowy i Motocykl
 

@@ -1,6 +1,6 @@
 # Dane do Pinów Pinterest
 
-## Pin 1 (pin-1.png)
+## Pin 1 (pin-1.jpg)
 **Tytuł Pinu:**
 Perfekcyjna Organizacja Szafy z Personalizowanymi Naklejkami
 
@@ -12,7 +12,7 @@ Zamów Etykiety do Szafy
 
 ---
 
-## Pin 2 (pin-2.png)
+## Pin 2 (pin-2.jpg)
 **Tytuł Pinu:**
 Minimalistyczne Naklejki na Szuflady - Zorganizuj Swoją Kuchnię
 
@@ -24,7 +24,7 @@ Stwórz Własne Napisy
 
 ---
 
-## Pin 3 (pin-3.png)
+## Pin 3 (pin-3.jpg)
 **Tytuł Pinu:**
 Estetyczne Naklejki na Przyprawy - Twoja Kuchnia Jak z Instagrama
 
@@ -36,7 +36,7 @@ Zamów Naklejki na Słoiki
 
 ---
 
-## Pin 4 (pin-4.png)
+## Pin 4 (pin-4.jpg)
 **Tytuł Pinu:**
 Personalizowane Naklejki na Pojemniki do Przechowywania Ubrań
 
@@ -48,7 +48,7 @@ Wgraj Własny Wzór
 
 ---
 
-## Pin 5 (pin-5.png)
+## Pin 5 (pin-5.jpg)
 **Tytuł Pinu:**
 Organizacja Garażu i Warsztatu - Naklejki na Pojemniki z Narzędziami
 

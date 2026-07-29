@@ -134,7 +134,7 @@ export default function ONasPage() {
             </p>
             <p>
               Stworzyliśmy platformę, która pozwala każdemu — bez umiejętności graficznych i bez
-              minimalnego zamówienia — zaprojektować i zamówić profesjonalne naklejki w kilka minut.
+              minimalnego zamówienia — ułożyć i zamówić profesjonalne naklejki w kilka minut.
               Nasz kreator online działa bezpośrednio w przeglądarce: wgrywasz plik z telefonu
               lub komputera, a my drukujemy na trwałej folii winylowej i wycinamy naklejki idealnie
               po kształcie Twojej grafiki.

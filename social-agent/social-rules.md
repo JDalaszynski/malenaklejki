@@ -16,13 +16,15 @@ Jako specjalista ds. Social Media (Instagram, Facebook, TikTok, Pinterest) dla m
 
 Zawsze generuj zestaw składający się z poniższych formatów z jednego źródła tekstu:
 
-### A. Opis TikTok (Tekst pod Karuzelę)
+### A. Opis TikTok (Tekst pod Karuzelę) — plik `tiktok-info.txt`
 * Cel: Przyciągnięcie uwagi algorytmu poprzez słowa kluczowe i skłonienie do interakcji.
-* Struktura: Surowy tekst bez dodawania prefiksów takich jak "Tytuł:" czy "Treść:" (gotowy do skopiowania). Składa się z:
+* **Plik i lokalizacja:** Zapisywany jako `tiktok-info.txt` w folderze pinów `/public/pinterest/{slug}/` (obok `pinterest-info.md` i grafik `pin-N.jpg`).
+* **Automatyzacja:** Powstaje ZAWSZE automatycznie zaraz po `pinterest-info.md` — generuje go skrypt `social-agent/generate-pinterest.ts` przy tym samym uruchomieniu. Nie wymaga osobnej komendy ani polecenia.
+* Struktura: Surowy tekst bez dodawania prefiksów takich jak "Tytuł:" czy "Treść:" (gotowy do skopiowania). Bloki oddzielone jedną pustą linią. Składa się z:
   * Tytuł: Krótki, chwytliwy (Haczyk) z emotikoną. **Musi być oddzielony od reszty tekstu pustą linią.**
   * Treść: Zarysowanie problemu / Wartość (krótko, zwięźle).
   * CTA: Zawsze musi brzmieć dokładnie: "Link do kreatora w bio 👇".
-  * Hashtagi: Dokładnie 5 trafnych hashtagów dobranych według słów kluczowych (keywords).
+  * Hashtagi: Dokładnie 5 trafnych hashtagów dobranych według słów kluczowych (keywords), pisanych małą literą i bez spacji.
 
 ### B. Merytoryczna Karuzela (TikTok Photo Mode)
 * Cel: Edukacja w pigułce, viralowy potencjał i zasięg organiczny na TikToku.
@@ -48,5 +50,5 @@ Zawsze generuj zestaw składający się z poniższych formatów z jednego źród
 * ❌ Używania zbyt biznesowego żargonu z bloga (np. "Topical Authority", "Optymalizacja GEO" - zostaw to dla botów).
 * ❌ Braku CTA (każdy post musi mówić, co odbiorca ma zrobić: zapisać, polubić, skomentować, wejść na stronę).
 * ❌ Używania znaku półpauzy (długiego myślnika "–"). Zawsze zastępuj ten znak zwykłym dywizem/krótkim myślnikiem ("-").
-* ❌ Słów związanych z "projektowaniem" (np. "zaprojektuj", "projektuj", "zaprojektować"). Klient nie projektuje naklejek - po prostu wgrywa zdjęcie z telefonu, a my wycinamy je po obrysie w kreatorze. Używaj zamiast tego: "wgraj", "zamów", "stwórz", "zrób".
+* ❌ Słów związanych z "projektowaniem" (np. "zaprojektuj", "projektuj", "zaprojektować"). Klient nie projektuje naklejek - po prostu wgrywa zdjęcie z telefonu, a my wycinamy je po obrysie w kreatorze. Używaj zamiast tego: "wgraj", "zamów", "stwórz", "zrób". Zawsze gdy sugerujesz stworzenie własnej grafiki (np. w Canvie lub Wordzie), na pierwszym miejscu proponuj użycie generatorów AI (takich jak Midjourney, ChatGPT, Gemini lub wbudowanego), a zewnętrzne aplikacje podawaj jako alternatywę.
 

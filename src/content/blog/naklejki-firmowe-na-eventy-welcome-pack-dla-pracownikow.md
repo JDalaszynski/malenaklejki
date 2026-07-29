@@ -57,7 +57,7 @@ Przy większej konferencji zamawiasz po prostu wielokrotność arkuszy - cena za
 
 Cały proces, od gotowego logo do odebranej paczki, zamyka się w kilku krokach:
 
-1. **Przygotuj plik z logo firmy** w Canva, Wordzie lub dowolnym programie graficznym - zapisz jako PNG, JPG lub PDF.
+1. **Przygotuj plik z grafiką firmową** za pomocą generatorów AI (ChatGPT, Midjourney lub nasz wbudowany) albo złóż logo ręcznie w Canva czy dowolnym programie graficznym - zapisz jako PNG, JPG lub PDF.
 2. **Wgraj plik** do kreatora online na stronie głównej MałeNaklejki.
 3. **Wybierz kształt cięcia** - prostokąt lub kwadrat sprawdza się przy logotypach, koło przy okrągłych plakietkach identyfikatorów.
 4. **Ustaw liczbę naklejek na arkuszu** w zależności od tego, czy to welcome pack dla kilku osób, czy komplet na całą konferencję.

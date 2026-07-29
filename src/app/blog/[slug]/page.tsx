@@ -99,7 +99,7 @@ const ArticleBannerAndCTA = ({ id }: { id?: string }) => (
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img 
         src="/images/MałeNaklejki-Post-Instagram.jpg" 
-        alt="Zaprojektuj i zamów naklejki online" 
+        alt="Stwórz i zamów naklejki online" 
         className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-[1.03]" 
       />
       {/* Subtle Overlay on Hover */}

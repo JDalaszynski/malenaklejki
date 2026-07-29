@@ -1,6 +1,6 @@
 # Dane do Pinów Pinterest
 
-## Pin 1 (pin-1.png)
+## Pin 1 (pin-1.jpg)
 **Tytuł Pinu:**
 Minimalistyczne Naklejki na Przyprawy do Twojej Kuchni
 
@@ -12,7 +12,7 @@ Zamów Minimalistyczne Etykiety
 
 ---
 
-## Pin 2 (pin-2.png)
+## Pin 2 (pin-2.jpg)
 **Tytuł Pinu:**
 Twoje Własne Naklejki na Słoiki w Stylu Boho
 
@@ -24,7 +24,7 @@ Wgraj Własną Grafikę Boho
 
 ---
 
-## Pin 3 (pin-3.png)
+## Pin 3 (pin-3.jpg)
 **Tytuł Pinu:**
 Naklejki na Przyprawy w Stylu Retro - Inspiracja Botaniczna
 
@@ -36,7 +36,7 @@ Stwórz Etykiety w Stylu Retro
 
 ---
 
-## Pin 4 (pin-4.png)
+## Pin 4 (pin-4.jpg)
 **Tytuł Pinu:**
 Personalizowane Naklejki na Przyprawy z Ilustracjami
 
@@ -48,7 +48,7 @@ Zamów Naklejki z Papryką
 
 ---
 
-## Pin 5 (pin-5.png)
+## Pin 5 (pin-5.jpg)
 **Tytuł Pinu:**
 Prosty Sposób na Porządek w Kuchni - Własne Etykiety
 
@@ -60,7 +60,7 @@ Wpisz Własny Napis Tutaj
 
 ---
 
-## Pin 6 (pin-6.png)
+## Pin 6 (pin-6.jpg)
 **Tytuł Pinu:**
 Nowoczesne Etykiety na Młynki i Pojemniki na Przyprawy
 

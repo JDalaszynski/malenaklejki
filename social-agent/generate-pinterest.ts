@@ -5,9 +5,11 @@ import { GoogleGenAI } from "@google/genai";
 import * as dotenv from 'dotenv';
 import { fileURLToPath } from 'url';
 
-// Generator Pinów Pinterest (format 4:5, JPG).
+// Generator Pinów Pinterest (format 4:5, JPG) + opis pod karuzelę TikTok.
 // Piny generuj z SUROWYCH zdjęć artykułu - PRZED uruchomieniem add_logo_bar.mjs
 // (skrypt dokłada własny pasek z logo i CTA; obrandowane zdjęcie dałoby dwa logotypy).
+// UWAGA: zaraz po zapisaniu pinterest-info.md skrypt ZAWSZE tworzy też tiktok-info.txt
+// w tym samym folderze /public/pinterest/{slug}/ (opis pod karuzelę zdjęć na TikToka).
 // Użycie: npx tsx social-agent/generate-pinterest.ts <nazwa-pliku-bloga.md>
 
 const __filename = fileURLToPath(import.meta.url);
@@ -284,6 +286,57 @@ Zwróć wynik jako sformatowany Markdown (używając nagłówków H2 dla każdeg
       const infoFilePath = path.join(pinterestDir, 'pinterest-info.md');
       fs.writeFileSync(infoFilePath, infoMarkdown, 'utf8');
       console.log(`✅ Zapisano informacje o Pinach do pliku: ${infoFilePath}`);
+    }
+
+    // --- TIKTOK: automatyczny opis pod karuzelę zdjęć (tiktok-info.txt) ---
+    // Generuje się ZAWSZE zaraz po pinterest-info.md (bez osobnej komendy).
+    try {
+      const tiktokPrompt = `
+Jesteś specjalistą ds. Social Media marki "MałeNaklejki". Na podstawie poniższego artykułu przygotuj JEDEN gotowy do wklejenia opis pod karuzelę zdjęć na TikToka (TikTok Photo Mode).
+
+WYTYCZNE (ZASADY):
+${rulesContent}
+
+${keywordsContent ? `BAZA SŁÓW KLUCZOWYCH SEO (użyj ich do hashtagów i wpleć naturalnie w treść):
+${keywordsContent}` : ''}
+
+---
+ARTYKUŁ Z BLOGA:
+${blogContent}
+
+---
+ZADANIE:
+Zwróć WYŁĄCZNIE surowy tekst opisu - bez żadnych prefiksów typu "Tytuł:", "Treść:", "Hashtagi:", bez pogrubień, bez markdown i bez komentarzy. Struktura dokładnie taka (4 bloki oddzielone JEDNĄ pustą linią):
+1. Tytuł: krótki, chwytliwy haczyk z 1 emotikoną (pierwsza linia).
+2. Treść: 2-4 bardzo krótkie zdania osadzone w temacie artykułu, ze słowami kluczowymi (maks. 1-2 emotikony łącznie).
+3. Dokładnie ta linia CTA: "Link do kreatora w bio 👇"
+4. Dokładnie 5 trafnych hashtagów w jednej linii, dobranych ze słów kluczowych, pisanych małą literą i bez spacji, oddzielonych spacją (np. #naklejkazezdjęcia #personalizowanenaklejki ...).
+
+Pamiętaj: klient nie projektuje naklejek - wgrywa zdjęcie, a my wycinamy je po obrysie. Kategorycznie unikaj słów "zaprojektuj/projektuj/projektowanie". Nie używaj długiego myślnika "–" (zawsze zwykły "-").
+`;
+
+      const tiktokResponse = await genAI.models.generateContent({
+        model: "gemini-2.5-pro",
+        contents: [tiktokPrompt],
+      });
+
+      let tiktokText = (tiktokResponse.text || '').trim();
+      // Sprzątanie: usuń ewentualny code-fence/markdown i zamień półpauzę na dywiz.
+      tiktokText = tiktokText
+        .replace(/^```[a-z]*\s*/i, '')
+        .replace(/\s*```$/i, '')
+        .replace(/–/g, '-')
+        .trim();
+
+      if (tiktokText) {
+        const tiktokPath = path.join(pinterestDir, 'tiktok-info.txt');
+        fs.writeFileSync(tiktokPath, tiktokText + '\n', 'utf8');
+        console.log(`✅ Zapisano opis TikTok (karuzela) do pliku: ${tiktokPath}`);
+      } else {
+        console.warn("Uwaga: model nie zwrócił treści TikTok - pomijam tiktok-info.txt.");
+      }
+    } catch (tErr: any) {
+      console.error("Błąd podczas generowania tiktok-info.txt:", tErr.message || tErr);
     }
 
   } catch (e: any) {

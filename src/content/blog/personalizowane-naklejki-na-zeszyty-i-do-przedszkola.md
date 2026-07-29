@@ -25,7 +25,7 @@ Drugi powód to samodzielność dziecka. Przedszkolak, który jeszcze nie czyta 
 
 Nasz kreator online służy do wgrywania gotowych projektów, kadrowania i konfiguracji zamówienia - nie ma w nim wbudowanego edytora tekstu. Imię dziecka przygotujesz w kilka minut w darmowym narzędziu:
 
-1. **Otwórz Canva lub Word** i wybierz format zbliżony do rozmiaru naklejki (np. 5 x 5 cm dla etykiety na zeszyt).
+1. **Wygeneruj ilustrację w narzędziach AI (Midjourney, ChatGPT, Gemini)** lub **otwórz Canva czy Word** i wybierz format zbliżony do rozmiaru naklejki (np. 5 x 5 cm dla etykiety na zeszyt).
 2. **Wpisz imię dziecka**, dobierz czytelną, grubą czcionkę bezszeryfową i kontrastowy kolor tła.
 3. **Zapisz projekt jako PNG** z przezroczystym tłem (jeśli chcesz cięcie po obrysie) lub jako **PDF**.
 4. **Wgraj plik do kreatora MałeNaklejki**, wybierz kształt cięcia i liczbę sztuk na arkuszu A4.
@@ -98,7 +98,7 @@ Tak. Drukujemy na trwałej folii winylowej z mocnym klejem, odpornej na wodę, t
 
 ### Czy potrzebuję programu graficznego, aby przygotować imię dziecka na naklejce?
 
-Nie musisz umieć obsługiwać zaawansowanych programów. Imię dziecka przygotujesz w kilka minut w darmowym Canva lub Wordzie, zapiszesz jako PNG lub PDF i wgrasz gotowy plik do naszego kreatora.
+Nie musisz umieć obsługiwać zaawansowanych programów. Skorzystaj z AI do wygenerowania tła z ulubionym motywem dziecka lub przygotuj plik w kilka minut w darmowym Canva czy Wordzie, zapiszesz jako PNG lub PDF i wgrasz gotowy plik do naszego kreatora.
 
 ### Ile kosztują personalizowane naklejki do przedszkola?
 

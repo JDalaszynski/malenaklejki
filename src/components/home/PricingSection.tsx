@@ -111,7 +111,7 @@ export function PricingSection() {
             <Link href="/" className="text-primary hover:underline font-bold">
               malenaklejki.pl
             </Link>
-            . To tutaj szybko zaprojektujesz i kupisz naklejki personalizowane bez minimalnych
+            . To tutaj szybko ułożysz i kupisz naklejki personalizowane bez minimalnych
             limitów zamówienia. Za stałą kwotę 49,00 zł otrzymujesz w pełni zagospodarowany arkusz
             naklejek w formacie A4. Możesz umieścić na nim dowolną liczbę różnych grafik, a nasz
             zaawansowany system automatycznie zadba o to, aby elementy nie nachodziły na siebie. To

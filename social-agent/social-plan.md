@@ -5,6 +5,8 @@ Zadaniem Agenta Social Media jest śledzenie artykułów z katalogu `src/content
 Poniżej lista gotowych artykułów i status wygenerowania dla nich grafik oraz postów tekstowych. Aby wygenerować brakujące materiały, uruchom w terminalu komendę:
 `npx ts-node social-agent/generate-socials.ts <nazwa-pliku.md>`
 
+> **Automatyzacja TikTok (opis pod karuzelę):** Uruchomienie `generate-pinterest.ts` tworzy teraz ZAWSZE, obok pinów i `pinterest-info.md`, także plik `tiktok-info.txt` (surowy opis pod karuzelę zdjęć: Tytuł + Treść + CTA "Link do kreatora w bio 👇" + 5 hashtagów). Wszystkie istniejące foldery w `/public/pinterest/` mają już ten plik. Checkbox "TikTok (Karuzela/Photo Mode)" poniżej odnosi się do pełnego zestawu 9:16 (slajdy graficzne), nie do samego opisu.
+
 ---
 
 ## 🎯 Priorytety Konwersyjne (Top 7)

@@ -166,7 +166,7 @@ export function UseCasesSection() {
           </h3>
           <p className="text-muted-foreground text-sm font-semibold leading-relaxed">
             Nasz pojedynczy arkusz naklejek do druku to absolutny hit podczas rodzinnych i
-            religijnych uroczystości. W zaledwie kilka minut zaprojektujesz u nas pamiątkowe
+            religijnych uroczystości. W zaledwie kilka minut stworzysz u nas pamiątkowe
             naklejki personalizowane na chrzest jako naklejki na podziękowania dla gości lub
             stworzysz eleganckie naklejki personalizowane komunia pasujące do zaproszeń.
           </p>
@@ -202,7 +202,7 @@ export function UseCasesSection() {
           nadrukiem to najwyższa jakość winylu i mocny klej. Drukujemy Twoje gotowe naklejki arkusze
           błyskawicznie, a integracja z bezpieczną bramką płatniczą Przelewy24 oznacza natychmiastowe
           przekazanie pliku do produkcji. Przetestuj nasze naklejki na zamówienie już dziś i stwórz
-          swój pierwszy projekt powyżej!
+          swój pierwszy arkusz powyżej!
         </p>
       </Reveal>
     </div>

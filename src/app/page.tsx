@@ -78,7 +78,7 @@ export default async function Home() {
               "@type": "HowToStep",
               position: 1,
               name: "Dodaj i dostosuj grafiki",
-              text: "Wgraj zdjęcia lub grafiki z telefonu albo komputera, lub stwórz je za pomocą wbudowanego generatora AI. Wybierz rozmiar każdej naklejki oraz jej linię cięcia (kontur, koło lub prostokąt).",
+              text: "Wgraj zdjęcia lub grafiki z telefonu albo komputera, lub wygeneruj je z użyciem zewnętrznych narzędzi AI lub naszego wbudowanego generatora. Wybierz rozmiar każdej naklejki oraz jej linię cięcia (kontur, koło lub prostokąt).",
               image: "https://www.malenaklejki.pl/images/kroki/krok-1-dodaj-dostosuj-naklejki.png",
             },
             {

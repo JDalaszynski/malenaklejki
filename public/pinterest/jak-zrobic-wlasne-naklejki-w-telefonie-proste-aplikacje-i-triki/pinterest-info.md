@@ -1,6 +1,6 @@
 # Dane do Pinów Pinterest
 
-## Pin 1 (pin-1.png)
+## Pin 1 (pin-1.jpg)
 **Tytuł Pinu:**
 Zmień zdjęcie psa w naklejkę na laptopa!
 
@@ -12,7 +12,7 @@ Wgraj Zdjęcie Psa
 
 ---
 
-## Pin 2 (pin-2.png)
+## Pin 2 (pin-2.jpg)
 **Tytuł Pinu:**
 Naklejki z własną grafiką - idealne dla twórców.
 
@@ -24,7 +24,7 @@ Zamów Naklejki z Logo
 
 ---
 
-## Pin 3 (pin-3.png)
+## Pin 3 (pin-3.jpg)
 **Tytuł Pinu:**
 Stwórz naklejkę z własnym napisem na telefon.
 
@@ -36,7 +36,7 @@ Zrób Naklejkę z Napisem
 
 ---
 
-## Pin 4 (pin-4.png)
+## Pin 4 (pin-4.jpg)
 **Tytuł Pinu:**
 Wydrukuj wspomnienia - dziesiątki naklejek ze zdjęć.
 
@@ -48,7 +48,7 @@ Zamów Arkusz Naklejek
 
 ---
 
-## Pin 5 (pin-5.png)
+## Pin 5 (pin-5.jpg)
 **Tytuł Pinu:**
 Personalizowane naklejki na zeszyty i pamiętniki.
 
@@ -60,7 +60,7 @@ Zmień Zdjęcie w Naklejkę
 
 ---
 
-## Pin 6 (pin-6.png)
+## Pin 6 (pin-6.jpg)
 **Tytuł Pinu:**
 Twoje zdjęcie z wakacji na personalizowanej naklejce.
 
@@ -72,7 +72,7 @@ Stwórz Naklejkę z Wakacji
 
 ---
 
-## Pin 7 (pin-7.png)
+## Pin 7 (pin-7.jpg)
 **Tytuł Pinu:**
 Naklejki na każdą okazję - od ślubu po podróże.
 

@@ -1,6 +1,6 @@
 # Dane do Pinów Pinterest
 
-## Pin 1 (pin-1.png)
+## Pin 1 (pin-1.jpg)
 **Tytuł Pinu:**
 Minimalistyczne naklejki z logo na paczki
 
@@ -12,7 +12,7 @@ Oklej swoje pudełka
 
 ---
 
-## Pin 2 (pin-2.png)
+## Pin 2 (pin-2.jpg)
 **Tytuł Pinu:**
 Wodoodporne etykiety na słoiki z przetworami
 
@@ -24,7 +24,7 @@ Oznacz swoje przetwory
 
 ---
 
-## Pin 3 (pin-3.png)
+## Pin 3 (pin-3.jpg)
 **Tytuł Pinu:**
 Eleganckie naklejki na opakowania premium
 
