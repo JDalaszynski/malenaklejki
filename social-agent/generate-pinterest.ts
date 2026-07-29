@@ -384,7 +384,7 @@ Pamiętaj: klient nie projektuje naklejek - wgrywa zdjęcie, a my wycinamy je po
       if (fbText) {
         const fbPath = path.join(pinterestDir, 'facebook-info.txt');
         fs.writeFileSync(fbPath, fbText + '\n', 'utf8');
-        console.log(\`✅ Zapisano post na Facebooka do pliku: \${fbPath}\`);
+        console.log(`Zapisano post na Facebooka do pliku: ${fbPath}`);
       } else {
         console.warn("Uwaga: model nie zwrócił treści Facebook - pomijam facebook-info.txt.");
       }
