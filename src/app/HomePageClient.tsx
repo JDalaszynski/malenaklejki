@@ -1938,7 +1938,7 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-8 items-start">
 
             {/* Left Column: Controls & Sidebar */}
-            <div className="lg:col-span-6 space-y-3 sm:space-y-6 order-2 lg:order-1">
+            <div className="lg:col-span-5 space-y-3 sm:space-y-6 order-2 lg:order-1">
 
               {/* 1. Tool selection: Add Sticker */}
               {addingMethod === "none" && (
@@ -1948,7 +1948,7 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
                     Dodaj naklejkę na arkusz
                   </h3>
 
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-2 lg:grid-cols-1 gap-4">
                     {/* Unified Direct File Picker */}
                     <label
                       className="flex flex-col items-center justify-center p-6 border-2 border-dashed border-foreground/20 dark:border-foreground/30 hover:border-primary/45 rounded-2xl bg-muted/10 hover:bg-muted/30 transition-all hover:scale-[1.01] active:scale-[0.99] cursor-pointer h-full group"
@@ -1971,11 +1971,10 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
                     {/* AI Generator Button */}
                     <button
                       onClick={() => setIsAIGeneratorOpen(true)}
-                      className="flex flex-col items-center justify-center p-6 border-2 border-dashed border-foreground/20 dark:border-foreground/30 hover:border-primary/45 rounded-2xl bg-muted/10 hover:bg-muted/30 transition-all hover:scale-[1.01] active:scale-[0.99] cursor-pointer h-full group"
+                      className="flex items-center justify-center gap-2 py-3 px-4 text-muted-foreground hover:text-primary hover:bg-muted/40 transition-all active:scale-[0.99] cursor-pointer group rounded-xl w-full"
                     >
-                      <Wand2 className="w-8 h-8 text-muted-foreground group-hover:text-primary mb-2 opacity-75" />
-                      <span className="text-sm font-bold text-foreground text-center">Generator AI</span>
-                      <span className="text-[10px] font-semibold text-muted-foreground mt-0.5 text-center">Opisz co chcesz stworzyć</span>
+                      <Wand2 className="w-4 h-4" />
+                      <span className="text-xs font-bold">Generator AI (opisz co chcesz stworzyć)</span>
                     </button>
                   </div>
                 </div>
@@ -2042,53 +2041,57 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
                   {/* Collapsible content container for mobile */}
                   <div className={`space-y-6 ${isMobileStickerDetailsExpanded ? "block animate-in slide-in-from-top-2 duration-200" : "hidden sm:block"}`}>
                     {/* Standardized Actions Button Grid */}
-                    <div className="flex flex-wrap sm:flex-nowrap items-center gap-1.5 w-full">
-                      <button
-                        type="button"
-                        onClick={handleOpenEdit}
-                        className="flex-1 inline-flex items-center justify-center gap-1 px-2 py-1.5 text-[11px] font-bold bg-muted hover:bg-muted/80 dark:bg-white/10 dark:hover:bg-white/20 text-foreground border border-border/40 rounded-xl transition-all active:scale-95 cursor-pointer"
-                        title="Edytuj naklejkę"
-                      >
-                        <Crop className="w-3.5 h-3.5" />
-                        <span>Kadruj/Tło</span>
-                      </button>
-                      <button
-                        type="button"
-                        onClick={handleDuplicateSticker}
-                        className="flex-1 inline-flex items-center justify-center gap-1 px-2 py-1.5 text-[11px] font-bold bg-muted hover:bg-muted/80 dark:bg-white/10 dark:hover:bg-white/20 text-foreground border border-border/40 rounded-xl transition-all active:scale-95 cursor-pointer"
-                        title="Zduplikuj"
-                      >
-                        <Copy className="w-3.5 h-3.5" />
-                        <span>Zduplikuj</span>
-                      </button>
-                      <button
-                        type="button"
-                        onClick={handleFillSheet}
-                        disabled={isFillingSheet}
-                        className={`flex-1 inline-flex items-center justify-center gap-1 px-2 py-1.5 text-[11px] font-bold bg-muted hover:bg-muted/80 dark:bg-white/10 dark:hover:bg-white/20 text-foreground border border-border/40 rounded-xl transition-all active:scale-95 cursor-pointer ${isFillingSheet ? "opacity-70 pointer-events-none" : ""}`}
-                        title="Wypełnij arkusz"
-                      >
-                        {isFillingSheet ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <LayoutGrid className="w-3.5 h-3.5" />}
-                        <span>{isFillingSheet ? "Wypełnianie..." : "Wypełnij"}</span>
-                      </button>
-                      <button
-                        type="button"
-                        onClick={handleDownloadSticker}
-                        className="flex-1 inline-flex items-center justify-center gap-1 px-2 py-1.5 text-[11px] font-bold bg-muted hover:bg-muted/80 dark:bg-white/10 dark:hover:bg-white/20 text-foreground border border-border/40 rounded-xl transition-all active:scale-95 cursor-pointer"
-                        title="Pobierz"
-                      >
-                        <Download className="w-3.5 h-3.5" />
-                        <span>Pobierz</span>
-                      </button>
-                      <button
-                        type="button"
-                        onClick={handleDeleteSticker}
-                        className="flex-1 inline-flex items-center justify-center gap-1 px-2 py-1.5 text-[11px] font-bold bg-destructive/10 hover:bg-destructive/15 text-destructive border border-destructive/20 rounded-xl transition-all active:scale-95 cursor-pointer"
-                        title="Usuń"
-                      >
-                        <Trash2 className="w-3.5 h-3.5" />
-                        <span>Usuń</span>
-                      </button>
+                    <div className="flex flex-col gap-1.5 w-full">
+                      <div className="flex flex-wrap sm:flex-nowrap items-center gap-1.5 w-full">
+                        <button
+                          type="button"
+                          onClick={handleOpenEdit}
+                          className="flex-1 inline-flex items-center justify-center gap-1 px-2 py-1.5 text-[11px] font-bold bg-muted hover:bg-muted/80 dark:bg-white/10 dark:hover:bg-white/20 text-foreground border border-border/40 rounded-xl transition-all active:scale-95 cursor-pointer"
+                          title="Edytuj naklejkę"
+                        >
+                          <Crop className="w-3.5 h-3.5" />
+                          <span>Kadruj/Tło</span>
+                        </button>
+                        <button
+                          type="button"
+                          onClick={handleDuplicateSticker}
+                          className="flex-1 inline-flex items-center justify-center gap-1 px-2 py-1.5 text-[11px] font-bold bg-muted hover:bg-muted/80 dark:bg-white/10 dark:hover:bg-white/20 text-foreground border border-border/40 rounded-xl transition-all active:scale-95 cursor-pointer"
+                          title="Zduplikuj"
+                        >
+                          <Copy className="w-3.5 h-3.5" />
+                          <span>Zduplikuj</span>
+                        </button>
+                        <button
+                          type="button"
+                          onClick={handleFillSheet}
+                          disabled={isFillingSheet}
+                          className={`flex-1 inline-flex items-center justify-center gap-1 px-2 py-1.5 text-[11px] font-bold bg-muted hover:bg-muted/80 dark:bg-white/10 dark:hover:bg-white/20 text-foreground border border-border/40 rounded-xl transition-all active:scale-95 cursor-pointer ${isFillingSheet ? "opacity-70 pointer-events-none" : ""}`}
+                          title="Wypełnij arkusz"
+                        >
+                          {isFillingSheet ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <LayoutGrid className="w-3.5 h-3.5" />}
+                          <span>{isFillingSheet ? "Wypełnianie..." : "Wypełnij"}</span>
+                        </button>
+                      </div>
+                      <div className="flex flex-wrap sm:flex-nowrap items-center gap-1.5 w-full">
+                        <button
+                          type="button"
+                          onClick={handleDownloadSticker}
+                          className="flex-1 inline-flex items-center justify-center gap-1 px-2 py-1.5 text-[11px] font-bold bg-muted hover:bg-muted/80 dark:bg-white/10 dark:hover:bg-white/20 text-foreground border border-border/40 rounded-xl transition-all active:scale-95 cursor-pointer"
+                          title="Pobierz"
+                        >
+                          <Download className="w-3.5 h-3.5" />
+                          <span>Pobierz</span>
+                        </button>
+                        <button
+                          type="button"
+                          onClick={handleDeleteSticker}
+                          className="flex-1 inline-flex items-center justify-center gap-1 px-2 py-1.5 text-[11px] font-bold bg-destructive/10 hover:bg-destructive/15 text-destructive border border-destructive/20 rounded-xl transition-all active:scale-95 cursor-pointer"
+                          title="Usuń"
+                        >
+                          <Trash2 className="w-3.5 h-3.5" />
+                          <span>Usuń</span>
+                        </button>
+                      </div>
                     </div>
 
                     {isLowRes && (
@@ -2226,73 +2229,73 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
               )}
 
               {/* 3. Sticker Delivery Format Option */}
-              {stickers.length > 0 && (
-                <motion.div
-                  initial={{ opacity: 0, y: 15 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  className="liquid-glass border border-border/40 rounded-3xl p-4 sm:p-6 shadow-sm space-y-4"
-                >
-                  <h3 className="text-base font-black text-foreground flex items-center gap-2">
-                    <Scissors className="w-4.5 h-4.5 text-primary" />
-                    Forma zestawu naklejek
-                  </h3>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                    <button
-                      type="button"
-                      onClick={() => setDeliveryForm("sheet")}
-                      className={`p-4 rounded-2xl border text-left transition-all flex flex-col justify-between cursor-pointer ${deliveryForm === "sheet"
-                        ? "border-primary bg-primary/5 shadow-sm text-foreground"
-                        : "border-border/60 bg-background/50 hover:bg-muted/30 text-muted-foreground hover:text-foreground"
-                        }`}
-                    >
-                      <div className="flex items-center justify-between w-full mb-2">
-                        <div className="flex items-center gap-2">
-                          <Layers className={`w-4 h-4 ${deliveryForm === "sheet" ? "text-primary" : "text-muted-foreground"}`} />
-                          <span className="font-extrabold text-xs text-foreground">Pozostawione na arkuszu</span>
-                        </div>
-                        <div className={`w-4.5 h-4.5 rounded-full border flex items-center justify-center transition-all ${deliveryForm === "sheet"
-                          ? "border-primary bg-primary/10"
-                          : "border-slate-300 dark:border-white/20 bg-background"
-                          }`}>
-                          {deliveryForm === "sheet" && (
-                            <div className="w-2.5 h-2.5 rounded-full bg-primary" />
-                          )}
-                        </div>
+              <motion.div
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="liquid-glass border border-border/40 rounded-3xl p-4 sm:p-6 shadow-sm space-y-4"
+              >
+                <h3 className="text-base font-black text-foreground flex items-center gap-2">
+                  <Scissors className="w-4.5 h-4.5 text-primary" />
+                  Forma zestawu naklejek
+                </h3>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  <button
+                    type="button"
+                    onClick={() => setDeliveryForm("sheet")}
+                    className={`p-4 rounded-2xl border text-left transition-all flex flex-col justify-between cursor-pointer ${deliveryForm === "sheet"
+                      ? "border-primary bg-primary/5 shadow-sm text-foreground"
+                      : "border-border/60 bg-background/50 hover:bg-muted/30 text-muted-foreground hover:text-foreground"
+                      }`}
+                  >
+                    <div className="flex items-center justify-between w-full mb-2">
+                      <div className="flex items-center gap-2">
+                        <Layers className={`w-4 h-4 ${deliveryForm === "sheet" ? "text-primary" : "text-muted-foreground"}`} />
+                        <span className="font-extrabold text-xs text-foreground">Pozostawione na arkuszu</span>
                       </div>
-                      <p className="text-[12px] leading-relaxed font-medium">
-                        Naklejki otrzymasz na arkuszu A4. Wygodne do przechowywania i odklejania (kiss-cut).
-                      </p>
-                    </button>
+                      <div className={`w-4.5 h-4.5 rounded-full border flex items-center justify-center transition-all ${deliveryForm === "sheet"
+                        ? "border-primary bg-primary/10"
+                        : "border-slate-300 dark:border-white/20 bg-background"
+                        }`}>
+                        {deliveryForm === "sheet" && (
+                          <div className="w-2.5 h-2.5 rounded-full bg-primary" />
+                        )}
+                      </div>
+                    </div>
+                    <p className="text-[12px] leading-relaxed font-medium">
+                      Naklejki otrzymasz na arkuszu A4. Wygodne do przechowywania i odklejania (kiss-cut).
+                    </p>
+                  </button>
 
-                    <button
-                      type="button"
-                      onClick={() => setDeliveryForm("individual")}
-                      className={`p-4 rounded-2xl border text-left transition-all flex flex-col justify-between cursor-pointer ${deliveryForm === "individual"
-                        ? "border-primary bg-primary/5 shadow-sm text-foreground"
-                        : "border-border/60 bg-background/50 hover:bg-muted/30 text-muted-foreground hover:text-foreground"
-                        }`}
-                    >
-                      <div className="flex items-center justify-between w-full mb-2">
-                        <div className="flex items-center gap-2">
-                          <Scissors className={`w-4 h-4 ${deliveryForm === "individual" ? "text-primary" : "text-muted-foreground"}`} />
-                          <span className="font-extrabold text-xs text-foreground">Pojedyncze sztuki</span>
-                        </div>
-                        <div className={`w-4.5 h-4.5 rounded-full border flex items-center justify-center transition-all ${deliveryForm === "individual"
-                          ? "border-primary bg-primary/10"
-                          : "border-slate-300 dark:border-white/20 bg-background"
-                          }`}>
-                          {deliveryForm === "individual" && (
-                            <div className="w-2.5 h-2.5 rounded-full bg-primary" />
-                          )}
-                        </div>
+                  <button
+                    type="button"
+                    onClick={() => setDeliveryForm("individual")}
+                    className={`p-4 rounded-2xl border text-left transition-all flex flex-col justify-between cursor-pointer ${deliveryForm === "individual"
+                      ? "border-primary bg-primary/5 shadow-sm text-foreground"
+                      : "border-border/60 bg-background/50 hover:bg-muted/30 text-muted-foreground hover:text-foreground"
+                      }`}
+                  >
+                    <div className="flex items-center justify-between w-full mb-2">
+                      <div className="flex items-center gap-2">
+                        <Scissors className={`w-4 h-4 ${deliveryForm === "individual" ? "text-primary" : "text-muted-foreground"}`} />
+                        <span className="font-extrabold text-xs text-foreground">Pojedyncze sztuki</span>
                       </div>
-                      <p className="text-[12px] leading-relaxed font-medium">
-                        Każda naklejka zostanie docięta osobno do jej kształtu i dostarczona luzem (die-cut).
-                      </p>
-                    </button>
-                  </div>
-                </motion.div>
-              )}
+                      <div className={`w-4.5 h-4.5 rounded-full border flex items-center justify-center transition-all ${deliveryForm === "individual"
+                        ? "border-primary bg-primary/10"
+                        : "border-slate-300 dark:border-white/20 bg-background"
+                        }`}>
+                        {deliveryForm === "individual" && (
+                          <div className="w-2.5 h-2.5 rounded-full bg-primary" />
+                        )}
+                      </div>
+                    </div>
+                    <p className="text-[12px] leading-relaxed font-medium">
+                      Każda naklejka zostanie docięta osobno do jej kształtu i dostarczona luzem (die-cut).
+                    </p>
+                  </button>
+                </div>
+              </motion.div>
+
+
 
             </div>
 
@@ -2303,7 +2306,7 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
               onDragOver={handleDragOver}
               onDragLeave={handleDragLeave}
               onDrop={handleDrop}
-              className={`relative lg:col-span-6 flex flex-col items-center justify-center -mx-4 sm:mx-0 rounded-none sm:rounded-3xl px-2 py-6 sm:p-8 min-h-[500px] order-1 lg:order-2 transition-all liquid-glass border-y border-x-0 sm:border border-border/40 shadow-[0_8px_30px_rgba(0,0,0,0.02)] ${shouldHighlightSheet ? "highlight-flash" : ""
+              className={`relative lg:col-span-7 flex flex-col items-center justify-center -mx-4 sm:mx-0 rounded-none sm:rounded-3xl px-2 py-6 sm:p-8 min-h-[500px] order-1 lg:order-2 transition-all liquid-glass border-y border-x-0 sm:border border-border/40 shadow-[0_8px_30px_rgba(0,0,0,0.02)] ${shouldHighlightSheet ? "highlight-flash" : ""
                 }`}
             >
               {/* Local Drag Overlay */}
@@ -2358,7 +2361,7 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
                 </div>
               </div>
 
-              <div className="relative w-full max-w-[480px] aspect-[210/297] flex items-center justify-center">
+              <div className="relative w-full max-w-full aspect-[210/297] flex items-center justify-center">
                 {visualizerMode === "2d" ? (
                   <NewA4Visualizer
                     stickers={stickers}
@@ -2428,8 +2431,10 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
 
           </div>
 
-          {/* Floating/Sticky Bottom Summary Bar */}
-          <div ref={summaryRef} className="relative sm:sticky bottom-0 sm:bottom-4 z-40 liquid-glass border border-border/40 shadow-[0_8px_30px_rgba(0,0,0,0.04)] py-3 sm:py-4 px-4 sm:px-8 rounded-2xl mt-2 sm:mt-4 mb-32 sm:mb-0">
+
+
+          {/* Bottom Summary Bar */}
+          <div ref={summaryRef} className="relative z-40 liquid-glass border border-border/40 shadow-[0_8px_30px_rgba(0,0,0,0.04)] py-3 sm:py-4 px-4 sm:px-8 rounded-2xl mt-2 sm:mt-4 mb-32 sm:mb-0">
             <div className="flex flex-col md:flex-row items-center justify-between gap-4">
               {/* Left: Summary Info */}
               <div className="flex flex-col sm:flex-row items-center gap-4 text-center sm:text-left">

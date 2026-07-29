@@ -82,6 +82,18 @@ export function SeoContentSection() {
           </div>
         </div>
       </Reveal>
+
+      {/* Blok zamykający z frazą akcyjną (Action-Intent) — exact match w H2 kieruje ruch intencyjny do kreatora na górze strony */}
+      <Reveal delay={0.4}>
+        <div className="max-w-3xl mx-auto px-4 text-center space-y-4">
+          <h2 className={`text-2xl sm:text-3xl font-extrabold text-foreground ${displayFont}`}>
+            Stwórz własne naklejki online - bez grafika i bez minimalnego nakładu
+          </h2>
+          <p className="text-muted-foreground leading-relaxed text-[15px] sm:text-base">
+            Chcesz spersonalizować naklejkę na prezent, merch albo produkty swojej marki? Wgraj zdjęcie lub gotową grafikę do kreatora na górze strony, a my wytniemy ją po obrysie i wydrukujemy na trwałym winylu. Możesz stworzyć własną naklejkę już od 1 arkusza A4 za 49,00 zł, z wysyłką w 3 dni robocze - bez Photoshopa i bez ukrytych kosztów przygotowalni.
+          </p>
+        </div>
+      </Reveal>
     </div>
   );
 }

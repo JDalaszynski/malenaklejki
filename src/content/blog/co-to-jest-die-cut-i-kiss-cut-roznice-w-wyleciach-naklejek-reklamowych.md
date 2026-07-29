@@ -11,7 +11,7 @@ pillarOrder: 2
 cta_text: "Zamów naklejki die cut"
 ---
 
-Die cut sticker to naklejka wycięta dokładnie po obrysie grafiki - bez marginesu, bez prostokątnego tła. Kiss-cut to cięcie tylko przez cienką warstwę folii, które pozostawia naklejkę na całym, prostokątnym arkuszu papieru podkładowego. Ta jedna różnica decyduje, czy Twoje naklejki wyglądają jak profesjonalny merch z unikalnym kształtem, czy jak seria etykiet gotowych do szybkiego odklejania z arkusza. Oba warianty cięcia po obrysie ustawisz samodzielnie podczas [drukowania naklejek online](/blog/drukowanie-naklejek-online-na-co-zwrocic-uwage-przed-wysylka-projektu) w MałeNaklejki za stałe 49,00 zł od arkusza A4.
+Die cut sticker to naklejka wycięta dokładnie po obrysie grafiki - bez marginesu, bez prostokątnego tła. Kiss-cut to cięcie tylko przez cienką warstwę folii, które pozostawia naklejkę na całym, prostokątnym arkuszu papieru podkładowego. Ta jedna różnica decyduje, czy Twoje naklejki wyglądają jak profesjonalny merch z unikalnym kształtem, czy jak seria etykiet gotowych do szybkiego odklejania z arkusza. Oba warianty cięcia po obrysie ustawisz samodzielnie podczas [drukowania naklejek online](/blog/drukowanie-naklejek-online-na-co-zwrocic-uwage-przed-wysylka-projektu) w MałeNaklejki za stałe 49,00 zł od arkusza A4. Wiesz już, że chcesz cięcie po obrysie? [Stwórz własną naklejkę](/) w dowolnym kształcie - wgraj grafikę, a kreator sam wygeneruje ścieżkę cięcia.
 
 ## Co to jest die cut - cięcie po obrysie krok po kroku
 

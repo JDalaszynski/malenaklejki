@@ -8,7 +8,7 @@ tags: ["drukowanie naklejek", "poradnik techniczny", "naklejki online", "przygot
 slug: "drukowanie-naklejek-online-na-co-zwrocic-uwage-przed-wysylka-projektu"
 ---
 
-Chcesz zamówić naklejki online, ale nie wiesz, jak przygotować plik, żeby wydruk wyszedł ostro i kolorowo? Dobrze trafiłeś. Za jeden w pełni zadrukowany arkusz A4 zapłacisz w MałeNaklejki stałe **49,00 zł** - niezależnie od kształtu, liczby i wzoru naklejek. Poniżej znajdziesz wszystko, co musisz wiedzieć przed wysyłką projektu, żeby efekt końcowy Cię zachwycił.
+Chcesz zamówić naklejki online, ale nie wiesz, jak przygotować plik, żeby wydruk wyszedł ostro i kolorowo? Dobrze trafiłeś. Za jeden w pełni zadrukowany arkusz A4 zapłacisz w MałeNaklejki stałe **49,00 zł** - niezależnie od kształtu, liczby i wzoru naklejek. Poniżej znajdziesz wszystko, co musisz wiedzieć przed wysyłką projektu, żeby efekt końcowy Cię zachwycił. Chcesz od razu przejść do działania? [Spersonalizuj naklejkę](/) w naszym kreatorze - wgraj plik, a my wydrukujemy i wytniemy go za Ciebie.
 
 ## Drukowanie naklejek online - od czego zacząć?
 

@@ -12,7 +12,7 @@ pillarOrder: 5
 cta_text: "Zrób naklejkę z telefonu"
 ---
 
-Nie potrzebujesz komputera ani programów graficznych, żeby stworzyć własną naklejkę - wystarczy telefon, jedno zdjęcie i kilka minut. Poniżej znajdziesz sprawdzone triki, dzięki którym dowiesz się, jak zrobić własne naklejki w telefonie, a gotowy plik od razu wgrasz do [drukowania naklejek online](/blog/drukowanie-naklejek-online-na-co-zwrocic-uwage-przed-wysylka-projektu) bez odrywania się od kanapy. Najczęściej powstają tak [naklejki z własnego zdjęcia](/fotonaklejki) - portret psa, rysunek dziecka albo kadr z wakacji.
+Nie potrzebujesz komputera ani programów graficznych, żeby stworzyć własną naklejkę - wystarczy telefon, jedno zdjęcie i kilka minut. Poniżej znajdziesz sprawdzone triki, dzięki którym dowiesz się, jak zrobić własne naklejki w telefonie, a gotowy plik od razu wgrasz do [drukowania naklejek online](/blog/drukowanie-naklejek-online-na-co-zwrocic-uwage-przed-wysylka-projektu) bez odrywania się od kanapy. Najczęściej powstają tak [naklejki z własnego zdjęcia](/fotonaklejki) - portret psa, rysunek dziecka albo kadr z wakacji. Chcesz zacząć od ręki? [Stwórz własną naklejkę](/) prosto w przeglądarce telefonu - wgraj zdjęcie, a resztą zajmie się kreator.
 
 ## Co potrzebujesz, żeby zrobić naklejkę z telefonu?
 

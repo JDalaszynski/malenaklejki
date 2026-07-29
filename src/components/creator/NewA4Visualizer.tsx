@@ -638,7 +638,7 @@ export function NewA4Visualizer({
     <div
       ref={containerRef}
       onClick={handleSheetClick}
-      className={`relative aspect-[210/297] w-full max-w-[480px] rounded-lg select-none cursor-default overflow-visible transition-all duration-300 ${deliveryForm === "individual"
+      className={`relative aspect-[210/297] w-full max-w-full rounded-lg select-none cursor-default overflow-visible transition-all duration-300 ${deliveryForm === "individual"
         ? "border-transparent shadow-none"
         : "border border-border/80 shadow-[0_15px_45px_rgba(0,71,73,0.08),_0_4px_12px_rgba(0,71,73,0.03)] dark:shadow-[0_15px_45px_rgba(0,0,0,0.35),_0_4px_12px_rgba(0,0,0,0.2)] hover:shadow-[0_22px_60px_rgba(0,71,73,0.14),_0_6px_20px_rgba(0,71,73,0.05)] dark:hover:shadow-[0_22px_60px_rgba(0,0,0,0.45),_0_6px_20px_rgba(0,0,0,0.25)]"
         }`}

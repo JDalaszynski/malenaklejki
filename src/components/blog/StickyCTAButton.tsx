@@ -62,7 +62,7 @@ export function StickyCTAButton() {
           }}
         />
         <StickerIcon className="w-5 h-5 md:w-6 md:h-6 text-white transition-transform duration-300 group-hover:rotate-12 group-hover:scale-110" />
-        <span className="relative z-10">Zamów Zestaw Naklejek</span>
+        <span className="relative z-10">Stwórz własne naklejki</span>
       </Link>
     </div>
   );
