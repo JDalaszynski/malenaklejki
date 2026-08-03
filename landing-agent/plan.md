@@ -61,10 +61,30 @@ Serwis wczesny (max ~44 wyświetlenia na zapytanie), więc **priorytetyzuj strat
 
 - [x] **Tier 3 — `/slownik-naklejek`** (glosariusz AEO, zbudowane 2026-07-29) - `DefinedTermSet`/`FAQPage`; 18 pojęć (die-cut, kiss-cut, folia winylowa, laminat, DPI, CMYK/RGB, kanał alfa, wlepki i in.). Magnes na cytowania LLM. Szczegóły w "Zrealizowane" niżej.
 
+- [ ] **Tier 1/2 — `/etykiety-na-sloiki`** (NOWY, audyt 2026-07-30) - komercyjny landing segmentowy na leksyk **"etykiety"** (luka: mamy spoke'y "naklejki na słoiki", zero strony na "etykiety/napisy na słoiki").
+    - **Intencja:** komercyjno-segmentowa (B2C przetwory + B2B manufaktury). **Fraza główna:** `etykiety na słoiki` (URL/H1/title). **Semantyczne (H2/FAQ):** `napisy na słoiki`, `etykiety na słoik`, `naklejki na słoiki personalizowane`, `własne etykiety`, `etykiety na świeczki`, `etykiety na kosmetyki naturalne`, `etykiety ze składem`, `naklejki na butelki`.
+    - **Luka i sygnał:** searcher pisze "etykiety/napisy", nie "naklejki"; `napisy na słoiki` = 0 wystąpień w repo, `etykiety na słoiki` nigdy w nagłówku. GSC: "słoiki z logo" (poz. 14) potwierdza intencję.
+    - **Struktura:** Hero BLUF (49 zł brutto/A4, od 1 szt., folia woda/UV/zadrapania, **mycie ręczne - NIE zmywarka**, 300 DPI, produkcja 2-3 dni, paczkomat) -> trust stats -> "Czym są etykiety na słoiki i jak je zrobić" -> tabela specyfikacji (cytowalna) -> **sekcje pod-person:** przetwory/weki (B2C), przyprawy, manufaktury (miód/dżemy/kosmetyki - B2B), **świece zapachowe** (persona producenci świec), butelki/nalewki -> zalety -> "jak zamówić" 1-2-3 -> 8-10 FAQ (m.in. "czy można myć w zmywarce" -> NIE) -> final CTA.
+    - **Schema:** `BreadcrumbList` + `Product`/`Offer`(49.00 PLN, material: Folia winylowa) + `FAQPage` + `WebPage`(dateModified).
+    - **Różnicowanie / cross-link:** vs `/naklejki-dla-firm` (tam "firma/logo/faktura"; tu leksyk "etykiety/słoiki/przetwory/świece" + B2C) i vs `/naklejki-foliowe` (materiał). Linki "w dół" do spoke'ów: przyprawy/słoiki, logo/opakowania, nalewki, alkohol + (gdy powstanie) nowy spoke "etykiety na słoiki do przetworów".
+    - **Linkowanie przychodzące:** 1 link z `SeoContentSection.tsx` (anchor "etykiety na słoiki") + linki "w górę" ze spoke'ów słoiki/przyprawy/logo/nalewki. Dodać do `sitemap.ts`.
+    - **HOLD generator AI + zakaz "projektowania"** uszanuj (0 wystąpień "generator AI"/"zaprojektuj"); dywiz "-".
+    - **Uwaga URL:** wybrano `/etykiety-na-sloiki` (exact-match najmocniejszej frazy) ze scope'em obejmującym butelki/świece/kosmetyki jako sekcje. Alternatywa `/etykiety-na-produkty` odrzucona - słabszy exact-match.
+
+- [ ] **Decyzja: klaster "kreator/program do naklejek" → OPTYMALIZACJA `/`, nie nowy landing** (audyt 2026-07-30)
+    - Frazy `kreator naklejek`, `program do robienia/tworzenia naklejek`, `tworzenie naklejek`, `naklejki online kreator` (intencja narzędziowa). **NIE budować `/kreator-naklejek`** - checklist decyzyjny: (2) wolumen niepotwierdzony w GSC, (3) luka tylko częściowa bo `/` JEST kreatorem i jest najlepszą rankingowo stroną -> osobny landing = **kanibalizacja money page**. Zgodne z dyrektywą "skup ruch na `/`".
+    - **Zamiast tego:** rozbuduj `SeoContentSection.tsx` na `/` o te frazy (H2/H3 + copy) - zadanie po stronie blog/home (patrz `blog-agent/plan.md` -> "Aktualizacje istniejących treści"). Zero kanibalizacji (ta sama strona), maksymalna trafność.
+
+- [ ] **Tier 3 (kandydat, pending GSC) — `/naklejki-na-laptopa`**
+    - Frazy `naklejki na laptop` / `naklejki na laptopa własny projekt` - komercyjna głowa użytkowa. **Najpierw** rozbuduj spoke `male-naklejki-na-laptopa` (patrz `blog-agent/plan.md`). Landing buduj **tylko** jeśli GSC potwierdzi wolumen i wpis nie zdominuje frazy - inaczej thin/near-duplicate z blogiem.
+
 ---
 
 ## 🚫 Świadomie odrzucone (nie buduj)
 * Landing pod generyczne "naklejki na zamówienie" - **kanibalizacja `/`.**
+* **`/kreator-naklejek` / `/tworzenie-naklejek`** - kanibalizacja `/` (strona główna JEST kreatorem); zamiast tego optymalizacja `SeoContentSection.tsx` (patrz wyżej).
+* **`/projektowanie-naklejek-online` / `/zaprojektuj-naklejke`** - zakaz brandowy ("projektowanie" = kreator to arkusz, nie edytor grafiki); łap semantycznie przez "stwórz/zrób/zamów".
+* **`naklejki łatwo usuwalne`** jako landing - fałszywa obietnica (mamy mocny klej, atut to "0 śladów", nie klej repozycjonowalny). Obsłuż jako FAQ/glosariusz.
 * **Local SEO** ("naklejki Warszawa/Kraków") - thin i mało wartościowe dla sklepu online ogólnopolskiego.
 * **Rój thin "alternatywa dla [każda marka]"** - near-duplicate, rozmycie intencji.
 * Strony atrybutowe pod **nieoferowane** materiały (hologram / transparent / brokat) - fałszywa obietnica.

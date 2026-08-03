@@ -17,7 +17,8 @@ export default function RegulaminPage() {
       content: (
         <div className="space-y-4">
           <p>
-            1. Sklep internetowy działający pod adresem <strong>MałeNaklejki</strong> prowadzony jest przez:
+            1. Sklep internetowy działający pod adresem{" "}
+            <strong>MałeNaklejki</strong> prowadzony jest przez:
           </p>
           <div className="bg-muted/40 border border-border/80 p-5 rounded-2xl my-4 grid grid-cols-1 md:grid-cols-2 gap-4 text-sm font-semibold not-prose shadow-inner">
             <div className="flex items-center gap-3">
@@ -25,8 +26,12 @@ export default function RegulaminPage() {
                 <Building2 className="w-4.5 h-4.5 text-primary" />
               </div>
               <div>
-                <p className="text-xs text-muted-foreground font-bold uppercase tracking-wider">Firma</p>
-                <p className="text-foreground font-black text-sm">Jakub Dalaszyński</p>
+                <p className="text-xs text-muted-foreground font-bold uppercase tracking-wider">
+                  Firma
+                </p>
+                <p className="text-foreground font-black text-sm">
+                  Jakub Dalaszyński
+                </p>
               </div>
             </div>
             <div className="flex items-center gap-3">
@@ -34,8 +39,12 @@ export default function RegulaminPage() {
                 <MapPin className="w-4.5 h-4.5 text-primary" />
               </div>
               <div>
-                <p className="text-xs text-muted-foreground font-bold uppercase tracking-wider">Adres siedziby</p>
-                <p className="text-foreground font-black text-sm">ul. Geodetów 41, 64-100 Trzebiny</p>
+                <p className="text-xs text-muted-foreground font-bold uppercase tracking-wider">
+                  Adres siedziby
+                </p>
+                <p className="text-foreground font-black text-sm">
+                  ul. Geodetów 41, 64-100 Trzebiny
+                </p>
               </div>
             </div>
             <div className="flex items-center gap-3">
@@ -43,8 +52,12 @@ export default function RegulaminPage() {
                 <ShieldCheck className="w-4.5 h-4.5 text-primary" />
               </div>
               <div>
-                <p className="text-xs text-muted-foreground font-bold uppercase tracking-wider">NIP / REGON</p>
-                <p className="text-foreground font-black text-sm">NIP: 6972414844 / REGON: 544772342</p>
+                <p className="text-xs text-muted-foreground font-bold uppercase tracking-wider">
+                  NIP / REGON
+                </p>
+                <p className="text-foreground font-black text-sm">
+                  NIP: 6972414844 / REGON: 544772342
+                </p>
               </div>
             </div>
             <div className="flex items-center gap-3">
@@ -52,8 +65,13 @@ export default function RegulaminPage() {
                 <Mail className="w-4.5 h-4.5 text-primary" />
               </div>
               <div>
-                <p className="text-xs text-muted-foreground font-bold uppercase tracking-wider">Adres e-mail</p>
-                <a href="mailto:kontakt@malenaklejki.pl" className="text-primary hover:underline font-black text-sm">
+                <p className="text-xs text-muted-foreground font-bold uppercase tracking-wider">
+                  Adres e-mail
+                </p>
+                <a
+                  href="mailto:kontakt@malenaklejki.pl"
+                  className="text-primary hover:underline font-black text-sm"
+                >
                   kontakt@malenaklejki.pl
                 </a>
               </div>
@@ -63,8 +81,13 @@ export default function RegulaminPage() {
                 <Phone className="w-4.5 h-4.5 text-primary" />
               </div>
               <div>
-                <p className="text-xs text-muted-foreground font-bold uppercase tracking-wider">Telefon kontaktowy</p>
-                <a href="tel:+48695527166" className="text-primary hover:underline font-black text-sm">
+                <p className="text-xs text-muted-foreground font-bold uppercase tracking-wider">
+                  Telefon kontaktowy
+                </p>
+                <a
+                  href="tel:+48695527166"
+                  className="text-primary hover:underline font-black text-sm"
+                >
                   +48 695 527 166
                 </a>
               </div>
@@ -74,10 +97,15 @@ export default function RegulaminPage() {
             Zwanym dalej <strong>„Sprzedawcą”</strong>.
           </p>
           <p>
-            2. Niniejszy Regulamin określa zasady korzystania ze Sklepu, składania zamówień na produkty personalizowane (naklejki na arkuszach A4), sposoby płatności, dostawy, a także procedury reklamacyjne.
+            2. Niniejszy Regulamin określa zasady korzystania ze Sklepu,
+            składania zamówień na produkty personalizowane (naklejki na
+            arkuszach A4), sposoby płatności, dostawy, a także procedury
+            reklamacyjne.
           </p>
           <p>
-            3. Wszystkie ceny podane w Sklepie są cenami brutto (zawierają podatek VAT) i są wyrażone w złotych polskich (PLN). Ceny nie zawierają kosztów dostawy.
+            3. Wszystkie ceny podane w Sklepie są cenami brutto (zawierają
+            podatek VAT) i są wyrażone w złotych polskich (PLN). Ceny nie
+            zawierają kosztów dostawy.
           </p>
         </div>
       ),
@@ -89,19 +117,32 @@ export default function RegulaminPage() {
       content: (
         <ul className="space-y-4">
           <li>
-            <strong>Klient</strong> - osoba fizyczna, osoba prawna lub jednostka organizacyjna nieposiadająca osobowości prawnej, składająca zamówienie w Sklepie.
+            <strong>Klient</strong> - osoba fizyczna, osoba prawna lub jednostka
+            organizacyjna nieposiadająca osobowości prawnej, składająca
+            zamówienie w Sklepie.
           </li>
           <li>
-            <strong>Konsument</strong> - osoba fizyczna dokonująca ze Sprzedawcą czynności prawnej niezwiązanej bezpośrednio z jej działalnością gospodarczą lub zawodową.
+            <strong>Konsument</strong> - osoba fizyczna dokonująca ze Sprzedawcą
+            czynności prawnej niezwiązanej bezpośrednio z jej działalnością
+            gospodarczą lub zawodową.
           </li>
           <li>
-            <strong>Produkt / Naklejka</strong> - nieprefabrykowany towar personalizowany (arkusz A4 z naklejkami o określonej przez Klienta szerokości, wysokości, kącie obrotu oraz linii cięcia) wyprodukowany według specyfikacji Klienta.
+            <strong>Produkt / Naklejka</strong> - nieprefabrykowany towar
+            personalizowany (arkusz A4 z naklejkami o określonej przez Klienta
+            szerokości, wysokości, kącie obrotu oraz linii cięcia) wyprodukowany
+            według specyfikacji Klienta.
           </li>
           <li>
-            <strong>Kreator</strong> - narzędzie internetowe dostępne w Sklepie umożliwiające Klientowi wgranie własnej grafiki, edycję (usuwanie tła za pomocą sztucznej inteligencji, kadrowanie), wybór konturu cięcia oraz pozycjonowanie na arkuszu.
+            <strong>Kreator</strong> - narzędzie internetowe dostępne w Sklepie
+            umożliwiające Klientowi wgranie własnej grafiki, edycję (usuwanie
+            tła za pomocą sztucznej inteligencji, kadrowanie), wybór konturu
+            cięcia oraz pozycjonowanie na arkuszu.
           </li>
           <li>
-            <strong>Generator AI</strong> - opcjonalna funkcja Sklepu umożliwiająca generowanie grafik na podstawie opisów tekstowych (promptów) przy użyciu sztucznej inteligencji, z możliwością ich późniejszego umieszczenia na arkuszu jako Naklejki.
+            <strong>Generator AI</strong> - opcjonalna funkcja Sklepu
+            umożliwiająca generowanie grafik na podstawie opisów tekstowych
+            (promptów) przy użyciu sztucznej inteligencji, z możliwością ich
+            późniejszego umieszczenia na arkuszu jako Naklejki.
           </li>
         </ul>
       ),
@@ -113,16 +154,27 @@ export default function RegulaminPage() {
       content: (
         <div className="space-y-4">
           <p>
-            1. Klient przesyłający grafikę/zdjęcie do Kreatora oświadcza, że posiada wszelkie prawa autorskie, licencje lub zgody na wykorzystanie tego pliku w celu produkcji Naklejek.
+            1. Klient przesyłający grafikę/zdjęcie do Kreatora oświadcza, że
+            posiada wszelkie prawa autorskie, licencje lub zgody na
+            wykorzystanie tego pliku w celu produkcji Naklejek.
           </p>
           <p>
-            2. Zabrania się wgrywania treści o charakterze bezprawnym, nawołujących do nienawiści, wulgarnych, naruszających dobra osobiste osób trzecich lub zastrzeżone znaki towarowe bez posiadania odpowiedniej licencji. Sprzedawca zastrzega sobie prawo do odmowy realizacji zamówienia w przypadku podejrzenia naruszenia prawa.
+            2. Zabrania się wgrywania treści o charakterze bezprawnym,
+            nawołujących do nienawiści, wulgarnych, naruszających dobra osobiste
+            osób trzecich lub zastrzeżone znaki towarowe bez posiadania
+            odpowiedniej licencji. Sprzedawca zastrzega sobie prawo do odmowy
+            realizacji zamówienia w przypadku podejrzenia naruszenia prawa.
           </p>
           <p>
-            3. Klient ponosi wyłączną odpowiedzialność za wszelkie roszczenia osób trzecich wynikające z naruszenia ich praw (w tym praw autorskich) w związku z grafikami przesłanymi do realizacji.
+            3. Klient ponosi wyłączną odpowiedzialność za wszelkie roszczenia
+            osób trzecich wynikające z naruszenia ich praw (w tym praw
+            autorskich) w związku z grafikami przesłanymi do realizacji.
           </p>
           <p>
-            4. W przypadku korzystania z Generatora AI, Klient przyjmuje do wiadomości, że uzyskane grafiki generowane są automatycznie. Klient ponosi odpowiedzialność za zgodność wygenerowanych obrazów z prawem oraz regulaminem.
+            4. W przypadku korzystania z Generatora AI, Klient przyjmuje do
+            wiadomości, że uzyskane grafiki generowane są automatycznie. Klient
+            ponosi odpowiedzialność za zgodność wygenerowanych obrazów z prawem
+            oraz regulaminem.
           </p>
         </div>
       ),
@@ -134,16 +186,26 @@ export default function RegulaminPage() {
       content: (
         <div className="space-y-4">
           <p>
-            1. Sklep informuje Klienta w czasie rzeczywistym o jakości wgranej grafiki przy użyciu wskaźnika DPI (punkty na cal) na podstawie wymiarów Naklejki zdefiniowanych przez Klienta.
+            1. Sklep informuje Klienta w czasie rzeczywistym o jakości wgranej
+            grafiki przy użyciu wskaźnika DPI (punkty na cal) na podstawie
+            wymiarów Naklejki zdefiniowanych przez Klienta.
           </p>
           <p>
-            2. Załadowanie grafiki o niskiej rozdzielczości (poniżej 150 DPI) może skutkować nieostrym, rozpikselowanym lub rozmazanym drukiem. Sprzedawca nie ponosi odpowiedzialności za niższą jakość druku wynikającą z niskiej rozdzielczości plików dostarczonych przez Klienta.
+            2. Załadowanie grafiki o niskiej rozdzielczości (poniżej 150 DPI)
+            może skutkować nieostrym, rozpikselowanym lub rozmazanym drukiem.
+            Sprzedawca nie ponosi odpowiedzialności za niższą jakość druku
+            wynikającą z niskiej rozdzielczości plików dostarczonych przez
+            Klienta.
           </p>
           <p>
-            3. Zmniejszenie rozmiaru Naklejki z drobnymi napisami lub detalami może sprawić, że tekst stanie się nieczytelny w druku fizycznym. Klient jest świadomy tego ryzyka przy dokonywaniu skali w Kreatorze.
+            3. Zmniejszenie rozmiaru Naklejki z drobnymi napisami lub detalami
+            może sprawić, że tekst stanie się nieczytelny w druku fizycznym.
+            Klient jest świadomy tego ryzyka przy dokonywaniu skali w Kreatorze.
           </p>
           <p>
-            4. Kolory widoczne na monitorze Klienta mogą nieznacznie odbiegać od gotowego wydruku z uwagi na różnice w kalibracji ekranów oraz specyfikę druku w przestrzeni CMYK w porównaniu do przestrzeni RGB.
+            4. Kolory widoczne na monitorze Klienta mogą nieznacznie odbiegać od
+            gotowego wydruku z uwagi na różnice w kalibracji ekranów oraz
+            specyfikę druku w przestrzeni CMYK w porównaniu do przestrzeni RGB.
           </p>
         </div>
       ),
@@ -155,14 +217,18 @@ export default function RegulaminPage() {
       content: (
         <div className="space-y-4">
           <p>
-            1. Zamówienie uważa się za złożone w momencie kliknięcia przycisku „Kupuję i płacę” oraz dokonania pełnej płatności.
+            1. Zamówienie uważa się za złożone w momencie kliknięcia przycisku
+            „Kupuję i płacę” oraz dokonania pełnej płatności.
           </p>
           <p>
-            2. Metodą płatności w Sklepie są płatności elektroniczne obsługiwane za pośrednictwem operatora <strong>Przelewy24</strong>.
+            2. Metodą płatności w Sklepie są płatności elektroniczne obsługiwane
+            za pośrednictwem operatora <strong>Przelewy24</strong>.
           </p>
 
           <p>
-            3. Wystawienie faktury VAT następuje po zaznaczeniu odpowiedniej opcji w koszyku i podaniu prawidłowych danych firmy (w tym numeru NIP).
+            3. Wystawienie faktury VAT następuje po zaznaczeniu odpowiedniej
+            opcji w koszyku i podaniu prawidłowych danych firmy (w tym numeru
+            NIP).
           </p>
         </div>
       ),
@@ -176,19 +242,22 @@ export default function RegulaminPage() {
           <p>
             1. Dostawa zamówień odbywa się na terenie Rzeczypospolitej Polskiej.
           </p>
-          <p>
-            2. Klient ma do wyboru następujące formy i koszty dostawy:
-          </p>
+          <p>2. Klient ma do wyboru następujące formy i koszty dostawy:</p>
           <ul className="list-disc pl-5 space-y-1 font-semibold text-primary">
             <li>
-              <span className="text-foreground font-medium">Paczkomat InPost</span>
+              <span className="text-foreground font-medium">
+                Paczkomat InPost
+              </span>
             </li>
             <li>
-              <span className="text-foreground font-medium">Kurier pod drzwi</span>
+              <span className="text-foreground font-medium">
+                Kurier pod drzwi
+              </span>
             </li>
           </ul>
           <p>
-            3. Czas realizacji i wysyłki zamówienia wynosi maksymalnie <strong>3 dni robocze</strong> od momentu zaksięgowania wpłaty.
+            3. Czas realizacji i wysyłki zamówienia wynosi maksymalnie{" "}
+            <strong>3 dni robocze</strong> od momentu zaksięgowania wpłaty.
           </p>
         </div>
       ),
@@ -200,13 +269,26 @@ export default function RegulaminPage() {
       content: (
         <div className="space-y-4">
           <div className="bg-destructive/10 border border-destructive/20 p-5 rounded-2xl my-4 text-sm font-semibold">
-            <p className="text-destructive font-black uppercase tracking-wider mb-2">Ważna Informacja</p>
+            <p className="text-destructive font-black uppercase tracking-wider mb-2">
+              Ważna Informacja
+            </p>
             <p className="text-foreground leading-relaxed">
-              Zgodnie z art. 38 pkt 3 Ustawy z dnia 30 maja 2014 r. o prawach konsumenta, prawo odstąpienia od umowy zawartej na odległość (zwrot towaru w ciągu 14 dni) <strong>nie przysługuje konsumentowi</strong> w odniesieniu do umów, w których przedmiotem świadczenia jest rzecz nieprefabrykowana, wyprodukowana według specyfikacji konsumenta lub służąca zaspokojeniu jego zindywidualizowanych potrzeb.
+              Zgodnie z art. 38 pkt 3 Ustawy z dnia 30 maja 2014 r. o prawach
+              konsumenta, prawo odstąpienia od umowy zawartej na odległość
+              (zwrot towaru w ciągu 14 dni){" "}
+              <strong>nie przysługuje konsumentowi</strong> w odniesieniu do
+              umów, w których przedmiotem świadczenia jest rzecz
+              nieprefabrykowana, wyprodukowana według specyfikacji konsumenta
+              lub służąca zaspokojeniu jego zindywidualizowanych potrzeb.
             </p>
           </div>
           <p>
-            Ponieważ wszystkie Naklejki oferowane w Sklepie są wykonywane na indywidualne zamówienie Klienta według przesłanych grafik i określonych wymiarów, <strong>zwroty bez podania przyczyny nie są przyjmowane</strong>. Prosimy o przemyślane zakupy oraz uważne sprawdzanie kadru i wymiarów w Kreatorze przed opłaceniem koszyka.
+            Ponieważ wszystkie Naklejki oferowane w Sklepie są wykonywane na
+            indywidualne zamówienie Klienta według przesłanych grafik i
+            określonych wymiarów,{" "}
+            <strong>zwroty bez podania przyczyny nie są przyjmowane</strong>.
+            Prosimy o przemyślane zakupy oraz uważne sprawdzanie kadru i
+            wymiarów w Kreatorze przed opłaceniem koszyka.
           </p>
         </div>
       ),
@@ -218,13 +300,22 @@ export default function RegulaminPage() {
       content: (
         <div className="space-y-4">
           <p>
-            1. Mimo braku prawa zwrotu towaru bez podania przyczyny, Klient zachowuje pełne prawo do zgłoszenia reklamacji w przypadku otrzymania produktu wadliwego pod względem technicznym (np. uszkodzenia mechaniczne powstałe w transporcie, błędy w cięciu z winy maszyn produkcyjnych, plamy drukarskie).
+            1. Mimo braku prawa zwrotu towaru bez podania przyczyny, Klient
+            zachowuje pełne prawo do zgłoszenia reklamacji w przypadku
+            otrzymania produktu wadliwego pod względem technicznym (np.
+            uszkodzenia mechaniczne powstałe w transporcie, błędy w cięciu z
+            winy maszyn produkcyjnych, plamy drukarskie).
           </p>
           <p>
-            2. Reklamację należy zgłosić drogą mailową na adres podany w § 1 ust. 1, załączając opis wady oraz zdjęcia przedstawiające wadliwy produkt.
+            2. Reklamację należy zgłosić drogą mailową na adres podany w § 1
+            ust. 1, załączając opis wady oraz zdjęcia przedstawiające wadliwy
+            produkt.
           </p>
           <p>
-            3. Sprzedawca ustosunkuje się do reklamacji w terminie <strong>14 dni</strong> od jej otrzymania. W przypadku uznania reklamacji, Sprzedawca na swój koszt wyprodukuje i wyśle poprawny produkt lub zwróci środki Klientowi.
+            3. Sprzedawca ustosunkuje się do reklamacji w terminie{" "}
+            <strong>14 dni</strong> od jej otrzymania. W przypadku uznania
+            reklamacji, Sprzedawca na swój koszt wyprodukuje i wyśle poprawny
+            produkt lub zwróci środki Klientowi.
           </p>
         </div>
       ),
@@ -235,17 +326,25 @@ export default function RegulaminPage() {
       searchText: `dane osobowe pliki cookies administrator danych sprzedawca. realizacja zamówienia rozliczenia finansowo-księgowe dochodzenie roszczeń RODO Polityka Prywatności. analityczne marketingowe zgoda ciasteczka Google Analytics.`,
       content: (
         <div className="space-y-4">
+          <p>1. Administratorem danych osobowych Klientów jest Sprzedawca.</p>
           <p>
-            1. Administratorem danych osobowych Klientów jest Sprzedawca.
+            2. Dane osobowe Klienta przetwarzane są w celu realizacji
+            zamówienia, rozliczeń finansowo-księgowych oraz ewentualnego
+            dochodzenia roszczeń, zgodnie z Ogólnym Rozporządzeniem o Ochronie
+            Danych (RODO). Szczegółowe zasady przetwarzania danych określa
+            Polityka Prywatności.
           </p>
           <p>
-            2. Dane osobowe Klienta przetwarzane są w celu realizacji zamówienia, rozliczeń finansowo-księgowych oraz ewentualnego dochodzenia roszczeń, zgodnie z Ogólnym Rozporządzeniem o Ochronie Danych (RODO). Szczegółowe zasady przetwarzania danych określa Polityka Prywatności.
+            3. Serwis wykorzystuje pliki cookies (ciasteczka) niezbędne do
+            prawidłowego działania sklepu (np. koszyk, sesja) oraz - za
+            dobrowolną zgodą Klienta - pliki cookies o charakterze analitycznym
+            i marketingowym (np. Google Analytics).
           </p>
           <p>
-            3. Serwis wykorzystuje pliki cookies (ciasteczka) niezbędne do prawidłowego działania sklepu (np. koszyk, sesja) oraz - za dobrowolną zgodą Klienta - pliki cookies o charakterze analitycznym i marketingowym (np. Google Analytics).
-          </p>
-          <p>
-            4. Klient ma możliwość zarządzania zgodami na pliki cookies w dowolnym momencie za pomocą panelu preferencji cookies dostępnego w serwisie lub za pośrednictwem ustawień swojej przeglądarki. Szczegółowe informacje znajdują się w Polityce Cookies.
+            4. Klient ma możliwość zarządzania zgodami na pliki cookies w
+            dowolnym momencie za pomocą panelu preferencji cookies dostępnego w
+            serwisie lub za pośrednictwem ustawień swojej przeglądarki.
+            Szczegółowe informacje znajdują się w Polityce Cookies.
           </p>
         </div>
       ),
@@ -257,10 +356,15 @@ export default function RegulaminPage() {
       content: (
         <div className="space-y-4">
           <p>
-            1. Sprzedawca zastrzega sobie prawo do zmiany Regulaminu z ważnych przyczyn technicznych, prawnych lub organizacyjnych. Do zamówień złożonych przed dniem wejścia w życie zmian stosuje się Regulamin w brzmieniu dotychczasowym.
+            1. Sprzedawca zastrzega sobie prawo do zmiany Regulaminu z ważnych
+            przyczyn technicznych, prawnych lub organizacyjnych. Do zamówień
+            złożonych przed dniem wejścia w życie zmian stosuje się Regulamin w
+            brzmieniu dotychczasowym.
           </p>
           <p>
-            2. W sprawach nieuregulowanych niniejszym Regulaminem mają zastosowanie przepisy Kodeksu Cywilnego, Ustawy o prawach konsumenta oraz inne właściwe przepisy prawa polskiego.
+            2. W sprawach nieuregulowanych niniejszym Regulaminem mają
+            zastosowanie przepisy Kodeksu Cywilnego, Ustawy o prawach konsumenta
+            oraz inne właściwe przepisy prawa polskiego.
           </p>
         </div>
       ),

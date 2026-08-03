@@ -13,16 +13,30 @@ import { NewA4Visualizer } from "@/components/creator/NewA4Visualizer";
 
 // Heavy components loaded on-demand to reduce initial bundle size (~110KB → ~60KB)
 const A4Visualizer3D = dynamic(
-  () => import("@/components/creator/A4Visualizer3D").then(mod => ({ default: mod.A4Visualizer3D })),
-  { ssr: false, loading: () => <div className="w-full aspect-[210/297] rounded-2xl bg-muted animate-pulse" /> }
+  () =>
+    import("@/components/creator/A4Visualizer3D").then((mod) => ({
+      default: mod.A4Visualizer3D,
+    })),
+  {
+    ssr: false,
+    loading: () => (
+      <div className="w-full aspect-[210/297] rounded-2xl bg-muted animate-pulse" />
+    ),
+  },
 );
 const StickerEditModal = dynamic(
-  () => import("@/components/creator/StickerEditModal").then(mod => ({ default: mod.StickerEditModal })),
-  { ssr: false }
+  () =>
+    import("@/components/creator/StickerEditModal").then((mod) => ({
+      default: mod.StickerEditModal,
+    })),
+  { ssr: false },
 );
 const AIGenerator = dynamic(
-  () => import("@/components/creator/AIGenerator").then(mod => ({ default: mod.AIGenerator })),
-  { ssr: false }
+  () =>
+    import("@/components/creator/AIGenerator").then((mod) => ({
+      default: mod.AIGenerator,
+    })),
+  { ssr: false },
 );
 import { JsonLd } from "@/components/seo/JsonLd";
 import { TrustBar } from "@/components/home/TrustBar";
@@ -36,14 +50,28 @@ import { FAQSection } from "@/components/home/FAQSection";
 import { FinalCTASection } from "@/components/home/FinalCTASection";
 import { PlacedSticker } from "@/types/creator";
 import { useCartStore } from "@/store/cartStore";
-import { checkOverlap, getRotatedSize, getCutLineMargins, getOuterMargins, getCutLineBoundingBox, checkStickersCollision, clampToUsableArea, getDisplayedWidthCm, getGraphicWidthFromDisplayed } from "@/lib/utils/collision";
+import {
+  checkOverlap,
+  getRotatedSize,
+  getCutLineMargins,
+  getOuterMargins,
+  getCutLineBoundingBox,
+  checkStickersCollision,
+  clampToUsableArea,
+  getDisplayedWidthCm,
+  getGraphicWidthFromDisplayed,
+} from "@/lib/utils/collision";
 import { getContourPoints } from "@/lib/utils/contour";
-import { getStickersNoun, getIndividualStickersLabel } from "@/lib/utils/polish";
+import {
+  getStickersNoun,
+  getIndividualStickersLabel,
+} from "@/lib/utils/polish";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { storage } from "@/lib/firebase/client";
 import { useRouter } from "next/navigation";
 import {
-  UploadCloud, ImagePlus,
+  UploadCloud,
+  ImagePlus,
   Plus,
   Minus,
   ShoppingCart,
@@ -74,7 +102,8 @@ import {
   ArrowRight,
   X,
   Maximize,
-  Settings
+  Settings,
+  ArrowLeft,
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -96,7 +125,9 @@ const compressPNGOnServer = async (dataUrl: string): Promise<Blob> => {
     body: JSON.stringify({ image: dataUrl }),
   });
   if (!response.ok) {
-    throw new Error(`Failed to compress image on server: ${response.statusText}`);
+    throw new Error(
+      `Failed to compress image on server: ${response.statusText}`,
+    );
   }
   return response.blob();
 };
@@ -109,16 +140,24 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
 
   // Creator state
   const [stickers, setStickers] = useState<PlacedSticker[]>([]);
-  const [selectedStickerId, setSelectedStickerId] = useState<string | null>(null);
+  const [selectedStickerId, setSelectedStickerId] = useState<string | null>(
+    null,
+  );
   const [sheetQuantity, setSheetQuantity] = useState<number>(1);
-  const [deliveryForm, setDeliveryForm] = useState<"sheet" | "individual">("sheet");
+  const [deliveryForm, setDeliveryForm] = useState<"sheet" | "individual">(
+    "sheet",
+  );
   const [error, setError] = useState<string | null>(null);
   const [visualizerMode, setVisualizerMode] = useState<"2d" | "3d">("2d");
   const [editCartItemId, setEditCartItemId] = useState<string | null>(null);
-  const [overlappingStickerIds, setOverlappingStickerIds] = useState<string[]>([]);
+  const [overlappingStickerIds, setOverlappingStickerIds] = useState<string[]>(
+    [],
+  );
   const [isAIGeneratorOpen, setIsAIGeneratorOpen] = useState(false);
   const [showPasteModal, setShowPasteModal] = useState(false);
-  const [isCalculatingContour, setIsCalculatingContour] = useState<string | null>(null);
+  const [isCalculatingContour, setIsCalculatingContour] = useState<
+    string | null
+  >(null);
   const [isPasteFocused, setIsPasteFocused] = useState(false);
   const [isFillingSheet, setIsFillingSheet] = useState(false);
 
@@ -149,8 +188,8 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
 
         // Remove edit param from URL without reloading
         const url = new URL(window.location.href);
-        url.searchParams.delete('edit');
-        window.history.replaceState({}, '', url.toString());
+        url.searchParams.delete("edit");
+        window.history.replaceState({}, "", url.toString());
       }
     }
   }, [mounted, editCartItemId, cartItems]);
@@ -168,7 +207,7 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
       ([entry]) => {
         setIsSummaryVisible(entry.isIntersecting);
       },
-      { threshold: 0.1 }
+      { threshold: 0.1 },
     );
     if (summaryRef.current) {
       summaryObserver.observe(summaryRef.current);
@@ -178,7 +217,7 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
       ([entry]) => {
         setIsVisualizerVisible(entry.isIntersecting);
       },
-      { threshold: 0.05 }
+      { threshold: 0.05 },
     );
     if (visualizerRef.current) {
       visualizerObserver.observe(visualizerRef.current);
@@ -248,9 +287,13 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
     };
   }, [mounted]);
 
-  const [hasUserEverAddedStickers, setHasUserEverAddedStickers] = useState(false);
-  const [isMobileStickerDetailsExpanded, setIsMobileStickerDetailsExpanded] = useState(false);
-  const [mobileActiveTab, setMobileActiveTab] = useState<"resize" | "options" | "cutline">("resize");
+  const [hasUserEverAddedStickers, setHasUserEverAddedStickers] =
+    useState(false);
+  const [isMobileStickerDetailsExpanded, setIsMobileStickerDetailsExpanded] =
+    useState(false);
+  const [mobileActiveTab, setMobileActiveTab] = useState<
+    "resize" | "options" | "cutline"
+  >("resize");
 
   useEffect(() => {
     setIsMobileStickerDetailsExpanded(false);
@@ -263,7 +306,9 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
     }
   }, [stickers, hasUserEverAddedStickers]);
 
-  const [stickerDimensions, setStickerDimensions] = useState<Record<string, { width: number; height: number }>>({});
+  const [stickerDimensions, setStickerDimensions] = useState<
+    Record<string, { width: number; height: number }>
+  >({});
 
   useEffect(() => {
     stickers.forEach((st) => {
@@ -272,7 +317,10 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
       img.onload = () => {
         setStickerDimensions((prev) => ({
           ...prev,
-          [st.id]: { width: img.naturalWidth || img.width, height: img.naturalHeight || img.height },
+          [st.id]: {
+            width: img.naturalWidth || img.width,
+            height: img.naturalHeight || img.height,
+          },
         }));
       };
       img.src = st.imageUrl;
@@ -281,9 +329,11 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
 
   // Modals & Panels
   const [showEditModal, setShowEditModal] = useState(false);
-  const [activeEditSticker, setActiveEditSticker] = useState<PlacedSticker | null>(null);
+  const [activeEditSticker, setActiveEditSticker] =
+    useState<PlacedSticker | null>(null);
   const [addingMethod, setAddingMethod] = useState<"none" | "upload">("none");
   const [pendingImageUrl, setPendingImageUrl] = useState<string | null>(null);
+  const [showSingleStickerWarning, setShowSingleStickerWarning] = useState(false);
 
   // Loaders
   const [isAddingToCart, setIsAddingToCart] = useState(false);
@@ -323,24 +373,13 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
 
     try {
       const fileName = `dropped-${getUUID()}-${file.name}`;
-      const dateFolder = new Date().toISOString().split('T')[0];
+      const dateFolder = new Date().toISOString().split("T")[0];
       const storageRef = ref(storage, `uploads/${dateFolder}/${fileName}`);
       const snapshot = await uploadBytes(storageRef, file);
       const downloadUrl = await getDownloadURL(snapshot.ref);
 
       setPendingImageUrl(downloadUrl);
-      // Open unified modal immediately
-      setActiveEditSticker({
-        id: "new-upload",
-        imageUrl: downloadUrl,
-        x: 15,
-        y: 15,
-        widthCm: 5,
-        heightCm: 5,
-        aspectRatio: 1,
-        cutLineType: "none",
-      });
-      setShowEditModal(true);
+      processAndAddSticker(downloadUrl);
     } catch (err: any) {
       console.error(err);
       setError("Wystąpił błąd podczas przesłania upuszczonego zdjęcia.");
@@ -348,7 +387,6 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
       setIsPageUploading(false);
     }
   };
-
 
   // Automatically calculate contours for stickers that don't have them yet
   useEffect(() => {
@@ -368,10 +406,17 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
           const wMm = currentSt.widthCm * 10;
           const hMm = currentSt.heightCm * 10;
 
-          const polys = await getContourPoints(st.imageUrl, "contour", wMm, hMm);
+          const polys = await getContourPoints(
+            st.imageUrl,
+            "contour",
+            wMm,
+            hMm,
+          );
 
           // Clamp using the new contour if the sticker uses custom contour cut line
-          const margins = getOuterMargins(currentSt, { contourPolygons: polys });
+          const margins = getOuterMargins(currentSt, {
+            contourPolygons: polys,
+          });
 
           const clamped = clampToUsableArea(currentSt.x, currentSt.y, margins);
           let targetX = clamped.x;
@@ -379,7 +424,14 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
 
           updatedStickers[idx] = {
             ...currentSt,
-            contourPolygons: polys || [[{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 1, y: 1 }, { x: 0, y: 1 }]],
+            contourPolygons: polys || [
+              [
+                { x: 0, y: 0 },
+                { x: 1, y: 0 },
+                { x: 1, y: 1 },
+                { x: 0, y: 1 },
+              ],
+            ],
             x: targetX,
             y: targetY,
           };
@@ -391,7 +443,14 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
         if (idx !== -1) {
           updatedStickers[idx] = {
             ...updatedStickers[idx],
-            contourPolygons: [[{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 1, y: 1 }, { x: 0, y: 1 }]],
+            contourPolygons: [
+              [
+                { x: 0, y: 0 },
+                { x: 1, y: 0 },
+                { x: 1, y: 1 },
+                { x: 0, y: 1 },
+              ],
+            ],
           };
           hasUpdates = true;
         }
@@ -411,7 +470,9 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     if (selectedSticker) {
-      setWidthInputValue(getDisplayedWidthCm(selectedSticker).toString().replace('.', ','));
+      setWidthInputValue(
+        getDisplayedWidthCm(selectedSticker).toString().replace(".", ","),
+      );
     } else {
       setWidthInputValue("");
     }
@@ -426,16 +487,22 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
       handleWidthChange(rounded);
       // Force sync widthInputValue in case handleWidthChange did not update the value
       if (selectedSticker) {
-        setWidthInputValue(getDisplayedWidthCm(selectedSticker).toString().replace('.', ','));
+        setWidthInputValue(
+          getDisplayedWidthCm(selectedSticker).toString().replace(".", ","),
+        );
       }
     } else {
       if (selectedSticker) {
-        setWidthInputValue(getDisplayedWidthCm(selectedSticker).toString().replace('.', ','));
+        setWidthInputValue(
+          getDisplayedWidthCm(selectedSticker).toString().replace(".", ","),
+        );
       }
     }
   };
 
-  const selectedStickerDimension = selectedSticker ? stickerDimensions[selectedSticker.id] : null;
+  const selectedStickerDimension = selectedSticker
+    ? stickerDimensions[selectedSticker.id]
+    : null;
   const selectedStickerDpi = useMemo(() => {
     if (!selectedSticker || !selectedStickerDimension) return null;
     const widthInches = selectedSticker.widthCm / 2.54;
@@ -451,7 +518,7 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
     rotation: number,
     existing: PlacedSticker[],
     cutLineType: PlacedSticker["cutLineType"] = "none",
-    contourPolygons?: { x: number; y: number }[][]
+    contourPolygons?: { x: number; y: number }[][],
   ): { x: number; y: number } | null => {
     const spacing = 3; // mm space between stickers
     const step = 5; // mm step for grid search
@@ -472,7 +539,10 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
     for (let candidateY = startY; candidateY <= endY; candidateY += step) {
       for (let candidateX = startX; candidateX <= endX; candidateX += step) {
         const clamped = clampToUsableArea(candidateX, candidateY, margins);
-        if (Math.abs(clamped.x - candidateX) > 0.01 || Math.abs(clamped.y - candidateY) > 0.01) {
+        if (
+          Math.abs(clamped.x - candidateX) > 0.01 ||
+          Math.abs(clamped.y - candidateY) > 0.01
+        ) {
           continue; // overlaps corners or safety bounds
         }
 
@@ -537,9 +607,14 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
       setIsPlacingSticker(false);
 
       // Scroll to the visualizer sheet on mobile devices when adding a sticker
-      if (typeof window !== "undefined" && window.matchMedia("(max-width: 639px)").matches) {
+      if (
+        typeof window !== "undefined" &&
+        window.matchMedia("(max-width: 639px)").matches
+      ) {
         setTimeout(() => {
-          const target = visualizerRef.current || document.getElementById("sheet-preview-section");
+          const target =
+            visualizerRef.current ||
+            document.getElementById("sheet-preview-section");
           if (target) {
             target.scrollIntoView({ behavior: "smooth", block: "start" });
           }
@@ -555,30 +630,31 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
     img.src = url;
   };
 
-  const handleFillSheet = () => {
-    if (!selectedSticker) return;
+  const handleFillSheet = (targetSticker?: PlacedSticker) => {
+    const stickerToFill = targetSticker || selectedSticker;
+    if (!stickerToFill) return;
 
     setIsFillingSheet(true);
 
     setTimeout(() => {
       let currentStickers = [...stickers];
-      const wMm = selectedSticker.widthCm * 10;
-      const hMm = selectedSticker.heightCm * 10;
+      const wMm = stickerToFill.widthCm * 10;
+      const hMm = stickerToFill.heightCm * 10;
       let added = 0;
 
       while (true) {
         const pos = findFreePosition(
           wMm,
           hMm,
-          selectedSticker.rotation || 0,
+          stickerToFill.rotation || 0,
           currentStickers,
-          selectedSticker.cutLineType,
-          selectedSticker.contourPolygons
+          stickerToFill.cutLineType,
+          stickerToFill.contourPolygons,
         );
         if (!pos) break;
 
         const newSticker: PlacedSticker = {
-          ...selectedSticker,
+          ...stickerToFill,
           id: getUUID(),
           x: pos.x,
           y: pos.y,
@@ -623,11 +699,16 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
       let finalX = activeEditSticker.x;
       let finalY = activeEditSticker.y;
 
-      const otherStickers = stickers.filter((s) => s.id !== activeEditSticker.id);
+      const otherStickers = stickers.filter(
+        (s) => s.id !== activeEditSticker.id,
+      );
 
       const testFits = (w: number) => {
         const h = w / aspect;
-        const margins = getOuterMargins(activeEditSticker, { widthCm: w, heightCm: h });
+        const margins = getOuterMargins(activeEditSticker, {
+          widthCm: w,
+          heightCm: h,
+        });
 
         let tx = activeEditSticker.x;
         let ty = activeEditSticker.y;
@@ -649,7 +730,8 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
           (leftBound < CORNER_LIMIT && topBound < CORNER_LIMIT) ||
           (rightBound > RIGHT_CORNER_LIMIT && topBound < CORNER_LIMIT) ||
           (leftBound < CORNER_LIMIT && bottomBound > BOTTOM_CORNER_LIMIT) ||
-          (rightBound > RIGHT_CORNER_LIMIT && bottomBound > BOTTOM_CORNER_LIMIT);
+          (rightBound > RIGHT_CORNER_LIMIT &&
+            bottomBound > BOTTOM_CORNER_LIMIT);
 
         const fitsIn =
           tx >= 11 + margins.left &&
@@ -684,7 +766,12 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
 
         if (!found) {
           // If scaling down in place doesn't work, try finding a free position on the sheet
-          let freePos = findFreePosition(15, 15 / aspect, activeEditSticker.rotation || 0, otherStickers);
+          let freePos = findFreePosition(
+            15,
+            15 / aspect,
+            activeEditSticker.rotation || 0,
+            otherStickers,
+          );
           if (!freePos) {
             freePos = { x: activeEditSticker.x, y: activeEditSticker.y };
           }
@@ -709,8 +796,8 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
               y: finalY,
               contourPolygons: undefined,
             }
-            : s
-        )
+            : s,
+        ),
       );
       setShowEditModal(false);
       setActiveEditSticker(null);
@@ -738,7 +825,11 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
     const margins = getOuterMargins(selectedSticker, { rotation: degrees });
 
     // Check bounds compensating for rotated pivot offset
-    const clamped = clampToUsableArea(selectedSticker.x, selectedSticker.y, margins);
+    const clamped = clampToUsableArea(
+      selectedSticker.x,
+      selectedSticker.y,
+      margins,
+    );
     let targetX = clamped.x;
     let targetY = clamped.y;
 
@@ -767,11 +858,15 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
     if (fitsInBounds) {
       setStickers(
         stickers.map((s) =>
-          s.id === selectedSticker.id ? { ...s, rotation: degrees, x: targetX, y: targetY } : s
-        )
+          s.id === selectedSticker.id
+            ? { ...s, rotation: degrees, x: targetX, y: targetY }
+            : s,
+        ),
       );
     } else {
-      setError("Brak miejsca na obrócenie naklejki (kontur wychodzi poza arkusz).");
+      setError(
+        "Brak miejsca na obrócenie naklejki (kontur wychodzi poza arkusz).",
+      );
     }
   };
 
@@ -780,14 +875,20 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
     if (!selectedSticker) return;
 
     const clampedDisplayedVal = Math.max(1, Math.min(19, val));
-    const targetGraphicWidth = getGraphicWidthFromDisplayed(selectedSticker, clampedDisplayedVal);
+    const targetGraphicWidth = getGraphicWidthFromDisplayed(
+      selectedSticker,
+      clampedDisplayedVal,
+    );
     const aspect = selectedSticker.aspectRatio;
 
     const otherStickers = stickers.filter((s) => s.id !== selectedSticker.id);
 
     const testFits = (w: number) => {
       const h = w / aspect;
-      const margins = getOuterMargins(selectedSticker, { widthCm: w, heightCm: h });
+      const margins = getOuterMargins(selectedSticker, {
+        widthCm: w,
+        heightCm: h,
+      });
 
       let tx = selectedSticker.x;
       let ty = selectedSticker.y;
@@ -871,9 +972,15 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
       setStickers(
         stickers.map((s) =>
           s.id === selectedSticker.id
-            ? { ...s, widthCm: Math.round(fitWidthCm * 10) / 10, heightCm: Math.round(fitHeightCm * 10) / 10, x: fitX, y: fitY }
-            : s
-        )
+            ? {
+              ...s,
+              widthCm: Math.round(fitWidthCm * 10) / 10,
+              heightCm: Math.round(fitHeightCm * 10) / 10,
+              x: fitX,
+              y: fitY,
+            }
+            : s,
+        ),
       );
     } else {
       setError("Brak miejsca na powiększenie w tym ułożeniu!");
@@ -889,10 +996,16 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
     let polys = selectedSticker.contourPolygons;
     if (type === "contour" || type === "contour_inside") {
       try {
-        const contourType = type === "contour_inside" ? "contour_inside" : "contour";
+        const contourType =
+          type === "contour_inside" ? "contour_inside" : "contour";
         const wMm = selectedSticker.widthCm * 10;
         const hMm = selectedSticker.heightCm * 10;
-        polys = await getContourPoints(selectedSticker.imageUrl, contourType, wMm, hMm);
+        polys = await getContourPoints(
+          selectedSticker.imageUrl,
+          contourType,
+          wMm,
+          hMm,
+        );
       } catch (err) {
         console.error("Failed to compute contour points:", err);
       }
@@ -901,9 +1014,16 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
     const wMm = selectedSticker.widthCm * 10;
     const hMm = selectedSticker.heightCm * 10;
 
-    const margins = getOuterMargins(selectedSticker, { cutLineType: type, contourPolygons: polys });
+    const margins = getOuterMargins(selectedSticker, {
+      cutLineType: type,
+      contourPolygons: polys,
+    });
 
-    const clamped = clampToUsableArea(selectedSticker.x, selectedSticker.y, margins);
+    const clamped = clampToUsableArea(
+      selectedSticker.x,
+      selectedSticker.y,
+      margins,
+    );
     let targetX = clamped.x;
     let targetY = clamped.y;
 
@@ -930,7 +1050,9 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
       !overlapsCorner;
 
     if (!fitsInBounds) {
-      setError("Brak miejsca na zmianę linii cięcia (kontur wychodzi poza arkusz)!");
+      setError(
+        "Brak miejsca na zmianę linii cięcia (kontur wychodzi poza arkusz)!",
+      );
       setIsCalculatingContour(null);
       return;
     }
@@ -938,9 +1060,15 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
     setStickers(
       stickers.map((s) =>
         s.id === selectedSticker.id
-          ? { ...s, cutLineType: type, contourPolygons: polys, x: targetX, y: targetY }
-          : s
-      )
+          ? {
+            ...s,
+            cutLineType: type,
+            contourPolygons: polys,
+            x: targetX,
+            y: targetY,
+          }
+          : s,
+      ),
     );
     setIsCalculatingContour(null);
   };
@@ -959,7 +1087,7 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
       selectedSticker.rotation || 0,
       stickers,
       selectedSticker.cutLineType,
-      selectedSticker.contourPolygons
+      selectedSticker.contourPolygons,
     );
 
     if (!pos) {
@@ -987,7 +1115,9 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
   const handleDownloadSticker = async () => {
     if (!selectedSticker) return;
     try {
-      const response = await fetch(`/api/proxy-image?url=${encodeURIComponent(selectedSticker.imageUrl)}`);
+      const response = await fetch(
+        `/api/proxy-image?url=${encodeURIComponent(selectedSticker.imageUrl)}`,
+      );
       if (!response.ok) throw new Error("Failed to fetch image via proxy");
       const blob = await response.blob();
       const blobUrl = URL.createObjectURL(blob);
@@ -1024,7 +1154,9 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
     });
 
   // Render high resolution sheet on hidden canvas
-  const renderSheetCanvas = async (mode: "normal" | "print" | "cut-lines" = "normal"): Promise<HTMLCanvasElement> => {
+  const renderSheetCanvas = async (
+    mode: "normal" | "print" | "cut-lines" = "normal",
+  ): Promise<HTMLCanvasElement> => {
     const A4_W = 2480;
     const A4_H = 3508;
     const MM_TO_PX = A4_W / 210;
@@ -1037,17 +1169,20 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
     ctx.fillStyle = "#ffffff";
     ctx.fillRect(0, 0, A4_W, A4_H);
 
-    const loadedImages = mode === "cut-lines" ? [] : await Promise.all(
-      stickers.map(async (st) => {
-        try {
-          const img = await loadProxiedImage(st.imageUrl);
-          return { id: st.id, img };
-        } catch (err) {
-          console.error(err);
-          return null;
-        }
-      })
-    );
+    const loadedImages =
+      mode === "cut-lines"
+        ? []
+        : await Promise.all(
+          stickers.map(async (st) => {
+            try {
+              const img = await loadProxiedImage(st.imageUrl);
+              return { id: st.id, img };
+            } catch (err) {
+              console.error(err);
+              return null;
+            }
+          }),
+        );
 
     for (const st of stickers) {
       const drawX = st.x * MM_TO_PX;
@@ -1064,13 +1199,19 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
       let offsetPx = 0;
       if (st.cutLineType === "rounded" || st.cutLineType === "circle") {
         offsetPx = 2 * MM_TO_PX;
-      } else if (st.cutLineType === "rounded_inside" || st.cutLineType === "circle_inside") {
+      } else if (
+        st.cutLineType === "rounded_inside" ||
+        st.cutLineType === "circle_inside"
+      ) {
         offsetPx = -2 * MM_TO_PX;
       }
 
       if (mode === "cut-lines") {
         ctx.fillStyle = "#000000";
-        if (st.cutLineType === "rounded" || st.cutLineType === "rounded_inside") {
+        if (
+          st.cutLineType === "rounded" ||
+          st.cutLineType === "rounded_inside"
+        ) {
           const rx = relX - offsetPx;
           const ry = relY - offsetPx;
           const rw = drawW + 2 * offsetPx;
@@ -1088,12 +1229,26 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
           ctx.quadraticCurveTo(rx, ry, rx + r, ry);
           ctx.closePath();
           ctx.fill();
-        } else if (st.cutLineType === "circle" || st.cutLineType === "circle_inside") {
+        } else if (
+          st.cutLineType === "circle" ||
+          st.cutLineType === "circle_inside"
+        ) {
           ctx.beginPath();
-          ctx.ellipse(0, 0, drawW / 2 + offsetPx, drawH / 2 + offsetPx, 0, 0, 2 * Math.PI);
+          ctx.ellipse(
+            0,
+            0,
+            drawW / 2 + offsetPx,
+            drawH / 2 + offsetPx,
+            0,
+            0,
+            2 * Math.PI,
+          );
           ctx.closePath();
           ctx.fill();
-        } else if (st.cutLineType === "contour" || st.cutLineType === "contour_inside") {
+        } else if (
+          st.cutLineType === "contour" ||
+          st.cutLineType === "contour_inside"
+        ) {
           if (st.contourPolygons && st.contourPolygons.length > 0) {
             st.contourPolygons.forEach((poly) => {
               if (poly.length < 2) return;
@@ -1112,7 +1267,10 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
       } else {
         // Normal or Print mode
         if (mode === "normal") {
-          if (st.cutLineType === "rounded" || st.cutLineType === "rounded_inside") {
+          if (
+            st.cutLineType === "rounded" ||
+            st.cutLineType === "rounded_inside"
+          ) {
             ctx.strokeStyle = "#ff5ebb";
             ctx.lineWidth = 6;
             ctx.setLineDash([15, 10]);
@@ -1133,15 +1291,29 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
             ctx.quadraticCurveTo(rx, ry, rx + r, ry);
             ctx.closePath();
             ctx.stroke();
-          } else if (st.cutLineType === "circle" || st.cutLineType === "circle_inside") {
+          } else if (
+            st.cutLineType === "circle" ||
+            st.cutLineType === "circle_inside"
+          ) {
             ctx.strokeStyle = "#ff5ebb";
             ctx.lineWidth = 6;
             ctx.setLineDash([15, 10]);
             ctx.beginPath();
-            ctx.ellipse(0, 0, drawW / 2 + offsetPx, drawH / 2 + offsetPx, 0, 0, 2 * Math.PI);
+            ctx.ellipse(
+              0,
+              0,
+              drawW / 2 + offsetPx,
+              drawH / 2 + offsetPx,
+              0,
+              0,
+              2 * Math.PI,
+            );
             ctx.closePath();
             ctx.stroke();
-          } else if (st.cutLineType === "contour" || st.cutLineType === "contour_inside") {
+          } else if (
+            st.cutLineType === "contour" ||
+            st.cutLineType === "contour_inside"
+          ) {
             ctx.strokeStyle = "#ff5ebb";
             ctx.lineWidth = 6;
             ctx.setLineDash([15, 10]);
@@ -1153,7 +1325,10 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
                 ctx.beginPath();
                 ctx.moveTo(relX + poly[0].x * drawW, relY + poly[0].y * drawH);
                 for (let i = 1; i < poly.length; i++) {
-                  ctx.lineTo(relX + poly[i].x * drawW, relY + poly[i].y * drawH);
+                  ctx.lineTo(
+                    relX + poly[i].x * drawW,
+                    relY + poly[i].y * drawH,
+                  );
                 }
                 ctx.closePath();
                 ctx.stroke();
@@ -1171,17 +1346,35 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
           ctx.beginPath();
           ctx.moveTo(relX + imgRadius, relY);
           ctx.lineTo(relX + drawW - imgRadius, relY);
-          ctx.quadraticCurveTo(relX + drawW, relY, relX + drawW, relY + imgRadius);
+          ctx.quadraticCurveTo(
+            relX + drawW,
+            relY,
+            relX + drawW,
+            relY + imgRadius,
+          );
           ctx.lineTo(relX + drawW, relY + drawH - imgRadius);
-          ctx.quadraticCurveTo(relX + drawW, relY + drawH, relX + drawW - imgRadius, relY + drawH);
+          ctx.quadraticCurveTo(
+            relX + drawW,
+            relY + drawH,
+            relX + drawW - imgRadius,
+            relY + drawH,
+          );
           ctx.lineTo(relX + imgRadius, relY + drawH);
-          ctx.quadraticCurveTo(relX, relY + drawH, relX, relY + drawH - imgRadius);
+          ctx.quadraticCurveTo(
+            relX,
+            relY + drawH,
+            relX,
+            relY + drawH - imgRadius,
+          );
           ctx.lineTo(relX, relY + imgRadius);
           ctx.quadraticCurveTo(relX, relY, relX + imgRadius, relY);
           ctx.closePath();
           ctx.clip();
 
-          const isInsideCut = st.cutLineType === "rounded_inside" || st.cutLineType === "circle_inside" || st.cutLineType === "contour_inside";
+          const isInsideCut =
+            st.cutLineType === "rounded_inside" ||
+            st.cutLineType === "circle_inside" ||
+            st.cutLineType === "contour_inside";
           if (mode === "normal" && isInsideCut) {
             ctx.save();
             ctx.beginPath();
@@ -1201,14 +1394,28 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
               ctx.lineTo(rx, ry + r);
               ctx.quadraticCurveTo(rx, ry, rx + r, ry);
             } else if (st.cutLineType === "circle_inside") {
-              ctx.ellipse(0, 0, drawW / 2 + offsetPx, drawH / 2 + offsetPx, 0, 0, 2 * Math.PI);
+              ctx.ellipse(
+                0,
+                0,
+                drawW / 2 + offsetPx,
+                drawH / 2 + offsetPx,
+                0,
+                0,
+                2 * Math.PI,
+              );
             } else if (st.cutLineType === "contour_inside") {
               if (st.contourPolygons && st.contourPolygons.length > 0) {
                 st.contourPolygons.forEach((poly) => {
                   if (poly.length < 2) return;
-                  ctx.moveTo(relX + poly[0].x * drawW, relY + poly[0].y * drawH);
+                  ctx.moveTo(
+                    relX + poly[0].x * drawW,
+                    relY + poly[0].y * drawH,
+                  );
                   for (let i = 1; i < poly.length; i++) {
-                    ctx.lineTo(relX + poly[i].x * drawW, relY + poly[i].y * drawH);
+                    ctx.lineTo(
+                      relX + poly[i].x * drawW,
+                      relY + poly[i].y * drawH,
+                    );
                   }
                 });
               } else {
@@ -1260,7 +1467,7 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
           console.error(err);
           return null;
         }
-      })
+      }),
     );
 
     // Draw realistic stickers on the flat canvas
@@ -1272,7 +1479,10 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
 
       const wMm = st.widthCm * 10;
       const hMm = st.heightCm * 10;
-      const isInside = st.cutLineType === "rounded_inside" || st.cutLineType === "circle_inside" || st.cutLineType === "contour_inside";
+      const isInside =
+        st.cutLineType === "rounded_inside" ||
+        st.cutLineType === "circle_inside" ||
+        st.cutLineType === "contour_inside";
       const offsetMm = isInside ? -2 : 2;
 
       let sx = 1;
@@ -1283,14 +1493,23 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
       }
 
       // Helper to define cut path
-      const defineCutPath = (ctx: CanvasRenderingContext2D, w: number, h: number, type: string) => {
+      const defineCutPath = (
+        ctx: CanvasRenderingContext2D,
+        w: number,
+        h: number,
+        type: string,
+      ) => {
         const rx = -w / 2;
         const ry = -h / 2;
         if (type === "circle" || type === "circle_inside") {
           ctx.beginPath();
           ctx.ellipse(0, 0, w / 2, h / 2, 0, 0, 2 * Math.PI);
           ctx.closePath();
-        } else if (type === "rounded" || type === "rounded_inside" || type === "none") {
+        } else if (
+          type === "rounded" ||
+          type === "rounded_inside" ||
+          type === "none"
+        ) {
           const radius = w * 0.05; // 5% border radius
           ctx.beginPath();
           ctx.moveTo(rx + radius, ry);
@@ -1313,7 +1532,10 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
               if (poly.length < 2) return;
               ctx.moveTo((poly[0].x - 0.5) * drawW, (poly[0].y - 0.5) * drawH);
               for (let i = 1; i < poly.length; i++) {
-                ctx.lineTo((poly[i].x - 0.5) * drawW, (poly[i].y - 0.5) * drawH);
+                ctx.lineTo(
+                  (poly[i].x - 0.5) * drawW,
+                  (poly[i].y - 0.5) * drawH,
+                );
               }
             });
             ctx.closePath();
@@ -1374,8 +1596,8 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
     // Leave the background transparent so the shadow blends perfectly
 
     // Projection variables
-    const thetaX = 10 * Math.PI / 180;
-    const thetaY = -15 * Math.PI / 180;
+    const thetaX = (10 * Math.PI) / 180;
+    const thetaY = (-15 * Math.PI) / 180;
     const d = 1200;
     const S = 0.35; // Scaling factor to fit comfortably with shadow padding
 
@@ -1459,12 +1681,18 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
     const drawTriangle = (
       ctx: CanvasRenderingContext2D,
       src: HTMLCanvasElement,
-      x0: number, y0: number,
-      x1: number, y1: number,
-      x2: number, y2: number,
-      u0: number, v0: number,
-      u1: number, v1: number,
-      u2: number, v2: number
+      x0: number,
+      y0: number,
+      x1: number,
+      y1: number,
+      x2: number,
+      y2: number,
+      u0: number,
+      v0: number,
+      u1: number,
+      v1: number,
+      u2: number,
+      v2: number,
     ) => {
       // Calculate centroid of destination triangle
       const uc = (u0 + u1 + u2) / 3;
@@ -1489,13 +1717,25 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
       const delta = x0 * (y1 - y2) + x1 * (y2 - y0) + x2 * (y0 - y1);
       if (Math.abs(delta) < 0.0001) return;
 
-      const a = (p0.u * (y1 - y2) + p1.u * (y2 - y0) + p2.u * (y0 - y1)) / delta;
-      const c = (p0.u * (x2 - x1) + p1.u * (x0 - x2) + p2.u * (x1 - x0)) / delta;
-      const e = (p0.u * (x1 * y2 - x2 * y1) + p1.u * (x2 * y0 - x0 * y2) + p2.u * (x0 * y1 - x1 * y0)) / delta;
+      const a =
+        (p0.u * (y1 - y2) + p1.u * (y2 - y0) + p2.u * (y0 - y1)) / delta;
+      const c =
+        (p0.u * (x2 - x1) + p1.u * (x0 - x2) + p2.u * (x1 - x0)) / delta;
+      const e =
+        (p0.u * (x1 * y2 - x2 * y1) +
+          p1.u * (x2 * y0 - x0 * y2) +
+          p2.u * (x0 * y1 - x1 * y0)) /
+        delta;
 
-      const b = (p0.v * (y1 - y2) + p1.v * (y2 - y0) + p2.v * (y0 - y1)) / delta;
-      const d = (p0.v * (x2 - x1) + p1.v * (x0 - x2) + p2.v * (x1 - x0)) / delta;
-      const f = (p0.v * (x1 * y2 - x2 * y1) + p1.v * (x2 * y0 - x0 * y2) + p2.v * (x0 * y1 - x1 * y0)) / delta;
+      const b =
+        (p0.v * (y1 - y2) + p1.v * (y2 - y0) + p2.v * (y0 - y1)) / delta;
+      const d =
+        (p0.v * (x2 - x1) + p1.v * (x0 - x2) + p2.v * (x1 - x0)) / delta;
+      const f =
+        (p0.v * (x1 * y2 - x2 * y1) +
+          p1.v * (x2 * y0 - x0 * y2) +
+          p2.v * (x0 * y1 - x1 * y0)) /
+        delta;
 
       ctx.save();
       ctx.beginPath();
@@ -1528,8 +1768,38 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
         const p01 = project(x0, y1);
         const p11 = project(x1, y1);
 
-        drawTriangle(destCtx, flatCanvas, x0, y0, x1, y0, x0, y1, p00.x, p00.y, p10.x, p10.y, p01.x, p01.y);
-        drawTriangle(destCtx, flatCanvas, x1, y0, x1, y1, x0, y1, p10.x, p10.y, p11.x, p11.y, p01.x, p01.y);
+        drawTriangle(
+          destCtx,
+          flatCanvas,
+          x0,
+          y0,
+          x1,
+          y0,
+          x0,
+          y1,
+          p00.x,
+          p00.y,
+          p10.x,
+          p10.y,
+          p01.x,
+          p01.y,
+        );
+        drawTriangle(
+          destCtx,
+          flatCanvas,
+          x1,
+          y0,
+          x1,
+          y1,
+          x0,
+          y1,
+          p10.x,
+          p10.y,
+          p11.x,
+          p11.y,
+          p01.x,
+          p01.y,
+        );
       }
     }
 
@@ -1563,8 +1833,12 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
 
     const glareCenter = project(A4_W * 0.3, A4_H * 0.2);
     const grad = destCtx.createRadialGradient(
-      glareCenter.x, glareCenter.y, 0,
-      glareCenter.x, glareCenter.y, 600
+      glareCenter.x,
+      glareCenter.y,
+      0,
+      glareCenter.x,
+      glareCenter.y,
+      600,
     );
     grad.addColorStop(0, "rgba(255, 255, 255, 0.4)");
     grad.addColorStop(0.5, "rgba(255, 255, 255, 0.05)");
@@ -1581,7 +1855,15 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
   // Add sheet to Cart
   const handleAddToCart = () => {
     if (stickers.length === 0) return;
-    const stickersWithNoCutLine = stickers.filter((s) => s.cutLineType === "none");
+
+    if (stickers.length === 1 && !showSingleStickerWarning) {
+      setShowSingleStickerWarning(true);
+      return;
+    }
+
+    const stickersWithNoCutLine = stickers.filter(
+      (s) => s.cutLineType === "none",
+    );
     if (stickersWithNoCutLine.length > 0) {
       const count = stickersWithNoCutLine.length;
       const noun = count === 1 ? "naklejki" : "naklejek";
@@ -1604,7 +1886,9 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
 
     if (hasOverlap) {
       setOverlappingStickerIds(Array.from(overlaps));
-      setError("Naklejki na arkuszu nachodzą na siebie! Uporządkuj je przed dodaniem do koszyka.");
+      setError(
+        "Naklejki na arkuszu nachodzą na siebie! Uporządkuj je przed dodaniem do koszyka.",
+      );
       return;
     }
 
@@ -1625,16 +1909,19 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
       try {
         printBlob = await compressPNGOnServer(printDataUrl);
       } catch (err) {
-        console.warn("Server compression failed for print image, falling back to uncompressed blob:", err);
+        console.warn(
+          "Server compression failed for print image, falling back to uncompressed blob:",
+          err,
+        );
         const rawBlob = await new Promise<Blob | null>((resolve) =>
-          printCanvas.toBlob((b) => resolve(b), "image/png")
+          printCanvas.toBlob((b) => resolve(b), "image/png"),
         );
         if (!rawBlob) throw new Error("Could not export print canvas to blob.");
         printBlob = rawBlob;
       }
 
       const printFileName = `composition-${getUUID()}.png`;
-      const dateFolder = new Date().toISOString().split('T')[0];
+      const dateFolder = new Date().toISOString().split("T")[0];
       const printRef = ref(storage, `uploads/${dateFolder}/${printFileName}`);
       const printSnapshot = await uploadBytes(printRef, printBlob);
       const printUrl = await getDownloadURL(printSnapshot.ref);
@@ -1647,16 +1934,19 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
       try {
         cutBlob = await compressPNGOnServer(cutDataUrl);
       } catch (err) {
-        console.warn("Server compression failed for cut-lines image, falling back to uncompressed blob:", err);
+        console.warn(
+          "Server compression failed for cut-lines image, falling back to uncompressed blob:",
+          err,
+        );
         cutBlob = await new Promise<Blob | null>((resolve) =>
-          cutCanvas.toBlob((b) => resolve(b), "image/png")
+          cutCanvas.toBlob((b) => resolve(b), "image/png"),
         );
       }
 
       let cutLinesUrl: string | undefined;
       if (cutBlob) {
         const cutFileName = `composition-cutlines-${getUUID()}.png`;
-        const dateFolder = new Date().toISOString().split('T')[0];
+        const dateFolder = new Date().toISOString().split("T")[0];
         const cutRef = ref(storage, `uploads/${dateFolder}/${cutFileName}`);
         const cutSnapshot = await uploadBytes(cutRef, cutBlob);
         cutLinesUrl = await getDownloadURL(cutSnapshot.ref);
@@ -1669,7 +1959,7 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
         heightCm: 29.7, // A4 sheet size
         stickersPerSheet: stickers.length,
         sheetQuantity: sheetQuantity,
-        pricePerSheet: 49.00,
+        pricePerSheet: 49.0,
         stickers: stickers,
         deliveryForm: deliveryForm,
       };
@@ -1697,7 +1987,10 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
     setError(null);
 
     try {
-      const canvas = mode === "3d" ? await render3DSheetCanvas() : await renderSheetCanvas(mode);
+      const canvas =
+        mode === "3d"
+          ? await render3DSheetCanvas()
+          : await renderSheetCanvas(mode);
       const imgData = canvas.toDataURL("image/png");
 
       let downloadUrl = imgData;
@@ -1705,7 +1998,10 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
         const compressedBlob = await compressPNGOnServer(imgData);
         downloadUrl = URL.createObjectURL(compressedBlob);
       } catch (compressErr) {
-        console.warn("Server PNG compression failed, downloading uncompressed canvas image:", compressErr);
+        console.warn(
+          "Server PNG compression failed, downloading uncompressed canvas image:",
+          compressErr,
+        );
       }
 
       const link = document.createElement("a");
@@ -1731,7 +2027,7 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
           ? "Nie udało się wygenerować pliku PNG (linie cięcia)."
           : mode === "print"
             ? "Nie udało się wygenerować pliku PNG (druk arkusza)."
-            : "Nie udało się wygenerować pliku PNG (wizualizacja 3D arkusza)."
+            : "Nie udało się wygenerować pliku PNG (wizualizacja 3D arkusza).",
       );
     } finally {
       setIsGeneratingPng(false);
@@ -1743,7 +2039,9 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
     if (!file || !file.type.startsWith("image/")) return;
 
     if (file.size > 10 * 1024 * 1024) {
-      setError("Wybrany obraz jest za duży (maksymalnie 10 MB). Spróbuj użyć pliku o mniejszej rozdzielczości.");
+      setError(
+        "Wybrany obraz jest za duży (maksymalnie 10 MB). Spróbuj użyć pliku o mniejszej rozdzielczości.",
+      );
       return;
     }
 
@@ -1752,34 +2050,16 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
 
     try {
       const fileName = `mobile-upload-${getUUID()}-${file.name}`;
-      const dateFolder = new Date().toISOString().split('T')[0];
+      const dateFolder = new Date().toISOString().split("T")[0];
       const storageRef = ref(storage, `uploads/${dateFolder}/${fileName}`);
       const snapshot = await uploadBytes(storageRef, file, {
-        contentType: file.type || "image/png"
+        contentType: file.type || "image/png",
       });
       const downloadUrl = await getDownloadURL(snapshot.ref);
 
       setPendingImageUrl(downloadUrl);
       setShowPasteModal(false); // Close paste modal if open
-
-      if (isPasted) {
-        // Skip background removal/crop modal for pasted stickers
-        processAndAddSticker(downloadUrl);
-      } else {
-        // Open crop/bg removal modal for the newly uploaded sticker immediately
-        setActiveEditSticker({
-          id: "new-upload",
-          imageUrl: downloadUrl,
-          x: 15,
-          y: 15,
-          widthCm: 5,
-          heightCm: 5,
-          aspectRatio: 1,
-          cutLineType: "none",
-        });
-        setShowEditModal(true);
-        setVisualizerMode("2d");
-      }
+      processAndAddSticker(downloadUrl);
     } catch (err) {
       console.error(err);
       setError("Nie udało się przesłać pliku.");
@@ -1829,18 +2109,24 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
       const clipboardItems = await navigator.clipboard.read();
       let foundImage = false;
       for (const item of clipboardItems) {
-        const imageTypes = item.types.filter(type => type.startsWith("image/"));
+        const imageTypes = item.types.filter((type) =>
+          type.startsWith("image/"),
+        );
         if (imageTypes.length > 0) {
           const blob = await item.getType(imageTypes[0]);
           const ext = imageTypes[0] === "image/png" ? "png" : "jpg";
-          const file = new File([blob], `pasted-sticker.${ext}`, { type: imageTypes[0] });
+          const file = new File([blob], `pasted-sticker.${ext}`, {
+            type: imageTypes[0],
+          });
           handleMobileFileUpload(file, true);
           foundImage = true;
           break;
         }
       }
       if (!foundImage) {
-        setError("Schowek jest pusty lub nie zawiera obrazu. Skopiuj obrazek i spróbuj ponownie.");
+        setError(
+          "Schowek jest pusty lub nie zawiera obrazu. Skopiuj obrazek i spróbuj ponownie.",
+        );
       }
     } catch (err) {
       console.warn("Clipboard API:", err);
@@ -1848,7 +2134,6 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
       setShowPasteModal(true);
     }
   };
-
 
   // Przed hydracją (mounted === false) - także podczas renderu serwerowego - renderujemy
   // pełną powłokę strony: Header, Mini-Hero, sekcje SEO/marketingowe (children) i Footer.
@@ -1868,10 +2153,49 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
         </div>
 
         {/* Kreator - placeholder do czasu hydracji (interaktywny kreator wymaga JS) */}
-        <div className="w-full bg-[#edf6f2] dark:bg-[#002c2e] border-b border-primary/15 dark:border-primary/25 pb-8 sm:pb-12 flex flex-col">
-          <div id="creator-section" className="flex-1 flex items-center justify-center py-16 sm:py-24 min-h-[40vh]">
-            <div className="animate-pulse font-extrabold text-xl text-primary">Wczytywanie kreatora...</div>
-          </div>
+        <div className="w-full bg-[#edf6f2] dark:bg-[#002c2e] border-b border-primary/15 dark:border-primary/25 pb-8 sm:pb-12 shadow-[inset_0_-6px_24px_rgba(0,0,0,0.03)] flex flex-col">
+          <main
+            id="creator-section"
+            className="flex-1 flex flex-col py-3 sm:py-6 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto w-full justify-center relative gap-4 sm:gap-8"
+          >
+            {/* Page Info Skeleton */}
+            <div className="animate-pulse">
+              <div className="h-8 sm:h-10 bg-primary/10 dark:bg-primary/20 rounded-lg w-3/4 sm:w-1/2 mb-2"></div>
+              <div className="h-4 sm:h-5 bg-muted-foreground/10 dark:bg-muted-foreground/20 rounded-md w-full sm:w-2/3"></div>
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-8 items-start">
+              {/* Left Column: Skeleton Controls */}
+              <div className="lg:col-span-5 space-y-3 sm:space-y-6 order-2 lg:order-1 animate-pulse">
+                {/* Upload Button Skeleton */}
+                <div className="hidden sm:block liquid-glass border border-border/40 rounded-3xl p-4 sm:p-6 shadow-sm space-y-3 sm:space-y-4">
+                  <div className="h-6 bg-primary/10 dark:bg-primary/20 rounded-md w-1/2 mb-4"></div>
+                  <div className="h-32 bg-muted/10 dark:bg-muted/5 border-2 border-dashed border-foreground/10 rounded-2xl"></div>
+                </div>
+
+                {/* Additional Controls Skeleton */}
+                <div className="liquid-glass border-2 border-primary/20 rounded-3xl p-4 sm:p-6 shadow-sm space-y-4 sm:space-y-6">
+                  <div className="h-6 bg-primary/10 dark:bg-primary/20 rounded-md w-2/3"></div>
+                  <div className="h-16 bg-muted/10 dark:bg-muted/5 rounded-2xl"></div>
+                  <div className="h-10 bg-muted/10 dark:bg-muted/5 rounded-xl"></div>
+                  <div className="h-10 bg-muted/10 dark:bg-muted/5 rounded-xl w-3/4"></div>
+                </div>
+              </div>
+
+              {/* Right Column: Visualizer Skeleton */}
+              <div className="relative lg:col-span-7 flex flex-col items-center justify-center -mx-4 sm:mx-0 rounded-none sm:rounded-3xl px-2 py-6 sm:p-8 min-h-[500px] order-1 lg:order-2 liquid-glass border-y border-x-0 sm:border border-border/40 shadow-[0_8px_30px_rgba(0,0,0,0.02)]">
+                <div className="flex flex-col items-center justify-center gap-6 animate-pulse">
+                  <div className="w-16 h-16 sm:w-24 sm:h-24 rounded-full bg-primary/10 dark:bg-primary/20 flex items-center justify-center">
+                    <Loader2 className="w-8 h-8 sm:w-12 sm:h-12 text-primary/40 animate-spin" />
+                  </div>
+                  <div className="space-y-2 text-center">
+                    <div className="h-6 bg-primary/10 dark:bg-primary/20 rounded-md w-48 mx-auto"></div>
+                    <div className="h-4 bg-muted-foreground/10 dark:bg-muted-foreground/20 rounded-md w-64 mx-auto"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </main>
         </div>
 
         {/* Sekcja SEO i marketingowa - renderowana serwerowo (SSR) dla SEO/GEO/AEO */}
@@ -1888,7 +2212,6 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
 
   return (
     <div className="flex flex-col min-h-screen text-foreground relative">
-
       {/* Sticky Top Notification */}
       {error && (
         <div className="fixed top-5 left-1/2 -translate-x-1/2 z-[100] max-w-md w-full px-4 animate-in fade-in slide-in-from-top duration-300">
@@ -1927,8 +2250,10 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
 
       {/* Sekcja kreatora na wyróżnionym tle */}
       <div className="w-full bg-[#edf6f2] dark:bg-[#002c2e] border-b border-primary/15 dark:border-primary/25 pb-8 sm:pb-12 shadow-[inset_0_-6px_24px_rgba(0,0,0,0.03)] flex flex-col">
-        <main id="creator-section" className="flex-1 flex flex-col py-3 sm:py-6 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto w-full justify-center relative gap-4 sm:gap-8">
-
+        <main
+          id="creator-section"
+          className="flex-1 flex flex-col py-3 sm:py-6 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto w-full justify-center relative gap-4 sm:gap-8"
+        >
           {/* Page Info */}
           <div>
             <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-foreground">
@@ -1940,10 +2265,8 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-8 items-start">
-
             {/* Left Column: Controls & Sidebar */}
             <div className="lg:col-span-5 space-y-3 sm:space-y-6 order-2 lg:order-1">
-
               {/* 1. Tool selection: Add Sticker */}
               {addingMethod === "none" && (
                 <div className="hidden sm:block liquid-glass border border-border/40 rounded-3xl p-4 sm:p-6 shadow-sm space-y-3 sm:space-y-4">
@@ -1954,9 +2277,7 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
 
                   <div className="grid grid-cols-1 gap-4">
                     {/* Unified Direct File Picker */}
-                    <label
-                      className="flex flex-col items-center justify-center p-6 border-2 border-dashed border-foreground/20 dark:border-foreground/30 hover:border-primary/45 rounded-2xl bg-muted/10 hover:bg-muted/30 transition-all hover:scale-[1.01] active:scale-[0.99] cursor-pointer h-full group"
-                    >
+                    <label className="flex flex-col items-center justify-center p-6 border-2 border-dashed border-foreground/20 dark:border-foreground/30 hover:border-primary/45 rounded-2xl bg-muted/10 hover:bg-muted/30 transition-all hover:scale-[1.01] active:scale-[0.99] cursor-pointer h-full group">
                       <input
                         type="file"
                         accept="image/*"
@@ -1968,8 +2289,12 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
                         }}
                       />
                       <ImagePlus className="w-8 h-8 text-muted-foreground group-hover:text-primary mb-2 opacity-75" />
-                      <span className="text-sm font-bold text-foreground text-center">Dodaj Naklejkę</span>
-                      <span className="text-[10px] font-semibold text-muted-foreground mt-0.5 text-center">Zdjęcie JPG / PNG</span>
+                      <span className="text-sm font-bold text-foreground text-center">
+                        Dodaj Naklejkę
+                      </span>
+                      <span className="text-[10px] font-semibold text-muted-foreground mt-0.5 text-center">
+                        Zdjęcie JPG / PNG
+                      </span>
                     </label>
                   </div>
                 </div>
@@ -1984,11 +2309,15 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
                 >
                   <div
                     className="flex justify-between items-center border-b border-border/40 pb-3 cursor-pointer sm:cursor-default select-none"
-                    onClick={() => setIsMobileStickerDetailsExpanded(prev => !prev)}
+                    onClick={() =>
+                      setIsMobileStickerDetailsExpanded((prev) => !prev)
+                    }
                   >
                     <div className="flex items-center gap-2">
                       <Layers className="w-5 h-5 text-primary" />
-                      <h3 className="text-lg font-black text-foreground">Wybrana Naklejka</h3>
+                      <h3 className="text-lg font-black text-foreground">
+                        Wybrana Naklejka
+                      </h3>
                     </div>
                     <div className="sm:hidden text-muted-foreground hover:text-foreground transition-colors p-1">
                       {isMobileStickerDetailsExpanded ? (
@@ -2002,7 +2331,9 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
                   {/* Miniature and Stacked Details Row */}
                   <div
                     className="flex items-center gap-5 bg-[#004749]/5 dark:bg-muted/20 border border-[#004749]/15 dark:border-border/40 p-3 rounded-2xl cursor-pointer sm:cursor-default hover:bg-[#004749]/10 dark:hover:bg-muted/30 transition-colors"
-                    onClick={() => setIsMobileStickerDetailsExpanded(prev => !prev)}
+                    onClick={() =>
+                      setIsMobileStickerDetailsExpanded((prev) => !prev)
+                    }
                   >
                     <div className="w-16 h-16 bg-white rounded-xl border border-border/40 p-1 flex items-center justify-center flex-shrink-0 overflow-hidden">
                       <img
@@ -2015,27 +2346,55 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
                       <p className="text-xs font-black text-muted-foreground uppercase tracking-wide flex items-center justify-between">
                         <span>Szczegóły</span>
                         <span className="text-[10px] text-primary sm:hidden font-extrabold">
-                          {isMobileStickerDetailsExpanded ? "zwiń ▲" : "rozwiń opcje ▼"}
+                          {isMobileStickerDetailsExpanded
+                            ? "zwiń ▲"
+                            : "rozwiń opcje ▼"}
                         </span>
                       </p>
                       <div className="text-xs font-bold text-foreground mt-0.5 space-y-0.5">
-                        <p>Szerokość: {String(getDisplayedWidthCm(selectedSticker)).replace('.', ',')} cm</p>
-                        <p>Wysokość: {selectedSticker.heightCm.toFixed(1).replace('.', ',')} cm</p>
-                        <p>Linia cięcia: {
-                          selectedSticker.cutLineType === "none" ? "Brak" :
-                            selectedSticker.cutLineType === "contour" ? "Kontur" :
-                              selectedSticker.cutLineType === "contour_inside" ? "Kontur wew." :
-                                selectedSticker.cutLineType === "rounded" ? "Prostokąt" :
-                                  selectedSticker.cutLineType === "circle" ? "Koło" :
-                                    selectedSticker.cutLineType === "rounded_inside" ? "Prostokąt wew." :
-                                      selectedSticker.cutLineType === "circle_inside" ? "Koło wew." : selectedSticker.cutLineType
-                        }</p>
+                        <p>
+                          Szerokość:{" "}
+                          {String(getDisplayedWidthCm(selectedSticker)).replace(
+                            ".",
+                            ",",
+                          )}{" "}
+                          cm
+                        </p>
+                        <p>
+                          Wysokość:{" "}
+                          {selectedSticker.heightCm
+                            .toFixed(1)
+                            .replace(".", ",")}{" "}
+                          cm
+                        </p>
+                        <p>
+                          Linia cięcia:{" "}
+                          {selectedSticker.cutLineType === "none"
+                            ? "Brak"
+                            : selectedSticker.cutLineType === "contour"
+                              ? "Kontur"
+                              : selectedSticker.cutLineType === "contour_inside"
+                                ? "Kontur wew."
+                                : selectedSticker.cutLineType === "rounded"
+                                  ? "Prostokąt"
+                                  : selectedSticker.cutLineType === "circle"
+                                    ? "Koło"
+                                    : selectedSticker.cutLineType ===
+                                      "rounded_inside"
+                                      ? "Prostokąt wew."
+                                      : selectedSticker.cutLineType ===
+                                        "circle_inside"
+                                        ? "Koło wew."
+                                        : selectedSticker.cutLineType}
+                        </p>
                       </div>
                     </div>
                   </div>
 
                   {/* Collapsible content container for mobile */}
-                  <div className={`space-y-6 ${isMobileStickerDetailsExpanded ? "block animate-in slide-in-from-top-2 duration-200" : "hidden sm:block"}`}>
+                  <div
+                    className={`space-y-6 ${isMobileStickerDetailsExpanded ? "block animate-in slide-in-from-top-2 duration-200" : "hidden sm:block"}`}
+                  >
                     {/* Standardized Actions Button Grid */}
                     <div className="flex flex-col gap-1.5 w-full">
                       <div className="flex flex-wrap sm:flex-nowrap items-center gap-1.5 w-full">
@@ -2064,8 +2423,14 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
                           className={`flex-1 inline-flex items-center justify-center gap-1 px-2 py-1.5 text-[11px] font-bold bg-muted hover:bg-muted/80 dark:bg-white/10 dark:hover:bg-white/20 text-foreground border border-border/40 rounded-xl transition-all active:scale-95 cursor-pointer ${isFillingSheet ? "opacity-70 pointer-events-none" : ""}`}
                           title="Wypełnij arkusz"
                         >
-                          {isFillingSheet ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <LayoutGrid className="w-3.5 h-3.5" />}
-                          <span>{isFillingSheet ? "Wypełnianie..." : "Wypełnij"}</span>
+                          {isFillingSheet ? (
+                            <Loader2 className="w-3.5 h-3.5 animate-spin" />
+                          ) : (
+                            <LayoutGrid className="w-3.5 h-3.5" />
+                          )}
+                          <span>
+                            {isFillingSheet ? "Wypełnianie..." : "Wypełnij"}
+                          </span>
                         </button>
                       </div>
                       <div className="flex flex-wrap sm:flex-nowrap items-center gap-1.5 w-full">
@@ -2094,9 +2459,12 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
                       <div className="bg-red-50 border border-red-200 text-red-500 dark:bg-red-950/30 dark:border-red-900/30 dark:text-red-400 text-xs font-bold p-3 rounded-2xl flex items-start gap-2 mt-2">
                         <AlertTriangle className="w-4 h-4 mt-0.5 flex-shrink-0" />
                         <div>
-                          <p className="font-extrabold text-[12px]">Uwaga: niska jakość pliku!</p>
+                          <p className="font-extrabold text-[12px]">
+                            Uwaga: niska jakość pliku!
+                          </p>
                           <p className="text-[10px] leading-relaxed mt-0.5 font-semibold text-red-500/80 dark:text-red-400/80">
-                            Ta naklejka może być rozmazana w druku. Zalecamy dodanie pliku o lepszej jakości.
+                            Ta naklejka może być rozmazana w druku. Zalecamy
+                            dodanie pliku o lepszej jakości.
                           </p>
                         </div>
                       </div>
@@ -2105,13 +2473,17 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
                     {/* Resize control */}
                     <div className="space-y-2">
                       <div className="flex justify-between items-center text-sm font-bold">
-                        <span className="text-foreground">Szerokość naklejki (cm)</span>
+                        <span className="text-foreground">
+                          Szerokość naklejki (cm)
+                        </span>
                         <div className="flex items-center gap-1 text-primary font-black">
                           <input
                             type="text"
                             value={widthInputValue}
                             onChange={(e) => setWidthInputValue(e.target.value)}
-                            onBlur={() => handleManualWidthCommit(widthInputValue)}
+                            onBlur={() =>
+                              handleManualWidthCommit(widthInputValue)
+                            }
                             onFocus={(e) => e.currentTarget.select()}
                             onKeyDown={(e) => {
                               if (e.key === "Enter") {
@@ -2130,19 +2502,26 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
                         max={19}
                         step={0.1}
                         value={getDisplayedWidthCm(selectedSticker)}
-                        onChange={(e) => handleWidthChange(Number(e.target.value))}
+                        onChange={(e) =>
+                          handleWidthChange(Number(e.target.value))
+                        }
                         className="w-full h-2 bg-foreground/10 dark:bg-muted-foreground/40 rounded-lg appearance-none cursor-pointer accent-primary focus:outline-none"
                       />
                       <p className="text-[10px] text-muted-foreground font-semibold">
-                        Wysokość jest wyliczana automatycznie proporcjonalnie do grafiki (maksymalnie 19 cm).
+                        Wysokość jest wyliczana automatycznie proporcjonalnie do
+                        grafiki (maksymalnie 19 cm).
                       </p>
                     </div>
 
                     {/* Rotation control */}
                     <div className="space-y-2">
                       <div className="flex justify-between text-sm font-bold">
-                        <span className="text-foreground">Obrót naklejki (stopnie)</span>
-                        <span className="text-primary font-black">{selectedSticker.rotation || 0}°</span>
+                        <span className="text-foreground">
+                          Obrót naklejki (stopnie)
+                        </span>
+                        <span className="text-primary font-black">
+                          {selectedSticker.rotation || 0}°
+                        </span>
                       </div>
                       <input
                         type="range"
@@ -2150,7 +2529,9 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
                         max={360}
                         step={1}
                         value={selectedSticker.rotation || 0}
-                        onChange={(e) => handleRotationChange(Number(e.target.value))}
+                        onChange={(e) =>
+                          handleRotationChange(Number(e.target.value))
+                        }
                         className="w-full h-2 bg-foreground/10 dark:bg-muted-foreground/40 rounded-lg appearance-none cursor-pointer accent-primary focus:outline-none"
                       />
                       <div className="relative w-full h-8 mt-2">
@@ -2179,21 +2560,33 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
 
                     {/* Cut line options */}
                     <div id="desktop-cutline-options" className="space-y-3">
-                      <span className="text-sm font-bold text-foreground block">Rodzaj linii cięcia (naklejki)</span>
+                      <span className="text-sm font-bold text-foreground block">
+                        Rodzaj linii cięcia (naklejki)
+                      </span>
                       <div className="grid grid-cols-3 gap-2">
                         {[
                           { type: "none", label: "Brak", icon: Ban },
                           { type: "contour", label: "Kontur", icon: Sparkles },
                           { type: "rounded", label: "Prostokąt", icon: Square },
                           { type: "circle", label: "Koło", icon: Circle },
-                          { type: "rounded_inside", label: "Prostokąt wew.", icon: Square },
-                          { type: "circle_inside", label: "Koło wew.", icon: Circle },
+                          {
+                            type: "rounded_inside",
+                            label: "Prostokąt wew.",
+                            icon: Square,
+                          },
+                          {
+                            type: "circle_inside",
+                            label: "Koło wew.",
+                            icon: Circle,
+                          },
                         ].map((opt) => {
                           const Icon = opt.icon;
                           return (
                             <button
                               key={opt.type}
-                              onClick={() => handleCutLineChange(opt.type as any)}
+                              onClick={() =>
+                                handleCutLineChange(opt.type as any)
+                              }
                               disabled={isCalculatingContour !== null}
                               className={`py-3 px-1 text-[10px] sm:text-xs font-bold rounded-xl border text-center transition-all flex flex-col items-center justify-center gap-1.5 active:scale-95 whitespace-nowrap cursor-pointer ${selectedSticker.cutLineType === opt.type
                                 ? "bg-primary text-primary-foreground border-primary shadow-sm"
@@ -2220,7 +2613,8 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
                 </div>
               ) : (
                 <div className="hidden sm:block liquid-glass border border-border/40 rounded-3xl p-6 shadow-sm text-center py-8 text-muted-foreground font-semibold">
-                  Kliknij na naklejkę na arkuszu, aby włączyć jej dopasowanie, zmienić rozmiar lub rodzaj cięcia.
+                  Kliknij na naklejkę na arkuszu, aby włączyć jej dopasowanie,
+                  zmienić rozmiar lub rodzaj cięcia.
                 </div>
               )}
 
@@ -2245,20 +2639,27 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
                   >
                     <div className="flex items-center justify-between w-full mb-2">
                       <div className="flex items-center gap-2">
-                        <Layers className={`w-4 h-4 ${deliveryForm === "sheet" ? "text-primary" : "text-muted-foreground"}`} />
-                        <span className="font-extrabold text-xs text-foreground">Pozostawione na arkuszu</span>
+                        <Layers
+                          className={`w-4 h-4 ${deliveryForm === "sheet" ? "text-primary" : "text-muted-foreground"}`}
+                        />
+                        <span className="font-extrabold text-xs text-foreground">
+                          Pozostawione na arkuszu
+                        </span>
                       </div>
-                      <div className={`flex-shrink-0 w-4.5 h-4.5 rounded-full border flex items-center justify-center transition-all ${deliveryForm === "sheet"
-                        ? "border-primary bg-primary/10"
-                        : "border-slate-300 dark:border-white/20 bg-background"
-                        }`}>
+                      <div
+                        className={`flex-shrink-0 w-4.5 h-4.5 rounded-full border flex items-center justify-center transition-all ${deliveryForm === "sheet"
+                          ? "border-primary bg-primary/10"
+                          : "border-slate-300 dark:border-white/20 bg-background"
+                          }`}
+                      >
                         {deliveryForm === "sheet" && (
                           <div className="w-2.5 h-2.5 rounded-full bg-primary" />
                         )}
                       </div>
                     </div>
                     <p className="text-[12px] leading-relaxed font-medium">
-                      Naklejki otrzymasz na arkuszu A4. Wygodne do przechowywania i odklejania (kiss-cut).
+                      Naklejki otrzymasz na arkuszu A4. Wygodne do
+                      przechowywania i odklejania (kiss-cut).
                     </p>
                   </button>
 
@@ -2272,27 +2673,31 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
                   >
                     <div className="flex items-center justify-between w-full mb-2">
                       <div className="flex items-center gap-2">
-                        <Scissors className={`w-4 h-4 ${deliveryForm === "individual" ? "text-primary" : "text-muted-foreground"}`} />
-                        <span className="font-extrabold text-xs text-foreground">Pojedyncze sztuki</span>
+                        <Scissors
+                          className={`w-4 h-4 ${deliveryForm === "individual" ? "text-primary" : "text-muted-foreground"}`}
+                        />
+                        <span className="font-extrabold text-xs text-foreground">
+                          Pojedyncze sztuki
+                        </span>
                       </div>
-                      <div className={`flex-shrink-0 w-4.5 h-4.5 rounded-full border flex items-center justify-center transition-all ${deliveryForm === "individual"
-                        ? "border-primary bg-primary/10"
-                        : "border-slate-300 dark:border-white/20 bg-background"
-                        }`}>
+                      <div
+                        className={`flex-shrink-0 w-4.5 h-4.5 rounded-full border flex items-center justify-center transition-all ${deliveryForm === "individual"
+                          ? "border-primary bg-primary/10"
+                          : "border-slate-300 dark:border-white/20 bg-background"
+                          }`}
+                      >
                         {deliveryForm === "individual" && (
                           <div className="w-2.5 h-2.5 rounded-full bg-primary" />
                         )}
                       </div>
                     </div>
                     <p className="text-[12px] leading-relaxed font-medium">
-                      Każda naklejka zostanie docięta osobno do jej kształtu i dostarczona luzem (die-cut).
+                      Każda naklejka zostanie docięta osobno do jej kształtu i
+                      dostarczona luzem (die-cut).
                     </p>
                   </button>
                 </div>
               </motion.div>
-
-
-
             </div>
 
             {/* Right Column: Visualizer Sheet */}
@@ -2310,29 +2715,40 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
                 <div className="absolute inset-0 z-[50] bg-primary/20 backdrop-blur-md flex flex-col items-center justify-center border-4 border-dashed border-primary rounded-3xl animate-in fade-in duration-200 m-2 pointer-events-none">
                   <div className="bg-background/90 p-8 rounded-2xl shadow-xl flex flex-col items-center gap-3 text-center max-w-xs">
                     <UploadCloud className="w-12 h-12 text-primary animate-bounce" />
-                    <h3 className="text-lg font-extrabold text-foreground">Upuść plik tutaj!</h3>
-                    <p className="text-xs text-muted-foreground font-semibold">Dodaj naklejkę bezpośrednio na arkusz</p>
+                    <h3 className="text-lg font-extrabold text-foreground">
+                      Upuść plik tutaj!
+                    </h3>
+                    <p className="text-xs text-muted-foreground font-semibold">
+                      Dodaj naklejkę bezpośrednio na arkusz
+                    </p>
                   </div>
                 </div>
               )}
 
               <div className="flex flex-col sm:flex-row items-center justify-between w-full mb-3 gap-3 border-b border-border/40 pb-2">
                 <p className="text-xs font-black uppercase text-muted-foreground tracking-wider text-center sm:text-left">
-                  Twój Zestaw Naklejek  <br />(Podgląd ułożenia)
+                  Twój Zestaw Naklejek <br />
+                  (Podgląd ułożenia)
                 </p>
 
                 <div className="flex bg-[#004749]/5 dark:bg-[#002224] p-1 rounded-2xl border border-[#004749]/10 dark:border-white/10 relative shadow-[inset_0_1.5px_3px_rgba(0,44,46,0.06)] gap-1">
                   <button
                     type="button"
                     onClick={() => setVisualizerMode("2d")}
-                    className={`relative px-4 py-2 text-xs font-black rounded-xl transition-all flex items-center gap-1.5 cursor-pointer ${visualizerMode === "2d" ? "text-[#004749] dark:text-white" : "text-muted-foreground/80 hover:text-foreground"
+                    className={`relative px-4 py-2 text-xs font-black rounded-xl transition-all flex items-center gap-1.5 cursor-pointer ${visualizerMode === "2d"
+                      ? "text-[#004749] dark:text-white"
+                      : "text-muted-foreground/80 hover:text-foreground"
                       }`}
                   >
                     {visualizerMode === "2d" && (
                       <motion.div
                         layoutId="activeVisualizerMode"
                         className="absolute inset-0 bg-white dark:bg-[#004749] rounded-xl shadow-[0_3px_10px_rgba(0,71,73,0.12),_0_1px_3px_rgba(0,71,73,0.04)] dark:shadow-[0_4px_12px_rgba(0,0,0,0.3)] border border-[#004749]/5 dark:border-white/10"
-                        transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                        transition={{
+                          type: "spring",
+                          stiffness: 380,
+                          damping: 30,
+                        }}
                       />
                     )}
                     <Edit3 className="w-3.5 h-3.5 relative z-10" />
@@ -2341,14 +2757,20 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
                   <button
                     type="button"
                     onClick={() => setVisualizerMode("3d")}
-                    className={`relative px-4 py-2 text-xs font-black rounded-xl transition-all flex items-center gap-1.5 cursor-pointer ${visualizerMode === "3d" ? "text-[#004749] dark:text-white" : "text-muted-foreground/80 hover:text-foreground"
+                    className={`relative px-4 py-2 text-xs font-black rounded-xl transition-all flex items-center gap-1.5 cursor-pointer ${visualizerMode === "3d"
+                      ? "text-[#004749] dark:text-white"
+                      : "text-muted-foreground/80 hover:text-foreground"
                       }`}
                   >
                     {visualizerMode === "3d" && (
                       <motion.div
                         layoutId="activeVisualizerMode"
                         className="absolute inset-0 bg-white dark:bg-[#004749] rounded-xl shadow-[0_3px_10px_rgba(0,71,73,0.12),_0_1px_3px_rgba(0,71,73,0.04)] dark:shadow-[0_4px_12px_rgba(0,0,0,0.3)] border border-[#004749]/5 dark:border-white/10"
-                        transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                        transition={{
+                          type: "spring",
+                          stiffness: 380,
+                          damping: 30,
+                        }}
                       />
                     )}
                     <Eye className="w-3.5 h-3.5 relative z-10" />
@@ -2377,7 +2799,10 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
                     isFillingSheet={isFillingSheet}
                   />
                 ) : (
-                  <A4Visualizer3D stickers={stickers} deliveryForm={deliveryForm} />
+                  <A4Visualizer3D
+                    stickers={stickers}
+                    deliveryForm={deliveryForm}
+                  />
                 )}
 
                 {stickers.length === 0 && (
@@ -2394,24 +2819,31 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
                     />
                     <div className="flex flex-col items-center justify-center bg-background/95 backdrop-blur-sm border-2 border-primary/30 py-8 px-10 rounded-[2rem] shadow-xl animate-bounce">
                       <ImagePlus className="w-10 h-10 text-primary mb-3" />
-                      <span className="text-base font-black text-foreground">Dodaj naklejkę</span>
-                      <span className="text-xs font-semibold text-muted-foreground mt-1">Wgraj zdjęcie z galerii</span>
+                      <span className="text-base font-black text-foreground">
+                        Dodaj naklejkę
+                      </span>
+                      <span className="text-xs font-semibold text-muted-foreground mt-1">
+                        Wgraj zdjęcie z galerii
+                      </span>
                     </div>
                   </label>
                 )}
               </div>
 
-
-
               <p className="text-[11px] text-muted-foreground bg-muted/20 border border-border/40 p-3 rounded-2xl font-bold mt-2 sm:mt-4 text-center max-w-md mx-auto">
-                Uwaga: znaczne zmniejszenie naklejki może sprawić, że tekst i małe elementy mogą stać się nieczytelne.
+                Uwaga: znaczne zmniejszenie naklejki może sprawić, że tekst i
+                małe elementy mogą stać się nieczytelne.
               </p>
 
               {stickers.length > 0 && (
                 <div className="flex justify-center mt-1.5 mb-0">
                   <button
                     onClick={() => {
-                      if (window.confirm("Czy na pewno chcesz usunąć wszystkie naklejki z arkusza?")) {
+                      if (
+                        window.confirm(
+                          "Czy na pewno chcesz usunąć wszystkie naklejki z arkusza?",
+                        )
+                      ) {
                         setStickers([]);
                         setSelectedStickerId(null);
                       }
@@ -2424,24 +2856,41 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
                 </div>
               )}
             </div>
-
           </div>
 
-
-
           {/* Bottom Summary Bar */}
-          <div ref={summaryRef} className="relative z-40 liquid-glass border border-border/40 shadow-[0_8px_30px_rgba(0,0,0,0.04)] py-3 sm:py-4 px-4 sm:px-8 rounded-2xl mt-2 sm:mt-4 mb-32 sm:mb-0">
+          <div
+            ref={summaryRef}
+            className="relative z-40 liquid-glass border border-border/40 shadow-[0_8px_30px_rgba(0,0,0,0.04)] py-3 sm:py-4 px-4 sm:px-8 rounded-2xl mt-2 sm:mt-4 mb-32 sm:mb-0"
+          >
             <div className="flex flex-col md:flex-row items-center justify-between gap-4">
               {/* Left: Summary Info */}
               <div className="flex flex-col sm:flex-row items-center gap-4 text-center sm:text-left">
                 <div>
-                  <p className="text-xs font-black uppercase text-muted-foreground tracking-wider">Podsumowanie</p>
+                  <p className="text-xs font-black uppercase text-muted-foreground tracking-wider">
+                    Podsumowanie
+                  </p>
                   <h4 className="text-2xl font-black text-foreground">
-                    {(49.0 * sheetQuantity).toFixed(2).replace('.', ',')} zł <span className="text-xs font-semibold text-muted-foreground">({sheetQuantity} szt.)</span>
+                    {(49.0 * sheetQuantity).toFixed(2).replace(".", ",")} zł{" "}
+                    <span className="text-xs font-semibold text-muted-foreground">
+                      ({sheetQuantity} szt.)
+                    </span>
                   </h4>
                   {stickers.length > 0 && (
                     <p className="text-[10px] font-bold text-muted-foreground sm:hidden mt-0.5 animate-in fade-in duration-200">
-                      {stickers.length} {deliveryForm === "individual" ? getIndividualStickersLabel(stickers.length) : getStickersNoun(stickers.length)} · <span className="text-primary">{deliveryForm === "individual" ? "Pojedyncze sztuki" : "Pozostawione na arkuszu"}</span> (Tylko {(49.00 / stickers.length).toFixed(2).replace('.', ',')} zł za 1 naklejkę!)
+                      {stickers.length}{" "}
+                      {deliveryForm === "individual"
+                        ? getIndividualStickersLabel(stickers.length)
+                        : getStickersNoun(stickers.length)}{" "}
+                      ·{" "}
+                      <span className="text-primary">
+                        {deliveryForm === "individual"
+                          ? "Pojedyncze sztuki"
+                          : "Pozostawione na arkuszu"}
+                      </span>{" "}
+                      (Tylko{" "}
+                      {(49.0 / stickers.length).toFixed(2).replace(".", ",")} zł
+                      za 1 naklejkę!)
                     </p>
                   )}
                   {stickers.some((s) => s.cutLineType === "none") && (
@@ -2454,15 +2903,21 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
                   <p>
                     {deliveryForm === "individual"
                       ? `${stickers.length} ${getIndividualStickersLabel(stickers.length)}`
-                      : `${stickers.length} ${getStickersNoun(stickers.length)} na arkuszu`
-                    }
+                      : `${stickers.length} ${getStickersNoun(stickers.length)} na arkuszu`}
                   </p>
                   <p className="mt-0.5">
-                    Forma: <span className="font-extrabold text-foreground">{deliveryForm === "individual" ? "Pojedyncze sztuki" : "Pozostawione na arkuszu"}</span>
+                    Forma:{" "}
+                    <span className="font-extrabold text-foreground">
+                      {deliveryForm === "individual"
+                        ? "Pojedyncze sztuki"
+                        : "Pozostawione na arkuszu"}
+                    </span>
                   </p>
                   {stickers.length > 0 && (
                     <p className="mt-0.5">
-                      Tylko {(49.00 / stickers.length).toFixed(2).replace('.', ',')} zł za 1 naklejkę!
+                      Tylko{" "}
+                      {(49.0 / stickers.length).toFixed(2).replace(".", ",")} zł
+                      za 1 naklejkę!
                     </p>
                   )}
                 </div>
@@ -2473,16 +2928,22 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
                 {/* Quantity Selector & Shipping Info */}
                 <div className="flex flex-col sm:flex-row items-center gap-3 w-full sm:w-auto justify-center">
                   <div className="flex items-center gap-3 bg-muted/50 border border-border/30 px-3 py-1.5 rounded-2xl">
-                    <span className="text-xs font-bold text-muted-foreground">Zestawy:</span>
+                    <span className="text-xs font-bold text-muted-foreground">
+                      Zestawy:
+                    </span>
                     <button
                       type="button"
-                      onClick={() => setSheetQuantity(Math.max(1, sheetQuantity - 1))}
+                      onClick={() =>
+                        setSheetQuantity(Math.max(1, sheetQuantity - 1))
+                      }
                       disabled={sheetQuantity <= 1}
                       className="w-8 h-8 rounded-xl bg-background hover:bg-muted border border-border flex items-center justify-center font-bold active:scale-95 transition-transform disabled:opacity-30 disabled:pointer-events-none cursor-pointer"
                     >
                       <Minus className="w-3.5 h-3.5 text-foreground" />
                     </button>
-                    <span className="text-sm font-black w-6 text-center text-foreground">{sheetQuantity}</span>
+                    <span className="text-sm font-black w-6 text-center text-foreground">
+                      {sheetQuantity}
+                    </span>
                     <button
                       type="button"
                       onClick={() => setSheetQuantity(sheetQuantity + 1)}
@@ -2509,10 +2970,10 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
                     ) : (
                       <ShoppingCart className="w-4 h-4 mr-2" />
                     )}
-                    {editCartItemId ? "Zaktualizuj w koszyku" : "Dodaj do koszyka"}
+                    {editCartItemId
+                      ? "Zaktualizuj w koszyku"
+                      : "Dodaj do koszyka"}
                   </button>
-
-
                 </div>
               </div>
             </div>
@@ -2533,16 +2994,31 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
                   <div className="w-full liquid-glass border border-border/40 p-2 rounded-[28px] shadow-[0_-8px_30px_rgba(0,0,0,0.08)] dark:shadow-[0_-8px_30px_rgba(0,0,0,0.3)]">
                     <div className="grid grid-cols-2 gap-2">
                       <label className="w-full flex flex-col items-center justify-center gap-1 py-2 px-1 rounded-3xl bg-primary hover:bg-primary/90 border border-primary/20 transition-all active:scale-[0.98] cursor-pointer shadow-sm">
-                        <input type="file" accept="image/*" className="hidden" onChange={(e) => { const file = e.target.files?.[0]; if (file) handleMobileFileUpload(file); e.target.value = ""; }} />
+                        <input
+                          type="file"
+                          accept="image/*"
+                          className="hidden"
+                          onChange={(e) => {
+                            const file = e.target.files?.[0];
+                            if (file) handleMobileFileUpload(file);
+                            e.target.value = "";
+                          }}
+                        />
                         <ImagePlus className="w-5 h-5 text-white" />
-                        <span className="text-[10px] font-extrabold text-white leading-tight">Dodaj z grafiki/zdjęcia</span>
+                        <span className="text-[10px] font-extrabold text-white leading-tight">
+                          Dodaj z grafiki/zdjęcia
+                        </span>
                       </label>
                       <button
                         onClick={() => setShowPasteModal(true)}
                         className="w-full flex flex-col items-center justify-center gap-1 py-2 px-1 rounded-3xl bg-primary/10 hover:bg-primary border border-primary text-primary hover:text-primary-foreground transition-all active:scale-[0.98] cursor-pointer shadow-sm group"
                       >
                         <SmilePlus className="w-5 h-5 text-primary group-hover:text-primary-foreground" />
-                        <span className="text-[10px] font-extrabold text-primary group-hover:text-primary-foreground text-center leading-tight">Z klawiatury<br />(Naklejki i Emoji)</span>
+                        <span className="text-[10px] font-extrabold text-primary group-hover:text-primary-foreground text-center leading-tight">
+                          Z klawiatury
+                          <br />
+                          (Naklejki i Emoji)
+                        </span>
                       </button>
                     </div>
                   </div>
@@ -2564,7 +3040,6 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
 
                 <div className="relative px-3 pb-5 pt-2 pointer-events-auto">
                   <div className="w-full liquid-glass border border-border/40 p-3 rounded-[28px] shadow-[0_-8px_30px_rgba(0,0,0,0.08)] dark:shadow-[0_-8px_30px_rgba(0,0,0,0.3)] bg-background flex flex-col gap-3">
-
                     {/* Title & Close Button */}
                     <div className="flex justify-between items-start px-2">
                       <div className="flex flex-col">
@@ -2602,7 +3077,11 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
                           <motion.div
                             layoutId="mobileActiveTabIndicator"
                             className="absolute inset-0 bg-white dark:bg-[#004749] rounded-xl shadow-[0_3px_10px_rgba(0,71,73,0.12),_0_1px_3px_rgba(0,71,73,0.04)] dark:shadow-[0_4px_12px_rgba(0,0,0,0.3)] border border-[#004749]/5 dark:border-white/10"
-                            transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                            transition={{
+                              type: "spring",
+                              stiffness: 380,
+                              damping: 30,
+                            }}
                           />
                         )}
                         <Maximize className="w-4 h-4 mb-0.5 relative z-10" />
@@ -2621,7 +3100,11 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
                           <motion.div
                             layoutId="mobileActiveTabIndicator"
                             className="absolute inset-0 bg-white dark:bg-[#004749] rounded-xl shadow-[0_3px_10px_rgba(0,71,73,0.12),_0_1px_3px_rgba(0,71,73,0.04)] dark:shadow-[0_4px_12px_rgba(0,0,0,0.3)] border border-[#004749]/5 dark:border-white/10"
-                            transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                            transition={{
+                              type: "spring",
+                              stiffness: 380,
+                              damping: 30,
+                            }}
                           />
                         )}
                         <Scissors className="w-4 h-4 mb-0.5 relative z-10" />
@@ -2635,7 +3118,11 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
                           <motion.div
                             layoutId="mobileActiveTabIndicator"
                             className="absolute inset-0 bg-white dark:bg-[#004749] rounded-xl shadow-[0_3px_10px_rgba(0,71,73,0.12),_0_1px_3px_rgba(0,71,73,0.04)] dark:shadow-[0_4px_12px_rgba(0,0,0,0.3)] border border-[#004749]/5 dark:border-white/10"
-                            transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                            transition={{
+                              type: "spring",
+                              stiffness: 380,
+                              damping: 30,
+                            }}
                           />
                         )}
                         <Settings className="w-4 h-4 mb-0.5 relative z-10" />
@@ -2650,10 +3137,21 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
                           <div className="flex justify-between items-center text-sm font-bold px-1">
                             <span className="text-foreground flex items-center gap-2">
                               Szerokość:
-                              <span className="text-primary font-black">{String(getDisplayedWidthCm(selectedSticker)).replace('.', ',')} cm</span>
+                              <span className="text-primary font-black">
+                                {String(
+                                  getDisplayedWidthCm(selectedSticker),
+                                ).replace(".", ",")}{" "}
+                                cm
+                              </span>
                             </span>
                             <span className="text-muted-foreground flex items-center gap-1 text-xs">
-                              Wysokość: <span className="font-semibold">{selectedSticker.heightCm.toFixed(1).replace('.', ',')} cm</span>
+                              Wysokość:{" "}
+                              <span className="font-semibold">
+                                {selectedSticker.heightCm
+                                  .toFixed(1)
+                                  .replace(".", ",")}{" "}
+                                cm
+                              </span>
                             </span>
                           </div>
                           <input
@@ -2662,7 +3160,9 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
                             max={19}
                             step={0.1}
                             value={getDisplayedWidthCm(selectedSticker)}
-                            onChange={(e) => handleWidthChange(Number(e.target.value))}
+                            onChange={(e) =>
+                              handleWidthChange(Number(e.target.value))
+                            }
                             className="w-full h-2.5 bg-foreground/10 dark:bg-muted-foreground/40 rounded-lg appearance-none cursor-pointer accent-primary focus:outline-none"
                           />
                         </div>
@@ -2672,25 +3172,49 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
                         <div className="grid grid-cols-3 gap-2 animate-in fade-in duration-200">
                           {[
                             { type: "none", label: "Brak", icon: Ban },
-                            { type: "contour", label: "Kontur", icon: Sparkles },
-                            { type: "rounded", label: "Prostokąt", icon: Square },
+                            {
+                              type: "contour",
+                              label: "Kontur",
+                              icon: Sparkles,
+                            },
+                            {
+                              type: "rounded",
+                              label: "Prostokąt",
+                              icon: Square,
+                            },
                             { type: "circle", label: "Koło", icon: Circle },
-                            { type: "rounded_inside", label: "Prost. wew.", icon: Square },
-                            { type: "circle_inside", label: "Koło wew.", icon: Circle },
+                            {
+                              type: "rounded_inside",
+                              label: "Prost. wew.",
+                              icon: Square,
+                            },
+                            {
+                              type: "circle_inside",
+                              label: "Koło wew.",
+                              icon: Circle,
+                            },
                           ].map((opt) => {
                             const Icon = opt.icon;
                             return (
                               <button
                                 key={opt.type}
-                                onClick={() => handleCutLineChange(opt.type as any)}
+                                onClick={() =>
+                                  handleCutLineChange(opt.type as any)
+                                }
                                 disabled={isCalculatingContour !== null}
                                 className={`py-2 px-1 text-[10px] font-bold rounded-xl border text-center transition-all flex flex-col items-center justify-center gap-1.5 active:scale-95 ${selectedSticker.cutLineType === opt.type
                                   ? "bg-primary text-primary-foreground border-primary shadow-sm"
                                   : "bg-background text-muted-foreground border-border"
                                   } ${isCalculatingContour === opt.type ? "opacity-70 pointer-events-none" : ""}`}
                               >
-                                {isCalculatingContour === opt.type ? <Loader2 className="w-4 h-4 animate-spin" /> : <Icon className="w-4 h-4" />}
-                                <span className="leading-tight">{opt.label}</span>
+                                {isCalculatingContour === opt.type ? (
+                                  <Loader2 className="w-4 h-4 animate-spin" />
+                                ) : (
+                                  <Icon className="w-4 h-4" />
+                                )}
+                                <span className="leading-tight">
+                                  {opt.label}
+                                </span>
                               </button>
                             );
                           })}
@@ -2699,19 +3223,44 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
 
                       {mobileActiveTab === "options" && (
                         <div className="flex flex-wrap items-center gap-2 w-full animate-in fade-in duration-200">
-                          <button type="button" onClick={handleOpenEdit} className="flex-1 inline-flex flex-col items-center justify-center gap-1.5 px-1 py-2.5 text-[10px] font-bold bg-muted hover:bg-muted/80 text-foreground border border-border/40 rounded-2xl transition-all active:scale-95">
+                          <button
+                            type="button"
+                            onClick={handleOpenEdit}
+                            className="flex-1 inline-flex flex-col items-center justify-center gap-1.5 px-1 py-2.5 text-[10px] font-bold bg-muted hover:bg-muted/80 text-foreground border border-border/40 rounded-2xl transition-all active:scale-95"
+                          >
                             <Crop className="w-4.5 h-4.5" />
                             <span>Kadruj/Tło</span>
                           </button>
-                          <button type="button" onClick={handleDuplicateSticker} className="flex-1 inline-flex flex-col items-center justify-center gap-1.5 px-1 py-2.5 text-[10px] font-bold bg-muted hover:bg-muted/80 text-foreground border border-border/40 rounded-2xl transition-all active:scale-95">
+                          <button
+                            type="button"
+                            onClick={handleDuplicateSticker}
+                            className="flex-1 inline-flex flex-col items-center justify-center gap-1.5 px-1 py-2.5 text-[10px] font-bold bg-muted hover:bg-muted/80 text-foreground border border-border/40 rounded-2xl transition-all active:scale-95"
+                          >
                             <Copy className="w-4.5 h-4.5" />
                             <span>Zduplikuj</span>
                           </button>
-                          <button type="button" onClick={handleFillSheet} disabled={isFillingSheet} className={`flex-1 inline-flex flex-col items-center justify-center gap-1.5 px-1 py-2.5 text-[10px] font-bold bg-muted hover:bg-muted/80 text-foreground border border-border/40 rounded-2xl transition-all active:scale-95 ${isFillingSheet ? "opacity-70 pointer-events-none" : ""}`}>
-                            {isFillingSheet ? <Loader2 className="w-4.5 h-4.5 animate-spin" /> : <LayoutGrid className="w-4.5 h-4.5" />}
-                            <span>{isFillingSheet ? "Wypełnianie..." : "Wypełnij Arkusz"}</span>
+                          <button
+                            type="button"
+                            onClick={handleFillSheet}
+                            disabled={isFillingSheet}
+                            className={`flex-1 inline-flex flex-col items-center justify-center gap-1.5 px-1 py-2.5 text-[10px] font-bold bg-muted hover:bg-muted/80 text-foreground border border-border/40 rounded-2xl transition-all active:scale-95 ${isFillingSheet ? "opacity-70 pointer-events-none" : ""}`}
+                          >
+                            {isFillingSheet ? (
+                              <Loader2 className="w-4.5 h-4.5 animate-spin" />
+                            ) : (
+                              <LayoutGrid className="w-4.5 h-4.5" />
+                            )}
+                            <span>
+                              {isFillingSheet
+                                ? "Wypełnianie..."
+                                : "Wypełnij Arkusz"}
+                            </span>
                           </button>
-                          <button type="button" onClick={handleDeleteSticker} className="flex-1 inline-flex flex-col items-center justify-center gap-1.5 px-1 py-2.5 text-[10px] font-bold bg-destructive/10 text-destructive border border-destructive/20 rounded-2xl transition-all active:scale-95">
+                          <button
+                            type="button"
+                            onClick={handleDeleteSticker}
+                            className="flex-1 inline-flex flex-col items-center justify-center gap-1.5 px-1 py-2.5 text-[10px] font-bold bg-destructive/10 text-destructive border border-destructive/20 rounded-2xl transition-all active:scale-95"
+                          >
                             <Trash2 className="w-4.5 h-4.5" />
                             <span>Usuń</span>
                           </button>
@@ -2723,7 +3272,6 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
               </motion.div>
             )}
           </AnimatePresence>
-
         </main>
       </div>
 
@@ -2852,7 +3400,10 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
                 </Link>
                 <Link href="/koszyk">
                   <div className="relative flex items-center p-1.5 rounded-xl hover:bg-muted/50 transition-colors cursor-pointer group">
-                    <motion.div whileHover={{ scale: 1.05, rotate: 1 }} whileTap={{ scale: 0.95 }}>
+                    <motion.div
+                      whileHover={{ scale: 1.05, rotate: 1 }}
+                      whileTap={{ scale: 0.95 }}
+                    >
                       <ShoppingCart className="w-5 h-5 text-foreground group-hover:text-primary transition-colors" />
                     </motion.div>
                     {cartItems.length > 0 && (
@@ -2904,7 +3455,10 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
           <StickerEditModal
             imageSrc={activeEditSticker.imageUrl}
             onSave={(url) => {
-              if (activeEditSticker.id === "new-upload" || activeEditSticker.id === "new-ai") {
+              if (
+                activeEditSticker.id === "new-upload" ||
+                activeEditSticker.id === "new-ai"
+              ) {
                 processAndAddSticker(url);
                 setShowEditModal(false);
                 setActiveEditSticker(null);
@@ -2945,7 +3499,8 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
                   Dodaj naklejkę lub emoji z klawiatury
                 </h2>
                 <p className="text-sm font-semibold text-muted-foreground pt-1 pb-2">
-                  Zmień swoje emoji i systemowe naklejki z telefonu w prawdziwe! Postępuj zgodnie z instrukcją:
+                  Zmień swoje emoji i systemowe naklejki z telefonu w prawdziwe!
+                  Postępuj zgodnie z instrukcją:
                 </p>
 
                 <div className="flex items-start justify-between gap-1 mt-2 mb-4 p-3 bg-muted/40 rounded-2xl text-[10px] sm:text-[11px] font-bold text-muted-foreground border border-border/50">
@@ -2953,32 +3508,41 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
                     <div className="w-10 h-10 rounded-full bg-background border border-border shadow-sm text-primary flex items-center justify-center">
                       <MousePointerClick className="w-5 h-5" />
                     </div>
-                    <span className="leading-tight">1. Dotknij pola poniżej</span>
+                    <span className="leading-tight">
+                      1. Dotknij pola poniżej
+                    </span>
                   </div>
                   <ArrowRight className="w-4 h-4 text-muted-foreground/30 flex-shrink-0 mt-3" />
                   <div className="flex flex-col items-center text-center gap-2 flex-1">
                     <div className="w-10 h-10 rounded-full bg-background border border-border shadow-sm text-primary flex items-center justify-center">
                       <Keyboard className="w-5 h-5" />
                     </div>
-                    <span className="leading-tight">2. Wybierz naklejki lub emoji z klawiatury</span>
+                    <span className="leading-tight">
+                      2. Wybierz naklejki lub emoji z klawiatury
+                    </span>
                   </div>
                   <ArrowRight className="w-4 h-4 text-muted-foreground/30 flex-shrink-0 mt-3" />
                   <div className="flex flex-col items-center text-center gap-2 flex-1">
                     <div className="w-10 h-10 rounded-full bg-background border border-border shadow-sm text-primary flex items-center justify-center">
                       <SmilePlus className="w-5 h-5" />
                     </div>
-                    <span className="leading-tight">3. Stuknij w wybraną, by dodać na arkusz!</span>
+                    <span className="leading-tight">
+                      3. Stuknij w wybraną, by dodać na arkusz!
+                    </span>
                   </div>
                 </div>
               </div>
 
               <div className="flex flex-col items-center justify-center w-full mt-4">
                 <div className="relative w-full h-40 border-2 border-dashed border-primary/40 rounded-2xl bg-muted/20 focus-within:border-primary focus-within:bg-primary/5 transition-all overflow-hidden">
-
                   {/* Placeholder Layer */}
-                  <div className={`pointer-events-none absolute inset-0 flex flex-col items-center justify-center font-bold transition-opacity duration-300 ${isPasteFocused ? "opacity-20 text-muted-foreground/50" : "opacity-60 text-muted-foreground"}`}>
+                  <div
+                    className={`pointer-events-none absolute inset-0 flex flex-col items-center justify-center font-bold transition-opacity duration-300 ${isPasteFocused ? "opacity-20 text-muted-foreground/50" : "opacity-60 text-muted-foreground"}`}
+                  >
                     <ClipboardPaste className="w-8 h-8 mb-2" />
-                    <span className="text-center px-4">Dotknij tutaj, a następnie stuknij ponownie, by Wkleić</span>
+                    <span className="text-center px-4">
+                      Dotknij tutaj, a następnie stuknij ponownie, by Wkleić
+                    </span>
                   </div>
 
                   {/* Input Layer */}
@@ -2990,20 +3554,29 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
                     className="absolute inset-0 w-full h-full outline-none text-transparent caret-primary text-center pt-[92px] text-base"
                     onInput={(e) => {
                       const target = e.currentTarget as HTMLDivElement;
-                      const img = target.querySelector('img');
+                      const img = target.querySelector("img");
                       if (img && img.src) {
                         fetch(img.src)
-                          .then(res => res.blob())
-                          .then(blob => {
-                            const file = new File([blob], "sticker.png", { type: blob.type });
+                          .then((res) => res.blob())
+                          .then((blob) => {
+                            const file = new File([blob], "sticker.png", {
+                              type: blob.type,
+                            });
                             setShowPasteModal(false);
                             handleMobileFileUpload(file, true);
                           });
                       } else {
                         const inputEvent = e.nativeEvent as InputEvent;
                         let fileFound = false;
-                        if (inputEvent.dataTransfer && inputEvent.dataTransfer.files.length > 0) {
-                          for (let i = 0; i < inputEvent.dataTransfer.files.length; i++) {
+                        if (
+                          inputEvent.dataTransfer &&
+                          inputEvent.dataTransfer.files.length > 0
+                        ) {
+                          for (
+                            let i = 0;
+                            i < inputEvent.dataTransfer.files.length;
+                            i++
+                          ) {
                             const file = inputEvent.dataTransfer.files[i];
                             if (file.type.startsWith("image/")) {
                               setShowPasteModal(false);
@@ -3029,7 +3602,9 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
                               ctx.fillText(text, 256, 290);
                               canvas.toBlob((blob) => {
                                 if (blob) {
-                                  const file = new File([blob], "emoji.png", { type: "image/png" });
+                                  const file = new File([blob], "emoji.png", {
+                                    type: "image/png",
+                                  });
                                   setShowPasteModal(false);
                                   handleMobileFileUpload(file, true);
                                 }
@@ -3038,7 +3613,9 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
                           }
                         }
                       }
-                      setTimeout(() => { target.innerHTML = ''; }, 10);
+                      setTimeout(() => {
+                        target.innerHTML = "";
+                      }, 10);
                     }}
                     onPaste={(e) => {
                       let fileFound = false;
@@ -3066,6 +3643,67 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
                   className="mt-6 w-full py-3 rounded-2xl bg-muted text-foreground font-bold hover:bg-muted/80 transition-all cursor-pointer z-20 relative"
                 >
                   Anuluj
+                </button>
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
+
+      {/* Single Sticker Warning Modal */}
+      <AnimatePresence>
+        {showSingleStickerWarning && (
+          <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4">
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setShowSingleStickerWarning(false)}
+              className="absolute inset-0 bg-background/80 backdrop-blur-md"
+            />
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 20 }}
+              className="relative w-full max-w-md liquid-glass border border-border/50 rounded-[32px] p-6 sm:p-8 shadow-2xl flex flex-col items-center text-center"
+            >
+              <div className="w-16 h-16 rounded-full bg-amber-500/10 flex items-center justify-center mb-6">
+                <StickerIcon className="w-8 h-8 text-amber-500" />
+              </div>
+              <h2 className="text-2xl font-black text-foreground mb-3">
+                Tylko jedna naklejka?
+              </h2>
+              <p className="text-muted-foreground font-medium mb-8 leading-relaxed">
+                Cena dotyczy całego arkusza A4, a nie pojedynczej naklejki. Zatem, czy chcesz wypełnić pustą przestrzeń tą naklejką, aby maksymalnie wykorzystać opłacony arkusz?
+              </p>
+
+              <div className="w-full space-y-3">
+                <button
+                  onClick={() => {
+                    setShowSingleStickerWarning(false);
+                    handleFillSheet(stickers[0]);
+                  }}
+                  className="w-full py-4 rounded-2xl bg-primary text-primary-foreground font-black flex items-center justify-center gap-2 hover:bg-primary/90 transition-all shadow-lg shadow-primary/25 cursor-pointer"
+                >
+                  <LayoutGrid className="w-5 h-5" />
+                  Wypełnij arkusz tą naklejką
+                </button>
+                <button
+                  onClick={() => {
+                    setShowSingleStickerWarning(false);
+                    executeAddToCart();
+                  }}
+                  className="w-full py-4 rounded-2xl border border-primary text-primary bg-primary/10 hover:bg-primary hover:text-primary-foreground font-bold flex items-center justify-center gap-2 transition-all cursor-pointer"
+                >
+                  <ShoppingCart className="w-5 h-5" />
+                  Dodaj do Koszyka
+                </button>
+                <button
+                  onClick={() => setShowSingleStickerWarning(false)}
+                  className="w-full py-3 rounded-2xl text-muted-foreground font-semibold flex items-center justify-center gap-2 hover:bg-muted/30 transition-all mt-2 cursor-pointer"
+                >
+                  <ArrowLeft className="w-5 h-5" />
+                  Powrót
                 </button>
               </div>
             </motion.div>

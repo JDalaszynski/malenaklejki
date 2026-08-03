@@ -154,3 +154,41 @@ Persony "Lokalne Usługi i Rzemiosło" oraz "Działy HR i Eventy Firmowe" ze str
   * `naklejki zabezpieczające paczki`
   * `naklejki unboxing`
   * `etykiety na kosmetyki naturalne`
+
+---
+
+## 9. Nowa pula fraz (dopisano 2026-07-30) - kreator/tworzenie, etykiety, moto, laptop
+
+Pula podrzucona przez właściciela (uporządkowana wg wolumenu, nie wg wartości - wartość oceniona niżej). Zdeduplikowana i zmapowana na intencje. **Legenda:** ✅ = celuj wprost, 🟡 = łap semantycznie / sekcja w istniejącej treści, ⛔ = NIE celuj (zakaz brandowy "projektowanie"), ⚠️ = ostrożnie (prawda o produkcie / HOLD).
+
+### 9a. Kreator / tworzenie naklejek (intencja NARZĘDZIOWA/AKCYJNA - najwyższa wartość)
+Największa luka: strona główna **jest** kreatorem, ale nie używa tych fraz w treści SEO (`kreator naklejek` = 0 wystąpień na `/`, `program do robienia naklejek`/`tworzenie naklejek`/`naklejki online kreator` = 0 w całym repo). Intencja "szukam narzędzia/programu do zrobienia naklejek" jest odrębna od generycznej głowy "naklejki na zamówienie".
+* ✅ `kreator naklejek` / `naklejki online kreator` - **na stronę główną** (SeoContentSection: H2/H3 + copy). To najlepsza rankingowo strona na tę frazę (jest tym narzędziem). NIE budować osobnego `/kreator-naklejek` (kanibalizacja `/` - patrz `landing-agent/plan.md`).
+* ✅ `program do robienia naklejek` / `program do tworzenia naklejek` / `tworzenie naklejek` / `robienie naklejek` - pozycjonuj nas jako **narzędzie/program online do robienia naklejek** (kreator arkusza: wgraj obraz -> auto tło -> cięcie po obrysie). Strona główna + wpis blogowy informacyjny.
+* ✅ `jak stworzyć własne naklejki` / `jak zrobić swoje własne naklejki` / `naklejki do zrobienia samemu` / `stwórz własne naklejki` - **wpis blogowy** (informacyjny "jak", metody DIY vs druk online) + istniejący anchor akcyjny na `/`. Różnicuj od istniejącego `jak zrobić własne naklejki w telefonie` (tamten = mobile/apki; nowy = szeroki, desktop + metody + kreator online).
+* ⛔ `projektowanie naklejek online` / `zaprojektuj własną naklejkę` - **zakaz brandowy** (kreator = arkusz, nie "projektowanie" grafiki; spójne z notą GSC "zaprojektuj naklejkę"). NIE w `title`/`H1`/URL. Łap wyłącznie semantycznie przez "stwórz / zrób / zamów".
+* ⚠️ **HOLD generator AI** (od 2026-07-27): treść klastra kreatora **nie może** filarować na naszym generatorze AI ani na "generowaniu grafiki AI". Filaruj na: wgranie gotowego obrazu, **automatyczne usuwanie tła**, cięcie po obrysie, układanie arkusza 3D. (Uwaga: `rules.md` §3 każe polecać generatory AI w pierwszej kolejności - to koliduje z HOLD-em; do czasu zdjęcia HOLD-u przez właściciela obowiązuje HOLD.)
+
+### 9b. Etykiety na słoiki / świeczki (luka LEKSYKALNA "etykiety" ≠ "naklejki")
+Mamy treści "naklejki na słoiki" (przyprawy, logo/opakowania), ale searcher pisze **"etykiety"** i **"napisy"** - inne pole leksykalne, realnie duży wolumen (przetwory, weki, manufaktury). `napisy na słoiki` = 0 wystąpień; `etykiety na słoiki` nigdy w nagłówku.
+* ✅ `etykiety na słoiki` / `etykiety na słoik` / `naklejki na słoiki personalizowane` / `napisy na słoiki` - **wpis blogowy B2C** (przetwory/weki/dżemy, intencja domowa, sezonowość lato-jesień) + landing komercyjny `/etykiety-na-sloiki` (patrz `landing-agent/`).
+* ✅ `własne etykiety` - generyczna głowa "etykiety" -> landing `/etykiety-na-sloiki` (H2/semantyka), NIE osobny wpis.
+* ✅ `etykiety na świeczki` - persona **producenci świec** (dotąd 0 treści) -> sekcja w landingu `/etykiety-na-sloiki` (+ ewentualny przyszły spoke, gdy urośnie popyt).
+* ⚠️ Prawda o produkcie: folia winylowa **NIE do zmywarki** - przy etykietach na słoiki/butelki zaznacz to w FAQ (searcher myje słoiki). Odporność: woda/UV/zadrapania (mycie ręczne OK).
+
+### 9c. Moto - podnisza MOTOCYKL (odrębna od auto/tuning)
+Istniejący wpis `naklejki-motoryzacyjne-i-tuningowe` jest o **samochodach/tuningu** (`na motory` = 0, `motocykl` tylko 5x). Motocyklowa intencja (bak, kask, owiewki) jest osobna i wysoko w wolumenie.
+* ✅ `naklejki na motory` / `naklejki motocyklowe` / `naklejki motocykl` - **nowy spoke** "naklejki na motory i motocyklowe"; różnicuj od auto/tuning, krzyżuj linki, podepnij pod filar `jak-zamowic...`. Cross-link: rower, kask.
+
+### 9d. Laptop - głowa "naklejki na laptop" (poza "małe")
+Wpis `male-naklejki-na-laptopa` łapie "małe naklejki na laptopa", ale szersza głowa `naklejki na laptop` / `naklejki na laptopa własny projekt` jest większa i komercyjna.
+* 🟡 `naklejki na laptop` / `naklejki na laptopa własny projekt` - **rozbuduj istniejący wpis** (H2 na głowę bez "małe" + sekcja "własny projekt"). Landing `/naklejki-na-laptopa` = kandydat Tier 3 **dopiero po potwierdzeniu wolumenu w GSC** (patrz `landing-agent/plan.md`).
+
+### 9e. Custom / własny wzór - warianty semantyczne (pokryte)
+Pokryte przez filar `naklejki-na-zamowienie...` + stronę główną; dodaj tylko jako warianty semantyczne (bez nowych stron):
+* 🟡 `naklejki custom` (zapożyczenie z ang., realnie wpisywane) / `naklejki według własnego projektu` / `naklejki własny wzór` / `naklejki własne` / `własne naklejki` / `naklejki na zamówienie online` - wplataj w istniejące treści, gdzie naturalne.
+
+### 9f. Pozostałe (niższy priorytet / semantyka)
+* 🟡 `fajne wzory na naklejki` - intencja inspiracyjna/przeglądowa (top-funnel). Opcjonalny wpis "pomysły/inspiracje na naklejki" jako **hub linkowania wewnętrznego** do wszystkich spoke'ów niszowych + kreator. Niższy priorytet (niska konwersja, ale dobre pod topical authority i linkowanie).
+* ⚠️ `naklejki łatwo usuwalne` - **uwaga na prawdę o produkcie:** mamy **mocny klej**, atut to "czyste odklejanie **bez śladów**", NIE klej repozycjonowalny/wielokrotny. NIE budować strony obiecującej "łatwo usuwalne / wielokrotnego użytku". Obsłuż jako FAQ/semantyka: "czy naklejki zostawiają ślady?" -> NIE (folia schodzi czysto). Atut "0 śladów" jest już na `/`.
+* 🟡 `sticker` - ang. generyk, znikoma polska intencja zakupowa; nie celuj osobno, funkcjonuje jako semantyka (marka/glosariusz `/slownik-naklejek`).

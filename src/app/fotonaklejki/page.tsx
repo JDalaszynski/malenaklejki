@@ -190,9 +190,19 @@ const SPECS: { label: string; value: string }[] = [
   { label: "Odporność", value: "Woda, promieniowanie UV, zadrapania" },
   { label: "Druk", value: "300 DPI, pełny kolor" },
   { label: "Cięcie", value: "Po obrysie (die-cut), koło lub prostokąt" },
-  { label: "Rozmiar", value: "Jedna duża fotonaklejka do 19 cm lub kilkanaście małych na arkuszu A4" },
-  { label: "Wykończenie", value: "Na arkuszu A4 lub pojedyncze docięte sztuki" },
-  { label: "Cena", value: "49,00 zł brutto za arkusz A4, bez minimalnego nakładu" },
+  {
+    label: "Rozmiar",
+    value:
+      "Jedna duża fotonaklejka do 19 cm lub kilkanaście małych na arkuszu A4",
+  },
+  {
+    label: "Wykończenie",
+    value: "Na arkuszu A4 lub pojedyncze docięte sztuki",
+  },
+  {
+    label: "Cena",
+    value: "49,00 zł brutto za arkusz A4, bez minimalnego nakładu",
+  },
   { label: "Produkcja", value: "2-3 dni robocze" },
   { label: "Wysyłka", value: "Odbiór w paczkomacie, dostawa 19,99 zł" },
   { label: "Płatność", value: "BLIK, Przelewy24, przelew" },
@@ -228,11 +238,47 @@ export default function FotonaklejkiPage() {
           description:
             "Fotonaklejki drukowane z własnego zdjęcia na trwałej folii winylowej: automatyczne usuwanie tła, cięcie po obrysie, druk 300 DPI. Stała cena 49,00 zł brutto za arkusz A4, bez minimalnego nakładu, z odbiorem w paczkomacie.",
           image: "https://www.malenaklejki.pl/images/logo/favicon.png",
-          brand: { "@id": "https://www.malenaklejki.pl/#organization" },
+          brand: { "@type": "Brand", name: "MałeNaklejki" },
           category: "Fotonaklejki - naklejki ze zdjęcia",
           material: "Folia winylowa",
           offers: {
             "@type": "Offer",
+            validFrom: "2024-01-01T00:00:00Z",
+            hasMerchantReturnPolicy: {
+              "@type": "MerchantReturnPolicy",
+              applicableCountry: "PL",
+              returnPolicyCategory:
+                "https://schema.org/MerchantReturnNotPermitted",
+              description:
+                "Zwrot produktów personalizowanych nie jest możliwy z uwagi na ich unikalny charakter.",
+            },
+            shippingDetails: {
+              "@type": "OfferShippingDetails",
+              shippingRate: {
+                "@type": "MonetaryAmount",
+                value: "15.00",
+                currency: "PLN",
+              },
+              shippingDestination: {
+                "@type": "DefinedRegion",
+                addressCountry: "PL",
+              },
+              deliveryTime: {
+                "@type": "ShippingDeliveryTime",
+                handlingTime: {
+                  "@type": "QuantitativeValue",
+                  minValue: 1,
+                  maxValue: 3,
+                  unitCode: "d",
+                },
+                transitTime: {
+                  "@type": "QuantitativeValue",
+                  minValue: 1,
+                  maxValue: 2,
+                  unitCode: "d",
+                },
+              },
+            },
             price: "49.00",
             priceCurrency: "PLN",
             availability: "https://schema.org/InStock",
@@ -271,16 +317,24 @@ export default function FotonaklejkiPage() {
 
       <main className="flex-1 pt-6 pb-16 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto w-full">
         {/* Breadcrumbs */}
-        <nav aria-label="Breadcrumb" className="text-xs sm:text-sm font-bold text-muted-foreground/80 mb-4">
+        <nav
+          aria-label="Breadcrumb"
+          className="text-xs sm:text-sm font-bold text-muted-foreground/80 mb-4"
+        >
           <ol className="inline-flex flex-wrap items-center gap-1.5 sm:gap-2">
             <li className="inline-flex items-center">
               <Link href="/" className="hover:text-primary transition-colors">
                 Kreator Zestawu Naklejek
               </Link>
             </li>
-            <li className="flex items-center gap-1.5 sm:gap-2" aria-current="page">
+            <li
+              className="flex items-center gap-1.5 sm:gap-2"
+              aria-current="page"
+            >
               <span className="text-muted-foreground/50">/</span>
-              <span className="text-foreground font-extrabold">Fotonaklejki</span>
+              <span className="text-foreground font-extrabold">
+                Fotonaklejki
+              </span>
             </li>
           </ol>
         </nav>
@@ -297,11 +351,15 @@ export default function FotonaklejkiPage() {
           </h1>
 
           <p className="text-sm sm:text-lg text-foreground/90 font-semibold leading-relaxed">
-            Zrób <strong>fotonaklejki z własnego zdjęcia</strong> w polskiej drukarni: wgraj plik prosto z telefonu,
-            a kreator <strong>automatycznie usunie tło</strong> i wytnie naklejkę <strong>po obrysie</strong> na
-            trwałej <strong>folii winylowej odpornej na wodę i UV</strong>. Druk <strong>300 DPI</strong>, stała cena{" "}
-            <strong>49,00 zł brutto za arkusz A4</strong>, już od 1 sztuki, produkcja w <strong>2-3 dni robocze</strong>{" "}
-            i odbiór w paczkomacie. Chcesz poznać cały proces?{" "}
+            Zrób <strong>fotonaklejki z własnego zdjęcia</strong> w polskiej
+            drukarni: wgraj plik prosto z telefonu, a kreator{" "}
+            <strong>automatycznie usunie tło</strong> i wytnie naklejkę{" "}
+            <strong>po obrysie</strong> na trwałej{" "}
+            <strong>folii winylowej odpornej na wodę i UV</strong>. Druk{" "}
+            <strong>300 DPI</strong>, stała cena{" "}
+            <strong>49,00 zł brutto za arkusz A4</strong>, już od 1 sztuki,
+            produkcja w <strong>2-3 dni robocze</strong> i odbiór w paczkomacie.
+            Chcesz poznać cały proces?{" "}
             <Link
               href="/blog/naklejka-ze-zdjecia-jak-przeniesc-wspomnienia-na-naklejke"
               className="text-primary font-bold underline underline-offset-4 hover:text-primary/80 transition-colors"
@@ -332,7 +390,8 @@ export default function FotonaklejkiPage() {
               <ShieldCheck className="w-3.5 h-3.5" /> W 100% polska produkcja
             </span>
             <span className="text-xs font-bold text-muted-foreground/60 flex items-center gap-1.5">
-              <Clock className="w-3.5 h-3.5" /> Ostatnia aktualizacja: 27 lipca 2026
+              <Clock className="w-3.5 h-3.5" /> Ostatnia aktualizacja: 27 lipca
+              2026
             </span>
           </div>
         </section>
@@ -349,7 +408,9 @@ export default function FotonaklejkiPage() {
               key={stat.label}
               className="flex flex-col items-center text-center gap-1 bg-white dark:bg-[#003a3b] rounded-2xl border border-border/40 py-5 px-2 shadow-sm"
             >
-              <span className="text-lg sm:text-2xl font-black text-primary">{stat.value}</span>
+              <span className="text-lg sm:text-2xl font-black text-primary">
+                {stat.value}
+              </span>
               <span className="text-[10px] sm:text-[11px] font-bold text-muted-foreground uppercase tracking-wider">
                 {stat.label}
               </span>
@@ -365,24 +426,37 @@ export default function FotonaklejkiPage() {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 my-6">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <div className="relative w-full aspect-square rounded-2xl shadow-sm border border-border/40 overflow-hidden flex items-start justify-center bg-black/5 dark:bg-[#003a3b]/40">
-  <img src="/landing/fotonaklejki/fotonaklejki-ze-zdjec-arkusz-a4.png" alt="Fotonaklejki ze zdjęć na arkuszu A4 - portret psa, kadr z wakacji i rysunek dziecka wycięte po obrysie, obok telefon ze zdjęciem w galerii." className="w-full h-auto [clip-path:inset(0_0_12%_0)]" />
-</div>
+              <img
+                src="/landing/fotonaklejki/fotonaklejki-ze-zdjec-arkusz-a4.png"
+                alt="Fotonaklejki ze zdjęć na arkuszu A4 - portret psa, kadr z wakacji i rysunek dziecka wycięte po obrysie, obok telefon ze zdjęciem w galerii."
+                className="w-full h-auto [clip-path:inset(0_0_12%_0)]"
+              />
+            </div>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <div className="relative w-full aspect-square rounded-2xl shadow-sm border border-border/40 overflow-hidden flex items-start justify-center bg-black/5 dark:bg-[#003a3b]/40">
-  <img src="/landing/fotonaklejki/jak-powstaje-fotonaklejka-ze-zdjecia.png" alt="Jak powstaje fotonaklejka ze zdjęcia - zdjęcie z telefonu zamienione w naklejkę wyciętą po obrysie na folii winylowej." className="w-full h-auto [clip-path:inset(0_0_12%_0)]" />
-</div>
+              <img
+                src="/landing/fotonaklejki/jak-powstaje-fotonaklejka-ze-zdjecia.png"
+                alt="Jak powstaje fotonaklejka ze zdjęcia - zdjęcie z telefonu zamienione w naklejkę wyciętą po obrysie na folii winylowej."
+                className="w-full h-auto [clip-path:inset(0_0_12%_0)]"
+              />
+            </div>
           </div>
           <p className="text-sm sm:text-base text-muted-foreground font-medium leading-relaxed">
-            Fotonaklejki to naklejki drukowane z Twojego własnego zdjęcia lub grafiki na trwałej folii winylowej.
-            Zamiast papierowej odbitki, która się nie klei i szybko niszczy, dostajesz samoprzylepną, wodoodporną
-            naklejkę wyciętą dokładnie po obrysie motywu ze zdjęcia. To trwały nośnik wspomnień, który naklejasz na
-            laptop, bidon, kask czy pudełko z prezentem.
+            Fotonaklejki to naklejki drukowane z Twojego własnego zdjęcia lub
+            grafiki na trwałej folii winylowej. Zamiast papierowej odbitki,
+            która się nie klei i szybko niszczy, dostajesz samoprzylepną,
+            wodoodporną naklejkę wyciętą dokładnie po obrysie motywu ze zdjęcia.
+            To trwały nośnik wspomnień, który naklejasz na laptop, bidon, kask
+            czy pudełko z prezentem.
           </p>
           <p className="text-sm sm:text-base text-muted-foreground font-medium leading-relaxed">
-            Cała trudna część dzieje się automatycznie w kreatorze. Wgrywasz zwykłe zdjęcie z telefonu, a system sam
-            wykrywa główny motyw i usuwa tło - Twój pies znika z podłogi i zostaje na przezroczystym tle, gotowy do
-            cięcia po obrysie. Nie potrzebujesz Photoshopa ani umiejętności graficznych. Każdą fotonaklejkę drukujemy
-            w rozdzielczości 300 DPI na folii winylowej odpornej na wodę, promieniowanie UV i zadrapania.
+            Cała trudna część dzieje się automatycznie w kreatorze. Wgrywasz
+            zwykłe zdjęcie z telefonu, a system sam wykrywa główny motyw i usuwa
+            tło - Twój pies znika z podłogi i zostaje na przezroczystym tle,
+            gotowy do cięcia po obrysie. Nie potrzebujesz Photoshopa ani
+            umiejętności graficznych. Każdą fotonaklejkę drukujemy w
+            rozdzielczości 300 DPI na folii winylowej odpornej na wodę,
+            promieniowanie UV i zadrapania.
           </p>
         </section>
 
@@ -392,8 +466,8 @@ export default function FotonaklejkiPage() {
             Specyfikacja fotonaklejek ze zdjęcia
           </h2>
           <p className="text-sm sm:text-base text-muted-foreground font-medium leading-relaxed">
-            Parametry druku, materiału i warunki zamówienia w jednym miejscu - zanim wgrasz zdjęcie i złożysz
-            zamówienie na fotonaklejki.
+            Parametry druku, materiału i warunki zamówienia w jednym miejscu -
+            zanim wgrasz zdjęcie i złożysz zamówienie na fotonaklejki.
           </p>
           <div className="overflow-x-auto rounded-2xl border border-border/60 shadow-sm">
             <table className="w-full border-collapse bg-white dark:bg-[#003a3b]/40 text-sm">
@@ -401,7 +475,9 @@ export default function FotonaklejkiPage() {
                 {SPECS.map((row, i) => (
                   <tr
                     key={row.label}
-                    className={i % 2 === 1 ? "bg-[#edf6f2]/30 dark:bg-[#002c2e]/20" : ""}
+                    className={
+                      i % 2 === 1 ? "bg-[#edf6f2]/30 dark:bg-[#002c2e]/20" : ""
+                    }
                   >
                     <th
                       scope="row"
@@ -425,8 +501,9 @@ export default function FotonaklejkiPage() {
             Co przeniesiesz na fotonaklejkę
           </h2>
           <p className="text-sm sm:text-base text-muted-foreground font-medium leading-relaxed">
-            Na fotonaklejkę trafi praktycznie wszystko, co masz w galerii telefonu - od portretu pupila po zdjęcia
-            z wakacji. Oto najczęstsze pomysły klientów na naklejki z własnego zdjęcia.
+            Na fotonaklejkę trafi praktycznie wszystko, co masz w galerii
+            telefonu - od portretu pupila po zdjęcia z wakacji. Oto najczęstsze
+            pomysły klientów na naklejki z własnego zdjęcia.
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {USE_CASES.map((uc) => {
@@ -440,9 +517,13 @@ export default function FotonaklejkiPage() {
                     <span className="shrink-0 w-10 h-10 rounded-xl bg-primary/10 text-primary flex items-center justify-center">
                       <Icon className="w-5 h-5" />
                     </span>
-                    <h3 className="text-base font-black text-foreground leading-snug">{uc.title}</h3>
+                    <h3 className="text-base font-black text-foreground leading-snug">
+                      {uc.title}
+                    </h3>
                   </div>
-                  <p className="text-sm text-muted-foreground font-medium leading-relaxed">{uc.text}</p>
+                  <p className="text-sm text-muted-foreground font-medium leading-relaxed">
+                    {uc.text}
+                  </p>
                   {uc.href && (
                     <Link
                       href={uc.href}
@@ -464,20 +545,36 @@ export default function FotonaklejkiPage() {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <div className="relative w-full aspect-square rounded-2xl shadow-sm border border-border/40 overflow-hidden flex items-start justify-center bg-black/5 dark:bg-[#003a3b]/40">
-  <img src="/landing/fotonaklejki/fotonaklejka-z-pupila-die-cut-na-laptopie.png" alt="Fotonaklejka z pupila - portret śpiącego jamnika wycięty po obrysie (die-cut) naklejony na pokrywie laptopa." className="w-full h-auto [clip-path:inset(0_0_12%_0)]" />
-</div>
+                <img
+                  src="/landing/fotonaklejki/fotonaklejka-z-pupila-die-cut-na-laptopie.png"
+                  alt="Fotonaklejka z pupila - portret śpiącego jamnika wycięty po obrysie (die-cut) naklejony na pokrywie laptopa."
+                  className="w-full h-auto [clip-path:inset(0_0_12%_0)]"
+                />
+              </div>
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <div className="relative w-full aspect-square rounded-2xl shadow-sm border border-border/40 overflow-hidden flex items-start justify-center bg-black/5 dark:bg-[#003a3b]/40">
-  <img src="/landing/fotonaklejki/fotonaklejka-ze-zdjecia-z-wakacji-na-termosie.png" alt="Wodoodporna fotonaklejka ze zdjęcia z wakacji na stalowym termosie - kadr z pary w górach, odporny na warunki na szlaku." className="w-full h-auto [clip-path:inset(0_0_12%_0)]" />
-</div>
+                <img
+                  src="/landing/fotonaklejki/fotonaklejka-ze-zdjecia-z-wakacji-na-termosie.png"
+                  alt="Wodoodporna fotonaklejka ze zdjęcia z wakacji na stalowym termosie - kadr z pary w górach, odporny na warunki na szlaku."
+                  className="w-full h-auto [clip-path:inset(0_0_12%_0)]"
+                />
+              </div>
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <div className="relative w-full aspect-square rounded-2xl shadow-sm border border-border/40 overflow-hidden flex items-start justify-center bg-black/5 dark:bg-[#003a3b]/40">
-  <img src="/landing/fotonaklejki/fotonaklejka-ze-zdjeciem-jako-prezent.png" alt="Fotonaklejka ze zdjęciem jako prezent - okrągła naklejka ze wspólnym zdjęciem na pudełku z różową kokardą." className="w-full h-auto [clip-path:inset(0_0_12%_0)]" />
-</div>
+                <img
+                  src="/landing/fotonaklejki/fotonaklejka-ze-zdjeciem-jako-prezent.png"
+                  alt="Fotonaklejka ze zdjęciem jako prezent - okrągła naklejka ze wspólnym zdjęciem na pudełku z różową kokardą."
+                  className="w-full h-auto [clip-path:inset(0_0_12%_0)]"
+                />
+              </div>
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <div className="relative w-full aspect-square rounded-2xl shadow-sm border border-border/40 overflow-hidden flex items-start justify-center bg-black/5 dark:bg-[#003a3b]/40">
-  <img src="/landing/fotonaklejki/fotonaklejka-ze-zdjeciem-zwierzaka-ze-zoo.png" alt="Fotonaklejka ze zdjęciem zwierzaka - zdjęcie kapibary z zoo zamienione w naklejkę wyciętą po obrysie." className="w-full h-auto [clip-path:inset(0_0_12%_0)]" />
-</div>
+                <img
+                  src="/landing/fotonaklejki/fotonaklejka-ze-zdjeciem-zwierzaka-ze-zoo.png"
+                  alt="Fotonaklejka ze zdjęciem zwierzaka - zdjęcie kapibary z zoo zamienione w naklejkę wyciętą po obrysie."
+                  className="w-full h-auto [clip-path:inset(0_0_12%_0)]"
+                />
+              </div>
             </div>
           </div>
         </section>
@@ -489,8 +586,12 @@ export default function FotonaklejkiPage() {
           </h2>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <div className="relative w-full aspect-square rounded-2xl shadow-sm border border-border/40 overflow-hidden flex items-start justify-center bg-black/5 dark:bg-[#003a3b]/40 my-6">
-  <img src="/landing/fotonaklejki/fotonaklejka-automatyczne-usuwanie-tla.png" alt="Automatyczne usuwanie tła w kreatorze - zdjęcie kota brytyjskiego zamienione w fotonaklejkę wyciętą po obrysie, bez Photoshopa." className="w-full h-auto [clip-path:inset(0_0_12%_0)]" />
-</div>
+            <img
+              src="/landing/fotonaklejki/fotonaklejka-automatyczne-usuwanie-tla.png"
+              alt="Automatyczne usuwanie tła w kreatorze - zdjęcie kota brytyjskiego zamienione w fotonaklejkę wyciętą po obrysie, bez Photoshopa."
+              className="w-full h-auto [clip-path:inset(0_0_12%_0)]"
+            />
+          </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {ADVANTAGES.map((adv) => {
               const Icon = adv.icon;
@@ -503,9 +604,13 @@ export default function FotonaklejkiPage() {
                     <span className="shrink-0 w-10 h-10 rounded-xl bg-primary/10 text-primary flex items-center justify-center">
                       <Icon className="w-5 h-5" />
                     </span>
-                    <h3 className="text-base font-black text-foreground leading-snug">{adv.title}</h3>
+                    <h3 className="text-base font-black text-foreground leading-snug">
+                      {adv.title}
+                    </h3>
                   </div>
-                  <p className="text-sm text-muted-foreground font-medium leading-relaxed">{adv.text}</p>
+                  <p className="text-sm text-muted-foreground font-medium leading-relaxed">
+                    {adv.text}
+                  </p>
                 </div>
               );
             })}
@@ -519,8 +624,12 @@ export default function FotonaklejkiPage() {
           </h2>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <div className="relative w-full aspect-square rounded-2xl shadow-sm border border-border/40 overflow-hidden flex items-start justify-center bg-black/5 dark:bg-[#003a3b]/40 my-6">
-  <img src="/landing/fotonaklejki/fotonaklejka-ze-zdjecia-hobby-w-kreatorze.png" alt="Fotonaklejka ze zdjęcia hobby - zdjęcie zabytkowej lokomotywy z telefonu zamienione w naklejkę die-cut w kreatorze." className="w-full h-auto [clip-path:inset(0_0_12%_0)]" />
-</div>
+            <img
+              src="/landing/fotonaklejki/fotonaklejka-ze-zdjecia-hobby-w-kreatorze.png"
+              alt="Fotonaklejka ze zdjęcia hobby - zdjęcie zabytkowej lokomotywy z telefonu zamienione w naklejkę die-cut w kreatorze."
+              className="w-full h-auto [clip-path:inset(0_0_12%_0)]"
+            />
+          </div>
           <ol className="space-y-4">
             {[
               {
@@ -544,14 +653,19 @@ export default function FotonaklejkiPage() {
                   {i + 1}
                 </span>
                 <div className="space-y-1">
-                  <h3 className="text-base font-black text-foreground">{step.title}</h3>
-                  <p className="text-sm text-muted-foreground font-medium leading-relaxed">{step.text}</p>
+                  <h3 className="text-base font-black text-foreground">
+                    {step.title}
+                  </h3>
+                  <p className="text-sm text-muted-foreground font-medium leading-relaxed">
+                    {step.text}
+                  </p>
                 </div>
               </li>
             ))}
           </ol>
           <p className="text-sm text-muted-foreground font-medium leading-relaxed">
-            Chcesz, żeby fotonaklejka miała kształt sylwetki ze zdjęcia, a nie prostokąta? Wybierz{" "}
+            Chcesz, żeby fotonaklejka miała kształt sylwetki ze zdjęcia, a nie
+            prostokąta? Wybierz{" "}
             <Link
               href="/blog/co-to-jest-die-cut-i-kiss-cut-roznice-w-wyleciach-naklejek-reklamowych"
               className="text-primary font-bold underline underline-offset-4 hover:text-primary/80 transition-colors"
@@ -581,7 +695,9 @@ export default function FotonaklejkiPage() {
                 className="group rounded-2xl border border-border/70 dark:border-white/10 bg-white dark:bg-[#003a3b] open:bg-muted/40 dark:open:bg-white/[0.04] shadow-sm open:shadow-md transition-all duration-300"
               >
                 <summary className="flex items-center justify-between gap-4 px-5 sm:px-6 py-4.5 cursor-pointer select-none list-none [&::-webkit-details-marker]:hidden rounded-2xl">
-                  <h3 className="text-sm sm:text-[15px] font-black text-foreground leading-snug">{faq.q}</h3>
+                  <h3 className="text-sm sm:text-[15px] font-black text-foreground leading-snug">
+                    {faq.q}
+                  </h3>
                   <span
                     aria-hidden
                     className="shrink-0 w-8 h-8 rounded-full bg-primary/10 text-primary flex items-center justify-center transition-transform duration-300 group-open:rotate-45 text-xl font-black leading-none"
@@ -603,16 +719,19 @@ export default function FotonaklejkiPage() {
             Zrób fotonaklejki z własnego zdjęcia
           </h2>
           <p className="text-sm sm:text-base text-muted-foreground font-medium leading-relaxed max-w-2xl mx-auto">
-            Wgraj zdjęcie do kreatora, pozwól mu usunąć tło i wybierz cięcie po obrysie. Fotonaklejki będą gotowe w
-            2-3 dni robocze za stałe 49,00 zł brutto od arkusza A4 - na trwałej folii winylowej odpornej na wodę, UV
-            i zadrapania, bez minimalnego nakładu.
+            Wgraj zdjęcie do kreatora, pozwól mu usunąć tło i wybierz cięcie po
+            obrysie. Fotonaklejki będą gotowe w 2-3 dni robocze za stałe 49,00
+            zł brutto od arkusza A4 - na trwałej folii winylowej odpornej na
+            wodę, UV i zadrapania, bez minimalnego nakładu.
           </p>
           <div className="flex flex-wrap justify-center gap-2 pt-2 text-xs font-bold text-muted-foreground">
             <span className="inline-flex items-center gap-1.5">
-              <Sparkles className="w-3.5 h-3.5 text-primary" /> Automatyczne usuwanie tła
+              <Sparkles className="w-3.5 h-3.5 text-primary" /> Automatyczne
+              usuwanie tła
             </span>
             <span className="inline-flex items-center gap-1.5">
-              <Layers className="w-3.5 h-3.5 text-primary" /> Folia winylowa 300 DPI
+              <Layers className="w-3.5 h-3.5 text-primary" /> Folia winylowa 300
+              DPI
             </span>
             <span className="inline-flex items-center gap-1.5">
               <Clock className="w-3.5 h-3.5 text-primary" /> Produkcja 2-3 dni

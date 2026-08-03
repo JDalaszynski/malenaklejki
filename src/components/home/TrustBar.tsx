@@ -21,7 +21,7 @@ const FACTS = [
   },
   {
     icon: PackageOpen,
-    title: "Od 1 arkusza — bez minimum",
+    title: "Od 1 arkusza - bez minimum",
     sub: "Zero hurtowych nakładów",
   },
 ] as const;

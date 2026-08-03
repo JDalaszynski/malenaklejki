@@ -15,7 +15,7 @@ import { SeoContentSection } from "@/components/home/SeoContentSection";
 import { HOME_FAQS } from "@/components/home/homeFaqData";
 
 export default async function Home() {
-  const featuredPosts = (await getFeaturedPosts(6)).map(post => ({
+  const featuredPosts = (await getFeaturedPosts(6)).map((post) => ({
     slug: post.slug,
     title: post.title,
     description: post.description,
@@ -33,18 +33,55 @@ export default async function Home() {
           "@context": "https://schema.org",
           "@type": "Product",
           name: "Personalizowane naklejki A4 wycinane po obrysie",
-          description: "Wydrukuj swoje własne, personalizowane naklejki na arkuszach A4 w prosty i przyjemny sposób. Wytniemy je idealnie po kształcie Twoich grafik.",
+          description:
+            "Wydrukuj swoje własne, personalizowane naklejki na arkuszach A4 w prosty i przyjemny sposób. Wytniemy je idealnie po kształcie Twoich grafik.",
           image: "https://www.malenaklejki.pl/images/logo/favicon.png",
-          brand: { "@id": "https://www.malenaklejki.pl/#organization" },
+          brand: { "@type": "Brand", name: "MałeNaklejki" },
           offers: {
             "@type": "Offer",
+            validFrom: "2024-01-01T00:00:00Z",
+            hasMerchantReturnPolicy: {
+              "@type": "MerchantReturnPolicy",
+              applicableCountry: "PL",
+              returnPolicyCategory:
+                "https://schema.org/MerchantReturnNotPermitted",
+              description:
+                "Zwrot produktów personalizowanych nie jest możliwy z uwagi na ich unikalny charakter.",
+            },
+            shippingDetails: {
+              "@type": "OfferShippingDetails",
+              shippingRate: {
+                "@type": "MonetaryAmount",
+                value: "15.00",
+                currency: "PLN",
+              },
+              shippingDestination: {
+                "@type": "DefinedRegion",
+                addressCountry: "PL",
+              },
+              deliveryTime: {
+                "@type": "ShippingDeliveryTime",
+                handlingTime: {
+                  "@type": "QuantitativeValue",
+                  minValue: 1,
+                  maxValue: 3,
+                  unitCode: "d",
+                },
+                transitTime: {
+                  "@type": "QuantitativeValue",
+                  minValue: 1,
+                  maxValue: 2,
+                  unitCode: "d",
+                },
+              },
+            },
             url: "https://www.malenaklejki.pl",
             price: "49.00",
             priceCurrency: "PLN",
             availability: "https://schema.org/InStock",
             priceValidUntil: "2027-12-31",
-            seller: { "@id": "https://www.malenaklejki.pl/#organization" }
-          }
+            seller: { "@id": "https://www.malenaklejki.pl/#organization" },
+          },
         }}
       />
       <JsonLd
@@ -66,7 +103,8 @@ export default async function Home() {
           "@context": "https://schema.org",
           "@type": "HowTo",
           name: "Jak zamówić naklejki z własnym nadrukiem online",
-          description: "Stwórz własne naklejki na arkuszu A4 w 3 prostych krokach — od wgrania pliku do odbioru paczki.",
+          description:
+            "Stwórz własne naklejki na arkuszu A4 w 3 prostych krokach — od wgrania pliku do odbioru paczki.",
           totalTime: "PT5M",
           estimatedCost: {
             "@type": "MonetaryAmount",
@@ -79,27 +117,33 @@ export default async function Home() {
               position: 1,
               name: "Dodaj i dostosuj grafiki",
               text: "Wgraj zdjęcia lub grafiki z telefonu albo komputera, lub wygeneruj je z użyciem zewnętrznych narzędzi AI lub naszego wbudowanego generatora. Wybierz rozmiar każdej naklejki oraz jej linię cięcia (kontur, koło lub prostokąt).",
-              image: "https://www.malenaklejki.pl/images/kroki/krok-1-dodaj-dostosuj-naklejki.png",
+              image:
+                "https://www.malenaklejki.pl/images/kroki/krok-1-dodaj-dostosuj-naklejki.png",
             },
             {
               "@type": "HowToStep",
               position: 2,
               name: "Rozmieść na arkuszu A4",
               text: "Układaj i przeciągaj naklejki na podglądzie arkusza. Inteligentny kreator dopilnuje, aby naklejki na siebie nie nachodziły i optymalnie wykorzystały miejsce.",
-              image: "https://www.malenaklejki.pl/images/kroki/krok-2-rozmiesc-na-arkuszu-a4-naklejki.png",
+              image:
+                "https://www.malenaklejki.pl/images/kroki/krok-2-rozmiesc-na-arkuszu-a4-naklejki.png",
             },
             {
               "@type": "HowToStep",
               position: 3,
               name: "Sprawdź w 3D i zamów",
               text: "Obejrzyj realistyczną wizualizację 3D gotowego arkusza, dodaj go do koszyka i sfinalizuj bezpieczne zamówienie za pomocą BLIK lub Przelewy24. Wysyłka w 3 dni robocze.",
-              image: "https://www.malenaklejki.pl/images/kroki/krok-3-sprawdz-3d-i-zamow-naklejki.png",
+              image:
+                "https://www.malenaklejki.pl/images/kroki/krok-3-sprawdz-3d-i-zamow-naklejki.png",
             },
           ],
         }}
       />
       <HomePageClient>
-        <section id="seo-marketing-section" className="max-w-6xl mx-auto w-full px-4 sm:px-6 lg:px-8 space-y-16 sm:space-y-24 pt-10 sm:pt-14 pb-16 sm:pb-20">
+        <section
+          id="seo-marketing-section"
+          className="max-w-6xl mx-auto w-full px-4 sm:px-6 lg:px-8 space-y-16 sm:space-y-24 pt-10 sm:pt-14 pb-16 sm:pb-20"
+        >
           <TrustBar />
           <WhyUsSection />
           <PaymentsBar />

@@ -40,7 +40,7 @@ Są to tematy mocno wizualne, idealne pod format "Before/After" lub treści insp
 
 - [ ] **jak-zamowic-idealne-naklejki-na-zamowienie-z-wlasnym-nadrukiem.md**
     - [ ] TikTok (Karuzela/Photo Mode)
-    - [x] Pinterest
+    - [x] Pinterest (JPG, 6 pinów) + tiktok-info.txt + facebook-info.txt
 
 - [ ] **jak-zrobic-wlasne-naklejki-w-telefonie-proste-aplikacje-i-triki.md**
     - [ ] TikTok (Karuzela/Photo Mode)

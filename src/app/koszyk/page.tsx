@@ -4,11 +4,22 @@ import { useCartStore } from "@/store/cartStore";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import Link from "next/link";
-import { Trash2, Plus, Minus, ArrowLeft, CreditCard, ShoppingBag, Truck } from "lucide-react";
+import {
+  Trash2,
+  Plus,
+  Minus,
+  ArrowLeft,
+  CreditCard,
+  ShoppingBag,
+  Truck,
+} from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { getStickersNoun, getIndividualStickersLabel } from "@/lib/utils/polish";
+import {
+  getStickersNoun,
+  getIndividualStickersLabel,
+} from "@/lib/utils/polish";
 
 export default function CartPage() {
   const { items, removeItem, updateQuantity, getTotalPrice } = useCartStore();
@@ -22,7 +33,9 @@ export default function CartPage() {
   if (!mounted) {
     return (
       <div className="min-h-screen text-foreground flex items-center justify-center">
-        <div className="animate-pulse font-extrabold text-xl text-primary">Ładowanie koszyka...</div>
+        <div className="animate-pulse font-extrabold text-xl text-primary">
+          Ładowanie koszyka...
+        </div>
       </div>
     );
   }
@@ -62,7 +75,9 @@ export default function CartPage() {
             <div className="w-20 h-20 bg-muted/50 rounded-full flex items-center justify-center mb-6">
               <ShoppingBag className="w-10 h-10 text-muted-foreground" />
             </div>
-            <h2 className="text-2xl font-extrabold mb-3 text-foreground">Koszyk jest jeszcze pusty</h2>
+            <h2 className="text-2xl font-extrabold mb-3 text-foreground">
+              Koszyk jest jeszcze pusty
+            </h2>
             <p className="text-muted-foreground mb-8 font-medium">
               Zamów naklejki z własnymi zdjęciami i grafikami!
             </p>
@@ -89,7 +104,10 @@ export default function CartPage() {
                     className="flex flex-col sm:flex-row sm:items-center justify-between gap-6 p-5 bg-card border border-border/70 rounded-2xl shadow-sm hover:shadow-md transition-shadow relative"
                   >
                     {/* Lewa strona: Podgląd i Szczegóły */}
-                    <Link href={`/?edit=${item.id}`} className="flex items-center gap-4 flex-1 hover:opacity-80 transition-opacity">
+                    <Link
+                      href={`/?edit=${item.id}`}
+                      className="flex items-center gap-4 flex-1 hover:opacity-80 transition-opacity"
+                    >
                       <div className="w-20 h-20 sm:w-24 sm:h-24 bg-muted/30 rounded-xl overflow-hidden flex-shrink-0 border border-border/40 p-2 flex items-center justify-center">
                         <img
                           src={item.imageUrl}
@@ -103,28 +121,39 @@ export default function CartPage() {
                           Zestaw Naklejek
                         </h3>
                         <p className="font-semibold text-xs sm:text-sm text-muted-foreground">
-                          Wymiary: {String(item.widthCm).replace('.', ',')} × {item.heightCm.toFixed(1).replace('.', ',')} cm
+                          Wymiary: {String(item.widthCm).replace(".", ",")} ×{" "}
+                          {item.heightCm.toFixed(1).replace(".", ",")} cm
                         </p>
                         <div className="pt-0.5 flex flex-wrap gap-2 items-center">
                           <span className="text-[11px] font-bold text-foreground bg-secondary/15 px-2.5 py-0.5 rounded-full inline-block">
                             {item.deliveryForm === "individual"
                               ? `${item.stickersPerSheet} ${getIndividualStickersLabel(item.stickersPerSheet)}`
-                              : `${item.stickersPerSheet} ${getStickersNoun(item.stickersPerSheet)} na arkuszu`
-                            }
+                              : `${item.stickersPerSheet} ${getStickersNoun(item.stickersPerSheet)} na arkuszu`}
                           </span>
-                          <span className={`text-[11px] font-bold px-2.5 py-0.5 rounded-full inline-block border ${item.deliveryForm === "individual"
-                            ? "bg-blue-500/10 text-blue-600 dark:text-blue-400 border-blue-500/20"
-                            : "bg-[#02af7a]/10 text-[#004749] dark:text-[#a9e4d7] border-[#02af7a]/20"
-                            }`}>
-                            {item.deliveryForm === "individual" ? "Forma: Pojedyncze sztuki" : "Forma: Pozostawione na arkuszu"}
+                          <span
+                            className={`text-[11px] font-bold px-2.5 py-0.5 rounded-full inline-block border ${
+                              item.deliveryForm === "individual"
+                                ? "bg-blue-500/10 text-blue-600 dark:text-blue-400 border-blue-500/20"
+                                : "bg-[#02af7a]/10 text-[#004749] dark:text-[#a9e4d7] border-[#02af7a]/20"
+                            }`}
+                          >
+                            {item.deliveryForm === "individual"
+                              ? "Forma: Pojedyncze sztuki"
+                              : "Forma: Pozostawione na arkuszu"}
                           </span>
                         </div>
                         {item.stickersPerSheet > 0 && (
                           <p className="text-[11px] font-semibold text-muted-foreground mt-1">
-                            Tylko {(item.pricePerSheet / item.stickersPerSheet).toFixed(2).replace('.', ',')} zł za 1 naklejkę!
+                            Tylko{" "}
+                            {(item.pricePerSheet / item.stickersPerSheet)
+                              .toFixed(2)
+                              .replace(".", ",")}{" "}
+                            zł za 1 naklejkę!
                           </p>
                         )}
-                        <p className="text-[10px] font-bold text-primary mt-1 underline">Edytuj arkusz</p>
+                        <p className="text-[10px] font-bold text-primary mt-1 underline">
+                          Edytuj arkusz
+                        </p>
                       </div>
                     </Link>
 
@@ -147,7 +176,9 @@ export default function CartPage() {
                           {item.sheetQuantity}
                         </span>
                         <button
-                          onClick={() => updateQuantity(item.id, item.sheetQuantity + 1)}
+                          onClick={() =>
+                            updateQuantity(item.id, item.sheetQuantity + 1)
+                          }
                           className="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-background transition-colors"
                         >
                           <Plus className="w-4 h-4 text-foreground" />
@@ -157,10 +188,14 @@ export default function CartPage() {
                       {/* Cena za zestaw */}
                       <div className="text-right min-w-[80px]">
                         <p className="font-black text-lg text-primary">
-                          {(item.pricePerSheet * item.sheetQuantity).toFixed(2).replace('.', ',')} zł
+                          {(item.pricePerSheet * item.sheetQuantity)
+                            .toFixed(2)
+                            .replace(".", ",")}{" "}
+                          zł
                         </p>
                         <p className="text-[10px] text-muted-foreground font-semibold">
-                          {item.pricePerSheet.toFixed(2).replace('.', ',')} zł / arkusz
+                          {item.pricePerSheet.toFixed(2).replace(".", ",")} zł /
+                          arkusz
                         </p>
                       </div>
 
@@ -181,12 +216,14 @@ export default function CartPage() {
             {/* Podsumowanie i przejściowe CTA */}
             <div className="space-y-4">
               <div className="bg-card border border-border/70 rounded-2xl p-6 shadow-[0_8px_30px_rgba(0,0,0,0.04)] space-y-6">
-                <h3 className="font-extrabold text-xl text-foreground border-b border-border/40 pb-3">Podsumowanie</h3>
+                <h3 className="font-extrabold text-xl text-foreground border-b border-border/40 pb-3">
+                  Podsumowanie
+                </h3>
 
                 <div className="space-y-3 font-semibold">
                   <div className="flex justify-between text-muted-foreground text-sm">
                     <span>Suma częściowa</span>
-                    <span>{totalPrice.toFixed(2).replace('.', ',')} zł</span>
+                    <span>{totalPrice.toFixed(2).replace(".", ",")} zł</span>
                   </div>
                   <div className="flex justify-between text-muted-foreground text-sm">
                     <span className="flex items-center gap-1.5">
@@ -197,7 +234,9 @@ export default function CartPage() {
                   </div>
                   <div className="flex justify-between text-xl font-black text-primary border-t border-border/40 pt-4">
                     <span>Do zapłaty</span>
-                    <span>{(totalPrice + 19.99).toFixed(2).replace('.', ',')} zł</span>
+                    <span>
+                      {(totalPrice + 19.99).toFixed(2).replace(".", ",")} zł
+                    </span>
                   </div>
                 </div>
 
@@ -227,7 +266,8 @@ export default function CartPage() {
                   Wysyłka w ciągu 2 dni roboczych
                 </div>
                 <p className="text-xs text-muted-foreground font-semibold">
-                  Bezpieczne zakupy w MałeNaklejki. <br /> Gwarancja uśmiechu przy rozpakowywaniu!
+                  Bezpieczne zakupy w MałeNaklejki. <br /> Gwarancja uśmiechu
+                  przy rozpakowywaniu!
                 </p>
               </div>
             </div>

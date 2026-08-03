@@ -63,4 +63,22 @@ Rzeczywiste zapytania z Search Console (wyświetlenia / pozycja) - do walidacji 
 * `/alternatywa-dla-sticker-mule-i-stickerapp` → polska alternatywa dla sticker mule / stickerapp.
 * `/naklejki-foliowe` (zbudowane 2026-07-25) → naklejki foliowe / winylowe / wodoodporne / trwałe (mikro-klaster scalony - NIE budować osobnego `/naklejki-winylowe` ani `/naklejki-wodoodporne`).
 * `/fotonaklejki` (zbudowane 2026-07-27) → fotonaklejki, foto naklejki, naklejki ze zdjęcia, naklejka z własnego zdjęcia (ujęcie komercyjne/produktowe; różnicowane od edukacyjnego spoke'a `naklejka-ze-zdjecia...`).
-* *(planowane)* `/naklejki-die-cut` → die cut naklejki, kiss cut, wykroje po obrysie.
+* `/naklejki-die-cut` (zbudowane 2026-07-29) → die cut naklejki, cięte po obrysie, naklejki w kształcie.
+
+---
+
+## 6. Nowa pula komercyjna (dopisano 2026-07-30) - etykiety, kreator, laptop
+
+### 6a. Etykiety na słoiki/opakowania (luka leksykalna "etykiety" - NOWY landing)
+Searcher pisze **"etykiety"/"napisy"**, nie "naklejki" - mamy spoke'y o "naklejkach na słoiki", ale zero strony na leksyk "etykiety". Intencja komercyjno-segmentowa (przetwory B2C + manufaktury B2B), realny popyt (przetwory sezonowe, świece, kosmetyki). Sygnał GSC: "słoiki z logo" (poz. 14).
+* `etykiety na słoiki` / `etykiety na słoik` / `naklejki na słoiki personalizowane` (główna) → **nowy landing `/etykiety-na-sloiki`**.
+* `napisy na słoiki` / `własne etykiety` (semantyczne, H2/FAQ).
+* `etykiety na świeczki` (persona producenci świec) / `etykiety na kosmetyki naturalne` / `etykiety ze składem` / `etykiety na produkty` / `naklejki na butelki` (sekcje/pod-persony na tym samym landingu).
+> Landing komercyjny; agreguje spoke'y: przyprawy/słoiki, logo/opakowania, nalewki, alkohol. Cross-link `/naklejki-dla-firm` (B2B logo) i `/naklejki-foliowe` (materiał). **Prawda o produkcie:** folia NIE do zmywarki (searcher myje słoiki) - FAQ jasno: mycie ręczne / odporność woda-UV-zadrapania. Różnicowanie od `/naklejki-dla-firm`: tam intencja "firma/logo/faktura", tu leksyk "etykiety/słoiki/przetwory/świece" (także B2C).
+
+### 6b. Kreator / program do naklejek → STRONA GŁÓWNA, nie landing
+`kreator naklejek`, `program do robienia/tworzenia naklejek`, `tworzenie naklejek`, `naklejki online kreator` - intencja narzędziowa. **NIE budować landingu** (`/kreator-naklejek` = kanibalizacja `/`, bo strona główna JEST kreatorem i jest najlepszą rankingowo stroną na tę frazę; zgodne z dyrektywą właściciela "skup ruch na `/`"). Rozwiązanie: **optymalizacja `SeoContentSection.tsx` na `/`** (H2/H3 + copy z tymi frazami). Szczegóły: `blog-agent/keywords.md` §9a.
+* ⛔ `projektowanie naklejek online` / `zaprojektuj własną naklejkę` - zakaz brandowy, NIE budować (spójne z notą GSC "zaprojektuj naklejkę").
+
+### 6c. Laptop - kandydat Tier 3 (pending GSC)
+`naklejki na laptop` / `naklejki na laptopa własny projekt` - komercyjna głowa użytkowa. **Najpierw rozbuduj spoke** `male-naklejki-na-laptopa` na szerszą głowę; landing `/naklejki-na-laptopa` buduj **tylko jeśli** GSC potwierdzi wolumen, a wpis nie zdominuje frazy. Na razie: NIE budować (unikaj thin/near-duplicate z blogiem).

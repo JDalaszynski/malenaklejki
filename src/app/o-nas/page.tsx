@@ -111,13 +111,17 @@ export default function ONasPage() {
         {/* Hero */}
         <div className="text-center max-w-2xl mx-auto space-y-4">
           <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight text-foreground font-heading">
-            O nas — <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-emerald-400">MałeNaklejki</span>
+            O nas —{" "}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-emerald-400">
+              MałeNaklejki
+            </span>
           </h1>
           <p className="text-muted-foreground text-sm sm:text-base font-semibold leading-relaxed">
-            Jesteśmy polskim producentem personalizowanych naklejek z własnym nadrukiem.
-            Wierzymy, że każdy — od rodzica organizującego kuchnię, przez artystę tworzącego merch,
-            po małą firmę brandującą opakowania — zasługuje na profesjonalne naklejki bez hurtowych
-            minimalnych nakładów i skomplikowanych procesów.
+            Jesteśmy polskim producentem personalizowanych naklejek z własnym
+            nadrukiem. Wierzymy, że każdy — od rodzica organizującego kuchnię,
+            przez artystę tworzącego merch, po małą firmę brandującą opakowania
+            — zasługuje na profesjonalne naklejki bez hurtowych minimalnych
+            nakładów i skomplikowanych procesów.
           </p>
         </div>
 
@@ -128,21 +132,25 @@ export default function ONasPage() {
           </h2>
           <div className="space-y-4 text-muted-foreground text-sm sm:text-base font-semibold leading-relaxed">
             <p>
-              MałeNaklejki powstało z prostej frustracji: zamawianie kilku naklejek w tradycyjnej
-              drukarni oznaczało konieczność zamówienia setek lub tysięcy sztuk, długi czas oczekiwania
-              i wysokie koszty przygotowalni. Postanowiliśmy to zmienić.
+              MałeNaklejki powstało z prostej frustracji: zamawianie kilku
+              naklejek w tradycyjnej drukarni oznaczało konieczność zamówienia
+              setek lub tysięcy sztuk, długi czas oczekiwania i wysokie koszty
+              przygotowalni. Postanowiliśmy to zmienić.
             </p>
             <p>
-              Stworzyliśmy platformę, która pozwala każdemu — bez umiejętności graficznych i bez
-              minimalnego zamówienia — ułożyć i zamówić profesjonalne naklejki w kilka minut.
-              Nasz kreator online działa bezpośrednio w przeglądarce: wgrywasz plik z telefonu
-              lub komputera, a my drukujemy na trwałej folii winylowej i wycinamy naklejki idealnie
-              po kształcie Twojej grafiki.
+              Stworzyliśmy platformę, która pozwala każdemu — bez umiejętności
+              graficznych i bez minimalnego zamówienia — ułożyć i zamówić
+              profesjonalne naklejki w kilka minut. Nasz kreator online działa
+              bezpośrednio w przeglądarce: wgrywasz plik z telefonu lub
+              komputera, a my drukujemy na trwałej folii winylowej i wycinamy
+              naklejki idealnie po kształcie Twojej grafiki.
             </p>
             <p>
-              Stała cena <strong className="text-foreground">49,00 zł za arkusz A4</strong> — niezależnie
-              od liczby naklejek, ich kształtu i wzoru. Brak ukrytych kosztów, brak minimalnego nakładu.
-              Realizacja i wysyłka w 3 dni robocze.
+              Stała cena{" "}
+              <strong className="text-foreground">49,00 zł za arkusz A4</strong>{" "}
+              — niezależnie od liczby naklejek, ich kształtu i wzoru. Brak
+              ukrytych kosztów, brak minimalnego nakładu. Realizacja i wysyłka w
+              3 dni robocze.
             </p>
           </div>
         </section>
@@ -177,22 +185,30 @@ export default function ONasPage() {
           </h2>
           <div className="space-y-4 text-muted-foreground text-sm sm:text-base font-semibold leading-relaxed">
             <p>
-              Nasz zespół łączy doświadczenie w <strong className="text-foreground">druku cyfrowym</strong>,{" "}
-              <strong className="text-foreground">rozwoju oprogramowania</strong> i{" "}
-              <strong className="text-foreground">e-commerce</strong>. Dzięki temu kreator
-              MałeNaklejki nie jest kolejnym formularzem zamówienia — to zaawansowane narzędzie webowe
-              z automatycznym usuwaniem tła, generatorem AI, podglądem 3D i inteligentnym systemem
+              Nasz zespół łączy doświadczenie w{" "}
+              <strong className="text-foreground">druku cyfrowym</strong>,{" "}
+              <strong className="text-foreground">
+                rozwoju oprogramowania
+              </strong>{" "}
+              i <strong className="text-foreground">e-commerce</strong>. Dzięki
+              temu kreator MałeNaklejki nie jest kolejnym formularzem zamówienia
+              — to zaawansowane narzędzie webowe z automatycznym usuwaniem tła,
+              generatorem AI, podglądem 3D i inteligentnym systemem
               rozmieszczania naklejek na arkuszu.
             </p>
             <p>
-              Drukujemy na maszynach cyfrowych wysokiej klasy, używając najwyższej jakości folii
-              winylowej z mocnym klejem. Każdy arkusz przechodzi kontrolę jakości przed wysyłką.
-              Na naszym{" "}
-              <Link href="/blog" className="text-primary font-bold underline underline-offset-4">
+              Drukujemy na maszynach cyfrowych wysokiej klasy, używając
+              najwyższej jakości folii winylowej z mocnym klejem. Każdy arkusz
+              przechodzi kontrolę jakości przed wysyłką. Na naszym{" "}
+              <Link
+                href="/blog"
+                className="text-primary font-bold underline underline-offset-4"
+              >
                 blogu
               </Link>{" "}
-              regularnie publikujemy poradniki o przygotowywaniu plików do druku, inspiracje
-              na zastosowania naklejek i przewodniki dla małych firm.
+              regularnie publikujemy poradniki o przygotowywaniu plików do
+              druku, inspiracje na zastosowania naklejek i przewodniki dla
+              małych firm.
             </p>
           </div>
         </section>
@@ -203,7 +219,8 @@ export default function ONasPage() {
             Gotowy na własne naklejki?
           </h2>
           <p className="text-muted-foreground text-sm sm:text-base font-semibold max-w-lg mx-auto">
-            Otwórz kreator i stwórz swój pierwszy arkusz — bez rejestracji, bez minimalnego zamówienia.
+            Otwórz kreator i stwórz swój pierwszy arkusz — bez rejestracji, bez
+            minimalnego zamówienia.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2">
             <Link

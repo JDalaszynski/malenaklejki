@@ -33,6 +33,13 @@ export function SeoContentSection() {
                 Dlaczego nasze <Link href="/naklejki-dla-firm" className={inlineLink}>naklejki dla firm</Link> i osób prywatnych tak dobrze się sprawdzają? Używamy wyłącznie grubej, <Link href="/naklejki-foliowe" className={inlineLink}>wodoodpornej folii winylowej</Link> oraz sprawdzonych technologii druku (rozdzielczość 300 DPI). To gwarantuje nie tylko soczyste kolory i idealne odwzorowanie detali, ale również całkowitą odporność na wodę, promieniowanie UV oraz zadrapania. <Link href="/blog/naklejki-z-wlasnym-napisem-jak-przygotowac-plik-i-zamowic-online" className={inlineLink}>Naklejki z własnym napisem</Link> czy logo bez problemu przetrwają na laptopie, bidonie czy aucie.
               </p>
             </section>
+
+            <section className="space-y-3">
+              <h3 className={`text-xl font-extrabold text-foreground ${displayFont}`}>Kreator naklejek online - prosty program do robienia naklejek</h3>
+              <p>
+                Nasz <strong>kreator naklejek online</strong> to banalnie prosty program do robienia naklejek, który działa wprost w przeglądarce - bez instalacji i bez Photoshopa. Tworzenie naklejek sprowadza się do trzech ruchów: wgrywasz gotowy obraz (PNG, JPG lub PDF), a narzędzie samo usunie tło i wyznaczy <Link href="/naklejki-die-cut" className={inlineLink}>linię cięcia po obrysie</Link>. Na końcu układasz dowolną liczbę wlepek na arkuszu A4 w podglądzie 3D i zamawiasz - całe robienie naklejek zajmuje kilka minut, a druk na trwałej folii i cięcie bierzemy na siebie.
+              </p>
+            </section>
           </div>
         </Reveal>
 
@@ -54,7 +61,14 @@ export function SeoContentSection() {
             <section className="space-y-3">
               <h3 className={`text-xl font-extrabold text-foreground ${displayFont}`}>Idealne do biznesu i zabawy</h3>
               <p>
-                Nasze rozwiązanie idealnie sprawdza się w biznesie jako <Link href="/blog/naklejka-z-logo-firmy-jak-skutecznie-brandowac-swoje-produkty" className={inlineLink}>personalizowane naklejki firmowe z logo</Link> do oznaczania paczek (tzw. plomby lub podziękowania za zamówienie), jak i w życiu prywatnym: do ozdabiania zeszytów, <Link href="/blog/personalizowane-naklejki-na-zeszyty-i-do-przedszkola" className={inlineLink}>oznaczania ubrań do przedszkola</Link> czy jako <Link href="/blog/personalizowane-naklejki-na-alkohol-wyjatkowy-dodatek-na-wesela-i-imprezy" className={inlineLink}>pamiątkowe naklejki ślubne</Link>. Nie wymagamy minimalnego nakładu – drukujemy już od 1 arkusza A4. Z nami zrealizujesz <strong>małe naklejki na zamówienie</strong> w niskim nakładzie i profesjonalnej jakości.
+                Nasze rozwiązanie idealnie sprawdza się w biznesie jako <Link href="/blog/naklejka-z-logo-firmy-jak-skutecznie-brandowac-swoje-produkty" className={inlineLink}>personalizowane naklejki firmowe z logo</Link> do oznaczania paczek (tzw. plomby lub podziękowania za zamówienie), jak i w życiu prywatnym: do ozdabiania zeszytów, <Link href="/blog/personalizowane-naklejki-na-zeszyty-i-do-przedszkola" className={inlineLink}>oznaczania ubrań do przedszkola</Link> czy jako <Link href="/blog/personalizowane-naklejki-na-alkohol-wyjatkowy-dodatek-na-wesela-i-imprezy" className={inlineLink}>pamiątkowe naklejki ślubne</Link>. Nie wymagamy minimalnego nakładu - drukujemy już od 1 arkusza A4. Z nami zrealizujesz <strong>małe naklejki na zamówienie</strong> w niskim nakładzie i profesjonalnej jakości.
+              </p>
+            </section>
+
+            <section className="space-y-3">
+              <h3 className={`text-xl font-extrabold text-foreground ${displayFont}`}>Czy naklejki łatwo się odklejają i nie zostawiają śladów?</h3>
+              <p>
+                Tak - drukujemy na folii z mocnym klejem, która trzyma się pewnie, a mimo to schodzi czysto: po odklejeniu nie zostaje ani klej, ani ślad. To nie są jednak naklejki wielokrotnego użytku - klej jest trwały, więc naklejasz raz, na lata. Dzięki temu Twoje <strong>własne naklejki</strong> bez obaw umieścisz na laptopie, bidonie czy słoiku, a gdy zechcesz je zdjąć, powierzchnia zostaje czysta.
               </p>
             </section>
           </div>

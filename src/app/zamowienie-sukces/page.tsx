@@ -24,10 +24,16 @@ function SuccessContent() {
   const orderId = searchParams.get("orderId");
   const paymentMethodParam = searchParams.get("paymentMethod");
 
-  const [paymentStatus, setPaymentStatus] = useState<"loading" | "success" | "failed">(
-    (paymentMethodParam === "przelew" || paymentMethodParam === "vinted") ? "success" : "loading"
+  const [paymentStatus, setPaymentStatus] = useState<
+    "loading" | "success" | "failed"
+  >(
+    paymentMethodParam === "przelew" || paymentMethodParam === "vinted"
+      ? "success"
+      : "loading",
   );
-  const [orderNumber, setOrderNumber] = useState<string | null>(orderNumberParam);
+  const [orderNumber, setOrderNumber] = useState<string | null>(
+    orderNumberParam,
+  );
   const [orderTotal, setOrderTotal] = useState<number>(0);
   const [copied, setCopied] = useState(false);
   const [retrying, setRetrying] = useState(false);
@@ -133,11 +139,16 @@ function SuccessContent() {
       if (res && res.success && res.redirectUrl) {
         window.location.href = res.redirectUrl;
       } else {
-        setRetryError(res?.error || "Nie udało się wygenerować nowej płatności. Spróbuj ponownie.");
+        setRetryError(
+          res?.error ||
+            "Nie udało się wygenerować nowej płatności. Spróbuj ponownie.",
+        );
         setRetrying(false);
       }
     } catch (err: any) {
-      setRetryError(err.message || "Wystąpił nieoczekiwany błąd. Spróbuj ponownie.");
+      setRetryError(
+        err.message || "Wystąpił nieoczekiwany błąd. Spróbuj ponownie.",
+      );
       setRetrying(false);
     }
   };
@@ -154,7 +165,8 @@ function SuccessContent() {
             Weryfikujemy płatność…
           </h2>
           <p className="text-muted-foreground text-sm font-medium leading-relaxed">
-            Oczekujemy na potwierdzenie transakcji z systemu Przelewy24. Może to potrwać chwilę. Proszę nie zamykać tej karty.
+            Oczekujemy na potwierdzenie transakcji z systemu Przelewy24. Może to
+            potrwać chwilę. Proszę nie zamykać tej karty.
           </p>
         </div>
       </div>
@@ -175,14 +187,18 @@ function SuccessContent() {
 
             {/* Alert icon */}
             <div className="relative inline-flex items-center justify-center w-24 h-24 rounded-full bg-amber-500/15 border-4 border-amber-500/30 mb-6 mx-auto shadow-[0_0_40px_rgba(245,158,11,0.2)]">
-              <AlertTriangle className="w-12 h-12 text-amber-600 dark:text-amber-500" strokeWidth={2} />
+              <AlertTriangle
+                className="w-12 h-12 text-amber-600 dark:text-amber-500"
+                strokeWidth={2}
+              />
             </div>
 
             <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-foreground mb-3">
               Płatność nie została sfinalizowana
             </h1>
             <p className="text-muted-foreground font-medium text-sm sm:text-base max-w-md mx-auto">
-              Nie otrzymaliśmy jeszcze potwierdzenia płatności. Możesz bezpiecznie spróbować opłacić to samo zamówienie ponownie poniżej.
+              Nie otrzymaliśmy jeszcze potwierdzenia płatności. Możesz
+              bezpiecznie spróbować opłacić to samo zamówienie ponownie poniżej.
             </p>
           </div>
 
@@ -216,7 +232,7 @@ function SuccessContent() {
                   Kwota do zapłaty
                 </p>
                 <span className="font-black text-xl sm:text-2xl text-foreground">
-                  {orderTotal.toFixed(2).replace('.', ',')} zł
+                  {orderTotal.toFixed(2).replace(".", ",")} zł
                 </span>
               </div>
             )}
@@ -224,9 +240,15 @@ function SuccessContent() {
 
           {/* Action details */}
           <div className="px-8 py-6 bg-muted/10">
-            <h3 className="font-bold text-foreground mb-2 text-sm sm:text-base">Co się stało?</h3>
+            <h3 className="font-bold text-foreground mb-2 text-sm sm:text-base">
+              Co się stało?
+            </h3>
             <p className="text-sm font-medium text-muted-foreground leading-relaxed">
-              Przelew lub BLIK mógł zostać anulowany, odrzucony przez bank lub sesja płatności wygasła w Przelewy24. Twoje zamówienie jest bezpiecznie zapisane w naszej bazie. Nie musisz ponownie projektować i tworzyć koszyka — skontaktuj się z nami w celu dokończenia transakcji.
+              Przelew lub BLIK mógł zostać anulowany, odrzucony przez bank lub
+              sesja płatności wygasła w Przelewy24. Twoje zamówienie jest
+              bezpiecznie zapisane w naszej bazie. Nie musisz ponownie
+              projektować i tworzyć koszyka — skontaktuj się z nami w celu
+              dokończenia transakcji.
             </p>
           </div>
         </div>
@@ -248,7 +270,6 @@ function SuccessContent() {
   // 3. Success UI
   return (
     <div className="flex-1 flex flex-col items-center justify-start py-12 px-4 sm:px-6 lg:px-8 max-w-3xl mx-auto w-full">
-
       {/* Hero success card */}
       <div className="w-full bg-card border border-border/70 rounded-3xl overflow-hidden shadow-[0_8px_40px_rgba(0,0,0,0.06)] mb-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
         {/* Gradient header */}
@@ -268,17 +289,22 @@ function SuccessContent() {
           <p className="text-muted-foreground font-medium text-base sm:text-lg max-w-md mx-auto">
             {isPrzelew ? (
               <>
-                Dane do płatności przelewem wysłaliśmy na Twój e-mail.<br />
+                Dane do płatności przelewem wysłaliśmy na Twój e-mail.
+                <br />
                 Po zaksięgowaniu wpłaty przystąpimy do realizacji zamówienia.
               </>
             ) : isVinted ? (
               <>
-                Dedykowany link do płatności przez Vinted wysłaliśmy na Twój e-mail.<br />
-                Po zakupieniu oferty na Vinted przystąpimy do realizacji zamówienia.
+                Dedykowany link do płatności przez Vinted wysłaliśmy na Twój
+                e-mail.
+                <br />
+                Po zakupieniu oferty na Vinted przystąpimy do realizacji
+                zamówienia.
               </>
             ) : (
               <>
-                Twoje naklejki trafiły do produkcji. <br />Zabieramy się do realizacji!
+                Twoje naklejki trafiły do produkcji. <br />
+                Zabieramy się do realizacji!
               </>
             )}
           </p>
@@ -317,13 +343,11 @@ function SuccessContent() {
             <Mail className="w-5 h-5 text-primary" />
           </div>
           <p className="text-sm font-medium text-muted-foreground">
-            {isPrzelew ? (
-              "Szczegóły zamówienia oraz dane do przelewu znajdziesz w swojej skrzynce e-mail."
-            ) : isVinted ? (
-              "Szczegóły zamówienia oraz instrukcję zakupu na Vinted wysłaliśmy na Twój adres e-mail."
-            ) : (
-              "Wysłaliśmy potwierdzenie na Twój adres e-mail ze szczegółami zamówienia."
-            )}
+            {isPrzelew
+              ? "Szczegóły zamówienia oraz dane do przelewu znajdziesz w swojej skrzynce e-mail."
+              : isVinted
+                ? "Szczegóły zamówienia oraz instrukcję zakupu na Vinted wysłaliśmy na Twój adres e-mail."
+                : "Wysłaliśmy potwierdzenie na Twój adres e-mail ze szczegółami zamówienia."}
           </p>
         </div>
       </div>
@@ -336,20 +360,30 @@ function SuccessContent() {
           </div>
           <div>
             <p className="font-extrabold text-foreground text-base">
-              {isPrzelew ? "Czas realizacji po zaksięgowaniu wpłaty" : isVinted ? "Czas realizacji po zakupie" : "Szacowany czas realizacji"}
+              {isPrzelew
+                ? "Czas realizacji po zaksięgowaniu wpłaty"
+                : isVinted
+                  ? "Czas realizacji po zakupie"
+                  : "Szacowany czas realizacji"}
             </p>
             <p className="text-muted-foreground text-sm font-medium mt-0.5">
               {isPrzelew ? (
                 <>
-                  Produkcja i wysyłka: <strong className="text-foreground">3 dni robocze</strong> od zaksięgowania przelewu na konto.
+                  Produkcja i wysyłka:{" "}
+                  <strong className="text-foreground">2-3 dni robocze</strong>{" "}
+                  od zaksięgowania przelewu na konto.
                 </>
               ) : isVinted ? (
                 <>
-                  Produkcja i wysyłka: <strong className="text-foreground">3 dni robocze</strong> od zakupu oferty na Vinted.
+                  Produkcja i wysyłka:{" "}
+                  <strong className="text-foreground">2-3 dni robocze</strong>{" "}
+                  od zakupu oferty na Vinted.
                 </>
               ) : (
                 <>
-                  Produkcja i wysyłka: <strong className="text-foreground">3 dni roboczych</strong> od złożenia zamówienia i jego opłacenia.
+                  Produkcja i wysyłka:{" "}
+                  <strong className="text-foreground">2-3 dni roboczych</strong>{" "}
+                  od złożenia zamówienia i jego opłacenia.
                 </>
               )}
             </p>
@@ -379,7 +413,8 @@ function SuccessContent() {
       <div className="mt-10 text-center animate-in fade-in duration-700 delay-300">
         <p className="text-xs text-muted-foreground font-medium">
           Dziękujemy, że wybrałeś{" "}
-          <span className="font-extrabold text-foreground">MałeNaklejki</span>! 🩷
+          <span className="font-extrabold text-foreground">MałeNaklejki</span>!
+          🩷
         </p>
       </div>
     </div>
@@ -392,7 +427,7 @@ export default function OrderSuccessPage() {
       <Header />
       <main className="flex-1 flex flex-col">
         <Suspense
-          fallback = {
+          fallback={
             <div className="flex-1 flex items-center justify-center py-16">
               <div className="animate-pulse font-extrabold text-xl text-primary">
                 Ładowanie…

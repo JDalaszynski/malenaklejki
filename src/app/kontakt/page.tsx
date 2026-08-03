@@ -4,7 +4,8 @@ import { Footer } from "@/components/layout/Footer";
 
 export const metadata = {
   title: "Kontakt - MałeNaklejki",
-  description: "Skontaktuj się z nami! Odpowiemy na wszystkie Twoje pytania dotyczące zamówienia, kreatora naklejek lub opcji personalizacji.",
+  description:
+    "Skontaktuj się z nami! Odpowiemy na wszystkie Twoje pytania dotyczące zamówienia, kreatora naklejek lub opcji personalizacji.",
   alternates: {
     canonical: "/kontakt",
   },
@@ -14,7 +15,7 @@ export default function KontaktPage() {
   return (
     <div className="flex flex-col min-h-screen text-foreground bg-[#edf6f2] dark:bg-[#002c2e]">
       <Header />
-      
+
       <main className="flex-1 py-12 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto w-full space-y-10">
         {/* Page Title & Intro */}
         <div className="text-center max-w-2xl mx-auto space-y-2">
@@ -22,7 +23,9 @@ export default function KontaktPage() {
             Skontaktuj się z nami
           </h1>
           <p className="text-muted-foreground text-sm font-semibold leading-relaxed">
-            Masz pytania dotyczące Kreatora, Generatora AI, technicznych kwestii wydruku lub chcesz złożyć nietypowe zamówienie? Jesteśmy do Twojej dyspozycji!
+            Masz pytania dotyczące Kreatora, Generatora AI, technicznych kwestii
+            wydruku lub chcesz złożyć nietypowe zamówienie? Jesteśmy do Twojej
+            dyspozycji!
           </p>
         </div>
 

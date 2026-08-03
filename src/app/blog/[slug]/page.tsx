@@ -19,7 +19,9 @@ export async function generateStaticParams() {
   }));
 }
 
-export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: PageProps): Promise<Metadata> {
   const { slug } = await params;
   const post = await getBlogPostBySlug(slug);
 
@@ -42,14 +44,16 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       url: `https://www.malenaklejki.pl/blog/${post.slug}`,
       publishedTime: post.date,
       modifiedTime: post.updated || post.date,
-      images: post.image ? [
-        {
-          url: post.image,
-          width: 1200,
-          height: 630,
-          alt: post.title,
-        },
-      ] : [],
+      images: post.image
+        ? [
+            {
+              url: post.image,
+              width: 1200,
+              height: 630,
+              alt: post.title,
+            },
+          ]
+        : [],
     },
     twitter: {
       card: "summary_large_image",
@@ -92,15 +96,15 @@ const contentClassName = `text-foreground/90 font-medium leading-relaxed max-w-n
 const ArticleBannerAndCTA = ({ id }: { id?: string }) => (
   <div id={id} className="flex flex-col items-center gap-6 my-8 w-full">
     {/* Pulsing Banner Link */}
-    <Link 
-      href="/" 
+    <Link
+      href="/"
       className="group relative block w-full max-w-md md:max-w-none overflow-hidden rounded-2xl border border-primary/20 shadow-lg hover:shadow-xl transition-all duration-300 subtle-pulse"
     >
       {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img 
-        src="/images/MałeNaklejki-Post-Instagram.jpg" 
-        alt="Stwórz i zamów naklejki online" 
-        className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-[1.03]" 
+      <img
+        src="/images/MałeNaklejki-Post-Instagram.jpg"
+        alt="Stwórz i zamów naklejki online"
+        className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-[1.03]"
       />
       {/* Subtle Overlay on Hover */}
       <div className="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
@@ -116,12 +120,13 @@ const ArticleBannerAndCTA = ({ id }: { id?: string }) => (
         className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300"
         style={{
           mixBlendMode: "overlay",
-          background: "linear-gradient(105deg, transparent 30%, rgba(255,255,255,0.1) 40%, rgba(255,255,255,0.4) 45%, rgba(255,255,255,0.1) 50%, transparent 60%)",
+          background:
+            "linear-gradient(105deg, transparent 30%, rgba(255,255,255,0.1) 40%, rgba(255,255,255,0.4) 45%, rgba(255,255,255,0.1) 50%, transparent 60%)",
           backgroundSize: "200% 100%",
           animation: "glossSweep 2s infinite linear",
         }}
       />
-      
+
       <StickerIcon className="w-5 h-5 md:w-6 md:h-6 text-white transition-transform duration-300 group-hover:rotate-12 group-hover:scale-110" />
       <span className="relative z-10">Zamów Zestaw Naklejek</span>
     </Link>
@@ -140,7 +145,9 @@ export default async function BlogPostPage({ params }: PageProps) {
   const relatedPosts = allPosts
     .filter((p) => p.slug !== slug)
     .map((p) => {
-      const overlap = p.tags ? p.tags.filter((t) => post.tags?.includes(t)).length : 0;
+      const overlap = p.tags
+        ? p.tags.filter((t) => post.tags?.includes(t)).length
+        : 0;
       return { post: p, overlap };
     })
     .sort((a, b) => b.overlap - a.overlap)
@@ -150,10 +157,10 @@ export default async function BlogPostPage({ params }: PageProps) {
   // Split post.content around the first <h2> tag
   const h2Regex = /<h2[^>]*>/;
   const match = post.content.match(h2Regex);
-  
+
   let beforeContent = post.content;
   let afterContent = "";
-  
+
   if (match && match.index !== undefined) {
     beforeContent = post.content.substring(0, match.index);
     afterContent = post.content.substring(match.index);
@@ -203,7 +210,10 @@ export default async function BlogPostPage({ params }: PageProps) {
           },
           author: [{ "@id": "https://www.malenaklejki.pl/#organization" }],
           publisher: { "@id": "https://www.malenaklejki.pl/#organization" },
-          wordCount: post.content.replace(/<[^>]*>/g, '').trim().split(/\s+/).length,
+          wordCount: post.content
+            .replace(/<[^>]*>/g, "")
+            .trim()
+            .split(/\s+/).length,
         }}
       />
       {post.faq && (
@@ -226,7 +236,10 @@ export default async function BlogPostPage({ params }: PageProps) {
 
       <main className="flex-1 pt-6 pb-12 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto w-full">
         {/* Breadcrumbs */}
-        <nav aria-label="Breadcrumb" className="text-xs sm:text-sm font-bold text-muted-foreground/80 mb-3">
+        <nav
+          aria-label="Breadcrumb"
+          className="text-xs sm:text-sm font-bold text-muted-foreground/80 mb-3"
+        >
           <ol className="inline-flex flex-wrap items-center gap-1.5 sm:gap-2">
             <li className="inline-flex items-center">
               <Link href="/" className="hover:text-primary transition-colors">
@@ -235,11 +248,17 @@ export default async function BlogPostPage({ params }: PageProps) {
             </li>
             <li className="flex items-center gap-1.5 sm:gap-2">
               <span className="text-muted-foreground/50">/</span>
-              <Link href="/blog" className="hover:text-primary transition-colors">
+              <Link
+                href="/blog"
+                className="hover:text-primary transition-colors"
+              >
                 Blog
               </Link>
             </li>
-            <li className="flex items-center gap-1.5 sm:gap-2" aria-current="page">
+            <li
+              className="flex items-center gap-1.5 sm:gap-2"
+              aria-current="page"
+            >
               <span className="text-muted-foreground/50">/</span>
               <span className="text-foreground font-extrabold line-clamp-1 max-w-[150px] sm:max-w-xs md:max-w-md">
                 {post.title}
@@ -306,14 +325,20 @@ export default async function BlogPostPage({ params }: PageProps) {
           </div>
 
           {/* Content (Split into before first H2, Banner & CTA, and after first H2) */}
-          <div className={contentClassName} dangerouslySetInnerHTML={{ __html: beforeContent }} />
+          <div
+            className={contentClassName}
+            dangerouslySetInnerHTML={{ __html: beforeContent }}
+          />
 
           {/* First Banner & CTA */}
           <ArticleBannerAndCTA id="first-article-banner" />
 
           {afterContent && (
             <>
-              <div className={contentClassName} dangerouslySetInnerHTML={{ __html: afterContent }} />
+              <div
+                className={contentClassName}
+                dangerouslySetInnerHTML={{ __html: afterContent }}
+              />
               {/* Second Banner & CTA at the end of the post */}
               <ArticleBannerAndCTA />
             </>

@@ -31,7 +31,8 @@ export const metadata: Metadata = {
     canonical: "/",
   },
   openGraph: {
-    title: "Naklejki z własnym nadrukiem | Zamów od 1 szt. online — MałeNaklejki",
+    title:
+      "Naklejki z własnym nadrukiem | Zamów od 1 szt. online — MałeNaklejki",
     description:
       "Stwórz personalizowane naklejki w kreatorze online — cięcie po konturze, druk na trwałym winylu, od 49 zł/arkusz A4. Wysyłka w 3 dni robocze.",
     url: "https://www.malenaklejki.pl",
@@ -167,7 +168,10 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="min-h-full flex flex-col font-sans relative" suppressHydrationWarning>
+      <body
+        className="min-h-full flex flex-col font-sans relative"
+        suppressHydrationWarning
+      >
         {process.env.NEXT_PUBLIC_GA_ID && (
           <>
             <Script

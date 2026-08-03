@@ -10,7 +10,11 @@ export const size = {
 
 export const contentType = "image/png";
 
-export default async function Image({ params }: { params: Promise<{ slug: string }> }) {
+export default async function Image({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
   const resolvedParams = await params;
   const post = await getBlogPostBySlug(resolvedParams.slug);
 
@@ -25,7 +29,12 @@ export default async function Image({ params }: { params: Promise<{ slug: string
       if (res.ok) {
         const imageBuffer = Buffer.from(await res.arrayBuffer());
         const ext = path.extname(post.image).toLowerCase();
-        const mime = ext === '.png' ? 'image/png' : ext === '.webp' ? 'image/webp' : 'image/jpeg';
+        const mime =
+          ext === ".png"
+            ? "image/png"
+            : ext === ".webp"
+              ? "image/webp"
+              : "image/jpeg";
         imageBase64 = `data:${mime};base64,${imageBuffer.toString("base64")}`;
       }
     } catch (e) {
@@ -35,7 +44,13 @@ export default async function Image({ params }: { params: Promise<{ slug: string
 
   let logoBase64 = null;
   try {
-    const logoPath = path.join(process.cwd(), "public", "images", "logo", "malenaklejki-logo-light.png");
+    const logoPath = path.join(
+      process.cwd(),
+      "public",
+      "images",
+      "logo",
+      "malenaklejki-logo-light.png",
+    );
     const logoBuffer = await fs.readFile(logoPath);
     logoBase64 = `data:image/png;base64,${logoBuffer.toString("base64")}`;
   } catch (e) {
@@ -44,105 +59,108 @@ export default async function Image({ params }: { params: Promise<{ slug: string
 
   let nunitoBuffer = null;
   try {
-    const fontPath = path.join(process.cwd(), "public", "fonts", "Nunito-Bold.ttf");
+    const fontPath = path.join(
+      process.cwd(),
+      "public",
+      "fonts",
+      "Nunito-Bold.ttf",
+    );
     nunitoBuffer = await fs.readFile(fontPath);
   } catch (e) {
     console.error("Error reading Nunito font:", e);
   }
 
   return new ImageResponse(
-    (
-      <div
-        style={{
-          height: "100%",
-          width: "100%",
-          display: "flex",
-          backgroundColor: "#002c2e",
-          color: "white",
-          fontFamily: nunitoBuffer ? "Nunito" : "sans-serif",
-          position: "relative",
-        }}
-      >
-        {/* Tło - zdjęcie wpisu */}
-        {imageBase64 && (
-          <img
-            src={imageBase64}
-            style={{
-              position: "absolute",
-              top: 0,
-              left: 0,
-              width: "100%",
-              height: "100%",
-              objectFit: "cover",
-            }}
-          />
-        )}
-        
-        {/* Gradient Overlay - primary color */}
-        <div
+    <div
+      style={{
+        height: "100%",
+        width: "100%",
+        display: "flex",
+        backgroundColor: "#002c2e",
+        color: "white",
+        fontFamily: nunitoBuffer ? "Nunito" : "sans-serif",
+        position: "relative",
+      }}
+    >
+      {/* Tło - zdjęcie wpisu */}
+      {imageBase64 && (
+        <img
+          src={imageBase64}
           style={{
             position: "absolute",
-            bottom: 0,
+            top: 0,
             left: 0,
             width: "100%",
             height: "100%",
-            backgroundImage: "linear-gradient(to top, rgba(16, 185, 129, 0.95) 0%, rgba(16, 185, 129, 0.6) 50%, rgba(16, 185, 129, 0) 100%)",
-            display: "flex",
+            objectFit: "cover",
           }}
         />
+      )}
 
-        {/* Logo na górze - powiększone w lewym rogu */}
-        {logoBase64 && (
-          <img 
-            src={logoBase64} 
-            style={{ 
-              position: "absolute",
-              top: 50,
-              left: 50,
-              height: 80,
-              objectFit: "contain"
-            }} 
-          />
-        )}
+      {/* Gradient Overlay - primary color */}
+      <div
+        style={{
+          position: "absolute",
+          bottom: 0,
+          left: 0,
+          width: "100%",
+          height: "100%",
+          backgroundImage:
+            "linear-gradient(to top, rgba(16, 185, 129, 0.95) 0%, rgba(16, 185, 129, 0.6) 50%, rgba(16, 185, 129, 0) 100%)",
+          display: "flex",
+        }}
+      />
 
-        {/* Zawartość właściwa */}
+      {/* Logo na górze - powiększone w lewym rogu */}
+      {logoBase64 && (
+        <img
+          src={logoBase64}
+          style={{
+            position: "absolute",
+            top: 50,
+            left: 50,
+            height: 80,
+            objectFit: "contain",
+          }}
+        />
+      )}
+
+      {/* Zawartość właściwa */}
+      <div
+        style={{
+          position: "relative",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "flex-end", // Only title at bottom
+          width: "100%",
+          height: "100%",
+          padding: "80px",
+        }}
+      >
+        {/* Tytuł na dole */}
         <div
           style={{
-            position: "relative",
             display: "flex",
             flexDirection: "column",
-            justifyContent: "flex-end", // Only title at bottom
+            justifyContent: "flex-end",
             width: "100%",
-            height: "100%",
-            padding: "80px",
           }}
         >
-
-          {/* Tytuł na dole */}
           <div
             style={{
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "flex-end",
-              width: "100%"
+              fontSize: 56, // Mniejszy tytuł
+              fontWeight: 700,
+              lineHeight: 1.15,
+              letterSpacing: "-0.01em",
+              color: "#ffffff",
+              textShadow: "0 4px 16px rgba(0,0,0,0.8)", // Mocniejszy cień dla pewności
             }}
           >
-            <div
-              style={{
-                fontSize: 56, // Mniejszy tytuł
-                fontWeight: 700,
-                lineHeight: 1.15,
-                letterSpacing: "-0.01em",
-                color: "#ffffff",
-                textShadow: "0 4px 16px rgba(0,0,0,0.8)", // Mocniejszy cień dla pewności
-              }}
-            >
-              {post.title}
-            </div>
+            {post.title}
           </div>
         </div>
       </div>
-    ),
+    </div>,
     {
       ...size,
       fonts: nunitoBuffer
@@ -155,6 +173,6 @@ export default async function Image({ params }: { params: Promise<{ slug: string
             },
           ]
         : undefined,
-    }
+    },
   );
 }

@@ -47,7 +47,9 @@ export const metadata: Metadata = {
     title: "Polska alternatywa dla Sticker Mule i StickerApp",
     description:
       "Naklejki z własnym nadrukiem od 1 arkusza A4 za 49 zł, odbiór w paczkomacie w 3 dni. Bez cła i bariery językowej.",
-    images: ["/landing/alternatywa-dla-sticker-mule-i-stickerapp/polska-alternatywa-dla-sticker-mule.png"],
+    images: [
+      "/landing/alternatywa-dla-sticker-mule-i-stickerapp/polska-alternatywa-dla-sticker-mule.png",
+    ],
   },
 };
 
@@ -179,10 +181,46 @@ export default function AlternatywaPage() {
           description:
             "Naklejki z własnym nadrukiem drukowane na trwałej folii winylowej. Stała cena 49,00 zł za arkusz A4, bez minimalnego nakładu. Polska produkcja i odbiór w paczkomacie w 3 dni.",
           image: "https://www.malenaklejki.pl/images/logo/favicon.png",
-          brand: { "@id": "https://www.malenaklejki.pl/#organization" },
+          brand: { "@type": "Brand", name: "MałeNaklejki" },
           category: "Naklejki z własnym nadrukiem",
           offers: {
             "@type": "Offer",
+            validFrom: "2024-01-01T00:00:00Z",
+            hasMerchantReturnPolicy: {
+              "@type": "MerchantReturnPolicy",
+              applicableCountry: "PL",
+              returnPolicyCategory:
+                "https://schema.org/MerchantReturnNotPermitted",
+              description:
+                "Zwrot produktów personalizowanych nie jest możliwy z uwagi na ich unikalny charakter.",
+            },
+            shippingDetails: {
+              "@type": "OfferShippingDetails",
+              shippingRate: {
+                "@type": "MonetaryAmount",
+                value: "15.00",
+                currency: "PLN",
+              },
+              shippingDestination: {
+                "@type": "DefinedRegion",
+                addressCountry: "PL",
+              },
+              deliveryTime: {
+                "@type": "ShippingDeliveryTime",
+                handlingTime: {
+                  "@type": "QuantitativeValue",
+                  minValue: 1,
+                  maxValue: 3,
+                  unitCode: "d",
+                },
+                transitTime: {
+                  "@type": "QuantitativeValue",
+                  minValue: 1,
+                  maxValue: 2,
+                  unitCode: "d",
+                },
+              },
+            },
             price: "49.00",
             priceCurrency: "PLN",
             availability: "https://schema.org/InStock",
@@ -221,14 +259,20 @@ export default function AlternatywaPage() {
 
       <main className="flex-1 pt-6 pb-16 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto w-full">
         {/* Breadcrumbs */}
-        <nav aria-label="Breadcrumb" className="text-xs sm:text-sm font-bold text-muted-foreground/80 mb-4">
+        <nav
+          aria-label="Breadcrumb"
+          className="text-xs sm:text-sm font-bold text-muted-foreground/80 mb-4"
+        >
           <ol className="inline-flex flex-wrap items-center gap-1.5 sm:gap-2">
             <li className="inline-flex items-center">
               <Link href="/" className="hover:text-primary transition-colors">
                 Kreator Zestawu Naklejek
               </Link>
             </li>
-            <li className="flex items-center gap-1.5 sm:gap-2" aria-current="page">
+            <li
+              className="flex items-center gap-1.5 sm:gap-2"
+              aria-current="page"
+            >
               <span className="text-muted-foreground/50">/</span>
               <span className="text-foreground font-extrabold">
                 Polska alternatywa dla Sticker Mule i StickerApp
@@ -241,11 +285,11 @@ export default function AlternatywaPage() {
         <section className="bg-white dark:bg-[#003a3b] rounded-3xl border border-border/40 p-6 sm:p-10 md:p-12 shadow-sm space-y-5">
           <div className="flex flex-wrap items-center justify-between gap-4">
             <span className="inline-flex items-center gap-2 px-3 py-1.5 bg-primary/10 text-primary rounded-full text-xs font-black tracking-wide uppercase">
-              <Sparkles className="w-4 h-4" />
-              W 100% polska produkcja
+              <Sparkles className="w-4 h-4" />W 100% polska produkcja
             </span>
             <span className="text-xs font-bold text-muted-foreground/60 flex items-center gap-1.5">
-              <Clock className="w-3.5 h-3.5" /> Ostatnia aktualizacja: 25 lipca 2026
+              <Clock className="w-3.5 h-3.5" /> Ostatnia aktualizacja: 25 lipca
+              2026
             </span>
           </div>
 
@@ -254,12 +298,15 @@ export default function AlternatywaPage() {
           </h1>
 
           <p className="text-sm sm:text-lg text-foreground/90 font-semibold leading-relaxed">
-            Szukasz miejsca, gdzie zamówisz <strong>naklejki z własnym nadrukiem</strong> jak w Sticker Mule
-            czy StickerApp, ale bez zagranicznej wysyłki i płacenia w obcej walucie?{" "}
-            <strong>malenaklejki.pl</strong> to polska drukarnia naklejek: drukujemy już od{" "}
-            <strong>1 arkusza A4 za stałe 49,00 zł</strong>, tniemy po obrysie i wysyłamy do paczkomatu w{" "}
-            <strong>3 dni robocze</strong>. Bez minimalnego nakładu, bez cła i bez bariery językowej. Jeśli
-            zamawiasz po raz pierwszy, zacznij od przewodnika, jak zamówić{" "}
+            Szukasz miejsca, gdzie zamówisz{" "}
+            <strong>naklejki z własnym nadrukiem</strong> jak w Sticker Mule czy
+            StickerApp, ale bez zagranicznej wysyłki i płacenia w obcej walucie?{" "}
+            <strong>malenaklejki.pl</strong> to polska drukarnia naklejek:
+            drukujemy już od <strong>1 arkusza A4 za stałe 49,00 zł</strong>,
+            tniemy po obrysie i wysyłamy do paczkomatu w{" "}
+            <strong>3 dni robocze</strong>. Bez minimalnego nakładu, bez cła i
+            bez bariery językowej. Jeśli zamawiasz po raz pierwszy, zacznij od
+            przewodnika, jak zamówić{" "}
             <Link
               href="/blog/jak-zamowic-idealne-naklejki-na-zamowienie-z-wlasnym-nadrukiem"
               className="text-primary font-bold underline underline-offset-4 hover:text-primary/80 transition-colors"
@@ -270,10 +317,17 @@ export default function AlternatywaPage() {
           </p>
 
           <div className="relative w-full aspect-square rounded-2xl shadow-sm border border-border/40 overflow-hidden flex items-start justify-center bg-black/5 dark:bg-[#003a3b]/40">
-  <img src="/landing/alternatywa-dla-sticker-mule-i-stickerapp/polska-alternatywa-dla-sticker-mule.png" alt="Polska alternatywa dla Sticker Mule i StickerApp: grube naklejki die-cut cięte po obrysie" className="w-full h-auto [clip-path:inset(0_0_12%_0)]" />
-</div>
+            <img
+              src="/landing/alternatywa-dla-sticker-mule-i-stickerapp/polska-alternatywa-dla-sticker-mule.png"
+              alt="Polska alternatywa dla Sticker Mule i StickerApp: grube naklejki die-cut cięte po obrysie"
+              className="w-full h-auto [clip-path:inset(0_0_12%_0)]"
+            />
+          </div>
 
-          <div id="first-article-banner" className="flex flex-col sm:flex-row gap-3 pt-2">
+          <div
+            id="first-article-banner"
+            className="flex flex-col sm:flex-row gap-3 pt-2"
+          >
             <Link
               href="/"
               className="group inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-[#02af7a] hover:bg-[#029668] text-white text-sm sm:text-base font-black tracking-wide uppercase rounded-2xl shadow-[0_4px_14px_0_rgba(2,175,122,0.4)] hover:shadow-[0_6px_20px_0_rgba(2,175,122,0.6)] transform hover:-translate-y-0.5 transition-all duration-300"
@@ -302,7 +356,9 @@ export default function AlternatywaPage() {
               key={stat.label}
               className="flex flex-col items-center text-center gap-1 bg-white dark:bg-[#003a3b] rounded-2xl border border-border/40 py-5 px-2 shadow-sm"
             >
-              <span className="text-xl sm:text-2xl font-black text-primary">{stat.value}</span>
+              <span className="text-xl sm:text-2xl font-black text-primary">
+                {stat.value}
+              </span>
               <span className="text-[10px] sm:text-[11px] font-bold text-muted-foreground uppercase tracking-wider">
                 {stat.label}
               </span>
@@ -316,8 +372,9 @@ export default function AlternatywaPage() {
             malenaklejki.pl a Sticker Mule i StickerApp - porównanie
           </h2>
           <p className="text-sm sm:text-base text-muted-foreground font-medium leading-relaxed">
-            Zagraniczne drukarnie naklejek robią świetną robotę, ale dla polskiego klienta wiążą się z
-            walutą obcą, dłuższą wysyłką i obsługą po angielsku. Zestawienie najważniejszych różnic:
+            Zagraniczne drukarnie naklejek robią świetną robotę, ale dla
+            polskiego klienta wiążą się z walutą obcą, dłuższą wysyłką i obsługą
+            po angielsku. Zestawienie najważniejszych różnic:
           </p>
 
           <div className="overflow-x-auto rounded-2xl border border-border/60 shadow-sm">
@@ -337,19 +394,30 @@ export default function AlternatywaPage() {
               </thead>
               <tbody>
                 {COMPARISON.map((row, i) => (
-                  <tr key={row.feature} className={i % 2 === 1 ? "bg-[#edf6f2]/30 dark:bg-[#002c2e]/20" : ""}>
+                  <tr
+                    key={row.feature}
+                    className={
+                      i % 2 === 1 ? "bg-[#edf6f2]/30 dark:bg-[#002c2e]/20" : ""
+                    }
+                  >
                     <td className="p-3 sm:p-4 border-b border-border/60 font-black text-foreground align-top">
                       {row.feature}
                     </td>
                     <td className="p-3 sm:p-4 border-b border-border/60 text-foreground/80 dark:text-[#a0d4c8] font-semibold align-top">
                       <span className="inline-flex items-start gap-2">
-                        <Check className="w-4 h-4 text-primary shrink-0 mt-0.5" strokeWidth={3} />
+                        <Check
+                          className="w-4 h-4 text-primary shrink-0 mt-0.5"
+                          strokeWidth={3}
+                        />
                         {row.us}
                       </span>
                     </td>
                     <td className="p-3 sm:p-4 border-b border-border/60 text-muted-foreground font-medium align-top">
                       <span className="inline-flex items-start gap-2">
-                        <X className="w-4 h-4 text-muted-foreground/60 shrink-0 mt-0.5" strokeWidth={3} />
+                        <X
+                          className="w-4 h-4 text-muted-foreground/60 shrink-0 mt-0.5"
+                          strokeWidth={3}
+                        />
                         {row.them}
                       </span>
                     </td>
@@ -360,14 +428,19 @@ export default function AlternatywaPage() {
           </div>
 
           <p className="text-xs text-muted-foreground/80 font-medium leading-relaxed">
-            Uwaga: cechy zagranicznych drukarni opisują ogólny model zamawiania z zagranicy do Polski i mogą
-            się zmieniać - aktualne warunki (ceny, minimalne nakłady, czas dostawy) sprawdź bezpośrednio u
-            danego dostawcy. Nazwy Sticker Mule i StickerApp należą do ich właścicieli i służą tu wyłącznie do
-            porównania.
+            Uwaga: cechy zagranicznych drukarni opisują ogólny model zamawiania
+            z zagranicy do Polski i mogą się zmieniać - aktualne warunki (ceny,
+            minimalne nakłady, czas dostawy) sprawdź bezpośrednio u danego
+            dostawcy. Nazwy Sticker Mule i StickerApp należą do ich właścicieli
+            i służą tu wyłącznie do porównania.
           </p>
           <div className="relative w-full aspect-square rounded-2xl shadow-sm border border-border/40 overflow-hidden flex items-start justify-center bg-black/5 dark:bg-[#003a3b]/40 mt-4 mb-2">
-  <img src="/landing/alternatywa-dla-sticker-mule-i-stickerapp/naklejki-premium-wyciete-po-obrysie.png" alt="Naklejki premium wycięte po obrysie na szybie kawiarni bez pęcherzyków powietrza" className="w-full h-auto [clip-path:inset(0_0_12%_0)]" />
-</div>
+            <img
+              src="/landing/alternatywa-dla-sticker-mule-i-stickerapp/naklejki-premium-wyciete-po-obrysie.png"
+              alt="Naklejki premium wycięte po obrysie na szybie kawiarni bez pęcherzyków powietrza"
+              className="w-full h-auto [clip-path:inset(0_0_12%_0)]"
+            />
+          </div>
         </section>
 
         {/* Advantages */}
@@ -376,8 +449,12 @@ export default function AlternatywaPage() {
             Dlaczego malenaklejki.pl to najlepsza polska alternatywa
           </h2>
           <div className="relative w-full aspect-square rounded-2xl shadow-sm border border-border/40 overflow-hidden flex items-start justify-center bg-black/5 dark:bg-[#003a3b]/40 my-6">
-  <img src="/landing/alternatywa-dla-sticker-mule-i-stickerapp/gruba-folia-winylowa-naklejki.png" alt="Zgięta naklejka wycięta po obrysie demonstrująca sztywność grubej folii winylowej" className="w-full h-auto [clip-path:inset(0_0_12%_0)]" />
-</div>
+            <img
+              src="/landing/alternatywa-dla-sticker-mule-i-stickerapp/gruba-folia-winylowa-naklejki.png"
+              alt="Zgięta naklejka wycięta po obrysie demonstrująca sztywność grubej folii winylowej"
+              className="w-full h-auto [clip-path:inset(0_0_12%_0)]"
+            />
+          </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {ADVANTAGES.map((adv) => {
               const Icon = adv.icon;
@@ -390,9 +467,13 @@ export default function AlternatywaPage() {
                     <span className="shrink-0 w-10 h-10 rounded-xl bg-primary/10 text-primary flex items-center justify-center">
                       <Icon className="w-5 h-5" />
                     </span>
-                    <h3 className="text-base font-black text-foreground leading-snug">{adv.title}</h3>
+                    <h3 className="text-base font-black text-foreground leading-snug">
+                      {adv.title}
+                    </h3>
                   </div>
-                  <p className="text-sm text-muted-foreground font-medium leading-relaxed">{adv.text}</p>
+                  <p className="text-sm text-muted-foreground font-medium leading-relaxed">
+                    {adv.text}
+                  </p>
                 </div>
               );
             })}
@@ -405,8 +486,12 @@ export default function AlternatywaPage() {
             Jak zamówić naklejki w polskiej drukarni krok po kroku
           </h2>
           <div className="relative w-full aspect-square rounded-2xl shadow-sm border border-border/40 overflow-hidden flex items-start justify-center bg-black/5 dark:bg-[#003a3b]/40 my-6">
-  <img src="/landing/alternatywa-dla-sticker-mule-i-stickerapp/drukowanie-naklejek-wysoka-jakosc.png" alt="Awers i rewers wysokiej jakości okrągłej naklejki z grubym papierem podkładowym" className="w-full h-auto [clip-path:inset(0_0_12%_0)]" />
-</div>
+            <img
+              src="/landing/alternatywa-dla-sticker-mule-i-stickerapp/drukowanie-naklejek-wysoka-jakosc.png"
+              alt="Awers i rewers wysokiej jakości okrągłej naklejki z grubym papierem podkładowym"
+              className="w-full h-auto [clip-path:inset(0_0_12%_0)]"
+            />
+          </div>
           <ol className="space-y-4">
             {[
               {
@@ -430,8 +515,12 @@ export default function AlternatywaPage() {
                   {i + 1}
                 </span>
                 <div className="space-y-1">
-                  <h3 className="text-base font-black text-foreground">{step.title}</h3>
-                  <p className="text-sm text-muted-foreground font-medium leading-relaxed">{step.text}</p>
+                  <h3 className="text-base font-black text-foreground">
+                    {step.title}
+                  </h3>
+                  <p className="text-sm text-muted-foreground font-medium leading-relaxed">
+                    {step.text}
+                  </p>
                 </div>
               </li>
             ))}
@@ -444,7 +533,8 @@ export default function AlternatywaPage() {
             >
               cięcie die-cut po obrysie
             </Link>{" "}
-            - naklejka wygląda wtedy jak fabryczny element, a nie prostokątna doklejka z widocznym tłem.
+            - naklejka wygląda wtedy jak fabryczny element, a nie prostokątna
+            doklejka z widocznym tłem.
           </p>
         </section>
 
@@ -454,8 +544,12 @@ export default function AlternatywaPage() {
             Polska alternatywa dla zagranicznych drukarni - najczęstsze pytania
           </h2>
           <div className="relative w-full aspect-square rounded-2xl shadow-sm border border-border/40 overflow-hidden flex items-start justify-center bg-black/5 dark:bg-[#003a3b]/40 my-6">
-  <img src="/landing/alternatywa-dla-sticker-mule-i-stickerapp/alternatywa-stickerapp-w-polsce.png" alt="Polska alternatywa dla StickerApp drukująca w rozdzielczości 300 DPI na folii" className="w-full h-auto [clip-path:inset(0_0_12%_0)]" />
-</div>
+            <img
+              src="/landing/alternatywa-dla-sticker-mule-i-stickerapp/alternatywa-stickerapp-w-polsce.png"
+              alt="Polska alternatywa dla StickerApp drukująca w rozdzielczości 300 DPI na folii"
+              className="w-full h-auto [clip-path:inset(0_0_12%_0)]"
+            />
+          </div>
           <div className="flex flex-col gap-3.5">
             {FAQS.map((faq) => (
               <details
@@ -463,7 +557,9 @@ export default function AlternatywaPage() {
                 className="group rounded-2xl border border-border/70 dark:border-white/10 bg-white dark:bg-[#003a3b] open:bg-muted/40 dark:open:bg-white/[0.04] shadow-sm open:shadow-md transition-all duration-300"
               >
                 <summary className="flex items-center justify-between gap-4 px-5 sm:px-6 py-4.5 cursor-pointer select-none list-none [&::-webkit-details-marker]:hidden rounded-2xl">
-                  <h3 className="text-sm sm:text-[15px] font-black text-foreground leading-snug">{faq.q}</h3>
+                  <h3 className="text-sm sm:text-[15px] font-black text-foreground leading-snug">
+                    {faq.q}
+                  </h3>
                   <span
                     aria-hidden
                     className="shrink-0 w-8 h-8 rounded-full bg-primary/10 text-primary flex items-center justify-center transition-transform duration-300 group-open:rotate-45 text-xl font-black leading-none"
@@ -485,9 +581,10 @@ export default function AlternatywaPage() {
             Zamów naklejki w polskiej drukarni zamiast za granicą
           </h2>
           <p className="text-sm sm:text-base text-muted-foreground font-medium leading-relaxed max-w-2xl mx-auto">
-            Wgraj grafikę do kreatora, wybierz cięcie po obrysie i liczbę sztuk na arkuszu. Naklejki będą
-            gotowe w 3 dni robocze za stałe 49,00 zł od arkusza A4 - bez minimalnego nakładu, bez cła i bez
-            przeliczania walut.
+            Wgraj grafikę do kreatora, wybierz cięcie po obrysie i liczbę sztuk
+            na arkuszu. Naklejki będą gotowe w 3 dni robocze za stałe 49,00 zł
+            od arkusza A4 - bez minimalnego nakładu, bez cła i bez przeliczania
+            walut.
           </p>
           <div className="flex flex-wrap justify-center gap-2 pt-2 text-xs font-bold text-muted-foreground">
             <span className="inline-flex items-center gap-1.5">
@@ -497,7 +594,8 @@ export default function AlternatywaPage() {
               <Truck className="w-3.5 h-3.5 text-primary" /> Paczkomat w Polsce
             </span>
             <span className="inline-flex items-center gap-1.5">
-              <ShieldCheck className="w-3.5 h-3.5 text-primary" /> Wodoodporna folia
+              <ShieldCheck className="w-3.5 h-3.5 text-primary" /> Wodoodporna
+              folia
             </span>
           </div>
           <div className="pt-2">

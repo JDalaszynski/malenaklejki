@@ -245,9 +245,16 @@ export function getContourPoints(
         const pixelsPerMm = gridMaxDim / maxDimensionMm;
 
         // Calculate the margin in grid pixels (must be an integer for the raster dilate/erode ops)
-        // Make the margin smaller for scaled-down stickers
-        let marginMm = (maxDimensionMm / 50.0) * 4.0;
-        marginMm = Math.min(4.0, Math.max(1.5, marginMm)); // Cap at 4mm, min 1.5mm
+        let marginMm: number;
+        if (type === "contour_inside") {
+          // Inner contour: the cut hugs the graphic edge with a minimal ~0.5mm inset,
+          // so almost none of the artwork is lost.
+          marginMm = 0.5;
+        } else {
+          // Outer contour: outward margin, scaled with sticker size (smaller for scaled-down stickers)
+          marginMm = (maxDimensionMm / 50.0) * 4.0;
+          marginMm = Math.min(4.0, Math.max(1.5, marginMm)); // Cap at 4mm, min 1.5mm
+        }
 
         const dilationPixels = Math.max(1, Math.round(marginMm * pixelsPerMm));
         
@@ -388,10 +395,24 @@ export function getContourPoints(
                 }
                 
                 if (contour.length > 5) {
-                  let processed = smoothPolygon(contour, 7);
-                  processed = simplifyPoints(processed, 0.08);
-                  processed = smoothPolygon(processed, 5);
-                  
+                  let processed: Point[];
+                  if (type === "contour_inside") {
+                    // Inner contour: track the real outline closely (tighter than the
+                    // outer die-cut border) while still reading as a smooth curve.
+                    // A moderate first smoothing pass kills the pixel staircase, a very
+                    // small simplification tolerance keeps points dense along curves,
+                    // and a final light smoothing pass removes the residual faceting so
+                    // round shapes (e.g. a circle) look smooth. Windows 5+3 stay tighter
+                    // on real corners than the outer border's 7+5.
+                    processed = smoothPolygon(contour, 5);
+                    processed = simplifyPoints(processed, 0.1);
+                    processed = smoothPolygon(processed, 3);
+                  } else {
+                    processed = smoothPolygon(contour, 7);
+                    processed = simplifyPoints(processed, 0.08);
+                    processed = smoothPolygon(processed, 5);
+                  }
+
                   if (processed.length > 2) {
                     const normalized = processed.map((p) => ({
                       x: (p.x + 0.5 - padding) / imgW,
