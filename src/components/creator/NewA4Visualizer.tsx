@@ -4,7 +4,7 @@ import React, { useRef, useState, useEffect } from "react";
 import { createPortal } from "react-dom";
 import { PlacedSticker } from "@/types/creator";
 import { checkOverlap, getRotatedSize, getCutLineMargins, getOuterMargins, getCutLineBoundingBox, checkStickersCollision, clampToUsableArea, getContourMargins, getDisplayedWidthCm } from "@/lib/utils/collision";
-import { MoreVertical, Scissors, RotateCw, Crop, Copy, Trash2, Ban, Sparkles, Square, Circle, LayoutGrid, Loader2 } from "lucide-react";
+import { MoreVertical, Scissors, RotateCw, Crop, Copy, Trash2, Ban, Sparkles, Square, Circle, LayoutGrid, Loader2, MousePointerClick } from "lucide-react";
 
 interface NewA4VisualizerProps {
   stickers: PlacedSticker[];
@@ -966,14 +966,24 @@ export function NewA4Visualizer({
             {/* No Cut Line Minimalist Warning Label (Centered under unrotated sticker boundaries) */}
             {st.cutLineType === "none" && (
               <div
-                className="absolute font-black text-red-400/90 dark:text-red-400/85 whitespace-nowrap z-25 pointer-events-none uppercase tracking-wider text-center"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  if (selectedStickerId !== st.id) {
+                    onSelectSticker(st.id);
+                    setTimeout(() => setShowCutMenu(true), 50);
+                  } else {
+                    setShowCutMenu(true);
+                  }
+                }}
+                className="absolute font-black text-red-400/90 dark:text-red-400/85 whitespace-nowrap z-25 pointer-events-auto cursor-pointer uppercase tracking-wider flex items-center justify-center gap-1.5 hover:text-red-500 transition-colors active:scale-95"
                 style={{
                   left: `${((st.x + wMm / 2) / SHEET_WIDTH_MM) * 100}%`,
-                  top: `${((st.y + hMm + 6) / SHEET_HEIGHT_MM) * 100}%`,
+                  top: `${((st.y + hMm + 2) / SHEET_HEIGHT_MM) * 100}%`,
                   transform: "translateX(-50%)",
                   fontSize: `${Math.max(6, st.widthCm * 1.6)}px`,
                 }}
               >
+                <Scissors className="w-[1.2em] h-[1.2em]" />
                 Ustaw linię cięcia
               </div>
             )}

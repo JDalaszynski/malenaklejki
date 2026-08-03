@@ -2024,10 +2024,11 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
                         <p>Linia cięcia: {
                           selectedSticker.cutLineType === "none" ? "Brak" :
                             selectedSticker.cutLineType === "contour" ? "Kontur" :
-                              selectedSticker.cutLineType === "rounded" ? "Prostokąt" :
-                                selectedSticker.cutLineType === "circle" ? "Koło" :
-                                  selectedSticker.cutLineType === "rounded_inside" ? "Prostokąt wew." :
-                                    selectedSticker.cutLineType === "circle_inside" ? "Koło wew." : selectedSticker.cutLineType
+                              selectedSticker.cutLineType === "contour_inside" ? "Kontur wew." :
+                                selectedSticker.cutLineType === "rounded" ? "Prostokąt" :
+                                  selectedSticker.cutLineType === "circle" ? "Koło" :
+                                    selectedSticker.cutLineType === "rounded_inside" ? "Prostokąt wew." :
+                                      selectedSticker.cutLineType === "circle_inside" ? "Koło wew." : selectedSticker.cutLineType
                         }</p>
                       </div>
                     </div>
@@ -2177,7 +2178,7 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
                     </div>
 
                     {/* Cut line options */}
-                    <div className="space-y-3">
+                    <div id="desktop-cutline-options" className="space-y-3">
                       <span className="text-sm font-bold text-foreground block">Rodzaj linii cięcia (naklejki)</span>
                       <div className="grid grid-cols-3 gap-2">
                         {[
@@ -2572,9 +2573,15 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
                           Wybrana naklejka
                         </h3>
                         {selectedSticker.cutLineType === "none" && (
-                          <span className="text-[10px] font-bold text-destructive mt-0.5 animate-pulse">
-                            Ustaw linie cięcia
-                          </span>
+                          <div
+                            onClick={() => setMobileActiveTab("cutline")}
+                            className="flex items-center gap-1 mt-0.5 cursor-pointer hover:opacity-80 active:scale-95 transition-all w-fit bg-destructive/10 px-1.5 py-0.5 rounded-full"
+                          >
+                            <Scissors className="w-3 h-3 text-destructive" />
+                            <span className="text-[10px] font-bold text-destructive animate-pulse uppercase">
+                              Ustaw linię cięcia
+                            </span>
+                          </div>
                         )}
                       </div>
                       <button
