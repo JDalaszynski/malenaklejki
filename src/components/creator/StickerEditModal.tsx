@@ -307,7 +307,8 @@ export function StickerEditModal({ imageSrc, onSave, onCancel }: StickerEditModa
           if (blob) {
             try {
               const fileName = `cropped-${getUUID()}.png`;
-              const storageRef = ref(storage, `uploads/${fileName}`);
+              const dateFolder = new Date().toISOString().split('T')[0];
+              const storageRef = ref(storage, `uploads/${dateFolder}/${fileName}`);
               const snapshot = await uploadBytes(storageRef, blob);
               const downloadUrl = await getDownloadURL(snapshot.ref);
               onSave(downloadUrl);

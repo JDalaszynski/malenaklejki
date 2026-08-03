@@ -27,7 +27,8 @@ export function ImageUploader({ onImageUploaded }: ImageUploaderProps) {
       try {
         const ext = file.name.split(".").pop() || "png";
         const fileName = `${getUUID()}.${ext}`;
-        const storageRef = ref(storage, `uploads/${fileName}`);
+        const dateFolder = new Date().toISOString().split('T')[0];
+        const storageRef = ref(storage, `uploads/${dateFolder}/${fileName}`);
 
         const snapshot = await uploadBytes(storageRef, file);
         const downloadUrl = await getDownloadURL(snapshot.ref);

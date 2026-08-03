@@ -7,7 +7,7 @@ service firebase.storage {
   match /b/{bucket}/o {
     
     // Allow public read and restricted creation in the uploads directory
-    match /uploads/{imageId} {
+    match /uploads/{allPaths=**} {
       // Anyone can read images to preview their stickers
       allow read: if true;
       

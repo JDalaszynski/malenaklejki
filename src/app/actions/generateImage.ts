@@ -183,7 +183,8 @@ export async function generateStickerImage(
 
     const ext = "png";
     const fileName = `${crypto.randomUUID()}.${ext}`;
-    const storageRef = ref(storage, `uploads/${fileName}`);
+    const dateFolder = new Date().toISOString().split('T')[0];
+    const storageRef = ref(storage, `uploads/${dateFolder}/${fileName}`);
 
     console.log("[generateStickerImage] Uploading to Firebase Storage...");
     const snapshot = await uploadBytes(storageRef, blob);
@@ -252,7 +253,8 @@ export async function removeStickerBackground(
 
     const ext = mimeType.split("/")[1] || "png";
     const fileName = `bg-removed-${crypto.randomUUID()}.${ext}`;
-    const storageRef = ref(storage, `uploads/${fileName}`);
+    const dateFolder = new Date().toISOString().split('T')[0];
+    const storageRef = ref(storage, `uploads/${dateFolder}/${fileName}`);
 
     const snapshot = await uploadBytes(storageRef, blob);
     const url = await getDownloadURL(snapshot.ref);
@@ -318,7 +320,8 @@ export async function enhanceStickerQuality(
 
     const ext = mimeType.split("/")[1] || "png";
     const fileName = `enhanced-${crypto.randomUUID()}.${ext}`;
-    const storageRef = ref(storage, `uploads/${fileName}`);
+    const dateFolder = new Date().toISOString().split('T')[0];
+    const storageRef = ref(storage, `uploads/${dateFolder}/${fileName}`);
 
     const snapshot = await uploadBytes(storageRef, blob);
     const url = await getDownloadURL(snapshot.ref);

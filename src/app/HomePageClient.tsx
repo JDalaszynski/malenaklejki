@@ -323,7 +323,8 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
 
     try {
       const fileName = `dropped-${getUUID()}-${file.name}`;
-      const storageRef = ref(storage, `uploads/${fileName}`);
+      const dateFolder = new Date().toISOString().split('T')[0];
+      const storageRef = ref(storage, `uploads/${dateFolder}/${fileName}`);
       const snapshot = await uploadBytes(storageRef, file);
       const downloadUrl = await getDownloadURL(snapshot.ref);
 
@@ -1633,7 +1634,8 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
       }
 
       const printFileName = `composition-${getUUID()}.png`;
-      const printRef = ref(storage, `uploads/${printFileName}`);
+      const dateFolder = new Date().toISOString().split('T')[0];
+      const printRef = ref(storage, `uploads/${dateFolder}/${printFileName}`);
       const printSnapshot = await uploadBytes(printRef, printBlob);
       const printUrl = await getDownloadURL(printSnapshot.ref);
 
@@ -1654,7 +1656,8 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
       let cutLinesUrl: string | undefined;
       if (cutBlob) {
         const cutFileName = `composition-cutlines-${getUUID()}.png`;
-        const cutRef = ref(storage, `uploads/${cutFileName}`);
+        const dateFolder = new Date().toISOString().split('T')[0];
+        const cutRef = ref(storage, `uploads/${dateFolder}/${cutFileName}`);
         const cutSnapshot = await uploadBytes(cutRef, cutBlob);
         cutLinesUrl = await getDownloadURL(cutSnapshot.ref);
       }
@@ -1749,7 +1752,8 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
 
     try {
       const fileName = `mobile-upload-${getUUID()}-${file.name}`;
-      const storageRef = ref(storage, `uploads/${fileName}`);
+      const dateFolder = new Date().toISOString().split('T')[0];
+      const storageRef = ref(storage, `uploads/${dateFolder}/${fileName}`);
       const snapshot = await uploadBytes(storageRef, file, {
         contentType: file.type || "image/png"
       });
