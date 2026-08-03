@@ -2418,7 +2418,7 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
                         </button>
                         <button
                           type="button"
-                          onClick={handleFillSheet}
+                          onClick={() => handleFillSheet()}
                           disabled={isFillingSheet}
                           className={`flex-1 inline-flex items-center justify-center gap-1 px-2 py-1.5 text-[11px] font-bold bg-muted hover:bg-muted/80 dark:bg-white/10 dark:hover:bg-white/20 text-foreground border border-border/40 rounded-xl transition-all active:scale-95 cursor-pointer ${isFillingSheet ? "opacity-70 pointer-events-none" : ""}`}
                           title="Wypełnij arkusz"
@@ -3241,7 +3241,7 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
                           </button>
                           <button
                             type="button"
-                            onClick={handleFillSheet}
+                            onClick={() => handleFillSheet()}
                             disabled={isFillingSheet}
                             className={`flex-1 inline-flex flex-col items-center justify-center gap-1.5 px-1 py-2.5 text-[10px] font-bold bg-muted hover:bg-muted/80 text-foreground border border-border/40 rounded-2xl transition-all active:scale-95 ${isFillingSheet ? "opacity-70 pointer-events-none" : ""}`}
                           >
