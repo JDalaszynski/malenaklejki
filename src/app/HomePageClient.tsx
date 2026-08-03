@@ -1948,7 +1948,7 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
                     Dodaj naklejkę na arkusz
                   </h3>
 
-                  <div className="grid grid-cols-2 lg:grid-cols-1 gap-4">
+                  <div className="grid grid-cols-1 gap-4">
                     {/* Unified Direct File Picker */}
                     <label
                       className="flex flex-col items-center justify-center p-6 border-2 border-dashed border-foreground/20 dark:border-foreground/30 hover:border-primary/45 rounded-2xl bg-muted/10 hover:bg-muted/30 transition-all hover:scale-[1.01] active:scale-[0.99] cursor-pointer h-full group"
@@ -1967,15 +1967,6 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
                       <span className="text-sm font-bold text-foreground text-center">Dodaj Naklejkę</span>
                       <span className="text-[10px] font-semibold text-muted-foreground mt-0.5 text-center">Zdjęcie JPG / PNG</span>
                     </label>
-
-                    {/* AI Generator Button */}
-                    <button
-                      onClick={() => setIsAIGeneratorOpen(true)}
-                      className="flex items-center justify-center gap-2 py-3 px-4 text-muted-foreground hover:text-primary hover:bg-muted/40 transition-all active:scale-[0.99] cursor-pointer group rounded-xl w-full"
-                    >
-                      <Wand2 className="w-4 h-4" />
-                      <span className="text-xs font-bold">Generator AI (opisz co chcesz stworzyć)</span>
-                    </button>
                   </div>
                 </div>
               )}
@@ -2252,7 +2243,7 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
                         <Layers className={`w-4 h-4 ${deliveryForm === "sheet" ? "text-primary" : "text-muted-foreground"}`} />
                         <span className="font-extrabold text-xs text-foreground">Pozostawione na arkuszu</span>
                       </div>
-                      <div className={`w-4.5 h-4.5 rounded-full border flex items-center justify-center transition-all ${deliveryForm === "sheet"
+                      <div className={`flex-shrink-0 w-4.5 h-4.5 rounded-full border flex items-center justify-center transition-all ${deliveryForm === "sheet"
                         ? "border-primary bg-primary/10"
                         : "border-slate-300 dark:border-white/20 bg-background"
                         }`}>
@@ -2279,7 +2270,7 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
                         <Scissors className={`w-4 h-4 ${deliveryForm === "individual" ? "text-primary" : "text-muted-foreground"}`} />
                         <span className="font-extrabold text-xs text-foreground">Pojedyncze sztuki</span>
                       </div>
-                      <div className={`w-4.5 h-4.5 rounded-full border flex items-center justify-center transition-all ${deliveryForm === "individual"
+                      <div className={`flex-shrink-0 w-4.5 h-4.5 rounded-full border flex items-center justify-center transition-all ${deliveryForm === "individual"
                         ? "border-primary bg-primary/10"
                         : "border-slate-300 dark:border-white/20 bg-background"
                         }`}>
@@ -2408,7 +2399,7 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
 
 
               <p className="text-[11px] text-muted-foreground bg-muted/20 border border-border/40 p-3 rounded-2xl font-bold mt-2 sm:mt-4 text-center max-w-md mx-auto">
-                Uwaga: Po zmniejszeniu rozmiaru naklejki tekst i małe elementy mogą stać się nieczytelne.
+                Uwaga: znaczne zmniejszenie naklejki może sprawić, że tekst i małe elementy mogą stać się nieczytelne.
               </p>
 
               {stickers.length > 0 && (
@@ -2535,7 +2526,7 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
 
                 <div className="relative px-4 pb-5 pt-2 pointer-events-auto">
                   <div className="w-full liquid-glass border border-border/40 p-2 rounded-[28px] shadow-[0_-8px_30px_rgba(0,0,0,0.08)] dark:shadow-[0_-8px_30px_rgba(0,0,0,0.3)]">
-                    <div className="grid grid-cols-3 gap-2">
+                    <div className="grid grid-cols-2 gap-2">
                       <label className="w-full flex flex-col items-center justify-center gap-1 py-2 px-1 rounded-3xl bg-primary hover:bg-primary/90 border border-primary/20 transition-all active:scale-[0.98] cursor-pointer shadow-sm">
                         <input type="file" accept="image/*" className="hidden" onChange={(e) => { const file = e.target.files?.[0]; if (file) handleMobileFileUpload(file); e.target.value = ""; }} />
                         <ImagePlus className="w-5 h-5 text-white" />
@@ -2547,13 +2538,6 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
                       >
                         <SmilePlus className="w-5 h-5 text-primary group-hover:text-primary-foreground" />
                         <span className="text-[10px] font-extrabold text-primary group-hover:text-primary-foreground text-center leading-tight">Z klawiatury<br />(Naklejki i Emoji)</span>
-                      </button>
-                      <button
-                        onClick={() => setIsAIGeneratorOpen(true)}
-                        className="w-full flex flex-col items-center justify-center gap-1 py-2 px-1 rounded-3xl bg-primary/10 hover:bg-primary border border-primary text-primary hover:text-primary-foreground transition-all active:scale-[0.98] cursor-pointer shadow-sm group"
-                      >
-                        <Wand2 className="w-5 h-5 text-primary group-hover:text-primary-foreground" />
-                        <span className="text-[10px] font-extrabold text-primary group-hover:text-primary-foreground text-center leading-tight">Wygeneruj z opisu</span>
                       </button>
                     </div>
                   </div>
