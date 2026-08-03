@@ -64,7 +64,7 @@ Naklejka jest wycięta tylko do linii kleju - papier podkładowy pozostaje w ca�
 
 ### Prostokąt lub kwadrat
 
-Klasyczne cięcie po prostej linii - najszybszy i najtańszy wariant. Sprawdza się przy naklejkach z pełnym tłem, gdzie grafika "wychodzi" do samych krawędzi naklejki (tzw. full bleed).
+Klasyczne cięcie po prostej linii - najszybszy i najtańszy wariant. Sprawdza się przy naklejkach z pełnym tłem, gdzie grafika "wychodzi" do samych krawędzi naklejki (tzw. full bleed). Osobnym wariantem tej rodziny jest równe koło - sprawdź, kiedy najlepiej wybrać [naklejki okrągłe z własnym nadrukiem](/blog/naklejki-okragle-z-wlasnym-nadrukiem) do logo, plomb i etykiet na słoiki.
 
 **Kiedy wybrać:** Gdy Twój projekt jest zdjęciem lub grafiką wypełniającą cały prostokąt, bez obrysowanego kształtu.
 

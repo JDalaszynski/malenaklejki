@@ -28,16 +28,76 @@ Podczas pisania i formatowania **każdego** artykułu lub aktualizacji, Agencie,
 
 
 
-- [ ] **Naklejki okrągłe z własnym nadrukiem - kiedy wybrać kształt koła?**
+- [x] **Naklejki okrągłe z własnym nadrukiem - kiedy wybrać kształt koła?** (napisano 2026-08-03; 5 grafik wgranych, osadzonych i obrandowanych, piny/social gotowe)
     - **Format:** Supporting Article
     - **Główna Fraza Kluczowa:** `naklejki okrągłe z własnym nadrukiem` / `naklejki w kształcie koła`
     - **Cel:** Edukacja
     - **Persona:** Mikroprzedsiębiorstwa, artyści, klienci indywidualni porównujący formaty
     - **Link nadrzędny (Filar):** `/blog/drukowanie-naklejek-online-na-co-zwrocic-uwage-przed-wysylka-projektu`
-    - **Prompty do generowania zdjęć:**
-        - "Zbliżenie na trzy różne kształty naklejek - okrągłą, kwadratową i wyciętą po obrysie - ułożone obok siebie na jasnym tle, widoczne różnice w liniach cięcia."
-        - "Dłoń odklejająca idealnie okrągłą naklejkę z logo z arkusza ochronnego, makro ujęcie z widocznymi krawędziami cięcia."
-        - "Zestaw okrągłych naklejek z jednolitym wzorem graficznym naklejonych na słoikach z miodem, ustawionych rzędem na drewnianej półce."
+    - **Uwaga:** artykuł ~1250 słów, slug `naklejki-okragle-z-wlasnym-nadrukiem`, plik `src/content/blog/naklejki-okragle-z-wlasnym-nadrukiem.md`. Backlink z filaru `drukowanie-naklejek-online...` dodany (sekcja o kształtach cięcia). Cross-linki: die-cut/kiss-cut, logo firmy, logo na słoiki, wlepki, słownik przez filar. **HOLD generator AI uszanowany** (0 wzmianek o generatorze AI/sztucznej inteligencji), **0 "zaprojektuj/projektowanie"**, prawda o produkcie (mocny klej + 0 śladów, folia NIE do zmywarki - mycie ręczne), przewagi PL bez name-dropu konkurenta (nisza formatowa), dywiz "-" (bez półpauzy). FAQ jako H3 + domykająca sekcja `##` z CTA po FAQ.
+        - **Zdjęcia (dograne 2026-08-03):** użytkownik wgrał 5 grafik (marki wymyślone: NEXORA, PASIEKA ZŁOCISTA, KOVAL - bez realnych znaków towarowych). Zoptymalizowane do realnego JPEG (q88 mozjpeg, 1024 px, ~690 KB-1,8 MB -> 55-210 KB), nazwane pod SEO, osadzone w treści z altami: `zestaw-okraglych-naklejek-rozne-wzory` (sekcja "kiedy koło"), `okragle-etykiety-na-swiece-sojowe-i-kosmetyki-naturalne` (opener "zastosowania"), `okragle-etykiety-na-sloiki-z-miodem` (sekcja słoiki/miód), `okragla-naklejka-plomba-na-paczke-ecommerce` (sekcja e-commerce); okładka = `okragla-naklejka-z-logo-firmy-na-pudelku` (branding NEXORA). Wygenerowano 5 pinów Pinterest 4:5 (JPG) + `pinterest-info.md` + `tiktok-info.txt` + `facebook-info.txt` (`generate-pinterest.ts`, z SUROWYCH zdjęć PRZED paskiem logo), następnie `add_logo_bar.mjs` na folderze blog (pojedynczy pasek, bez podwójnego logo). Czyste (nieobrandowane) kopie w scratchpadzie na wypadek revertu paska. **Nie commitowano/pushowano** - do przeglądu właściciela.
+    - **Prompty do generowania zdjęć (10 szt. - do wygenerowania i wgrania przez użytkownika; UŻYWAĆ WYŁĄCZNIE WYMYŚLONYCH/AUTORSKICH LOGO I WZORÓW, bez realnych znaków towarowych):**
+        1. (okładka) "Kwadratowy kadr z góry: kilka okrągłych naklejek z własnym nadrukiem - minimalistyczne logo w kole, prosty wzór roślinny i monogram - rozłożonych na jasnym, pastelowym tle; miękkie naturalne światło, płytka głębia ostrości, widoczna równa krawędź koła i delikatny połysk folii winylowej."
+        2. "Makro: dłoń odkleja idealnie okrągłą naklejkę z jasnego arkusza podkładowego, wyraźnie widoczna równa krawędź cięcia koła i lekko uniesiony brzeg folii, miękkie boczne światło, rozmyte tło."
+        3. "Trzy naklejki różnego kształtu obok siebie na białym stole - okrągła, kwadratowa i wycięta po obrysie sylwetki - pokazujące różnicę w liniach cięcia; ostre detale, równomierne studyjne oświetlenie."
+        4. "Rząd słoików z miodem na drewnianej półce, każdy z taką samą okrągłą etykietą w stylu rustykalnej manufaktury (napis i prosty rysunek pszczoły), ciepłe złociste światło, przytulne wnętrze spiżarni."
+        5. "Sojowe świece w szklanych naczyniach i kosmetyk naturalny w brązowej buteleczce, oznaczone minimalistycznymi okrągłymi etykietami, jasna elegancka aranżacja na kamiennym blacie, miękkie światło."
+        6. "Kartonowa paczka e-commerce zaklejona okrągłą naklejką-plombą z prostym, wymyślonym logo; obok papier kraft i suszone kwiaty, estetyczna scena unboxingu z góry, naturalne światło."
+        7. "Zbliżenie na ekran telefonu z otwartym kreatorem naklejek, na którym zdjęcie jest kadrowane do okręgu (widoczna okrągła ramka kadrowania i podgląd 3D naklejki), nowoczesne biurko, bez realnych logotypów marek."
+        8. "Stoisko twórcy na targach z zestawem okrągłych wlepek w stylu przypinek (button badge) o różnych autorskich, ilustrowanych wzorach, rozłożonych na drewnianej tacce; żywe kolory, naturalne światło."
+        9. "Arkusz A4 wypełniony kilkunastoma różnymi okrągłymi naklejkami (wzory roślinne, geometryczne, monogramy) w jednym spójnym formacie koła, widok z góry, równe cięcie, jasne studyjne tło."
+        10. "Okrągła firmowa naklejka z minimalistycznym, wymyślonym logo naklejona na wieczku białego pudełka na produkt, obok wizytówka w tym samym stylu; czysta profesjonalna aranżacja brandingowa, miękkie cienie."
+
+---
+
+## 🆕 Rozszerzenie o nową pulę fraz (audyt 2026-07-30)
+
+Właściciel podrzucił pulę fraz (patrz `blog-agent/keywords.md` §9). Po analizie intencji, wolumenu, luki i ryzyka kanibalizacji ustaliłem zastosowania. **Rekomendowana kolejność realizacji (wg wartości, nie wolumenu):** 1) optymalizacja strony głównej pod kreator, 2) landing `/etykiety-na-sloiki` (patrz `landing-agent/plan.md`), 3) wpis "jak zrobić / program do robienia naklejek", 4) wpis "etykiety na słoiki do przetworów", 5) wpis "naklejki na motory/motocyklowe", 6) rozbudowa spoke'a laptop, 7) opcjonalny wpis "inspiracje/wzory". Poniższe wpisy dopisuję do kolejki (za istniejącym tematem "naklejki okrągłe" - właściciel może przestawić kolejność).
+
+**Ograniczenia dla całej tej puli (obowiązkowe):**
+* **HOLD generator AI (2026-07-27):** żaden nowy wpis nie filaruje na naszym generatorze AI ani "generowaniu grafiki AI". Filaruj na: wgranie gotowego obrazu/zdjęcia, **automatyczne usuwanie tła**, cięcie po obrysie, kreator arkusza 3D. (Uwaga: koliduje to z `rules.md` §3 "polecaj generatory AI w pierwszej kolejności" - do zdjęcia HOLD-u przez właściciela obowiązuje HOLD; **do decyzji właściciela**.)
+* **Zakaz "projektowania":** nigdy "zaprojektuj/projektowanie" naklejki/grafiki - używaj "zrób / stwórz / zamów / ułóż arkusz".
+* **Prawda o produkcie:** mocny klej + "0 śladów" (NIE klej repozycjonowalny); folia NIE do zmywarki.
+
+### 📌 Aktualizacje istniejących treści (nie nowe wpisy - do wykonania osobno)
+- [x] **Strona główna - `SeoContentSection.tsx`: klaster kreatora** (zrobione 2026-07-30) - dodano 2 sekcje H3 w siatce (bilans 3+3): (1) "Kreator naklejek online - prosty program do robienia naklejek" -> copy nasycone `kreator naklejek online` (H3+body), `program do robienia naklejek` (x2), `tworzenie naklejek`, `robienie naklejek`; pozycjonuje jako narzędzie/program online (wgraj -> auto usuwanie tła -> cięcie po obrysie), z linkiem do `/naklejki-die-cut`; (2) "Czy naklejki łatwo się odklejają i nie zostawiają śladów?" -> łapie `naklejki łatwo usuwalne` uczciwie (mocny klej + 0 śladów, NIE repozycjonowalne). **HOLD generator AI uszanowany** (0 "generator AI"/"sztuczna inteligencja"), **0 "zaprojektuj/projektowanie"**, dywiz "-" (przy okazji poprawiono 1 istniejącą półpauzę U+2013 w sekcji "biznes"). Zweryfikowane: `tsc --noEmit` bez błędów; treść w surowym SSR HTML (`curl :3000` -> oba H3 obecne, crawlowalne dla Google/LLM). Zero kanibalizacji (ta sama strona, nie nowy landing).
+- [ ] **Spoke `male-naklejki-na-laptopa...`: rozbudowa na głowę `naklejki na laptop`** - dodaj H2 na szerszą głowę (bez "małe") + sekcję `naklejki na laptopa własny projekt`; obecnie tytuł/treść łapią tylko "małe naklejki na laptopa".
+- [ ] **Spoke `naklejki-wlasnego-projektu-na-sloiki-z-przyprawami...`: fix kodowania** - w treści jest uszkodzony znak UTF-8 (`etykiet` z bitym ogonkiem). Popraw przy najbliższej aktualizacji.
+- [ ] **`/slownik-naklejek`: dopisz pojęcie** "naklejki łatwo usuwalne / czy zostawiają ślady" (definicyjnie: folia z mocnym klejem, schodzi bez śladów; nie repozycjonowalna) - łapie frazę bez fałszywej obietnicy.
+
+### 📝 Nowe wpisy (dopisane do kolejki)
+
+- [ ] **Jak zrobić własne naklejki - program do robienia naklejek online i inne metody**
+    - **Format:** Supporting Article
+    - **Główna Fraza Kluczowa:** `jak zrobić własne naklejki` / `program do robienia naklejek` / `program do tworzenia naklejek` (semantyczne: `jak stworzyć własne naklejki`, `naklejki do zrobienia samemu`, `tworzenie naklejek`, `robienie naklejek`)
+    - **Cel:** Edukacja -> konwersja do kreatora
+    - **Persona:** Klienci indywidualni, twórcy, mikro-brandy szukające "programu/narzędzia" do zrobienia naklejek
+    - **Link nadrzędny (Filar):** `/blog/drukowanie-naklejek-online-na-co-zwrocic-uwage-przed-wysylka-projektu`
+    - **Uwaga:** Różnicuj od `jak-zrobic-wlasne-naklejki-w-telefonie` (tamten = mobile/apki). Ten = szeroki przegląd metod: druk domowy DIY (papier samoprzylepny, wady - brak trwałości/cięcia) vs **narzędzie/program online** (nasz kreator: wgraj gotowy obraz -> auto usuwanie tła -> cięcie po obrysie -> arkusz A4 od 49 zł). Skąd wziąć gotową grafikę: gotowe pliki / darmowe programy (Canva, Word) - **bez eksponowania generatora AI (HOLD)**. Zero słowa "zaprojektuj". Mocny anchor "w górę" do filaru w 1. akapicie; cross-link telefon + die-cut. Aktywne anchory do `/` ("zrób własne naklejki", "otwórz kreator").
+
+- [ ] **Etykiety na słoiki do przetworów i weków - napisy na słoiki krok po kroku**
+    - **Format:** Supporting Article
+    - **Główna Fraza Kluczowa:** `etykiety na słoiki` / `napisy na słoiki` (semantyczne: `etykiety na słoik`, `naklejki na słoiki personalizowane`, `własne etykiety`)
+    - **Cel:** Sprzedaż / Edukacja (sezonowe: lato-jesień, przetwory)
+    - **Persona:** Domownicy robiący przetwory/weki/dżemy, pasjonaci kuchni, prezenty ze słoika
+    - **Link nadrzędny (Filar):** `/blog/jak-zamowic-idealne-naklejki-na-zamowienie-z-wlasnym-nadrukiem`
+    - **Uwaga:** Różnicuj od spoke'a `przyprawy` (przyprawy w kuchni) i `logo-na-sloiki` (B2B manufaktury) - tu **przetwory/weki B2C**. Leksyk "etykiety/napisy", nie tylko "naklejki". Prawda o produkcie w FAQ: folia woda/UV/zadrapania, **mycie ręczne (NIE zmywarka)**. Link "w górę" do landingu `/etykiety-na-sloiki` (gdy powstanie) i do filaru. Cross-link: przyprawy, logo/opakowania, nalewki.
+
+- [ ] **Naklejki na motory i motocyklowe - personalizacja motocykla, kasku i baku**
+    - **Format:** Supporting Article
+    - **Główna Fraza Kluczowa:** `naklejki na motory` / `naklejki motocyklowe` (semantyczne: `naklejki motocykl`)
+    - **Cel:** Sprzedaż
+    - **Persona:** Motocykliści, pasjonaci jednośladów, personalizacja kasku/baku/owiewek
+    - **Link nadrzędny (Filar):** `/blog/jak-zamowic-idealne-naklejki-na-zamowienie-z-wlasnym-nadrukiem`
+    - **Uwaga:** **Odrębne od** `naklejki-motoryzacyjne-i-tuningowe` (samochody/tuning) - tam `na motory` = 0 wystąpień. Krzyżuj linki z tamtym wpisem i z rowerem/kaskiem. Podkreśl: folia woda/UV/zadrapania (jazda w deszczu), cięcie po obrysie pod nietypowe kształty na bak, pojedyncze sztuki. **Prawda o produkcie:** bez deklaracji wieloletniej trwałości zewnętrznej na karoserię/bak (nie potwierdzone - patrz `landing-agent/plan.md` "DO POTWIERDZENIA").
+
+- [ ] **(Opcjonalny, niższy priorytet) Fajne wzory i pomysły na naklejki - inspiracje wg zastosowania**
+    - **Format:** Supporting Article (hub linkowania wewnętrznego)
+    - **Główna Fraza Kluczowa:** `fajne wzory na naklejki` (semantyczne: `wzory na naklejki do druku`, `pomysły na naklejki`)
+    - **Cel:** Top-funnel / topical authority / linkowanie wewnętrzne
+    - **Persona:** Osoby szukające inspiracji przed zamówieniem (browsing intent)
+    - **Link nadrzędny (Filar):** `/blog/jak-zamowic-idealne-naklejki-na-zamowienie-z-wlasnym-nadrukiem`
+    - **Uwaga:** Zbiorczy przegląd pomysłów wg niszy (laptop, moto, słoiki, ślub, firma, dziecko...), każdy blok linkuje do właściwego spoke'a + kreator. Niska konwersja, ale mocny wewnętrzny link-hub. Realizuj dopiero po wpisach o wyższej intencji.
 
 ---
 
@@ -198,6 +258,7 @@ Podczas pisania i formatowania **każdego** artykułu lub aktualizacji, Agencie,
     - **Główna Fraza Kluczowa:** `naklejki na zamówienie` / `naklejki z własnym nadrukiem`
     - **Cel:** Sprzedaż / Edukacja
     - **Persona:** Klienci indywidualni, mikroprzedsiębiorstwa, e-commerce
+    - **Uwaga (aktualizacja 2026-07-29):** filar opublikowany 2026-07-02 bez zdjęć w treści. Użytkownik dograł 5 grafik (firmowe NEXORA, naklejka ze zdjęcia z telefonu - skoczek, koperta ślubna z monogramem, naklejka ze zdjęcia psa, wódka weselna) - zoptymalizowane do JPEG (q88, 122-239 KB), nazwane pod SEO, osadzone w treści z altami w pasujących sekcjach, `updated` bumpnięte na 2026-07-29. Wygenerowano 6 pinów Pinterest (JPG 4:5) + `pinterest-info.md` + `tiktok-info.txt` + `facebook-info.txt`. Okładka była już obrandowana (pasek z logo z 2026-07-02), więc pin okładkowy zrobiono z przyciętej, nieobrandowanej wersji (bez podwójnego logo), a `add_logo_bar.mjs` puszczono TYLKO na 5 nowych grafikach.
 
 - [x] **Naklejka z logo firmy - jak skutecznie brandować swoje produkty?** (opublikowano 2026-07-02)
     - **Format:** Supporting Article
