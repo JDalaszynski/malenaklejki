@@ -94,6 +94,8 @@ Głównym celem biznesowym (konwersją) jest nakłonienie użytkownika do skorzy
 
 ## 🔄 6. Korekta Kursu Strategii - Faza 2 (audyt 2026-07-18)
 
+> **Aktualizacja 2026-08-04 (polityka generatorów AI):** poniższa analiza opisuje pełny HOLD generatora AI z 2026-07-27. Od 2026-08-04 obowiązuje wersja częściowa - ZEWNĘTRZNE generatory (ChatGPT/Gemini/Midjourney) są odblokowane jako źródło gotowej grafiki, a wstrzymana pozostaje wyłącznie ekspozycja NASZEGO wbudowanego generatora. Wszystkie wzmianki o "HOLD"/"WSTRZYMANY" w tej sekcji czytaj przez ten filtr. Źródło: pamięć `ai-generator-content-hold`.
+
 Po opublikowaniu 14 artykułów i wyczerpaniu kolejki w `plan.md` do jednego tematu przeprowadziłem pełny audyt: pokrycia person z sekcji 2, zgodności `rules.md`/`.agents/AGENTS.md` z realnym stanem produktu (`src/components/creator/`, `src/components/home/`) oraz nasycenia keywordów z `keywords.md` w opublikowanych treściach.
 
 ### Kluczowe ustalenia

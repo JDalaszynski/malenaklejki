@@ -68,7 +68,7 @@ Serwis wczesny (max ~44 wyświetlenia na zapytanie), więc **priorytetyzuj strat
     - **Schema:** `BreadcrumbList` + `Product`/`Offer`(49.00 PLN, material: Folia winylowa) + `FAQPage` + `WebPage`(dateModified).
     - **Różnicowanie / cross-link:** vs `/naklejki-dla-firm` (tam "firma/logo/faktura"; tu leksyk "etykiety/słoiki/przetwory/świece" + B2C) i vs `/naklejki-foliowe` (materiał). Linki "w dół" do spoke'ów: przyprawy/słoiki, logo/opakowania, nalewki, alkohol + (gdy powstanie) nowy spoke "etykiety na słoiki do przetworów".
     - **Linkowanie przychodzące:** 1 link z `SeoContentSection.tsx` (anchor "etykiety na słoiki") + linki "w górę" ze spoke'ów słoiki/przyprawy/logo/nalewki. Dodać do `sitemap.ts`.
-    - **HOLD generator AI + zakaz "projektowania"** uszanuj (0 wystąpień "generator AI"/"zaprojektuj"); dywiz "-".
+    - **Generator AI (polityka 2026-08-04):** możesz polecać ZEWNĘTRZNE generatory (ChatGPT/Gemini/Midjourney), ale NIE eksponuj naszego wbudowanego generatora; **zakaz "projektowania"** obowiązuje (0 wystąpień "zaprojektuj"); dywiz "-".
     - **Uwaga URL:** wybrano `/etykiety-na-sloiki` (exact-match najmocniejszej frazy) ze scope'em obejmującym butelki/świece/kosmetyki jako sekcje. Alternatywa `/etykiety-na-produkty` odrzucona - słabszy exact-match.
 
 - [ ] **Decyzja: klaster "kreator/program do naklejek" → OPTYMALIZACJA `/`, nie nowy landing** (audyt 2026-07-30)

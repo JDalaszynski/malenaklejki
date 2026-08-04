@@ -117,8 +117,8 @@ Oto lista rzeczywistych fraz kluczowych wyszukiwanych przez użytkowników w nas
 
 ---
 
-## 7. Generator AI (⛔ KLASTER WSTRZYMANY - 2026-07-27)
-> **HOLD (decyzja właściciela):** nie celuj we frazy z tego klastra i nie twórz pod nie treści (patrz `plan.md` → "⛔ Wstrzymane tematy"). Właściciel przesunął temat na później. Lista pozostaje jako archiwum na moment zdjęcia holdu.
+## 7. Generator naklejek AI - NASZ wbudowany (⚠️ ekspozycja wstrzymana; zewnętrzne generatory OK od 2026-08-04)
+> **Polityka (aktualizacja 2026-08-04):** ZEWNĘTRZNE generatory (ChatGPT/Gemini/Midjourney) są odblokowane - możesz polecać je jako pierwsze źródło gotowej grafiki (patrz `rules.md` §3). Nadal jednak NIE celuj we frazy z tego klastra jako pozycjonowanie NASZEGO wbudowanego generatora ("generator naklejek AI/online" = nasza funkcja) i nie buduj pod nią dedykowanych wpisów/landingów - jej ekspozycję właściciel wciąż wstrzymuje. Patrz pamięć `ai-generator-content-hold`.
 
 Klaster wokół realnej, ale dotąd niewykorzystanej w treściach funkcji kreatora - generowania grafiki z opisu tekstowego. Zerowe pokrycie contentowe na blogu i stronie głównej mimo obecności funkcji w produkcie.
 * `generator naklejek AI`
@@ -167,7 +167,7 @@ Największa luka: strona główna **jest** kreatorem, ale nie używa tych fraz w
 * ✅ `program do robienia naklejek` / `program do tworzenia naklejek` / `tworzenie naklejek` / `robienie naklejek` - pozycjonuj nas jako **narzędzie/program online do robienia naklejek** (kreator arkusza: wgraj obraz -> auto tło -> cięcie po obrysie). Strona główna + wpis blogowy informacyjny.
 * ✅ `jak stworzyć własne naklejki` / `jak zrobić swoje własne naklejki` / `naklejki do zrobienia samemu` / `stwórz własne naklejki` - **wpis blogowy** (informacyjny "jak", metody DIY vs druk online) + istniejący anchor akcyjny na `/`. Różnicuj od istniejącego `jak zrobić własne naklejki w telefonie` (tamten = mobile/apki; nowy = szeroki, desktop + metody + kreator online).
 * ⛔ `projektowanie naklejek online` / `zaprojektuj własną naklejkę` - **zakaz brandowy** (kreator = arkusz, nie "projektowanie" grafiki; spójne z notą GSC "zaprojektuj naklejkę"). NIE w `title`/`H1`/URL. Łap wyłącznie semantycznie przez "stwórz / zrób / zamów".
-* ⚠️ **HOLD generator AI** (od 2026-07-27): treść klastra kreatora **nie może** filarować na naszym generatorze AI ani na "generowaniu grafiki AI". Filaruj na: wgranie gotowego obrazu, **automatyczne usuwanie tła**, cięcie po obrysie, układanie arkusza 3D. (Uwaga: `rules.md` §3 każe polecać generatory AI w pierwszej kolejności - to koliduje z HOLD-em; do czasu zdjęcia HOLD-u przez właściciela obowiązuje HOLD.)
+* ⚠️ **Generator AI - polityka od 2026-08-04:** treść klastra kreatora **nie filaruje na NASZYM wbudowanym generatorze AI** (jego ekspozycja nadal wstrzymana) - filar buduj na: wgranie gotowego obrazu, **automatyczne usuwanie tła**, cięcie po obrysie, układanie arkusza 3D. Możesz natomiast polecać ZEWNĘTRZNE generatory (ChatGPT/Gemini/Midjourney) jako źródło gotowej grafiki do wgrania (zgodnie z `rules.md` §3). Wcześniejsza kolizja rozwiązana - patrz pamięć `ai-generator-content-hold`.
 
 ### 9b. Etykiety na słoiki / świeczki (luka LEKSYKALNA "etykiety" ≠ "naklejki")
 Mamy treści "naklejki na słoiki" (przyprawy, logo/opakowania), ale searcher pisze **"etykiety"** i **"napisy"** - inne pole leksykalne, realnie duży wolumen (przetwory, weki, manufaktury). `napisy na słoiki` = 0 wystąpień; `etykiety na słoiki` nigdy w nagłówku.

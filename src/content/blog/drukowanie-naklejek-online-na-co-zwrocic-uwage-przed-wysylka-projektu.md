@@ -19,7 +19,7 @@ Zanim wyślesz plik do druku, warto zrozumieć, z czego składa się cały proce
 3. **Skonfigurujesz arkusz** - decydujesz, ile naklejek ma się zmieścić na jednym arkuszu A4.
 4. **Zatwierdzasz podgląd 3D** i składasz zamówienie. Realizacja zajmuje 3 dni robocze.
 
-Cały proces odbywa się w oknie przeglądarki - bez instalowania programów i bez rejestracji.
+Cały proces odbywa się w oknie przeglądarki - bez instalowania programów i bez rejestracji. Dopiero zaczynasz i zastanawiasz się, [jak zrobić własne naklejki](/blog/jak-zrobic-wlasne-naklejki-program-do-robienia-naklejek-online) krok po kroku? W osobnym poradniku porównujemy druk domowy DIY z prostym programem do robienia naklejek online.
 
 ## Rozdzielczość pliku - dlaczego ma kluczowe znaczenie dla jakości druku?
 
