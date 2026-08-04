@@ -67,7 +67,7 @@ Właściciel podrzucił pulę fraz (patrz `blog-agent/keywords.md` §9). Po anal
 
 ### 📝 Nowe wpisy (dopisane do kolejki)
 
-- [x] **Jak zrobić własne naklejki - program do robienia naklejek online i inne metody** (napisano 2026-08-04; 5 grafik dogranych przez użytkownika, osadzonych i obrandowanych, piny/social gotowe. NIE commitowano/pushowano - do przeglądu właściciela.)
+- [x] **Jak zrobić własne naklejki - program do robienia naklejek online i inne metody** (napisano 2026-08-04; 5 grafik dogranych przez użytkownika, osadzonych i obrandowanych, piny/social gotowe. Scommitowano i wypchnięto na produkcję (main) 2026-08-04.)
     - **Format:** Supporting Article
     - **Główna Fraza Kluczowa:** `jak zrobić własne naklejki` / `program do robienia naklejek` / `program do tworzenia naklejek` (semantyczne: `jak stworzyć własne naklejki`, `naklejki do zrobienia samemu`, `tworzenie naklejek`, `robienie naklejek`)
     - **Cel:** Edukacja -> konwersja do kreatora
