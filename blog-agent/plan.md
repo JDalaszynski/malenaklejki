@@ -89,13 +89,6 @@ Właściciel podrzucił pulę fraz (patrz `blog-agent/keywords.md` §9). Po anal
         9. "Kilka naklejek ze zdjęć wyciętych po obrysie (portret psa, kadr z wakacji, rysunek dziecka) rozłożonych obok siebie na jasnym tle, pokazujących różnorodność naklejek fotograficznych."
         10. "Notes i termos ozdobione kilkoma małymi naklejkami z napisami i prostymi ikonkami, minimalistyczna aranżacja biurkowa, miękkie dzienne światło."
 
-- [ ] **Etykiety na słoiki do przetworów i weków - napisy na słoiki krok po kroku**
-    - **Format:** Supporting Article
-    - **Główna Fraza Kluczowa:** `etykiety na słoiki` / `napisy na słoiki` (semantyczne: `etykiety na słoik`, `naklejki na słoiki personalizowane`, `własne etykiety`)
-    - **Cel:** Sprzedaż / Edukacja (sezonowe: lato-jesień, przetwory)
-    - **Persona:** Domownicy robiący przetwory/weki/dżemy, pasjonaci kuchni, prezenty ze słoika
-    - **Link nadrzędny (Filar):** `/blog/jak-zamowic-idealne-naklejki-na-zamowienie-z-wlasnym-nadrukiem`
-    - **Uwaga:** Różnicuj od spoke'a `przyprawy` (przyprawy w kuchni) i `logo-na-sloiki` (B2B manufaktury) - tu **przetwory/weki B2C**. Leksyk "etykiety/napisy", nie tylko "naklejki". Prawda o produkcie w FAQ: folia woda/UV/zadrapania, **mycie ręczne (NIE zmywarka)**. Link "w górę" do landingu `/etykiety-na-sloiki` (gdy powstanie) i do filaru. Cross-link: przyprawy, logo/opakowania, nalewki.
 
 - [ ] **Naklejki na motory i motocyklowe - personalizacja motocykla, kasku i baku**
     - **Format:** Supporting Article
@@ -116,6 +109,14 @@ Właściciel podrzucił pulę fraz (patrz `blog-agent/keywords.md` §9). Po anal
 ---
 
 ## 📈 Zrealizowane Artykuły
+
+- [x] **Etykiety na słoiki do przetworów i weków - napisy na słoiki krok po kroku** (opublikowano 2026-08-06)
+    - **Format:** Supporting Article
+    - **Główna Fraza Kluczowa:** `etykiety na słoiki` / `napisy na słoiki`
+    - **Cel:** Sprzedaż / Edukacja (sezonowe: lato-jesień, przetwory)
+    - **Persona:** Domownicy robiący przetwory/weki/dżemy, pasjonaci kuchni, prezenty ze słoika
+    - **Link nadrzędny (Filar):** `/blog/jak-zamowic-idealne-naklejki-na-zamowienie-z-wlasnym-nadrukiem`
+    - **Uwaga:** artykuł napisany 2026-08-06. Zoptymalizowano 4 zdjęcia dostarczone przez użytkownika i osadzono w treści. Wygenerowano Piny do Pinteresta oraz materiały do mediów społecznościowych z czystych, pozbawionych brandingu zdjęć, a następnie dodano na nich pasek z logo (surowe kopie pozostały w pamięci/skrypcie roboczym).
 
 - [x] **Podziękowania dla gości i naklejki na koperty ślubne** (opublikowano 2026-07-28)
     - **Format:** Supporting Article
