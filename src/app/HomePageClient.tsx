@@ -66,6 +66,7 @@ import {
   getStickersNoun,
   getIndividualStickersLabel,
 } from "@/lib/utils/polish";
+import { useEstimatedShipping } from "@/hooks/useEstimatedShipping";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { storage } from "@/lib/firebase/client";
 import { useRouter } from "next/navigation";
@@ -139,6 +140,7 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
   const cartItems = useCartStore((state) => state.items);
 
   // Creator state
+  const shippingText = useEstimatedShipping();
   const [stickers, setStickers] = useState<PlacedSticker[]>([]);
   const [selectedStickerId, setSelectedStickerId] = useState<string | null>(
     null,
@@ -2955,7 +2957,7 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
                   </div>
                   <div className="flex items-center gap-1.5 text-[11px] font-black text-secondary whitespace-nowrap">
                     <Truck className="w-4 h-4 text-secondary" />
-                    <span>Wysyłka w ciągu 2 dni</span>
+                    <span>{shippingText}</span>
                   </div>
                 </div>
 
