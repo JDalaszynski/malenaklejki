@@ -2797,6 +2797,7 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
                     overlappingStickerIds={overlappingStickerIds}
                     deliveryForm={deliveryForm}
                     isFillingSheet={isFillingSheet}
+                    isAddingToCart={isAddingToCart}
                   />
                 ) : (
                   <A4Visualizer3D

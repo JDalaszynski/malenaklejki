@@ -54,7 +54,7 @@ export default function CartPage() {
               Twój Koszyk
             </h1>
             <p className="text-muted-foreground mt-2 font-medium text-lg">
-              Sprawdź swoje naklejki przed pakowaniem!
+              Oto Twoje zestawy naklejek. Możesz edytować je przed złożeniem zamówienia
             </p>
           </div>
           <Link
@@ -131,11 +131,10 @@ export default function CartPage() {
                               : `${item.stickersPerSheet} ${getStickersNoun(item.stickersPerSheet)} na arkuszu`}
                           </span>
                           <span
-                            className={`text-[11px] font-bold px-2.5 py-0.5 rounded-full inline-block border ${
-                              item.deliveryForm === "individual"
-                                ? "bg-blue-500/10 text-blue-600 dark:text-blue-400 border-blue-500/20"
-                                : "bg-[#02af7a]/10 text-[#004749] dark:text-[#a9e4d7] border-[#02af7a]/20"
-                            }`}
+                            className={`text-[11px] font-bold px-2.5 py-0.5 rounded-full inline-block border ${item.deliveryForm === "individual"
+                              ? "bg-blue-500/10 text-blue-600 dark:text-blue-400 border-blue-500/20"
+                              : "bg-[#02af7a]/10 text-[#004749] dark:text-[#a9e4d7] border-[#02af7a]/20"
+                              }`}
                           >
                             {item.deliveryForm === "individual"
                               ? "Forma: Pojedyncze sztuki"

@@ -22,6 +22,7 @@ interface NewA4VisualizerProps {
   overlappingStickerIds?: string[];
   deliveryForm?: "sheet" | "individual";
   isFillingSheet?: boolean;
+  isAddingToCart?: boolean;
 }
 
 export function NewA4Visualizer({
@@ -40,6 +41,7 @@ export function NewA4Visualizer({
   overlappingStickerIds = [],
   deliveryForm = "sheet",
   isFillingSheet = false,
+  isAddingToCart = false,
 }: NewA4VisualizerProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const resizeContourTimerRef = useRef<NodeJS.Timeout | null>(null);
@@ -678,10 +680,12 @@ export function NewA4Visualizer({
       )}
 
       {/* Loading Overlay */}
-      {isFillingSheet && (
+      {(isFillingSheet || isAddingToCart) && (
         <div className="absolute inset-0 z-50 flex flex-col items-center justify-center bg-background/60 backdrop-blur-[2px] rounded-lg animate-in fade-in duration-200">
           <Loader2 className="w-10 h-10 text-primary animate-spin mb-3" />
-          <span className="text-[13px] font-black text-foreground uppercase tracking-wider drop-shadow-md">Wypełnianie arkusza...</span>
+          <span className="text-[13px] font-black text-foreground uppercase tracking-wider drop-shadow-md">
+            {isAddingToCart ? "Dodajemy do koszyka..." : "Wypełnianie arkusza..."}
+          </span>
         </div>
       )}
 
