@@ -3,6 +3,7 @@ import { NextResponse } from "next/server";
 import { stripe } from "@/lib/stripe/server";
 import { db } from "@/lib/firebase/admin";
 import { sendCustomerConfirmationEmail, sendAdminFulfillmentAlert } from "@/lib/email/brevo";
+import { setOrderPayment } from "@/lib/baselinker";
 
 export async function POST(req: Request) {
   const body = await req.text();
@@ -49,6 +50,20 @@ export async function POST(req: Request) {
       });
 
       console.log(`Order ${orderId} marked as PAID.`);
+
+      if (orderData.baselinkerOrderId) {
+        try {
+          await setOrderPayment(
+            orderData.baselinkerOrderId,
+            orderData.totals?.total || 0,
+            Math.floor(Date.now() / 1000),
+            "Opłacone przez Stripe"
+          );
+          console.log(`Stripe: Zaktualizowano płatność w BaseLinkerze (ID: ${orderData.baselinkerOrderId})`);
+        } catch (e) {
+          console.error("Stripe: Błąd aktualizacji płatności w BaseLinkerze:", e);
+        }
+      }
 
       // Send emails
       if (orderData) {

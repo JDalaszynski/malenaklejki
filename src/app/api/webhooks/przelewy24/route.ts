@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { verifyWebhookSignature, verifyTransaction } from "@/lib/p24";
 import { db } from "@/lib/firebase/admin";
 import { buildCustomerEmailHtml, buildSellerEmailHtml, buildOrderAttachments } from "@/lib/emails";
+import { setOrderPayment } from "@/lib/baselinker";
 
 export const dynamic = "force-dynamic";
 
@@ -82,6 +83,20 @@ export async function POST(req: NextRequest) {
       p24OrderId: orderId,
     });
     console.log(`P24: Zamówienie ${sessionId} oznaczone jako PAID.`);
+
+    if (orderData.baselinkerOrderId) {
+      try {
+        await setOrderPayment(
+          orderData.baselinkerOrderId,
+          orderData.totals?.total || 0,
+          Math.floor(Date.now() / 1000),
+          "Opłacone przez Przelewy24"
+        );
+        console.log(`P24: Zaktualizowano płatność w BaseLinkerze (ID: ${orderData.baselinkerOrderId})`);
+      } catch (e) {
+        console.error("P24: Błąd aktualizacji płatności w BaseLinkerze:", e);
+      }
+    }
 
     // 4. Pobranie i wysłanie e-maili
     const adminEmail = process.env.ADMIN_EMAIL || "kontakt@malenaklejki.pl";
