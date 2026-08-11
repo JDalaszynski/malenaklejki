@@ -39,6 +39,7 @@ const CreateOrderSchema = z.object({
 
 import { registerTransaction } from "@/lib/p24";
 import { buildManualTransferEmailHtml, buildNewOrderSellerEmailHtml, buildOrderAttachments, buildVintedOrderCustomerEmailHtml, buildVintedOrderSellerEmailHtml } from "@/lib/emails";
+import { addOrderToBaseLinker, BLOrderParameters } from "@/lib/baselinker";
 
 /**
  * Generates a human-readable order number: MNK-YYYYMMDD-XXXX
@@ -207,32 +208,91 @@ export async function createOrder(rawData: any) {
     const cleanOrderData = JSON.parse(JSON.stringify(orderData));
     await orderRef.set(cleanOrderData);
 
+    // Wysyłamy zamówienie do BaseLinkera
+    try {
+      const formComments = finalData.items.map((item: any, i: number) => 
+        `Pozycja ${i+1}: ${item.deliveryForm === "individual" ? "Pocięte na pojedyncze sztuki" : "Na arkuszu"}`
+      ).join("\n");
+      const baseComments = finalData.deliveryMethod === "paczkomat" ? `Paczkomat: ${finalData.lockerId}\n` : "";
+      const finalComments = (baseComments + formComments).trim();
+
+      const blParams: BLOrderParameters = {
+        order_status_id: 65507,
+        date_add: Math.floor(Date.now() / 1000),
+        phone: finalData.phone || "",
+        email: finalData.email,
+        user_login: finalData.email,
+        currency: "PLN",
+        payment_method: finalData.paymentMethod,
+        payment_method_cod: 0,
+        paid: 0,
+        delivery_method: finalData.deliveryMethod,
+        delivery_price: finalData.shippingCost,
+        delivery_fullname: `${finalData.firstName} ${finalData.lastName}`.trim(),
+        delivery_company: finalData.companyName || "",
+        delivery_address: finalData.deliveryMethod === "kurier" 
+          ? `${finalData.street || ""} ${finalData.building || ""}`.trim() 
+          : finalData.lockerAddress || "-",
+        delivery_city: finalData.city || "-",
+        delivery_postcode: finalData.postalCode || "-",
+        delivery_country_code: "PL",
+        invoice_fullname: `${finalData.firstName} ${finalData.lastName}`.trim(),
+        invoice_company: finalData.companyName || "",
+        invoice_nip: "6972414844",
+        invoice_address: finalData.street ? `${finalData.street} ${finalData.building || ""}`.trim() : "-",
+        invoice_city: finalData.city || "-",
+        invoice_postcode: finalData.postalCode || "-",
+        invoice_country_code: "PL",
+        want_invoice: finalData.wantsInvoice ? 1 : 0,
+        user_comments: finalComments,
+        products: finalData.items.map((item: any) => ({
+          name: `Naklejki ${item.widthCm}x${item.heightCm}cm (${item.stickersPerSheet} szt/arkusz)`,
+          price_brutto: item.pricePerSheet,
+          tax_rate: 23,
+          quantity: item.sheetQuantity,
+        })),
+        extra_field_1: orderNumber, // Zapisujemy nasz numer zamówienia w BL
+      };
+
+      const blResult = await addOrderToBaseLinker(blParams);
+      if (blResult && blResult.status === "SUCCESS") {
+        await orderRef.update({ baselinkerOrderId: blResult.order_id });
+        console.log(`Zapisano zamówienie w BaseLinkerze (ID: ${blResult.order_id})`);
+      } else {
+        console.error("Błąd zapisu w BaseLinkerze:", blResult);
+      }
+    } catch (e) {
+      console.error("Błąd połączenia z BaseLinkerem:", e);
+    }
+
     // Send email to seller immediately with files
     try {
-      const adminEmail = process.env.ADMIN_EMAIL || "kontakt@malenaklejki.pl";
-      const siteFromEmail = adminEmail;
+      if (finalData.paymentMethod !== "przelewy24" && finalData.paymentMethod !== "blik") {
+        const adminEmail = process.env.ADMIN_EMAIL || "kontakt@malenaklejki.pl";
+        const siteFromEmail = adminEmail;
 
-      const attachments = await buildOrderAttachments(finalData.items, orderNumber);
+        const attachments = await buildOrderAttachments(finalData.items, orderNumber);
 
-      const htmlContent = finalData.paymentMethod === "vinted"
-        ? buildVintedOrderSellerEmailHtml(finalData, orderNumber)
-        : buildNewOrderSellerEmailHtml(finalData, orderNumber);
+        const htmlContent = finalData.paymentMethod === "vinted"
+          ? buildVintedOrderSellerEmailHtml(finalData, orderNumber)
+          : buildNewOrderSellerEmailHtml(finalData, orderNumber);
 
-      const subject = finalData.paymentMethod === "vinted"
-        ? `👗 Nowe zamówienie VINTED ${orderNumber} - ${finalData.firstName} ${finalData.lastName} (${finalData.total.toFixed(2).replace('.', ',')} zł)`
-        : `🛒 Nowe zamówienie ${orderNumber} - ${finalData.firstName} ${finalData.lastName} (${finalData.total.toFixed(2).replace('.', ',')} zł)`;
+        const subject = finalData.paymentMethod === "vinted"
+          ? `👗 Nowe zamówienie VINTED ${orderNumber} - ${finalData.firstName} ${finalData.lastName} (${finalData.total.toFixed(2).replace('.', ',')} zł)`
+          : `🛒 Nowe zamówienie ${orderNumber} - ${finalData.firstName} ${finalData.lastName} (${finalData.total.toFixed(2).replace('.', ',')} zł)`;
 
-      const sellerEmailPayload: any = {
-        sender: { name: "MałeNaklejki - System zamówień", email: siteFromEmail },
-        to: [{ email: adminEmail, name: "MałeNaklejki - Sprzedawca" }],
-        subject,
-        htmlContent,
-      };
-      if (attachments.length > 0) {
-        sellerEmailPayload.attachment = attachments;
+        const sellerEmailPayload: any = {
+          sender: { name: "MałeNaklejki - System zamówień", email: siteFromEmail },
+          to: [{ email: adminEmail, name: "MałeNaklejki - Sprzedawca" }],
+          subject,
+          htmlContent,
+        };
+        if (attachments.length > 0) {
+          sellerEmailPayload.attachment = attachments;
+        }
+        await sendEmail(sellerEmailPayload);
+        console.log(`Initial seller notification email sent for order ${orderNumber}`);
       }
-      await sendEmail(sellerEmailPayload);
-      console.log(`Initial seller notification email sent for order ${orderNumber}`);
     } catch (emailErr) {
       console.error("Failed to send initial seller notification email:", emailErr);
     }
