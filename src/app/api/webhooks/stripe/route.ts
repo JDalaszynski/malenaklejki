@@ -42,6 +42,10 @@ export async function POST(req: Request) {
 
       const orderData = orderSnapshot.data();
 
+      if (!orderData) {
+        console.error("Order data is missing for:", orderId);
+        return new NextResponse("Order data is missing", { status: 404 });
+      }
       // Update order status to PAID
       await orderRef.update({
         status: "PAID",
