@@ -2995,8 +2995,8 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
 
                 <div className="relative px-4 pb-5 pt-2 pointer-events-auto">
                   <div className="w-full liquid-glass border border-border/40 p-2 rounded-[28px] shadow-[0_-8px_30px_rgba(0,0,0,0.08)] dark:shadow-[0_-8px_30px_rgba(0,0,0,0.3)]">
-                    <div className="grid grid-cols-2 gap-2">
-                      <label className="w-full flex flex-col items-center justify-center gap-1 py-2 px-1 rounded-3xl bg-primary hover:bg-primary/90 border border-primary/20 transition-all active:scale-[0.98] cursor-pointer shadow-sm">
+                    <div className="grid grid-cols-1 gap-2">
+                      <label className="w-10/12 mx-auto flex flex-col items-center justify-center gap-1 py-2 px-1 rounded-3xl bg-primary hover:bg-primary/90 border border-primary/20 transition-all active:scale-[0.98] cursor-pointer shadow-sm">
                         <input
                           type="file"
                           accept="image/png, image/jpeg, image/jpg, image/webp, .png, .jpg, .jpeg, .webp"
@@ -3007,14 +3007,16 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
                             e.target.value = "";
                           }}
                         />
-                        <ImagePlus className="w-5 h-5 text-white" />
-                        <span className="text-[10px] font-extrabold text-white leading-tight">
-                          Dodaj z grafiki/zdjęcia
+                        <ImagePlus className="w-7 h-7 text-white" />
+                        <span className="text-[12px] font-extrabold text-white text-center leading-tight">
+                          Dodaj Naklejkę
+                          <br />
+                          (dowolna grafika/zdjęcie)
                         </span>
                       </label>
                       <button
                         onClick={() => setShowPasteModal(true)}
-                        className="w-full flex flex-col items-center justify-center gap-1 py-2 px-1 rounded-3xl bg-primary/10 hover:bg-primary border border-primary text-primary hover:text-primary-foreground transition-all active:scale-[0.98] cursor-pointer shadow-sm group"
+                        className="hidden"
                       >
                         <SmilePlus className="w-5 h-5 text-primary group-hover:text-primary-foreground" />
                         <span className="text-[10px] font-extrabold text-primary group-hover:text-primary-foreground text-center leading-tight">
