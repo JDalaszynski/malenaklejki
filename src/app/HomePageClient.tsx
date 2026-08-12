@@ -2282,7 +2282,7 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
                     <label className="flex flex-col items-center justify-center p-6 border-2 border-dashed border-foreground/20 dark:border-foreground/30 hover:border-primary/45 rounded-2xl bg-muted/10 hover:bg-muted/30 transition-all hover:scale-[1.01] active:scale-[0.99] cursor-pointer h-full group">
                       <input
                         type="file"
-                        accept="image/*"
+                        accept="image/png, image/jpeg, image/jpg, image/webp, .png, .jpg, .jpeg, .webp"
                         className="hidden"
                         onChange={(e) => {
                           const file = e.target.files?.[0];
@@ -2812,7 +2812,7 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
                   <label className="absolute inset-0 flex sm:hidden flex-col items-center justify-center bg-transparent cursor-pointer z-40 rounded-lg">
                     <input
                       type="file"
-                      accept="image/*"
+                      accept="image/png, image/jpeg, image/jpg, image/webp, .png, .jpg, .jpeg, .webp"
                       className="hidden"
                       onChange={(e) => {
                         const file = e.target.files?.[0];
@@ -2999,7 +2999,7 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
                       <label className="w-full flex flex-col items-center justify-center gap-1 py-2 px-1 rounded-3xl bg-primary hover:bg-primary/90 border border-primary/20 transition-all active:scale-[0.98] cursor-pointer shadow-sm">
                         <input
                           type="file"
-                          accept="image/*"
+                          accept="image/png, image/jpeg, image/jpg, image/webp, .png, .jpg, .jpeg, .webp"
                           className="hidden"
                           onChange={(e) => {
                             const file = e.target.files?.[0];
