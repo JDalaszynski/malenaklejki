@@ -153,6 +153,11 @@ const GLOSSARY: TermGroup[] = [
         def: "Klej to warstwa pod folią, która utrzymuje naklejkę na powierzchni. W naklejkach MałeNaklejki jest mocny, dobrze trzyma na gładkich powierzchniach i po odklejeniu nie zostawia śladów. Nie jest jednak przystosowany do wielokrotnego przeklejania.",
       },
       {
+        icon: ShieldCheck,
+        name: "Naklejki łatwo usuwalne (bez śladów)",
+        def: "Folia z mocnym klejem, która gwarantuje niezwykle trwałe przyleganie na gładkich powierzchniach, ale po podważeniu schodzi w jednym kawałku bez zostawiania trudnych do zmycia śladów. Ważne: nie oznacza to 'kleju repozycjonowalnego' - raz naklejona naklejka nie nadaje się do wielokrotnego przyklejania.",
+      },
+      {
         icon: Layers,
         name: "Laminat",
         def: "Laminat to dodatkowa przezroczysta warstwa ochronna, którą w niektórych technologiach nakłada się na wydruk dla większej odporności i połysku. W naklejkach MałeNaklejki odporność na wodę, promieniowanie UV i zadrapania zapewnia trwała folia winylowa, na której drukujemy.",

@@ -121,7 +121,7 @@ Dla osób, które cenią rzemieślniczy charakter - etykiety z klasycznymi rycin
 
 ### Czy małe naklejki na przyprawy są wodoodporne?
 
-Tak. Drukujemy na folii winylowej z mocnym klejem, która jest w pełni odporna na wilgoć, parę i tłuszcze. Etykiety nie rozmakają i nie marszczyą się nawet w kuchni narażonej na częste gotowanie.
+Tak. Drukujemy na folii winylowej z mocnym klejem, która jest w pełni odporna na wilgoć, parę i tłuszcze. Etykiety nie rozmakają i nie marszczą się nawet w kuchni narażonej na częste gotowanie.
 
 ### Czy mogę zamówić naklejki z dowolnymi napisami na przyprawy?
 

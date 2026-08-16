@@ -61,9 +61,9 @@ Właściciel podrzucił pulę fraz (patrz `blog-agent/keywords.md` §9). Po anal
 
 ### 📌 Aktualizacje istniejących treści (nie nowe wpisy - do wykonania osobno)
 - [x] **Strona główna - `SeoContentSection.tsx`: klaster kreatora** (zrobione 2026-07-30) - dodano 2 sekcje H3 w siatce (bilans 3+3): (1) "Kreator naklejek online - prosty program do robienia naklejek" -> copy nasycone `kreator naklejek online` (H3+body), `program do robienia naklejek` (x2), `tworzenie naklejek`, `robienie naklejek`; pozycjonuje jako narzędzie/program online (wgraj -> auto usuwanie tła -> cięcie po obrysie), z linkiem do `/naklejki-die-cut`; (2) "Czy naklejki łatwo się odklejają i nie zostawiają śladów?" -> łapie `naklejki łatwo usuwalne` uczciwie (mocny klej + 0 śladów, NIE repozycjonowalne). **HOLD generator AI uszanowany** (0 "generator AI"/"sztuczna inteligencja"), **0 "zaprojektuj/projektowanie"**, dywiz "-" (przy okazji poprawiono 1 istniejącą półpauzę U+2013 w sekcji "biznes"). Zweryfikowane: `tsc --noEmit` bez błędów; treść w surowym SSR HTML (`curl :3000` -> oba H3 obecne, crawlowalne dla Google/LLM). Zero kanibalizacji (ta sama strona, nie nowy landing).
-- [ ] **Spoke `male-naklejki-na-laptopa...`: rozbudowa na głowę `naklejki na laptop`** - dodaj H2 na szerszą głowę (bez "małe") + sekcję `naklejki na laptopa własny projekt`; obecnie tytuł/treść łapią tylko "małe naklejki na laptopa".
-- [ ] **Spoke `naklejki-wlasnego-projektu-na-sloiki-z-przyprawami...`: fix kodowania** - w treści jest uszkodzony znak UTF-8 (`etykiet` z bitym ogonkiem). Popraw przy najbliższej aktualizacji.
-- [ ] **`/slownik-naklejek`: dopisz pojęcie** "naklejki łatwo usuwalne / czy zostawiają ślady" (definicyjnie: folia z mocnym klejem, schodzi bez śladów; nie repozycjonowalna) - łapie frazę bez fałszywej obietnicy.
+- [x] **Spoke `male-naklejki-na-laptopa...`: rozbudowa na głowę `naklejki na laptop`** - dodano H2 na szerszą głowę (bez "małe") + sekcję `naklejki na laptopa własny projekt` (wykonano 2026-08-16).
+- [x] **Spoke `naklejki-wlasnego-projektu-na-sloiki-z-przyprawami...`: fix kodowania** - poprawiono błędy językowe / kodowania (wykonano 2026-08-16).
+- [x] **`/slownik-naklejek`: dopisz pojęcie** "naklejki łatwo usuwalne / czy zostawiają ślady" - dodano pojęcie do słownika (wykonano 2026-08-16).
 
 ### 📝 Nowe wpisy (dopisane do kolejki)
 
