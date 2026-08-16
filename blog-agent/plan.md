@@ -90,13 +90,13 @@ Właściciel podrzucił pulę fraz (patrz `blog-agent/keywords.md` §9). Po anal
         10. "Notes i termos ozdobione kilkoma małymi naklejkami z napisami i prostymi ikonkami, minimalistyczna aranżacja biurkowa, miękkie dzienne światło."
 
 
-- [ ] **Naklejki na motory i motocyklowe - personalizacja motocykla, kasku i baku**
+- [x] **Naklejki na motory i motocyklowe - personalizacja motocykla, kasku i baku** (napisano 2026-08-16)
     - **Format:** Supporting Article
     - **Główna Fraza Kluczowa:** `naklejki na motory` / `naklejki motocyklowe` (semantyczne: `naklejki motocykl`)
     - **Cel:** Sprzedaż
     - **Persona:** Motocykliści, pasjonaci jednośladów, personalizacja kasku/baku/owiewek
     - **Link nadrzędny (Filar):** `/blog/jak-zamowic-idealne-naklejki-na-zamowienie-z-wlasnym-nadrukiem`
-    - **Uwaga:** **Odrębne od** `naklejki-motoryzacyjne-i-tuningowe` (samochody/tuning) - tam `na motory` = 0 wystąpień. Krzyżuj linki z tamtym wpisem i z rowerem/kaskiem. Podkreśl: folia woda/UV/zadrapania (jazda w deszczu), cięcie po obrysie pod nietypowe kształty na bak, pojedyncze sztuki. **Prawda o produkcie:** bez deklaracji wieloletniej trwałości zewnętrznej na karoserię/bak (nie potwierdzone - patrz `landing-agent/plan.md` "DO POTWIERDZENIA").
+    - **Uwaga:** Artykuł wygenerowany. Przestrzega nowych reguł (brak folii typu wrap - tylko małe detale, zewnętrzne generatory AI), folder `public/blog/naklejki-na-motory-i-motocyklowe` przygotowany na grafiki. Zaznaczono w repozytorium.
 
 - [ ] **(Opcjonalny, niższy priorytet) Fajne wzory i pomysły na naklejki - inspiracje wg zastosowania**
     - **Format:** Supporting Article (hub linkowania wewnętrznego)
