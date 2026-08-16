@@ -98,13 +98,13 @@ Właściciel podrzucił pulę fraz (patrz `blog-agent/keywords.md` §9). Po anal
     - **Link nadrzędny (Filar):** `/blog/jak-zamowic-idealne-naklejki-na-zamowienie-z-wlasnym-nadrukiem`
     - **Uwaga:** Artykuł wygenerowany. Przestrzega nowych reguł (brak folii typu wrap - tylko małe detale, zewnętrzne generatory AI), folder `public/blog/naklejki-na-motory-i-motocyklowe` przygotowany na grafiki. Zaznaczono w repozytorium.
 
-- [ ] **(Opcjonalny, niższy priorytet) Fajne wzory i pomysły na naklejki - inspiracje wg zastosowania**
+- [x] **(Opcjonalny, niższy priorytet) Fajne wzory i pomysły na naklejki - inspiracje wg zastosowania** (napisano 2026-08-16)
     - **Format:** Supporting Article (hub linkowania wewnętrznego)
     - **Główna Fraza Kluczowa:** `fajne wzory na naklejki` (semantyczne: `wzory na naklejki do druku`, `pomysły na naklejki`)
     - **Cel:** Top-funnel / topical authority / linkowanie wewnętrzne
     - **Persona:** Osoby szukające inspiracji przed zamówieniem (browsing intent)
     - **Link nadrzędny (Filar):** `/blog/jak-zamowic-idealne-naklejki-na-zamowienie-z-wlasnym-nadrukiem`
-    - **Uwaga:** Zbiorczy przegląd pomysłów wg niszy (laptop, moto, słoiki, ślub, firma, dziecko...), każdy blok linkuje do właściwego spoke'a + kreator. Niska konwersja, ale mocny wewnętrzny link-hub. Realizuj dopiero po wpisach o wyższej intencji.
+    - **Uwaga:** Artykuł wygenerowany. Spełnia wymogi GEO/AEO, linkuje do wspierających postów-nisz (laptop, słoiki, wesela, przedszkole, moto), nie posiada obrazków/placeholderów, w pełni dostosowany pod generatory AI zewnętrzne. Zaznaczono w repozytorium.
 
 ---
 
