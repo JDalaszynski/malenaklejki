@@ -75,7 +75,7 @@ const FAQS: { q: string; a: string }[] = [
   },
   {
     q: "Jak przygotować plik z logo do druku?",
-    a: "Wgraj logo w formacie PDF, PNG lub JPG do kreatora. Najlepiej sprawdza się grafika na przezroczystym tle, ale zwykłe zdjęcie też zadziała - kreator sam usunie tło i wytnie naklejkę po obrysie. Nie masz gotowej grafiki? Opisz pomysł tekstem, a generatory AI (np. ChatGPT, Midjourney lub nasz wbudowany) wygenerują gotowy obraz.",
+    a: "Wgraj logo w formacie PDF, PNG lub JPG do kreatora. Najlepiej sprawdza się grafika na przezroczystym tle, ale zwykłe zdjęcie też zadziała - kreator sam usunie tło i wytnie naklejkę po obrysie. Nie masz gotowej grafiki? Opisz pomysł tekstem, a generatory AI (np. ChatGPT, Midjourney lub Gemini) wygenerują gotowy obraz.",
   },
   {
     q: "Na czym drukujecie naklejki firmowe i czy są trwałe?",

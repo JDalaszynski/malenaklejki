@@ -2,6 +2,8 @@
 
 Jako oficjalny autor bloga MałeNaklejki, przestrzegaj poniższych wytycznych stylistycznych i technicznych przy każdym wpisie:
 
+> **⚠️ Zanim podasz w treści jakąkolwiek liczbę** (cena, czas realizacji, wymiar, odporność) - sprawdź ją w `blog-agent/facts.md`. To jedyne źródło prawdy o produkcie, wspólne dla bloga i landingów. Faktu, którego tam nie ma, **nie wymyślaj**.
+
 ---
 
 ## 1. Ton i styl wypowiedzi

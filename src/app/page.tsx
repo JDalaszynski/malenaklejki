@@ -116,7 +116,7 @@ export default async function Home() {
               "@type": "HowToStep",
               position: 1,
               name: "Dodaj i dostosuj grafiki",
-              text: "Wgraj zdjęcia lub grafiki z telefonu albo komputera, lub wygeneruj je z użyciem zewnętrznych narzędzi AI lub naszego wbudowanego generatora. Wybierz rozmiar każdej naklejki oraz jej linię cięcia (kontur, koło lub prostokąt).",
+              text: "Wgraj zdjęcia lub grafiki z telefonu albo komputera, lub wygeneruj je z użyciem narzędzi AI (ChatGPT, Midjourney, Gemini). Wybierz rozmiar każdej naklejki oraz jej linię cięcia (kontur, koło lub prostokąt).",
               image:
                 "https://www.malenaklejki.pl/images/kroki/krok-1-dodaj-dostosuj-naklejki.png",
             },
@@ -132,7 +132,7 @@ export default async function Home() {
               "@type": "HowToStep",
               position: 3,
               name: "Sprawdź w 3D i zamów",
-              text: "Obejrzyj realistyczną wizualizację 3D gotowego arkusza, dodaj go do koszyka i sfinalizuj bezpieczne zamówienie za pomocą BLIK lub Przelewy24. Wysyłka w 3 dni robocze.",
+              text: "Obejrzyj realistyczną wizualizację 3D gotowego arkusza, dodaj go do koszyka i sfinalizuj bezpieczne zamówienie za pomocą BLIK lub Przelewy24. Produkcja 2-3 dni robocze.",
               image:
                 "https://www.malenaklejki.pl/images/kroki/krok-3-sprawdz-3d-i-zamow-naklejki.png",
             },

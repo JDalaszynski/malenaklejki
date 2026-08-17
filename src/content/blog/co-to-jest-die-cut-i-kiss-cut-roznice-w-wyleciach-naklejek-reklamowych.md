@@ -69,7 +69,7 @@ Jeśli masz jeden wzór etykiety powtarzany na wielu słoikach czy butelkach, ki
 Wymagania techniczne różnią się w zależności od wybranej opcji:
 
 - **Do die cut:** najlepiej sprawdzi się plik PNG z przezroczystym tłem (kanał alfa) - kreator automatycznie rozpozna kontur. Zdjęcia w JPG również działają - system usunie tło i wytnie po sylwetce głównego obiektu.
-- **Do kiss-cut:** wgraj pliki po kolei lub zestaw kilka wygenerowanych (np. przez Midjourney, ChatGPT lub nasze wbudowane AI) bądź przygotowanych w Canvie wzorów obok siebie - każdy zostanie wycięty osobno, a podkład pozostanie w całości jako jeden arkusz.
+- **Do kiss-cut:** wgraj pliki po kolei lub zestaw kilka wygenerowanych (np. przez Midjourney, ChatGPT lub Gemini) bądź przygotowanych w Canvie wzorów obok siebie - każdy zostanie wycięty osobno, a podkład pozostanie w całości jako jeden arkusz.
 - **Rozdzielczość:** minimum 300 dpi dla małych naklejek (poniżej 5 cm), żeby uniknąć pikselowania przy precyzyjnym cięciu wzdłuż konturu.
 
 Obie opcje wybierasz w tym samym kreatorze, bez dodatkowych opłat za typ cięcia - płacisz stałe 49,00 zł za cały arkusz A4, niezależnie od tego, ile naklejek na nim umieścisz. Gubisz się w terminach takich jak kanał alfa, DPI czy folia winylowa? Zajrzyj do naszego [słownika pojęć o naklejkach](/slownik-naklejek), gdzie tłumaczymy je krótko i konkretnie.

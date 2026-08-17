@@ -9,7 +9,7 @@ tags: ["naklejki dla dzieci", "przedszkole", "szkoła", "personalizacja"]
 cta_text: "Zamów naklejki dla dziecka"
 ---
 
-Personalizowane naklejki do przedszkola i na zeszyty z imieniem dziecka zamówisz w MałeNaklejki za stałe 49,00 zł od arkusza A4 - niezależnie od tego, czy potrzebujesz 5 sztuk na zeszyty, czy 40 małych etykiet na wszystkie rzeczy w plecaku. Wgrywasz zdjęcie lub gotowy projekt z telefonu, a trwałe, wodoodporne naklejki dotrą do Ciebie w 3 dni robocze.
+Personalizowane naklejki do przedszkola i na zeszyty z imieniem dziecka zamówisz w MałeNaklejki za stałe 49,00 zł od arkusza A4 - niezależnie od tego, czy potrzebujesz 5 sztuk na zeszyty, czy 40 małych etykiet na wszystkie rzeczy w plecaku. Wgrywasz zdjęcie lub gotowy projekt z telefonu, a trwałe, wodoodporne naklejki wyprodukujemy w 2-3 dni robocze.
 
 Zamawiasz naklejki dla dziecka po raz pierwszy? Zajrzyj najpierw do naszego przewodnika [jak zamówić idealne naklejki na zamówienie z własnym nadrukiem](/blog/jak-zamowic-idealne-naklejki-na-zamowienie-z-wlasnym-nadrukiem) - dowiesz się z niego, jakie pliki przygotować i jak wygląda cały proces krok po kroku.
 
@@ -59,7 +59,7 @@ Całe zamówienie, od wgrania pliku po podgląd gotowej naklejki, zajmuje kilka 
 1. **Wgraj plik** z imieniem dziecka lub zdjęciem ulubionej maskotki wprost z telefonu lub komputera.
 2. **Wybierz kształt cięcia** - koło, prostokąt lub die cut po obrysie napisu czy postaci.
 3. **Ustaw liczbę naklejek na arkuszu** - im więcej sztuk, tym niższa cena jednostkowa.
-4. **Sprawdź podgląd 3D** i zatwierdź zamówienie - realizacja zajmuje 3 dni robocze.
+4. **Sprawdź podgląd 3D** i zatwierdź zamówienie - realizacja zajmuje 2-3 dni robocze.
 
 ## Ile kosztują personalizowane naklejki do przedszkola?
 
@@ -106,10 +106,10 @@ Płacisz stałe 49,00 zł za w pełni zadrukowany arkusz A4, niezależnie od teg
 
 ### Jak długo czeka się na naklejki z imieniem dziecka?
 
-Realizacja zamówienia zajmuje 3 dni robocze od zatwierdzenia projektu, a następnie przesyłka trafia do Ciebie kurierem lub Pocztą Polską.
+Realizacja zamówienia zajmuje 2-3 dni robocze od zatwierdzenia projektu, a następnie przesyłka trafia do Ciebie kurierem lub Pocztą Polską.
 
 ## Zamów personalizowane naklejki do przedszkola już dziś
 
-Oznaczenie rzeczy dziecka na cały rok szkolny zajmuje mniej czasu niż przygotowanie śniadania do szkoły. Wgraj imię dziecka lub zdjęcie ulubionej maskotki do naszego kreatora, wybierz kształt i liczbę sztuk na arkuszu, a gotowe naklejki dotrą do Ciebie w 3 dni robocze.
+Oznaczenie rzeczy dziecka na cały rok szkolny zajmuje mniej czasu niż przygotowanie śniadania do szkoły. Wgraj imię dziecka lub zdjęcie ulubionej maskotki do naszego kreatora, wybierz kształt i liczbę sztuk na arkuszu, a gotowe naklejki wyprodukujemy w 2-3 dni robocze.
 
 <a href="/" style="display: inline-block; background-color: #02af7a; color: #ffffff; padding: 14px 28px; text-decoration: none; border-radius: 8px; font-weight: 600; font-size: 18px; margin-top: 24px; text-align: center;">Zamów naklejki dla dziecka</a>

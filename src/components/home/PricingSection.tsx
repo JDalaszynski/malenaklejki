@@ -152,7 +152,7 @@ export function PricingSection() {
             Ułóż swój arkusz
           </button>
           <span className="text-xs font-semibold text-muted-foreground">
-            Dostawa 19,99 zł · wysyłka w 3 dni robocze
+            Dostawa 19,99 zł · produkcja 2-3 dni robocze
           </span>
         </div>
       </Reveal>

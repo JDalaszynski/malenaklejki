@@ -104,7 +104,7 @@ export function SeoContentSection() {
             Stwórz własne naklejki online - bez grafika i bez minimalnego nakładu
           </h2>
           <p className="text-muted-foreground leading-relaxed text-[15px] sm:text-base">
-            Chcesz spersonalizować naklejkę na prezent, merch albo produkty swojej marki? Wgraj zdjęcie lub gotową grafikę do kreatora na górze strony, a my wytniemy ją po obrysie i wydrukujemy na trwałym winylu. Możesz stworzyć własną naklejkę już od 1 arkusza A4 za 49,00 zł, z wysyłką w 3 dni robocze - bez Photoshopa i bez ukrytych kosztów przygotowalni.
+            Chcesz spersonalizować naklejkę na prezent, merch albo produkty swojej marki? Wgraj zdjęcie lub gotową grafikę do kreatora na górze strony, a my wytniemy ją po obrysie i wydrukujemy na trwałym winylu. Możesz stworzyć własną naklejkę już od 1 arkusza A4 za 49,00 zł, a produkcja zajmuje 2-3 dni robocze - bez Photoshopa i bez ukrytych kosztów przygotowalni.
           </p>
         </div>
       </Reveal>

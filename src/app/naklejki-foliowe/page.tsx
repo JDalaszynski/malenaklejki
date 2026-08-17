@@ -96,7 +96,7 @@ const FAQS: { q: string; a: string }[] = [
   },
   {
     q: "Jaki plik przygotować do druku naklejek na folii?",
-    a: "Wgraj grafikę w formacie PDF, PNG lub JPG. Najlepiej sprawdza się plik na przezroczystym tle, ale zwykłe zdjęcie też zadziała - kreator sam usunie tło i wytnie naklejkę po obrysie. Nie masz gotowej grafiki? Opisz pomysł zwykłym tekstem, a generatory AI (np. ChatGPT, Midjourney lub nasz wbudowany) wygenerują gotowy obraz, który wgrasz do kreatora jak własne zdjęcie.",
+    a: "Wgraj grafikę w formacie PDF, PNG lub JPG. Najlepiej sprawdza się plik na przezroczystym tle, ale zwykłe zdjęcie też zadziała - kreator sam usunie tło i wytnie naklejkę po obrysie. Nie masz gotowej grafiki? Opisz pomysł zwykłym tekstem, a generatory AI (np. ChatGPT, Midjourney lub Gemini) wygenerują gotowy obraz, który wgrasz do kreatora jak własne zdjęcie.",
   },
   {
     q: "Czy tniecie naklejki foliowe po obrysie (die-cut)?",
@@ -177,7 +177,7 @@ const ADVANTAGES: { icon: React.ElementType; title: string; text: string }[] = [
   {
     icon: Sparkles,
     title: "Kreator bez grafika",
-    text: "Wgraj grafikę (PDF, PNG, JPG), a kreator sam usunie tło i wytnie naklejkę po kształcie. Nie masz pliku? Opisz pomysł, a narzędzia AI (np. ChatGPT lub nasz generator) wygenerują gotowy obraz.",
+    text: "Wgraj grafikę (PDF, PNG, JPG), a kreator sam usunie tło i wytnie naklejkę po kształcie. Nie masz pliku? Opisz pomysł, a narzędzia AI (np. ChatGPT lub Gemini) wygenerują gotowy obraz.",
   },
   {
     icon: Truck,

@@ -70,6 +70,6 @@ Nie. Celujemy w rynek małych nakładów. Możesz zamówić naklejki z logo na z
 
 ## Zamów naklejki z logo już dziś i wyróżnij swoje produkty na rynku
 
-Polska produkcja i szybki czas realizacji (do 3 dni roboczych) sprawiają, że nigdy nie zostaniesz bez kluczowych etykiet przed gorącym sezonem sprzedażowym. Stworzenie własnych wlepek i materiałów samoprzylepnych nigdy nie było prostsze. Skonfiguruj wymiar, wgraj plik ze swoim znakiem firmowym i na własne oczy przekonaj się, jak wysokiej jakości branding wpłynie na postrzeganie Twojej marki przez klientów.
+Polska produkcja i szybki czas realizacji (2-3 dni robocze) sprawiają, że nigdy nie zostaniesz bez kluczowych etykiet przed gorącym sezonem sprzedażowym. Stworzenie własnych wlepek i materiałów samoprzylepnych nigdy nie było prostsze. Skonfiguruj wymiar, wgraj plik ze swoim znakiem firmowym i na własne oczy przekonaj się, jak wysokiej jakości branding wpłynie na postrzeganie Twojej marki przez klientów.
 
 <a href="/" style="display: inline-block; background-color: #02af7a; color: #ffffff; padding: 14px 28px; text-decoration: none; border-radius: 8px; font-weight: 600; font-size: 18px; margin-top: 24px; text-align: center;">Zamów własne naklejki</a>

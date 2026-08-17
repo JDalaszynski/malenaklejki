@@ -2,7 +2,7 @@
 title: "Naklejki na koperty ślubne i podziękowania dla gości"
 slug: "naklejki-na-koperty-slubne-i-podziekowania-dla-gosci"
 date: "2026-07-28"
-description: "Naklejki na koperty ślubne i podziękowania dla gości od 1 arkusza A4 za 49 zł. Wgraj projekt z Canvy, a my wytniemy je po kształcie. Dostawa w 3 dni."
+description: "Naklejki na koperty ślubne i podziękowania dla gości od 1 arkusza A4 za 49 zł. Wgraj projekt z Canvy, a my wytniemy je po kształcie. Dostawa w 2-3 dni."
 image: "/blog/naklejki-na-koperty-slubne-i-podziekowania-dla-gosci/naklejki-na-koperty-slubne-podziekowania-dla-gosci.jpg"
 imageAlt: "Naklejki na koperty ślubne i podziękowania dla gości - buteleczki z domową nalewką z etykietą 'Dziękujemy' z imionami pary młodej, obok zaproszenie i numer stołu."
 tags: ["naklejki", "ślub", "podziękowania", "poradnik"]
@@ -81,7 +81,7 @@ Brak minimalnego nakładu oznacza, że możesz zamówić jeden arkusz na próbę
 
 ![Eko podziękowania dla gości - torebki z sadzonkami i prostokątne naklejki "Dziękujemy, że jesteście z nami" z imionami pary młodej](/blog/naklejki-na-koperty-slubne-i-podziekowania-dla-gosci/naklejki-na-podziekowania-sadzonki-eko.jpg)
 
-- **Zamów z zapasem** - realizacja zajmuje do 3 dni roboczych, do tego doliczasz czas dostawy do Paczkomatu (zwykle 72 godziny od akceptacji pliku).
+- **Zamów z zapasem** - realizacja zajmuje 2-3 dni robocze, do tego doliczasz czas dostawy do Paczkomatu (zwykle 72 godziny od akceptacji pliku).
 - **Rozdziel etapy** - naklejki na koperty przydają się na kilka tygodni przed weselem (przy wysyłce zaproszeń), a podziękowania dla gości dopiero tuż przed uroczystością.
 - **Zrób arkusz testowy** - jeden arkusz A4 wystarczy, by ocenić rozmiar monogramu i to, jak folia leży na konkretnej kopercie.
 - **Zbierz wzory w jeden plik** - jeśli chcesz różne motywy na koperty, słoiczki i butelki, ułóż je razem przed wgraniem, aby zmieścić je na wspólnym arkuszu.
@@ -90,7 +90,7 @@ Brak minimalnego nakładu oznacza, że możesz zamówić jeden arkusz na próbę
 
 ### Jak zrobić naklejki na koperty ślubne z monogramem?
 
-Wygeneruj grafikę z motywem ślubnym w generatorach AI (np. ChatGPT, Midjourney) lub przygotuj gotowy monogram w darmowej Canvie czy Wordzie - dodaj inicjały pary młodej, datę ślubu i ewentualny ornament. Zapisz plik jako PNG (z przezroczystym tłem, jeśli chcesz cięcie po obrysie) lub PDF i wgraj go do naszego kreatora online. Wybierz kształt naklejki, a my wydrukujemy i wytniemy ją za Ciebie. Realizacja trwa do 3 dni roboczych.
+Wygeneruj grafikę z motywem ślubnym w generatorach AI (np. ChatGPT, Midjourney) lub przygotuj gotowy monogram w darmowej Canvie czy Wordzie - dodaj inicjały pary młodej, datę ślubu i ewentualny ornament. Zapisz plik jako PNG (z przezroczystym tłem, jeśli chcesz cięcie po obrysie) lub PDF i wgraj go do naszego kreatora online. Wybierz kształt naklejki, a my wydrukujemy i wytniemy ją za Ciebie. Realizacja trwa 2-3 dni robocze.
 
 ### Ile naklejek na koperty zmieści się na jednym arkuszu A4?
 
@@ -110,6 +110,6 @@ Tak. Na jednym arkuszu A4 za stałą cenę 49,00 zł możesz umieścić kilka r�
 
 ## Zamów naklejki na koperty ślubne i podziękowania dla gości
 
-Spójna papeteria i eleganckie podziękowania dla gości nie wymagają grafika ani dużego budżetu. Przygotuj monogram w kilka minut w darmowej Canvie, wgraj plik z telefonu do naszego kreatora i zamów naklejki ślubne wycięte idealnie po kształcie. Drukujemy w Polsce, od 1 arkusza A4, z dostawą w 3 dni robocze - Twoje wesele zyska dopracowany detal, o którym goście będą pamiętać.
+Spójna papeteria i eleganckie podziękowania dla gości nie wymagają grafika ani dużego budżetu. Przygotuj monogram w kilka minut w darmowej Canvie, wgraj plik z telefonu do naszego kreatora i zamów naklejki ślubne wycięte idealnie po kształcie. Drukujemy w Polsce, od 1 arkusza A4, gotowe w 2-3 dni robocze - Twoje wesele zyska dopracowany detal, o którym goście będą pamiętać.
 
 <a href="/" style="display: inline-block; background-color: #02af7a; color: #ffffff; padding: 14px 28px; text-decoration: none; border-radius: 8px; font-weight: 600; font-size: 18px; margin-top: 24px; text-align: center;">Zamów naklejki ślubne</a>

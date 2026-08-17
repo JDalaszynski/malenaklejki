@@ -1,6 +1,8 @@
 # Zasady budowy landing pages (Landing Page Agent)
 
-Dziedziczysz **cały kanon stylu** z `blog-agent/rules.md` (ton BLUF, język korzyści, strona czynna, czarna lista SEO, **zakaz "projektowania" w kreatorze i w generatorach AI** ale z naciskiem na polecanie generatorów AI (ChatGPT, Midjourney, Gemini, i wbudowanego) w pierwszej kolejności, dywiz "-" zamiast półpauzy "–"). Poniżej reguły **specyficzne dla landingów**. Wzorzec referencyjny w kodzie: [`src/app/alternatywa-dla-sticker-mule-i-stickerapp/page.tsx`](../src/app/alternatywa-dla-sticker-mule-i-stickerapp/page.tsx).
+Dziedziczysz **cały kanon stylu** z `blog-agent/rules.md` (ton BLUF, język korzyści, strona czynna, czarna lista SEO, **zakaz "projektowania" w kreatorze i w generatorach AI** ale z naciskiem na polecanie **zewnętrznych** generatorów AI (ChatGPT, Midjourney, Gemini) w pierwszej kolejności, dywiz "-" zamiast półpauzy "–"). **NASZEGO wbudowanego generatora nie eksponuj** - HOLD z 2026-08-04 obowiązuje tak samo na landingach jak na blogu. Poniżej reguły **specyficzne dla landingów**. Wzorzec referencyjny w kodzie: [`src/app/alternatywa-dla-sticker-mule-i-stickerapp/page.tsx`](../src/app/alternatywa-dla-sticker-mule-i-stickerapp/page.tsx).
+
+> **⚠️ Każda liczba na landingu** (cena, czas realizacji, wymiar, odporność) musi pochodzić z `blog-agent/facts.md` - wspólnego źródła prawdy o produkcie dla bloga i landingów.
 
 > **Punkt wyjścia każdej strony: `landing-agent/keywords.md` + `blog-agent/keywords.md` + dane GSC (`plan.md` → "Wnioski z GSC").** Zanim zaczniesz budować, wybierz docelowy **mikro-klaster fraz** (kilka blisko powiązanych, jedna intencja). Fraza główna → `H1` / URL / `title`; frazy semantyczne/poboczne → `H2`/`H3`/FAQ. Waliduj wolumen i lukę (GSC, `strategy.md` checklist). **Nie buduj landingu "z głowy" bez zakotwiczenia w bazie fraz.**
 

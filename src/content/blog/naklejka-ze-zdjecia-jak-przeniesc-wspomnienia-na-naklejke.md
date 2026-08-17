@@ -2,7 +2,7 @@
 title: "Naklejka ze zdjęcia - jak przenieść wspomnienia na naklejkę?"
 slug: "naklejka-ze-zdjecia-jak-przeniesc-wspomnienia-na-naklejke"
 date: "2026-07-07"
-description: "Zamień ulubione zdjęcie lub rysunek w trwałą naklejkę ze zdjęcia. Wgraj plik z telefonu, a my wytniemy naklejkę po obrysie. Wysyłka w 3 dni."
+description: "Zamień ulubione zdjęcie lub rysunek w trwałą naklejkę ze zdjęcia. Wgraj plik z telefonu, a my wytniemy naklejkę po obrysie. Wysyłka w 2-3 dni."
 image: "/blog/naklejka-ze-zdjecia-jak-przeniesc-wspomnienia-na-naklejke/naklejka-ze-zdjecia-personalizowana-wlepka-die-cut-na-folii.jpg"
 imageAlt: "Personalizowana naklejka ze zdjęcia wycięta po obrysie - trwała wlepka die-cut na folii winylowej z portretem, zamówiona przez kreator MałeNaklejki."
 tags: ["naklejki", "zdjęcia", "personalizacja", "poradnik"]
@@ -11,7 +11,7 @@ pillarOrder: 4
 cta_text: "Zrób naklejkę ze zdjęcia"
 ---
 
-Ulubione zdjęcie z wakacji, portret psa, rysunek dziecka - wystarczy wgrać plik do naszego kreatora, a w ciągu 3 dni roboczych otworzy Cię paczka z gotową, trwałą naklejką ze zdjęcia wyciętą dokładnie po obrysie. Żadnego minimum nakładu, żadnego Photoshopa - tylko Twój projekt i stała cena 49,00 zł za arkusz A4.
+Ulubione zdjęcie z wakacji, portret psa, rysunek dziecka - wystarczy wgrać plik do naszego kreatora, a po 2-3 dniach roboczych produkcji ruszy do Ciebie paczka z gotową, trwałą naklejką ze zdjęcia wyciętą dokładnie po obrysie. Żadnego minimum nakładu, żadnego Photoshopa - tylko Twój projekt i stała cena 49,00 zł za arkusz A4.
 
 Naklejka ze zdjęciem, czyli [fotonaklejka](/fotonaklejki), to jeden z najpopularniejszych wariantów [naklejek na zamówienie z własnym nadrukiem](/blog/jak-zamowic-idealne-naklejki-na-zamowienie-z-wlasnym-nadrukiem), który sprawdza się zarówno jako osobista pamiątka, oryginalny prezent, jak i sposób na personalizację codziennych przedmiotów.
 
@@ -102,7 +102,7 @@ Tak. Możesz ułożyć kilkanaście małych naklejek z różnymi zdjęciami lub 
 
 ### Ile czasu trwa realizacja naklejki ze zdjęcia?
 
-Realizacja trwa do 3 dni roboczych od momentu złożenia i opłacenia zamówienia.
+Realizacja trwa 2-3 dni robocze od momentu złożenia i opłacenia zamówienia.
 
 ### Jak wygląda rysunek dziecka po zamianie na naklejkę?
 

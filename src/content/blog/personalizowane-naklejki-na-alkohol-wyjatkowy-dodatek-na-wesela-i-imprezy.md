@@ -1,7 +1,7 @@
 ---
 title: "Personalizowane naklejki na alkohol na wesele i imprezy - wódka, wino, nalewki"
 date: "2026-07-05"
-description: "Personalizowane naklejki na alkohol, wódkę weselną i nalewki od 49 zł za arkusz A4. Przygotuj plik np. w AI lub Canva i zamów bez minimalnego nakładu. Dostawa w 3 dni."
+description: "Personalizowane naklejki na alkohol, wódkę weselną i nalewki od 49 zł za arkusz A4. Przygotuj plik np. w AI lub Canva i zamów bez minimalnego nakładu. Dostawa w 2-3 dni."
 image: "/blog/personalizowane-naklejki-na-alkohol-wyjatkowy-dodatek-na-wesela-i-imprezy/personalizowane-naklejki-na-alkohol-okladka.jpeg"
 imageAlt: "Personalizowane naklejki na wódkę weselną, butelki i wino z własnym projektem oraz autorskim napisem. Etykiety samoprzylepne i naklejki na nalewki drukowane na trwałej folii winylowej."
 slug: "personalizowane-naklejki-na-alkohol-wyjatkowy-dodatek-na-wesela-i-imprezy"
@@ -56,7 +56,7 @@ Chcesz dodać do projektu własny napis z imionami lub datą ślubu? Szczegóło
 2. **Wgraj plik do kreatora** - prześlij gotowy projekt z telefonu lub komputera. System automatycznie usunie tło i zaproponuje linię cięcia.
 3. **Wybierz kształt i rozmiar** - zdecyduj, czy naklejka ma być wycięta po obrysie projektu, w koło (idealne na wieczka słoiczków), prostokąt lub owal.
 4. **Ustal liczbę sztuk na arkuszu** - im więcej naklejek na jednym arkuszu A4, tym niższy koszt jednostkowy.
-5. **Złóż zamówienie** - naklejki dostarczymy w ciągu 3 dni roboczych.
+5. **Złóż zamówienie** - naklejki produkujemy w 2-3 dni robocze, a potem paczka rusza do paczkomatu.
 
 Chcesz wiedzieć, jak technicznie przygotować plik pod druk? Przeczytaj przewodnik: [drukowanie naklejek online - na co zwrócić uwagę przed wysyłką projektu](/blog/drukowanie-naklejek-online-na-co-zwrocic-uwage-przed-wysylka-projektu).
 
@@ -75,7 +75,7 @@ Brak minimalnego nakładu - możesz zamówić jeden arkusz z jedną naklejką. B
 
 ## Naklejki na alkohol na wesele - jak to zaplanować?
 
-- **Zamów z wyprzedzeniem** - realizacja to 3 dni robocze + czas dostawy. Przy weselu planowanym na sobotę zamów najpóźniej w poniedziałek tygodnia wcześniej.
+- **Zamów z wyprzedzeniem** - realizacja to 2-3 dni robocze + czas dostawy. Przy weselu planowanym na sobotę zamów najpóźniej w poniedziałek tygodnia wcześniej.
 - **Zrób arkusz próbny** - możesz zamówić 1 arkusz testowy, żeby sprawdzić kolor, rozmiar i kształt przed zamówieniem większej partii.
 - **Pomyśl o kształcie** - okrągłe i owalne naklejki wyglądają najeleganciej na butelkach wódki i wina; prostokątne sprawdzą się na pudełkach i dłuższych butelkach nalewki.
 - **Różne wzory na jednym arkuszu** - na jednym arkuszu A4 możesz umieścić kilka różnych projektów (np. oddzielna etykieta na wódkę i na nalewkę), wystarczy je zebrać w jednym pliku przed wgraniem.
@@ -83,7 +83,7 @@ Brak minimalnego nakładu - możesz zamówić jeden arkusz z jedną naklejką. B
 ## Personalizowane naklejki na alkohol - Najczęściej zadawane pytania (FAQ)
 
 ### Jak zrobić własne naklejki na wódkę weselną?
-Wygeneruj grafikę w narzędziach AI lub przygotuj gotową etykietę w darmowym Canva czy Word - dodaj imiona pary młodej, datę ślubu i wybraną grafikę. Zapisz plik jako PNG lub PDF i wgraj do naszego kreatora online. My wydrukujemy i wytniemy naklejki w kształcie, który wybrałeś. Realizacja zajmuje 3 dni robocze.
+Wygeneruj grafikę w narzędziach AI lub przygotuj gotową etykietę w darmowym Canva czy Word - dodaj imiona pary młodej, datę ślubu i wybraną grafikę. Zapisz plik jako PNG lub PDF i wgraj do naszego kreatora online. My wydrukujemy i wytniemy naklejki w kształcie, który wybrałeś. Realizacja zajmuje 2-3 dni robocze.
 
 ### Czy naklejki na nalewki domowe odkleją się po włożeniu do lodówki?
 Absolutnie nie. W odróżnieniu od standardowych etykiet papierowych, nasze realizacje powstają na folii winylowej zabezpieczonej niezwykle mocnym klejem. Są całkowicie wodoodporne, co czyni je perfekcyjnym wyborem do coolerów z lodem, do zamrażarki, lodówki oraz wszędzie tam, gdzie występuje zjawisko rosy na szkle.

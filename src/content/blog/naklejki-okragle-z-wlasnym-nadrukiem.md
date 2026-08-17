@@ -73,7 +73,7 @@ Cały proces odbywa się w oknie przeglądarki, także na telefonie:
 4. **Zostaw mały zapas na krawędzi** (ok. 2 mm spadu), aby nadruk sięgał samego brzegu koła bez białego paska.
 5. **Ustaw, ile kółek** zmieści się na arkuszu A4 - jeden wzór lub kilka różnych obok siebie.
 6. **Wybierz formę zestawu** - pojedyncze, docięte kółka (do rozdania) albo naklejki na arkuszu (do stopniowego odklejania).
-7. **Sprawdź podgląd 3D** i złóż zamówienie - realizacja zajmuje 3 dni robocze, a paczka rusza do paczkomatu lub kuriera w 72 godziny.
+7. **Sprawdź podgląd 3D** i złóż zamówienie - realizacja zajmuje 2-3 dni robocze, a paczka rusza do paczkomatu lub kuriera w 72 godziny.
 
 Nie masz gotowej grafiki w kole? Nie musisz jej specjalnie przygotowywać - wystarczy dowolne logo, zdjęcie czy rysunek, bo to kreator przytnie je do koła. Jeśli chcesz ułożyć prosty napis lub tło samodzielnie, skorzystasz z darmowych narzędzi takich jak Canva, Word czy PowerPoint (ustaw kwadratowy dokument i wyśrodkuj grafikę), a gotowy plik po prostu wgraj do kreatora. Dla małych kółek poniżej 5 cm przygotuj plik w rozdzielczości minimum 300 dpi, żeby uniknąć pikselowania.
 
@@ -111,6 +111,6 @@ Nie ma. Zamówisz nawet jeden arkusz A4 z pojedynczą okrągłą naklejką za 49
 
 ## Zamów naklejki okrągłe z własnym nadrukiem już dziś
 
-Koło to najczystszy format naklejki - porządkuje logo, podpisuje słoik i zamyka paczkę lepiej niż jakikolwiek inny kształt. W kreatorze MałeNaklejki wgrasz grafikę, wybierzesz kadrowanie kołem i zobaczysz podgląd 3D w kilka minut, a gotowe kółka odbierzesz w 3 dni robocze - w polskiej cenie 49,00 zł za arkusz A4 i bez minimalnego nakładu. Ustaw dowolny rozmiar koła i sprawdź, jak Twój projekt wygląda na trwałej folii z mocnym klejem.
+Koło to najczystszy format naklejki - porządkuje logo, podpisuje słoik i zamyka paczkę lepiej niż jakikolwiek inny kształt. W kreatorze MałeNaklejki wgrasz grafikę, wybierzesz kadrowanie kołem i zobaczysz podgląd 3D w kilka minut, a gotowe kółka wyprodukujemy w 2-3 dni robocze - w polskiej cenie 49,00 zł za arkusz A4 i bez minimalnego nakładu. Ustaw dowolny rozmiar koła i sprawdź, jak Twój projekt wygląda na trwałej folii z mocnym klejem.
 
 <a href="/" style="display: inline-block; background-color: #02af7a; color: #ffffff; padding: 14px 28px; text-decoration: none; border-radius: 8px; font-weight: 600; font-size: 18px; margin-top: 24px; text-align: center;">Zamów okrągłe naklejki</a>

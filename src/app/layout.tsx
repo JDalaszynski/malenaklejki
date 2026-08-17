@@ -23,10 +23,7 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://www.malenaklejki.pl"),
   title: "Naklejki z własnym nadrukiem | Zamów od 1 szt. online — MałeNaklejki",
   description:
-    "Stwórz personalizowane naklejki w kreatorze online — cięcie po konturze, druk na trwałym winylu, od 49 zł/arkusz A4. Wysyłka w 3 dni robocze. Generator AI w cenie!",
-  icons: {
-    icon: "/images/logo/favicon.png?v=2",
-  },
+    "Stwórz personalizowane naklejki w kreatorze online — cięcie po konturze, druk na trwałym winylu, od 49 zł/arkusz A4. Produkcja 2-3 dni robocze. Generator AI w cenie!",
   alternates: {
     canonical: "/",
   },
@@ -34,7 +31,7 @@ export const metadata: Metadata = {
     title:
       "Naklejki z własnym nadrukiem | Zamów od 1 szt. online — MałeNaklejki",
     description:
-      "Stwórz personalizowane naklejki w kreatorze online — cięcie po konturze, druk na trwałym winylu, od 49 zł/arkusz A4. Wysyłka w 3 dni robocze.",
+      "Stwórz personalizowane naklejki w kreatorze online — cięcie po konturze, druk na trwałym winylu, od 49 zł/arkusz A4. Produkcja 2-3 dni robocze.",
     url: "https://www.malenaklejki.pl",
     siteName: "MałeNaklejki",
     locale: "pl_PL",
@@ -153,7 +150,7 @@ export default function RootLayout({
             },
             image: { "@id": "https://www.malenaklejki.pl/#logo" },
             description:
-              "Kreator personalizowanych naklejek z własnym nadrukiem na arkuszach A4. Cięcie po konturze, druk na trwałym winylu, wysyłka w 3 dni robocze.",
+              "Kreator personalizowanych naklejek z własnym nadrukiem na arkuszach A4. Cięcie po konturze, druk na trwałym winylu, produkcja 2-3 dni robocze.",
             sameAs: [
               "https://www.facebook.com/profile.php?id=61591604648504",
               "https://www.instagram.com/male_naklejki",

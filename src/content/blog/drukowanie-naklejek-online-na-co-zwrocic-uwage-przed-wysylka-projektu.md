@@ -17,7 +17,7 @@ Zanim wyślesz plik do druku, warto zrozumieć, z czego składa się cały proce
 1. **Wgrasz plik** (JPG, PNG, PDF lub SVG) do naszego kreatora online - prosto z telefonu lub komputera.
 2. **Wybierzesz kształt cięcia** - po obrysie grafiki, okrągły, prostokątny lub kwadratowy.
 3. **Skonfigurujesz arkusz** - decydujesz, ile naklejek ma się zmieścić na jednym arkuszu A4.
-4. **Zatwierdzasz podgląd 3D** i składasz zamówienie. Realizacja zajmuje 3 dni robocze.
+4. **Zatwierdzasz podgląd 3D** i składasz zamówienie. Realizacja zajmuje 2-3 dni robocze.
 
 Cały proces odbywa się w oknie przeglądarki - bez instalowania programów i bez rejestracji. Dopiero zaczynasz i zastanawiasz się, [jak zrobić własne naklejki](/blog/jak-zrobic-wlasne-naklejki-program-do-robienia-naklejek-online) krok po kroku? W osobnym poradniku porównujemy druk domowy DIY z prostym programem do robienia naklejek online.
 
@@ -31,7 +31,7 @@ To najczęstszy błąd, który popełniają zamawiający po raz pierwszy. Zbyt n
 | Średnia naklejka (6-10 cm) | 200 dpi | 300 dpi |
 | Mała naklejka (poniżej 5 cm) | 300 dpi | 600 dpi |
 
-**Praktyczna wskazówka:** Najszybciej stworzysz grafikę wykorzystując generatory AI (Midjourney, ChatGPT, Gemini lub nasz wbudowany). Jeśli jednak wolisz składać projekt ręcznie w programach takich jak Canva, przy pobieraniu zaznacz opcję "Pobierz w wysokiej jakości" lub ustaw rozmiar dokumentu na co najmniej 1200 x 1200 px dla naklejek kwadratowych. Jeśli projektujesz w programie graficznym (np. Adobe Illustrator lub Inkscape), eksportuj plik jako PDF lub SVG wektorowy - wtedy rozdzielczość nie ma znaczenia, bo grafika jest w pełni skalowalna.
+**Praktyczna wskazówka:** Najszybciej stworzysz grafikę wykorzystując generatory AI (Midjourney, ChatGPT lub Gemini). Jeśli jednak wolisz składać projekt ręcznie w programach takich jak Canva, przy pobieraniu zaznacz opcję "Pobierz w wysokiej jakości" lub ustaw rozmiar dokumentu na co najmniej 1200 x 1200 px dla naklejek kwadratowych. Jeśli projektujesz w programie graficznym (np. Adobe Illustrator lub Inkscape), eksportuj plik jako PDF lub SVG wektorowy - wtedy rozdzielczość nie ma znaczenia, bo grafika jest w pełni skalowalna.
 
 ![Arkusz A4 z artystycznymi wlepkami w stylu vaporwave z motywem klasycznych rzeźb greckich i efektami glitch art, pokazujący precyzyjny wydruk naklejek dla artystów](/blog/drukowanie-naklejek-online-na-co-zwrocic-uwage-przed-wysylka-projektu/artystyczne-wlepki-z-wlasnym-nadrukiem-vaporwave.jpg)
 
@@ -140,7 +140,7 @@ Podsumowując proces od projektu do paczki na Twoich drzwiach:
 4. **Ustaw liczbę naklejek** na arkuszu i zaznacz opcję "Pozostawione na arkuszu" lub "Pojedyncze sztuki".
 5. **Sprawdź podgląd 3D** i przejdź do zamówienia.
 6. **Opłać zamówienie** - realizacja startuje natychmiast po potwierdzeniu płatności.
-7. **Odbierz paczkę** w 3 dni robocze + czas dostawy kuriera (1-2 dni).
+7. **Odbierz paczkę** w 2-3 dni robocze + czas dostawy kuriera (1-2 dni).
 
 Nie ma minimalnego nakładu. Możesz zamówić jeden arkusz z jedną naklejką lub kilkanaście arkuszy z różnymi projektami - cena za arkusz pozostaje zawsze ta sama: **49,00 zł**.
 
@@ -152,7 +152,7 @@ Nie ma minimalnego nakładu. Możesz zamówić jeden arkusz z jedną naklejką l
 
 ### Jak długo trwa realizacja zamówienia na naklejki online?
 
-Realizacja zamówienia w MałeNaklejki zajmuje **3 dni robocze** od momentu zatwierdzenia projektu i opłacenia zamówienia. Następnie przesyłka trafia do Ciebie kurierem (1-2 dni robocze) lub Pocztą Polską.
+Realizacja zamówienia w MałeNaklejki zajmuje **2-3 dni robocze** od momentu zatwierdzenia projektu i opłacenia zamówienia. Następnie przesyłka trafia do Ciebie kurierem (1-2 dni robocze) lub Pocztą Polską.
 
 ### Jaki format pliku jest najlepszy do druku naklejek?
 
@@ -180,4 +180,4 @@ Tak. Wgrywasz zdjęcie JPG lub PNG prosto z telefonu, a nasz kreator automatyczn
 
 ### Czy można zamówić naklejkę z własnym tekstem lub napisem?
 
-Tak - najpierw wygeneruj grafikę w ChatGPT, Midjourney (lub naszym wbudowanym AI), albo ułóż własny tekst z tłem w programach takich jak Canva czy Word, a następnie zapisz jako PNG lub PDF i wgraj do kreatora. Szczegółowy poradnik znajdziesz w artykule o [naklejkach z własnym napisem](/blog/naklejki-z-wlasnym-napisem-jak-przygotowac-plik-i-zamowic-online).
+Tak - najpierw wygeneruj grafikę w ChatGPT lub Midjourney, albo ułóż własny tekst z tłem w programach takich jak Canva czy Word, a następnie zapisz jako PNG lub PDF i wgraj do kreatora. Szczegółowy poradnik znajdziesz w artykule o [naklejkach z własnym napisem](/blog/naklejki-z-wlasnym-napisem-jak-przygotowac-plik-i-zamowic-online).

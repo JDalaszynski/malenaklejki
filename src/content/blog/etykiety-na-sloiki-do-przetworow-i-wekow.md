@@ -1,4 +1,4 @@
----
+﻿---
 title: "Etykiety na słoiki do przetworów i weków - napisy na słoiki krok po kroku"
 slug: "etykiety-na-sloiki-do-przetworow-i-wekow"
 date: "2026-08-06"
@@ -25,7 +25,7 @@ Nie znasz Photoshopa? Żaden problem. Masz do wyboru kilka szybkich ścieżek, b
 * **Darmowe programy graficzne:** Canva, a nawet zwykły Word wystarczą, by wpisać odpowiednie nazwy i dobrać ładną czcionkę. 
 * **Twoje własne zdjęcia:** Naklejka ze zdjęcia spiżarni lub kosza owoców to świetny, domowy motyw.
 
-Kiedy masz już gotowy plik JPG lub PNG, wchodzisz na [malenaklejki.pl/etykiety-na-sloiki](/etykiety-na-sloiki) i ładujesz go do systemu z poziomu swojego telefonu. 
+Kiedy masz już gotowy plik JPG lub PNG, wchodzisz do naszego kreatora arkusza i ładujesz go do systemu z poziomu swojego telefonu. Szukasz gotowego pomysłu na całą spiżarnię? Zobacz, jak przygotować [własne etykiety na słoiki z przyprawami](/blog/naklejki-wlasnego-projektu-na-sloiki-z-przyprawami-zorganizuj-swoja-kuchnie).
 
 ## Organizacja to podstawa: naklejki na słoiki personalizowane krok po kroku
 
@@ -44,7 +44,7 @@ Pamiętaj, że nasze narzędzie to prosty kreator służący układaniu arkusza 
 
 Własne etykiety na słoiki do przetworów i weków sprawdzają się nie tylko na półkach domowej piwnicy. Pięknie zapakowany dżem własnej roboty to rewelacyjny pomysł na prezent na święta lub podziękowanie dla gości. Jeśli prowadzisz małą produkcję i potrzebujesz etykiet z prawdziwym logo czy numerem partii, zajrzyj do artykułu [naklejki z własnym logo na słoiki i opakowania](/blog/naklejka-z-logo-firmy-jak-skutecznie-brandowac-swoje-produkty). 
 
-Naklejki z powodzeniem nakleisz też na butelki (przeczytaj o [naklejkach na domowe nalewki](/blog/naklejki-na-nalewki-domowe-jak-estetycznie-ozdobic-butelki)), a jeśli zależy Ci na mniejszych formatach wewnątrz kuchni, koniecznie zobacz wpis o [naklejkach własnego projektu na słoiki z przyprawami](/blog/naklejki-wlasnego-projektu-na-sloiki-z-przyprawami-zorganizuj-swoja-kuchnie).
+Naklejki z powodzeniem nakleisz też na butelki (przeczytaj o [naklejkach na domowe nalewki](/blog/naklejki-na-nalewki-domowe-jak-ozdobic-butelki-na-nalewki)), a jeśli zależy Ci na mniejszych formatach wewnątrz kuchni, koniecznie zobacz wpis o [naklejkach własnego projektu na słoiki z przyprawami](/blog/naklejki-wlasnego-projektu-na-sloiki-z-przyprawami-zorganizuj-swoja-kuchnie).
 
 ![Poukładane słoiki z dżemem w domowej spiżarni](/blog/etykiety-na-sloiki-do-przetworow-i-wekow/domowa-spizarnia-etykiety-na-sloik-z-dzemem.jpeg)
 
@@ -62,7 +62,7 @@ Nie. Choć nasze naklejki na słoiki są wodoodporne, agresywne detergenty i wys
 ### Czy po sezonie słoik można łatwo wyczyścić z kleju?
 Stosujemy niezwykle mocny klej winylowy, który gwarantuje doskonałą trwałość przez cały rok. Mimo swojej mocy, przy powolnym i precyzyjnym ściąganiu pod odpowiednim kątem, naklejki schodzą płatami i najczęściej nie pozostawiają po sobie żadnych trudnych do usunięcia śladów (to nie są naklejki papierowe, które rwą się przy pierwszej próbie ściągnięcia).
 
-### Nie mam Photoshopa – jak przygotować projekt?
+### Nie mam Photoshopa - jak przygotować projekt?
 Oprócz darmowych narzędzi takich jak Canva, najszybszą i najbardziej pomysłową drogą jest użycie zewnętrznych generatorów obrazów AI (np. ChatGPT czy Gemini). Napisz po prostu: "Wygeneruj ilustrację jabłka z rustykalną ramką". Powstały obraz wgraj z poziomu smartfona do naszego narzędzia. Zaznaczysz tam automatyczne wycięcie zbędnego tła, ułożysz wymiary i arkusz będzie gotowy do druku.
 
 <a href="/" style="display: inline-block; background-color: #02af7a; color: #ffffff; padding: 14px 28px; text-decoration: none; border-radius: 8px; font-weight: 600; font-size: 18px; margin-top: 24px; text-align: center;">Otwórz kreator arkusza</a>

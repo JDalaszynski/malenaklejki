@@ -6,7 +6,7 @@ import { Reveal } from "./primitives";
 const FACTS = [
   {
     icon: Truck,
-    title: "Druk i wysyłka w 3 dni robocze",
+    title: "Produkcja w 2-3 dni robocze",
     sub: "Paczkomaty InPost w całej Polsce",
   },
   {

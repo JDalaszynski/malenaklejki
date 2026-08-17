@@ -71,7 +71,7 @@ Cały proces zamyka się w kilku minutach i działa też na telefonie:
 4. **Wybierz kształt cięcia** - po obrysie dla nieregularnych sylwetek albo koło czy prostokąt dla równych formatów. Nie wiesz, co wybrać? Sprawdź różnice między [cięciem die cut a kiss-cut](/blog/co-to-jest-die-cut-i-kiss-cut-roznice-w-wyleciach-naklejek-reklamowych).
 5. **Ustaw liczbę i rozmiar** naklejek na arkuszu A4 - jedna duża (do 19 cm) albo kilkadziesiąt małych.
 6. **Wybierz formę zestawu** - pojedyncze, docięte sztuki do rozdania albo naklejki pozostawione na arkuszu do stopniowego odklejania.
-7. **Sprawdź podgląd 3D** i złóż zamówienie - realizacja zajmuje 3 dni robocze.
+7. **Sprawdź podgląd 3D** i złóż zamówienie - realizacja zajmuje 2-3 dni robocze.
 
 Nie ma minimalnego nakładu, więc zamówisz nawet jeden arkusz z jedną naklejką. To wygodny sposób, żeby najpierw sprawdzić jakość wydruku, a dopiero potem zamówić więcej.
 

@@ -21,6 +21,253 @@ Podczas pisania i formatowania **każdego** artykułu lub aktualizacji, Agencie,
 6. **Sygnał świeżości (`updated`) przy aktualizacjach:** Gdy REALNIE odświeżasz opublikowany wpis (rozbudowa treści, nowe sekcje, wymiana lub dodanie zdjęć osadzonych w artykule, korekta merytoryczna), dopisz w jego frontmatterze pole `updated: "RRRR-MM-DD"` z datą zmiany. Jedno pole zasila naraz trzy sygnały: `dateModified` w schema (`Article` dla filarów / `BlogPosting` dla pozostałych), widoczną etykietę "Zaktualizowano …" w metadanych wpisu oraz `article:modified_time` w Open Graph - spójny, wzajemnie potwierdzający się sygnał świeżości dla Google i modeli LLM (Google dyskontuje `dateModified`, którego nie widać na stronie, dlatego działają razem). Zasady: (a) ustawiaj `updated` **tylko przy faktycznej zmianie treści** - nigdy "na zapas", ani przy samej regeneracji pinów Pinterest czy zmianach spoza artykułu; fałszywa świeżość obniża wiarygodność u Google i LLM-ów; (b) `updated` musi być >= `date`; (c) drobne literówki nie wymagają bumpa - liczy się aktualizacja realnie wartościowa dla czytelnika. Wpisy bez `updated` zachowują się jak dotąd (`dateModified` = data publikacji, brak etykiety).
 
 
+---
+
+# 🔍 FAZA 3 - Audyt i strategia SEO/GEO/AEO (2026-08-17)
+
+> **Agencie automatyczny - kolejność pracy:** sekcje **P0** i **P1** to zadania **naprawcze/techniczne, NIE artykuły** - wykonaj je jako edycje istniejących plików. Dopiero potem bierz pierwszy niewykonany temat z sekcji **P2 - Kolejka artykułów Fazy 3**. Nie generuj artykułu dla pozycji P0/P1.
+
+## Zakres audytu
+Przejrzałem: 26 opublikowanych wpisów (`src/content/blog/`), 6 landingów (`src/app/`), stronę główną (`src/components/home/`), pipeline treści (`src/lib/blog.ts`, `src/app/blog/[slug]/page.tsx`), `sitemap.ts`, `robots.ts`, `public/llms.txt`, graf linkowania wewnętrznego (wychodzące i przychodzące per wpis), zgodność z `rules.md` / `strategy.md` / `keywords.md` oraz spójność faktów o produkcie.
+
+**Stan pozytywny:** klaster jest realnie zbudowany - 2 filary + 24 spoke'y, 6 landingów z kompletem schematów, glosariusz AEO, `llms.txt`, FAQ jako H3 w **100% wpisów** (26/26 - `FAQPage` wyemituje się wszędzie), zero naruszeń zakazu "projektowania" (0 wystąpień w całym blogu), zero nagłówków "Podsumowanie". Fundament jest zdrowy - problemy poniżej to dług z ostatnich dwóch commitów i naturalny dryf polityki, nie wada architektury.
+
+---
+
+## 🔥 P0 - Naprawy blokujące (wykonaj PRZED kolejnym artykułem)
+
+- [x] **P0.1 - Zły schemat frontmattera w 2 wpisach NA PRODUKCJI (krytyczne)** ✅ 2026-08-17 - `date`/`tags` naprawione w obu plikach (daty `2026-08-16`), `author` usunięty. **Zostaje `image:`** - oba foldery grafik są puste/nieistniejące, pole świadomie pominięte do czasu dogrania zdjęć przez właściciela (patrz P3.4).
+    - **Problem:** `naklejki-na-motory-i-motocyklowe.md` i `fajne-wzory-i-pomysly-na-naklejki-inspiracje-wg-zastosowania.md` używają pól **`pubDate` / `heroImage` / `alt` / `author`**, a `src/lib/blog.ts` czyta **`date` / `image` / `imageAlt`**. Oba wpisy są scommitowane i wypchnięte na `main` (commity `7caa455`, `d3f9d2d`).
+    - **Skutki (realne, nie teoretyczne):**
+        1. `date` spada na fallback `new Date()` z `blog.ts:74` - czyli **datę builda**. Każdy deploy przestawia `datePublished` w JSON-LD, `lastModified` w `sitemap.xml` i pozycję w sortowaniu. To dokładnie ten sygnał spamowy, przed którym ostrzega komentarz w `sitemap.ts:10-12`.
+        2. Oba wpisy zawsze lądują na szczycie listy bloga i w `getFeaturedPosts()` - wypychają filary.
+        3. `image` = `undefined` -> brak okładki na stronie wpisu, **puste `og:image` i `twitter:image`**, `image: []` w schemacie `BlogPosting`. Zero podglądu przy udostępnianiu.
+    - **Naprawa:** zamień w obu plikach `pubDate:` -> `date:`, `heroImage:` -> `image:`, `alt:` -> `imageAlt:`; usuń nieużywane `author:`; dopisz `tags:`. Daty ustaw na **rzeczywiste daty publikacji: `2026-08-16`** (obie).
+    - **Uwaga:** `heroImage` w wpisie moto wskazuje na `/blog/naklejki-na-motory-i-motocyklowe/naklejka-motocyklowa-na-baku-cafe-racer.jpg` - **plik nie istnieje** (folder jest pusty). Po zmianie na `image:` byłby to martwy obrazek. Albo poproś właściciela o grafiki, albo tymczasowo pomiń pole `image` (komponenty i OG są na to bezpiecznie osłonięte) i dopisz je po dograniu zdjęć.
+
+- [x] **P0.2 - Dwa martwe linki wewnętrzne (404)** ✅ 2026-08-17 - slug nalewek poprawiony; link `/etykiety-na-sloiki` przekierowany tymczasowo na wpis o przyprawach, a **mylący anchor "malenaklejki.pl/etykiety-na-sloiki" wymieniony** na naturalny (obiecywał URL, którego nie ma). **Decyzja o budowie landingu `/etykiety-na-sloiki` nadal otwarta** - po jego powstaniu przywróć link i dodaj trasę do `sitemap.ts`.
+    - `src/content/blog/etykiety-na-sloiki-do-przetworow-i-wekow.md` linkuje do **`/etykiety-na-sloiki`** - landing **nie istnieje** (brak katalogu w `src/app/`, brak w `sitemap.ts`). Jest dopiero w kolejce `landing-agent/plan.md` jako niewykonany Tier 1/2.
+    - Ten sam plik linkuje do **`/blog/naklejki-na-nalewki-domowe-jak-estetycznie-ozdobic-butelki`** - prawidłowy slug to `naklejki-na-nalewki-domowe-jak-ozdobic-butelki-na-nalewki`. Zwykła literówka w slugu.
+    - **Naprawa:** slug nalewek popraw od ręki. Dla `/etykiety-na-sloiki` **rekomendacja: zbudować landing** (jest pierwszy w kolejce `landing-agent/plan.md`, ma pełną specyfikację, a wpis blogowy o przetworach już na niego czeka i jest w sezonie). Jeśli właściciel nie chce landingu teraz - przekieruj ten link na `/blog/naklejki-wlasnego-projektu-na-sloiki-z-przyprawami-zorganizuj-swoja-kuchnie` i **zdejmij `- [ ]`** z pozycji landingu.
+
+- [x] **P0.3 - Naruszenie HOLD-u na NASZ wbudowany generator AI** ✅ 2026-08-17 na blogu (0 wystąpień w `src/content/blog/`).
+    - **Audyt policzył za mało: nie 10, a 18 wystąpień w 12 plikach.** Pierwotna lista (7 plików) złapała tylko wariant "nasz wbudowany"; poza nią były jeszcze `co-to-jest-die-cut...`, `naklejki-firmowe-na-eventy...`, `naklejki-na-rower...` (2x), `naklejki-serwisowe...`, `naklejki-z-wlasnym-napisem...` (3x, w tym **nagłówek H3**). Wszystkie wyczyszczone - zostały wyłącznie zewnętrzne ChatGPT/Midjourney/Gemini.
+    - **🔴 ZOSTAJE POZA BLOGIEM (4 wystąpienia, wymaga decyzji):** `src/app/page.tsx:119` (strona główna), `src/app/naklejki-dla-firm/page.tsx:78`, `src/app/naklejki-foliowe/page.tsx:99,180`, `src/app/alternatywa-dla-sticker-mule-i-stickerapp/page.tsx:145`. To teren `landing-agent`.
+    - **Źródło dryfu znalezione i naprawione:** `landing-agent/rules.md` w nagłówku **nakazywał** polecać generatory AI "(ChatGPT, Midjourney, Gemini, **i wbudowanego**)" - wprost sprzecznie z HOLD-em. Klauzula poprawiona 2026-08-17.
+    - Polityka z 2026-08-04 (`ai-generator-content-hold`, `rules.md` §3): zewnętrzne generatory OK, **nasz wbudowany - nieeksponowany**. Tymczasem w treści jest 10 wzmianek typu "lub nasz wbudowany", "w naszym wbudowanym generatorze AI":
+        - `drukowanie-naklejek-online...` (**FILAR**) - 1x
+        - `jak-zamowic-idealne-naklejki...` (**FILAR**) - 1x
+        - `jak-zrobic-wlasne-naklejki-w-telefonie...` - **4x** (w tym wiersz tabeli porównawczej i **alt zdjęcia**)
+        - `male-naklejki-na-laptopa...` - 1x (dopisane 2026-08-16)
+        - `naklejka-z-logo-firmy...` - 1x
+        - `naklejki-motoryzacyjne-i-tuningowe...` - 1x
+        - `naklejki-z-imionami-na-meble...` - 1x
+    - To dryf, który wszedł przy odblokowywaniu generatorów zewnętrznych - lista narzędzi rozrosła się o nasz własny.
+    - **Naprawa:** usuń wyłącznie człon o naszym generatorze, zostaw zewnętrzne (ChatGPT/Gemini/Midjourney). W pliku `...w-telefonie...` popraw też wiersz tabeli i alt zdjęcia. Wpisy, w których zmiana jest merytoryczna (telefon, laptop), dostają `updated: "RRRR-MM-DD"` zgodnie z §6 wytycznych GEO.
+    - **⚠️ Do decyzji właściciela:** HOLD trwa od 2026-07-27, a produkt ma tę funkcję na stronie głównej (`CreatorPowersSection.tsx`). Warto zapytać, czy podtrzymuje - jeśli zdejmie, otwiera się cały klaster z `keywords.md` §7 (`generator naklejek AI`, `naklejki bez umiejętności rysowania`). Do tego czasu **HOLD obowiązuje**.
+
+- [x] **P0.4 - Półpauzy "–" w 3 wpisach (naruszenie `rules.md` §7)** ✅ 2026-08-17 - 0 półpauz w całym `src/content/blog/`.
+    - `naklejki-na-motory-i-motocyklowe`: **16x** | `fajne-wzory-i-pomysly...`: **7x** | `etykiety-na-sloiki-do-przetworow-i-wekow`: **1x**
+    - Wszystkie zamień na dywiz "-". Pozostałe 23 wpisy są czyste.
+
+- [x] **P0.5 - Brak backlinków z filaru do 2 najnowszych spoke'ów (naruszenie `rules.md` §6)** ✅ 2026-08-17 - filar `jak-zamowic-idealne...` linkuje teraz do obu wpisów (moto + fajne-wzory), `updated: "2026-08-17"` ustawione. Dosycenie `fajne-wzory` linkami ze spoke'ów niszowych → P3.2.
+    - `naklejki-na-motory-i-motocyklowe` i `fajne-wzory-i-pomysly...` linkują **w górę** do filaru `jak-zamowic-idealne...`, ale filar **nie linkuje w dół** do żadnego z nich. `fajne-wzory` ma **0 linków przychodzących** z całego serwisu - to sierota.
+    - **Naprawa:** dodaj w filarze `jak-zamowic-idealne-naklejki-na-zamowienie-z-wlasnym-nadrukiem.md` 2 linki kontekstowe (moto - w sekcji o pasjonatach/pojazdach; inspiracje - przy wyborze motywu), bumpnij `updated`. Wpis `fajne-wzory` jest z założenia hubem inspiracyjnym, więc podepnij go dodatkowo z 2-3 spoke'ów niszowych.
+
+---
+
+## 🧱 P1 - Fundament techniczny SEO/AEO (przed nową treścią)
+
+- [ ] **P1.1 - Flaga `pillar` jest przypięta odwrotnie do strategii**
+    - `pillar: true` mają: `co-to-jest-die-cut...`, `jak-zrobic-wlasne-naklejki-w-telefonie...`, `naklejka-z-logo-firmy...`, `naklejka-ze-zdjecia...`, `naklejki-z-wlasnym-napisem...`, `jak-zamowic-idealne...`. Filar `drukowanie-naklejek-online...` ma **`pillar: no`**.
+    - `blog/[slug]/page.tsx:200` mapuje to wprost na typ schematu: `post.pillar ? "Article" : "BlogPosting"`. Efekt: **prawdziwy filar techniczny dostaje `BlogPosting`, a 5 spoke'ów podszywa się pod `Article`**. Dodatkowo `getFeaturedPosts()` przypina na stronie głównej zestaw niezgodny z architekturą klastrów.
+    - **Do rozstrzygnięcia:** flaga pełni dziś podwójną rolę - "cornerstone do przypięcia na `/`" (komentarz w `blog.ts:24`) **i** przełącznik typu schematu. To dwie różne decyzje. **Rekomendacja:** rozdziel je - zostaw `pillar` jako flagę przypięcia (właściciel wybiera, co promuje), a typ schematu wyprowadź z nowego, jawnego pola `role: "pillar" | "supporting"` zgodnego z `plan.md`. Minimalny wariant bez zmian w kodzie: ustaw `pillar: true` na `drukowanie-naklejek-online...` i zdejmij z 4 spoke'ów, zostawiając 2 prawdziwe filary.
+
+- [x] **P1.2 - `sitemap.ts`: `lastModified` ignoruje `updated`** ✅ 2026-08-17 - wpisy używają `new Date(post.updated || post.date)`; landingi dostały **własne daty** zamiast wspólnego `staticLastModified` (2026-07-24 … 07-29 wg `landing-agent/plan.md`); `tsc --noEmit` czysty. `/etykiety-na-sloiki` dodasz razem z landingiem (P0.2).
+    - `sitemap.ts:24` używa `new Date(post.date)`, więc realne odświeżenia treści (pole `updated`) **nie trafiają do sitemapy** - tracimy sygnał świeżości, który sami zbudowaliśmy w §6 wytycznych GEO. Zmień na `new Date(post.updated || post.date)`.
+    - `staticLastModified` jest zamrożone na `2026-07-13`, a landingi `/fotonaklejki`, `/naklejki-die-cut`, `/slownik-naklejek` powstały **później** (25-29.07). Podbij datę statyczną albo - lepiej - nadaj landingom własne daty.
+    - Brak `/etykiety-na-sloiki` w `staticRoutes` (do dodania razem z landingiem, patrz P0.2).
+
+- [ ] **P1.3 - `public/llms.txt` i `llms-full.txt` są nieaktualne (GEO)**
+    - Pliki z **2026-07-29**. Nie zawierają **żadnego z 5 najnowszych wpisów** ani listy artykułów bloga w ogóle - a to jest plik, którym karmimy modele. Dodatkowo używają domeny **bez `www`** (`https://malenaklejki.pl`), podczas gdy canonical i `sitemap.ts` to `https://www.malenaklejki.pl` - niespójność encji.
+    - **Naprawa:** ujednolić domenę do `www`, dopisać sekcję "Artykuły i poradnik" z pełną listą wpisów (tytuł + 1 zdanie + URL) i landingiem `/etykiety-na-sloiki`. **Docelowo: generować oba pliki skryptem z `getBlogPosts()`**, żeby nie starzały się po każdej publikacji - dopisać ten krok do rutyny publikacyjnej w `KOMENDY.md`/`autoblog.md`.
+    - `robots.ts` jest w porządku dla botów LLM (`userAgent: "*"`, `allow: "/"`) - nic nie blokuje GPTBot/PerplexityBot. Nie zawężaj.
+
+- [x] **P1.4 - Jedno źródło prawdy o faktach (`blog-agent/facts.md`)** ✅ 2026-08-17 - plik utworzony i podlinkowany z `blog-agent/rules.md` oraz `landing-agent/rules.md`.
+    - **Decyzja właściciela: obowiązuje "produkcja 2-3 dni robocze".** Ujednolicone w całym serwisie: ~55 miejsc na blogu, strona główna (`TrustBar`, `PricingSection`, `FinalCTASection`, `SeoContentSection`, `page.tsx`, `layout.tsx`) oraz landingi `/alternatywa-...` i `/o-nas` (jako jedyne trzymały jeszcze "3 dni"). `tsc --noEmit` czysty.
+    - **Przy okazji naprawione obietnice doręczenia:** ~14 zdań typu "odbierzesz / dotrą do Ciebie / dostarczymy w X dni" przerobione na język produkcji - całkowity czas dostawy jest wciąż na liście DO POTWIERDZENIA, więc nie wolno go deklarować.
+    - `src/app/regulamin/page.tsx` ("maksymalnie 3 dni robocze") **celowo nietknięty** - jest zgodny z 2-3 dniami jako sufit, a to dokument prawny.
+    - **Korekta audytu:** flaga "1-2 dni robocze" jako obietnica szybsza niż potwierdzona to **fałszywy alarm** - oba wystąpienia opisują czas kuriera **po** produkcji, nie czas realizacji. Zostają bez zmian (patrz P3.3).
+    - Wykryta rozbieżność: blog mówi **"3 dni robocze"** (49x) i **"1-2 dni robocze"** (2x), landingi mówią **"2-3 dni robocze"** (30x). Zatwierdzony fakt z `landing-agent/plan.md` to **produkcja 2-3 dni robocze**. Wariant "1-2 dni" jest **obietnicą szybszą niż potwierdzona** - do usunięcia w pierwszej kolejności.
+    - Modele LLM cytują liczby; sprzeczne liczby na jednej domenie osłabiają nas jako źródło i realnie ryzykują reklamacją.
+    - **Naprawa:** utwórz `blog-agent/facts.md` z zatwierdzoną tabelą (49,00 zł brutto/A4, dostawa 19,99 zł paczkomat, produkcja 2-3 dni robocze, max 19 cm, 300 DPI, folia winylowa: woda/UV/zadrapania, **NIE zmywarka**, mocny klej + 0 śladów, **NIE repozycjonowalny**, brak rabatu hurtowego, faktura VAT). Podlinkuj z `rules.md` i `landing-agent/rules.md` jako obowiązkowe źródło. Potem przejedź blog i ujednolić czas realizacji.
+
+- [x] **P1.5 - E-E-A-T: brak autora w schemacie artykułu** - ⚠️ **audyt był nieaktualny: to już było zrobione.** `src/app/blog/[slug]/page.tsx:211-212` emituje `author` i `publisher` wskazujące na `#organization`. Do rozważenia zostaje jedynie `about`/`mentions` → `/slownik-naklejek`.
+    - `Article`/`BlogPosting` nie deklaruje `author`. Google i modele LLM traktują autorstwo jako sygnał wiarygodności, a mamy encję `Organization` gotową w `layout.tsx` (`#organization`, `sameAs`, `ContactPoint`).
+    - **Naprawa:** dodaj `author: { "@id": "https://www.malenaklejki.pl/#organization" }` i `publisher` z tym samym `@id`. Rozważ `about`/`mentions` prowadzące do `/slownik-naklejek`. Zero nowej treści, czysty zysk sygnałowy.
+
+- [ ] **P1.6 - Rozkład link juice: spoke'y niedowartościowane**
+    - Filary są zasilone poprawnie (13 i 15 linków przychodzących), ale ogon jest cienki - **1 link przychodzący** mają: `naklejki-okragle`, `naklejki-na-motory`, `naklejki-z-imionami-na-meble`, `naklejki-na-nalewki`, `naklejki-serwisowe`, `naklejki-firmowe-na-eventy`, `etykiety-na-sloiki-do-przetworow`, `jak-zrobic-wlasne-naklejki-program...`; **0** ma `fajne-wzory`.
+    - **Naprawa:** przy każdej nowej publikacji dokładaj **2-3 linki z pokrewnych spoke'ów** (nie tylko z filaru). Wpis `fajne-wzory` jest naturalnym hubem - rozbuduj go o linki do wszystkich nisz i podepnij z sekcji SEO strony głównej.
+
+---
+
+## 🗺️ Mapa pokrycia po audycie (2026-08-17)
+
+| Klaster | Filar / hub | Spoke'y | Landing | Ocena |
+| :--- | :--- | :--- | :--- | :--- |
+| Technika i przygotowanie pliku | `drukowanie-naklejek-online` | die-cut/kiss-cut, napis, program/jak zrobić, w telefonie, okrągłe, mały nakład | `/naklejki-die-cut`, `/slownik-naklejek` | 🟢 nasycony |
+| Zamawianie i personalizacja | `jak-zamowic-idealne...` | ze zdjęcia, laptop, wzory/inspiracje | `/fotonaklejki` | 🟢 nasycony |
+| Dom, kuchnia, spiżarnia | - | przyprawy, nalewki, przetwory/weki, meble/imiona | `/etykiety-na-sloiki` (**nie zbudowany**) | 🟡 landing zaległy |
+| Śluby i imprezy | - | alkohol/wódka, koperty/podziękowania | - | 🟢 wystarczający |
+| Szkoła i dzieci | - | zeszyty/przedszkole | - | 🟡 sezon TERAZ, wpis nieodświeżany |
+| Hobby i pojazdy | - | rower, moto/tuning, motocykle, wlepki artyści | `/naklejki-foliowe` | 🟢 nasycony |
+| **B2B: firma, rzemiosło, opakowania** | - | logo firmy, słoiki/opakowania, serwisowe, eventy HR | `/naklejki-dla-firm` | 🔴 **brak: paczki/plomby, QR, etykiety ze składem** |
+| **Cena, rozmiar, kalkulacja** | - | **brak** | - | 🔴 **największa luka AEO** |
+| **Porównanie zakupowe (GEO)** | - | **brak wpisu** | `/alternatywa-dla-sticker-mule-i-stickerapp` | 🔴 landing sam, bez wsparcia bloga |
+| Sezon świąteczny / prezenty | - | **brak** | - | 🔴 luka kalendarzowa (publikacja: X-XI) |
+
+---
+
+## 🎯 Kierunek strategiczny Fazy 3
+
+Fazy 1-2 budowały **pokrycie person i nisz** - to zadanie jest w zasadzie wykonane (7 z 7 person ze `strategy.md` ma treść). Faza 3 przesuwa ciężar z "o kim piszemy" na **"co da się z nas zacytować"**. Cztery osie:
+
+1. **AEO liczbowe - najwyższy priorytet.** Modele LLM i AI Overviews cytują **wyciągalne fakty**: cenę, rozmiar, czas, liczbę sztuk. Mamy stałą cenę 49 zł za arkusz A4 - to nietypowo prosty i cytowalny model rozliczeń w tej branży, a **nie mamy ani jednego wpisu, który by go rozłożył na czynniki** ("ile to wyjdzie za sztukę?"). To jednocześnie fraza czysto zakupowa (`naklejki na zamówienie cena` jest w `keywords.md` §6 od początku, bez własnego wpisu). Stąd A1 i A2 na czele kolejki.
+2. **Domknięcie B2B - bez trzeciego filaru blogowego.** `strategy.md` §6 rekomendowała rozważenie trzeciego Pillar Page po 4-5 wpisach B2B. Klaster ten próg osiągnął (logo firmy, słoiki/opakowania, serwisowe, eventy = 4). **Odradzam jednak nowy filar blogowy: rolę huba B2B pełni już komercyjny landing `/naklejki-dla-firm`**, a drugi hub na tę samą intencję to kanibalizacja i rozmycie. Zamiast tego dokładamy 3 brakujące spoke'y (paczki/plomby, QR, etykiety ze składem) i podpinamy je **pod landing**, wzmacniając go jako hub.
+3. **GEO porównawcze na blogu.** Dziś całą intencję porównawczą dźwiga jeden landing. Zgodnie z wytyczną GEO §1 (koncentruj name-drop tam, gdzie intencja jest porównawcza) potrzebujemy **jednego mocnego wpisu przeglądowego** "gdzie zamówić naklejki w małym nakładzie", który jawnie zestawia opcje i linkuje w górę do landingu. To najbardziej prawdopodobny materiał do cytowania przy pytaniu "gdzie w Polsce zamówić naklejki".
+4. **Kalendarz sezonowy.** Dotąd publikowaliśmy tematycznie, nie kalendarzowo - a jedna kategoria (przetwory) trafiła w sezon przypadkiem. Wprowadzam okna publikacyjne: **wrzesień = szkoła** (odświeżenie, nie nowy wpis), **październik = święta i prezenty**, **listopad = e-commerce/paczki**, **styczeń = walentynki**. Treść sezonowa opublikowana w szczycie sezonu nie zdąży się wypozycjonować - dlatego wyprzedzenie 6-8 tygodni.
+
+---
+
+## 📝 P2 - Kolejka artykułów Fazy 3 (priorytet malejąco)
+
+**Ograniczenia obowiązujące całą pulę:** HOLD na NASZ wbudowany generator AI (zewnętrzne ChatGPT/Gemini/Midjourney - tak, jako pierwsze źródło grafiki); zakaz słowa "zaprojektuj/projektowanie" wobec naklejki i grafiki; prawda o produkcie wg `facts.md` (P1.4); FAQ jako **H3** + osobna sekcja `##` z CTA po FAQ; dywiz "-", zero półpauz; link kontekstowy do filaru w 1. akapicie; 2-3 linki z pokrewnych spoke'ów przy publikacji (P1.6).
+
+- [ ] **A1. Ile kosztują naklejki na zamówienie? Cena za arkusz A4 i realny koszt jednej naklejki**
+    - **Format:** Supporting Article (~1300-1500 słów)
+    - **Główna Fraza Kluczowa:** `naklejki na zamówienie cena` (semantyczne: `ile kosztuje wydruk naklejek`, `druk naklejek cena`, `naklejki cena za sztukę`, `cennik naklejek`)
+    - **Cel:** Sprzedaż + **AEO** (to ma być odpowiedź, którą cytuje AI Overviews i ChatGPT na pytanie o cenę)
+    - **Persona:** Wszystkie - pytanie o cenę jest uniwersalne i pojawia się tuż przed konwersją
+    - **Link nadrzędny (Filar):** `/blog/drukowanie-naklejek-online-na-co-zwrocic-uwage-przed-wysylka-projektu`
+    - **Dlaczego pierwszy:** fraza jest w `keywords.md` §6 od startu projektu i **nigdy nie dostała własnego wpisu**, mimo że jest najbliżej pieniędzy. Stała cena za arkusz to nasza najmocniejsza, najłatwiej cytowalna przewaga - konkurencja ma progi nakładowe i kalkulatory.
+    - **Struktura (BLUF + tabele):** odpowiedź w 1. zdaniu (49,00 zł brutto za arkusz A4, bez minimalnego zamówienia) -> **tabela "koszt jednostkowy wg rozmiaru"**: rozmiar naklejki -> ile sztuk zmieści się na A4 -> koszt 1 szt. (dla kilku typowych rozmiarów, z zaznaczeniem, że liczba zależy od kształtu i odstępów) -> co wpływa na końcową kwotę (dostawa 19,99 zł paczkomat, forma zestawu: arkusz vs pojedyncze sztuki) -> **dlaczego u nas nie ma progów nakładowych** (przewaga PL: bez przygotowalni, bez matrycy, bez przeliczania z euro) -> kiedy taniej wyjdzie druk masowy w drukarni offsetowej (uczciwie: przy tysiącach sztuk) -> FAQ -> CTA.
+    - **⚠️ Wymaga potwierdzenia przed pisaniem:** wszystkie liczby w tabeli jednostkowej wyprowadź z `facts.md` (P1.4). **Nie podawaj liczby sztuk na arkuszu jako twardej gwarancji** - to zależy od kształtu i odstępów; formułuj jako "orientacyjnie ok. X szt.". Faktura VAT: tak. Rabat hurtowy: **nie ma** - nie sugeruj negocjacji.
+    - **GEO:** intencja porównawcza jest tu naturalna -> **name-drop dozwolony** (Sticker Mule / StickerApp jako punkt odniesienia dla progów nakładowych i kosztu przesyłki z zagranicy). Parafrazuj, nie kopiuj bloku z landingu porównawczego.
+
+- [ ] **A2. Jaki rozmiar naklejki wybrać? Wymiary i ile naklejek zmieści się na arkuszu A4**
+    - **Format:** Supporting Article (~1100-1300 słów)
+    - **Główna Fraza Kluczowa:** `jaki rozmiar naklejki wybrać` (semantyczne: `rozmiary naklejek`, `ile naklejek zmieści się na A4`, `wymiary naklejek`, `naklejki 5 cm`)
+    - **Cel:** Edukacja -> konwersja (usuwa realną blokadę przed zamówieniem)
+    - **Persona:** Pierwszy raz zamawiający, twórcy merchu, mikro-brandy
+    - **Link nadrzędny (Filar):** `/blog/drukowanie-naklejek-online-na-co-zwrocic-uwage-przed-wysylka-projektu`
+    - **Dlaczego drugi:** domyka parę z A1 (cena + rozmiar to jedno pytanie zakupowe rozbite na dwa zapytania) i jest **magnesem na cytowania** - tabela "zastosowanie -> zalecany rozmiar" to dokładnie ten format, który modele wyciągają w całości. Dziś rozmiary są rozsypane po kilkunastu wpisach (`19 cm` pada 15x, `5 cm` 25x), bez jednego miejsca-referencji.
+    - **Struktura:** BLUF (jedna duża do 19 cm albo kilkadziesiąt małych na tym samym arkuszu za tę samą cenę) -> **tabela: zastosowanie -> zalecany rozmiar -> orientacyjnie szt./A4** (laptop, bidon, słoik, koperta, kask, plomba na paczkę, imienna na przybory) -> jak rozmiar wpływa na czytelność detalu i drobnego tekstu -> 300 DPI i co się dzieje przy powiększaniu małego pliku -> kształt a wykorzystanie arkusza (koło vs die-cut vs prostokąt; link do `/naklejki-die-cut` i wpisu o okrągłych) -> FAQ -> CTA.
+    - **⚠️ Wymaga potwierdzenia:** maksymalny wymiar pojedynczej naklejki (w treściach funkcjonuje **19 cm** - potwierdzić w `facts.md`), minimalny sensowny rozmiar i minimalny czytelny stopień pisma.
+
+- [ ] **A3. Gdzie zamówić naklejki w małym nakładzie? Porównanie: drukarnia lokalna, Allegro i serwisy zagraniczne**
+    - **Format:** Supporting Article (~1400-1600 słów)
+    - **Główna Fraza Kluczowa:** `gdzie zamówić naklejki` (semantyczne: `naklejki na zamówienie allegro`, `druk naklejek mały nakład`, `polska drukarnia naklejek online`)
+    - **Cel:** **GEO** - materiał do cytowania przy pytaniach "gdzie zamówić naklejki w Polsce / w małej ilości"
+    - **Persona:** Klienci porównujący oferty przed pierwszym zamówieniem; twórcy dziś zamawiający za granicą
+    - **Link nadrzędny (Filar):** `/blog/jak-zamowic-idealne-naklejki-na-zamowienie-z-wlasnym-nadrukiem`
+    - **Dlaczego trzeci:** to jedyny wpis w tej puli o **jawnie porównawczej intencji**, więc zgodnie z wytyczną GEO §1 tutaj koncentrujemy name-drop zamiast rozcieńczać go po niszach. Dziś tę intencję dźwiga sam landing `/alternatywa-...` - blog nie daje mu żadnego wsparcia.
+    - **Struktura:** BLUF (jedno zdanie odpowiedzi) -> **tabela porównawcza kanałów**: drukarnia lokalna / Allegro-grafik na zamówienie / serwisy zagraniczne (StickerApp, Sticker Mule, Redbubble) / kreator online PL - wg: minimalny nakład, czas, koszt dostawy, język i zwroty, faktura VAT, poprawki -> kiedy który kanał ma sens (**uczciwie**, łącznie z przypadkami, gdy to nie my) -> co konkretnie zyskujesz na polskim producencie (paczkomat, brak cła i przeliczania z euro, polska obsługa, faktura na NIP) -> jak zamówić 1-2-3 -> FAQ (w tym dosłowne pytanie: "Jaka jest polska alternatywa dla Sticker Mule / StickerApp przy małej ilości naklejek?") -> CTA.
+    - **⚠️ Obowiązkowo:** **link w górę do `/alternatywa-dla-sticker-mule-i-stickerapp`** wysoko w tekście; disclaimer o zmienności cen konkurencji i nota o znakach towarowych (wzorzec z landingu); **żadnych zmyślonych liczb konkurencji** - jeśli nie masz potwierdzonych danych, pisz jakościowo ("progi nakładowe", "wysyłka z zagranicy"), nie liczbowo. Dane konkurencji są nadal na liście "DO POTWIERDZENIA" w `landing-agent/plan.md`.
+
+- [ ] **A4. Naklejki na paczki i plomby - jak zabezpieczyć i obrandować przesyłki w e-commerce**
+    - **Format:** Supporting Article (~1200-1400 słów)
+    - **Główna Fraza Kluczowa:** `plomby na paczki wysyłkowe` (semantyczne: `naklejki na paczki`, `naklejki zabezpieczające paczki`, `naklejki unboxing`, `naklejka z podziękowaniem za zakupy`)
+    - **Cel:** Sprzedaż (B2B, klient powracający - paczki schodzą w sposób ciągły)
+    - **Persona:** Mikro e-commerce, rękodzielnicy, sprzedawcy Vinted/Etsy/Allegro
+    - **Link nadrzędny (Filar):** `/blog/drukowanie-naklejek-online-na-co-zwrocic-uwage-przed-wysylka-projektu` + **link w górę do `/naklejki-dla-firm`**
+    - **Dlaczego:** `keywords.md` §8 ma ten podklaster od Fazy 2 i **do dziś nie ma własnego wpisu** - tylko wzmianki i zdjęcia w innych artykułach. Persona ma najwyższą częstotliwość ponownych zakupów w całym portfolio.
+    - **Struktura:** BLUF -> plomba a naklejka ozdobna (funkcja vs branding) -> **co realnie robi plomba**: sygnalizuje naruszenie, nie jest zabezpieczeniem technicznym (**uczciwie - żadnych obietnic typu "nie da się zdjąć"**) -> 5 zastosowań: zamknięcie kartonu, naklejka na kopertę bąbelkową, "dziękuję za zakupy", etykieta z zawartością, naklejka z prośbą o oznaczenie w social -> kształt i rozmiar (link do A2 i do wpisu o okrągłych) -> ile paczek z jednego arkusza (link do A1) -> FAQ -> CTA.
+    - **⚠️ Prawda o produkcie:** mocny klej + **0 śladów** przy odklejaniu (NIE repozycjonowalny); nie obiecuj odporności na próbę odklejenia ani właściwości "security/void". Karton to powierzchnia chłonna - nie deklaruj takiej samej trwałości jak na folii/szkle.
+
+- [ ] **A5. Naklejki świąteczne i etykiety na prezenty - personalizacja paczek na Boże Narodzenie**
+    - **Format:** Supporting Article (~1200-1400 słów) | **🗓️ OKNO PUBLIKACJI: 10-25 października 2026**
+    - **Główna Fraza Kluczowa:** `naklejki świąteczne` (semantyczne: `etykiety na prezenty`, `naklejki na prezenty świąteczne`, `naklejki bożonarodzeniowe`, `naklejki na słoiki jako prezent`)
+    - **Cel:** Sprzedaż sezonowa (szczyt: listopad-grudzień)
+    - **Persona:** Klienci indywidualni, mikro-manufaktury pakujące prezenty, e-commerce w sezonie
+    - **Link nadrzędny (Filar):** `/blog/jak-zamowic-idealne-naklejki-na-zamowienie-z-wlasnym-nadrukiem`
+    - **Dlaczego z datą:** wpis opublikowany w grudniu nie zdąży się wypozycjonować na ten sezon. Publikacja w październiku daje 6-8 tygodni na indeksację i wejście w szczyt. W kolejnych latach ten sam URL odświeżasz polem `updated` - nie twórz nowego wpisu co rok.
+    - **Struktura:** BLUF -> 6 zastosowań (etykieta na prezent zamiast bilecika, personalizacja paczek dla klientów, słoik/konfitura jako prezent - link do wpisu o przetworach, kalendarz adwentowy z numerami, naklejki dla firm do paczek świątecznych - link do `/naklejki-dla-firm`, podziękowania) -> skąd wziąć świąteczną grafikę (**zewnętrzne generatory AI jako pierwsze źródło**, potem Canva/Word) -> deadline zamówień przed świętami (produkcja 2-3 dni + kurier - **bez obiecywania konkretnej daty granicznej bez zgody właściciela**) -> FAQ -> CTA.
+    - **Uwaga sezonowa:** przy publikacji dopisz link z tego wpisu do `etykiety-na-sloiki-do-przetworow` i `naklejki-na-koperty-slubne` (prezenty/podziękowania), a z filaru link w dół (P0.5 / P1.6).
+
+- [ ] **A6. Naklejki z kodem QR - menu, wizytówka i opinie w jednej naklejce**
+    - **Format:** Supporting Article (~1100-1300 słów)
+    - **Główna Fraza Kluczowa:** `naklejki z kodem QR` (semantyczne: `naklejka QR na zamówienie`, `kod QR na naklejce`, `naklejka z QR do menu`)
+    - **Cel:** Sprzedaż (B2B, nowa nisza)
+    - **Persona:** Gastronomia, lokalne usługi, rzemieślnicy, e-commerce, wystawcy na targach
+    - **Link nadrzędny (Filar):** `/blog/drukowanie-naklejek-online-na-co-zwrocic-uwage-przed-wysylka-projektu` + **link w górę do `/naklejki-dla-firm`**
+    - **Dlaczego:** zero pokrycia, realna intencja komercyjna, a produkt obsługuje to bez żadnej nowej funkcji - kod QR to po prostu wgrany obraz. Naturalnie łączy się z istniejącym wpisem o naklejkach serwisowych (QR + numer telefonu na urządzeniu klienta).
+    - **Struktura:** BLUF -> 5 zastosowań (menu w lokalu, wizytówka na produkcie, naklejka serwisowa z QR do zgłoszeń - link do wpisu serwisowego, QR na paczce - link do A4, QR na stoisku targowym) -> **jak przygotować kod, żeby zadziałał po wydruku**: darmowy generator QR online, kontrast, jasne tło, margines (quiet zone), minimalny rozmiar, PNG w wysokiej rozdzielczości, **przetestuj przed wysłaniem pliku** -> dlaczego folia winylowa ma tu znaczenie (odporność na wodę i UV) -> FAQ -> CTA.
+    - **⚠️ Uwaga merytoryczna:** kod generuje się w **zewnętrznym, darmowym generatorze QR** - to nie jest funkcja naszego kreatora, nie sugeruj że jest. Nie deklaruj gwarancji skanowalności - dawaj zalecenia i wprost każ przetestować wydruk.
+
+- [ ] **A7. Etykiety na kosmetyki naturalne i świece - co umieścić na opakowaniu małej manufaktury**
+    - **Format:** Supporting Article (~1200-1400 słów)
+    - **Główna Fraza Kluczowa:** `etykiety na kosmetyki naturalne` (semantyczne: `etykiety ze składem`, `etykiety na świeczki`, `naklejki na świece sojowe`, `etykiety na mydło`)
+    - **Cel:** Sprzedaż (B2B, persona producenci świec i kosmetyków - dotąd bez własnego wpisu)
+    - **Persona:** Manufaktury kosmetyczne, świecarnie, mydlarnie, twórcy na Etsy
+    - **Link nadrzędny (Filar):** `/blog/drukowanie-naklejek-online-na-co-zwrocic-uwage-przed-wysylka-projektu` + link w górę do `/naklejki-dla-firm` i (po zbudowaniu) `/etykiety-na-sloiki`
+    - **Dlaczego:** `keywords.md` §8 i §9b wskazują tę personę, a `strategy.md` wymienia ją w pierwszej grupie docelowej - mimo to jedyne pokrycie to sekcje w cudzych wpisach. Leksyk "etykiety" jest wciąż słabo obsadzony na blogu.
+    - **Struktura:** BLUF -> etykieta a naklejka (leksyk) -> **co zwykle znajduje się na etykiecie małej manufaktury** (nazwa, skład, pojemność, dane producenta, data/partia) -> kształt i rozmiar pod typowe opakowania (słoik świecy, buteleczka, kostka mydła) -> odporność: woda, UV, tłuszcze z kosmetyku - **uczciwie, bez obietnicy odporności na rozpuszczalniki i bez zmywarki** -> mały nakład jako przewaga przy testowaniu wariantów produktu -> FAQ -> CTA.
+    - **🚨 Ograniczenie prawne (bezwzględne):** oznakowanie kosmetyków i świec podlega przepisom (m.in. INCI, CLP). **Nie udzielaj porady prawnej i nie twierdź, że nasza etykieta spełnia wymogi prawne.** Pisz opisowo ("producenci zwykle umieszczają...") i **zawsze odsyłaj do sprawdzenia aktualnych przepisów lub konsultacji ze specjalistą**. To warunek publikacji tego wpisu.
+
+- [ ] **A8. (WARUNKOWY - wymaga decyzji właściciela) Naklejki na ubrania i metki - jak oznaczyć rzeczy dziecka**
+    - **Format:** Supporting Article (~1000-1200 słów)
+    - **Główna Fraza Kluczowa:** `naklejki na ubrania` (semantyczne: `naklejki na metki`, `naklejki na ubrania dla dorosłych`, `jak oznaczyć ubrania dziecka`)
+    - **Persona:** Rodzice przedszkolaków, opiekunowie osób w domach opieki
+    - **Link nadrzędny (Filar):** `/blog/jak-zamowic-idealne-naklejki-na-zamowienie-z-wlasnym-nadrukiem`
+    - **🚨 BLOKADA - zapytaj właściciela PRZED pisaniem:** `keywords.md` §4 zawiera frazę `naklejki na ubrania dla dorosłych`, a `strategy.md` wymienia "naklejki imienne na metki nylonowe ubrań" wśród potrzeb persony rodziców. **Nie mamy jednak potwierdzenia, że folia winylowa nadaje się na tkaninę i przetrwa pranie** - a to jest dokładnie to, o co zapyta czytelnik.
+    - **Dwa scenariusze:** (a) właściciel potwierdza przyklejanie na **metkę/nylon** i podaje realne zachowanie po praniu -> piszemy wpis z jasnym rozgraniczeniem "metka/tworzywo TAK, tkanina NIE"; (b) właściciel potwierdza, że produkt się do tego **nie nadaje** -> wpis nadal ma sens jako uczciwa odpowiedź przechwytująca zapytanie, kierująca na to, co faktycznie działa (naklejki na bidon, śniadaniówkę, przybory - link do wpisu przedszkolnego), ale **frazę usuwamy z `keywords.md`** jako niesprzedażową. **Wariantu "na oko" nie piszemy.**
+
+- [ ] **A9. (Opcjonalny, najniższy priorytet) Naklejki na deskorolkę, hulajnogę i sprzęt sportowy**
+    - **Format:** Supporting Article (~900-1100 słów)
+    - **Główna Fraza Kluczowa:** `naklejki na deskorolkę` (semantyczne: `naklejki na hulajnogę`, `naklejki na sprzęt sportowy`)
+    - **Link nadrzędny (Filar):** `/blog/jak-zamowic-idealne-naklejki-na-zamowienie-z-wlasnym-nadrukiem`
+    - **Uwaga:** fraza jest w `keywords.md` §4, ale temat **mocno zachodzi** na istniejące wpisy o rowerze i wlepkach dla artystów. Pisz **tylko jeśli** GSC potwierdzi odrębny wolumen - inaczej lepszym ruchem jest dopisanie sekcji H2 do wpisu o rowerze. Trzymam w kolejce jako kandydata, nie jako zobowiązanie.
+
+---
+
+## 📌 P3 - Aktualizacje istniejących treści (nie nowe wpisy)
+
+- [ ] **P3.1 - 🗓️ PILNE, SEZON TRWA: odśwież `personalizowane-naklejki-na-zeszyty-i-do-przedszkola`**
+    - Szczyt zapytań "powrót do szkoły" przypada na przełom sierpnia i września - **czyli teraz**. Wpis jest z 2026-07-15 i nie był ruszany.
+    - Dodaj sekcję o oznaczaniu przyborów na nowy rok szkolny, dopisz 2-3 pytania FAQ (H3), dorzuć link do wpisu o meblach/imionach i do A2 (rozmiary), ustaw **`updated: "2026-08-XX"`**. To najtańsza możliwa konwersja w tym miesiącu.
+- [ ] **P3.2 - Rozbuduj `fajne-wzory-i-pomysly...` do roli prawdziwego huba** (dziś linkuje do 5 wpisów, ma 0 linków przychodzących). Dodaj sekcje z linkami do **wszystkich** nisz (nalewki, alkohol/wesele, serwisowe, eventy, rower, okrągłe, przetwory, wlepki) i podepnij go z `SeoContentSection.tsx` oraz z filaru.
+- [x] **P3.3 - Ujednolić czas realizacji w całym blogu** ✅ 2026-08-17 - wykonane razem z P1.4, patrz tam.
+- [ ] **P3.6 (NOWE) - 11 meta description przekracza 160 znaków** (`rules.md` §5). Najgorsze: `naklejki-na-motory-i-motocyklowe` (194 zn.), `personalizowane-naklejki-na-alkohol` (175), `male-naklejki-na-laptopa` (173). Google utnie je w SERP-ie. Skrócić do 120-160 przy najbliższym przejeździe po treści.
+- [ ] **P3.7 (NOWE) - Błędne dane w `Product`/`Offer` na stronie głównej** (`src/app/page.tsx`): `shippingRate` = **15.00 PLN**, a realny koszt dostawy to **19,99 zł**; `handlingTime` = 1-3 dni zamiast 2-3. Schema podaje Google nieprawdziwą cenę dostawy - naprawić.
+- [ ] **P3.8 (NOWE) - Ekspozycja NASZEGO generatora AI poza treścią marketingową.** HOLD wyczyszczony w copy, ale generator wciąż widnieje w `layout.tsx` (meta description: "Generator AI w cenie!"), `o-nas/page.tsx:48`, `PricingSection.tsx:17` i `CreatorPowersSection.tsx`. To opis funkcji produktu, nie porada "jak zrobić grafikę" - **zapytaj właściciela**, czy HOLD ma objąć również te miejsca. `regulamin` zostaje bez zmian (dokument prawny).
+- [ ] **P3.4 - Uzupełnij okładki** dla `naklejki-na-motory-i-motocyklowe` (folder pusty) i `fajne-wzory-i-pomysly...` (folder nie istnieje). Utwórz katalogi wg `rules.md` §8 i poproś właściciela o grafiki; po dograniu: kompresja -> nazwy SEO -> osadzenie -> piny -> `add_logo_bar.mjs` -> `tiktok-info.txt`.
+- [ ] **P3.5 - Uzupełnij `keywords.md`** o klastry z Fazy 3: **§10 Cena i rozmiar** (`naklejki na zamówienie cena`, `ile kosztuje wydruk naklejek`, `ile naklejek zmieści się na A4`, `rozmiary naklejek`), **§11 Sezonowe** (`naklejki świąteczne`, `etykiety na prezenty`) oraz dopisz do §8 podklastry **QR** i **paczki/plomby**.
+
+---
+
+## 🚫 Faza 3 - świadomie odrzucone (nie rób)
+
+* **Trzeci Pillar Page "Naklejki dla firm"** - próg 4-5 wpisów B2B ze `strategy.md` §6 wprawdzie osiągnięty, ale rolę huba pełni już landing `/naklejki-dla-firm`. Drugi hub na tę samą intencję = kanibalizacja. **Decyzja: wzmacniamy landing, nie budujemy filaru.** Wracamy do tematu, gdy B2B urośnie do ~10 wpisów.
+* **Osobny wpis pod `kreator naklejek` / `program do robienia naklejek`** - pokryte przez `SeoContentSection.tsx` na `/` (2026-07-30) i wpis `jak-zrobic-wlasne-naklejki-program...` (2026-08-04). Kolejny tekst = kanibalizacja.
+* **Wpisy pod NASZ generator AI** (`keywords.md` §7) - HOLD obowiązuje (P0.3). Odblokować dopiero po jawnej decyzji właściciela.
+* **Wpisy pod "naklejki łatwo usuwalne / wielokrotnego użytku"** - fałszywa obietnica (mamy mocny klej; atut to "0 śladów"). Obsłużone w FAQ i słowniku.
+* **Osobne wpisy pod warianty semantyczne** (`naklejki custom`, `naklejki własny wzór`, `naklejki na zamówienie online`) - to warianty tej samej intencji co filar i `/`; wplatać w istniejącą treść.
+* **Treść pod materiały, których nie oferujemy** (hologram, brokat, transparent, folia do wrappingu) - fałszywa obietnica.
+
+---
+
+## 📊 Jak mierzyć Fazę 3
+
+Serwis jest wciąż wczesny (GSC: maks ~44 wyświetlenia na zapytanie wg audytu z 2026-07-24), więc **nie oceniaj po pozycjach w pierwszym miesiącu**. Sygnały do śledzenia:
+1. **Czy A1/A2 wchodzą w AI Overviews i odpowiedzi LLM na pytania o cenę i rozmiar** - to główna hipoteza Fazy 3. Testuj ręcznie w ChatGPT/Perplexity/Google: "ile kosztuje wydruk naklejek na zamówienie", "gdzie zamówić naklejki w małym nakładzie w Polsce".
+2. **GSC: czy pojawiają się zapytania cenowe i rozmiarowe** (dziś praktycznie nieobecne, bo nie mamy pod nie treści).
+3. **`fotonaklejki` / `foto naklejki`** - luka potwierdzona w GSC (poz. 27-39), landing zbudowany 2026-07-27; sprawdź, czy pozycja rośnie. Jeśli po ~3 miesiącach stoi - problem jest w linkowaniu przychodzącym, nie w treści.
+4. **Sieroty linkowe** - po P1.6 żaden wpis nie powinien mieć mniej niż 3 linki przychodzące.
+5. **Przed każdą decyzją o nowym landingu** (`/naklejki-na-laptopa`, ewentualne rozbicie klastra porównawczego) - **najpierw dane z GSC**, zgodnie z checklistą w `landing-agent/plan.md`. Nie budować "na przeczucie".
+
+---
+
 ## 📝 Zaplanowane Artykuły (Do napisania przez AI)
 
 > **Faza 2 (dopisano 2026-07-18):** kolejka domykała się do jednego tematu, więc przeprowadziłem audyt strategii (patrz `strategy.md`, sekcja 6 "Korekta Kursu - Faza 2") i dopisałem kolejne tematy zamykające realne luki person B2B (rzemiosło/serwis i korporacje/eventy). Kolejność poniżej odzwierciedla priorytet. **Uwaga (aktualizacja 2026-08-04):** przy poleceniu sposobów na stworzenie grafiki wymieniaj na pierwszym miejscu ZEWNĘTRZNE generatory obrazów AI (ChatGPT, Gemini, Midjourney), przed Canvą - ale NIE eksponuj naszego wbudowanego generatora (jego promocja nadal wstrzymana; patrz pamięć `ai-generator-content-hold`).

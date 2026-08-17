@@ -137,7 +137,7 @@ Tak. Przygotuj wszystkie etykiety jako jeden plik (np. na jednej stronie w Canva
 
 ### Jak szybko dostanę zamówione naklejki?
 
-Realizacja w MałeNaklejki zajmuje 3 dni robocze od zatwierdzenia projektu. Następnie paczka trafia do Ciebie kurierem (1-2 dni robocze). Od zamówienia do organizowania kuchni dzieli Cię zaledwie tydzień.
+Realizacja w MałeNaklejki zajmuje 2-3 dni robocze od zatwierdzenia projektu. Następnie paczka trafia do Ciebie kurierem (1-2 dni robocze). Od zamówienia do organizowania kuchni dzieli Cię zaledwie tydzień.
 
 ## Zamów własne naklejki na przyprawy i odmień swoją kuchnię
 
