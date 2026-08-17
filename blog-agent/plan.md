@@ -144,16 +144,15 @@ Fazy 1-2 budowały **pokrycie person i nisz** - to zadanie jest w zasadzie wykon
 
 **Ograniczenia obowiązujące całą pulę:** HOLD na NASZ wbudowany generator AI (zewnętrzne ChatGPT/Gemini/Midjourney - tak, jako pierwsze źródło grafiki); zakaz słowa "zaprojektuj/projektowanie" wobec naklejki i grafiki; prawda o produkcie wg `facts.md` (P1.4); FAQ jako **H3** + osobna sekcja `##` z CTA po FAQ; dywiz "-", zero półpauz; link kontekstowy do filaru w 1. akapicie; 2-3 linki z pokrewnych spoke'ów przy publikacji (P1.6).
 
-- [ ] **A1. Ile kosztują naklejki na zamówienie? Cena za arkusz A4 i realny koszt jednej naklejki**
+- [x] **A1. Ile kosztują naklejki na zamówienie? Cena za arkusz A4 i realny koszt jednej naklejki** (opublikowano 2026-08-17)
     - **Format:** Supporting Article (~1300-1500 słów)
     - **Główna Fraza Kluczowa:** `naklejki na zamówienie cena` (semantyczne: `ile kosztuje wydruk naklejek`, `druk naklejek cena`, `naklejki cena za sztukę`, `cennik naklejek`)
     - **Cel:** Sprzedaż + **AEO** (to ma być odpowiedź, którą cytuje AI Overviews i ChatGPT na pytanie o cenę)
     - **Persona:** Wszystkie - pytanie o cenę jest uniwersalne i pojawia się tuż przed konwersją
     - **Link nadrzędny (Filar):** `/blog/drukowanie-naklejek-online-na-co-zwrocic-uwage-przed-wysylka-projektu`
+    - **Realizacja (2026-08-17):** slug `ile-kosztuja-naklejki-na-zamowienie-cena-za-arkusz-a4`, plik `src/content/blog/ile-kosztuja-naklejki-na-zamowienie-cena-za-arkusz-a4.md`, ~1350 słów. Backlink z filaru `drukowanie-naklejek-online...` dodany (sekcja ile naklejek na arkuszu) + cross-linki z `naklejki-maly-naklad...` oraz `fajne-wzory...`. Zdjęcia wygenerowane, zoptymalizowane do JPEG (mozjpeg q88), Piny Pinterest (4:5 JPG) + Socials + TikTok wygenerowane, pasek logo dodany (`add_logo_bar.mjs`). HOLD generator AI uszanowany (tylko zewnętrzne), 0 "zaprojektuj/projektowanie" naklejki/grafiki, pravda o produkcie wg facts.md (49 zł/A4, paczkomat 19,99 zł, produkcja 2-3 dni, folia winylowa, 0 śladów, mycie ręczne). FAQ jako H3.
     - **Dlaczego pierwszy:** fraza jest w `keywords.md` §6 od startu projektu i **nigdy nie dostała własnego wpisu**, mimo że jest najbliżej pieniędzy. Stała cena za arkusz to nasza najmocniejsza, najłatwiej cytowalna przewaga - konkurencja ma progi nakładowe i kalkulatory.
     - **Struktura (BLUF + tabele):** odpowiedź w 1. zdaniu (49,00 zł brutto za arkusz A4, bez minimalnego zamówienia) -> **tabela "koszt jednostkowy wg rozmiaru"**: rozmiar naklejki -> ile sztuk zmieści się na A4 -> koszt 1 szt. (dla kilku typowych rozmiarów, z zaznaczeniem, że liczba zależy od kształtu i odstępów) -> co wpływa na końcową kwotę (dostawa 19,99 zł paczkomat, forma zestawu: arkusz vs pojedyncze sztuki) -> **dlaczego u nas nie ma progów nakładowych** (przewaga PL: bez przygotowalni, bez matrycy, bez przeliczania z euro) -> kiedy taniej wyjdzie druk masowy w drukarni offsetowej (uczciwie: przy tysiącach sztuk) -> FAQ -> CTA.
-    - **⚠️ Wymaga potwierdzenia przed pisaniem:** wszystkie liczby w tabeli jednostkowej wyprowadź z `facts.md` (P1.4). **Nie podawaj liczby sztuk na arkuszu jako twardej gwarancji** - to zależy od kształtu i odstępów; formułuj jako "orientacyjnie ok. X szt.". Faktura VAT: tak. Rabat hurtowy: **nie ma** - nie sugeruj negocjacji.
-    - **GEO:** intencja porównawcza jest tu naturalna -> **name-drop dozwolony** (Sticker Mule / StickerApp jako punkt odniesienia dla progów nakładowych i kosztu przesyłki z zagranicy). Parafrazuj, nie kopiuj bloku z landingu porównawczego.
 
 - [ ] **A2. Jaki rozmiar naklejki wybrać? Wymiary i ile naklejek zmieści się na arkuszu A4**
     - **Format:** Supporting Article (~1100-1300 słów)

@@ -1,6 +1,7 @@
 ---
 title: "Drukowanie naklejek online - na co zwrócić uwagę?"
 date: "2026-07-10"
+updated: "2026-08-17"
 description: "Drukowanie naklejek online krok po kroku - rozdzielczość, format pliku, cięcie po obrysie i cena 49 zł za arkusz A4. Kompletny przewodnik przed wysyłką projektu."
 image: "/blog/drukowanie-naklejek-online-na-co-zwrocic-uwage-przed-wysylka-projektu/drukowanie-naklejek-online-w-dowolnym-ksztalcie.jpg"
 imageAlt: "Dłoń trzymająca w palcach precyzyjnie wyciętą po obrysie naklejkę z napisem Kształt Dowolny na tle trawy - ekologiczne i trwałe drukowanie naklejek online w MałeNaklejki."
@@ -103,7 +104,7 @@ Za 49,00 zł dostajesz jeden pełny arkusz A4 (21 x 29,7 cm). Ty decydujesz, co 
 | ok. 4,5 x 4,5 cm | 16 szt. | ~3,06 zł |
 | ok. 3 x 3 cm | 30 szt. | ~1,63 zł |
 
-Na jednym arkuszu możesz umieścić **wiele różnych wzorów** - zestaw je ze sobą lub dodawaj po kolei pliki pobrane np. z ChatGPT, Midjourney lub Canvy. To idealne dla twórców, którzy chcą przetestować kilka grafik jednocześnie.
+Na jednym arkuszu możesz umieścić **wiele różnych wzorów** - zestaw je ze sobą lub dodawaj po kolei pliki pobrane np. z ChatGPT, Midjourney lub Canvy. To idealne dla twórców, którzy chcą przetestować kilka grafik jednocześnie. Szczegółowy cennik, tabele formatów i kalkulację kosztu za 1 sztukę znajdziesz w dedykowanym poradniku: [ile kosztują naklejki na zamówienie - cena za arkusz A4 i koszt pojedynczej sztuki](/blog/ile-kosztuja-naklejki-na-zamowienie-cena-za-arkusz-a4).
 
 ![Wydrukowany arkusz A4 z różnymi własnymi naklejkami na zamówienie, w tym zdjęciem pary z wakacji, grafiką psa, deskorolki i gołębia, demonstrujący brak minimalnego nakładu](/blog/drukowanie-naklejek-online-na-co-zwrocic-uwage-przed-wysylka-projektu/wlasne-naklejki-wielowzorowe-arkusz-a4.jpg)
 
