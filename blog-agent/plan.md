@@ -214,14 +214,6 @@ Fazy 1-2 budowały **pokrycie person i nisz** - to zadanie jest w zasadzie wykon
     - **Struktura:** BLUF -> etykieta a naklejka (leksyk) -> **co zwykle znajduje się na etykiecie małej manufaktury** (nazwa, skład, pojemność, dane producenta, data/partia) -> kształt i rozmiar pod typowe opakowania (słoik świecy, buteleczka, kostka mydła) -> odporność: woda, UV, tłuszcze z kosmetyku - **uczciwie, bez obietnicy odporności na rozpuszczalniki i bez zmywarki** -> mały nakład jako przewaga przy testowaniu wariantów produktu -> FAQ -> CTA.
     - **🚨 Ograniczenie prawne (bezwzględne):** oznakowanie kosmetyków i świec podlega przepisom (m.in. INCI, CLP). **Nie udzielaj porady prawnej i nie twierdź, że nasza etykieta spełnia wymogi prawne.** Pisz opisowo ("producenci zwykle umieszczają...") i **zawsze odsyłaj do sprawdzenia aktualnych przepisów lub konsultacji ze specjalistą**. To warunek publikacji tego wpisu.
 
-- [ ] **A8. (WARUNKOWY - wymaga decyzji właściciela) Naklejki na ubrania i metki - jak oznaczyć rzeczy dziecka**
-    - **Format:** Supporting Article (~1000-1200 słów)
-    - **Główna Fraza Kluczowa:** `naklejki na ubrania` (semantyczne: `naklejki na metki`, `naklejki na ubrania dla dorosłych`, `jak oznaczyć ubrania dziecka`)
-    - **Persona:** Rodzice przedszkolaków, opiekunowie osób w domach opieki
-    - **Link nadrzędny (Filar):** `/blog/jak-zamowic-idealne-naklejki-na-zamowienie-z-wlasnym-nadrukiem`
-    - **🚨 BLOKADA - zapytaj właściciela PRZED pisaniem:** `keywords.md` §4 zawiera frazę `naklejki na ubrania dla dorosłych`, a `strategy.md` wymienia "naklejki imienne na metki nylonowe ubrań" wśród potrzeb persony rodziców. **Nie mamy jednak potwierdzenia, że folia winylowa nadaje się na tkaninę i przetrwa pranie** - a to jest dokładnie to, o co zapyta czytelnik.
-    - **Dwa scenariusze:** (a) właściciel potwierdza przyklejanie na **metkę/nylon** i podaje realne zachowanie po praniu -> piszemy wpis z jasnym rozgraniczeniem "metka/tworzywo TAK, tkanina NIE"; (b) właściciel potwierdza, że produkt się do tego **nie nadaje** -> wpis nadal ma sens jako uczciwa odpowiedź przechwytująca zapytanie, kierująca na to, co faktycznie działa (naklejki na bidon, śniadaniówkę, przybory - link do wpisu przedszkolnego), ale **frazę usuwamy z `keywords.md`** jako niesprzedażową. **Wariantu "na oko" nie piszemy.**
-
 - [ ] **A9. (Opcjonalny, najniższy priorytet) Naklejki na deskorolkę, hulajnogę i sprzęt sportowy**
     - **Format:** Supporting Article (~900-1100 słów)
     - **Główna Fraza Kluczowa:** `naklejki na deskorolkę` (semantyczne: `naklejki na hulajnogę`, `naklejki na sprzęt sportowy`)
