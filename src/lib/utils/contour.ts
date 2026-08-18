@@ -252,8 +252,8 @@ export function getContourPoints(
           marginMm = 0.5;
         } else {
           // Outer contour: outward margin, scaled with sticker size (smaller for scaled-down stickers)
-          marginMm = (maxDimensionMm / 50.0) * 2.0;
-          marginMm = Math.min(2.0, Math.max(1.5, marginMm)); // Cap at 2.0mm, min 1.5mm
+          marginMm = (maxDimensionMm / 50.0) * 3.0;
+          marginMm = Math.min(3.0, Math.max(1.5, marginMm)); // Cap at 3.0mm, min 1.5mm
         }
 
         const dilationPixels = Math.max(1, Math.round(marginMm * pixelsPerMm));

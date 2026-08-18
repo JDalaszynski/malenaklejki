@@ -695,7 +695,7 @@ export function NewA4Visualizer({
         const wMm = st.widthCm * 10;
         const hMm = st.heightCm * 10;
         const isInside = st.cutLineType === "rounded_inside" || st.cutLineType === "circle_inside";
-        const offsetMm = isInside ? -2 : 2;
+        const offsetMm = isInside ? -2 : 3;
         const offsetPercentX = (offsetMm / wMm) * 100;
         const offsetPercentY = (offsetMm / hMm) * 100;
         const unrotatedMargins = getCutLineMargins(st, { rotation: 0 });
@@ -929,8 +929,12 @@ export function NewA4Visualizer({
                 )}
                 {(st.cutLineType === "rounded" || st.cutLineType === "rounded_inside") && (
                   <div
-                    className="absolute inset-0 pointer-events-none border-2 border-dashed border-[#ff5ebb] animate-pulse"
+                    className="absolute pointer-events-none border-2 border-dashed border-[#ff5ebb] animate-pulse"
                     style={{
+                      left: `${-offsetPercentX}%`,
+                      right: `${-offsetPercentX}%`,
+                      top: `${-offsetPercentY}%`,
+                      bottom: `${-offsetPercentY}%`,
                       borderRadius: "1.008cqw",
                       filter: "drop-shadow(0 0 2px #ff5ebb)",
                     }}
@@ -938,8 +942,12 @@ export function NewA4Visualizer({
                 )}
                 {(st.cutLineType === "circle" || st.cutLineType === "circle_inside") && (
                   <div
-                    className="absolute inset-0 pointer-events-none border-2 border-dashed border-[#ff5ebb] rounded-[50%] animate-pulse"
+                    className="absolute pointer-events-none border-2 border-dashed border-[#ff5ebb] rounded-[50%] animate-pulse"
                     style={{
+                      left: `${-offsetPercentX}%`,
+                      right: `${-offsetPercentX}%`,
+                      top: `${-offsetPercentY}%`,
+                      bottom: `${-offsetPercentY}%`,
                       filter: "drop-shadow(0 0 2px #ff5ebb)",
                     }}
                   />
