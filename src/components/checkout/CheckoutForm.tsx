@@ -105,9 +105,15 @@ export function CheckoutForm() {
     await new Promise((resolve) => setTimeout(resolve, 150));
 
     try {
+      // Usunięcie właściwości `stickers` aby nie przekroczyć limitu rozmiaru payloadu Next.js
+      const itemsWithoutStickers = items.map((item) => {
+        const { stickers, ...rest } = item;
+        return rest;
+      });
+
       const payload = {
         ...data,
-        items,
+        items: itemsWithoutStickers,
         subtotal,
         shippingCost,
         total,
