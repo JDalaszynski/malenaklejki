@@ -325,31 +325,12 @@ export function checkStickersCollision(
     contourPolygons?: { x: number; y: number }[][];
   }
 ): boolean {
-  const t1 = overrideParams1?.cutLineType ?? s1.cutLineType;
-  const t2 = s2.cutLineType;
-  
-  const allowedOverlapTypes = ["contour", "rounded", "circle"];
-  const canGraphicsOverlap = allowedOverlapTypes.includes(t1) && allowedOverlapTypes.includes(t2);
-
-  if (!canGraphicsOverlap) {
-    // 1. Graphics and Cut lines must not overlap each other
-    // We check the outer bounding box (which encompasses both graphic and cutline)
-    const o1 = getCutLineBoundingBox(s1, overrideParams1);
-    const o2 = getCutLineBoundingBox(s2);
-    if (checkOverlap(o1, o2, 0)) {
-      return true;
-    }
-  }
-
-  // 2. Cut lines must not overlap and need safety spacing (1.0mm padding)
+  // Cut lines must not overlap and need safety spacing (0.5mm padding)
   const c1 = getOnlyCutLineBoundingBox(s1, overrideParams1);
   const c2 = getOnlyCutLineBoundingBox(s2);
-  const cutLinePadding = (
-    (overrideParams1?.cutLineType ?? s1.cutLineType) === "none" &&
-    s2.cutLineType === "none"
-  ) ? 0.0 : 1.0;
+  const cutLinePadding = 0.5;
   
-  // Fast path: if AABBs don't overlap, the polygons definitely don't
+  // Fast path: if AABBs don't overlap, the shapes definitely don't
   if (!checkOverlap(c1, c2, cutLinePadding)) {
     return false;
   }
@@ -390,6 +371,8 @@ export function getAbsolutePolygons(
   const sin = Math.sin(rad);
   const cx = wMm / 2;
   const cy = hMm / 2;
+  const centerX = x + cx;
+  const centerY = y + cy;
 
   if ((cutLineType === "contour" || cutLineType === "contour_inside") && contourPolygons && contourPolygons.length > 0) {
     return contourPolygons.map((poly: { x: number; y: number }[]) => {
@@ -400,21 +383,36 @@ export function getAbsolutePolygons(
         const ry = py - cy;
         const rotX = rx * cos - ry * sin;
         const rotY = rx * sin + ry * cos;
-        return { x: x + rotX, y: y + rotY };
+        return { x: centerX + rotX, y: centerY + rotY };
       });
     });
   }
 
-  // Fallback for non-contour: generate rotated rectangle polygon
+  if (cutLineType === "circle" || cutLineType === "circle_inside") {
+    const offsetMm = cutLineType === "circle_inside" ? -0.5 : 2.0;
+    const radX = (wMm + 2 * offsetMm) / 2;
+    const radY = (hMm + 2 * offsetMm) / 2;
+    const circlePoints: Point[] = [];
+    const segments = 16;
+    for (let i = 0; i < segments; i++) {
+      const angle = (i * 2 * Math.PI) / segments;
+      const rx = Math.cos(angle) * radX;
+      const ry = Math.sin(angle) * radY;
+      const rotX = rx * cos - ry * sin;
+      const rotY = rx * sin + ry * cos;
+      circlePoints.push({ x: centerX + rotX, y: centerY + rotY });
+    }
+    return [circlePoints];
+  }
+
+  // Fallback for non-contour / rounded: generate rotated rectangle polygon
   let cutW = wMm;
   let cutH = hMm;
   if (
     cutLineType === "rounded" ||
-    cutLineType === "circle" ||
-    cutLineType === "rounded_inside" ||
-    cutLineType === "circle_inside"
+    cutLineType === "rounded_inside"
   ) {
-    const offsetMm = (cutLineType === "rounded_inside" || cutLineType === "circle_inside") ? -0.5 : 2.0;
+    const offsetMm = cutLineType === "rounded_inside" ? -0.5 : 2.0;
     cutW = wMm + 2 * offsetMm;
     cutH = hMm + 2 * offsetMm;
   }
@@ -433,7 +431,7 @@ export function getAbsolutePolygons(
     const ry = c.y;
     const rotX = rx * cos - ry * sin;
     const rotY = rx * sin + ry * cos;
-    return { x: x + rotX, y: y + rotY };
+    return { x: centerX + rotX, y: centerY + rotY };
   });
 
   return [poly];

@@ -466,6 +466,30 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
     });
   }, [stickers, mounted]);
 
+  // Live detection of overlapping stickers on the sheet
+  useEffect(() => {
+    if (stickers.length < 2) {
+      setOverlappingStickerIds((prev) => (prev.length === 0 ? prev : []));
+      return;
+    }
+    const overlaps = new Set<string>();
+    for (let i = 0; i < stickers.length; i++) {
+      for (let j = i + 1; j < stickers.length; j++) {
+        if (checkStickersCollision(stickers[i], stickers[j])) {
+          overlaps.add(stickers[i].id);
+          overlaps.add(stickers[j].id);
+        }
+      }
+    }
+    const arr = Array.from(overlaps);
+    setOverlappingStickerIds((prev) => {
+      if (prev.length === arr.length && prev.every((id) => overlaps.has(id))) {
+        return prev;
+      }
+      return arr;
+    });
+  }, [stickers]);
+
   const selectedSticker = stickers.find((s) => s.id === selectedStickerId);
 
   const [widthInputValue, setWidthInputValue] = useState<string>("");
