@@ -1,5 +1,23 @@
 import { escapeHtml } from "./utils/sanitize";
-import sharp from "sharp";
+
+// `sharp` ships a native binary per platform. A static top-level `import sharp
+// from "sharp"` fails the instant this module is evaluated if that binary is
+// missing for the runtime (e.g. libvips not installed for the deployment's
+// architecture) — and since this file is imported by the createOrder Server
+// Action, that crash happens before any function body (and its try/catch)
+// ever runs, taking down order creation entirely with an opaque "Server
+// Components render" error. Loading it lazily, only where it's actually used
+// and inside a try/catch, means a broken sharp install degrades to sending
+// uncompressed attachments instead of breaking checkout.
+async function loadSharp() {
+  try {
+    const mod = await import("sharp");
+    return mod.default;
+  } catch (err) {
+    console.warn("sharp is unavailable, skipping image compression:", err);
+    return null;
+  }
+}
 
 
 /** Build customer confirmation email HTML */
@@ -712,16 +730,18 @@ async function downloadImageAsBase64(url: string): Promise<string | null> {
     let buffer = Buffer.from(arrayBuffer);
 
     try {
+      const sharp = await loadSharp();
       const contentType = res.headers.get("content-type") || "";
-      if (contentType.includes("image/png") || url.toLowerCase().endsWith(".png")) {
+      if (sharp && (contentType.includes("image/png") || url.toLowerCase().endsWith(".png"))) {
         const compressed = await sharp(buffer)
           .png({ palette: true, quality: 85, compressionLevel: 9 })
           .toBuffer();
         buffer = Buffer.from(compressed);
       } else if (
-        contentType.includes("image/jpeg") ||
-        url.toLowerCase().endsWith(".jpg") ||
-        url.toLowerCase().endsWith(".jpeg")
+        sharp &&
+        (contentType.includes("image/jpeg") ||
+          url.toLowerCase().endsWith(".jpg") ||
+          url.toLowerCase().endsWith(".jpeg"))
       ) {
         const compressed = await sharp(buffer)
           .jpeg({ quality: 80 })

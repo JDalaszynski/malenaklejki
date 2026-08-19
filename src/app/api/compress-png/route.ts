@@ -1,5 +1,4 @@
 import { NextResponse } from "next/server";
-import sharp from "sharp";
 
 export async function POST(req: Request) {
   try {
@@ -11,6 +10,12 @@ export async function POST(req: Request) {
     // Extract base64 content
     const base64Data = image.replace(/^data:image\/[a-z]+;base64,/, "");
     const buffer = Buffer.from(base64Data, "base64");
+
+    // `sharp` ships a native binary per platform; importing it lazily (instead
+    // of as a static top-level import) means a missing binary on this runtime
+    // surfaces here, inside the try/catch, as a normal caught error — not as a
+    // module-load crash that takes the whole route down.
+    const sharp = (await import("sharp")).default;
 
     // Compress the PNG using sharp
     const compressedBuffer = await sharp(buffer)
