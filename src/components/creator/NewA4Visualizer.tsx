@@ -747,6 +747,74 @@ export function NewA4Visualizer({
                 }}
               />
 
+              {/* Cut line visualizer.
+                  Anchored to the raw graphic box (the sticker container is exactly
+                  wMm x hMm), NOT to the enlarged cut line bounding box, so the geometry
+                  is identical 1:1 to the 3D preview and the print/PDF canvas. */}
+              <div className="absolute inset-0 pointer-events-none rounded-none z-30 overflow-visible">
+                {(st.cutLineType === "contour" || st.cutLineType === "contour_inside") && (
+                  st.contourPolygons && st.contourPolygons.length > 0 ? (
+
+                    <svg
+                      className="absolute inset-0 pointer-events-none overflow-visible animate-pulse"
+                      style={{
+                        width: '100%',
+                        height: '100%',
+                        filter: "drop-shadow(0 0 2px #ff5ebb)",
+                      }}
+                      viewBox={`0 0 ${wMm} ${hMm}`}
+                      preserveAspectRatio="none"
+                    >
+                      {st.contourPolygons.map((poly, idx) => {
+                        const pointsStr = poly.map((p) => `${p.x * wMm},${p.y * hMm}`).join(" ");
+                        return (
+                          <polygon
+                            key={idx}
+                            points={pointsStr}
+                            fill="none"
+                            stroke="#ff5ebb"
+                            strokeWidth="2"
+                            strokeDasharray="4 3"
+                            vectorEffect="non-scaling-stroke"
+                          />
+                        );
+                      })}
+                    </svg>
+
+                  ) : (
+                    <div
+                      className="absolute inset-0 pointer-events-none rounded-lg border border-dashed border-[#ff5ebb] animate-pulse"
+                      style={{ filter: "drop-shadow(0 0 2px #ff5ebb)" }}
+                    />
+                  )
+                )}
+                {(st.cutLineType === "rounded" || st.cutLineType === "rounded_inside") && (
+                  <div
+                    className="absolute pointer-events-none border-2 border-dashed border-[#ff5ebb] animate-pulse"
+                    style={{
+                      left: `${-offsetPercentX}%`,
+                      right: `${-offsetPercentX}%`,
+                      top: `${-offsetPercentY}%`,
+                      bottom: `${-offsetPercentY}%`,
+                      borderRadius: "1.008cqw",
+                      filter: "drop-shadow(0 0 2px #ff5ebb)",
+                    }}
+                  />
+                )}
+                {(st.cutLineType === "circle" || st.cutLineType === "circle_inside") && (
+                  <div
+                    className="absolute pointer-events-none border-2 border-dashed border-[#ff5ebb] rounded-[50%] animate-pulse"
+                    style={{
+                      left: `${-offsetPercentX}%`,
+                      right: `${-offsetPercentX}%`,
+                      top: `${-offsetPercentY}%`,
+                      bottom: `${-offsetPercentY}%`,
+                      filter: "drop-shadow(0 0 2px #ff5ebb)",
+                    }}
+                  />
+                )}
+              </div>
+
               {/* Inner UI Frame (matches cut line bounds) */}
               <div
                 className={`absolute pointer-events-none ${isSelected
@@ -893,71 +961,6 @@ export function NewA4Visualizer({
                 </div>
               )}
 
-              {/* Cut line visualizer */}
-              <div className="absolute inset-0 pointer-events-none rounded-none z-30 overflow-visible">
-                {(st.cutLineType === "contour" || st.cutLineType === "contour_inside") && (
-                  st.contourPolygons && st.contourPolygons.length > 0 ? (
-
-                    <svg
-                      className="absolute inset-0 pointer-events-none overflow-visible animate-pulse"
-                      style={{
-                        width: '100%',
-                        height: '100%',
-                        filter: "drop-shadow(0 0 2px #ff5ebb)",
-                      }}
-                      viewBox={`0 0 ${wMm} ${hMm}`}
-                      preserveAspectRatio="none"
-                    >
-                      {st.contourPolygons.map((poly, idx) => {
-                        const pointsStr = poly.map((p) => `${p.x * wMm},${p.y * hMm}`).join(" ");
-                        return (
-                          <polygon
-                            key={idx}
-                            points={pointsStr}
-                            fill="none"
-                            stroke="#ff5ebb"
-                            strokeWidth="2"
-                            strokeDasharray="4 3"
-                            vectorEffect="non-scaling-stroke"
-                          />
-                        );
-                      })}
-                    </svg>
-
-                  ) : (
-                    <div
-                      className="absolute inset-0 pointer-events-none rounded-lg border border-dashed border-[#ff5ebb] animate-pulse"
-                      style={{ filter: "drop-shadow(0 0 2px #ff5ebb)" }}
-                    />
-                  )
-                )}
-                {(st.cutLineType === "rounded" || st.cutLineType === "rounded_inside") && (
-                  <div
-                    className="absolute pointer-events-none border-2 border-dashed border-[#ff5ebb] animate-pulse"
-                    style={{
-                      left: `${-offsetPercentX}%`,
-                      right: `${-offsetPercentX}%`,
-                      top: `${-offsetPercentY}%`,
-                      bottom: `${-offsetPercentY}%`,
-                      borderRadius: "1.008cqw",
-                      filter: "drop-shadow(0 0 2px #ff5ebb)",
-                    }}
-                  />
-                )}
-                {(st.cutLineType === "circle" || st.cutLineType === "circle_inside") && (
-                  <div
-                    className="absolute pointer-events-none border-2 border-dashed border-[#ff5ebb] rounded-[50%] animate-pulse"
-                    style={{
-                      left: `${-offsetPercentX}%`,
-                      right: `${-offsetPercentX}%`,
-                      top: `${-offsetPercentY}%`,
-                      bottom: `${-offsetPercentY}%`,
-                      filter: "drop-shadow(0 0 2px #ff5ebb)",
-                    }}
-                  />
-                )}
-              </div>
-              
               {/* Scale Handle on Selected Sticker */}
               {isSelected && (
                 <div
