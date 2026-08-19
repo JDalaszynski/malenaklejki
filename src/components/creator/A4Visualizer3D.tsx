@@ -2,6 +2,7 @@
 
 import React, { useState, useRef } from "react";
 import { PlacedSticker } from "@/types/creator";
+import { getCutLineOffsetMm } from "@/lib/utils/collision";
 import { ShoppingCart } from "lucide-react";
 
 interface A4Visualizer3DProps {
@@ -81,7 +82,7 @@ export function A4Visualizer3D({ stickers, deliveryForm = "sheet" }: A4Visualize
               const wMm = st.widthCm * 10;
               const hMm = st.heightCm * 10;
               const isInside = st.cutLineType === "contour_inside";
-              const offsetMm = isInside ? -0.5 : 2.0;
+              const offsetMm = isInside ? -0.5 : getCutLineOffsetMm(st.cutLineType, st.widthCm);
               // The clip path is expressed in objectBoundingBox units relative to the
               // enlarged sticker body box (which is scaled up/down by this same ratio),
               // so contour points (normalized to the raw image box) must be converted
@@ -141,7 +142,7 @@ export function A4Visualizer3D({ stickers, deliveryForm = "sheet" }: A4Visualize
             st.cutLineType === "rounded_inside" ||
             st.cutLineType === "circle_inside" ||
             st.cutLineType === "contour_inside";
-          const offsetMm = isInside ? -0.5 : 2.0;
+          const offsetMm = isInside ? -0.5 : getCutLineOffsetMm(st.cutLineType, st.widthCm);
           const offsetPercentX = (offsetMm / wMm) * 100;
           const offsetPercentY = (offsetMm / hMm) * 100;
 

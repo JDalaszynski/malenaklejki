@@ -1,3 +1,5 @@
+import { getCutLineOffsetMm } from "./collision";
+
 interface Point {
   x: number;
   y: number;
@@ -250,8 +252,9 @@ export function getContourPoints(
           // Inner contour: 0.5mm inset from graphic edge
           marginMm = 0.5;
         } else {
-          // Outer contour: 2.0mm outward margin
-          marginMm = 2.0;
+          // Outer contour: dynamic 1.0mm - 2.0mm outward margin based on sticker width
+          const widthCm = (widthMm || maxDimensionMm) / 10;
+          marginMm = getCutLineOffsetMm("contour", widthCm);
         }
 
         const dilationPixels = Math.max(1, Math.round(marginMm * pixelsPerMm));

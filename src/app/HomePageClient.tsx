@@ -61,6 +61,7 @@ import {
   isStickerOutsideUsableArea,
   getDisplayedWidthCm,
   getGraphicWidthFromDisplayed,
+  getCutLineOffsetMm,
 } from "@/lib/utils/collision";
 import { getContourPoints } from "@/lib/utils/contour";
 import {
@@ -1008,19 +1009,40 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
     }
 
     if (found) {
+      const roundedW = Math.round(fitWidthCm * 10) / 10;
+      const roundedH = Math.round(fitHeightCm * 10) / 10;
       setStickers(
         stickers.map((s) =>
           s.id === selectedSticker.id
             ? {
               ...s,
-              widthCm: Math.round(fitWidthCm * 10) / 10,
-              heightCm: Math.round(fitHeightCm * 10) / 10,
+              widthCm: roundedW,
+              heightCm: roundedH,
               x: fitX,
               y: fitY,
             }
             : s,
         ),
       );
+
+      if (selectedSticker.cutLineType === "contour" || selectedSticker.cutLineType === "contour_inside") {
+        getContourPoints(
+          selectedSticker.imageUrl,
+          selectedSticker.cutLineType,
+          roundedW * 10,
+          roundedH * 10,
+        ).then((polys) => {
+          if (polys && polys.length > 0) {
+            setStickers((curr) =>
+              curr.map((s) =>
+                s.id === selectedSticker.id
+                  ? { ...s, contourPolygons: polys }
+                  : s,
+              ),
+            );
+          }
+        }).catch(console.error);
+      }
     } else {
       setError("Brak miejsca na powiększenie w tym ułożeniu!");
     }
@@ -1235,15 +1257,8 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
 
       const relX = -drawW / 2;
       const relY = -drawH / 2;
-      let offsetPx = 0;
-      if (st.cutLineType === "rounded" || st.cutLineType === "circle") {
-        offsetPx = 2.0 * MM_TO_PX;
-      } else if (
-        st.cutLineType === "rounded_inside" ||
-        st.cutLineType === "circle_inside"
-      ) {
-        offsetPx = -0.5 * MM_TO_PX;
-      }
+      const offsetMm = getCutLineOffsetMm(st.cutLineType, st.widthCm);
+      const offsetPx = offsetMm * MM_TO_PX;
 
       if (mode === "cut-lines") {
         ctx.fillStyle = "#000000";
@@ -1522,7 +1537,7 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
         st.cutLineType === "rounded_inside" ||
         st.cutLineType === "circle_inside" ||
         st.cutLineType === "contour_inside";
-      const offsetMm = isInside ? -0.5 : 2.0;
+      const offsetMm = isInside ? -0.5 : getCutLineOffsetMm(st.cutLineType, st.widthCm);
 
       let sx = 1;
       let sy = 1;

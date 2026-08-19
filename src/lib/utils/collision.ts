@@ -93,6 +93,43 @@ export function getContourMargins(
 }
 
 /**
+ * Calculates the dynamic cut line margin/offset in mm.
+ * - For inside cutlines: fixed at -0.5mm.
+ * - For outer cutlines (contour, rounded, circle):
+ *   >= 4.0cm width: 2.0mm
+ *   <= 1.0cm width: 1.0mm
+ *   Between 1.0cm and 4.0cm: dynamically linearly scales from 1.0mm to 2.0mm.
+ */
+export function getCutLineOffsetMm(
+  cutLineType: "none" | "contour" | "rounded" | "circle" | "contour_inside" | "rounded_inside" | "circle_inside" | string,
+  widthCm: number
+): number {
+  if (
+    cutLineType === "rounded_inside" ||
+    cutLineType === "circle_inside" ||
+    cutLineType === "contour_inside"
+  ) {
+    return -0.5;
+  }
+
+  if (
+    cutLineType === "rounded" ||
+    cutLineType === "circle" ||
+    cutLineType === "contour"
+  ) {
+    if (widthCm >= 4.0) {
+      return 2.0;
+    }
+    if (widthCm <= 1.0) {
+      return 1.0;
+    }
+    return 1.0 + ((widthCm - 1.0) / 3.0) * 1.0;
+  }
+
+  return 0;
+}
+
+/**
  * Calculates the exact rotated margins of a sticker's cut line,
  * taking into account its dimensions, rotation, cutLineType, and contour polygons.
  * If overrideParams is provided, it uses those values instead of the sticker's current values.
@@ -128,7 +165,8 @@ export function getCutLineMargins(
     cutLineType === "rounded_inside" ||
     cutLineType === "circle_inside"
   ) {
-    const offsetMm = (cutLineType === "rounded_inside" || cutLineType === "circle_inside") ? -0.5 : 2.0;
+    const isInside = cutLineType === "rounded_inside" || cutLineType === "circle_inside";
+    const offsetMm = isInside ? -0.5 : getCutLineOffsetMm(cutLineType, widthCm);
     const cutW = wMm + 2 * offsetMm;
     const cutH = hMm + 2 * offsetMm;
     const size = getRotatedSize(cutW, cutH, rotation);
@@ -384,7 +422,7 @@ export function getAbsolutePolygons(
   }
 
   if (cutLineType === "circle" || cutLineType === "circle_inside") {
-    const offsetMm = cutLineType === "circle_inside" ? -0.5 : 2.0;
+    const offsetMm = cutLineType === "circle_inside" ? -0.5 : getCutLineOffsetMm("circle", widthCm);
     const radX = (wMm + 2 * offsetMm) / 2;
     const radY = (hMm + 2 * offsetMm) / 2;
     const circlePoints: Point[] = [];
@@ -407,7 +445,7 @@ export function getAbsolutePolygons(
     cutLineType === "rounded" ||
     cutLineType === "rounded_inside"
   ) {
-    const offsetMm = cutLineType === "rounded_inside" ? -0.5 : 2.0;
+    const offsetMm = cutLineType === "rounded_inside" ? -0.5 : getCutLineOffsetMm("rounded", widthCm);
     cutW = wMm + 2 * offsetMm;
     cutH = hMm + 2 * offsetMm;
   }

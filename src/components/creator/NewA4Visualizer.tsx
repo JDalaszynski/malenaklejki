@@ -3,7 +3,7 @@
 import React, { useRef, useState, useEffect } from "react";
 import { createPortal } from "react-dom";
 import { PlacedSticker } from "@/types/creator";
-import { checkOverlap, getRotatedSize, getCutLineMargins, getOuterMargins, getCutLineBoundingBox, checkStickersCollision, clampToUsableArea, getContourMargins, getDisplayedWidthCm } from "@/lib/utils/collision";
+import { checkOverlap, getRotatedSize, getCutLineMargins, getOuterMargins, getCutLineBoundingBox, checkStickersCollision, clampToUsableArea, getContourMargins, getDisplayedWidthCm, getCutLineOffsetMm } from "@/lib/utils/collision";
 import { MoreVertical, Scissors, RotateCw, Crop, Copy, Trash2, Ban, Sparkles, Square, Circle, LayoutGrid, Loader2, MousePointerClick } from "lucide-react";
 
 interface NewA4VisualizerProps {
@@ -695,7 +695,7 @@ export function NewA4Visualizer({
         const wMm = st.widthCm * 10;
         const hMm = st.heightCm * 10;
         const isInside = st.cutLineType === "rounded_inside" || st.cutLineType === "circle_inside";
-        const offsetMm = isInside ? -0.5 : 2.0;
+        const offsetMm = isInside ? -0.5 : getCutLineOffsetMm(st.cutLineType, st.widthCm);
         const offsetPercentX = (offsetMm / wMm) * 100;
         const offsetPercentY = (offsetMm / hMm) * 100;
         const unrotatedMargins = getCutLineMargins(st, { rotation: 0 });
