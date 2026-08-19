@@ -119,7 +119,12 @@ export function CheckoutForm() {
         total,
       };
 
-      const response = await createOrder(payload);
+      // Wymuszamy pełną serializację do zwykłego obiektu JSON, aby uniknąć błędów
+      // z przekazywaniem obiektów Proxy (np. z Zustand) lub innych niewidocznych właściwości
+      // do Server Action, co często powoduje błędy "Wystąpił nieoczekiwany błąd".
+      const safePayload = JSON.parse(JSON.stringify(payload));
+
+      const response = await createOrder(safePayload);
 
       if (response.success) {
         clearCart();
@@ -136,9 +141,10 @@ export function CheckoutForm() {
         alert("Błąd podczas tworzenia zamówienia: " + response.error);
         setIsSubmitting(false);
       }
-    } catch (error) {
+    } catch (error: any) {
       console.error(error);
-      alert("Wystąpił nieoczekiwany błąd");
+      const errorMessage = error?.message || String(error);
+      alert(`Wystąpił nieoczekiwany błąd: ${errorMessage}\n\nSpróbuj odświeżyć stronę (Ctrl+F5) jeśli błąd się powtarza.`);
       setIsSubmitting(false);
     }
   };
