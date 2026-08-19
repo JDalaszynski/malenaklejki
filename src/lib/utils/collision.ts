@@ -95,7 +95,14 @@ export function getContourMargins(
 /**
  * Calculates the dynamic cut line margin/offset in mm.
  * - For inside cutlines: fixed at -0.5mm.
- * - For outer cutlines (contour, rounded, circle):
+ * - For contour: 1.5mm * sqrt(widthCm), clamped to 1.5mm - 7.0mm.
+ *   The square root keeps the border visually proportionate at every size: a flat
+ *   cap would read as a hairline on a large sticker (3mm is 15% of a 4cm sticker
+ *   but only 1.7% of an 18cm one), while a straight percentage would leave a small
+ *   sticker with no border at all. The curve passes exactly through the previous
+ *   anchor points (1.0cm -> 1.5mm, 4.0cm -> 3.0mm), so small stickers are unchanged
+ *   and only the plateau above 4.0cm is lifted (18.1cm: 3.0mm -> 6.4mm).
+ * - For rounded / circle:
  *   >= 4.0cm width: 2.0mm
  *   <= 1.0cm width: 1.0mm
  *   Between 1.0cm and 4.0cm: dynamically linearly scales from 1.0mm to 2.0mm.
@@ -113,13 +120,8 @@ export function getCutLineOffsetMm(
   }
 
   if (cutLineType === "contour") {
-    if (widthCm >= 4.0) {
-      return 3.0;
-    }
-    if (widthCm <= 1.0) {
-      return 1.5;
-    }
-    return 1.5 + ((widthCm - 1.0) / 3.0) * 1.5;
+    if (!(widthCm > 0)) return 1.5;
+    return Math.min(7.0, Math.max(1.5, 1.5 * Math.sqrt(widthCm)));
   }
 
   if (
