@@ -897,16 +897,19 @@ export function NewA4Visualizer({
               <div className="absolute inset-0 pointer-events-none rounded-none z-30 overflow-visible">
                 {(st.cutLineType === "contour" || st.cutLineType === "contour_inside") && (
                   st.contourPolygons && st.contourPolygons.length > 0 ? (
+
                     <svg
-                      className="absolute inset-0 w-full h-full pointer-events-none overflow-visible animate-pulse"
-                      viewBox="0 0 1 1"
-                      preserveAspectRatio="none"
+                      className="absolute inset-0 pointer-events-none overflow-visible animate-pulse"
                       style={{
+                        width: '100%',
+                        height: '100%',
                         filter: "drop-shadow(0 0 2px #ff5ebb)",
                       }}
+                      viewBox={`0 0 ${wMm} ${hMm}`}
+                      preserveAspectRatio="none"
                     >
                       {st.contourPolygons.map((poly, idx) => {
-                        const pointsStr = poly.map((p) => `${p.x},${p.y}`).join(" ");
+                        const pointsStr = poly.map((p) => `${p.x * wMm},${p.y * hMm}`).join(" ");
                         return (
                           <polygon
                             key={idx}
@@ -920,6 +923,7 @@ export function NewA4Visualizer({
                         );
                       })}
                     </svg>
+
                   ) : (
                     <div
                       className="absolute inset-0 pointer-events-none rounded-lg border border-dashed border-[#ff5ebb] animate-pulse"
