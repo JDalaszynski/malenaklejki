@@ -124,7 +124,8 @@ export function CheckoutForm() {
       // do Server Action, co często powoduje błędy "Wystąpił nieoczekiwany błąd".
       const safePayload = JSON.parse(JSON.stringify(payload));
 
-      const response = await createOrder(safePayload);
+      const rawResponse = await createOrder(safePayload);
+      const response = typeof rawResponse === "string" ? JSON.parse(rawResponse) : rawResponse;
 
       if (response.success) {
         clearCart();

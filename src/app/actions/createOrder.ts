@@ -109,7 +109,7 @@ async function sendEmail(payload: object): Promise<boolean> {
 
 // Usunięto szablony email. Zostały przeniesione do src/lib/emails.ts i są używane w webhooku P24.
 
-export async function createOrder(rawData: any) {
+async function doCreateOrder(rawData: any) {
   try {
     // 1. Rate limiting
     const headersList = await headers();
@@ -440,3 +440,14 @@ export async function retryOrderPayment(orderId: string) {
   }
 }
 
+
+export async function createOrder(rawData: any) {
+  try {
+    const result = await doCreateOrder(rawData);
+    // Zwracamy string, aby uniknąć błędów serializacji "An error occurred in the Server Components render" Next.js
+    return JSON.stringify(result);
+  } catch (error: any) {
+    console.error("createOrder wrapper error:", error);
+    return JSON.stringify({ success: false, error: String(error?.message || error) });
+  }
+}
