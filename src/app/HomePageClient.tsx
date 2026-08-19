@@ -1200,12 +1200,12 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
       const relY = -drawH / 2;
       let offsetPx = 0;
       if (st.cutLineType === "rounded" || st.cutLineType === "circle") {
-        offsetPx = 3 * MM_TO_PX;
+        offsetPx = 2.5 * MM_TO_PX;
       } else if (
         st.cutLineType === "rounded_inside" ||
         st.cutLineType === "circle_inside"
       ) {
-        offsetPx = -2 * MM_TO_PX;
+        offsetPx = -1 * MM_TO_PX;
       }
 
       if (mode === "cut-lines") {
@@ -1485,7 +1485,7 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
         st.cutLineType === "rounded_inside" ||
         st.cutLineType === "circle_inside" ||
         st.cutLineType === "contour_inside";
-      const offsetMm = isInside ? -2 : 3;
+      const offsetMm = isInside ? -1 : 2.5;
 
       let sx = 1;
       let sy = 1;

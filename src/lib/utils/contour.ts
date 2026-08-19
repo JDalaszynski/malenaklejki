@@ -247,13 +247,11 @@ export function getContourPoints(
         // Calculate the margin in grid pixels (must be an integer for the raster dilate/erode ops)
         let marginMm: number;
         if (type === "contour_inside") {
-          // Inner contour: the cut hugs the graphic edge with a minimal ~0.5mm inset,
-          // so almost none of the artwork is lost.
-          marginMm = 0.5;
+          // Inner contour: 1.0mm inset from graphic edge
+          marginMm = 1.0;
         } else {
-          // Outer contour: outward margin, scaled with sticker size (smaller for scaled-down stickers)
-          marginMm = (maxDimensionMm / 50.0) * 3.0;
-          marginMm = Math.min(3.0, Math.max(1.5, marginMm)); // Cap at 3.0mm, min 1.5mm
+          // Outer contour: 2.5mm outward margin
+          marginMm = 2.5;
         }
 
         const dilationPixels = Math.max(1, Math.round(marginMm * pixelsPerMm));

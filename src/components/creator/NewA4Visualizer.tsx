@@ -695,7 +695,7 @@ export function NewA4Visualizer({
         const wMm = st.widthCm * 10;
         const hMm = st.heightCm * 10;
         const isInside = st.cutLineType === "rounded_inside" || st.cutLineType === "circle_inside";
-        const offsetMm = isInside ? -2 : 3;
+        const offsetMm = isInside ? -1 : 2.5;
         const offsetPercentX = (offsetMm / wMm) * 100;
         const offsetPercentY = (offsetMm / hMm) * 100;
         const unrotatedMargins = getCutLineMargins(st, { rotation: 0 });
@@ -899,7 +899,7 @@ export function NewA4Visualizer({
                   st.contourPolygons && st.contourPolygons.length > 0 ? (
                     <svg
                       className="absolute inset-0 w-full h-full pointer-events-none overflow-visible animate-pulse"
-                      viewBox={`${localX / wMm} ${localY / hMm} ${localW / wMm} ${localH / hMm}`}
+                      viewBox="0 0 1 1"
                       preserveAspectRatio="none"
                       style={{
                         filter: "drop-shadow(0 0 2px #ff5ebb)",

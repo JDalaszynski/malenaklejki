@@ -80,7 +80,8 @@ export function A4Visualizer3D({ stickers, deliveryForm = "sheet" }: A4Visualize
             ) {
               const wMm = st.widthCm * 10;
               const hMm = st.heightCm * 10;
-              const offsetMm = st.cutLineType === "contour_inside" ? -2 : 3;
+              const isInside = st.cutLineType === "contour_inside";
+              const offsetMm = isInside ? -1 : 2.5;
               // The clip path is expressed in objectBoundingBox units relative to the
               // enlarged sticker body box (which is scaled up/down by this same ratio),
               // so contour points (normalized to the raw image box) must be converted
@@ -140,7 +141,7 @@ export function A4Visualizer3D({ stickers, deliveryForm = "sheet" }: A4Visualize
             st.cutLineType === "rounded_inside" ||
             st.cutLineType === "circle_inside" ||
             st.cutLineType === "contour_inside";
-          const offsetMm = isInside ? -2 : 3;
+          const offsetMm = isInside ? -1 : 2.5;
           const offsetPercentX = (offsetMm / wMm) * 100;
           const offsetPercentY = (offsetMm / hMm) * 100;
 
