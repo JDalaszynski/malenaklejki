@@ -128,7 +128,7 @@ export function getCutLineMargins(
     cutLineType === "rounded_inside" ||
     cutLineType === "circle_inside"
   ) {
-    const offsetMm = (cutLineType === "rounded_inside" || cutLineType === "circle_inside") ? -1 : 2.5;
+    const offsetMm = (cutLineType === "rounded_inside" || cutLineType === "circle_inside") ? -0.5 : 2.0;
     const cutW = wMm + 2 * offsetMm;
     const cutH = hMm + 2 * offsetMm;
     const size = getRotatedSize(cutW, cutH, rotation);
@@ -414,7 +414,7 @@ export function getAbsolutePolygons(
     cutLineType === "rounded_inside" ||
     cutLineType === "circle_inside"
   ) {
-    const offsetMm = (cutLineType === "rounded_inside" || cutLineType === "circle_inside") ? -1 : 2.5;
+    const offsetMm = (cutLineType === "rounded_inside" || cutLineType === "circle_inside") ? -0.5 : 2.0;
     cutW = wMm + 2 * offsetMm;
     cutH = hMm + 2 * offsetMm;
   }

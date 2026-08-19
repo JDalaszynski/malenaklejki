@@ -695,7 +695,7 @@ export function NewA4Visualizer({
         const wMm = st.widthCm * 10;
         const hMm = st.heightCm * 10;
         const isInside = st.cutLineType === "rounded_inside" || st.cutLineType === "circle_inside";
-        const offsetMm = isInside ? -1 : 2.5;
+        const offsetMm = isInside ? -0.5 : 2.0;
         const offsetPercentX = (offsetMm / wMm) * 100;
         const offsetPercentY = (offsetMm / hMm) * 100;
         const unrotatedMargins = getCutLineMargins(st, { rotation: 0 });

@@ -247,11 +247,11 @@ export function getContourPoints(
         // Calculate the margin in grid pixels (must be an integer for the raster dilate/erode ops)
         let marginMm: number;
         if (type === "contour_inside") {
-          // Inner contour: 1.0mm inset from graphic edge
-          marginMm = 1.0;
+          // Inner contour: 0.5mm inset from graphic edge
+          marginMm = 0.5;
         } else {
-          // Outer contour: 2.5mm outward margin
-          marginMm = 2.5;
+          // Outer contour: 2.0mm outward margin
+          marginMm = 2.0;
         }
 
         const dilationPixels = Math.max(1, Math.round(marginMm * pixelsPerMm));
