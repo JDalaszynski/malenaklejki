@@ -58,6 +58,7 @@ import {
   getCutLineBoundingBox,
   checkStickersCollision,
   clampToUsableArea,
+  isStickerOutsideUsableArea,
   getDisplayedWidthCm,
   getGraphicWidthFromDisplayed,
 } from "@/lib/utils/collision";
@@ -466,24 +467,32 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
     });
   }, [stickers, mounted]);
 
-  // Live detection of overlapping stickers on the sheet
+  // Live detection of overlapping stickers and safety margin violations on the sheet
   useEffect(() => {
-    if (stickers.length < 2) {
-      setOverlappingStickerIds((prev) => (prev.length === 0 ? prev : []));
-      return;
-    }
-    const overlaps = new Set<string>();
-    for (let i = 0; i < stickers.length; i++) {
-      for (let j = i + 1; j < stickers.length; j++) {
-        if (checkStickersCollision(stickers[i], stickers[j])) {
-          overlaps.add(stickers[i].id);
-          overlaps.add(stickers[j].id);
+    const invalidIds = new Set<string>();
+
+    // 1. Sprawdz czy naklejki wychodza poza margines bezpieczenstwa
+    stickers.forEach((st) => {
+      if (isStickerOutsideUsableArea(st)) {
+        invalidIds.add(st.id);
+      }
+    });
+
+    // 2. Sprawdz nachodzenie na siebie naklejek
+    if (stickers.length >= 2) {
+      for (let i = 0; i < stickers.length; i++) {
+        for (let j = i + 1; j < stickers.length; j++) {
+          if (checkStickersCollision(stickers[i], stickers[j])) {
+            invalidIds.add(stickers[i].id);
+            invalidIds.add(stickers[j].id);
+          }
         }
       }
     }
-    const arr = Array.from(overlaps);
+
+    const arr = Array.from(invalidIds);
     setOverlappingStickerIds((prev) => {
-      if (prev.length === arr.length && prev.every((id) => overlaps.has(id))) {
+      if (prev.length === arr.length && prev.every((id) => invalidIds.has(id))) {
         return prev;
       }
       return arr;
@@ -612,8 +621,12 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
       let pos = findFreePosition(wMm, hMm, 0, stickers);
 
       if (!pos) {
-        // Zawsze pozwalamy dodać nową naklejkę na środku, ewentualnie wyświetli się czerwony konflikt
-        pos = { x: 105, y: 148.5 };
+        const margins = getOuterMargins({
+          widthCm: defaultWidthCm,
+          heightCm: defaultHeightCm,
+          cutLineType: "none",
+        });
+        pos = clampToUsableArea(105 - wMm / 2, 148.5 - hMm / 2, margins);
       }
 
       const newSticker: PlacedSticker = {
@@ -1897,7 +1910,17 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
       return;
     }
 
-    // Sprawdź nachodzenie na siebie naklejek
+    // 1. Sprawdz czy linie ciecia naklejek mieszcza sie w marginesach bezpieczenstwa arkusza
+    const outsideStickers = stickers.filter((st) => isStickerOutsideUsableArea(st));
+    if (outsideStickers.length > 0) {
+      setOverlappingStickerIds(outsideStickers.map((s) => s.id));
+      setError(
+        "Linie cięcia naklejek wychodzą poza margines bezpieczeństwa arkusza! Przesuń naklejki do środka.",
+      );
+      return;
+    }
+
+    // 2. Sprawdź nachodzenie na siebie naklejek
     let hasOverlap = false;
     const overlaps = new Set<string>();
     for (let i = 0; i < stickers.length; i++) {

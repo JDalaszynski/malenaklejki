@@ -178,11 +178,6 @@ export function getOuterMargins(
   const graphicMargins = getContourMargins(wMm, hMm, rotation, undefined);
   const cutMargins = getCutLineMargins(st, overrideParams);
 
-  const cutLineType = overrideParams?.cutLineType !== undefined ? overrideParams.cutLineType : st.cutLineType;
-  if (cutLineType === "contour" || cutLineType === "contour_inside") {
-    return cutMargins;
-  }
-
   return {
     left: Math.max(graphicMargins.left, cutMargins.left),
     right: Math.max(graphicMargins.right, cutMargins.right),
@@ -524,18 +519,16 @@ export function clampToUsableArea(
   let cx = Math.max(MARGIN_MM + margins.left, Math.min(SHEET_WIDTH_MM - MARGIN_MM - margins.right, x));
   let cy = Math.max(MARGIN_MM + margins.top, Math.min(SHEET_HEIGHT_MM - MARGIN_MM - margins.bottom, y));
 
-  // Helper bounds
-  const leftBound = cx - margins.left;
-  const rightBound = cx + margins.right;
-  const topBound = cy - margins.top;
-  const bottomBound = cy + margins.bottom;
-
   const CORNER_LIMIT = 17; // 11 + 6
   const RIGHT_CORNER_LIMIT = 193; // 199 - 6
   const BOTTOM_CORNER_LIMIT = 280; // 286 - 6
 
-  // 2. Resolve corner collisions (using smaller push-out distance)
+  // 2. Resolve corner collisions (re-calculating bounds after each adjustment)
   // Top-Left: leftBound < 17 && topBound < 17
+  let leftBound = cx - margins.left;
+  let rightBound = cx + margins.right;
+  let topBound = cy - margins.top;
+  let bottomBound = cy + margins.bottom;
   if (leftBound < CORNER_LIMIT && topBound < CORNER_LIMIT) {
     const dx = CORNER_LIMIT - leftBound;
     const dy = CORNER_LIMIT - topBound;
@@ -547,6 +540,10 @@ export function clampToUsableArea(
   }
 
   // Top-Right: rightBound > 193 && topBound < 17
+  leftBound = cx - margins.left;
+  rightBound = cx + margins.right;
+  topBound = cy - margins.top;
+  bottomBound = cy + margins.bottom;
   if (rightBound > RIGHT_CORNER_LIMIT && topBound < CORNER_LIMIT) {
     const dx = rightBound - RIGHT_CORNER_LIMIT;
     const dy = CORNER_LIMIT - topBound;
@@ -558,6 +555,10 @@ export function clampToUsableArea(
   }
 
   // Bottom-Left: leftBound < 17 && bottomBound > 280
+  leftBound = cx - margins.left;
+  rightBound = cx + margins.right;
+  topBound = cy - margins.top;
+  bottomBound = cy + margins.bottom;
   if (leftBound < CORNER_LIMIT && bottomBound > BOTTOM_CORNER_LIMIT) {
     const dx = CORNER_LIMIT - leftBound;
     const dy = bottomBound - BOTTOM_CORNER_LIMIT;
@@ -569,6 +570,10 @@ export function clampToUsableArea(
   }
 
   // Bottom-Right: rightBound > 193 && bottomBound > 280
+  leftBound = cx - margins.left;
+  rightBound = cx + margins.right;
+  topBound = cy - margins.top;
+  bottomBound = cy + margins.bottom;
   if (rightBound > RIGHT_CORNER_LIMIT && bottomBound > BOTTOM_CORNER_LIMIT) {
     const dx = rightBound - RIGHT_CORNER_LIMIT;
     const dy = bottomBound - BOTTOM_CORNER_LIMIT;
@@ -579,7 +584,46 @@ export function clampToUsableArea(
     }
   }
 
+  // Final safety clamp to main bounds
+  cx = Math.max(MARGIN_MM + margins.left, Math.min(SHEET_WIDTH_MM - MARGIN_MM - margins.right, cx));
+  cy = Math.max(MARGIN_MM + margins.top, Math.min(SHEET_HEIGHT_MM - MARGIN_MM - margins.bottom, cy));
+
   return { x: cx, y: cy };
+}
+
+/**
+ * Checks if a sticker's cut line or envelope exceeds the sheet's usable area (including safety margins and corner indents).
+ */
+export function isStickerOutsideUsableArea(
+  st: {
+    widthCm: number;
+    heightCm: number;
+    rotation?: number;
+    x: number;
+    y: number;
+    cutLineType: "none" | "contour" | "rounded" | "circle" | "contour_inside" | "rounded_inside" | "circle_inside";
+    contourPolygons?: { x: number; y: number }[][];
+  }
+): boolean {
+  const margins = getOuterMargins(st);
+  const leftBound = st.x - margins.left;
+  const rightBound = st.x + margins.right;
+  const topBound = st.y - margins.top;
+  const bottomBound = st.y + margins.bottom;
+
+  const EPS = 0.05;
+
+  if (leftBound < 11 - EPS || rightBound > 199 + EPS || topBound < 11 - EPS || bottomBound > 286 + EPS) {
+    return true;
+  }
+
+  // Corner indents (6x6mm from 11mm border)
+  if (leftBound < 17 - EPS && topBound < 17 - EPS) return true;
+  if (rightBound > 193 + EPS && topBound < 17 - EPS) return true;
+  if (leftBound < 17 - EPS && bottomBound > 280 + EPS) return true;
+  if (rightBound > 193 + EPS && bottomBound > 280 + EPS) return true;
+
+  return false;
 }
 
 /**
