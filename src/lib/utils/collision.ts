@@ -102,10 +102,9 @@ export function getContourMargins(
  *   sticker with no border at all. The curve passes exactly through the previous
  *   anchor points (1.0cm -> 1.5mm, 4.0cm -> 3.0mm), so small stickers are unchanged
  *   and only the plateau above 4.0cm is lifted (18.1cm: 3.0mm -> 6.4mm).
- * - For rounded / circle:
- *   >= 4.0cm width: 2.0mm
- *   <= 1.0cm width: 1.0mm
- *   Between 1.0cm and 4.0cm: dynamically linearly scales from 1.0mm to 2.0mm.
+ * - For rounded / circle: the same square root law at 2/3 of the contour margin,
+ *   1.0mm * sqrt(widthCm) clamped to 1.0mm - 5.0mm. It likewise passes exactly
+ *   through the previous anchor points (1.0cm -> 1.0mm, 4.0cm -> 2.0mm).
  */
 export function getCutLineOffsetMm(
   cutLineType: "none" | "contour" | "rounded" | "circle" | "contour_inside" | "rounded_inside" | "circle_inside" | string,
@@ -128,13 +127,8 @@ export function getCutLineOffsetMm(
     cutLineType === "rounded" ||
     cutLineType === "circle"
   ) {
-    if (widthCm >= 4.0) {
-      return 2.0;
-    }
-    if (widthCm <= 1.0) {
-      return 1.0;
-    }
-    return 1.0 + ((widthCm - 1.0) / 3.0) * 1.0;
+    if (!(widthCm > 0)) return 1.0;
+    return Math.min(5.0, Math.max(1.0, Math.sqrt(widthCm)));
   }
 
   return 0;
