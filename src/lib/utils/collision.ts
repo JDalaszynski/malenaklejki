@@ -112,10 +112,19 @@ export function getCutLineOffsetMm(
     return -0.5;
   }
 
+  if (cutLineType === "contour") {
+    if (widthCm >= 4.0) {
+      return 3.0;
+    }
+    if (widthCm <= 1.0) {
+      return 1.5;
+    }
+    return 1.5 + ((widthCm - 1.0) / 3.0) * 1.5;
+  }
+
   if (
     cutLineType === "rounded" ||
-    cutLineType === "circle" ||
-    cutLineType === "contour"
+    cutLineType === "circle"
   ) {
     if (widthCm >= 4.0) {
       return 2.0;
@@ -178,12 +187,23 @@ export function getCutLineMargins(
     };
   }
 
-  return getContourMargins(
-    wMm,
-    hMm,
-    rotation,
-    (cutLineType === "contour" || cutLineType === "contour_inside") ? contourPolygons : undefined
-  );
+  if (cutLineType === "contour") {
+    const graphicMargins = getContourMargins(wMm, hMm, rotation, undefined);
+    const offsetMm = getCutLineOffsetMm("contour", widthCm);
+    return {
+      left: graphicMargins.left + offsetMm,
+      right: graphicMargins.right + offsetMm,
+      top: graphicMargins.top + offsetMm,
+      bottom: graphicMargins.bottom + offsetMm,
+    };
+  }
+
+  if (cutLineType === "contour_inside") {
+    // For inside contour, it stays within the graphic bounds
+    return getContourMargins(wMm, hMm, rotation, undefined);
+  }
+
+  return { left: 0, right: wMm, top: 0, bottom: hMm };
 }
 
 /**
