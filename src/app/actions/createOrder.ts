@@ -267,32 +267,35 @@ async function doCreateOrder(rawData: any) {
 
     // Send email to seller immediately with files
     try {
-      if (finalData.paymentMethod !== "przelewy24" && finalData.paymentMethod !== "blik") {
-        const adminEmail = process.env.ADMIN_EMAIL || "kontakt@malenaklejki.pl";
-        const siteFromEmail = adminEmail;
+      const adminEmail = process.env.ADMIN_EMAIL || "kontakt@malenaklejki.pl";
+      const siteFromEmail = adminEmail;
 
-        const attachments = await buildOrderAttachments(finalData.items, orderNumber);
+      const attachments = await buildOrderAttachments(finalData.items, orderNumber);
 
-        const htmlContent = finalData.paymentMethod === "vinted"
-          ? buildVintedOrderSellerEmailHtml(finalData, orderNumber)
-          : buildNewOrderSellerEmailHtml(finalData, orderNumber);
+      const htmlContent = finalData.paymentMethod === "vinted"
+        ? buildVintedOrderSellerEmailHtml(finalData, orderNumber)
+        : buildNewOrderSellerEmailHtml(finalData, orderNumber);
 
-        const subject = finalData.paymentMethod === "vinted"
-          ? `👗 Nowe zamówienie VINTED ${orderNumber} - ${finalData.firstName} ${finalData.lastName} (${finalData.total.toFixed(2).replace('.', ',')} zł)`
-          : `🛒 Nowe zamówienie ${orderNumber} - ${finalData.firstName} ${finalData.lastName} (${finalData.total.toFixed(2).replace('.', ',')} zł)`;
-
-        const sellerEmailPayload: any = {
-          sender: { name: "MałeNaklejki - System zamówień", email: siteFromEmail },
-          to: [{ email: adminEmail, name: "MałeNaklejki - Sprzedawca" }],
-          subject,
-          htmlContent,
-        };
-        if (attachments.length > 0) {
-          sellerEmailPayload.attachment = attachments;
-        }
-        await sendEmail(sellerEmailPayload);
-        console.log(`Initial seller notification email sent for order ${orderNumber}`);
+      let paymentInfo = "";
+      if (finalData.paymentMethod === "przelewy24" || finalData.paymentMethod === "blik") {
+         paymentInfo = " (Oczekuje na płatność)";
       }
+
+      const subject = finalData.paymentMethod === "vinted"
+        ? `👗 Nowe zamówienie VINTED ${orderNumber} - ${finalData.firstName} ${finalData.lastName} (${finalData.total.toFixed(2).replace('.', ',')} zł)`
+        : `🛒 Nowe zamówienie${paymentInfo} ${orderNumber} - ${finalData.firstName} ${finalData.lastName} (${finalData.total.toFixed(2).replace('.', ',')} zł)`;
+
+      const sellerEmailPayload: any = {
+        sender: { name: "MałeNaklejki - System zamówień", email: siteFromEmail },
+        to: [{ email: adminEmail, name: "MałeNaklejki - Sprzedawca" }],
+        subject,
+        htmlContent,
+      };
+      if (attachments.length > 0) {
+        sellerEmailPayload.attachment = attachments;
+      }
+      await sendEmail(sellerEmailPayload);
+      console.log(`Initial seller notification email sent for order ${orderNumber}`);
     } catch (emailErr) {
       console.error("Failed to send initial seller notification email:", emailErr);
     }
