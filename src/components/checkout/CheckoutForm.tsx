@@ -145,6 +145,26 @@ export function CheckoutForm() {
     } catch (error: any) {
       console.error(error);
       const errorMessage = error?.message || String(error);
+
+      // "An error occurred in the Server Components render..." (with a `digest`,
+      // or a "Failed to find Server Action" message) means the browser's JS bundle
+      // is calling a Server Action id from a deployment the server no longer has
+      // (e.g. the tab was open across a redeploy). Retrying against the same stale
+      // bundle will just fail again with the same opaque message, so force a full
+      // reload instead — that fetches the current deployment's bundle, whose action
+      // ids are valid again, and the user can resubmit immediately.
+      const isStaleActionError =
+        Boolean(error?.digest) ||
+        /Server Components render|Failed to find Server Action/i.test(errorMessage);
+
+      if (isStaleActionError) {
+        alert(
+          "Strona została zaktualizowana od czasu jej otwarcia. Odświeżamy ją teraz — po odświeżeniu spróbuj złożyć zamówienie ponownie."
+        );
+        window.location.reload();
+        return;
+      }
+
       alert(`Wystąpił nieoczekiwany błąd: ${errorMessage}\n\nSpróbuj odświeżyć stronę (Ctrl+F5) jeśli błąd się powtarza.`);
       setIsSubmitting(false);
     }
