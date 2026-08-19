@@ -87,118 +87,151 @@ export function smoothPolygon(points: Point[], windowSize = 5): Point[] {
   return smoothed;
 }
 
+const DT_INF = 1e20;
+
 /**
- * Dilates a binary grid to merge separate elements and create an outward offset.
- * Optimized to only dilate from boundary pixels for massive performance gain.
+ * 1D squared Euclidean distance transform over f[0..n-1]
+ * (Felzenszwalb & Huttenlocher, exact and O(n)). Scratch buffers are passed in
+ * so the 2D pass can reuse them.
  */
-function dilateGrid(grid: number[][], radius: number): number[][] {
-  const h = grid.length;
-  const w = grid[0].length;
-  const output = Array.from({ length: h }, () => new Uint8Array(w));
-  
-  // Precompute dx bounds for each dy to avoid sqrt in inner loop
-  const maxDxForDy = new Int32Array(radius * 2 + 1);
-  for (let dy = -radius; dy <= radius; dy++) {
-    maxDxForDy[dy + radius] = Math.floor(Math.sqrt(radius * radius - dy * dy));
-  }
+function edt1d(
+  f: Float64Array,
+  d: Float64Array,
+  v: Int32Array,
+  z: Float64Array,
+  n: number
+) {
+  let k = 0;
+  v[0] = 0;
+  z[0] = -DT_INF;
+  z[1] = DT_INF;
 
-  for (let y = 0; y < h; y++) {
-    for (let x = 0; x < w; x++) {
-      if (grid[y][x] === 1) {
-        // Only dilate if it's a boundary pixel (has a 0 neighbor)
-        let isBoundary = false;
-        if (
-           (y > 0 && grid[y-1][x] === 0) ||
-           (y < h-1 && grid[y+1][x] === 0) ||
-           (x > 0 && grid[y][x-1] === 0) ||
-           (x < w-1 && grid[y][x+1] === 0)
-        ) {
-           isBoundary = true;
-        }
-        
-        if (isBoundary) {
-          for (let dy = -radius; dy <= radius; dy++) {
-            const ty = y + dy;
-            if (ty < 0 || ty >= h) continue;
-
-            const maxDx = maxDxForDy[dy + radius];
-            for (let dx = -maxDx; dx <= maxDx; dx++) {
-              const tx = x + dx;
-              if (tx >= 0 && tx < w) {
-                output[ty][tx] = 1;
-              }
-            }
-          }
-        } else {
-          // Inner pixel, just copy
-          output[y][x] = 1;
-        }
-      }
+  for (let q = 1; q < n; q++) {
+    let s = (f[q] + q * q - (f[v[k]] + v[k] * v[k])) / (2 * q - 2 * v[k]);
+    while (s <= z[k]) {
+      k--;
+      s = (f[q] + q * q - (f[v[k]] + v[k] * v[k])) / (2 * q - 2 * v[k]);
     }
+    k++;
+    v[k] = q;
+    z[k] = s;
+    z[k + 1] = DT_INF;
   }
 
-  const result: number[][] = [];
-  for (let y = 0; y < h; y++) {
-    result.push(Array.from(output[y]));
+  k = 0;
+  for (let q = 0; q < n; q++) {
+    while (z[k + 1] < q) k++;
+    const dq = q - v[k];
+    d[q] = dq * dq + f[v[k]];
   }
-  return result;
 }
 
 /**
- * Erodes a binary grid to shrink elements and create an inward offset.
- * Optimized to only erode from boundary pixels for massive performance gain.
+ * Exact squared Euclidean distance transform: for every pixel, the squared
+ * distance to the nearest pixel set in `seed`.
+ *
+ * This gives dilation and erosion for free and in linear time:
+ *   dilate(seed, r) === { squaredDistanceTransform(seed) <= r*r }
+ *   erode(mask, r)  === { squaredDistanceTransform(!mask) >  r*r }
+ * which is what makes the adaptive gap bridging below affordable.
  */
-function erodeGrid(grid: number[][], radius: number): number[][] {
-  const h = grid.length;
-  const w = grid[0].length;
-  const output = Array.from({ length: h }, () => new Uint8Array(w).fill(1));
+function squaredDistanceTransform(seed: Uint8Array, w: number, h: number): Float64Array {
+  const n = w * h;
+  const dist = new Float64Array(n);
+  for (let i = 0; i < n; i++) dist[i] = seed[i] ? 0 : DT_INF;
 
-  // Precompute dx bounds for each dy to avoid sqrt in inner loop
-  const maxDxForDy = new Int32Array(radius * 2 + 1);
-  for (let dy = -radius; dy <= radius; dy++) {
-    maxDxForDy[dy + radius] = Math.floor(Math.sqrt(radius * radius - dy * dy));
+  const maxDim = Math.max(w, h);
+  const f = new Float64Array(maxDim);
+  const d = new Float64Array(maxDim);
+  const v = new Int32Array(maxDim);
+  const z = new Float64Array(maxDim + 1);
+
+  for (let x = 0; x < w; x++) {
+    for (let y = 0; y < h; y++) f[y] = dist[y * w + x];
+    edt1d(f, d, v, z, h);
+    for (let y = 0; y < h; y++) dist[y * w + x] = d[y];
   }
 
   for (let y = 0; y < h; y++) {
-    for (let x = 0; x < w; x++) {
-      if (grid[y][x] === 0) {
-        // Only erode if it's a boundary pixel (has a 1 neighbor)
-        let isBoundary = false;
-        if (
-           (y > 0 && grid[y-1][x] === 1) ||
-           (y < h-1 && grid[y+1][x] === 1) ||
-           (x > 0 && grid[y][x-1] === 1) ||
-           (x < w-1 && grid[y][x+1] === 1)
-        ) {
-           isBoundary = true;
-        }
-        
-        if (isBoundary) {
-          for (let dy = -radius; dy <= radius; dy++) {
-            const ty = y + dy;
-            if (ty < 0 || ty >= h) continue;
+    const off = y * w;
+    for (let x = 0; x < w; x++) f[x] = dist[off + x];
+    edt1d(f, d, v, z, w);
+    for (let x = 0; x < w; x++) dist[off + x] = d[x];
+  }
 
-            const maxDx = maxDxForDy[dy + radius];
-            for (let dx = -maxDx; dx <= maxDx; dx++) {
-              const tx = x + dx;
-              if (tx >= 0 && tx < w) {
-                output[ty][tx] = 0;
-              }
-            }
-          }
-        } else {
-          // Inner pixel (or far outside), just copy
-          output[y][x] = 0;
-        }
-      }
+  return dist;
+}
+
+/**
+ * Counts 4-connected components of a binary grid, giving up as soon as more
+ * than `limit` have been found (the callers only care about "exactly one").
+ */
+function countComponents(grid: Uint8Array, w: number, h: number, limit = 1): number {
+  const n = w * h;
+  const seen = new Uint8Array(n);
+  const stack = new Int32Array(n);
+  let count = 0;
+
+  for (let i = 0; i < n; i++) {
+    if (!grid[i] || seen[i]) continue;
+    count++;
+    if (count > limit) return count;
+
+    let sp = 0;
+    stack[sp++] = i;
+    seen[i] = 1;
+
+    while (sp > 0) {
+      const p = stack[--sp];
+      const x = p % w;
+      const y = (p / w) | 0;
+      if (x > 0 && grid[p - 1] && !seen[p - 1]) { seen[p - 1] = 1; stack[sp++] = p - 1; }
+      if (x < w - 1 && grid[p + 1] && !seen[p + 1]) { seen[p + 1] = 1; stack[sp++] = p + 1; }
+      if (y > 0 && grid[p - w] && !seen[p - w]) { seen[p - w] = 1; stack[sp++] = p - w; }
+      if (y < h - 1 && grid[p + w] && !seen[p + w]) { seen[p + w] = 1; stack[sp++] = p + w; }
     }
   }
 
-  const result: number[][] = [];
-  for (let y = 0; y < h; y++) {
-    result.push(Array.from(output[y]));
+  return count;
+}
+
+/** Absolute polygon area (shoelace). */
+function polygonArea(poly: Point[]): number {
+  let area = 0;
+  for (let i = 0, j = poly.length - 1; i < poly.length; j = i++) {
+    area += (poly[j].x + poly[i].x) * (poly[j].y - poly[i].y);
   }
-  return result;
+  return Math.abs(area) / 2;
+}
+
+/** Convex hull (Andrew's monotone chain), used as a last-resort enclosing shape. */
+function convexHull(points: Point[]): Point[] {
+  if (points.length < 3) return points;
+
+  const pts = [...points].sort((a, b) => (a.x - b.x) || (a.y - b.y));
+  const cross = (o: Point, a: Point, b: Point) =>
+    (a.x - o.x) * (b.y - o.y) - (a.y - o.y) * (b.x - o.x);
+
+  const lower: Point[] = [];
+  for (const p of pts) {
+    while (lower.length >= 2 && cross(lower[lower.length - 2], lower[lower.length - 1], p) <= 0) {
+      lower.pop();
+    }
+    lower.push(p);
+  }
+
+  const upper: Point[] = [];
+  for (let i = pts.length - 1; i >= 0; i--) {
+    const p = pts[i];
+    while (upper.length >= 2 && cross(upper[upper.length - 2], upper[upper.length - 1], p) <= 0) {
+      upper.pop();
+    }
+    upper.push(p);
+  }
+
+  lower.pop();
+  upper.pop();
+  return lower.concat(upper);
 }
 
 const imageCache = new Map<string, HTMLImageElement>();
@@ -206,9 +239,17 @@ const imageCache = new Map<string, HTMLImageElement>();
 /**
  * Traces the contours of an image, ignoring transparent or near-white pixels.
  * Returns normalized coordinates in the range [0, 1] relative to image width and height,
- * with an exact 2mm outward (dilation) or inward (erosion) margin baked into the geometry.
+ * with an exact outward (dilation) or inward (erosion) margin baked into the geometry.
  * Guarantees a single unified outer contour that can be rendered identically anywhere
  * (edit mode, visualization, margin/collision math) with no further correction needed.
+ *
+ * Artwork made of several separate elements (e.g. a logo mark above a wordmark) is
+ * joined with a morphological closing whose radius is searched for at runtime, so the
+ * cut line always encloses the WHOLE design as one piece. A fixed mm margin cannot do
+ * this on its own: the gaps between elements grow with the sticker size while the
+ * margin stays at 1.5-3.0mm, so above a certain size the elements stop merging.
+ * Closing never grows the shape past its bounding box, so the margins reserved by
+ * getCutLineMargins() still hold.
  */
 export function getContourPoints(
   imageUrl: string,
@@ -230,14 +271,14 @@ export function getContourPoints(
     const processImage = (img: HTMLImageElement) => {
       try {
         const maxDimension = 400; // base size for fast grid analysis
-        let w = img.naturalWidth || img.width || 400;
-        let h = img.naturalHeight || img.height || 400;
+        const w = img.naturalWidth || img.width || 400;
+        const h = img.naturalHeight || img.height || 400;
 
         let scale = Math.min(maxDimension / w, maxDimension / h);
         if (scale > 1) scale = 1;
 
-        const imgW = Math.round(w * scale);
-        const imgH = Math.round(h * scale);
+        const imgW = Math.max(1, Math.round(w * scale));
+        const imgH = Math.max(1, Math.round(h * scale));
 
         const maxDimensionMm = Math.max(widthMm, heightMm) || 50;
 
@@ -246,140 +287,229 @@ export function getContourPoints(
         const gridMaxDim = Math.max(imgW, imgH) || maxDimension;
         const pixelsPerMm = gridMaxDim / maxDimensionMm;
 
-        // Calculate the margin in grid pixels (must be an integer for the raster dilate/erode ops)
+        // Calculate the margin in grid pixels (must be an integer for the raster ops)
+        const isInside = type === "contour_inside";
         let marginMm: number;
-        if (type === "contour_inside") {
+        if (isInside) {
           // Inner contour: 0.5mm inset from graphic edge
           marginMm = 0.5;
         } else {
-          // Outer contour: dynamic 1.0mm - 2.0mm outward margin based on sticker width
+          // Outer contour: dynamic 1.5mm - 3.0mm outward margin based on sticker width
           const widthCm = (widthMm || maxDimensionMm) / 10;
           marginMm = getCutLineOffsetMm("contour", widthCm);
         }
 
-        const dilationPixels = Math.max(1, Math.round(marginMm * pixelsPerMm));
-        
-        // Add dynamic padding on all sides to allow the dilated outline to expand without clipping
-        const padding = dilationPixels + 4;
-        const canvasW = imgW + padding * 2;
-        const canvasH = imgH + padding * 2;
-        
+        const offsetPixels = Math.max(1, Math.round(marginMm * pixelsPerMm));
+        const baseDilate = isInside ? 0 : offsetPixels;
+        const baseErode = isInside ? offsetPixels : 0;
+
+        // Upper bound for the gap-bridging closing radius.
+        const maxBridge = Math.max(8, Math.round(gridMaxDim * 0.25));
+
         const canvas = document.createElement("canvas");
-        canvas.width = canvasW;
-        canvas.height = canvasH;
-        
-        const ctx = canvas.getContext("2d");
+        canvas.width = imgW;
+        canvas.height = imgH;
+
+        const ctx = canvas.getContext("2d", { willReadFrequently: true });
         if (!ctx) {
           resolve([[{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 1, y: 1 }, { x: 0, y: 1 }]]);
           return;
         }
-        
-        ctx.clearRect(0, 0, canvasW, canvasH);
-        ctx.drawImage(img, padding, padding, imgW, imgH);
-        
-        const imageData = ctx.getImageData(0, 0, canvasW, canvasH);
-        const data = imageData.data;
-        
-        // Build 2D grid
+
+        ctx.clearRect(0, 0, imgW, imgH);
+        ctx.drawImage(img, 0, 0, imgW, imgH);
+
+        const data = ctx.getImageData(0, 0, imgW, imgH).data;
+        const pixelCount = imgW * imgH;
+
+        // Classify pixels
         // 0 = definite background (transparent)
         // 1 = definite foreground (colored)
         // 2 = potential background (near-white)
-        let initialGrid: number[][] = [];
-        for (let y = 0; y < canvasH; y++) {
-          const row: number[] = [];
-          for (let x = 0; x < canvasW; x++) {
-            const idx = (y * canvasW + x) * 4;
-            const r = data[idx];
-            const g = data[idx + 1];
-            const b = data[idx + 2];
-            const a = data[idx + 3];
-            
-            if (a < 25) {
-              row.push(0);
-            } else if (r > 240 && g > 240 && b > 240) {
-              row.push(2);
+        const cls = new Uint8Array(pixelCount);
+        for (let i = 0; i < pixelCount; i++) {
+          const idx = i * 4;
+          const a = data[idx + 3];
+          if (a < 25) {
+            cls[i] = 0;
+          } else if (data[idx] > 240 && data[idx + 1] > 240 && data[idx + 2] > 240) {
+            cls[i] = 2;
+          } else {
+            cls[i] = 1;
+          }
+        }
+
+        // Flood fill from the image border to turn connected potential background (2)
+        // into definite background (0). Everything outside the image is transparent,
+        // so seeding from the border is equivalent to seeding from outside it.
+        const fillStack = new Int32Array(pixelCount);
+        const fillSeen = new Uint8Array(pixelCount);
+        let fsp = 0;
+        const pushBg = (x: number, y: number) => {
+          if (x < 0 || x >= imgW || y < 0 || y >= imgH) return;
+          const i = y * imgW + x;
+          if (fillSeen[i] || cls[i] === 1) return;
+          fillSeen[i] = 1;
+          cls[i] = 0;
+          fillStack[fsp++] = i;
+        };
+        for (let x = 0; x < imgW; x++) {
+          pushBg(x, 0);
+          pushBg(x, imgH - 1);
+        }
+        for (let y = 0; y < imgH; y++) {
+          pushBg(0, y);
+          pushBg(imgW - 1, y);
+        }
+        while (fsp > 0) {
+          const i = fillStack[--fsp];
+          const x = i % imgW;
+          const y = (i / imgW) | 0;
+          pushBg(x + 1, y);
+          pushBg(x - 1, y);
+          pushBg(x, y + 1);
+          pushBg(x, y - 1);
+        }
+
+        // Any remaining 2s (isolated white areas) are foreground
+        const imgFg = new Uint8Array(pixelCount);
+        for (let i = 0; i < pixelCount; i++) imgFg[i] = cls[i] === 0 ? 0 : 1;
+
+        // Padded canvas so the dilated outline can expand without clipping.
+        let padding = baseDilate + 4;
+        let canvasW = imgW + padding * 2;
+        let canvasH = imgH + padding * 2;
+        let fg = new Uint8Array(canvasW * canvasH);
+        const repad = (pad: number) => {
+          padding = pad;
+          canvasW = imgW + pad * 2;
+          canvasH = imgH + pad * 2;
+          fg = new Uint8Array(canvasW * canvasH);
+          for (let y = 0; y < imgH; y++) {
+            const src = y * imgW;
+            const dst = (y + pad) * canvasW + pad;
+            for (let x = 0; x < imgW; x++) fg[dst + x] = imgFg[src + x];
+          }
+        };
+        repad(padding);
+
+        let dtFg = squaredDistanceTransform(fg, canvasW, canvasH);
+
+        // Mask = artwork dilated by (baseDilate + bridge) pixels.
+        const maskAt = (bridge: number) => {
+          const rad = baseDilate + bridge;
+          const rad2 = rad * rad;
+          const mask = new Uint8Array(dtFg.length);
+          for (let i = 0; i < dtFg.length; i++) mask[i] = dtFg[i] <= rad2 ? 1 : 0;
+          return mask;
+        };
+
+        // Smallest bridging radius that pulls every element into one piece.
+        // Connectivity is monotone in the radius, so a binary search is exact.
+        let bridge = 0;
+        let bridgeFailed = false;
+        if (countComponents(maskAt(0), canvasW, canvasH) > 1) {
+          let lo = 1;
+          let hi = maxBridge;
+          let found = -1;
+          while (lo <= hi) {
+            const mid = (lo + hi) >> 1;
+            if (countComponents(maskAt(mid), canvasW, canvasH) === 1) {
+              found = mid;
+              hi = mid - 1;
             } else {
-              row.push(1);
+              lo = mid + 1;
             }
           }
-          initialGrid.push(row);
+          bridgeFailed = found < 0;
+          bridge = bridgeFailed ? maxBridge : found;
         }
 
-        // Flood fill from edges to turn connected potential background (2) into definite background (0)
-        const q: { x: number; y: number }[] = [];
-        // Add all edge pixels
-        for (let x = 0; x < canvasW; x++) {
-          q.push({ x, y: 0 });
-          q.push({ x, y: canvasH - 1 });
-        }
-        for (let y = 0; y < canvasH; y++) {
-          q.push({ x: 0, y });
-          q.push({ x: canvasW - 1, y });
-        }
+        // Closing = dilate by (offset + bridge), then erode the bridge back off, so
+        // the line still sits exactly `marginMm` from the artwork everywhere except
+        // across the bridged gaps.
+        const ensurePadding = (bridgeR: number) => {
+          const needed = baseDilate + bridgeR + 4;
+          if (padding >= needed) return;
+          repad(needed);
+          dtFg = squaredDistanceTransform(fg, canvasW, canvasH);
+        };
 
-        const fVisited = Array.from({ length: canvasH }, () => new Uint8Array(canvasW));
-        let head = 0;
-        while (head < q.length) {
-          const { x, y } = q[head++];
-          if (x < 0 || x >= canvasW || y < 0 || y >= canvasH) continue;
-          if (fVisited[y][x]) continue;
-          fVisited[y][x] = 1;
+        const buildGrid = (bridgeR: number) => {
+          const mask = maskAt(bridgeR);
+          const eroRad = bridgeR + baseErode;
+          if (eroRad <= 0) return mask;
 
-          if (initialGrid[y][x] === 2 || initialGrid[y][x] === 0) {
-            initialGrid[y][x] = 0; // Mark as definite background
-            q.push({ x: x + 1, y });
-            q.push({ x: x - 1, y });
-            q.push({ x, y: y + 1 });
-            q.push({ x, y: y - 1 });
+          const complement = new Uint8Array(mask.length);
+          for (let i = 0; i < mask.length; i++) complement[i] = mask[i] ? 0 : 1;
+          const dtBg = squaredDistanceTransform(complement, canvasW, canvasH);
+
+          const eroded = new Uint8Array(mask.length);
+          const ero2 = eroRad * eroRad;
+          for (let i = 0; i < eroded.length; i++) eroded[i] = dtBg[i] > ero2 ? 1 : 0;
+          return eroded;
+        };
+
+        ensurePadding(bridge);
+        let grid = buildGrid(bridge);
+        let components = countComponents(grid, canvasW, canvasH);
+
+        if (components === 0) {
+          // Erosion erased the shape (tiny artwork with an inside cut): keep it un-eroded.
+          grid = maskAt(bridge);
+          components = countComponents(grid, canvasW, canvasH);
+        } else {
+          // Eroding the bridge back off can re-open a gap that only just closed.
+          // Widen it a little and retry.
+          let guard = 0;
+          while (components > 1 && bridge < maxBridge && guard++ < 4) {
+            bridge = Math.min(maxBridge, bridge + Math.max(2, Math.ceil(bridge * 0.5)));
+            ensurePadding(bridge);
+            grid = buildGrid(bridge);
+            components = countComponents(grid, canvasW, canvasH);
           }
+          if (components > 1) bridgeFailed = true;
         }
 
-        // Convert any remaining 2s (isolated white areas) to 1s (foreground)
-        for (let y = 0; y < canvasH; y++) {
-          for (let x = 0; x < canvasW; x++) {
-            if (initialGrid[y][x] === 2) {
-              initialGrid[y][x] = 1;
-            }
-          }
-        }
-        
-        // Dilate or erode grid to create outward outline or inward cut
-        const grid = type === "contour_inside" ? erodeGrid(initialGrid, dilationPixels) : dilateGrid(initialGrid, dilationPixels);
-        
-        const traceContours = (g: number[][]): Point[][] => {
-          const visited = Array.from({ length: canvasH }, () => new Uint8Array(canvasW));
+        const traceContours = (g: Uint8Array): Point[][] => {
+          const visited = new Uint8Array(canvasW * canvasH);
           const list: Point[][] = [];
-          
+
           // Moore-Neighborhood directions clockwise: N, NE, E, SE, S, SW, W, NW
           const dx = [0, 1, 1, 1, 0, -1, -1, -1];
           const dy = [-1, -1, 0, 1, 1, 1, 0, -1];
-          
+
+          // Generous safety net: the boundary of a blob on this grid is far shorter,
+          // but a hard-coded cap would silently truncate (and so cut off) a contour.
+          const stepLimit = Math.max(20000, (canvasW + canvasH) * 20);
+
           for (let y = 1; y < canvasH - 1; y++) {
             for (let x = 1; x < canvasW - 1; x++) {
-              if (g[y][x] === 1 && g[y][x - 1] === 0 && !visited[y][x]) {
+              const start = y * canvasW + x;
+              if (g[start] === 1 && g[start - 1] === 0 && !visited[start]) {
                 const contour: Point[] = [];
                 let cx = x;
                 let cy = y;
                 let backDir = 6;
-                
+
                 const startX = x;
                 const startY = y;
-                
-                let limit = 8000;
+
+                let limit = stepLimit;
                 while (limit-- > 0) {
                   contour.push({ x: cx, y: cy });
-                  visited[cy][cx] = 1;
-                  
-                  let searchDir = (backDir + 1) % 8;
+                  visited[cy * canvasW + cx] = 1;
+
+                  const searchDir = (backDir + 1) % 8;
                   let nextX = cx;
                   let nextY = cy;
                   let foundNext = false;
-                  
+
                   for (let i = 0; i < 8; i++) {
                     const dir = (searchDir + i) % 8;
                     const tx = cx + dx[dir];
                     const ty = cy + dy[dir];
-                    if (tx >= 0 && tx < canvasW && ty >= 0 && ty < canvasH && g[ty][tx] === 1) {
+                    if (tx >= 0 && tx < canvasW && ty >= 0 && ty < canvasH && g[ty * canvasW + tx] === 1) {
                       nextX = tx;
                       nextY = ty;
                       backDir = (dir + 4) % 8;
@@ -387,17 +517,17 @@ export function getContourPoints(
                       break;
                     }
                   }
-                  
+
                   if (!foundNext) break;
                   if (nextX === startX && nextY === startY) break;
-                  
+
                   cx = nextX;
                   cy = nextY;
                 }
-                
+
                 if (contour.length > 5) {
                   let processed: Point[];
-                  if (type === "contour_inside") {
+                  if (isInside) {
                     // Inner contour: track the real outline closely (tighter than the
                     // outer die-cut border) while still reading as a smooth curve.
                     // A moderate first smoothing pass kills the pixel staircase, a very
@@ -428,21 +558,22 @@ export function getContourPoints(
           return list;
         };
 
-        let contours = traceContours(grid);
-        let offsetAppliedPixels = dilationPixels;
-        if (contours.length === 0 && type === "contour_inside") {
-          // Retry with initialGrid if erosion completely erased the shape.
-          // No offset was actually applied in this case.
-          contours = traceContours(initialGrid);
-          offsetAppliedPixels = 0;
-        }
+        const contours = traceContours(grid);
 
         if (contours.length > 0) {
-          // Keep only the largest contour to guarantee a single unified border line
-          contours.sort((a, b) => b.length - a.length);
-          const largest = contours[0];
+          if (bridgeFailed) {
+            // Could not join the artwork into one piece within the bridging budget.
+            // Enclose everything in its convex hull rather than silently cutting
+            // parts of the design away.
+            const hull = convexHull(contours.flat());
+            resolve([hull.length > 2 ? hull : contours[0]]);
+            return;
+          }
 
-          resolve([largest]);
+          // One connected piece: the outer boundary is the largest-area contour
+          // (the others are holes, e.g. the middle of an "O").
+          contours.sort((a, b) => polygonArea(b) - polygonArea(a));
+          resolve([contours[0]]);
         } else {
           // Fallback to image box boundaries
           resolve([[{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 1, y: 1 }, { x: 0, y: 1 }]]);
