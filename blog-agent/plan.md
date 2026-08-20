@@ -154,15 +154,6 @@ Fazy 1-2 budowały **pokrycie person i nisz** - to zadanie jest w zasadzie wykon
     - **Dlaczego pierwszy:** fraza jest w `keywords.md` §6 od startu projektu i **nigdy nie dostała własnego wpisu**, mimo że jest najbliżej pieniędzy. Stała cena za arkusz to nasza najmocniejsza, najłatwiej cytowalna przewaga - konkurencja ma progi nakładowe i kalkulatory.
     - **Struktura (BLUF + tabele):** odpowiedź w 1. zdaniu (49,00 zł brutto za arkusz A4, bez minimalnego zamówienia) -> **tabela "koszt jednostkowy wg rozmiaru"**: rozmiar naklejki -> ile sztuk zmieści się na A4 -> koszt 1 szt. (dla kilku typowych rozmiarów, z zaznaczeniem, że liczba zależy od kształtu i odstępów) -> co wpływa na końcową kwotę (dostawa 19,99 zł paczkomat, forma zestawu: arkusz vs pojedyncze sztuki) -> **dlaczego u nas nie ma progów nakładowych** (przewaga PL: bez przygotowalni, bez matrycy, bez przeliczania z euro) -> kiedy taniej wyjdzie druk masowy w drukarni offsetowej (uczciwie: przy tysiącach sztuk) -> FAQ -> CTA.
 
-- [ ] **A2. Jaki rozmiar naklejki wybrać? Wymiary i ile naklejek zmieści się na arkuszu A4**
-    - **Format:** Supporting Article (~1100-1300 słów)
-    - **Główna Fraza Kluczowa:** `jaki rozmiar naklejki wybrać` (semantyczne: `rozmiary naklejek`, `ile naklejek zmieści się na A4`, `wymiary naklejek`, `naklejki 5 cm`)
-    - **Cel:** Edukacja -> konwersja (usuwa realną blokadę przed zamówieniem)
-    - **Persona:** Pierwszy raz zamawiający, twórcy merchu, mikro-brandy
-    - **Link nadrzędny (Filar):** `/blog/drukowanie-naklejek-online-na-co-zwrocic-uwage-przed-wysylka-projektu`
-    - **Dlaczego drugi:** domyka parę z A1 (cena + rozmiar to jedno pytanie zakupowe rozbite na dwa zapytania) i jest **magnesem na cytowania** - tabela "zastosowanie -> zalecany rozmiar" to dokładnie ten format, który modele wyciągają w całości. Dziś rozmiary są rozsypane po kilkunastu wpisach (`19 cm` pada 15x, `5 cm` 25x), bez jednego miejsca-referencji.
-    - **Struktura:** BLUF (jedna duża do 19 cm albo kilkadziesiąt małych na tym samym arkuszu za tę samą cenę) -> **tabela: zastosowanie -> zalecany rozmiar -> orientacyjnie szt./A4** (laptop, bidon, słoik, koperta, kask, plomba na paczkę, imienna na przybory) -> jak rozmiar wpływa na czytelność detalu i drobnego tekstu -> 300 DPI i co się dzieje przy powiększaniu małego pliku -> kształt a wykorzystanie arkusza (koło vs die-cut vs prostokąt; link do `/naklejki-die-cut` i wpisu o okrągłych) -> FAQ -> CTA.
-    - **⚠️ Wymaga potwierdzenia:** maksymalny wymiar pojedynczej naklejki (w treściach funkcjonuje **19 cm** - potwierdzić w `facts.md`), minimalny sensowny rozmiar i minimalny czytelny stopień pisma.
 
 - [ ] **A3. Gdzie zamówić naklejki w małym nakładzie? Porównanie: drukarnia lokalna, Allegro i serwisy zagraniczne**
     - **Format:** Supporting Article (~1400-1600 słów)
@@ -347,6 +338,14 @@ Właściciel podrzucił pulę fraz (patrz `blog-agent/keywords.md` §9). Po anal
 ---
 
 ## 📈 Zrealizowane Artykuły
+
+- [x] **A2. Jaki rozmiar naklejki wybrać? Wymiary i ile naklejek zmieści się na arkuszu A4** (opublikowano 2026-08-20)
+    - **Format:** Supporting Article (~1100-1300 słów)
+    - **Główna Fraza Kluczowa:** `jaki rozmiar naklejki wybrać` (semantyczne: `rozmiary naklejek`, `ile naklejek zmieści się na A4`, `wymiary naklejek`, `naklejki 5 cm`)
+    - **Cel:** Edukacja -> konwersja (usuwa realną blokadę przed zamówieniem)
+    - **Persona:** Pierwszy raz zamawiający, twórcy merchu, mikro-brandy
+    - **Link nadrzędny (Filar):** `/blog/drukowanie-naklejek-online-na-co-zwrocic-uwage-przed-wysylka-projektu`
+    - **Realizacja (2026-08-20):** slug `jaki-rozmiar-naklejki-wybrac`, bez osadzania zdjęć i generatora, zoptymalizowane wg najnowszych ustaleń.
 
 - [x] **Etykiety na słoiki do przetworów i weków - napisy na słoiki krok po kroku** (opublikowano 2026-08-06)
     - **Format:** Supporting Article
