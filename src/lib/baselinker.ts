@@ -55,6 +55,15 @@ export const BL_NEW_ORDER_STATUS_ID = 65507;
 /** Sposób płatności przekazywany do BaseLinkera — zawsze taki sam. */
 export const BL_PAYMENT_METHOD = "przelew 14 dni";
 
+/** Jedyny produkt, jaki trafia do BaseLinkera — pozycje różnią się ceną i ilością. */
+export const BL_PRODUCT = {
+  id: "17059",
+  name: "Naklejki na Arkuszu A4 - MałeNaklejki",
+} as const;
+
+/** Nazwa customowego pola zamówienia w BaseLinkerze, do którego kopiujemy uwagi. */
+export const BL_NOTES_FIELD_NAME = "Uwagi";
+
 /** Nazwy sposobów wysyłki tak, jak mają wyglądać w BaseLinkerze. */
 export const BL_DELIVERY_METHODS = {
   paczkomat: "InPost Paczkomaty",
@@ -176,7 +185,8 @@ export function buildBaseLinkerOrderParams(order: BLOrderSource): BLOrderParamet
     date_add: Math.floor((Number.isNaN(createdAt) ? Date.now() : createdAt) / 1000),
     phone: customer.phone || "",
     email: customer.email || "",
-    user_login: customer.email || "",
+    // Login klienta ma zostać pusty.
+    user_login: "",
     currency: "PLN",
     payment_method: BL_PAYMENT_METHOD,
     payment_method_cod: 0,
@@ -210,15 +220,21 @@ export function buildBaseLinkerOrderParams(order: BLOrderSource): BLOrderParamet
     want_invoice: 1,
     user_comments: buildOrderComments(items, delivery.method),
     products: items.map((item) => ({
-      name:
-        (item.name as string) ||
-        `Naklejki ${item.widthCm}x${item.heightCm}cm (${item.stickersPerSheet} szt/arkusz)`,
+      product_id: BL_PRODUCT.id,
+      name: BL_PRODUCT.name,
       price_brutto: (item.pricePerSheet as number) ?? 0,
       tax_rate: (item.taxRate as number) ?? 23,
       quantity: (item.sheetQuantity as number) ?? 1,
     })),
-    extra_field_1: order.orderNumber ?? "",
+    // Pola Termin i Druk zostają puste — nie wypełniamy extra_field_1/2.
   };
+}
+
+/** Treść customowego pola "Uwagi": uwagi do zamówienia + nasz numer zamówienia. */
+export function buildNotesFieldValue(order: BLOrderSource): string {
+  const comments = buildOrderComments(order.items ?? [], order.delivery?.method);
+  const number = order.orderNumber ? `Zamówienie: ${order.orderNumber}` : "";
+  return [comments, number].filter(Boolean).join("\n");
 }
 
 /**
@@ -274,6 +290,62 @@ async function callBaseLinkerAPI(method: string, parameters: object) {
  */
 export async function addOrderToBaseLinker(params: BLOrderParameters) {
   return await callBaseLinkerAPI("addOrder", params);
+}
+
+/** Lista customowych pól zamówień zdefiniowanych na koncie BaseLinkera. */
+async function getOrderExtraFields(): Promise<{ extra_field_id: string; name: string }[]> {
+  const data = await callBaseLinkerAPI("getOrderExtraFields", {});
+  return data?.status === "SUCCESS" ? data.extra_fields ?? [] : [];
+}
+
+/**
+ * ID customowego pola "Uwagi". BaseLinker nadaje je sam, więc raz na proces
+ * pytamy o listę pól i szukamy po nazwie; `BASELINKER_NOTES_FIELD_ID` pozwala
+ * wskazać je ręcznie, gdyby nazwa pola się zmieniła.
+ */
+let notesFieldIdPromise: Promise<string | null> | null = null;
+
+function resolveNotesFieldId(): Promise<string | null> {
+  const fromEnv = process.env.BASELINKER_NOTES_FIELD_ID;
+  if (fromEnv) return Promise.resolve(fromEnv);
+
+  notesFieldIdPromise ??= getOrderExtraFields()
+    .then((fields) => {
+      const target = BL_NOTES_FIELD_NAME.toLowerCase();
+      const match = fields.find((field) => field.name?.trim().toLowerCase() === target);
+      if (!match) {
+        console.warn(`BaseLinker: brak customowego pola "${BL_NOTES_FIELD_NAME}".`);
+        notesFieldIdPromise = null; // spróbujemy jeszcze raz przy kolejnym zamówieniu
+        return null;
+      }
+      return String(match.extra_field_id);
+    })
+    .catch((error) => {
+      console.error("BaseLinker: nie udało się pobrać listy pól dodatkowych:", error);
+      notesFieldIdPromise = null;
+      return null;
+    });
+
+  return notesFieldIdPromise;
+}
+
+/**
+ * Buduje parametry z zamówienia, dopina uwagi do customowego pola "Uwagi"
+ * i wysyła zamówienie do BaseLinkera.
+ */
+export async function sendOrderToBaseLinker(order: BLOrderSource) {
+  const params = buildBaseLinkerOrderParams(order);
+  const notes = buildNotesFieldValue(order);
+
+  const fieldId = await resolveNotesFieldId();
+  if (fieldId) {
+    // extra_field_1/2 to osobne parametry API, pozostałe pola idą w custom_extra_fields.
+    if (fieldId === "1") params.extra_field_1 = notes;
+    else if (fieldId === "2") params.extra_field_2 = notes;
+    else params.custom_extra_fields = { [Number(fieldId)]: notes };
+  }
+
+  return await addOrderToBaseLinker(params);
 }
 
 /**

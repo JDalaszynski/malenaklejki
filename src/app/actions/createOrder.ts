@@ -54,7 +54,7 @@ const CreateOrderSchema = z.object({
 
 import { registerTransaction } from "@/lib/p24";
 import { buildManualTransferEmailHtml, buildNewOrderSellerEmailHtml, buildOrderAttachments, buildVintedOrderCustomerEmailHtml, buildVintedOrderSellerEmailHtml } from "@/lib/emails";
-import { addOrderToBaseLinker, buildBaseLinkerOrderParams } from "@/lib/baselinker";
+import { sendOrderToBaseLinker } from "@/lib/baselinker";
 
 /**
  * Generates a human-readable order number: MNK-YYYYMMDD-XXXX
@@ -267,7 +267,7 @@ async function doCreateOrder(rawData: any) {
     // Wysyłamy zamówienie do BaseLinkera — mapowanie pól siedzi w lib/baselinker,
     // wspólne z ręczną wysyłką z panelu.
     try {
-      const blResult = await addOrderToBaseLinker(buildBaseLinkerOrderParams(cleanOrderData));
+      const blResult = await sendOrderToBaseLinker(cleanOrderData);
       if (blResult && blResult.status === "SUCCESS") {
         await orderRef.update({ baselinkerOrderId: blResult.order_id });
         console.log(`Zapisano zamówienie w BaseLinkerze (ID: ${blResult.order_id})`);

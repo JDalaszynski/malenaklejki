@@ -9,7 +9,7 @@ import { recordAudit } from "@/lib/admin/audit";
 import { deleteOrderLayouts } from "@/lib/orders/layout";
 import { sweepAbandonedOrders } from "@/lib/orders/sweep";
 import { sendPaidOrderNotifications } from "@/lib/orders/notifications";
-import { setOrderPayment, addOrderToBaseLinker, buildBaseLinkerOrderParams } from "@/lib/baselinker";
+import { setOrderPayment, sendOrderToBaseLinker } from "@/lib/baselinker";
 import { FULFILLMENT_STATUSES, PAYMENT_STATUSES } from "@/lib/orders/status";
 
 type Result<T = object> = ({ success: true } & T) | { success: false; error: string };
@@ -460,9 +460,7 @@ export async function pushOrderToBaseLinker(orderId: string): Promise<Result> {
     return { success: false, error: "To zamówienie jest już w BaseLinkerze." };
   }
 
-  const params = buildBaseLinkerOrderParams(order);
-
-  const result = await addOrderToBaseLinker(params);
+  const result = await sendOrderToBaseLinker(order);
   if (result?.status !== "SUCCESS") {
     return { success: false, error: result?.error_message || "BaseLinker odrzucił zamówienie." };
   }
