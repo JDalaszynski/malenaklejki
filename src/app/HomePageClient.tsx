@@ -1,6 +1,11 @@
 "use client";
 
 import { getUUID } from "@/lib/uuid";
+import {
+  CART_LAYOUT_PREFIX,
+  MAX_LAYOUT_BYTES,
+  serializeLayout,
+} from "@/lib/orders/layoutFormat";
 import { useState, useEffect, useMemo, useRef } from "react";
 import Link from "next/link";
 import NextImage from "next/image";
@@ -64,6 +69,7 @@ import {
   getCutLineOffsetMm,
 } from "@/lib/utils/collision";
 import { getContourPoints } from "@/lib/utils/contour";
+import { getRenderImageUrl } from "@/lib/utils/transparentBackground";
 import {
   getStickersNoun,
   getIndividualStickersLabel,
@@ -185,15 +191,26 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     if (mounted && editCartItemId && cartItems.length > 0) {
       const item = cartItems.find((i) => i.id === editCartItemId);
-      if (item && item.stickers && item.stickers.length > 0) {
-        setStickers(item.stickers);
-        setSheetQuantity(item.sheetQuantity);
-        setDeliveryForm(item.deliveryForm || "sheet");
+      if (!item) return;
 
-        // Remove edit param from URL without reloading
+      const clearEditParam = () => {
         const url = new URL(window.location.href);
         url.searchParams.delete("edit");
         window.history.replaceState({}, "", url.toString());
+      };
+
+      if (item.stickers && item.stickers.length > 0) {
+        setStickers(item.stickers);
+        setSheetQuantity(item.sheetQuantity);
+        setDeliveryForm(item.deliveryForm || "sheet");
+        clearEditParam();
+      } else {
+        // Pozycja bez zapisanego układu (np. arkusz zamówiony ponownie ze
+        // starszego zamówienia). Nie ma czego wczytać, więc wychodzimy z trybu
+        // edycji — inaczej kolejny zaprojektowany arkusz po cichu nadpisałby
+        // tę pozycję w koszyku zamiast dodać się jako nowa.
+        setEditCartItemId(null);
+        clearEditParam();
       }
     }
   }, [mounted, editCartItemId, cartItems]);
@@ -1176,8 +1193,15 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
   const handleDownloadSticker = async () => {
     if (!selectedSticker) return;
     try {
+      // Kontur pobieramy w tej samej postaci, w jakiej idzie do druku — z wybitym tłem.
+      const renderUrl = await getRenderImageUrl(
+        selectedSticker.imageUrl,
+        selectedSticker.cutLineType,
+      );
       const response = await fetch(
-        `/api/proxy-image?url=${encodeURIComponent(selectedSticker.imageUrl)}`,
+        renderUrl.startsWith("blob:") || renderUrl.startsWith("data:")
+          ? renderUrl
+          : `/api/proxy-image?url=${encodeURIComponent(renderUrl)}`,
       );
       if (!response.ok) throw new Error("Failed to fetch image via proxy");
       const blob = await response.blob();
@@ -1211,8 +1235,19 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
       img.crossOrigin = "anonymous";
       img.onload = () => resolve(img);
       img.onerror = (e) => reject(new Error("Failed to load image: " + url));
-      img.src = `/api/proxy-image?url=${encodeURIComponent(url)}`;
+      // Wersje z wybitym tłem żyją jako blob: w tej karcie — proxy tylko by je popsuło.
+      img.src =
+        url.startsWith("blob:") || url.startsWith("data:")
+          ? url
+          : `/api/proxy-image?url=${encodeURIComponent(url)}`;
     });
+
+  // Grafika naklejki gotowa do rysowania na płótnie: dla konturu z wybitym białym
+  // tłem, żeby prostokąt jednej naklejki nie zamalował sąsiadki w pliku do druku.
+  const loadStickerImage = async (st: PlacedSticker): Promise<HTMLImageElement> => {
+    const renderUrl = await getRenderImageUrl(st.imageUrl, st.cutLineType);
+    return loadProxiedImage(renderUrl);
+  };
 
   // Render high resolution sheet on hidden canvas
   const renderSheetCanvas = async (
@@ -1236,7 +1271,7 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
         : await Promise.all(
           stickers.map(async (st) => {
             try {
-              const img = await loadProxiedImage(st.imageUrl);
+              const img = await loadStickerImage(st);
               return { id: st.id, img };
             } catch (err) {
               console.error(err);
@@ -1515,7 +1550,7 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
     const loadedImages = await Promise.all(
       stickers.map(async (st) => {
         try {
-          const img = await loadProxiedImage(st.imageUrl);
+          const img = await loadStickerImage(st);
           return { id: st.id, img };
         } catch (err) {
           console.error(err);
@@ -2016,9 +2051,35 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
         cutLinesUrl = await getDownloadURL(cutSnapshot.ref);
       }
 
+      // Układ arkusza wędruje do Storage osobnym plikiem JSON. Nie może jechać
+      // razem z zamówieniem, bo formularz zamówienia czyści pole `stickers`,
+      // żeby zmieścić się w limicie rozmiaru żądania — a bez zapisanego układu
+      // nie dałoby się później otworzyć tego arkusza z historii zamówień.
+      let layoutPath: string | undefined;
+      try {
+        const layoutJson = serializeLayout(stickers);
+        const layoutBlob = new Blob([layoutJson], { type: "application/json" });
+        if (layoutBlob.size <= MAX_LAYOUT_BYTES) {
+          // Przy edycji pozycji powstaje nowy plik, a poprzedni zostaje
+          // nieużywany — reguły Storage nie pozwalają przeglądarce kasować,
+          // a osierocone układy koszyka sprząta reguła cyklu życia bucketa.
+          const layoutFileName = `${CART_LAYOUT_PREFIX}/${getUUID()}.json`;
+          await uploadBytes(ref(storage, layoutFileName), layoutBlob, {
+            contentType: "application/json",
+          });
+          layoutPath = layoutFileName;
+        } else {
+          console.warn("Układ arkusza przekracza limit — pomijam zapis.");
+        }
+      } catch (err) {
+        // Brak układu oznacza tylko brak edycji z historii, nigdy błąd zamówienia.
+        console.warn("Nie udało się zapisać układu arkusza:", err);
+      }
+
       const cartItemData = {
         imageUrl: printUrl,
         cutLinesImageUrl: cutLinesUrl,
+        layoutPath,
         widthCm: 21,
         heightCm: 29.7, // A4 sheet size
         stickersPerSheet: stickers.length,

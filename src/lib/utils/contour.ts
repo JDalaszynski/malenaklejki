@@ -1,4 +1,5 @@
 import { getCutLineOffsetMm } from "./collision";
+import { computeForegroundMask } from "./imageMask";
 
 interface Point {
   x: number;
@@ -320,60 +321,11 @@ export function getContourPoints(
         ctx.drawImage(img, 0, 0, imgW, imgH);
 
         const data = ctx.getImageData(0, 0, imgW, imgH).data;
-        const pixelCount = imgW * imgH;
 
-        // Classify pixels
-        // 0 = definite background (transparent)
-        // 1 = definite foreground (colored)
-        // 2 = potential background (near-white)
-        const cls = new Uint8Array(pixelCount);
-        for (let i = 0; i < pixelCount; i++) {
-          const idx = i * 4;
-          const a = data[idx + 3];
-          if (a < 25) {
-            cls[i] = 0;
-          } else if (data[idx] > 240 && data[idx + 1] > 240 && data[idx + 2] > 240) {
-            cls[i] = 2;
-          } else {
-            cls[i] = 1;
-          }
-        }
-
-        // Flood fill from the image border to turn connected potential background (2)
-        // into definite background (0). Everything outside the image is transparent,
-        // so seeding from the border is equivalent to seeding from outside it.
-        const fillStack = new Int32Array(pixelCount);
-        const fillSeen = new Uint8Array(pixelCount);
-        let fsp = 0;
-        const pushBg = (x: number, y: number) => {
-          if (x < 0 || x >= imgW || y < 0 || y >= imgH) return;
-          const i = y * imgW + x;
-          if (fillSeen[i] || cls[i] === 1) return;
-          fillSeen[i] = 1;
-          cls[i] = 0;
-          fillStack[fsp++] = i;
-        };
-        for (let x = 0; x < imgW; x++) {
-          pushBg(x, 0);
-          pushBg(x, imgH - 1);
-        }
-        for (let y = 0; y < imgH; y++) {
-          pushBg(0, y);
-          pushBg(imgW - 1, y);
-        }
-        while (fsp > 0) {
-          const i = fillStack[--fsp];
-          const x = i % imgW;
-          const y = (i / imgW) | 0;
-          pushBg(x + 1, y);
-          pushBg(x - 1, y);
-          pushBg(x, y + 1);
-          pushBg(x, y - 1);
-        }
-
-        // Any remaining 2s (isolated white areas) are foreground
-        const imgFg = new Uint8Array(pixelCount);
-        for (let i = 0; i < pixelCount; i++) imgFg[i] = cls[i] === 0 ? 0 : 1;
+        // Klasyfikacja tła (przezroczyste + prawie białe połączone z krawędzią)
+        // jest wspólna z modułem przezroczystości, żeby linia cięcia i wybite tło
+        // opisywały ten sam kształt.
+        const imgFg = computeForegroundMask(data, imgW, imgH);
 
         // Padded canvas so the dilated outline can expand without clipping.
         let padding = baseDilate + 4;

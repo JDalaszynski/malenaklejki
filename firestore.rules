@@ -1,0 +1,16 @@
+rules_version = '2';
+
+// Cała komunikacja z Firestore odbywa się po stronie serwera przez Firebase
+// Admin SDK, który przy każdym odczycie sprawdza właściciela zamówienia
+// (patrz src/lib/auth/dal.ts). Admin SDK działa z pominięciem tych reguł,
+// więc dla przeglądarki zamykamy bazę w całości.
+//
+// Efekt: nawet znając ID projektu i ID dokumentu nie da się odczytać
+// żadnego zamówienia ani profilu bezpośrednio z przeglądarki.
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

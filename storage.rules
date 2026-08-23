@@ -1,25 +1,40 @@
 rules_version = '2';
 
-// Craft rules based on data in your Firestore database
-// allow write: if firestore.get(
-//    /databases/(default)/documents/users/$(request.auth.uid)).data.isAdmin;
 service firebase.storage {
   match /b/{bucket}/o {
-    
-    // Allow public read and restricted creation in the uploads directory
+
+    // Grafiki naklejek i gotowe kompozycje arkuszy.
+    // Gość musi móc wgrać plik zanim założy konto, więc zapis jest otwarty —
+    // ogranicza go rozmiar, typ MIME i (docelowo) App Check.
     match /uploads/{allPaths=**} {
-      // Anyone can read images to preview their stickers
+      // Adresy pobierania zawierają nieodgadywalny token, więc otwarty odczyt
+      // nie oznacza, że da się przeglądać cudze pliki.
       allow read: if true;
-      
-      // Anyone can upload files, but only images under 10MB
+
       allow create: if request.resource.size < 10 * 1024 * 1024
                     && request.resource.contentType.matches('image/.*');
-                    
-      // Disallow updating existing files and deleting them
+
       allow update, delete: if false;
     }
-    
-    // Explicitly deny access to any other paths
+
+    // Zapisany układ arkusza (pozycje naklejek, kontury cięcia), potrzebny do
+    // ponownego otwarcia zamówienia w kreatorze.
+    //
+    // Kreator wgrywa go tutaj razem z obrazami arkusza — układ nie może iść
+    // razem z treścią zamówienia, bo przekroczyłby limit rozmiaru żądania.
+    // Zapis jest więc otwarty jak dla obrazów, ale odczyt już nie: pliki czyta
+    // wyłącznie serwer przez Admin SDK, po sprawdzeniu właściciela zamówienia.
+    match /layouts/carts/{fileName} {
+      allow create: if request.resource.size < 4 * 1024 * 1024
+                    && request.resource.contentType == 'application/json';
+      allow read, update, delete: if false;
+    }
+
+    // Układy przypięte do zamówień — tylko serwer.
+    match /layouts/{allPaths=**} {
+      allow read, write: if false;
+    }
+
     match /{allPaths=**} {
       allow read, write: if false;
     }

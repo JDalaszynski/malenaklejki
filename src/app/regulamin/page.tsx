@@ -321,8 +321,55 @@ export default function RegulaminPage() {
       ),
     },
     {
+      id: "konto-klienta",
+      title: "§ 9. Konto Klienta",
+      searchText: `konto klienta rejestracja logowanie hasło Google potwierdzenie adresu e-mail historia zamówień ponowne zamówienie arkusza usunięcie konta bezpłatne dobrowolne.`,
+      content: (
+        <div className="space-y-4">
+          <p>
+            1. Sprzedawca umożliwia Klientowi założenie Konta. Prowadzenie Konta jest
+            bezpłatne i dobrowolne — złożenie Zamówienia jest możliwe także bez Konta.
+          </p>
+          <p>
+            2. Konto zakłada się podając adres e-mail i hasło albo logując się kontem
+            Google. Konto można również założyć przy składaniu Zamówienia oraz po jego
+            złożeniu, na ekranie potwierdzenia.
+          </p>
+          <p>
+            3. Pełny dostęp do Konta, w tym do historii Zamówień, wymaga potwierdzenia
+            adresu e-mail przez kliknięcie w link wysłany na ten adres. Zamówienia złożone
+            wcześniej bez logowania zostają przypisane do Konta dopiero po takim
+            potwierdzeniu.
+          </p>
+          <p>
+            4. W ramach Konta Klient ma dostęp do historii Zamówień, podglądu zamówionych
+            arkuszy oraz możliwości ponownego zamówienia tego samego arkusza — trafia on
+            wówczas do koszyka jako nowa pozycja. Ponowne zamówienie arkusza nie zmienia
+            w żaden sposób Zamówienia już złożonego.
+          </p>
+          <p>
+            5. Klient zobowiązuje się do zachowania hasła w poufności i nieudostępniania
+            Konta osobom trzecim. Sprzedawca nigdy nie prosi o podanie hasła w wiadomości
+            e-mail ani telefonicznie.
+          </p>
+          <p>
+            6. Klient może w każdej chwili usunąć Konto w panelu Konta, w zakładce
+            „Bezpieczeństwo". Usunięcie Konta nie wpływa na Zamówienia będące w trakcie
+            realizacji ani na obowiązki podatkowe i rachunkowe Sprzedawcy związane
+            z już zrealizowaną sprzedażą.
+          </p>
+          <p>
+            7. Sprzedawca może zablokować lub usunąć Konto, jeżeli Klient korzysta z niego
+            w sposób naruszający prawo lub Regulamin, w szczególności podejmując próby
+            nieuprawnionego dostępu do danych innych Klientów. O zablokowaniu Konta Klient
+            zostaje poinformowany na podany adres e-mail.
+          </p>
+        </div>
+      ),
+    },
+    {
       id: "dane-osobowe",
-      title: "§ 9. Dane osobowe i pliki cookies",
+      title: "§ 10. Dane osobowe i pliki cookies",
       searchText: `dane osobowe pliki cookies administrator danych sprzedawca. realizacja zamówienia rozliczenia finansowo-księgowe dochodzenie roszczeń RODO Polityka Prywatności. analityczne marketingowe zgoda ciasteczka Google Analytics.`,
       content: (
         <div className="space-y-4">
@@ -351,7 +398,7 @@ export default function RegulaminPage() {
     },
     {
       id: "postanowienia-koncowe",
-      title: "§ 10. Postanowienia końcowe",
+      title: "§ 11. Postanowienia końcowe",
       searchText: `zmiana regulaminu ważne przyczyny techniczne prawne organizacyjne. kodeks cywilny ustawa o prawach konsumenta przepisy prawa polskiego.`,
       content: (
         <div className="space-y-4">
@@ -375,7 +422,7 @@ export default function RegulaminPage() {
     <DocLayout
       title="Regulamin Sklepu Internetowego MałeNaklejki"
       description="Regulamin określający warunki korzystania ze sklepu internetowego oraz zasady składania zamówień na spersonalizowane naklejki na arkuszach A4."
-      lastUpdated="14 czerwca 2026 r."
+      lastUpdated="22 sierpnia 2026 r."
       activeTab="regulamin"
       sections={sections}
     />

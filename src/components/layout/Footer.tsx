@@ -93,6 +93,9 @@ export function Footer({ children }: FooterProps = {}) {
             <Link href="/kontakt" className="hover:underline font-semibold transition-colors">
               Kontakt
             </Link>
+            <Link href="/konto" className="hover:underline font-semibold transition-colors">
+              Moje konto
+            </Link>
           </div>
 
           {/* Social Media Links */}

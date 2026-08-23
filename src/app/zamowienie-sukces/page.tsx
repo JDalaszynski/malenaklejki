@@ -2,6 +2,7 @@
 
 import { Suspense, useState, useEffect, useRef } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
+import { ClaimAccountCard } from "@/components/account/ClaimAccountCard";
 import { Header } from "@/components/layout/Header";
 import Link from "next/link";
 import {
@@ -408,6 +409,13 @@ function SuccessContent() {
           <ArrowRight className="w-5 h-5" />
         </Link>
       </div>
+
+      {orderId && (orderNumber || orderNumberParam) && (
+        <ClaimAccountCard
+          orderId={orderId}
+          orderNumber={(orderNumber || orderNumberParam) as string}
+        />
+      )}
 
       {/* Branding footer note */}
       <div className="mt-10 text-center animate-in fade-in duration-700 delay-300">

@@ -95,7 +95,14 @@ export default function CartPage() {
             {/* Lista produktów */}
             <div className="lg:col-span-2 space-y-4">
               <AnimatePresence initial={false}>
-                {items.map((item) => (
+                {items.map((item) => {
+                  // Arkusz da się otworzyć w kreatorze tylko wtedy, gdy znamy
+                  // układ naklejek. Pozycje dodane przez kreator mają go zawsze;
+                  // brakuje go arkuszom zamówionym ponownie ze starszych
+                  // zamówień, sprzed wdrożenia zapisu układów.
+                  const canEdit = Boolean(item.stickers && item.stickers.length > 0);
+
+                  return (
                   <motion.div
                     key={item.id}
                     layout
@@ -107,8 +114,14 @@ export default function CartPage() {
                   >
                     {/* Lewa strona: Podgląd i Szczegóły */}
                     <Link
-                      href={`/?edit=${item.id}`}
-                      className="flex items-center gap-4 flex-1 hover:opacity-80 transition-opacity"
+                      href={canEdit ? `/?edit=${item.id}` : "/koszyk"}
+                      onClick={(e) => {
+                        if (!canEdit) e.preventDefault();
+                      }}
+                      aria-disabled={!canEdit}
+                      className={`flex items-center gap-4 flex-1 transition-opacity ${
+                        canEdit ? "hover:opacity-80" : "cursor-default"
+                      }`}
                     >
                       <div className="w-20 h-20 sm:w-24 sm:h-24 bg-muted/30 rounded-xl overflow-hidden flex-shrink-0 border border-border/40 p-2 flex items-center justify-center">
                         <img
@@ -152,9 +165,11 @@ export default function CartPage() {
                             zł za 1 naklejkę!
                           </p>
                         )}
-                        <p className="text-[10px] font-bold text-primary mt-1 underline">
-                          Edytuj arkusz
-                        </p>
+                        {canEdit && (
+                          <p className="text-[10px] font-bold text-primary mt-1 underline">
+                            Edytuj arkusz
+                          </p>
+                        )}
                       </div>
                     </Link>
 
@@ -210,7 +225,8 @@ export default function CartPage() {
                       </button>
                     </div>
                   </motion.div>
-                ))}
+                  );
+                })}
               </AnimatePresence>
             </div>
 

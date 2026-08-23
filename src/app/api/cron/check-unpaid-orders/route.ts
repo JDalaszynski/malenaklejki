@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/lib/firebase/admin";
 import { getTransactionBySessionId } from "@/lib/p24";
+import { sweepAbandonedOrders } from "@/lib/orders/sweep";
 import {
   buildUnpaidOrderSellerEmailHtml,
   buildCustomerEmailHtml,
@@ -34,16 +35,35 @@ async function sendEmail(payload: object): Promise<boolean> {
 
 export async function GET(req: NextRequest) {
   try {
-    // 1. Zabezpieczenie endpointu w produkcji
+    // 1. Zabezpieczenie endpointu w produkcji.
+    //
+    // Wcześniej warunek wymagał, żeby `CRON_SECRET` był ustawiony — przy braku
+    // zmiennej cała kontrola była pomijana i endpoint stawał się publiczny.
+    // A wywołuje on wysyłkę maili do klientów i do sprzedawcy (z załącznikami),
+    // więc każdy mógł nim generować ruch na koncie Brevo. Teraz brak sekretu
+    // na produkcji blokuje wywołanie zamiast je przepuszczać.
     const cronSecret = process.env.CRON_SECRET;
     const authHeader = req.headers.get("Authorization");
 
-    if (process.env.NODE_ENV === "production" && cronSecret && authHeader !== `Bearer ${cronSecret}`) {
-      console.warn("Próba nieautoryzowanego wywołania endpointu Cron.");
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    if (process.env.NODE_ENV === "production") {
+      if (!cronSecret) {
+        console.error("CRON_SECRET nie jest ustawiony — endpoint Cron zablokowany.");
+        return NextResponse.json({ error: "Not configured" }, { status: 503 });
+      }
+      if (authHeader !== `Bearer ${cronSecret}`) {
+        console.warn("Próba nieautoryzowanego wywołania endpointu Cron.");
+        return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+      }
     }
 
     console.log("Uruchamianie Cron: Sprawdzanie nieopłaconych zamówień...");
+
+    // Najpierw sprzątamy zamówienia porzucone przed wybraniem formy płatności —
+    // nigdy nie zostaną opłacone, więc nie ma po co ich dalej sprawdzać.
+    const sweep = await sweepAbandonedOrders();
+    if (sweep.moved > 0) {
+      console.log(`Cron: przeniesiono do kosza ${sweep.moved} porzuconych zamówień.`);
+    }
 
     // 2. Pobranie zamówień oczekujących na płatność
     const ordersSnap = await db.collection("orders")
@@ -104,6 +124,8 @@ export async function GET(req: NextRequest) {
           status: "PAID",
           paidAt: new Date().toISOString(),
           p24OrderId: p24OrderId,
+          // Płatność odnaleziona po czasie wyjmuje zamówienie z kosza.
+          deletedAt: null,
         });
 
         // Wyślij normalne e-maile o udanej płatności

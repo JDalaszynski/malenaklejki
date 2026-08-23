@@ -4,6 +4,7 @@ import React, { useRef, useState, useEffect } from "react";
 import { createPortal } from "react-dom";
 import { PlacedSticker } from "@/types/creator";
 import { checkOverlap, getRotatedSize, getCutLineMargins, getOuterMargins, getCutLineBoundingBox, checkStickersCollision, clampToUsableArea, getContourMargins, getDisplayedWidthCm, getCutLineOffsetMm } from "@/lib/utils/collision";
+import { useRenderImageUrls } from "@/lib/utils/transparentBackground";
 import { MoreVertical, Scissors, RotateCw, Crop, Copy, Trash2, Ban, Sparkles, Square, Circle, LayoutGrid, Loader2, MousePointerClick } from "lucide-react";
 
 interface NewA4VisualizerProps {
@@ -164,6 +165,11 @@ export function NewA4Visualizer({
   }, [isPresentationMode]);
 
   const displayStickers = isPresentationMode ? demoStickers : stickers;
+
+  // Naklejki z konturem pokazujemy z wybitym białym tłem, żeby prostokątne tło
+  // jednej grafiki nie zasłaniało sąsiadki (kolizje liczone są po obrysie, więc
+  // ramki mogą się na siebie nakładać).
+  const renderImageUrls = useRenderImageUrls(displayStickers);
 
   const handlePointerDown = (e: React.PointerEvent, sticker: PlacedSticker) => {
     if (isPresentationMode) return;
@@ -733,7 +739,7 @@ export function NewA4Visualizer({
               }}
             >
               <img
-                src={st.imageUrl}
+                src={renderImageUrls[st.imageUrl] || st.imageUrl}
                 alt="Naklejka"
                 draggable={false}
                 className={`absolute inset-0 w-full h-full pointer-events-none select-none ${
@@ -743,7 +749,11 @@ export function NewA4Visualizer({
                 }`}
                 style={{
                   borderRadius: st.cutLineType === "contour" || st.cutLineType === "contour_inside" ? "0" : "1.008cqw",
-                  mixBlendMode: "multiply",
+                  // Po wybiciu tła nie ma już bieli do ukrycia, a `multiply`
+                  // przyciemniałby miejsca, w których obrysy sąsiadują ze sobą.
+                  // Dopóki wersja z przezroczystością się liczy, `multiply`
+                  // zostaje jako zabezpieczenie na białym arkuszu.
+                  mixBlendMode: renderImageUrls[st.imageUrl] ? "normal" : "multiply",
                 }}
               />
 

@@ -2,8 +2,10 @@
 
 import { db } from "@/lib/firebase/admin";
 import { z } from "zod";
-import { checkRateLimit } from "@/lib/utils/rateLimit";
-import { escapeHtml } from "@/lib/utils/sanitize";
+import { consumeRateLimit, formatRetryAfter } from "@/lib/auth/rateLimit";
+import { readSession } from "@/lib/auth/session";
+import { attachCartLayout } from "@/lib/orders/layout";
+import { createAccountFromOrder } from "@/lib/auth/accountFromOrder";
 import { headers } from "next/headers";
 
 const OrderItemSchema = z.object({
@@ -16,6 +18,8 @@ const OrderItemSchema = z.object({
   imageUrl: z.string(),
   cutLinesImageUrl: z.string().optional().nullable(),
   deliveryForm: z.enum(["sheet", "individual"]).default("sheet"),
+  /** Ścieżka do układu arkusza wgranego przez kreator (`layouts/carts/...`). */
+  layoutPath: z.string().max(300).optional().nullable(),
 }).passthrough();
 
 const CreateOrderSchema = z.object({
@@ -35,6 +39,15 @@ const CreateOrderSchema = z.object({
   nip: z.string().max(20).optional(),
   companyName: z.string().max(200).optional(),
   items: z.array(OrderItemSchema).min(1).max(100),
+  // Gość może przy okazji założyć konto — hasło nigdzie nie jest zapisywane
+  // razem z zamówieniem, trafia wyłącznie do Firebase Auth.
+  accountPassword: z
+    .string()
+    .min(8)
+    .max(200)
+    .refine((v) => /[A-Za-zĄĆĘŁŃÓŚŹŻąćęłńóśźż]/.test(v) && /[0-9]/.test(v))
+    .optional(),
+  accountMarketingConsent: z.boolean().optional(),
 });
 
 import { registerTransaction } from "@/lib/p24";
@@ -113,9 +126,13 @@ async function doCreateOrder(rawData: any) {
   try {
     // 1. Rate limiting
     const headersList = await headers();
-    const ip = headersList.get("x-forwarded-for") || "unknown";
-    if (!checkRateLimit(`order-${ip}`, 5, 3600000)) {
-      return { success: false, error: "Zbyt wiele prób utworzenia zamówienia. Spróbuj później." };
+    const ip = (headersList.get("x-forwarded-for") || "unknown").split(",")[0].trim();
+    const limit = await consumeRateLimit(`order:${ip}`, 5, 3600000);
+    if (!limit.ok) {
+      return {
+        success: false,
+        error: `Zbyt wiele prób utworzenia zamówienia. Spróbuj ${formatRetryAfter(limit.retryAfterMs)}.`,
+      };
     }
 
     // 2. Validate input using Zod
@@ -124,7 +141,7 @@ async function doCreateOrder(rawData: any) {
       console.error("Zod Validation Error:", result.error);
       return { success: false, error: "Błędne dane zamówienia. Spróbuj ponownie." };
     }
-    const data = result.data;
+    const { accountPassword, accountMarketingConsent, ...data } = result.data;
 
     // 3. Server-side price calculation
     const serverSubtotal = data.items.reduce(
@@ -148,18 +165,36 @@ async function doCreateOrder(rawData: any) {
     // 5. Create Firestore Document
     const orderRef = db.collection("orders").doc();
 
-    // Usuwamy pole `stickers` (które zawiera zagnieżdżone tablice, np. contourPolygons[][]), 
-    // ponieważ Firebase Firestore nie obsługuje tablic w tablicach. Ponadto, nie potrzebujemy
-    // zapamiętywać ułożenia pojedynczych naklejek w bazie - wystarczą nam wygenerowane pliki PDF.
-    const itemsToSave = finalData.items.map((item) => {
-      const { stickers, ...rest } = item as any;
-      return rest;
-    });
+    // Układ arkusza leży już w Storage — kreator wgrał go tam przy dodawaniu
+    // do koszyka, bo treść zamówienia jest czyszczona z pola `stickers`
+    // (limit rozmiaru żądania). Tutaj tylko przepinamy plik z katalogu koszyka
+    // pod zamówienie, żeby dało się później otworzyć ten arkusz w kreatorze.
+    const itemsToSave = await Promise.all(
+      finalData.items.map(async (item, index) => {
+        const { stickers, layoutPath: cartLayoutPath, ...rest } = item as any;
+        const itemId: string = rest.id || `pozycja-${index + 1}`;
+        const layoutPath = cartLayoutPath
+          ? await attachCartLayout(cartLayoutPath, orderRef.id, itemId)
+          : null;
+        return { ...rest, id: itemId, layoutPath };
+      })
+    );
+
+    // Zamówienie złożone przez zalogowaną osobę od razu ląduje w jej koncie.
+    // Gość dostanie je po założeniu konta i potwierdzeniu adresu e-mail —
+    // `customerEmailLower` jest kluczem, po którym je wtedy odnajdujemy.
+    const session = await readSession();
+    const emailLower = finalData.email.toLowerCase().trim();
 
     const orderData = {
       id: orderRef.id,
       orderNumber,
       status: "PENDING_PAYMENT",
+      fulfillmentStatus: "NEW",
+      source: "shop",
+      userId: session?.uid ?? null,
+      customerEmailLower: emailLower,
+      deletedAt: null,
       createdAt: new Date().toISOString(),
       customer: {
         email: finalData.email,
@@ -207,6 +242,23 @@ async function doCreateOrder(rawData: any) {
     // JSON.parse(JSON.stringify()) to szybki i bezpieczny sposób na usunięcie wszystkich kluczy z wartością `undefined` z obiektu.
     const cleanOrderData = JSON.parse(JSON.stringify(orderData));
     await orderRef.set(cleanOrderData);
+
+    // Konto zakładamy po zapisaniu zamówienia — nieudana rejestracja (np. adres
+    // ma już konto) nie może zablokować samego zakupu.
+    if (accountPassword && !session) {
+      const created = await createAccountFromOrder(
+        cleanOrderData,
+        accountPassword,
+        Boolean(accountMarketingConsent),
+        (process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000").replace(/\/+$/, "")
+      );
+      if (created.ok) {
+        await orderRef.update({ userId: created.uid, linkedAt: new Date().toISOString() });
+        console.log(`Założono konto ${created.uid} przy zamówieniu ${orderNumber}`);
+      } else {
+        console.warn(`Nie założono konta przy zamówieniu ${orderNumber}: ${created.message}`);
+      }
+    }
 
     // Wysyłamy zamówienie do BaseLinkera
     try {
@@ -301,7 +353,9 @@ async function doCreateOrder(rawData: any) {
     }
 
     // 6. Handle Payment Routing
-    const appUrl = process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000";
+    // Ukośnik na końcu adresu z konfiguracji dawałby `//zamowienie-sukces`
+    // w adresach powrotu przekazywanych do Przelewy24.
+    const appUrl = (process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000").replace(/\/+$/, "");
     const returnUrl = `${appUrl}/zamowienie-sukces?orderNumber=${encodeURIComponent(orderNumber)}&orderId=${orderRef.id}`;
     const offlineReturnUrl = `${returnUrl}&paymentMethod=${finalData.paymentMethod}`;
 
@@ -410,7 +464,7 @@ export async function retryOrderPayment(orderId: string) {
       return { success: false, error: "Zamówienie jest już opłacone" };
     }
 
-    const appUrl = process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000";
+    const appUrl = (process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000").replace(/\/+$/, "");
     const returnUrl = `${appUrl}/zamowienie-sukces?orderNumber=${encodeURIComponent(orderData.orderNumber)}&orderId=${orderId}`;
     const statusUrl = `${appUrl}/api/webhooks/przelewy24`;
 

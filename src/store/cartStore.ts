@@ -13,12 +13,15 @@ export interface CartItem {
   sheetQuantity: number;
   pricePerSheet: number;
   stickers?: any[]; // Store the exact sticker layout for editing
+  /** Ścieżka do układu arkusza w Storage — pozwala wrócić do niego z historii zamówień. */
+  layoutPath?: string;
   deliveryForm?: "sheet" | "individual";
 }
 
 interface CartState {
   items: CartItem[];
-  addItem: (item: Omit<CartItem, 'id'>) => void;
+  /** Zwraca identyfikator dodanej pozycji — potrzebny, żeby od razu otworzyć ją w kreatorze. */
+  addItem: (item: Omit<CartItem, 'id'>) => string;
   removeItem: (id: string) => void;
   updateQuantity: (id: string, newQuantity: number) => void;
   updateItem: (id: string, item: Omit<CartItem, 'id'>) => void;
@@ -33,6 +36,7 @@ export const useCartStore = create<CartState>()(
       addItem: (item) => {
         const id = getUUID();
         set((state) => ({ items: [...state.items, { ...item, id }] }));
+        return id;
       },
       removeItem: (id) =>
         set((state) => ({ items: state.items.filter((i) => i.id !== id) })),

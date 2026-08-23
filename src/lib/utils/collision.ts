@@ -183,20 +183,25 @@ export function getCutLineMargins(
     };
   }
 
-  if (cutLineType === "contour") {
+  if (cutLineType === "contour" || cutLineType === "contour_inside") {
+    if (contourPolygons && contourPolygons.length > 0) {
+      // Wielokąt obrysu ma już wtopiony odstęp linii cięcia (dylatacja/erozja
+      // w getContourPoints), więc jego bounding box JEST linią cięcia. Doliczanie
+      // offsetu drugi raz — albo mierzenie po całym prostokącie grafiki — robiło
+      // z pustego, przezroczystego pola część naklejki i blokowało wysunięcie go
+      // poza margines bezpieczeństwa.
+      return getContourMargins(wMm, hMm, rotation, contourPolygons);
+    }
+
+    // Obrys jeszcze się liczy: prostokąt grafiki to jedyna znana górna granica.
     const graphicMargins = getContourMargins(wMm, hMm, rotation, undefined);
-    const offsetMm = getCutLineOffsetMm("contour", widthCm);
+    const offsetMm = cutLineType === "contour" ? getCutLineOffsetMm("contour", widthCm) : 0;
     return {
       left: graphicMargins.left + offsetMm,
       right: graphicMargins.right + offsetMm,
       top: graphicMargins.top + offsetMm,
       bottom: graphicMargins.bottom + offsetMm,
     };
-  }
-
-  if (cutLineType === "contour_inside") {
-    // For inside contour, it stays within the graphic bounds
-    return getContourMargins(wMm, hMm, rotation, undefined);
   }
 
   return { left: 0, right: wMm, top: 0, bottom: hMm };
@@ -231,6 +236,31 @@ export function getOuterMargins(
 
   const graphicMargins = getContourMargins(wMm, hMm, rotation, undefined);
   const cutMargins = getCutLineMargins(st, overrideParams);
+
+  const cutLineType = overrideParams?.cutLineType !== undefined ? overrideParams.cutLineType : st.cutLineType;
+  const contourPolygons = overrideParams?.contourPolygons !== undefined ? overrideParams.contourPolygons : st.contourPolygons;
+
+  if (
+    (cutLineType === "contour" || cutLineType === "contour_inside") &&
+    contourPolygons &&
+    contourPolygons.length > 0
+  ) {
+    // Przy konturze prostokąt grafiki poza obrysem jest pusty (białe tło jest
+    // wybijane do przezroczystości) — nic się tam nie drukuje i nic tam nie tniemy,
+    // więc wolno mu wyjść poza margines bezpieczeństwa. Kopertą jest sam obrys.
+    if (cutLineType === "contour") return cutMargins;
+
+    // Kontur wewnętrzny biegnie WEWNĄTRZ grafiki, więc druk wystaje poza linię
+    // cięcia o wartość erozji. O tyle (i nie dalej niż do krawędzi grafiki)
+    // poszerzamy kopertę, żeby farba nie wjechała w margines.
+    const inkOverhang = Math.abs(getCutLineOffsetMm("contour_inside", widthCm));
+    return {
+      left: Math.min(graphicMargins.left, cutMargins.left + inkOverhang),
+      right: Math.min(graphicMargins.right, cutMargins.right + inkOverhang),
+      top: Math.min(graphicMargins.top, cutMargins.top + inkOverhang),
+      bottom: Math.min(graphicMargins.bottom, cutMargins.bottom + inkOverhang),
+    };
+  }
 
   return {
     left: Math.max(graphicMargins.left, cutMargins.left),
@@ -393,6 +423,15 @@ export function checkStickersCollision(
 
 // --- Precise Collision Helpers ---
 
+/**
+ * Liczba boków wielokąta przybliżającego okrągłą linię cięcia i współczynnik,
+ * który go na tę linię naciąga. 32 boki dają zapas 0.48% promienia (0.13mm przy
+ * naklejce 5cm) — dość ciasno, żeby nie odrzucać poprawnych układów, i cztery
+ * razy taniej niż liczba boków, przy której zapas byłby nieodczuwalny.
+ */
+const CIRCLE_SEGMENTS = 32;
+const CIRCLE_CIRCUMSCRIBE = 1 / Math.cos(Math.PI / CIRCLE_SEGMENTS);
+
 export function getAbsolutePolygons(
   st: {
     x: number;
@@ -442,11 +481,22 @@ export function getAbsolutePolygons(
     const radX = (wMm + 2 * offsetMm) / 2;
     const radY = (hMm + 2 * offsetMm) / 2;
     const circlePoints: Point[] = [];
-    const segments = 16;
-    for (let i = 0; i < segments; i++) {
-      const angle = (i * 2 * Math.PI) / segments;
-      const rx = Math.cos(angle) * radX;
-      const ry = Math.sin(angle) * radY;
+
+    // Wielokąt musi OPISYWAĆ elipsę, nie być w nią wpisany. Wpisany n-kąt chowa
+    // się pod krawędzią koła o r*(1-cos(PI/n)) w połowie każdego boku, więc dwie
+    // naklejki mogące stykać się bokami zjadały cały wymagany odstęp i linie
+    // cięcia realnie na siebie nachodziły.
+    //
+    // Po przekształceniu diag(1/radX, 1/radY) elipsa staje się okręgiem
+    // jednostkowym, a nasze punkty — n-kątem wpisanym w okrąg o promieniu
+    // CIRCLE_CIRCUMSCRIBE. Zawiera on okrąg jednostkowy dokładnie wtedy, gdy
+    // promień * cos(PI/n) >= 1; odwrotne przekształcenie jest liniowe, więc
+    // zawieranie zostaje zachowane dla dowolnego spłaszczenia elipsy.
+    const scale = CIRCLE_CIRCUMSCRIBE;
+    for (let i = 0; i < CIRCLE_SEGMENTS; i++) {
+      const angle = (i * 2 * Math.PI) / CIRCLE_SEGMENTS;
+      const rx = Math.cos(angle) * radX * scale;
+      const ry = Math.sin(angle) * radY * scale;
       const rotX = rx * cos - ry * sin;
       const rotY = rx * sin + ry * cos;
       circlePoints.push({ x: centerX + rotX, y: centerY + rotY });

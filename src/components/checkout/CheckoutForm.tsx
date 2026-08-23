@@ -10,6 +10,9 @@ import { createOrder } from "@/app/actions/createOrder";
 import { Loader2, X, Package } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { getStickersNoun, getIndividualStickersLabel } from "@/lib/utils/polish";
+import Link from "next/link";
+import { useSessionUser } from "@/hooks/useSessionUser";
+import { getProfile, rememberCheckoutDetails } from "@/app/actions/profile";
 
 const checkoutSchema = z.object({
   email: z.string().email({ message: "Proszę podać poprawny adres e-mail" }),
@@ -30,7 +33,18 @@ const checkoutSchema = z.object({
   termsAccepted: z.boolean().refine((val) => val === true, {
     message: "Akceptacja regulaminu jest wymagana",
   }),
+  createAccount: z.boolean(),
+  accountPassword: z.string(),
+  accountMarketingConsent: z.boolean(),
+  rememberDetails: z.boolean(),
 }).superRefine((data, ctx) => {
+  if (data.createAccount) {
+    if (data.accountPassword.length < 8) {
+      ctx.addIssue({ code: z.ZodIssueCode.custom, message: "Hasło musi mieć co najmniej 8 znaków", path: ["accountPassword"] });
+    } else if (!/[A-Za-zĄĆĘŁŃÓŚŹŻąćęłńóśźż]/.test(data.accountPassword) || !/[0-9]/.test(data.accountPassword)) {
+      ctx.addIssue({ code: z.ZodIssueCode.custom, message: "Hasło musi zawierać literę i cyfrę", path: ["accountPassword"] });
+    }
+  }
   if (data.paymentMethod === "vinted") {
     return;
   }
@@ -70,10 +84,56 @@ export function CheckoutForm() {
       paymentMethod: "przelewy24",
       wantsInvoice: false,
       termsAccepted: false,
+      createAccount: false,
+      accountPassword: "",
+      accountMarketingConsent: false,
+      rememberDetails: true,
     },
   });
 
   const { watch, register, handleSubmit, setValue, formState: { errors } } = form;
+
+  const { status: sessionStatus, user: sessionUser } = useSessionUser();
+  const isLoggedIn = sessionStatus === "ready" && Boolean(sessionUser);
+  const createAccount = watch("createAccount");
+
+  // Zalogowanym podstawiamy dane z profilu — tylko w puste pola, żeby nie
+  // nadpisać tego, co ktoś zdążył już wpisać ręcznie.
+  useEffect(() => {
+    if (!isLoggedIn) return;
+    let cancelled = false;
+
+    getProfile().then((profile) => {
+      if (cancelled || !profile) return;
+
+      const fill = (field: keyof CheckoutFormValues, value?: string) => {
+        if (!value) return;
+        const current = form.getValues(field);
+        if (!current) setValue(field, value as never, { shouldValidate: false });
+      };
+
+      fill("firstName", profile.firstName);
+      fill("lastName", profile.lastName);
+      fill("phone", profile.phone);
+      fill("email", sessionUser?.email ?? "");
+      fill("street", profile.defaultAddress?.street);
+      fill("building", profile.defaultAddress?.building);
+      fill("postalCode", profile.defaultAddress?.postalCode);
+      fill("city", profile.defaultAddress?.city);
+      if (profile.defaultLocker?.lockerId) {
+        fill("lockerId", profile.defaultLocker.lockerId);
+        fill("lockerAddress", profile.defaultLocker.address);
+      }
+      if (profile.invoiceDetails?.nip) {
+        fill("nip", profile.invoiceDetails.nip);
+        fill("companyName", profile.invoiceDetails.companyName);
+      }
+    });
+
+    return () => {
+      cancelled = true;
+    };
+  }, [isLoggedIn, sessionUser, form, setValue]);
 
   const deliveryMethod = watch("deliveryMethod");
   const paymentMethod = watch("paymentMethod");
@@ -111,12 +171,17 @@ export function CheckoutForm() {
         return rest;
       });
 
+      const { createAccount: wantsAccount, accountPassword, accountMarketingConsent, rememberDetails, ...orderData } = data;
+
       const payload = {
-        ...data,
+        ...orderData,
         items: itemsWithoutStickers,
         subtotal,
         shippingCost,
         total,
+        ...(wantsAccount && !isLoggedIn
+          ? { accountPassword, accountMarketingConsent }
+          : {}),
       };
 
       // Wymuszamy pełną serializację do zwykłego obiektu JSON, aby uniknąć błędów
@@ -128,6 +193,23 @@ export function CheckoutForm() {
       const response = typeof rawResponse === "string" ? JSON.parse(rawResponse) : rawResponse;
 
       if (response.success) {
+        if (isLoggedIn && rememberDetails) {
+          // Zapis profilu nie może opóźnić przejścia do płatności ani go zablokować.
+          void rememberCheckoutDetails({
+            firstName: orderData.firstName,
+            lastName: orderData.lastName,
+            phone: orderData.phone,
+            street: orderData.street,
+            building: orderData.building,
+            postalCode: orderData.postalCode,
+            city: orderData.city,
+            lockerId: orderData.lockerId,
+            lockerAddress: orderData.lockerAddress,
+            companyName: orderData.wantsInvoice ? orderData.companyName : undefined,
+            nip: orderData.wantsInvoice ? orderData.nip : undefined,
+          }).catch(() => undefined);
+        }
+
         clearCart();
         // Keep isSubmitting=true so overlay stays visible during navigation
         // (avoids flash of empty cart before success page renders)
@@ -206,7 +288,22 @@ export function CheckoutForm() {
 
           {/* Sekcja A: Dane kontaktowe */}
           <div className="bg-card border border-border/70 rounded-2xl p-8 shadow-sm">
-            <h2 className="text-2xl font-extrabold mb-6">1. Dane kontaktowe</h2>
+            <div className="flex flex-wrap items-center justify-between gap-3 mb-6">
+              <h2 className="text-2xl font-extrabold">1. Dane kontaktowe</h2>
+              {sessionStatus === "ready" && !isLoggedIn && (
+                <Link
+                  href="/logowanie?powrot=%2Fcheckout"
+                  className="text-sm font-bold text-primary hover:underline underline-offset-4"
+                >
+                  Masz konto? Zaloguj się
+                </Link>
+              )}
+              {isLoggedIn && (
+                <span className="text-sm font-bold text-primary bg-primary/10 border border-primary/25 rounded-full px-3 py-1">
+                  Dane z Twojego konta
+                </span>
+              )}
+            </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
                 <label className="text-sm font-bold mb-2 block">Imię<span className="text-destructive"> *</span></label>
@@ -230,6 +327,80 @@ export function CheckoutForm() {
               </div>
             </div>
           </div>
+
+          {/* Konto klienta */}
+          {sessionStatus === "ready" && (
+            isLoggedIn ? (
+              <div className="bg-card border border-border/70 rounded-2xl p-6 shadow-sm">
+                <label className="flex items-start gap-3 cursor-pointer">
+                  <input
+                    type="checkbox"
+                    {...register("rememberDetails")}
+                    className="mt-1 w-5 h-5 rounded border-gray-300 text-foreground focus:ring-foreground shrink-0"
+                  />
+                  <span className="text-sm font-semibold text-muted-foreground leading-relaxed">
+                    Zapamiętaj te dane w moim koncie, żeby następnym razem wypełniły się same.
+                  </span>
+                </label>
+              </div>
+            ) : (
+              <div className={`rounded-2xl p-6 shadow-sm border transition-colors ${createAccount ? "bg-primary/5 border-primary/40" : "bg-card border-border/70"}`}>
+                <label className="flex items-start gap-3 cursor-pointer">
+                  <input
+                    type="checkbox"
+                    {...register("createAccount")}
+                    className="mt-1 w-5 h-5 rounded border-gray-300 text-foreground focus:ring-foreground shrink-0"
+                  />
+                  <span className="flex-1">
+                    <span className="block font-extrabold text-lg text-foreground">
+                      Załóż konto przy okazji
+                    </span>
+                    <span className="block text-sm font-medium text-muted-foreground mt-1 leading-relaxed">
+                      Będziesz mieć podgląd zamówienia, a swój arkusz otworzysz później w kreatorze
+                      i zamówisz ponownie bez projektowania od zera. Ustawiasz tylko hasło.
+                    </span>
+                  </span>
+                </label>
+
+                {createAccount && (
+                  <div className="mt-5 pt-5 border-t border-primary/25 flex flex-col gap-4 animate-in fade-in slide-in-from-top-2">
+                    <div>
+                      <label className="text-sm font-bold mb-2 block">
+                        Hasło do konta<span className="text-destructive"> *</span>
+                      </label>
+                      <input
+                        type="password"
+                        autoComplete="new-password"
+                        {...register("accountPassword")}
+                        className="flex h-12 w-full rounded-xl border border-slate-300 dark:border-white/20 bg-background px-4 py-2 text-base font-medium focus-visible:outline-none focus-visible:border-primary focus-visible:ring-2 focus-visible:ring-primary/20"
+                      />
+                      {errors.accountPassword ? (
+                        <p className="inline-block bg-destructive/30 text-destructive-foreground text-xs font-bold px-3 py-1 rounded-lg border border-destructive/40 mt-1.5">
+                          {errors.accountPassword.message}
+                        </p>
+                      ) : (
+                        <p className="text-xs font-medium text-muted-foreground mt-1.5">
+                          Minimum 8 znaków, w tym litera i cyfra. Konto zakładamy na adres e-mail
+                          podany powyżej.
+                        </p>
+                      )}
+                    </div>
+
+                    <label className="flex items-start gap-3 cursor-pointer">
+                      <input
+                        type="checkbox"
+                        {...register("accountMarketingConsent")}
+                        className="mt-1 w-5 h-5 rounded border-gray-300 text-foreground focus:ring-foreground shrink-0"
+                      />
+                      <span className="text-sm font-semibold text-muted-foreground leading-relaxed">
+                        Chcę dostawać e-maile o promocjach i nowych wzorach.
+                      </span>
+                    </label>
+                  </div>
+                )}
+              </div>
+            )
+          )}
 
           {/* Sekcja B: Dostawa */}
           <div className="bg-card border border-border/70 rounded-2xl p-8 shadow-sm">

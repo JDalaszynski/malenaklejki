@@ -6,6 +6,7 @@ import { useCartStore } from "@/store/cartStore";
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
+import { MobileAccountLinks, UserMenu } from "./UserMenu";
 
 const StickerIcon = ({ className }: { className?: string }) => (
   <svg 
@@ -134,6 +135,7 @@ export function Header({ zen = false, sticky = true }: HeaderProps) {
               </Link>
             </div>
           )}
+          {!zen && <UserMenu />}
           {!zen && (
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -203,6 +205,10 @@ export function Header({ zen = false, sticky = true }: HeaderProps) {
               >
                 Kontakt
               </Link>
+
+              <span aria-hidden className="h-px w-full bg-border/60 my-1" />
+
+              <MobileAccountLinks onNavigate={() => setIsMenuOpen(false)} />
             </div>
           </motion.div>
         )}

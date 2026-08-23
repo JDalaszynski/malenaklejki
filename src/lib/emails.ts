@@ -21,7 +21,12 @@ async function loadSharp() {
 
 
 /** Build customer confirmation email HTML */
-export function buildCustomerEmailHtml(data: any, orderNumber: string): string {
+export function buildCustomerEmailHtml(
+  data: any,
+  orderNumber: string,
+  /** Adres, pod którym gość może zamienić to zamówienie w konto. Pomijany dla zalogowanych. */
+  claimUrl?: string
+): string {
   const safeFirstName = escapeHtml(data.firstName || data.customer?.firstName || "");
   const safeLastName = escapeHtml(data.lastName || data.customer?.lastName || "");
   const safeStreet = escapeHtml(data.street || data.delivery?.courierDetails?.street || "");
@@ -150,6 +155,21 @@ export function buildCustomerEmailHtml(data: any, orderNumber: string): string {
           `}
         </p>
       </div>
+
+      ${claimUrl ? `
+      <div style="background:#f4faf7;border:1.5px solid #02af7a;border-radius:16px;padding:22px 20px;margin-bottom:24px;text-align:center;">
+        <p style="font-size:15px;color:#0f172a;font-weight:800;margin:0 0 6px;">
+          Zachowaj ten arkusz na przyszłość
+        </p>
+        <p style="font-size:13px;color:#64748b;font-weight:500;line-height:1.7;margin:0 0 16px;">
+          Załóż konto jednym kliknięciem — ustawiasz tylko hasło. Zamówienie od razu w nim wyląduje,
+          a te same naklejki zamówisz później ponownie jednym kliknięciem.
+        </p>
+        <a href="${claimUrl}" style="display:inline-block;background:#02af7a;color:#ffffff;text-decoration:none;font-size:15px;font-weight:800;padding:14px 30px;border-radius:14px;">
+          Ustawiam hasło
+        </a>
+      </div>
+      ` : ""}
 
       <p style="font-size:13px;color:#94a3b8;line-height:1.7;margin-bottom:0;">
         Masz pytania dotyczące zamówienia? Napisz do nas na

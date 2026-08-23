@@ -7,6 +7,16 @@
       "runtimeArgs": ["run", "dev"],
       "port": 3000,
       "autoPort": true
+    },
+    {
+      "name": "dev-env",
+      "runtimeExecutable": "sh",
+      "runtimeArgs": [
+        "-c",
+        "set -a; [ -f env.local ] && . ./env.local; [ -f .env.local ] && . ./.env.local; set +a; exec npx next dev -p $PORT"
+      ],
+      "port": 3100,
+      "autoPort": true
     }
   ]
 }

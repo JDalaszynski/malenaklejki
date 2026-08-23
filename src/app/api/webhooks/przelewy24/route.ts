@@ -81,6 +81,10 @@ export async function POST(req: NextRequest) {
       status: "PAID",
       paidAt: new Date().toISOString(),
       p24OrderId: orderId,
+      // Spóźniona płatność wyjmuje zamówienie z kosza. Nieopłacone zamówienia
+      // trafiają tam po tygodniu, a przelew tradycyjny bywa księgowany później —
+      // bez tego opłacone zamówienie zostałoby w koszu i wypadło z ewidencji.
+      deletedAt: null,
     });
     console.log(`P24: Zamówienie ${sessionId} oznaczone jako PAID.`);
 
@@ -104,12 +108,19 @@ export async function POST(req: NextRequest) {
 
     const attachments = await buildOrderAttachments(orderData.items || [], orderData.orderNumber);
 
+    // Gość dostaje w potwierdzeniu propozycję zamiany zamówienia w konto.
+    // Zalogowani mają je już przypisane, więc dla nich pomijamy ten blok.
+    const appUrl = (process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000").replace(/\/+$/, "");
+    const claimUrl = orderData.userId
+      ? undefined
+      : `${appUrl}/zamowienie-sukces?orderNumber=${encodeURIComponent(orderData.orderNumber)}&orderId=${orderIdFromSession}&konto=1`;
+
     // E-mail do klienta
     const customerEmailPayload = {
       sender: { name: "MałeNaklejki", email: siteFromEmail },
       to: [{ email: orderData.customer.email, name: `${orderData.customer.firstName} ${orderData.customer.lastName}` }],
       subject: `Opłacono zamówienie ${orderData.orderNumber} - MałeNaklejki`,
-      htmlContent: buildCustomerEmailHtml(orderData, orderData.orderNumber),
+      htmlContent: buildCustomerEmailHtml(orderData, orderData.orderNumber, claimUrl),
     };
     await sendEmail(customerEmailPayload);
 

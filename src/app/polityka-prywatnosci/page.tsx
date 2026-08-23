@@ -414,8 +414,59 @@ export default function PrivacyPolicyPage() {
       ),
     },
     {
+      id: "konto-uzytkownika",
+      title: "§ 6. Konto użytkownika",
+      searchText: `konto użytkownika rejestracja logowanie hasło Google historia zamówień usunięcie konta dane profilu adres e-mail weryfikacja adresu przechowywanie projektów arkuszy.`,
+      content: (
+        <div className="space-y-4">
+          <p>
+            1. Założenie konta w Serwisie jest dobrowolne i bezpłatne. Zamówienie można
+            złożyć również bez konta.
+          </p>
+          <p>
+            2. W ramach konta Administrator przetwarza: adres e-mail, imię i nazwisko,
+            numer telefonu, domyślny adres dostawy lub paczkomat, dane do faktury (nazwa
+            firmy i NIP) oraz historię złożonych zamówień wraz z zapisanymi projektami
+            arkuszy naklejek.
+          </p>
+          <p>
+            3. Podstawą przetwarzania danych związanych z kontem jest art. 6 ust. 1 lit. b
+            RODO — wykonanie umowy o świadczenie usług drogą elektroniczną (prowadzenie
+            konta), a w zakresie zgód marketingowych art. 6 ust. 1 lit. a RODO (zgoda).
+          </p>
+          <p>
+            4. Przy logowaniu przez konto Google Administrator otrzymuje od Google
+            wyłącznie adres e-mail oraz imię i nazwisko powiązane z tym kontem. Hasło do
+            konta Google nigdy nie jest przekazywane Administratorowi.
+          </p>
+          <p>
+            5. Hasła do kont są przechowywane wyłącznie w formie nieodwracalnego skrótu
+            w usłudze Firebase Authentication (Google Ireland Limited) i nie są znane
+            Administratorowi.
+          </p>
+          <p>
+            6. Przypisanie do konta zamówień złożonych wcześniej bez logowania następuje
+            dopiero po potwierdzeniu adresu e-mail — zabezpiecza to dane zamówień przed
+            dostępem osoby, która nie jest właścicielem skrzynki pocztowej.
+          </p>
+          <p>
+            7. Użytkownik może w każdej chwili usunąć konto w zakładce „Bezpieczeństwo"
+            w panelu konta. Usunięcie konta powoduje trwałe usunięcie profilu użytkownika
+            oraz sposobów logowania.
+          </p>
+          <p>
+            8. Dane zrealizowanych zamówień pozostają w rejestrach sprzedaży Administratora
+            również po usunięciu konta — obowiązek ich przechowywania przez 5 lat, licząc
+            od końca roku kalendarzowego, w którym upłynął termin płatności podatku, wynika
+            z art. 86 § 1 Ordynacji podatkowej. Po usunięciu konta dane te przestają być
+            powiązane z użytkownikiem i nie są wykorzystywane w żadnym innym celu.
+          </p>
+        </div>
+      ),
+    },
+    {
       id: "cookies-profilowanie",
-      title: "§ 6. Pliki Cookies i Profilowanie",
+      title: "§ 7. Pliki Cookies i Profilowanie",
       searchText: `pliki cookies ciasteczka koszyk sesja użytkownika Polityka Cookies. nie stosuje zautomatyzowanego podejmowania decyzji profilowanie.`,
       content: (
         <div className="space-y-4">
@@ -449,7 +500,7 @@ export default function PrivacyPolicyPage() {
     <DocLayout
       title="Polityka Prywatności"
       description="Zasady przetwarzania i ochrony danych osobowych użytkowników korzystających z serwisu MałeNaklejki."
-      lastUpdated="14 czerwca 2026 r."
+      lastUpdated="22 sierpnia 2026 r."
       activeTab="polityka-prywatnosci"
       sections={sections}
     />
