@@ -206,7 +206,7 @@ Poniższa tabela przedstawia zestaw zmiennych wykorzystywanych przez aplikację:
 | `GEMINI_API_KEY` | Tak | Klucz API Google AI Studio / Gemini do wbudowanego generatora naklejek. |
 | `NEXT_PUBLIC_GA_ID` | Opcjonalnie | Identyfikator Google Analytics 4 (np. `G-XXXXXXXXXX`). |
 | `NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION` | Opcjonalnie | Token weryfikacyjny Google Search Console. |
-| `BASELINKER_API_TOKEN` | Opcjonalnie | Token API do automatycznego przekazywania zamówień do BaseLinkera. |
+| `BASELINKER_TOKEN` | Opcjonalnie | Token API do automatycznego przekazywania zamówień do BaseLinkera. |
 
 ---
 

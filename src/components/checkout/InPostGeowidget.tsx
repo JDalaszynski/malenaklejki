@@ -5,7 +5,12 @@ import { useEffect, useRef, useState } from "react";
 import { Loader2 } from "lucide-react";
 
 interface InPostGeowidgetProps {
-  onPointSelected: (point: { name: string; address: string }) => void;
+  onPointSelected: (point: {
+    name: string;
+    address: string;
+    city: string;
+    postalCode: string;
+  }) => void;
 }
 
 export function InPostGeowidget({ onPointSelected }: InPostGeowidgetProps) {
@@ -28,9 +33,13 @@ export function InPostGeowidget({ onPointSelected }: InPostGeowidgetProps) {
         if ((window as any).easyPack) {
           (window as any).easyPack.init({});
           (window as any).easyPack.mapWidget("easypack-map", function (point: any) {
+            // `address_details` bywa niepełne w starszych wersjach widgetu,
+            // dlatego kod i miasto biorą się z niego tylko, jeśli są.
             onPointSelectedRef.current({
               name: point.name,
               address: `${point.address.line1}, ${point.address.line2}`,
+              city: point.address_details?.city ?? "",
+              postalCode: point.address_details?.post_code ?? "",
             });
           });
           initializedRef.current = true;

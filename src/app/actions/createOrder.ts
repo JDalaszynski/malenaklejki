@@ -35,6 +35,8 @@ const CreateOrderSchema = z.object({
   postalCode: z.string().max(20).optional(),
   lockerId: z.string().max(100).optional(),
   lockerAddress: z.string().max(250).optional(),
+  lockerCity: z.string().max(100).optional(),
+  lockerPostalCode: z.string().max(20).optional(),
   wantsInvoice: z.boolean(),
   nip: z.string().max(20).optional(),
   companyName: z.string().max(200).optional(),
@@ -52,7 +54,7 @@ const CreateOrderSchema = z.object({
 
 import { registerTransaction } from "@/lib/p24";
 import { buildManualTransferEmailHtml, buildNewOrderSellerEmailHtml, buildOrderAttachments, buildVintedOrderCustomerEmailHtml, buildVintedOrderSellerEmailHtml } from "@/lib/emails";
-import { addOrderToBaseLinker, BLOrderParameters } from "@/lib/baselinker";
+import { addOrderToBaseLinker, buildBaseLinkerOrderParams } from "@/lib/baselinker";
 
 /**
  * Generates a human-readable order number: MNK-YYYYMMDD-XXXX
@@ -218,6 +220,8 @@ async function doCreateOrder(rawData: any) {
             ? {
               lockerId: finalData.lockerId,
               address: finalData.lockerAddress,
+              city: finalData.lockerCity,
+              postalCode: finalData.lockerPostalCode,
             }
             : null,
       },
@@ -260,53 +264,10 @@ async function doCreateOrder(rawData: any) {
       }
     }
 
-    // Wysyłamy zamówienie do BaseLinkera
+    // Wysyłamy zamówienie do BaseLinkera — mapowanie pól siedzi w lib/baselinker,
+    // wspólne z ręczną wysyłką z panelu.
     try {
-      const formComments = finalData.items.map((item: any, i: number) => 
-        `Pozycja ${i+1}: ${item.deliveryForm === "individual" ? "Pocięte na pojedyncze sztuki" : "Na arkuszu"}`
-      ).join("\n");
-      const baseComments = finalData.deliveryMethod === "paczkomat" ? `Paczkomat: ${finalData.lockerId}\n` : "";
-      const finalComments = (baseComments + formComments).trim();
-
-      const blParams: BLOrderParameters = {
-        order_status_id: 65507,
-        date_add: Math.floor(Date.now() / 1000),
-        phone: finalData.phone || "",
-        email: finalData.email,
-        user_login: finalData.email,
-        currency: "PLN",
-        payment_method: finalData.paymentMethod,
-        payment_method_cod: 0,
-        paid: 0,
-        delivery_method: finalData.deliveryMethod,
-        delivery_price: finalData.shippingCost,
-        delivery_fullname: `${finalData.firstName} ${finalData.lastName}`.trim(),
-        delivery_company: finalData.companyName || "",
-        delivery_address: finalData.deliveryMethod === "kurier" 
-          ? `${finalData.street || ""} ${finalData.building || ""}`.trim() 
-          : finalData.lockerAddress || "-",
-        delivery_city: finalData.city || "-",
-        delivery_postcode: finalData.postalCode || "-",
-        delivery_country_code: "PL",
-        invoice_fullname: `${finalData.firstName} ${finalData.lastName}`.trim(),
-        invoice_company: finalData.companyName || "",
-        invoice_nip: "6972414844",
-        invoice_address: finalData.street ? `${finalData.street} ${finalData.building || ""}`.trim() : "-",
-        invoice_city: finalData.city || "-",
-        invoice_postcode: finalData.postalCode || "-",
-        invoice_country_code: "PL",
-        want_invoice: finalData.wantsInvoice ? 1 : 0,
-        user_comments: finalComments,
-        products: finalData.items.map((item: any) => ({
-          name: `Naklejki ${item.widthCm}x${item.heightCm}cm (${item.stickersPerSheet} szt/arkusz)`,
-          price_brutto: item.pricePerSheet,
-          tax_rate: 23,
-          quantity: item.sheetQuantity,
-        })),
-        extra_field_1: orderNumber, // Zapisujemy nasz numer zamówienia w BL
-      };
-
-      const blResult = await addOrderToBaseLinker(blParams);
+      const blResult = await addOrderToBaseLinker(buildBaseLinkerOrderParams(cleanOrderData));
       if (blResult && blResult.status === "SUCCESS") {
         await orderRef.update({ baselinkerOrderId: blResult.order_id });
         console.log(`Zapisano zamówienie w BaseLinkerze (ID: ${blResult.order_id})`);

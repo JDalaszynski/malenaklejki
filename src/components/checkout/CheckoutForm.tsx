@@ -27,6 +27,8 @@ const checkoutSchema = z.object({
   postalCode: z.string().optional(),
   lockerId: z.string().optional(),
   lockerAddress: z.string().optional(),
+  lockerCity: z.string().optional(),
+  lockerPostalCode: z.string().optional(),
   wantsInvoice: z.boolean(),
   nip: z.string().optional(),
   companyName: z.string().optional(),
@@ -672,6 +674,8 @@ export function CheckoutForm() {
                   onPointSelected={(point) => {
                     setValue("lockerId", point.name, { shouldValidate: true });
                     setValue("lockerAddress", point.address);
+                    setValue("lockerCity", point.city);
+                    setValue("lockerPostalCode", point.postalCode);
                     setShowPaczkomatModal(false);
                   }}
                 />

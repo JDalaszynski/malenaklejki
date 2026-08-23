@@ -9,7 +9,7 @@ import { recordAudit } from "@/lib/admin/audit";
 import { deleteOrderLayouts } from "@/lib/orders/layout";
 import { sweepAbandonedOrders } from "@/lib/orders/sweep";
 import { sendPaidOrderNotifications } from "@/lib/orders/notifications";
-import { setOrderPayment, addOrderToBaseLinker, type BLOrderParameters } from "@/lib/baselinker";
+import { setOrderPayment, addOrderToBaseLinker, buildBaseLinkerOrderParams } from "@/lib/baselinker";
 import { FULFILLMENT_STATUSES, PAYMENT_STATUSES } from "@/lib/orders/status";
 
 type Result<T = object> = ({ success: true } & T) | { success: false; error: string };
@@ -460,47 +460,7 @@ export async function pushOrderToBaseLinker(orderId: string): Promise<Result> {
     return { success: false, error: "To zamówienie jest już w BaseLinkerze." };
   }
 
-  const params: BLOrderParameters = {
-    order_status_id: 65507,
-    date_add: Math.floor(new Date(order.createdAt).getTime() / 1000),
-    phone: order.customer?.phone ?? "",
-    email: order.customer?.email ?? "",
-    user_login: order.customer?.email ?? "",
-    currency: "PLN",
-    payment_method: order.payment?.method ?? "manual",
-    payment_method_cod: 0,
-    paid: order.status === "PAID" ? 1 : 0,
-    delivery_method: order.delivery?.method ?? "",
-    delivery_price: order.totals?.shipping ?? 0,
-    delivery_fullname: `${order.customer?.firstName ?? ""} ${order.customer?.lastName ?? ""}`.trim(),
-    delivery_company: order.billing?.companyName ?? "",
-    delivery_address:
-      order.delivery?.method === "kurier"
-        ? `${order.delivery?.courierDetails?.street ?? ""} ${order.delivery?.courierDetails?.building ?? ""}`.trim()
-        : order.delivery?.paczkomatDetails?.address ?? "-",
-    delivery_city: order.delivery?.courierDetails?.city ?? "-",
-    delivery_postcode: order.delivery?.courierDetails?.postalCode ?? "-",
-    delivery_country_code: "PL",
-    invoice_fullname: `${order.customer?.firstName ?? ""} ${order.customer?.lastName ?? ""}`.trim(),
-    invoice_company: order.billing?.companyName ?? "",
-    // NIP nabywcy, a nie sprzedawcy — puste, jeśli klient nie prosił o fakturę.
-    invoice_nip: order.billing?.wantsInvoice ? order.billing?.nip ?? "" : "",
-    invoice_address: order.delivery?.courierDetails?.street
-      ? `${order.delivery.courierDetails.street} ${order.delivery.courierDetails.building ?? ""}`.trim()
-      : "-",
-    invoice_city: order.delivery?.courierDetails?.city ?? "-",
-    invoice_postcode: order.delivery?.courierDetails?.postalCode ?? "-",
-    invoice_country_code: "PL",
-    want_invoice: order.billing?.wantsInvoice ? 1 : 0,
-    user_comments: order.internalNote ?? "",
-    products: (order.items ?? []).map((item: Record<string, unknown>) => ({
-      name: (item.name as string) ?? "Naklejki",
-      price_brutto: (item.pricePerSheet as number) ?? 0,
-      tax_rate: (item.taxRate as number) ?? 23,
-      quantity: (item.sheetQuantity as number) ?? 1,
-    })),
-    extra_field_1: order.orderNumber,
-  };
+  const params = buildBaseLinkerOrderParams(order);
 
   const result = await addOrderToBaseLinker(params);
   if (result?.status !== "SUCCESS") {
