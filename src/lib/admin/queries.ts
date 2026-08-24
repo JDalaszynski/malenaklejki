@@ -46,6 +46,15 @@ export type AdminOrder = {
   baselinkerOrderId: number | null;
   invoiceNumber: string | null;
   invoiceUrl: string | null;
+  /** Stan wystawiania faktury w inFakcie (`lib/orders/invoicing`). */
+  infakt: {
+    status: string;
+    number: string | null;
+    uuid: string | null;
+    issuedAt: string | null;
+    error: string | null;
+    warnings: string[];
+  } | null;
 };
 
 export type OrderFilters = {
@@ -125,6 +134,16 @@ export function toAdminOrder(id: string, data: FirebaseFirestore.DocumentData): 
     baselinkerOrderId: data.baselinkerOrderId ?? null,
     invoiceNumber: data.invoiceNumber ?? null,
     invoiceUrl: data.invoiceUrl ?? null,
+    infakt: data.infakt
+      ? {
+          status: data.infakt.status ?? "",
+          number: data.infakt.number ?? null,
+          uuid: data.infakt.uuid ?? null,
+          issuedAt: data.infakt.issuedAt ?? null,
+          error: data.infakt.error ?? null,
+          warnings: data.infakt.warnings ?? [],
+        }
+      : null,
   };
 }
 

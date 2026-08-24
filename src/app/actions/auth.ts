@@ -8,7 +8,11 @@ import { adminAuth, db } from "@/lib/firebase/admin";
 import { createSession, destroySession } from "@/lib/auth/session";
 import { getSession } from "@/lib/auth/dal";
 import { consumeRateLimit, resetRateLimit, formatRetryAfter } from "@/lib/auth/rateLimit";
-import { sendVerificationEmail, sendPasswordResetEmail } from "@/lib/email/auth";
+import {
+  sendVerificationEmail,
+  sendPasswordResetEmail,
+  sendNewAccountAdminNotification,
+} from "@/lib/email/auth";
 
 type ActionResult<T = object> =
   | ({ success: true } & T)
@@ -96,6 +100,13 @@ export async function registerWithPassword(raw: unknown): Promise<ActionResult> 
     });
 
     await dispatchVerificationEmail(email, data.firstName);
+    await sendNewAccountAdminNotification({
+      email,
+      firstName: data.firstName,
+      lastName: data.lastName,
+      source: "form",
+      marketingConsent: data.marketingConsent,
+    });
     return { success: true };
   } catch (error) {
     if (error instanceof FirebaseAuthError && error.code === "auth/email-already-exists") {
@@ -334,6 +345,15 @@ async function ensureUserDocument(uid: string) {
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString(),
       ordersLinkedAt: null,
+    });
+
+    // Konta z Google nie przechodzą przez rejestrację, więc powiadomienie dla
+    // sklepu wysyłamy tutaj — w momencie, w którym profil powstaje pierwszy raz.
+    await sendNewAccountAdminNotification({
+      email: record.email?.toLowerCase() || "",
+      firstName: firstName || "",
+      lastName: rest.join(" "),
+      source: "google",
     });
   } catch (error) {
     console.error("ensureUserDocument error:", error);

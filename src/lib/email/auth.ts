@@ -214,6 +214,69 @@ export async function sendSecurityAlertEmail(
   });
 }
 
+/** Skąd wzięło się konto — trafia do powiadomienia dla sklepu. */
+export type AccountSource = "form" | "google" | "order";
+
+const ACCOUNT_SOURCE_LABELS: Record<AccountSource, string> = {
+  form: "formularz rejestracji",
+  google: "logowanie przez Google",
+  order: "przy składaniu zamówienia",
+};
+
+/**
+ * Powiadomienie dla sklepu o nowym koncie.
+ *
+ * Idzie na adres z `ADMIN_EMAIL`, czyli tam, gdzie i tak lądują zamówienia.
+ * Nigdy nie przerywa rejestracji — nieudana wysyłka trafia tylko do logów,
+ * bo klient nie może stracić konta przez problem z pocztą.
+ */
+export async function sendNewAccountAdminNotification(account: {
+  email: string;
+  firstName?: string;
+  lastName?: string;
+  source: AccountSource;
+  marketingConsent?: boolean;
+}): Promise<void> {
+  try {
+    const adminEmail = process.env.ADMIN_EMAIL || "kontakt@malenaklejki.pl";
+    const name = `${account.firstName ?? ""} ${account.lastName ?? ""}`.trim();
+    const rows: [string, string][] = [
+      ["Adres e-mail", account.email],
+      ["Imię i nazwisko", name || "—"],
+      ["Skąd", ACCOUNT_SOURCE_LABELS[account.source]],
+      ["Zgoda marketingowa", account.marketingConsent ? "tak" : "nie"],
+      ["Kiedy", new Date().toLocaleString("pl-PL", { timeZone: "Europe/Warsaw" })],
+    ];
+
+    await sendTransactionalEmail({
+      sender: { name: "MałeNaklejki - System kont", email: adminEmail },
+      to: [{ email: adminEmail, name: "MałeNaklejki - Sprzedawca" }],
+      replyTo: { email: account.email, name: name || account.email },
+      subject: `👤 Nowe konto w sklepie — ${account.email}`,
+      htmlContent: shell({
+        heading: "Nowe konto w sklepie",
+        subheading: name || account.email,
+        body: `
+        <table role="presentation" style="width:100%;border-collapse:collapse;font-size:14px;color:#334155;">
+          ${rows
+            .map(
+              ([label, value]) => `
+            <tr>
+              <td style="padding:9px 0;border-bottom:1px solid #e2e8f0;color:#64748b;font-weight:600;width:44%;">${escapeHtml(label)}</td>
+              <td style="padding:9px 0;border-bottom:1px solid #e2e8f0;color:#0f172a;font-weight:700;">${escapeHtml(value)}</td>
+            </tr>`
+            )
+            .join("")}
+        </table>`,
+        footnote:
+          "Adres nie jest jeszcze potwierdzony — konto odsłania historię zamówień dopiero po kliknięciu w link weryfikacyjny.",
+      }),
+    });
+  } catch (error) {
+    console.error("sendNewAccountAdminNotification error:", error);
+  }
+}
+
 /**
  * Zaproszenie dla gościa, który złożył zamówienie bez konta.
  * Hasło ustawia klikając link — nie wysyłamy żadnego hasła mailem.

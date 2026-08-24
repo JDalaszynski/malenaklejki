@@ -2,9 +2,11 @@ import { NextRequest, NextResponse } from "next/server";
 import { verifyWebhookSignature, verifyTransaction } from "@/lib/p24";
 import { db } from "@/lib/firebase/admin";
 import { buildCustomerEmailHtml, buildSellerEmailHtml, buildOrderAttachments } from "@/lib/emails";
-import { setOrderPayment } from "@/lib/baselinker";
+import { issueInvoiceForOrderSafely } from "@/lib/orders/invoicing";
 
 export const dynamic = "force-dynamic";
+// Wystawienie faktury w inFakcie to kilka sekund odpytywania o status zlecenia.
+export const maxDuration = 30;
 
 /**
  * Sends an email via Brevo. Returns true on success.
@@ -88,19 +90,11 @@ export async function POST(req: NextRequest) {
     });
     console.log(`P24: Zamówienie ${sessionId} oznaczone jako PAID.`);
 
-    if (orderData.baselinkerOrderId) {
-      try {
-        await setOrderPayment(
-          orderData.baselinkerOrderId,
-          orderData.totals?.total || 0,
-          Math.floor(Date.now() / 1000),
-          "Opłacone przez Przelewy24"
-        );
-        console.log(`P24: Zaktualizowano płatność w BaseLinkerze (ID: ${orderData.baselinkerOrderId})`);
-      } catch (e) {
-        console.error("P24: Błąd aktualizacji płatności w BaseLinkerze:", e);
-      }
-    }
+    // Faktura w inFakcie — wystawiana automatycznie za każde opłacone zamówienie.
+    await issueInvoiceForOrderSafely(orderIdFromSession);
+
+    // Płatności celowo nie przenosimy do BaseLinkera — zamówienie ma tam
+    // zostać nieopłacone, sprzedawca księguje wpłatę ręcznie.
 
     // 4. Pobranie i wysłanie e-maili
     const adminEmail = process.env.ADMIN_EMAIL || "kontakt@malenaklejki.pl";

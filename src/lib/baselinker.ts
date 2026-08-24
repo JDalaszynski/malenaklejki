@@ -190,6 +190,9 @@ export function buildBaseLinkerOrderParams(order: BLOrderSource): BLOrderParamet
     currency: "PLN",
     payment_method: BL_PAYMENT_METHOD,
     payment_method_cod: 0,
+    // Zamówienie w BaseLinkerze zawsze jest nieopłacone — także wtedy, gdy klient
+    // zapłacił online. Płatność sprzedawca księguje w BaseLinkerze ręcznie, więc
+    // sklep celowo nigdy jej tam nie ustawia (nie ma wywołania `setOrderPayment`).
     paid: 0,
     delivery_method:
       BL_DELIVERY_METHODS[delivery.method as keyof typeof BL_DELIVERY_METHODS] ??
@@ -346,16 +349,4 @@ export async function sendOrderToBaseLinker(order: BLOrderSource) {
   }
 
   return await addOrderToBaseLinker(params);
-}
-
-/**
- * Oznacza zamówienie jako opłacone w systemie BaseLinker
- */
-export async function setOrderPayment(orderId: number, paymentAmount: number, paymentDate: number, paymentComment: string) {
-  return await callBaseLinkerAPI("setOrderPayment", {
-    order_id: orderId,
-    payment_done: paymentAmount,
-    payment_date: paymentDate,
-    payment_comment: paymentComment,
-  });
 }

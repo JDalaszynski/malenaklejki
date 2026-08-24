@@ -8,8 +8,11 @@ import {
   buildSellerEmailHtml,
   buildOrderAttachments,
 } from "@/lib/emails";
+import { issueInvoiceForOrderSafely } from "@/lib/orders/invoicing";
 
 export const dynamic = "force-dynamic";
+// Wystawienie faktury w inFakcie to kilka sekund odpytywania o status zlecenia.
+export const maxDuration = 30;
 
 async function sendEmail(payload: object): Promise<boolean> {
   const apiKey = process.env.BREVO_API_KEY;
@@ -127,6 +130,9 @@ export async function GET(req: NextRequest) {
           // Płatność odnaleziona po czasie wyjmuje zamówienie z kosza.
           deletedAt: null,
         });
+
+        // Faktura w inFakcie — płatność odnaleziona po czasie księguje się tak samo.
+        await issueInvoiceForOrderSafely(order.id);
 
         // Wyślij normalne e-maile o udanej płatności
         const attachments = await buildOrderAttachments(order.items || [], order.orderNumber);

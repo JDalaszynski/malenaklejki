@@ -6,10 +6,12 @@ import { revalidatePath } from "next/cache";
 import { db } from "@/lib/firebase/admin";
 import { getSession } from "@/lib/auth/dal";
 import { recordAudit } from "@/lib/admin/audit";
+import { zonedBoundary } from "@/lib/admin/filters";
 import { deleteOrderLayouts } from "@/lib/orders/layout";
 import { sweepAbandonedOrders } from "@/lib/orders/sweep";
 import { sendPaidOrderNotifications } from "@/lib/orders/notifications";
-import { setOrderPayment, sendOrderToBaseLinker } from "@/lib/baselinker";
+import { issueInvoiceForOrder, issueInvoiceForOrderSafely } from "@/lib/orders/invoicing";
+import { sendOrderToBaseLinker } from "@/lib/baselinker";
 import { FULFILLMENT_STATUSES, PAYMENT_STATUSES } from "@/lib/orders/status";
 
 type Result<T = object> = ({ success: true } & T) | { success: false; error: string };
@@ -32,6 +34,7 @@ function refreshAdminViews(orderId?: string) {
   revalidatePath("/admin");
   revalidatePath("/admin/kosz");
   revalidatePath("/admin/raporty");
+  revalidatePath("/admin/statystyki");
   if (orderId) revalidatePath(`/admin/zamowienia/${orderId}`);
 }
 
@@ -97,20 +100,12 @@ export async function updateOrderStatus(raw: unknown): Promise<Result> {
   const after = { ...before, ...update, id: input.orderId };
 
   // Oznaczenie zapłaty musi dojść tam, gdzie dochodzi po płatności online:
-  // do klienta, do sprzedawcy z plikami i do BaseLinkera.
+  // do klienta i do sprzedawcy z plikami. BaseLinker celowo zostaje z płatnością
+  // nieustawioną — tam wpłatę księguje sprzedawca ręcznie.
   if (update.status === "PAID") {
-    if (before.baselinkerOrderId) {
-      try {
-        await setOrderPayment(
-          before.baselinkerOrderId,
-          before.totals?.total ?? 0,
-          Math.floor(Date.now() / 1000),
-          "Oznaczone jako opłacone w panelu"
-        );
-      } catch (error) {
-        console.error("updateOrderStatus BaseLinker error:", error);
-      }
-    }
+    // Faktura w inFakcie powstaje niezależnie od powiadomień — przelew tradycyjny
+    // i sprzedaż z Vinted mają trafić do księgowości tak samo jak płatność online.
+    await issueInvoiceForOrderSafely(input.orderId);
 
     if (input.notify) {
       try {
@@ -430,6 +425,9 @@ export async function createManualOrder(raw: unknown): Promise<Result<{ orderId:
     internalNote: input.internalNote || null,
   });
 
+  // Zamówienie dodane ręcznie jako opłacone też ma swoją fakturę.
+  if (input.status === "PAID") await issueInvoiceForOrderSafely(ref.id);
+
   await recordAudit({
     actorEmail: actor.email,
     action: "Ręczne dodanie zamówienia",
@@ -475,6 +473,111 @@ export async function pushOrderToBaseLinker(orderId: string): Promise<Result> {
   });
 
   refreshAdminViews(String(orderId));
+  return { success: true };
+}
+
+/** Wystawia fakturę na żądanie — po nieudanej próbie automatycznej. */
+export async function issueOrderInvoice(orderId: string): Promise<Result> {
+  const actor = await requireAdminActor();
+  if (!actor) return DENIED;
+
+  const result = await issueInvoiceForOrder(String(orderId), { force: true });
+  if (!result.ok) {
+    return { success: false, error: result.error ?? "Nie udało się wystawić faktury." };
+  }
+
+  const snapshot = await db.collection("orders").doc(String(orderId)).get();
+  await recordAudit({
+    actorEmail: actor.email,
+    action: "Wystawienie faktury (inFakt)",
+    orderId: String(orderId),
+    orderNumber: snapshot.data()?.orderNumber,
+    details: result.skipped
+      ? `Faktura już istniała: ${result.number ?? "brak numeru"}`
+      : `Numer faktury: ${result.number ?? "nieznany"}`,
+  });
+
+  refreshAdminViews(String(orderId));
+  return { success: true };
+}
+
+/* ------------------------------------------------------------------ */
+/* Sprzedaż poza sklepem                                               */
+/* ------------------------------------------------------------------ */
+
+const manualSaleSchema = z.object({
+  /** Dzień sprzedaży w formacie z pola `<input type="date">`. */
+  soldOn: z.string().regex(/^\d{4}-\d{2}-\d{2}$/, "Podaj datę sprzedaży"),
+  sheets: z.coerce.number().int().min(1, "Podaj liczbę arkuszy").max(10000),
+  amount: z.coerce.number().min(0).max(1000000).default(0),
+  note: z.string().trim().max(200).default(""),
+});
+
+/**
+ * Dopisuje sprzedaż, która ominęła sklep — mailem, z ręki, przez znajomych.
+ *
+ * Trzymamy ją w osobnej kolekcji, nie jako zamówienie: nie ma klienta, adresu
+ * ani plików do druku, a wrzucona do `orders` zaśmiecałaby listę zamówień
+ * i ewidencję sprzedaży. Statystyki dolewają ją do arkuszy ze sklepu.
+ */
+export async function addManualSale(raw: unknown): Promise<Result<{ id: string }>> {
+  const actor = await requireAdminActor();
+  if (!actor) return DENIED;
+
+  const parsed = manualSaleSchema.safeParse(raw);
+  if (!parsed.success) {
+    return { success: false, error: parsed.error.issues[0]?.message || "Błędne dane." };
+  }
+  const input = parsed.data;
+
+  const [year, month, day] = input.soldOn.split("-").map(Number);
+  // Zapisujemy początek wybranego dnia w czasie warszawskim. Bez tego sprzedaż
+  // z pierwszego dnia miesiąca potrafiłaby wpaść do miesiąca poprzedniego.
+  const soldAt = zonedBoundary(year, month, day);
+
+  const ref = await db.collection("manualSales").add({
+    soldAt,
+    sheets: input.sheets,
+    amount: Math.round(input.amount * 100) / 100,
+    note: input.note,
+    createdBy: actor.email,
+    createdAt: new Date().toISOString(),
+  });
+
+  await recordAudit({
+    actorEmail: actor.email,
+    action: "Dopisanie sprzedaży poza sklepem",
+    details: `${input.sheets} ark. z dnia ${input.soldOn}${
+      input.amount ? `, ${input.amount.toFixed(2)} zł` : ""
+    }${input.note ? `, ${input.note}` : ""}`,
+  });
+
+  refreshAdminViews();
+  return { success: true, id: ref.id };
+}
+
+/** Kasuje ręczny wpis — pomyłkę prościej usunąć niż poprawiać. */
+export async function deleteManualSale(saleId: string): Promise<Result> {
+  const actor = await requireAdminActor();
+  if (!actor) return DENIED;
+
+  const parsed = z.string().min(1).max(128).safeParse(saleId);
+  if (!parsed.success) return { success: false, error: "Błędne dane." };
+
+  const ref = db.collection("manualSales").doc(parsed.data);
+  const snapshot = await ref.get();
+  if (!snapshot.exists) return { success: false, error: "Ten wpis już nie istnieje." };
+
+  const before = snapshot.data()!;
+  await ref.delete();
+
+  await recordAudit({
+    actorEmail: actor.email,
+    action: "Usunięcie sprzedaży poza sklepem",
+    details: `${before.sheets ?? 0} ark. z dnia ${String(before.soldAt ?? "").slice(0, 10)}`,
+  });
+
+  refreshAdminViews();
   return { success: true };
 }
 

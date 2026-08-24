@@ -2,15 +2,17 @@
 
 import { useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
-import { Loader2, RotateCcw, Send, Trash2 } from "lucide-react";
+import { FileText, Loader2, RotateCcw, Send, Trash2 } from "lucide-react";
 
 import {
   deleteOrderPermanently,
+  issueOrderInvoice,
   moveOrderToTrash,
   pushOrderToBaseLinker,
   restoreOrder,
 } from "@/app/actions/admin";
 import { FormAlert } from "@/components/auth/fields";
+import { formatDate } from "@/lib/orders/status";
 import { Card } from "./AdminLayout";
 
 export function BaseLinkerButton({
@@ -54,6 +56,106 @@ export function BaseLinkerButton({
         )}
         Wyślij do BaseLinkera
       </button>
+      {error && (
+        <p className="text-xs font-bold text-destructive bg-destructive/10 border border-destructive/25 rounded-lg px-3 py-1.5">
+          {error}
+        </p>
+      )}
+    </div>
+  );
+}
+
+/**
+ * Faktura z inFaktu. Wystawia się sama po zaksięgowaniu płatności — przycisk
+ * jest tylko na wypadek, gdy inFakt odmówił albo nie zdążył odpowiedzieć.
+ */
+export function InvoiceControls({
+  orderId,
+  isPaid,
+  isHistorical,
+  invoice,
+}: {
+  orderId: string;
+  isPaid: boolean;
+  /** Zamówienie sprzed uruchomienia integracji — faktura tylko na wyraźne kliknięcie. */
+  isHistorical: boolean;
+  invoice: {
+    status: string;
+    number: string | null;
+    issuedAt: string | null;
+    error: string | null;
+    warnings: string[];
+  } | null;
+}) {
+  const router = useRouter();
+  const [isPending, startTransition] = useTransition();
+  const [error, setError] = useState<string | null>(null);
+
+  const issued = invoice?.status === "ISSUED";
+
+  return (
+    <div className="flex flex-col gap-3">
+      {issued ? (
+        <p className="text-sm font-bold text-foreground">
+          Wystawiona w inFakcie
+          {invoice?.number ? ` · nr ${invoice.number}` : ""}
+          {invoice?.issuedAt ? ` · ${formatDate(invoice.issuedAt)}` : ""}
+        </p>
+      ) : (
+        <>
+          <button
+            type="button"
+            disabled={isPending || !isPaid}
+            onClick={() =>
+              startTransition(async () => {
+                setError(null);
+                const result = await issueOrderInvoice(orderId);
+                if (!result.success) setError(result.error);
+                else router.refresh();
+              })
+            }
+            className="self-start inline-flex items-center justify-center gap-2 rounded-xl text-sm font-bold bg-card border border-border/70 text-foreground hover:bg-muted/50 hover:text-primary h-11 px-5 transition-all cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
+          >
+            {isPending ? (
+              <Loader2 className="w-4 h-4 animate-spin" aria-hidden />
+            ) : (
+              <FileText className="w-4 h-4" aria-hidden />
+            )}
+            {isHistorical ? "Wystaw fakturę mimo to" : "Wystaw fakturę"}
+          </button>
+          {!isPaid && (
+            <p className="text-xs font-medium text-muted-foreground">
+              Faktura powstaje dopiero po zaksięgowaniu płatności.
+            </p>
+          )}
+          {isPaid && isHistorical && (
+            <p className="text-xs font-medium text-muted-foreground max-w-xl">
+              Zamówienie sprzed uruchomienia integracji — automat go pomija, żeby nie
+              wystawiać faktur z datą wsteczną. Kliknięcie wystawi fakturę z datą sprzedaży
+              z dnia płatności.
+            </p>
+          )}
+        </>
+      )}
+
+      {invoice?.status === "ERROR" && invoice.error && (
+        <p className="text-xs font-bold text-destructive bg-destructive/10 border border-destructive/25 rounded-lg px-3 py-1.5">
+          Ostatnia próba nie powiodła się: {invoice.error}
+        </p>
+      )}
+
+      {invoice?.status === "PENDING" && (
+        <p className="text-xs font-bold text-muted-foreground">
+          Zlecenie wysłane do inFaktu — trwa przetwarzanie.
+        </p>
+      )}
+
+      {issued && invoice.warnings.length > 0 && (
+        <p className="text-xs font-bold text-amber-700 dark:text-amber-400 bg-amber-500/10 border border-amber-500/30 rounded-lg px-3 py-1.5">
+          Do sprawdzenia: {invoice.warnings.join(" ")}
+        </p>
+      )}
+
       {error && (
         <p className="text-xs font-bold text-destructive bg-destructive/10 border border-destructive/25 rounded-lg px-3 py-1.5">
           {error}

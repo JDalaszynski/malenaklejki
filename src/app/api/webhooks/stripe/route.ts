@@ -3,7 +3,10 @@ import { NextResponse } from "next/server";
 import { stripe } from "@/lib/stripe/server";
 import { db } from "@/lib/firebase/admin";
 import { sendCustomerConfirmationEmail, sendAdminFulfillmentAlert } from "@/lib/email/brevo";
-import { setOrderPayment } from "@/lib/baselinker";
+import { issueInvoiceForOrderSafely } from "@/lib/orders/invoicing";
+
+// Wystawienie faktury w inFakcie to kilka sekund odpytywania o status zlecenia.
+export const maxDuration = 30;
 
 export async function POST(req: Request) {
   const body = await req.text();
@@ -55,19 +58,11 @@ export async function POST(req: Request) {
 
       console.log(`Order ${orderId} marked as PAID.`);
 
-      if (orderData.baselinkerOrderId) {
-        try {
-          await setOrderPayment(
-            orderData.baselinkerOrderId,
-            orderData.totals?.total || 0,
-            Math.floor(Date.now() / 1000),
-            "Opłacone przez Stripe"
-          );
-          console.log(`Stripe: Zaktualizowano płatność w BaseLinkerze (ID: ${orderData.baselinkerOrderId})`);
-        } catch (e) {
-          console.error("Stripe: Błąd aktualizacji płatności w BaseLinkerze:", e);
-        }
-      }
+      // Faktura w inFakcie — ta sama ścieżka co przy płatności przez Przelewy24.
+      await issueInvoiceForOrderSafely(orderId);
+
+      // Płatności celowo nie przenosimy do BaseLinkera — zamówienie ma tam
+      // zostać nieopłacone, sprzedawca księguje wpłatę ręcznie.
 
       // Send emails
       if (orderData) {

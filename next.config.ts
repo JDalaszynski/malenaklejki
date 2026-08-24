@@ -50,7 +50,33 @@ const privateHeaders = [
   { key: "Cache-Control", value: "no-store, private" },
 ];
 
+/**
+ * Natywna biblioteka `sharp` (kompresja arkuszy dołączanych do maili) ładuje
+ * plik `libvips-cpp.so` z osobnej paczki `@img/sharp-libvips-*`. Śledzenie
+ * plików Next.js nie widzi tej zależności, bo binarka wciąga ją dopiero
+ * w trakcie `dlopen` — w efekcie na Vercelu `sharp` wywalał się z
+ * `ERR_DLOPEN_FAILED: libvips-cpp.so...: cannot open shared object file`,
+ * a maile do sklepu szły z nieskompresowanymi arkuszami (22 MB zamiast 4 MB)
+ * i Brevo odrzucało je jako za duże. Dlatego wskazujemy te pliki ręcznie.
+ *
+ * Katalogi dla innych systemów po prostu nie istnieją w danej instalacji —
+ * wzorzec, który nic nie dopasuje, jest pomijany bez błędu.
+ */
+const SHARP_NATIVE_FILES = [
+  "./node_modules/@img/**/*",
+  "./node_modules/sharp/**/*",
+];
+
 const nextConfig: NextConfig = {
+  // Trasy, które kompresują obrazy: webhooki i cron (załączniki do maili),
+  // checkout (akcja `createOrder`), panel (ponowna wysyłka powiadomień)
+  // oraz `/api/compress-png` wołane z kreatora.
+  outputFileTracingIncludes: {
+    "/api": SHARP_NATIVE_FILES,
+    "/checkout": SHARP_NATIVE_FILES,
+    "/admin": SHARP_NATIVE_FILES,
+  },
+
   async headers() {
     return [
       {

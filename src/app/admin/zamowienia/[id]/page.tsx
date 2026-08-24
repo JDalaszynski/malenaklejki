@@ -4,17 +4,19 @@ import { notFound } from "next/navigation";
 import { ArrowLeft, Download, FileText } from "lucide-react";
 
 import { AdminLayout, Card } from "@/components/admin/AdminLayout";
-import { BaseLinkerButton, DangerZone } from "@/components/admin/OrderActions";
+import { BaseLinkerButton, DangerZone, InvoiceControls } from "@/components/admin/OrderActions";
 import { OrderEditForm } from "@/components/admin/OrderEditForm";
 import { StatusControls } from "@/components/admin/StatusControls";
 import { StatusPill } from "@/components/account/StatusPill";
 import { requireAdmin } from "@/lib/auth/dal";
 import { getOrder } from "@/lib/admin/queries";
 import { listAuditForOrder } from "@/lib/admin/audit";
+import { isBeforeInvoicing } from "@/lib/orders/invoicing";
 import {
   formatDateTime,
   formatPln,
   fulfillmentStatusOf,
+  normalizePaymentStatus,
   paymentStatusOf,
 } from "@/lib/orders/status";
 
@@ -24,6 +26,8 @@ export const metadata: Metadata = {
 };
 
 export const dynamic = "force-dynamic";
+// Ręczne wystawienie faktury czeka na odpowiedź inFaktu.
+export const maxDuration = 30;
 
 function isoDateInput(iso: string | null): string {
   if (!iso) return "";
@@ -79,6 +83,18 @@ export default async function AdminOrderPage({ params }: { params: Promise<{ id:
           status={order.status}
           fulfillmentStatus={order.fulfillmentStatus}
           trackingNumber={order.trackingNumber}
+        />
+      </Card>
+
+      <Card
+        title="Faktura"
+        description="inFakt wystawia ją automatycznie po zaksięgowaniu płatności. Faktura nigdzie nie jest wysyłana."
+      >
+        <InvoiceControls
+          orderId={order.id}
+          isPaid={normalizePaymentStatus(order.status) === "PAID"}
+          isHistorical={isBeforeInvoicing(order)}
+          invoice={order.infakt}
         />
       </Card>
 

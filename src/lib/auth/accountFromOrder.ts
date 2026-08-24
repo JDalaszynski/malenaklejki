@@ -3,7 +3,7 @@ import "server-only";
 import { FirebaseAuthError } from "firebase-admin/auth";
 
 import { adminAuth, db } from "@/lib/firebase/admin";
-import { sendVerificationEmail } from "@/lib/email/auth";
+import { sendVerificationEmail, sendNewAccountAdminNotification } from "@/lib/email/auth";
 
 export type AccountFromOrderResult =
   | { ok: true; uid: string; email: string }
@@ -69,6 +69,14 @@ export async function createAccountFromOrder(
       handleCodeInApp: false,
     });
     await sendVerificationEmail(email, order.customer?.firstName ?? "", link);
+
+    await sendNewAccountAdminNotification({
+      email,
+      firstName: order.customer?.firstName ?? "",
+      lastName: order.customer?.lastName ?? "",
+      source: "order",
+      marketingConsent,
+    });
 
     return { ok: true, uid: record.uid, email };
   } catch (error) {
