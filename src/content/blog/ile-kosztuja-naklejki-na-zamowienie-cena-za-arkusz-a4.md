@@ -73,6 +73,8 @@ MałeNaklejki to w 100% polska [alternatywa dla zagranicznych serwisów naklejko
 
 Dla zachowania pełnej rzetelności warto wiedzieć, kiedy technologia arkuszowa A4 ustępuje innym rozwiązaniom. Jeśli potrzebujesz nakładu rzędu 5000 lub 10 000 identycznych etykiet na linię produkcyjną, tradycyjna drukarnia wielkonakładowa z drukiem offsetowym lub fleksograficznym na roli zaoferuje niższy koszt jednostkowy przy dużej skali. 
 
+Jeśli nie masz pewności, który kanał zakupu wybrać, porównujemy je punkt po punkcie we wpisie [gdzie zamówić naklejki w małym nakładzie](/blog/gdzie-zamowic-naklejki-w-malym-nakladzie-porownanie).
+
 Jeśli jednak Twój nakład mieści się w przedziale od 1 do kilkudziesięciu arkuszy, potrzebujesz przetestować nową partię produktów, przygotowujesz pakiet dla pracowników lub personalizujesz [naklejki dla firm](/naklejki-dla-firm), nasz model stałej ceny 49 zł za arkusz A4 jest najbardziej opłacalnym i elastycznym rozwiązaniem na rynku.
 
 ## Jak przygotować plik i zamówić naklejki w 3 krokach

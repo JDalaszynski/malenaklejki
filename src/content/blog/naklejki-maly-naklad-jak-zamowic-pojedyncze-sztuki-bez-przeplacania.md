@@ -21,6 +21,8 @@ W tradycyjnych drukarniach mały nakład zwykle wciąż oznacza od 50 do nawet 5
 - **Kilka pojedynczych wzorów** rozrzuconych po arkuszu, każdy w innym kształcie.
 - **Dowolną liczbę małych naklejek** - od 2 do kilkudziesięciu sztuk na jednym A4.
 
+Zastanawiasz się, czy zamiast druku online nie lepiej wybrać drukarnię lokalną, grafika z Allegro albo serwis zagraniczny? Wszystkie cztery kanały zestawiamy w osobnym artykule: [gdzie zamówić naklejki w małym nakładzie](/blog/gdzie-zamowic-naklejki-w-malym-nakladzie-porownanie).
+
 ## Ile kosztują naklejki na zamówienie w małym nakładzie?
 
 Poniżej realny przykład, ile zapłacisz za pojedynczy arkusz w zależności od tego, ile naklejek na nim umieścisz - cena arkusza się nie zmienia, zmienia się tylko koszt jednostkowy:

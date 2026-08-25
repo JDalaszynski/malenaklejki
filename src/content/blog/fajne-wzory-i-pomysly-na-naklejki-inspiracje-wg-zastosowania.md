@@ -55,6 +55,8 @@ Zamiast płacić krocie agencjom reklamowym, małe polskie manufaktury z powodze
 
 ## Ułóż arkusz z telefonu i odbierz paczkę w 72h
 
+Masz już pomysł na wzór i zastanawiasz się, u kogo go wydrukować? Cztery dostępne kanały - drukarnię lokalną, grafika z Allegro, serwisy zagraniczne i polski kreator online - zestawiamy we wpisie [gdzie zamówić naklejki w małym nakładzie](/blog/gdzie-zamowic-naklejki-w-malym-nakladzie-porownanie).
+
 Nie musisz szukać inspiracji u gigantów zagranicznych. Jesteśmy w 100% polską alternatywą dla globalnych platform, które ukrywają opłaty w kosztach przesyłki, wymagają znajomości Photoshopa, a paczka idzie tygodniami z drugiego końca świata.
 
 Proces w Małych Naklejkach, jakiego nie znajdziesz nigdzie indziej, jest prosty i skierowany ku Twojej wygodzie:

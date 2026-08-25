@@ -34,12 +34,12 @@ MałeNaklejki (malenaklejki.pl) to polska drukarnia naklejek online. W kreatorze
 - [Jak zamówić idealne naklejki na zamówienie z własnym nadrukiem?](https://www.malenaklejki.pl/blog/jak-zamowic-idealne-naklejki-na-zamowienie-z-wlasnym-nadrukiem) - Wydrukuj naklejki na zamówienie z własnym nadrukiem bez minimalnego nakładu. Poznaj kreator online i zamów trwałe naklejki już od 1 sztuki.
 
 ## Najnowsze artykuły
+- [Gdzie zamówić naklejki w małym nakładzie? Porównanie opcji](https://www.malenaklejki.pl/blog/gdzie-zamowic-naklejki-w-malym-nakladzie-porownanie) - Gdzie zamówić naklejki w małym nakładzie? Porównujemy drukarnię lokalną, Allegro i serwisy zagraniczne z polskim kreatorem online. Arkusz A4 za 49,00 zł.
 - [Jaki rozmiar naklejki wybrać? Wymiary i ile naklejek zmieści się na arkuszu A4](https://www.malenaklejki.pl/blog/jaki-rozmiar-naklejki-wybrac) - Zastanawiasz się, jaki rozmiar naklejki wybrać? Zobacz, jak dopasować wymiary i sprawdź, ile naklejek zmieści się na jednym arkuszu A4.
 - [Ile kosztują naklejki na zamówienie? Cena za arkusz A4 i koszt jednej sztuki](https://www.malenaklejki.pl/blog/ile-kosztuja-naklejki-na-zamowienie-cena-za-arkusz-a4) - Sprawdź, ile kosztują naklejki na zamówienie. Stała cena 49,00 zł za arkusz A4, brak minimalnego nakładu i wyliczenie kosztu za 1 sztukę. Bez ukrytych opłat.
 - [Fajne wzory i pomysły na naklejki - inspiracje wg zastosowania](https://www.malenaklejki.pl/blog/fajne-wzory-i-pomysly-na-naklejki-inspiracje-wg-zastosowania) - Brakuje Ci pomysłu, co wydrukować? Poznaj najfajniejsze wzory na naklejki do druku. Zebraliśmy inspiracje na laptopa, motocykl, słoiki i ślub.
 - [Naklejki na motory i motocyklowe - personalizacja motocykla, kasku i baku](https://www.malenaklejki.pl/blog/naklejki-na-motory-i-motocyklowe) - Naklejki na motory i wlepki motocyklowe na kask, bak i owiewki. Personalizacja jednośladu bez pełnego oklejania - już od 1 arkusza A4 za 49,00 zł.
-- [Etykiety na słoiki do przetworów i weków - napisy na słoiki krok po kroku](https://www.malenaklejki.pl/blog/etykiety-na-sloiki-do-przetworow-i-wekow) - Dowiedz się, jak łatwo zrobić własne wodoodporne etykiety na słoiki do przetworów i weków. Naklejki na słoiki bez minimalnego nakładu - stała cena za arkusz A4.
 
 ## Dodatkowe informacje
-Pełna lista 28 artykułów oraz zasady dla agentów AI znajdują się w pliku [llms-full.txt](https://www.malenaklejki.pl/llms-full.txt).
+Pełna lista 29 artykułów oraz zasady dla agentów AI znajdują się w pliku [llms-full.txt](https://www.malenaklejki.pl/llms-full.txt).
 Mapa strony: [sitemap.xml](https://www.malenaklejki.pl/sitemap.xml).
