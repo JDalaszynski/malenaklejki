@@ -6,6 +6,7 @@ description: "Personalizowane naklejki na rower i kask na wodoodpornej folii - s
 image: "/blog/naklejki-na-rower-i-akcesoria-sportowe-dla-pasjonatow/naklejki-na-kask-i-bidon-rowerowy-z-imieniem-i-logo-gorskim.png"
 imageAlt: "Kask rowerowy i czarny bidon sportowy z personalizowanymi naklejkami z górskim logo i imieniem Michał, w tle rozmyte góry."
 tags: ["naklejki na rower", "naklejki na kask", "sport", "personalizacja"]
+role: "supporting"
 cta_text: "Zamów naklejki na rower"
 ---
 

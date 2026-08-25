@@ -4,6 +4,7 @@ slug: "ile-kosztuja-naklejki-na-zamowienie-cena-za-arkusz-a4"
 date: "2026-08-17"
 description: "Sprawdź, ile kosztują naklejki na zamówienie. Stała cena 49,00 zł za arkusz A4, brak minimalnego nakładu i wyliczenie kosztu za 1 sztukę. Bez ukrytych opłat."
 tags: ["naklejki na zamówienie", "cennik", "naklejki cena", "mały nakład", "arkusz A4"]
+role: "supporting"
 cta_text: "Zamów naklejki od 49 zł"
 ---
 

@@ -1,10 +1,11 @@
-﻿---
+---
 title: "Małe naklejki na laptopa - jak wyrazić siebie i stworzyć własny styl"
 slug: "male-naklejki-na-laptopa-jak-wyrazic-siebie-i-stworzyc-wlasny-styl"
 date: "2026-07-06"
-description: "Dowiedz się, jak małe naklejki na laptopa oraz wlepki z własnym logo pozwolą Ci spersonalizować sprzęt. Zamów wytrzymałe naklejki od 1 sztuki i stwórz własny styl."
+description: "Małe naklejki na laptopa i wlepki z własnym logo - spersonalizuj sprzęt po swojemu. Zamów wytrzymałe naklejki od 1 sztuki, bez minimalnego nakładu."
 image: "/blog/male-naklejki-na-laptopa-jak-wyrazic-siebie-i-stworzyc-wlasny-styl/male-naklejki-na-laptopa.png"
 tags: ["naklejki na laptopa", "wlepki", "personalizacja", "poradnik"]
+role: "supporting"
 cta_text: "Stwórz swoje naklejki"
 ---
 

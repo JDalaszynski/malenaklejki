@@ -1,4 +1,4 @@
-﻿---
+---
 title: "Małe naklejki z imionami na meble, drzwi i pojemniki - organizacja domu"
 slug: "naklejki-z-imionami-na-meble-drzwi-i-pojemniki-organizacja-domu"
 date: "2026-07-25"
@@ -6,6 +6,7 @@ description: "Zorganizuj dom i pokój dziecka wykorzystując małe naklejki z im
 image: "/blog/naklejki-z-imionami-na-meble-drzwi-i-pojemniki-organizacja-domu/male-naklejki-z-imionami-na-meble.png"
 imageAlt: "Biały plastikowy pojemnik z naklejoną małą naklejką z minimalistycznym napisem w uporządkowanej szafie - organizacja domu z MałeNaklejki."
 tags: ["naklejki", "organizacja domu", "poradnik", "pokój dziecka"]
+role: "supporting"
 cta_text: "Zamów własne naklejki"
 ---
 

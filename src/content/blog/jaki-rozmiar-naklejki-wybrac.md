@@ -5,6 +5,7 @@ date: "2026-08-20"
 description: "Zastanawiasz się, jaki rozmiar naklejki wybrać? Zobacz, jak dopasować wymiary i sprawdź, ile naklejek zmieści się na jednym arkuszu A4."
 image: ""
 tags: ["naklejki", "poradnik", "rozmiary", "marketing"]
+role: "supporting"
 cta_text: "Sprawdź rozmiary w kreatorze"
 ---
 

@@ -6,6 +6,7 @@ description: "Jak zrobić własne naklejki bez grafika? Program do robienia nakl
 image: "/blog/jak-zrobic-wlasne-naklejki-program-do-robienia-naklejek-online/arkusz-a4-z-roznymi-wlasnymi-naklejkami.jpg"
 imageAlt: "Arkusz A4 pełen różnych własnych naklejek - wycięte po obrysie zwierzęta, kwiaty, monogramy i naklejki z napisami w spójnej, pastelowej kolorystyce."
 tags: ["jak zrobić naklejki", "program do robienia naklejek", "tworzenie naklejek", "kreator naklejek"]
+role: "supporting"
 cta_text: "Zrób własne naklejki"
 ---
 

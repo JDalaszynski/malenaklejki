@@ -6,6 +6,7 @@ description: "Personalizowane naklejki do przedszkola i na zeszyty z imieniem dz
 image: "/blog/personalizowane-naklejki-na-zeszyty-i-do-przedszkola/naklejki-z-imieniem-dziecka-na-zeszytach-szkolnych.jpg"
 imageAlt: "Stos kolorowych zeszytów i segregatorów szkolnych z naklejonymi na grzbietach personalizowanymi naklejkami z imieniem, nazwiskiem i ikoną każdego dziecka"
 tags: ["naklejki dla dzieci", "przedszkole", "szkoła", "personalizacja"]
+role: "supporting"
 cta_text: "Zamów naklejki dla dziecka"
 ---
 

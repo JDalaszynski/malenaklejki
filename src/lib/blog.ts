@@ -21,7 +21,9 @@ export interface BlogPost {
   tags?: string[];
   readingTime?: string;
   faq?: FAQItem[];
-  /** Artykuł filarowy (cornerstone) — przypinany na stronie głównej zamiast doboru chronologicznego. */
+  /** Rola wpisu w architekturze klastrów (frontmatter `role`). Decyduje o typie schematu: "pillar" → Article, "supporting" → BlogPosting. Domyślnie "supporting". */
+  role: "pillar" | "supporting";
+  /** Przypięcie na stronie głównej (frontmatter `pillar`) — wybór redakcyjny, NIE typ schematu (od tego jest `role`). */
   pillar?: boolean;
   /** Kolejność wyświetlania filarów (rosnąco). Bez wartości = po dacie. */
   pillarOrder?: number;
@@ -80,6 +82,7 @@ export async function getBlogPosts(): Promise<BlogPost[]> {
               tags: data.tags || [],
               readingTime,
               faq: faq.length > 0 ? faq : undefined,
+              role: data.role === "pillar" ? ("pillar" as const) : ("supporting" as const),
               pillar: data.pillar === true,
               pillarOrder: typeof data.pillarOrder === "number" ? data.pillarOrder : undefined,
             };
@@ -138,6 +141,7 @@ export async function getBlogPostBySlug(slug: string): Promise<BlogPost | null> 
       tags: data.tags || [],
       readingTime,
       faq: faq.length > 0 ? faq : undefined,
+      role: data.role === "pillar" ? ("pillar" as const) : ("supporting" as const),
       pillar: data.pillar === true,
       pillarOrder: typeof data.pillarOrder === "number" ? data.pillarOrder : undefined,
     };

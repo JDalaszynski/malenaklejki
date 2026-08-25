@@ -6,6 +6,7 @@ description: "Małe naklejki na przyprawy na zamówienie od 1 sztuki. Stwórz et
 image: "/blog/naklejki-wlasnego-projektu-na-sloiki-z-przyprawami-zorganizuj-swoja-kuchnie/naklejki-na-przyprawy-na-zamowienie-minimalistyczne-etykiety.png"
 imageAlt: "Dłoń trzymająca szklany słoiczek z papryką w proszku z minimalistyczną naklejką na przyprawy na zamówienie, w tle uporządkowana półka kuchenna z etykietowanymi słoikami"
 tags: ["naklejki na przyprawy", "organizacja kuchni", "naklejki na zamówienie", "etykiety na słoiki"]
+role: "supporting"
 cta_text: "Stwórz naklejki na przyprawy"
 ---
 

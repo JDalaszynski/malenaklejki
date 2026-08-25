@@ -196,8 +196,9 @@ export default async function BlogPostPage({ params }: PageProps) {
       <JsonLd
         data={{
           "@context": "https://schema.org",
-          // Filary to evergreenowe zasoby autorytatywne → "Article"; pozostałe wpisy → "BlogPosting".
-          "@type": post.pillar ? "Article" : "BlogPosting",
+          // Filary (`role: pillar`) to evergreenowe zasoby autorytatywne → "Article"; pozostałe wpisy → "BlogPosting".
+          // Uwaga: NIE używamy tu flagi `pillar` - ta odpowiada wyłącznie za przypięcie wpisu na stronie głównej.
+          "@type": post.role === "pillar" ? "Article" : "BlogPosting",
           headline: post.title,
           description: post.description,
           image: post.image ? [`https://www.malenaklejki.pl${post.image}`] : [],

@@ -198,7 +198,8 @@ export default function AlternatywaPage() {
               "@type": "OfferShippingDetails",
               shippingRate: {
                 "@type": "MonetaryAmount",
-                value: "15.00",
+                // Paczkomat 19,99 zł - jedyny zatwierdzony koszt dostawy (blog-agent/facts.md).
+                value: "19.99",
                 currency: "PLN",
               },
               shippingDestination: {
@@ -209,7 +210,8 @@ export default function AlternatywaPage() {
                 "@type": "ShippingDeliveryTime",
                 handlingTime: {
                   "@type": "QuantitativeValue",
-                  minValue: 1,
+                  // Produkcja 2-3 dni robocze (blog-agent/facts.md, decyzja z 2026-08-17).
+                  minValue: 2,
                   maxValue: 3,
                   unitCode: "d",
                 },

@@ -6,6 +6,7 @@ description: "Prowadzisz manufakturę? Sprawdź, jak zamówić naklejki z logo n
 image: "/blog/naklejki-z-wlasnym-logo-na-sloiki-i-opakowania/naklejki-z-wlasnym-logo-na-sloiki-i-opakowania-okladka.jpg"
 imageAlt: "Personalizowane naklejki na słoiki z własnym logo wydrukowane na arkuszu folii, idealne dla małych manufaktur"
 tags: ["naklejki", "biznes", "poradnik"]
+role: "supporting"
 cta_text: "Zamów własne naklejki"
 ---
 

@@ -49,6 +49,7 @@ Wywołania agenta dla projektu `malenaklejki`. Wszystkie komendy działają w j�
 | Audyt SEO konkretnego artykułu | `"Zrób audyt SEO artykułu [slug]"` |
 | Sprawdź wszystkie artykuły pod zasady z rules.md | `"Sprawdź wszystkie artykuły na blogu pod kątem naruszeń zasad"` |
 | Popraw imageAlt / meta description | `"Popraw imageAlt i opis w [slug]"` |
+| Odśwież pliki dla modeli LLM (GEO) | `"Zregeneruj llms.txt"` → `node scripts/generuj-llms-txt.mjs` |
 | Sprawdź naruszenia zasady ograniczeń kreatora | `"Sprawdź czy artykuł [slug] nie narusza zasad opisywania kreatora"` |
 
 ---
@@ -67,8 +68,9 @@ Wykonuje automatycznie w kolejności:
 5. Zapis do `src/content/blog/{slug}.md`
 6. Skrypt social+Pinterest → `/public/pinterest/{slug}/`
 7. Aktualizacja `plan.md` (oznaczenie jako zrealizowany)
-8. `git add` → `git commit` → `git push origin main`
-9. Ping Google Sitemap
+8. Regeneracja `public/llms.txt` i `public/llms-full.txt` (`node scripts/generuj-llms-txt.mjs`)
+9. `git add` → `git commit` → `git push origin main`
+10. Ping IndexNow (Bing) + ręczne "Request indexing" w Google Search Console
 
 > 💡 Użyj `/goal` aby agent działał bez przerw aż do pełnego ukończenia całego pipeline'u.
 
@@ -86,6 +88,8 @@ Wykonuje automatycznie w kolejności:
 | `social-agent/social-rules.md` | Zasady pisania postów social media |
 | `social-agent/social-plan.md` | Plan recyklingu artykułów na content social |
 | `social-agent/generate-socials.ts` | Skrypt generujący Piny + grafiki 4:5 |
+| `scripts/generuj-llms-txt.mjs` | Generator `public/llms.txt` i `llms-full.txt` (GEO) - uruchamiaj po każdej publikacji |
+| `blog-agent/facts.md` | Jedyne źródło prawdy o produkcie (ceny, czasy, wymiary) |
 | `.agents/AGENTS.md` | Zasady SEO bloga (linkowanie, zdjęcia, kreator) |
 | `src/content/blog/` | Gotowe artykuły w Markdown |
 | `public/blog/{slug}/` | Zdjęcia do artykułu |

@@ -6,6 +6,7 @@ description: "Naklejki firmowe na eventy i welcome pack dla nowych pracowników 
 image: "/blog/naklejki-firmowe-na-eventy-welcome-pack-dla-pracownikow/welcome-pack-naklejki-firmowe-na-laptopie-i-kubku.png"
 imageAlt: "Zestaw powitalny (Welcome Pack) dla nowego pracownika - laptop, czarny kubek, notes i wizytówka oklejone spójnymi naklejkami firmowymi z logo na biurku."
 tags: ["naklejki firmowe", "welcome pack", "HR", "eventy firmowe"]
+role: "supporting"
 cta_text: "Zamów naklejki na eventy"
 ---
 

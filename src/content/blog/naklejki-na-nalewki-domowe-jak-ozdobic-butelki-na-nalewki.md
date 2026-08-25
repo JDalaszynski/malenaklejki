@@ -6,6 +6,7 @@ description: "Estetyczne naklejki na nalewki domowe z własnym projektem - wodoo
 image: "/blog/naklejki-na-nalewki-domowe-jak-ozdobic-butelki-na-nalewki/naklejki-na-nalewki-domowe-komplet-butelek-z-owocowymi-etykietami.png"
 imageAlt: "Komplet butelek z domowymi nalewkami owocowymi (wiśniowa, jagodowa, malinowa, morelowa) z estetycznymi naklejkami na nalewki domowe stojący na drewnianym stole."
 tags: ["naklejki na nalewki", "nalewki domowe", "etykiety na butelki", "naklejki na zamówienie"]
+role: "supporting"
 cta_text: "Zamów naklejki na nalewki"
 ---
 

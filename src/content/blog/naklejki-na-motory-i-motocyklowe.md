@@ -1,8 +1,9 @@
 ---
 title: "Naklejki na motory i motocyklowe - personalizacja motocykla, kasku i baku"
-description: "Zastanawiasz się, jak nadać swojemu jednośladowi unikalny charakter? Zobacz, jak małe naklejki motocyklowe pozwalają na szybką personalizację kasku i baku bez potrzeby pełnego oklejania."
+description: "Naklejki na motory i wlepki motocyklowe na kask, bak i owiewki. Personalizacja jednośladu bez pełnego oklejania - już od 1 arkusza A4 za 49,00 zł."
 date: "2026-08-16"
 tags: ["naklejki", "motocykle", "hobby"]
+role: "supporting"
 ---
 
 Motocykl to dla wielu pasjonatów nie tylko środek transportu, ale przedłużenie własnego charakteru, swoista deklaracja stylu życia. Personalizacja jednośladu pozwala wyróżnić się w tłumie, nadać maszynie unikalny sznyt i sprawić, że staje się ona jedyna w swoim rodzaju. Zanim jednak pomyślisz o skomplikowanej, kosztownej, pełnej okleinie karoserii, która wymaga oddania motocykla do warsztatu na kilka dni, zastanów się nad potęgą detalu. 

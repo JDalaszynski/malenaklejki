@@ -3,10 +3,11 @@ title: "Naklejki mały nakład - jak zamówić pojedyncze sztuki?"
 slug: "naklejki-maly-naklad-jak-zamowic-pojedyncze-sztuki-bez-przeplacania"
 date: "2026-07-18"
 updated: "2026-08-17"
-description: "Naklejki mały nakład bez minimalnego zamówienia - zamów od 1 sztuki, stała cena 49,00 zł za arkusz A4 i realizacja w 2-3 dni robocze, bez przepłacania za nadmiar."
+description: "Naklejki w małym nakładzie bez minimum zamówienia - już od 1 sztuki, stała cena 49,00 zł za arkusz A4 i produkcja w 2-3 dni robocze. Bez przepłacania."
 image: "/blog/naklejki-maly-naklad-jak-zamowic-pojedyncze-sztuki-bez-przeplacania/kolaz-naklejek-ze-zdjec-pies-i-kot-maly-naklad.png"
 imageAlt: "Kolaż kilkunastu naklejek wyciętych po obrysie z prywatnych zdjęć - psy, koty, zdjęcia ślubne i wakacyjne - ułożonych obok dużej naklejki z psem rasy golden retriever i kotem brytyjskim krótkowłosym."
 tags: ["naklejki", "mały nakład", "wlepki", "poradnik"]
+role: "supporting"
 cta_text: "Zamów naklejki bez minimum"
 ---
 

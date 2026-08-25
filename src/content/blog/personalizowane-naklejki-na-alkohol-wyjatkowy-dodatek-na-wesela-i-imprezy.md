@@ -1,11 +1,12 @@
 ---
 title: "Personalizowane naklejki na alkohol na wesele i imprezy - wódka, wino, nalewki"
 date: "2026-07-05"
-description: "Personalizowane naklejki na alkohol, wódkę weselną i nalewki od 49 zł za arkusz A4. Przygotuj plik np. w AI lub Canva i zamów bez minimalnego nakładu. Dostawa w 2-3 dni."
+description: "Personalizowane naklejki na alkohol, wódkę weselną i nalewki od 49 zł za arkusz A4. Wgraj gotowy projekt i zamów bez minimalnego nakładu."
 image: "/blog/personalizowane-naklejki-na-alkohol-wyjatkowy-dodatek-na-wesela-i-imprezy/personalizowane-naklejki-na-alkohol-okladka.jpeg"
 imageAlt: "Personalizowane naklejki na wódkę weselną, butelki i wino z własnym projektem oraz autorskim napisem. Etykiety samoprzylepne i naklejki na nalewki drukowane na trwałej folii winylowej."
 slug: "personalizowane-naklejki-na-alkohol-wyjatkowy-dodatek-na-wesela-i-imprezy"
 tags: ["naklejki", "ślub", "imprezy", "poradnik"]
+role: "supporting"
 cta_text: "Zamów naklejki na alkohol"
 ---
 

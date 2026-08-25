@@ -1,10 +1,11 @@
-﻿---
+---
 title: "Etykiety na słoiki do przetworów i weków - napisy na słoiki krok po kroku"
 slug: "etykiety-na-sloiki-do-przetworow-i-wekow"
 date: "2026-08-06"
 description: "Dowiedz się, jak łatwo zrobić własne wodoodporne etykiety na słoiki do przetworów i weków. Naklejki na słoiki bez minimalnego nakładu - stała cena za arkusz A4."
 image: "/blog/etykiety-na-sloiki-do-przetworow-i-wekow/szklane-sloiki-z-przetworami-etykiety-na-sloiki-rustykalne.jpeg"
 tags: ["naklejki", "kuchnia", "etykiety", "przetwory"]
+role: "supporting"
 cta_text: "Otwórz kreator arkusza"
 ---
 

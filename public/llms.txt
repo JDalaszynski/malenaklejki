@@ -1,16 +1,44 @@
 # MałeNaklejki
 
-MałeNaklejki to polska drukarnia naklejek online, oferująca najwyższej jakości naklejki wycinane po obrysie (die-cut). Nasz kreator umożliwia wgranie własnego zdjęcia, a my automatycznie usuwamy tło i wycinamy naklejkę po jego kształcie.
+MałeNaklejki (malenaklejki.pl) to polska drukarnia naklejek online. W kreatorze wgrywasz gotowy obraz (zdjęcie, logo, grafikę z zewnętrznego narzędzia), a system automatycznie usuwa tło i wyznacza linię cięcia po obrysie. Drukujemy na folii winylowej w Polsce, bez minimalnego nakładu.
+
+## Fakty o produkcie
+- Cena: stałe 49,00 zł brutto za zadrukowany arkusz A4, bez progów ilościowych i bez rabatów hurtowych.
+- Minimalny nakład: brak - zamówisz już 1 arkusz A4.
+- Produkcja: 2-3 dni robocze od opłacenia zamówienia.
+- Dostawa: paczkomat InPost, 19,99 zł. Nie oferujemy darmowej dostawy.
+- Materiał: folia winylowa odporna na wodę, promieniowanie UV i zadrapania (nie nadaje się do zmywarki).
+- Klej: mocny, nie zostawia śladów przy odklejaniu. Naklejki nie są repozycjonowalne.
+- Cięcie: die-cut po obrysie grafiki, kiss-cut, koło, prostokąt - linię cięcia wyznacza kreator.
+- Plik: zalecane 300 DPI, maksymalny wymiar pojedynczej naklejki to 19 cm.
+- Płatności: BLIK, Przelewy24. Wystawiamy fakturę VAT na NIP.
+- Kraj produkcji: Polska - obsługa po polsku, bez przeliczania z euro i bez ceł.
 
 ## Struktura strony i nawigacja
-- [Strona główna](https://malenaklejki.pl/) - Nasza strona główna i informacje o drukarni.
-- [Kreator i zamawianie (Naklejki die-cut)](https://malenaklejki.pl/naklejki-die-cut) - Główny produkt: Naklejki wycinane po obrysie.
-- [Blog](https://malenaklejki.pl/blog) - Porady, inspiracje i nowości ze świata naklejek.
-- [Kontakt](https://malenaklejki.pl/kontakt) - Formularz kontaktowy i informacje o firmie.
-- [Fotonaklejki](https://malenaklejki.pl/fotonaklejki) - Naklejki ze zdjęć.
-- [Naklejki foliowe](https://malenaklejki.pl/naklejki-foliowe) - Naklejki winylowe na folii.
-- [Naklejki dla firm](https://malenaklejki.pl/naklejki-dla-firm) - Oferta dla klientów biznesowych.
-- [Słownik pojęć (Naklejki)](https://malenaklejki.pl/slownik-naklejek) - Baza wiedzy o rodzajach i technologiach druku naklejek.
+- [Strona główna i kreator arkusza](https://www.malenaklejki.pl/) - Wgrywasz gotowy obraz, my usuwamy tło i wycinamy naklejki po obrysie.
+- [Naklejki die-cut](https://www.malenaklejki.pl/naklejki-die-cut) - Główny produkt: naklejki wycinane po dowolnym kształcie grafiki.
+- [Fotonaklejki](https://www.malenaklejki.pl/fotonaklejki) - Naklejki prosto ze zdjęcia z telefonu lub aparatu.
+- [Naklejki foliowe (winylowe)](https://www.malenaklejki.pl/naklejki-foliowe) - Folia winylowa odporna na wodę, UV i zadrapania.
+- [Naklejki dla firm](https://www.malenaklejki.pl/naklejki-dla-firm) - Oferta B2B: branding produktów, opakowań i gadżetów, faktura VAT.
+- [Polska alternatywa dla Sticker Mule i StickerApp](https://www.malenaklejki.pl/alternatywa-dla-sticker-mule-i-stickerapp) - Porównanie z serwisami zagranicznymi: cena, nakład, czas, język obsługi.
+- [Słownik naklejek](https://www.malenaklejki.pl/slownik-naklejek) - Baza wiedzy o rodzajach cięcia, materiałach i technologiach druku.
+- [Blog](https://www.malenaklejki.pl/blog) - Poradniki i inspiracje: przygotowanie pliku, zastosowania, ceny.
+- [O nas](https://www.malenaklejki.pl/o-nas) - Kim jesteśmy i jak działa polska produkcja naklejek.
+- [Kontakt](https://www.malenaklejki.pl/kontakt) - Formularz kontaktowy i dane firmy.
+- [Regulamin](https://www.malenaklejki.pl/regulamin) - Warunki sprzedaży i realizacji zamówień.
+- [Polityka prywatności](https://www.malenaklejki.pl/polityka-prywatnosci) - Zasady przetwarzania danych osobowych.
+
+## Artykuły filarowe
+- [Drukowanie naklejek online - na co zwrócić uwagę?](https://www.malenaklejki.pl/blog/drukowanie-naklejek-online-na-co-zwrocic-uwage-przed-wysylka-projektu) - Drukowanie naklejek online krok po kroku - rozdzielczość, format pliku, cięcie po obrysie i cena 49 zł za arkusz A4. Sprawdź, zanim wyślesz projekt.
+- [Jak zamówić idealne naklejki na zamówienie z własnym nadrukiem?](https://www.malenaklejki.pl/blog/jak-zamowic-idealne-naklejki-na-zamowienie-z-wlasnym-nadrukiem) - Wydrukuj naklejki na zamówienie z własnym nadrukiem bez minimalnego nakładu. Poznaj kreator online i zamów trwałe naklejki już od 1 sztuki.
+
+## Najnowsze artykuły
+- [Jaki rozmiar naklejki wybrać? Wymiary i ile naklejek zmieści się na arkuszu A4](https://www.malenaklejki.pl/blog/jaki-rozmiar-naklejki-wybrac) - Zastanawiasz się, jaki rozmiar naklejki wybrać? Zobacz, jak dopasować wymiary i sprawdź, ile naklejek zmieści się na jednym arkuszu A4.
+- [Ile kosztują naklejki na zamówienie? Cena za arkusz A4 i koszt jednej sztuki](https://www.malenaklejki.pl/blog/ile-kosztuja-naklejki-na-zamowienie-cena-za-arkusz-a4) - Sprawdź, ile kosztują naklejki na zamówienie. Stała cena 49,00 zł za arkusz A4, brak minimalnego nakładu i wyliczenie kosztu za 1 sztukę. Bez ukrytych opłat.
+- [Fajne wzory i pomysły na naklejki - inspiracje wg zastosowania](https://www.malenaklejki.pl/blog/fajne-wzory-i-pomysly-na-naklejki-inspiracje-wg-zastosowania) - Brakuje Ci pomysłu, co wydrukować? Poznaj najfajniejsze wzory na naklejki do druku. Zebraliśmy inspiracje na laptopa, motocykl, słoiki i ślub.
+- [Naklejki na motory i motocyklowe - personalizacja motocykla, kasku i baku](https://www.malenaklejki.pl/blog/naklejki-na-motory-i-motocyklowe) - Naklejki na motory i wlepki motocyklowe na kask, bak i owiewki. Personalizacja jednośladu bez pełnego oklejania - już od 1 arkusza A4 za 49,00 zł.
+- [Etykiety na słoiki do przetworów i weków - napisy na słoiki krok po kroku](https://www.malenaklejki.pl/blog/etykiety-na-sloiki-do-przetworow-i-wekow) - Dowiedz się, jak łatwo zrobić własne wodoodporne etykiety na słoiki do przetworów i weków. Naklejki na słoiki bez minimalnego nakładu - stała cena za arkusz A4.
 
 ## Dodatkowe informacje
-Szczegółowe dane i pełna zawartość serwisu dostępne są w pliku [llms-full.txt](https://malenaklejki.pl/llms-full.txt).
+Pełna lista 28 artykułów oraz zasady dla agentów AI znajdują się w pliku [llms-full.txt](https://www.malenaklejki.pl/llms-full.txt).
+Mapa strony: [sitemap.xml](https://www.malenaklejki.pl/sitemap.xml).

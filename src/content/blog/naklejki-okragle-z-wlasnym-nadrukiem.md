@@ -6,6 +6,7 @@ description: "Naklejki okrągłe z własnym nadrukiem - kiedy kształt koła wyg
 image: "/blog/naklejki-okragle-z-wlasnym-nadrukiem/okragla-naklejka-z-logo-firmy-na-pudelku.jpg"
 imageAlt: "Okrągła naklejka z własnym logo firmy na białym pudełku wysyłkowym, obok wizytówka w tym samym stylu - spójny branding na kartonowym opakowaniu."
 tags: ["naklejki okrągłe", "naklejki w kształcie koła", "kształt cięcia", "die cut"]
+role: "supporting"
 cta_text: "Zamów okrągłe naklejki"
 ---
 

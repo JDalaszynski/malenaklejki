@@ -31,9 +31,12 @@ date: "YYYY-MM-DD"
 description: "Meta description pod SEO (120-160 znaków, zawierający słowo kluczowe, zachęcający do kliknięcia)"
 image: ""
 tags: ["naklejki", "marketing", "poradnik"] # dopasuj tagi
+role: "supporting" # "pillar" TYLKO dla artykułu filarowego - decyduje o typie schematu (Article vs BlogPosting)
 cta_text: "Krótkie wezwanie do akcji na przycisk (max 4-5 słów)"
 ---
 ```
+
+> **`role` vs `pillar`:** `role` opisuje architekturę klastra i steruje typem schema.org (`pillar` → `Article`, `supporting` → `BlogPosting`). Osobna, opcjonalna flaga `pillar: true` + `pillarOrder` odpowiada **wyłącznie** za przypięcie wpisu w sekcji na stronie głównej - to decyzja redakcyjna właściciela, nie sygnał SEO. Nowy wpis wspierający dostaje `role: "supporting"` i nie dotyka `pillar`.
 
 **Zakończenie artykułu:**
 Na samym końcu pliku dopisz kod HTML przycisku CTA wykorzystujący tekst z `cta_text`:
@@ -70,9 +73,10 @@ Jeśli wykryjesz jakiekolwiek braki, wprowadź niezbędne poprawki.
 2. **Aktualizacja planu:** W pliku `blog-agent/plan.md`:
    - Przenieś napisany artykuł (wraz z jego wciętymi metadanymi) do sekcji `## 📈 Zrealizowane Artykuły`.
    - Zmień jego status na ukończony: `- [x] **Tytuł** (opublikowano YYYY-MM-DD)`.
+2.5. **Regeneracja `llms.txt` (GEO, obowiązkowo):** uruchom `node scripts/generuj-llms-txt.mjs`. Skrypt przebudowuje `public/llms.txt` i `public/llms-full.txt` z frontmatterów wpisów, więc nowy artykuł od razu trafia do plików, którymi karmimy modele LLM. **Nie edytuj tych plików ręcznie** - zmiany w opisie oferty i faktach wprowadzaj w tablicach `PAGES` / `FACTS` w skrypcie (zgodnie z `blog-agent/facts.md`).
 3. **Synchronizacja Git:**
    - Wykonaj polecenia w terminalu:
-     `git add src/content/blog/{slug}.md blog-agent/plan.md public/pinterest/{slug}/ social-agent/outputs/{slug}-socials.md`
+     `git add src/content/blog/{slug}.md blog-agent/plan.md public/llms.txt public/llms-full.txt public/pinterest/{slug}/ social-agent/outputs/{slug}-socials.md`
      `git commit -m "auto(blog): opublikowano wpis o '{tytuł}'"`
      `git push origin main`
 4. **Ping (IndexNow API):**

@@ -1,4 +1,4 @@
-﻿---
+---
 title: "Naklejki motoryzacyjne i tuningowe z własnym nadrukiem"
 slug: "naklejki-motoryzacyjne-i-tuningowe-z-wlasnym-nadrukiem"
 date: "2026-07-23"
@@ -7,6 +7,7 @@ description: "Naklejki motoryzacyjne i wlepki tuningowe z własnym nadrukiem - s
 image: "/blog/naklejki-motoryzacyjne-i-tuningowe-z-wlasnym-nadrukiem/naklejki-tuningowe-na-czarnym-zderzaku-samochodu-sportowego.png"
 imageAlt: "Rząd naklejek tuningowych z logotypami marek motoryzacyjnych naklejonych na czarnym zderzaku samochodu sportowego."
 tags: ["naklejki motoryzacyjne", "wlepki tuningowe", "moto", "personalizacja"]
+role: "supporting"
 cta_text: "Zamów wlepki tuningowe"
 ---
 

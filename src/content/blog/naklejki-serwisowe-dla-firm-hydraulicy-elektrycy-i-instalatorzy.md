@@ -6,6 +6,7 @@ description: "Naklejki serwisowe z numerem telefonu i datą przeglądu za stałe
 image: "/blog/naklejki-serwisowe-dla-firm-hydraulicy-elektrycy-i-instalatorzy/naklejka-serwisowa-na-klimatyzatorze-z-numerem-telefonu.png"
 imageAlt: "Naklejka serwisowa firmy klimatyzacyjnej z numerem telefonu i polem na datę przeglądu przyklejona na białej jednostce klimatyzacji ściennej w biurze."
 tags: ["naklejki serwisowe", "hydraulik", "elektryk", "B2B"]
+role: "supporting"
 cta_text: "Zamów naklejki serwisowe"
 ---
 

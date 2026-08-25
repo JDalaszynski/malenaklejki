@@ -2,10 +2,11 @@
 title: "Naklejki na koperty ślubne i podziękowania dla gości"
 slug: "naklejki-na-koperty-slubne-i-podziekowania-dla-gosci"
 date: "2026-07-28"
-description: "Naklejki na koperty ślubne i podziękowania dla gości od 1 arkusza A4 za 49 zł. Wgraj projekt z Canvy, a my wytniemy je po kształcie. Dostawa w 2-3 dni."
+description: "Naklejki na koperty ślubne i podziękowania dla gości od 1 arkusza A4 za 49 zł. Wgraj projekt z Canvy, a my wytniemy je po kształcie. Produkcja 2-3 dni."
 image: "/blog/naklejki-na-koperty-slubne-i-podziekowania-dla-gosci/naklejki-na-koperty-slubne-podziekowania-dla-gosci.jpg"
 imageAlt: "Naklejki na koperty ślubne i podziękowania dla gości - buteleczki z domową nalewką z etykietą 'Dziękujemy' z imionami pary młodej, obok zaproszenie i numer stołu."
 tags: ["naklejki", "ślub", "podziękowania", "poradnik"]
+role: "supporting"
 cta_text: "Zamów naklejki ślubne"
 ---
 
