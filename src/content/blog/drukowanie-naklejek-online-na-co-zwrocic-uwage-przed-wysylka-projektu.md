@@ -7,6 +7,8 @@ image: "/blog/drukowanie-naklejek-online-na-co-zwrocic-uwage-przed-wysylka-proje
 imageAlt: "Dłoń trzymająca w palcach precyzyjnie wyciętą po obrysie naklejkę z napisem Kształt Dowolny na tle trawy - ekologiczne i trwałe drukowanie naklejek online w MałeNaklejki."
 tags: ["drukowanie naklejek", "poradnik techniczny", "naklejki online", "przygotowanie pliku"]
 role: "pillar"
+pillar: true
+pillarOrder: 2
 slug: "drukowanie-naklejek-online-na-co-zwrocic-uwage-przed-wysylka-projektu"
 ---
 

@@ -7,7 +7,7 @@ imageAlt: "Naklejki firmowe z logo na zamówienie - profesjonalne wlepki i etyki
 tags: ["naklejki", "marketing", "poradnik"]
 role: "supporting"
 pillar: true
-pillarOrder: 3
+pillarOrder: 4
 cta_text: "Zamów naklejki z logo"
 slug: "naklejka-z-logo-firmy-jak-skutecznie-brandowac-swoje-produkty"
 ---

@@ -8,7 +8,7 @@ imageAlt: "Dłoń trzymająca naklejkę die-cut przedstawiającą uśmiechnięte
 tags: ["die cut", "kiss-cut", "cięcie po obrysie", "naklejki reklamowe"]
 role: "supporting"
 pillar: true
-pillarOrder: 2
+pillarOrder: 3
 cta_text: "Zamów naklejki die cut"
 ---
 

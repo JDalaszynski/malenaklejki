@@ -8,7 +8,7 @@ imageAlt: "Personalizowana naklejka ze zdjęcia wycięta po obrysie - trwała wl
 tags: ["naklejki", "zdjęcia", "personalizacja", "poradnik"]
 role: "supporting"
 pillar: true
-pillarOrder: 4
+pillarOrder: 5
 cta_text: "Zrób naklejkę ze zdjęcia"
 ---
 

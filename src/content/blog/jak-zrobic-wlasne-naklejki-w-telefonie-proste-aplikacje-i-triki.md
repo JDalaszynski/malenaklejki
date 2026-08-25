@@ -9,7 +9,7 @@ updated: "2026-08-17"
 tags: ["naklejki", "smartfon", "DIY", "poradnik"]
 role: "supporting"
 pillar: true
-pillarOrder: 5
+pillarOrder: 6
 cta_text: "Zrób naklejkę z telefonu"
 ---
 
