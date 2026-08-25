@@ -10,7 +10,7 @@ role: "supporting"
 cta_text: "Stwórz naklejki na przyprawy"
 ---
 
-Stwórz własne **małe naklejki na przyprawy** w dowolnym stylu - od minimalistycznych czarno-białych po kolorowe z ilustracjami botanicznymi - i zamów wydruk na trwałej folii od jednego arkusza A4. W MałeNaklejki nie ma minimalnego nakładu, a cały proces [drukowania naklejek online](/blog/drukowanie-naklejek-online-na-co-zwrocic-uwage-przed-wysylka-projektu) trwa od wgrania pliku do odbioru paczki zaledwie kilka dni.
+Stwórz własne **małe naklejki na przyprawy** w dowolnym stylu - od minimalistycznych czarno-białych po kolorowe z ilustracjami botanicznymi - i zamów wydruk na trwałej folii od jednego arkusza A4. W MałeNaklejki nie ma minimalnego nakładu, a cały proces [drukowania naklejek online](/blog/drukowanie-naklejek-online-na-co-zwrocic-uwage-przed-wysylka-projektu) trwa od wgrania pliku do odbioru paczki zaledwie kilka dni. Potrzebujesz opisów także na weki, butelki albo świece? Zobacz komplet parametrów dla [wodoodpornych etykiet na słoiki](/etykiety-na-sloiki).
 
 ## Dlaczego naklejki na przyprawy na zamówienie zamiast gotowych etykiet ze sklepu?
 

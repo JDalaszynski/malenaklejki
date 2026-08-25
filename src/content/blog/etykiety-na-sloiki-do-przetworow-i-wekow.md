@@ -9,7 +9,7 @@ role: "supporting"
 cta_text: "Otwórz kreator arkusza"
 ---
 
-Domowe przetwory i weki to duma każdej kuchni. Niezależnie od tego, czy przygotowujesz dżemy truskawkowe, marynowane grzyby, czy kwaszone ogórki, estetyczne i trwałe opakowanie to połowa sukcesu. Pokażemy Ci, jak w prosty sposób ułożyć w naszym narzędziu idealne etykiety na słoiki, które nie tylko pięknie wyglądają, ale też wytrzymają kontakt z wilgocią w spiżarni. Co najważniejsze - zamawiasz na arkusze A4, więc nie ma tu żadnych minimalnych nakładów. Jeśli chcesz dowiedzieć się więcej o samym procesie druku i przygotowania plików dla dowolnych zastosowań, sprawdź nasz kompleksowy poradnik: [jak zamówić idealne naklejki na zamówienie z własnym nadrukiem](/blog/jak-zamowic-idealne-naklejki-na-zamowienie-z-wlasnym-nadrukiem).
+Domowe przetwory i weki to duma każdej kuchni. Niezależnie od tego, czy przygotowujesz dżemy truskawkowe, marynowane grzyby, czy kwaszone ogórki, estetyczne i trwałe opakowanie to połowa sukcesu. Pokażemy Ci, jak w prosty sposób ułożyć w naszym narzędziu idealne etykiety na słoiki, które nie tylko pięknie wyglądają, ale też wytrzymają kontakt z wilgocią w spiżarni. Co najważniejsze - zamawiasz na arkusze A4, więc nie ma tu żadnych minimalnych nakładów. Pełną specyfikację materiału, kształtów i cen znajdziesz na stronie [etykiety na słoiki z własnym nadrukiem](/etykiety-na-sloiki). Jeśli chcesz dowiedzieć się więcej o samym procesie druku i przygotowania plików dla dowolnych zastosowań, sprawdź nasz kompleksowy poradnik: [jak zamówić idealne naklejki na zamówienie z własnym nadrukiem](/blog/jak-zamowic-idealne-naklejki-na-zamowienie-z-wlasnym-nadrukiem).
 
 ## Własne etykiety na słoik - dlaczego warto stworzyć je u nas?
 

@@ -10,7 +10,7 @@ role: "supporting"
 cta_text: "Zamów naklejki na nalewki"
 ---
 
-Wydrukuj **naklejki na nalewki domowe** z własnym projektem na wodoodpornej folii winylowej - bez minimalnego nakładu i za stałą cenę 49,00 zł od arkusza A4. Wgrywasz gotowy plik z etykietą, a my wycinamy naklejkę idealnie po kształcie, jaki wybierzesz. Jeśli zamawiasz naklejki po raz pierwszy, zajrzyj do naszego przewodnika [jak zamówić idealne naklejki na zamówienie z własnym nadrukiem](/blog/jak-zamowic-idealne-naklejki-na-zamowienie-z-wlasnym-nadrukiem), aby poznać cały proces krok po kroku.
+Wydrukuj **naklejki na nalewki domowe** z własnym projektem na wodoodpornej folii winylowej - bez minimalnego nakładu i za stałą cenę 49,00 zł od arkusza A4. Wgrywasz gotowy plik z etykietą, a my wycinamy naklejkę idealnie po kształcie, jaki wybierzesz. Ta sama folia obsłuży [własne etykiety na słoiki](/etykiety-na-sloiki), jeśli obok nalewek opisujesz też przetwory. Jeśli zamawiasz naklejki po raz pierwszy, zajrzyj do naszego przewodnika [jak zamówić idealne naklejki na zamówienie z własnym nadrukiem](/blog/jak-zamowic-idealne-naklejki-na-zamowienie-z-wlasnym-nadrukiem), aby poznać cały proces krok po kroku.
 
 ## Dlaczego warto oznaczyć nalewki własną etykietą?
 
