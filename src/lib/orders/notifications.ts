@@ -2,6 +2,8 @@ import "server-only";
 
 import { buildCustomerEmailHtml, buildSellerEmailHtml, buildOrderAttachments } from "@/lib/emails";
 import { sendTransactionalEmail } from "@/lib/email/auth";
+import { buildVacationEmailNotice } from "@/lib/settings/vacationEmail";
+import { getVacationSettingsFresh } from "@/lib/settings/vacationStore";
 
 /**
  * Powiadomienia wysyłane po zaksięgowaniu płatności.
@@ -32,7 +34,12 @@ export async function sendPaidOrderNotifications(
         },
       ],
       subject: `Opłacono zamówienie ${order.orderNumber} - MałeNaklejki`,
-      htmlContent: buildCustomerEmailHtml(order, order.orderNumber, claimUrl),
+      htmlContent: buildCustomerEmailHtml(
+        order,
+        order.orderNumber,
+        claimUrl,
+        buildVacationEmailNotice(await getVacationSettingsFresh())
+      ),
     });
   }
 

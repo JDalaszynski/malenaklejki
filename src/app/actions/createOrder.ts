@@ -7,6 +7,9 @@ import { readSession } from "@/lib/auth/session";
 import { attachCartLayout } from "@/lib/orders/layout";
 import { createAccountFromOrder } from "@/lib/auth/accountFromOrder";
 import { headers } from "next/headers";
+import { formatLongDate, resolveVacation } from "@/lib/settings/vacation";
+import { buildVacationEmailNotice } from "@/lib/settings/vacationEmail";
+import { getVacationSettingsFresh } from "@/lib/settings/vacationStore";
 
 const OrderItemSchema = z.object({
   id: z.string().optional(),
@@ -136,6 +139,21 @@ async function doCreateOrder(rawData: any) {
         error: `Zbyt wiele prób utworzenia zamówienia. Spróbuj ${formatRetryAfter(limit.retryAfterMs)}.`,
       };
     }
+
+    // 1b. Przerwa urlopowa ze wstrzymaną sprzedażą.
+    // Wyszarzony przycisk w kasie niczego nie zabezpiecza — akcja serwerowa ma
+    // własny adres, więc blokadę sprawdzamy tutaj, na świeżych ustawieniach.
+    const vacationSettings = await getVacationSettingsFresh();
+    const vacation = resolveVacation(vacationSettings);
+    if (vacation.pauseOrders) {
+      return {
+        success: false,
+        error: vacation.resumesAt
+          ? `Chwilowo nie przyjmujemy zamówień — trwa przerwa urlopowa. Wracamy ${formatLongDate(vacation.resumesAt)}.`
+          : "Chwilowo nie przyjmujemy zamówień — trwa przerwa urlopowa.",
+      };
+    }
+    const vacationNotice = buildVacationEmailNotice(vacationSettings);
 
     // 2. Validate input using Zod
     const result = CreateOrderSchema.safeParse(rawData);
@@ -322,7 +340,7 @@ async function doCreateOrder(rawData: any) {
 
     if (finalData.paymentMethod === "przelew") {
       // Wyślij e-mail z danymi do przelewu
-      const emailHtml = buildManualTransferEmailHtml(finalData, orderNumber);
+      const emailHtml = buildManualTransferEmailHtml(finalData, orderNumber, vacationNotice);
       await sendEmail({
         sender: { name: "MałeNaklejki", email: "kontakt@malenaklejki.pl" },
         to: [{ email: finalData.email, name: `${finalData.firstName} ${finalData.lastName}` }],
@@ -340,7 +358,7 @@ async function doCreateOrder(rawData: any) {
 
     if (finalData.paymentMethod === "vinted") {
       // Wyślij e-mail z instrukcją zakupu przez Vinted
-      const emailHtml = buildVintedOrderCustomerEmailHtml(finalData, orderNumber);
+      const emailHtml = buildVintedOrderCustomerEmailHtml(finalData, orderNumber, vacationNotice);
       await sendEmail({
         sender: { name: "MałeNaklejki", email: "kontakt@malenaklejki.pl" },
         to: [{ email: finalData.email, name: `${finalData.firstName} ${finalData.lastName}` }],

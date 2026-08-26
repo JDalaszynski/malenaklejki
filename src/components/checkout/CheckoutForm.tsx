@@ -13,6 +13,9 @@ import { getStickersNoun, getIndividualStickersLabel } from "@/lib/utils/polish"
 import Link from "next/link";
 import { useSessionUser } from "@/hooks/useSessionUser";
 import { getProfile, rememberCheckoutDetails } from "@/app/actions/profile";
+import { VacationNotice } from "@/components/layout/VacationBanner";
+import { useVacation } from "@/components/layout/VacationProvider";
+import { pausedOrdersMessage } from "@/lib/settings/vacation";
 
 const checkoutSchema = z.object({
   email: z.string().email({ message: "Proszę podać poprawny adres e-mail" }),
@@ -76,6 +79,7 @@ type CheckoutFormValues = z.infer<typeof checkoutSchema>;
 export function CheckoutForm() {
   const { items, getTotalPrice, clearCart } = useCartStore();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const vacation = useVacation();
   const [showPaczkomatModal, setShowPaczkomatModal] = useState(false);
   const router = useRouter();
 
@@ -287,6 +291,8 @@ export function CheckoutForm() {
 
       <form onSubmit={handleSubmit(onSubmit)} className="grid grid-cols-1 lg:grid-cols-5 gap-8">
         <div className="lg:col-span-3 space-y-8">
+
+          <VacationNotice />
 
           {/* Sekcja A: Dane kontaktowe */}
           <div className="bg-card border border-border/70 rounded-2xl p-8 shadow-sm">
@@ -624,15 +630,24 @@ export function CheckoutForm() {
               {errors.termsAccepted && <p className="inline-block bg-destructive/30 text-destructive-foreground text-xs font-bold px-3 py-1 rounded-lg border border-destructive/40 mt-1.5">{errors.termsAccepted.message}</p>}
             </div>
 
+            {vacation.pauseOrders && (
+              <p
+                role="status"
+                className="mb-3 rounded-xl border border-destructive/30 bg-destructive/10 px-4 py-3 text-sm font-bold text-destructive leading-relaxed"
+              >
+                {pausedOrdersMessage(vacation)}
+              </p>
+            )}
+
             <button
               type="submit"
-              disabled={isSubmitting}
+              disabled={isSubmitting || vacation.pauseOrders}
               className="w-full inline-flex items-center justify-center whitespace-nowrap rounded-xl text-lg font-bold bg-primary text-primary-foreground hover:bg-primary/95 active:scale-[0.98] h-16 shadow-sm transition-all disabled:pointer-events-none disabled:opacity-50 cursor-pointer"
             >
               {isSubmitting ? (
                 <Loader2 className="w-6 h-6 mr-2 animate-spin" />
               ) : null}
-              Kupuję i płacę
+              {vacation.pauseOrders ? "Sprzedaż wstrzymana" : "Kupuję i płacę"}
             </button>
 
             <div className="mt-6 pt-6 border-t border-border/40 flex flex-col items-center text-center">

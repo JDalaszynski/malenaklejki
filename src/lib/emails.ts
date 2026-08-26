@@ -25,7 +25,9 @@ export function buildCustomerEmailHtml(
   data: any,
   orderNumber: string,
   /** Adres, pod którym gość może zamienić to zamówienie w konto. Pomijany dla zalogowanych. */
-  claimUrl?: string
+  claimUrl?: string,
+  /** Gotowa ramka o przerwie urlopowej (`buildVacationEmailNotice`). Pusta, gdy przerwy nie ma. */
+  vacationNotice: string = ""
 ): string {
   const safeFirstName = escapeHtml(data.firstName || data.customer?.firstName || "");
   const safeLastName = escapeHtml(data.lastName || data.customer?.lastName || "");
@@ -99,6 +101,8 @@ export function buildCustomerEmailHtml(
       <p style="font-size:14px;color:#64748b;line-height:1.7;margin-bottom:24px;">
         Otrzymaliśmy płatność za Twoje zamówienie. Gdy paczka zostanie nadana, wyślemy Ci potwierdzenie z numerem śledzenia.
       </p>
+
+      ${vacationNotice}
 
       <!-- Order number badge -->
       <div style="background:linear-gradient(135deg,#f4faf7 0%,#e8f5f0 100%);border:1.5px solid #02af7a;border-radius:16px;padding:20px 24px;margin-bottom:28px;text-align:center;">
@@ -649,7 +653,12 @@ export function buildUnpaidOrderSellerEmailHtml(data: any, orderNumber: string):
 }
 
 /** Build manual bank transfer instructions email HTML */
-export function buildManualTransferEmailHtml(data: any, orderNumber: string): string {
+export function buildManualTransferEmailHtml(
+  data: any,
+  orderNumber: string,
+  /** Gotowa ramka o przerwie urlopowej (`buildVacationEmailNotice`). Pusta, gdy przerwy nie ma. */
+  vacationNotice: string = ""
+): string {
   const safeFirstName = escapeHtml(data.firstName || data.customer?.firstName || "");
   const total = data.total ?? data.totals?.total ?? 0;
 
@@ -683,6 +692,8 @@ export function buildManualTransferEmailHtml(data: any, orderNumber: string): st
       <p style="font-size:14px;color:#64748b;line-height:1.7;margin-bottom:24px;">
         Dziękujemy za złożenie zamówienia. Prosimy o dokonanie wpłaty na poniższe dane. Twoje zamówienie zostanie przekazane do produkcji po zaksięgowaniu płatności na naszym koncie.
       </p>
+
+      ${vacationNotice}
 
       <!-- Order number badge -->
       <div style="background:linear-gradient(135deg,#f4faf7 0%,#e8f5f0 100%);border:1.5px solid #02af7a;border-radius:16px;padding:16px 20px;margin-bottom:28px;text-align:center;">
@@ -819,7 +830,12 @@ export async function buildOrderAttachments(
   return attachments;
 }
 
-export function buildVintedOrderCustomerEmailHtml(data: any, orderNumber: string): string {
+export function buildVintedOrderCustomerEmailHtml(
+  data: any,
+  orderNumber: string,
+  /** Gotowa ramka o przerwie urlopowej (`buildVacationEmailNotice`). Pusta, gdy przerwy nie ma. */
+  vacationNotice: string = ""
+): string {
   const safeFirstName = escapeHtml(data.firstName || data.customer?.firstName || "");
   const safeLastName = escapeHtml(data.lastName || data.customer?.lastName || "");
 
@@ -876,6 +892,8 @@ export function buildVintedOrderCustomerEmailHtml(data: any, orderNumber: string
       <p style="font-size:14px;color:#64748b;line-height:1.7;margin-bottom:24px;">
         Dziękujemy za złożenie zamówienia na naklejki!. Zgodnie z wybraną formą płatności, zrealizujemy je dzięki Vinted.
       </p>
+
+      ${vacationNotice}
 
       <!-- Steps Box -->
       <div style="background:#f0fdfa;border:1.5px solid #09b1ba;border-radius:16px;padding:20px;margin-bottom:28px;">

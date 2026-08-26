@@ -9,6 +9,8 @@ import {
   buildOrderAttachments,
 } from "@/lib/emails";
 import { issueInvoiceForOrderSafely } from "@/lib/orders/invoicing";
+import { buildVacationEmailNotice } from "@/lib/settings/vacationEmail";
+import { getVacationSettingsFresh } from "@/lib/settings/vacationStore";
 
 export const dynamic = "force-dynamic";
 // Wystawienie faktury w inFakcie to kilka sekund odpytywania o status zlecenia.
@@ -142,7 +144,12 @@ export async function GET(req: NextRequest) {
           sender: { name: "MałeNaklejki", email: siteFromEmail },
           to: [{ email: order.customer.email, name: `${order.customer.firstName} ${order.customer.lastName}` }],
           subject: `Opłacono zamówienie ${order.orderNumber} - MałeNaklejki`,
-          htmlContent: buildCustomerEmailHtml(order, order.orderNumber),
+          htmlContent: buildCustomerEmailHtml(
+            order,
+            order.orderNumber,
+            undefined,
+            buildVacationEmailNotice(await getVacationSettingsFresh())
+          ),
         };
         await sendEmail(customerEmailPayload);
 

@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { BarChart3, FileSpreadsheet, PackagePlus, Receipt, Trash2 } from "lucide-react";
+import { BarChart3, FileSpreadsheet, PackagePlus, Receipt, Settings, Trash2 } from "lucide-react";
 
 const ITEMS = [
   { href: "/admin", label: "Zamówienia", icon: Receipt, exact: true },
@@ -10,6 +10,7 @@ const ITEMS = [
   { href: "/admin/statystyki", label: "Statystyki", icon: BarChart3, exact: false },
   { href: "/admin/raporty", label: "Raporty", icon: FileSpreadsheet, exact: false },
   { href: "/admin/kosz", label: "Kosz", icon: Trash2, exact: false },
+  { href: "/admin/ustawienia", label: "Ustawienia", icon: Settings, exact: false },
 ];
 
 export function AdminNav() {

@@ -4,6 +4,10 @@ import "./globals.css";
 import { CookieBanner } from "@/components/layout/CookieBanner";
 import { Analytics } from "@vercel/analytics/react";
 import { InteractiveBackground } from "@/components/layout/InteractiveBackground";
+import { VacationBanner } from "@/components/layout/VacationBanner";
+import { VacationProvider } from "@/components/layout/VacationProvider";
+import { warsawToday } from "@/lib/settings/vacation";
+import { getVacationSettings } from "@/lib/settings/vacationStore";
 import Script from "next/script";
 import { JsonLd } from "@/components/seo/JsonLd";
 
@@ -57,11 +61,15 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // Odczyt jest zapamiętywany (patrz `getVacationSettings`), więc strony
+  // sklepu nadal generują się statycznie mimo zapytania do bazy w układzie.
+  const vacation = await getVacationSettings();
+
   return (
     <html
       lang="pl"
@@ -187,7 +195,10 @@ export default function RootLayout({
           </>
         )}
         <InteractiveBackground />
-        {children}
+        <VacationProvider settings={vacation} serverToday={warsawToday()}>
+          <VacationBanner />
+          {children}
+        </VacationProvider>
         <CookieBanner />
         <Analytics />
       </body>

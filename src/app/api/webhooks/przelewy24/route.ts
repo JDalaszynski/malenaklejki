@@ -2,6 +2,8 @@ import { NextRequest, NextResponse } from "next/server";
 import { verifyWebhookSignature, verifyTransaction } from "@/lib/p24";
 import { db } from "@/lib/firebase/admin";
 import { buildCustomerEmailHtml, buildSellerEmailHtml, buildOrderAttachments } from "@/lib/emails";
+import { buildVacationEmailNotice } from "@/lib/settings/vacationEmail";
+import { getVacationSettingsFresh } from "@/lib/settings/vacationStore";
 import { issueInvoiceForOrderSafely } from "@/lib/orders/invoicing";
 
 export const dynamic = "force-dynamic";
@@ -114,7 +116,12 @@ export async function POST(req: NextRequest) {
       sender: { name: "MałeNaklejki", email: siteFromEmail },
       to: [{ email: orderData.customer.email, name: `${orderData.customer.firstName} ${orderData.customer.lastName}` }],
       subject: `Opłacono zamówienie ${orderData.orderNumber} - MałeNaklejki`,
-      htmlContent: buildCustomerEmailHtml(orderData, orderData.orderNumber, claimUrl),
+      htmlContent: buildCustomerEmailHtml(
+        orderData,
+        orderData.orderNumber,
+        claimUrl,
+        buildVacationEmailNotice(await getVacationSettingsFresh())
+      ),
     };
     await sendEmail(customerEmailPayload);
 

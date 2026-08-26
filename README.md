@@ -46,6 +46,7 @@
   - **Metody dostawy:** Paczkomaty InPost (wyszukiwarka punktów), Kurier DPD/InPost, opcja etykiet Vinted.
   - **Bramki płatności:** **Przelewy24 (P24)** z pełną obsługą BLIK, kart i szybkich przelewów, obsługa **Stripe** oraz płatności przelewem tradycyjnym.
   - **Dane firmowe / Faktury:** Obsługa NIP, automatyczne walidacje i zapis danych rozliczeniowych.
+- **Przerwa urlopowa:** Konfigurowana w panelu administratora (`/admin/ustawienia`) — baner nad nagłówkiem sklepu wraz z zapowiedzią przed startem, podmieniony termin wysyłki w kreatorze i koszyku, informacja w mailach do klienta oraz opcjonalne wstrzymanie przyjmowania zamówień (blokada egzekwowana także po stronie serwera).
 - **Integracja BaseLinker:** Automatyczne przekazywanie zamówień do panelu BaseLinker (`baselinker.ts`) w celu szybkiej wysyłki.
 - **E-maile transakcyjne Brevo:** System szablonów HTML (`emails.ts`) wysyłający potwierdzenia zamówienia, powiadomienia dla drukarni oraz podsumowania ze szczegółami arkuszy.
 - **Generowanie plików produkcyjnych:** Zautomatyzowane tworzenie plików gotowych do druku wielkoformatowego (PDF / pliki z warstwami cięcia w Firebase Storage).

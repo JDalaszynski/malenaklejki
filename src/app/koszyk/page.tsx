@@ -20,13 +20,17 @@ import {
   getStickersNoun,
   getIndividualStickersLabel,
 } from "@/lib/utils/polish";
+import { formatLongDate } from "@/lib/settings/vacation";
 import { useEstimatedShipping } from "@/hooks/useEstimatedShipping";
+import { VacationNotice } from "@/components/layout/VacationBanner";
+import { useVacation } from "@/components/layout/VacationProvider";
 
 export default function CartPage() {
   const { items, removeItem, updateQuantity, getTotalPrice } = useCartStore();
   const [mounted, setMounted] = useState(false);
   const router = useRouter();
   const shippingText = useEstimatedShipping();
+  const vacation = useVacation();
 
   useEffect(() => {
     setMounted(true);
@@ -232,6 +236,8 @@ export default function CartPage() {
 
             {/* Podsumowanie i przejściowe CTA */}
             <div className="space-y-4">
+              <VacationNotice />
+
               <div className="bg-card border border-border/70 rounded-2xl p-6 shadow-[0_8px_30px_rgba(0,0,0,0.04)] space-y-6">
                 <h3 className="font-extrabold text-xl text-foreground border-b border-border/40 pb-3">
                   Podsumowanie
@@ -258,13 +264,28 @@ export default function CartPage() {
                 </div>
 
                 <div className="space-y-3 pt-2">
-                  <Link
-                    href="/checkout"
-                    className="w-full inline-flex items-center justify-center rounded-xl text-base font-bold bg-primary text-primary-foreground hover:bg-primary/95 active:scale-[0.98] h-14 shadow-sm transition-all"
-                  >
-                    <CreditCard className="w-5 h-5 mr-2" />
-                    Idź do kasy
-                  </Link>
+                  {vacation.pauseOrders ? (
+                    // Podczas wstrzymanej sprzedaży koszyk zostaje nietknięty —
+                    // po powrocie wystarczy kliknąć „Idź do kasy".
+                    <div
+                      role="status"
+                      className="w-full rounded-xl border border-destructive/30 bg-destructive/10 px-4 py-3.5 text-center text-sm font-bold text-destructive"
+                    >
+                      Chwilowo nie przyjmujemy zamówień
+                      {vacation.resumesAt ? ` — wracamy ${formatLongDate(vacation.resumesAt)}` : ""}.
+                      <span className="block text-xs font-semibold text-muted-foreground mt-1">
+                        Koszyk zostaje zapisany w tej przeglądarce.
+                      </span>
+                    </div>
+                  ) : (
+                    <Link
+                      href="/checkout"
+                      className="w-full inline-flex items-center justify-center rounded-xl text-base font-bold bg-primary text-primary-foreground hover:bg-primary/95 active:scale-[0.98] h-14 shadow-sm transition-all"
+                    >
+                      <CreditCard className="w-5 h-5 mr-2" />
+                      Idź do kasy
+                    </Link>
+                  )}
 
                   <Link
                     href="/"
