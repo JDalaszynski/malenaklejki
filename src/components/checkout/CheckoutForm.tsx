@@ -40,7 +40,6 @@ const checkoutSchema = z.object({
   }),
   createAccount: z.boolean(),
   accountPassword: z.string(),
-  accountMarketingConsent: z.boolean(),
   rememberDetails: z.boolean(),
 }).superRefine((data, ctx) => {
   if (data.createAccount) {
@@ -92,7 +91,6 @@ export function CheckoutForm() {
       termsAccepted: false,
       createAccount: false,
       accountPassword: "",
-      accountMarketingConsent: false,
       rememberDetails: true,
     },
   });
@@ -177,7 +175,7 @@ export function CheckoutForm() {
         return rest;
       });
 
-      const { createAccount: wantsAccount, accountPassword, accountMarketingConsent, rememberDetails, ...orderData } = data;
+      const { createAccount: wantsAccount, accountPassword, rememberDetails, ...orderData } = data;
 
       const payload = {
         ...orderData,
@@ -186,7 +184,7 @@ export function CheckoutForm() {
         shippingCost,
         total,
         ...(wantsAccount && !isLoggedIn
-          ? { accountPassword, accountMarketingConsent }
+          ? { accountPassword }
           : {}),
       };
 
@@ -393,17 +391,6 @@ export function CheckoutForm() {
                         </p>
                       )}
                     </div>
-
-                    <label className="flex items-start gap-3 cursor-pointer">
-                      <input
-                        type="checkbox"
-                        {...register("accountMarketingConsent")}
-                        className="mt-1 w-5 h-5 rounded border-gray-300 text-foreground focus:ring-foreground shrink-0"
-                      />
-                      <span className="text-sm font-semibold text-muted-foreground leading-relaxed">
-                        Chcę dostawać e-maile o promocjach i nowych wzorach.
-                      </span>
-                    </label>
                   </div>
                 )}
               </div>
