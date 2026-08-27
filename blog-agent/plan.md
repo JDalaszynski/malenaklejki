@@ -158,16 +158,6 @@ Fazy 1-2 budowały **pokrycie person i nisz** - to zadanie jest w zasadzie wykon
     - **Struktura (BLUF + tabele):** odpowiedź w 1. zdaniu (49,00 zł brutto za arkusz A4, bez minimalnego zamówienia) -> **tabela "koszt jednostkowy wg rozmiaru"**: rozmiar naklejki -> ile sztuk zmieści się na A4 -> koszt 1 szt. (dla kilku typowych rozmiarów, z zaznaczeniem, że liczba zależy od kształtu i odstępów) -> co wpływa na końcową kwotę (dostawa 19,99 zł paczkomat, forma zestawu: arkusz vs pojedyncze sztuki) -> **dlaczego u nas nie ma progów nakładowych** (przewaga PL: bez przygotowalni, bez matrycy, bez przeliczania z euro) -> kiedy taniej wyjdzie druk masowy w drukarni offsetowej (uczciwie: przy tysiącach sztuk) -> FAQ -> CTA.
 
 
-- [ ] **A4. Naklejki na paczki i plomby - jak zabezpieczyć i obrandować przesyłki w e-commerce**
-    - **Format:** Supporting Article (~1200-1400 słów)
-    - **Główna Fraza Kluczowa:** `plomby na paczki wysyłkowe` (semantyczne: `naklejki na paczki`, `naklejki zabezpieczające paczki`, `naklejki unboxing`, `naklejka z podziękowaniem za zakupy`)
-    - **Cel:** Sprzedaż (B2B, klient powracający - paczki schodzą w sposób ciągły)
-    - **Persona:** Mikro e-commerce, rękodzielnicy, sprzedawcy Vinted/Etsy/Allegro
-    - **Link nadrzędny (Filar):** `/blog/drukowanie-naklejek-online-na-co-zwrocic-uwage-przed-wysylka-projektu` + **link w górę do `/naklejki-dla-firm`**
-    - **Dlaczego:** `keywords.md` §8 ma ten podklaster od Fazy 2 i **do dziś nie ma własnego wpisu** - tylko wzmianki i zdjęcia w innych artykułach. Persona ma najwyższą częstotliwość ponownych zakupów w całym portfolio.
-    - **Struktura:** BLUF -> plomba a naklejka ozdobna (funkcja vs branding) -> **co realnie robi plomba**: sygnalizuje naruszenie, nie jest zabezpieczeniem technicznym (**uczciwie - żadnych obietnic typu "nie da się zdjąć"**) -> 5 zastosowań: zamknięcie kartonu, naklejka na kopertę bąbelkową, "dziękuję za zakupy", etykieta z zawartością, naklejka z prośbą o oznaczenie w social -> kształt i rozmiar (link do A2 i do wpisu o okrągłych) -> ile paczek z jednego arkusza (link do A1) -> FAQ -> CTA.
-    - **⚠️ Prawda o produkcie:** mocny klej + **0 śladów** przy odklejaniu (NIE repozycjonowalny); nie obiecuj odporności na próbę odklejenia ani właściwości "security/void". Karton to powierzchnia chłonna - nie deklaruj takiej samej trwałości jak na folii/szkle.
-
 - [ ] **A5. Naklejki świąteczne i etykiety na prezenty - personalizacja paczek na Boże Narodzenie**
     - **Format:** Supporting Article (~1200-1400 słów) | **🗓️ OKNO PUBLIKACJI: 10-25 października 2026**
     - **Główna Fraza Kluczowa:** `naklejki świąteczne` (semantyczne: `etykiety na prezenty`, `naklejki na prezenty świąteczne`, `naklejki bożonarodzeniowe`, `naklejki na słoiki jako prezent`)
@@ -333,6 +323,18 @@ Właściciel podrzucił pulę fraz (patrz `blog-agent/keywords.md` §9). Po anal
 ---
 
 ## 📈 Zrealizowane Artykuły
+
+- [x] **A4. Naklejki na paczki i plomby - jak zabezpieczyć i obrandować przesyłki w e-commerce** (opublikowano 2026-08-27)
+    - **Format:** Supporting Article (~1200-1400 słów)
+    - **Główna Fraza Kluczowa:** `plomby na paczki wysyłkowe` (semantyczne: `naklejki na paczki`, `naklejki zabezpieczające paczki`, `naklejki unboxing`, `naklejka z podziękowaniem za zakupy`)
+    - **Cel:** Sprzedaż (B2B, klient powracający - paczki schodzą w sposób ciągły)
+    - **Persona:** Mikro e-commerce, rękodzielnicy, sprzedawcy Vinted/Etsy/Allegro
+    - **Link nadrzędny (Filar):** `/blog/drukowanie-naklejek-online-na-co-zwrocic-uwage-przed-wysylka-projektu` + **link w górę do `/naklejki-dla-firm`**
+    - **Dlaczego:** `keywords.md` §8 ma ten podklaster od Fazy 2 i **do dziś nie ma własnego wpisu** - tylko wzmianki i zdjęcia w innych artykułach. Persona ma najwyższą częstotliwość ponownych zakupów w całym portfolio.
+    - **Struktura:** BLUF -> plomba a naklejka ozdobna (funkcja vs branding) -> **co realnie robi plomba**: sygnalizuje naruszenie, nie jest zabezpieczeniem technicznym (**uczciwie - żadnych obietnic typu "nie da się zdjąć"**) -> 5 zastosowań: zamknięcie kartonu, naklejka na kopertę bąbelkową, "dziękuję za zakupy", etykieta z zawartością, naklejka z prośbą o oznaczenie w social -> kształt i rozmiar (link do A2 i do wpisu o okrągłych) -> ile paczek z jednego arkusza (link do A1) -> FAQ -> CTA.
+    - **⚠️ Prawda o produkcie:** mocny klej + **0 śladów** przy odklejaniu (NIE repozycjonowalny); nie obiecuj odporności na próbę odklejenia ani właściwości "security/void". Karton to powierzchnia chłonna - nie deklaruj takiej samej trwałości jak na folii/szkle.
+    - **Realizacja (2026-08-27):** slug `plomby-na-paczki-wysylkowe-i-naklejki-na-przesylki`, plik `src/content/blog/plomby-na-paczki-wysylkowe-i-naklejki-na-przesylki.md`, ~1300 słów. Link kontekstowy do filaru `drukowanie-naklejek-online...` w 1. akapicie + **link w górę do `/naklejki-dla-firm`** (dwa wystąpienia: intro i FAQ). Backlink z filaru dodany (sekcja "Dla kogo jest drukowanie naklejek online", `updated: "2026-08-27"`). Podpięcie z landingu `/naklejki-dla-firm` (akapit pod grafiką plomb w sekcji "Specyfikacja") - wzmocnienie landingu jako huba B2B. Cross-linki ze spoke'ów (P1.6): `naklejki-okragle`, `naklejki-z-wlasnym-logo-na-sloiki-i-opakowania`, `jaki-rozmiar-naklejki-wybrac`, `ile-kosztuja-naklejki...`. Prawda o produkcie zachowana: plomba jako **sygnał naruszenia, nie zabezpieczenie techniczne**, jawne zaprzeczenie właściwościom security/void, mocny klej + brak repozycjonowania, karton jako podłoże chłonne (naderwanie tektury zamiast czystego odklejenia). Liczby sztuk/A4 i koszt jednostkowy zsynchronizowane 1:1 z tabelą z A1, by nie tworzyć sprzecznych danych na domenie. Bez name-dropu konkurencji (nisza, zgodnie z GEO §1) - przewagi PL przekazane konkretem. FAQ jako H3 + domykająca sekcja `##` z CTA. 0 półpauz, 0 "zaprojektuj/projektowanie", 0 obietnic doręczenia.
+    - **Zdjęcia:** folder `public/blog/plomby-na-paczki-wysylkowe-i-naklejki-na-przesylki/` utworzony i **pusty** - właściciel wyraźnie polecił nie generować grafik ani placeholderów. Frontmatter bez pola `image` (jak w A1/A3). **DO ZROBIENIA po dograniu zdjęć:** kompresja + nazwy SEO -> osadzenie w treści -> `generate-pinterest.ts` / `generate-socials.ts` (z surowych zdjęć!) -> `add_logo_bar.mjs` -> `updated:` w frontmatterze.
 
 - [x] **A3. Gdzie zamówić naklejki w małym nakładzie? Porównanie: drukarnia lokalna, Allegro i serwisy zagraniczne** (opublikowano 2026-08-25)
     - **Format:** Supporting Article (~1400-1600 słów)

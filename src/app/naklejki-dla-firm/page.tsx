@@ -521,6 +521,18 @@ export default function NaklejkiDlaFirmPage() {
               className="w-full h-auto [clip-path:inset(0_0_12%_0)]"
             />
           </div>
+          <p className="text-sm sm:text-base text-muted-foreground font-medium leading-relaxed">
+            Wysyłasz zamówienia w kartonach lub foliopakach? Jak dobrać rozmiar
+            plomby, co realnie sygnalizuje naklejka na zamknięciu paczki i ile
+            sztuk wyjdzie z jednego arkusza - opisujemy w poradniku o{" "}
+            <Link
+              href="/blog/plomby-na-paczki-wysylkowe-i-naklejki-na-przesylki"
+              className="text-primary font-bold underline underline-offset-4 hover:text-primary/80 transition-colors"
+            >
+              plombach na paczki wysyłkowe i naklejkach na przesyłki
+            </Link>
+            .
+          </p>
           <div className="overflow-x-auto rounded-2xl border border-border/60 shadow-sm">
             <table className="w-full border-collapse bg-white dark:bg-[#003a3b]/40 text-sm">
               <tbody>
