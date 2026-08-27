@@ -2,19 +2,14 @@ import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/lib/firebase/admin";
 import { getTransactionBySessionId } from "@/lib/p24";
 import { sweepAbandonedOrders } from "@/lib/orders/sweep";
-import {
-  buildUnpaidOrderSellerEmailHtml,
-  buildCustomerEmailHtml,
-  buildSellerEmailHtml,
-  buildOrderAttachments,
-} from "@/lib/emails";
+import { buildUnpaidOrderSellerEmailHtml } from "@/lib/emails";
 import { issueInvoiceForOrderSafely } from "@/lib/orders/invoicing";
-import { buildVacationEmailNotice } from "@/lib/settings/vacationEmail";
-import { getVacationSettingsFresh } from "@/lib/settings/vacationStore";
+import { sendPaidOrderNotifications } from "@/lib/orders/notifications";
 
 export const dynamic = "force-dynamic";
-// Wystawienie faktury w inFakcie to kilka sekund odpytywania o status zlecenia.
-export const maxDuration = 30;
+// Wystawienie faktury w inFakcie to kilka sekund odpytywania o status zlecenia,
+// a przy okazji nadrabiamy tu maile z arkuszami w załączniku.
+export const maxDuration = 60;
 
 async function sendEmail(payload: object): Promise<boolean> {
   const apiKey = process.env.BREVO_API_KEY;
@@ -36,6 +31,47 @@ async function sendEmail(payload: object): Promise<boolean> {
     return false;
   }
   return true;
+}
+
+/** Ile dni wstecz szukamy opłaconych zamówień bez wysłanego powiadomienia. */
+const NOTIFICATION_LOOKBACK_DAYS = 3;
+
+/**
+ * Data wdrożenia znacznika `paidNotificationsSentAt`. Zamówienia opłacone
+ * wcześniej znacznika nie mają, choć maile dostały — bez tego progu pierwszy
+ * przebieg crona wysłałby je drugi raz.
+ */
+const NOTIFICATIONS_START_DATE = process.env.PAID_NOTIFICATIONS_START_DATE || "2026-08-27";
+
+/**
+ * Dosyła powiadomienia o płatności do zamówień, przy których webhook zdążył
+ * ustawić PAID, ale przerwał się przed mailem.
+ */
+async function resendMissedPaidNotifications(): Promise<number> {
+  const lookback = new Date(Date.now() - NOTIFICATION_LOOKBACK_DAYS * 24 * 60 * 60 * 1000).toISOString();
+  const since = lookback > NOTIFICATIONS_START_DATE ? lookback : NOTIFICATIONS_START_DATE;
+
+  const snapshot = await db
+    .collection("orders")
+    .where("status", "==", "PAID")
+    .where("paidAt", ">=", since)
+    .get();
+
+  let sent = 0;
+  for (const doc of snapshot.docs) {
+    const order = doc.data();
+    if (order.paidNotificationsSentAt) continue;
+
+    console.log(`[Cron] Dosyłanie powiadomienia o płatności: ${order.orderNumber}`);
+    try {
+      await sendPaidOrderNotifications(order, { orderId: doc.id });
+      sent += 1;
+    } catch (error) {
+      console.error(`[Cron] Nie udało się dosłać powiadomienia dla ${doc.id}:`, error);
+    }
+  }
+
+  return sent;
 }
 
 export async function GET(req: NextRequest) {
@@ -105,18 +141,28 @@ export async function GET(req: NextRequest) {
       let isActuallyPaid = false;
       let p24OrderId = null;
 
-      try {
-        // Sprawdzamy status transakcji bezpośrednio w Przelewy24 (używając pierwotnego ID jako sessionId)
-        const p24Tx = await getTransactionBySessionId(order.id);
-        
-        // Jeśli P24 ma transakcję i jest w niej przypisane niezerowe orderId, to znaczy że transakcja jest opłacona.
-        // Oznacza to, że webhook z jakiegoś powodu nie zaktualizował bazy. Robimy synchronizację awaryjną.
-        if (p24Tx && p24Tx.orderId && p24Tx.orderId > 0) {
-          isActuallyPaid = true;
-          p24OrderId = p24Tx.orderId;
+      // Ponowna próba płatności zakłada w P24 nową sesję (`<id>_retry<czas>`),
+      // więc pierwotne ID pokazywałoby wtedy nieopłaconą sesję i opłacone
+      // zamówienie dostawałoby alert o braku wpłaty. Sprawdzamy wszystkie sesje.
+      const sessionIds: string[] = [
+        order.id,
+        ...((order.p24SessionIds as string[] | undefined) ?? []),
+      ].filter((value, index, all) => all.indexOf(value) === index);
+
+      for (const sessionId of sessionIds) {
+        try {
+          const p24Tx = await getTransactionBySessionId(sessionId);
+
+          // P24 uznaje transakcję za opłaconą, gdy nada jej numer (`orderId`)
+          // albo ustawi status wpłaty (1 = zaliczka, 2 = opłacona w całości).
+          if (p24Tx && ((p24Tx.orderId && p24Tx.orderId > 0) || Number(p24Tx.status) >= 1)) {
+            isActuallyPaid = true;
+            p24OrderId = p24Tx.orderId ?? null;
+            break;
+          }
+        } catch (err) {
+          console.error(`Błąd pobierania szczegółów z P24 dla sesji ${sessionId}:`, err);
         }
-      } catch (err) {
-        console.error(`Błąd pobierania szczegółów z P24 dla sesji ${order.id}:`, err);
       }
 
       const orderRef = db.collection("orders").doc(order.id);
@@ -133,37 +179,12 @@ export async function GET(req: NextRequest) {
           deletedAt: null,
         });
 
+        // Maile najpierw — faktura potrafi zająć kilkanaście sekund i nie może
+        // zabrać czasu powiadomieniu o płatności.
+        await sendPaidOrderNotifications({ ...order, status: "PAID" }, { orderId: order.id });
+
         // Faktura w inFakcie — płatność odnaleziona po czasie księguje się tak samo.
         await issueInvoiceForOrderSafely(order.id);
-
-        // Wyślij normalne e-maile o udanej płatności
-        const attachments = await buildOrderAttachments(order.items || [], order.orderNumber);
-
-        // Email do klienta
-        const customerEmailPayload = {
-          sender: { name: "MałeNaklejki", email: siteFromEmail },
-          to: [{ email: order.customer.email, name: `${order.customer.firstName} ${order.customer.lastName}` }],
-          subject: `Opłacono zamówienie ${order.orderNumber} - MałeNaklejki`,
-          htmlContent: buildCustomerEmailHtml(
-            order,
-            order.orderNumber,
-            undefined,
-            buildVacationEmailNotice(await getVacationSettingsFresh())
-          ),
-        };
-        await sendEmail(customerEmailPayload);
-
-        // Email do sprzedawcy
-        const sellerEmailPayload: any = {
-          sender: { name: "MałeNaklejki - System zamówień", email: siteFromEmail },
-          to: [{ email: adminEmail, name: "MałeNaklejki - Sprzedawca" }],
-          subject: `🛒 Nowe OPŁACONE zamówienie ${order.orderNumber} - ${order.customer.firstName} ${order.customer.lastName} (${order.totals.total.toFixed(2).replace('.', ',')} zł)`,
-          htmlContent: buildSellerEmailHtml(order, order.orderNumber),
-        };
-        if (attachments.length > 0) {
-          sellerEmailPayload.attachment = attachments;
-        }
-        await sendEmail(sellerEmailPayload);
 
       } else {
         console.log(`Zamówienie ${order.orderNumber} NIE zostało opłacone. Oznaczanie jako PAYMENT_FAILED i wysyłanie alertu.`);
@@ -186,7 +207,28 @@ export async function GET(req: NextRequest) {
       }
     }
 
-    return NextResponse.json({ success: true, processedCount: unpaidOrders.length });
+    // 3. Nadrobienie powiadomień o płatności.
+    //
+    // Webhook potrafi ustawić PAID, a potem paść (albo zostać ubity przez limit
+    // czasu funkcji) przed wysyłką maili — zamówienie wypada wtedy z listy
+    // nieopłaconych i nikt się o wpłacie nie dowiaduje. Znacznik
+    // `paidNotificationsSentAt` pokazuje, przy których zamówieniach mail
+    // faktycznie poszedł.
+    // Osobne zabezpieczenie: zapytanie potrzebuje złożonego indeksu
+    // (`status` + `paidAt`). Dopóki go nie ma, dosyłanie po prostu nie działa —
+    // ale nie może przez to przewrócić głównej części zadania.
+    let missedNotifications = 0;
+    try {
+      missedNotifications = await resendMissedPaidNotifications();
+    } catch (error) {
+      console.error("[Cron] Dosyłanie powiadomień o płatności nie powiodło się:", error);
+    }
+
+    return NextResponse.json({
+      success: true,
+      processedCount: unpaidOrders.length,
+      missedNotifications,
+    });
   } catch (error: any) {
     console.error("Cron Job Error:", error);
     return NextResponse.json({ error: error.message }, { status: 500 });

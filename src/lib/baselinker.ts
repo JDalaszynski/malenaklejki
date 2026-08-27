@@ -1,10 +1,16 @@
 export interface BLProduct {
+  /** Magazyn, z którego pochodzi produkt ("db" = katalog wewnętrzny BaseLinkera). */
+  storage?: string;
+  /** ID magazynu; dla katalogu wewnętrznego BaseLinker oczekuje 0. */
+  storage_id?: number;
   product_id?: string;
   name: string;
   price_brutto: number;
   tax_rate: number;
   quantity: number;
   weight?: number;
+  /** Atrybuty pozycji, np. "Naklejki: na arkuszu". */
+  attributes?: string;
 }
 
 export interface BLOrderParameters {
@@ -60,6 +66,28 @@ export const BL_PRODUCT = {
   id: "17059",
   name: "Naklejki na Arkuszu A4 - MałeNaklejki",
 } as const;
+
+/**
+ * Zdjęcie pozycji w BaseLinkerze. Zamówienia mają tylko jeden produkt z katalogu,
+ * więc miniaturą jest po prostu logo sklepu. BaseLinker nie przyjmuje zdjęcia
+ * w `addOrder` — miniatura w zamówieniu bierze się ze zdjęcia produktu w katalogu,
+ * dlatego ustawiamy je na produkcie (`ensureProductImage`).
+ */
+export function getProductImageUrl(): string {
+  const fromEnv = process.env.BASELINKER_PRODUCT_IMAGE_URL;
+  if (fromEnv) return fromEnv;
+  const appUrl = (process.env.NEXT_PUBLIC_APP_URL || "https://malenaklejki.pl").replace(/\/+$/, "");
+  return `${appUrl}/images/logo/malenaklejki-logo-light.png`;
+}
+
+/**
+ * Cena brutto pozycji przekazywana do BaseLinkera. Stała — w BaseLinkerze
+ * zamówienia mają wyglądać jednakowo, niezależnie od ceny wyliczonej w sklepie.
+ */
+export const BL_UNIT_PRICE_BRUTTO = 18.45;
+
+/** Koszt dostawy przekazywany do BaseLinkera — również stały. */
+export const BL_DELIVERY_PRICE = 19.99;
 
 /** Nazwa customowego pola zamówienia w BaseLinkerze, do którego kopiujemy uwagi. */
 export const BL_NOTES_FIELD_NAME = "Uwagi";
@@ -141,17 +169,23 @@ export function splitPointAddress(raw?: string | null): {
  * Uwagi do zamówienia: czy naklejki mają zostać na arkuszu, czy wycięte,
  * a przy kurierze dodatkowo adnotacja o nadaniu anonimowym.
  */
+/** Opis sposobu dostarczenia naklejek — ta sama treść w uwagach i w atrybutach pozycji. */
+export function describeDeliveryForm(item: Record<string, unknown>): string {
+  return item.deliveryForm === "individual" ? "pocięte na pojedyncze sztuki" : "na arkuszu";
+}
+
+/** Atrybut pozycji w BaseLinkerze — widoczny przy produkcie w zamówieniu. */
+export function buildProductAttributes(item: Record<string, unknown>): string {
+  return `Naklejki: ${describeDeliveryForm(item)}`;
+}
+
 export function buildOrderComments(
   items: Record<string, unknown>[],
   deliveryMethod?: string
 ): string {
-  const lines = items.map((item, index) => {
-    const form =
-      item.deliveryForm === "individual"
-        ? "pocięte na pojedyncze sztuki"
-        : "na arkuszu";
-    return `Pozycja ${index + 1}: ${form}`;
-  });
+  const lines = items.map(
+    (item, index) => `Pozycja ${index + 1}: ${describeDeliveryForm(item)}`
+  );
 
   if (deliveryMethod === "kurier") lines.push("Kurier anonim");
 
@@ -198,7 +232,7 @@ export function buildBaseLinkerOrderParams(order: BLOrderSource): BLOrderParamet
       BL_DELIVERY_METHODS[delivery.method as keyof typeof BL_DELIVERY_METHODS] ??
       delivery.method ??
       "",
-    delivery_price: order.totals?.shipping ?? 0,
+    delivery_price: BL_DELIVERY_PRICE,
     delivery_fullname: `${customer.firstName ?? ""} ${customer.lastName ?? ""}`.trim(),
     delivery_company: "",
     // Adres dostawy wypełniamy tylko dla kuriera — paczkomat ma własne pola punktu.
@@ -223,9 +257,14 @@ export function buildBaseLinkerOrderParams(order: BLOrderSource): BLOrderParamet
     want_invoice: 1,
     user_comments: buildOrderComments(items, delivery.method),
     products: items.map((item) => ({
+      // Wskazanie katalogu wewnętrznego wiąże pozycję z produktem w BaseLinkerze —
+      // bez tego zamówienie pokazuje pozycję bez miniatury.
+      storage: "db",
+      storage_id: 0,
       product_id: BL_PRODUCT.id,
       name: BL_PRODUCT.name,
-      price_brutto: (item.pricePerSheet as number) ?? 0,
+      price_brutto: BL_UNIT_PRICE_BRUTTO,
+      attributes: buildProductAttributes(item),
       tax_rate: (item.taxRate as number) ?? 23,
       quantity: (item.sheetQuantity as number) ?? 1,
     })),
@@ -333,6 +372,84 @@ function resolveNotesFieldId(): Promise<string | null> {
 }
 
 /**
+ * Zdjęcie produktu w katalogu BaseLinkera.
+ *
+ * `addOrder` nie przyjmuje żadnego pola ze zdjęciem — miniatura widoczna przy
+ * pozycji zamówienia pochodzi ze zdjęcia produktu w katalogu. Dlatego raz na
+ * proces sprawdzamy, czy produkt `BL_PRODUCT.id` ma zdjęcie, i jeśli nie —
+ * podstawiamy logo sklepu. `addInventoryProduct` z podanym `product_id`
+ * aktualizuje wyłącznie przekazane pola, więc reszta karty produktu zostaje.
+ */
+let productImagePromise: Promise<void> | null = null;
+
+/** Katalogi (inventories) na koncie BaseLinkera. */
+async function getInventories(): Promise<{ inventory_id: number }[]> {
+  const data = await callBaseLinkerAPI("getInventories", {});
+  return data?.status === "SUCCESS" ? data.inventories ?? [] : [];
+}
+
+/** Katalog, w którym leży nasz produkt, razem z jego aktualnymi zdjęciami. */
+async function findProductInInventories(): Promise<{
+  inventoryId: number;
+  hasImage: boolean;
+} | null> {
+  const fromEnv = process.env.BASELINKER_INVENTORY_ID;
+  const inventories = fromEnv
+    ? [{ inventory_id: Number(fromEnv) }]
+    : await getInventories();
+
+  for (const inventory of inventories) {
+    const data = await callBaseLinkerAPI("getInventoryProductsData", {
+      inventory_id: inventory.inventory_id,
+      products: [BL_PRODUCT.id],
+    });
+    const product = data?.status === "SUCCESS" ? data.products?.[BL_PRODUCT.id] : null;
+    if (!product) continue;
+
+    const images = product.images ?? {};
+    return {
+      inventoryId: inventory.inventory_id,
+      hasImage: Object.values(images).some((image) => Boolean(image)),
+    };
+  }
+
+  return null;
+}
+
+async function setProductImage(): Promise<void> {
+  const found = await findProductInInventories();
+  if (!found) {
+    console.warn(`BaseLinker: nie znaleziono produktu ${BL_PRODUCT.id} w żadnym katalogu.`);
+    return;
+  }
+  if (found.hasImage) return;
+
+  const result = await callBaseLinkerAPI("addInventoryProduct", {
+    inventory_id: found.inventoryId,
+    product_id: BL_PRODUCT.id,
+    images: { 0: `url:${getProductImageUrl()}` },
+  });
+
+  if (result?.status === "SUCCESS") {
+    console.log(`BaseLinker: ustawiono logo jako zdjęcie produktu ${BL_PRODUCT.id}.`);
+  } else {
+    console.error("BaseLinker: nie udało się ustawić zdjęcia produktu:", result);
+  }
+}
+
+/**
+ * Dba o to, żeby produkt w katalogu miał zdjęcie. Wywoływane przy wysyłce
+ * zamówienia; nigdy nie rzuca i nie blokuje zapisu zamówienia.
+ */
+export function ensureProductImage(): Promise<void> {
+  productImagePromise ??= setProductImage().catch((error) => {
+    console.error("BaseLinker: błąd przy ustawianiu zdjęcia produktu:", error);
+    productImagePromise = null; // spróbujemy jeszcze raz przy kolejnym zamówieniu
+  });
+  return productImagePromise;
+}
+
+/**
  * Buduje parametry z zamówienia, dopina uwagi do customowego pola "Uwagi"
  * i wysyła zamówienie do BaseLinkera.
  */
@@ -347,6 +464,10 @@ export async function sendOrderToBaseLinker(order: BLOrderSource) {
     else if (fieldId === "2") params.extra_field_2 = notes;
     else params.custom_extra_fields = { [Number(fieldId)]: notes };
   }
+
+  // Miniatura pozycji bierze się ze zdjęcia produktu w katalogu — pilnujemy,
+  // żeby było ustawione, zanim zamówienie pojawi się w BaseLinkerze.
+  await ensureProductImage();
 
   return await addOrderToBaseLinker(params);
 }

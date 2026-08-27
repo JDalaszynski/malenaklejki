@@ -156,6 +156,19 @@
   }
 }
 
+/* Delikatne falowanie krawędzi papieru w wizualizacji arkusza (A4Visualizer3D).
+   Prawdziwa kartka nie ma idealnie prostego boku. Filtr SVG bywa kosztowny
+   na słabszym sprzęcie, więc zostaje tylko tam, gdzie jest kursor. */
+.paper-warp {
+  filter: none;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .paper-warp {
+    filter: url(#a4-paper-warp);
+  }
+}
+
 /* Simulates CMYK printed colors (less saturated, slightly adjusted contrast/brightness) */
 .cmyk-preview {
   filter: contrast(0.94) saturate(0.82) brightness(1.01);

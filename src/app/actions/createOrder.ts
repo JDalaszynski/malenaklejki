@@ -1,6 +1,6 @@
 "use server";
 
-import { db } from "@/lib/firebase/admin";
+import { db, FieldValue } from "@/lib/firebase/admin";
 import { z } from "zod";
 import { consumeRateLimit, formatRetryAfter } from "@/lib/auth/rateLimit";
 import { readSession } from "@/lib/auth/session";
@@ -455,8 +455,15 @@ export async function retryOrderPayment(orderId: string) {
       orderData.items || []
     );
 
+    // Nowa sesja P24 zapisana przy zamówieniu — awaryjne sprawdzanie płatności
+    // w cronie pyta o każdą sesję, nie tylko o tę z pierwszego podejścia.
+    const retrySessionId = `${orderId}_retry${Date.now()}`;
+    await orderRef.update({
+      p24SessionIds: FieldValue.arrayUnion(retrySessionId),
+    });
+
     const p24Response = await registerTransaction({
-      sessionId: `${orderId}_retry${Date.now()}`,
+      sessionId: retrySessionId,
       amount: expectedTotalGrosze,
       currency: "PLN",
       description: p24Description,

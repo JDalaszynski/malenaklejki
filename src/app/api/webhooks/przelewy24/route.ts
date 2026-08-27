@@ -1,39 +1,14 @@
 import { NextRequest, NextResponse } from "next/server";
 import { verifyWebhookSignature, verifyTransaction } from "@/lib/p24";
 import { db } from "@/lib/firebase/admin";
-import { buildCustomerEmailHtml, buildSellerEmailHtml, buildOrderAttachments } from "@/lib/emails";
-import { buildVacationEmailNotice } from "@/lib/settings/vacationEmail";
-import { getVacationSettingsFresh } from "@/lib/settings/vacationStore";
+import { sendPaidOrderNotifications } from "@/lib/orders/notifications";
 import { issueInvoiceForOrderSafely } from "@/lib/orders/invoicing";
 
 export const dynamic = "force-dynamic";
-// Wystawienie faktury w inFakcie to kilka sekund odpytywania o status zlecenia.
-export const maxDuration = 30;
-
-/**
- * Sends an email via Brevo. Returns true on success.
- */
-async function sendEmail(payload: object): Promise<boolean> {
-  const apiKey = process.env.BREVO_API_KEY;
-  if (!apiKey) {
-    console.error("BREVO_API_KEY is not set");
-    return false;
-  }
-  const response = await fetch("https://api.brevo.com/v3/smtp/email", {
-    method: "POST",
-    headers: {
-      "api-key": apiKey,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(payload),
-  });
-  if (!response.ok) {
-    const text = await response.text();
-    console.error("Brevo error:", response.status, text);
-    return false;
-  }
-  return true;
-}
+// Wystawienie faktury w inFakcie to kilka sekund odpytywania o status zlecenia,
+// a maile do sprzedawcy niosą arkusze do druku. Budżet z zapasem, żeby funkcja
+// nie została ubita w połowie — wcześniej gubiła w ten sposób maile o płatności.
+export const maxDuration = 60;
 
 export async function POST(req: NextRequest) {
   try {
@@ -92,50 +67,19 @@ export async function POST(req: NextRequest) {
     });
     console.log(`P24: Zamówienie ${sessionId} oznaczone jako PAID.`);
 
-    // Faktura w inFakcie — wystawiana automatycznie za każde opłacone zamówienie.
-    await issueInvoiceForOrderSafely(orderIdFromSession);
+    // Najpierw maile, dopiero potem faktura.
+    //
+    // Odwrotna kolejność kosztowała nas powiadomienia o płatności: wystawianie
+    // faktury to kilkanaście sekund odpytywania inFaktu, więc funkcja bywała
+    // ubijana zanim doszła do wysyłki i sprzedawcy zostawał w skrzynce wyłącznie
+    // mail o zamówieniu oczekującym na płatność.
+    await sendPaidOrderNotifications(orderData, { orderId: orderIdFromSession });
 
     // Płatności celowo nie przenosimy do BaseLinkera — zamówienie ma tam
     // zostać nieopłacone, sprzedawca księguje wpłatę ręcznie.
 
-    // 4. Pobranie i wysłanie e-maili
-    const adminEmail = process.env.ADMIN_EMAIL || "kontakt@malenaklejki.pl";
-    const siteFromEmail = adminEmail;
-
-    const attachments = await buildOrderAttachments(orderData.items || [], orderData.orderNumber);
-
-    // Gość dostaje w potwierdzeniu propozycję zamiany zamówienia w konto.
-    // Zalogowani mają je już przypisane, więc dla nich pomijamy ten blok.
-    const appUrl = (process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000").replace(/\/+$/, "");
-    const claimUrl = orderData.userId
-      ? undefined
-      : `${appUrl}/zamowienie-sukces?orderNumber=${encodeURIComponent(orderData.orderNumber)}&orderId=${orderIdFromSession}&konto=1`;
-
-    // E-mail do klienta
-    const customerEmailPayload = {
-      sender: { name: "MałeNaklejki", email: siteFromEmail },
-      to: [{ email: orderData.customer.email, name: `${orderData.customer.firstName} ${orderData.customer.lastName}` }],
-      subject: `Opłacono zamówienie ${orderData.orderNumber} - MałeNaklejki`,
-      htmlContent: buildCustomerEmailHtml(
-        orderData,
-        orderData.orderNumber,
-        claimUrl,
-        buildVacationEmailNotice(await getVacationSettingsFresh())
-      ),
-    };
-    await sendEmail(customerEmailPayload);
-
-    // E-mail do sprzedawcy
-    const sellerEmailPayload: any = {
-      sender: { name: "MałeNaklejki - System zamówień", email: siteFromEmail },
-      to: [{ email: adminEmail, name: "MałeNaklejki - Sprzedawca" }],
-      subject: `🛒 Nowe OPŁACONE zamówienie ${orderData.orderNumber} - ${orderData.customer.firstName} ${orderData.customer.lastName} (${orderData.totals.total.toFixed(2).replace('.', ',')} zł)`,
-      htmlContent: buildSellerEmailHtml(orderData, orderData.orderNumber),
-    };
-    if (attachments.length > 0) {
-      sellerEmailPayload.attachment = attachments;
-    }
-    await sendEmail(sellerEmailPayload);
+    // Faktura w inFakcie — wystawiana automatycznie za każde opłacone zamówienie.
+    await issueInvoiceForOrderSafely(orderIdFromSession);
 
     return NextResponse.json({ status: "ok" }, { status: 200 });
 

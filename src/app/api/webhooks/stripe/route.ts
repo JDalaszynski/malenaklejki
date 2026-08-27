@@ -6,7 +6,7 @@ import { sendCustomerConfirmationEmail, sendAdminFulfillmentAlert } from "@/lib/
 import { issueInvoiceForOrderSafely } from "@/lib/orders/invoicing";
 
 // Wystawienie faktury w inFakcie to kilka sekund odpytywania o status zlecenia.
-export const maxDuration = 30;
+export const maxDuration = 60;
 
 export async function POST(req: Request) {
   const body = await req.text();
@@ -58,17 +58,16 @@ export async function POST(req: Request) {
 
       console.log(`Order ${orderId} marked as PAID.`);
 
-      // Faktura w inFakcie — ta sama ścieżka co przy płatności przez Przelewy24.
-      await issueInvoiceForOrderSafely(orderId);
+      // Maile idą przed fakturą — wystawianie w inFakcie trwa kilkanaście sekund
+      // i przy dłuższej odpowiedzi potrafi zabrać funkcji czas na powiadomienia.
+      await sendCustomerConfirmationEmail(orderData);
+      await sendAdminFulfillmentAlert(orderData);
 
       // Płatności celowo nie przenosimy do BaseLinkera — zamówienie ma tam
       // zostać nieopłacone, sprzedawca księguje wpłatę ręcznie.
 
-      // Send emails
-      if (orderData) {
-        await sendCustomerConfirmationEmail(orderData);
-        await sendAdminFulfillmentAlert(orderData);
-      }
+      // Faktura w inFakcie — ta sama ścieżka co przy płatności przez Przelewy24.
+      await issueInvoiceForOrderSafely(orderId);
 
     } catch (error) {
       console.error("Error processing webhook:", error);
