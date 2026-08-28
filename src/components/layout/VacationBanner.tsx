@@ -103,60 +103,63 @@ export function VacationBannerView({
   const countdown = countdownLabel(info);
 
   return (
-    <div className="w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-4">
+    <div className="relative w-full">
+      {/* Ta sama siatka kropek co pod sekcją hero, na całej szerokości — pasek ma
+          wyglądać jak przedłużenie strony, a nie doklejony prostokąt. */}
       <div
-        role="status"
-        className={`relative overflow-hidden flex items-start gap-3 sm:gap-4 rounded-2xl border px-4 py-3.5 sm:px-5 shadow-[0_8px_30px_rgba(0,0,0,0.04)] ${tone.wrapper}`}
-      >
-        {/* Ta sama siatka kropek co pod sekcją hero — pasek ma wyglądać jak część strony. */}
+        className="absolute inset-0 bg-[radial-gradient(#cbd5e1_1px,transparent_1px)] dark:bg-[radial-gradient(#1c3e41_1px,transparent_1px)] [background-size:16px_16px] pointer-events-none opacity-50"
+        aria-hidden
+      />
+
+      <div className="relative w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-4">
         <div
-          className="absolute inset-0 bg-[radial-gradient(#cbd5e1_1px,transparent_1px)] dark:bg-[radial-gradient(#1c3e41_1px,transparent_1px)] [background-size:16px_16px] pointer-events-none opacity-50"
-          aria-hidden
-        />
-
-        <span className={`relative z-10 shrink-0 p-2 rounded-xl ${tone.icon}`} aria-hidden>
-          {info.status === "upcoming" ? (
-            <CalendarClock className="w-5 h-5" />
-          ) : (
-            <Palmtree className="w-5 h-5" />
-          )}
-        </span>
-
-        <div className="relative z-10 flex-1 min-w-0 pr-6 sm:pr-8">
-          <div className="flex flex-wrap items-center gap-x-2.5 gap-y-1">
-            <h2 className="font-extrabold text-sm sm:text-base leading-tight">{info.title}</h2>
-            {info.rangeLabel && (
-              <span
-                className={`inline-flex items-center rounded-lg border px-2 py-0.5 text-[11px] font-black uppercase tracking-wide ${tone.badge}`}
-              >
-                {info.rangeLabel}
-              </span>
+          role="status"
+          className={`relative flex items-start gap-3 sm:gap-4 rounded-2xl border px-4 py-3.5 sm:px-5 shadow-[0_8px_30px_rgba(0,0,0,0.04)] ${tone.wrapper}`}
+        >
+          <span className={`shrink-0 p-2 rounded-xl ${tone.icon}`} aria-hidden>
+            {info.status === "upcoming" ? (
+              <CalendarClock className="w-5 h-5" />
+            ) : (
+              <Palmtree className="w-5 h-5" />
             )}
-            {countdown && (
-              <span className="text-[11px] font-black uppercase tracking-wide text-muted-foreground">
-                {countdown}
-              </span>
+          </span>
+
+          <div className="flex-1 min-w-0 pr-6 sm:pr-8">
+            <div className="flex flex-wrap items-center gap-x-2.5 gap-y-1">
+              <h2 className="font-extrabold text-sm sm:text-base leading-tight">{info.title}</h2>
+              {info.rangeLabel && (
+                <span
+                  className={`inline-flex items-center rounded-lg border px-2 py-0.5 text-[11px] font-black uppercase tracking-wide ${tone.badge}`}
+                >
+                  {info.rangeLabel}
+                </span>
+              )}
+              {countdown && (
+                <span className="text-[11px] font-black uppercase tracking-wide text-muted-foreground">
+                  {countdown}
+                </span>
+              )}
+            </div>
+            <p className="text-xs sm:text-sm font-semibold text-muted-foreground leading-relaxed mt-1">
+              {info.message}
+            </p>
+            {info.pauseOrders && (
+              <p className="flex items-start gap-1.5 text-xs font-bold text-destructive mt-2">
+                <TriangleAlert className="w-3.5 h-3.5 shrink-0 mt-px" aria-hidden />
+                <span>{pausedOrdersMessage(info)}</span>
+              </p>
             )}
           </div>
-          <p className="text-xs sm:text-sm font-semibold text-muted-foreground leading-relaxed mt-1">
-            {info.message}
-          </p>
-          {info.pauseOrders && (
-            <p className="flex items-start gap-1.5 text-xs font-bold text-destructive mt-2">
-              <TriangleAlert className="w-3.5 h-3.5 shrink-0 mt-px" aria-hidden />
-              <span>{pausedOrdersMessage(info)}</span>
-            </p>
-          )}
-        </div>
 
-        <button
-          type="button"
-          onClick={onClose}
-          aria-label="Zamknij informację o przerwie urlopowej"
-          className={`absolute z-10 top-2.5 right-2.5 p-1.5 rounded-xl transition-all cursor-pointer ${tone.close}`}
-        >
-          <X className="w-4 h-4" aria-hidden />
-        </button>
+          <button
+            type="button"
+            onClick={onClose}
+            aria-label="Zamknij informację o przerwie urlopowej"
+            className={`absolute top-2.5 right-2.5 p-1.5 rounded-xl transition-all cursor-pointer ${tone.close}`}
+          >
+            <X className="w-4 h-4" aria-hidden />
+          </button>
+        </div>
       </div>
     </div>
   );
