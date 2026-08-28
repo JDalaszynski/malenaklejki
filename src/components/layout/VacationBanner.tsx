@@ -106,9 +106,15 @@ export function VacationBannerView({
     <div className="w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-4">
       <div
         role="status"
-        className={`relative flex items-start gap-3 sm:gap-4 rounded-2xl border px-4 py-3.5 sm:px-5 shadow-[0_8px_30px_rgba(0,0,0,0.04)] ${tone.wrapper}`}
+        className={`relative overflow-hidden flex items-start gap-3 sm:gap-4 rounded-2xl border px-4 py-3.5 sm:px-5 shadow-[0_8px_30px_rgba(0,0,0,0.04)] ${tone.wrapper}`}
       >
-        <span className={`shrink-0 p-2 rounded-xl ${tone.icon}`} aria-hidden>
+        {/* Ta sama siatka kropek co pod sekcją hero — pasek ma wyglądać jak część strony. */}
+        <div
+          className="absolute inset-0 bg-[radial-gradient(#cbd5e1_1px,transparent_1px)] dark:bg-[radial-gradient(#1c3e41_1px,transparent_1px)] [background-size:16px_16px] pointer-events-none opacity-50"
+          aria-hidden
+        />
+
+        <span className={`relative z-10 shrink-0 p-2 rounded-xl ${tone.icon}`} aria-hidden>
           {info.status === "upcoming" ? (
             <CalendarClock className="w-5 h-5" />
           ) : (
@@ -116,7 +122,7 @@ export function VacationBannerView({
           )}
         </span>
 
-        <div className="flex-1 min-w-0 pr-6 sm:pr-8">
+        <div className="relative z-10 flex-1 min-w-0 pr-6 sm:pr-8">
           <div className="flex flex-wrap items-center gap-x-2.5 gap-y-1">
             <h2 className="font-extrabold text-sm sm:text-base leading-tight">{info.title}</h2>
             {info.rangeLabel && (
@@ -147,7 +153,7 @@ export function VacationBannerView({
           type="button"
           onClick={onClose}
           aria-label="Zamknij informację o przerwie urlopowej"
-          className={`absolute top-2.5 right-2.5 p-1.5 rounded-xl transition-all cursor-pointer ${tone.close}`}
+          className={`absolute z-10 top-2.5 right-2.5 p-1.5 rounded-xl transition-all cursor-pointer ${tone.close}`}
         >
           <X className="w-4 h-4" aria-hidden />
         </button>
