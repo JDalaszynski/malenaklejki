@@ -2,6 +2,7 @@
 title: "Naklejki na przyprawy na zamówienie - zorganizuj kuchnię"
 slug: "naklejki-wlasnego-projektu-na-sloiki-z-przyprawami-zorganizuj-swoja-kuchnie"
 date: "2026-07-13"
+updated: "2026-08-30"
 description: "Małe naklejki na przyprawy na zamówienie od 1 sztuki. Stwórz etykiety na słoiczki, wydrukuj na trwałej folii i zorganizuj kuchnię raz na zawsze."
 image: "/blog/naklejki-wlasnego-projektu-na-sloiki-z-przyprawami-zorganizuj-swoja-kuchnie/naklejki-na-przyprawy-na-zamowienie-minimalistyczne-etykiety.png"
 imageAlt: "Dłoń trzymająca szklany słoiczek z papryką w proszku z minimalistyczną naklejką na przyprawy na zamówienie, w tle uporządkowana półka kuchenna z etykietowanymi słoikami"
@@ -80,7 +81,7 @@ Kuchnia to wymagające środowisko - para wodna z garnków, tłuste dłonie, zab
 Nasze naklejki drukujemy na **folii winylowej z mocnym klejem**, co oznacza:
 
 - **Wodoodporność** - wilgotne ręce ani para z garnka nie uszkodzą etykiety.
-- **Odporność na tłuszcz** - plamy z oliwy czy masła zetrze się bez śladu.
+- **Łatwe czyszczenie** - zachlapania zetrzesz wilgotną ściereczką, bo folia nie chłonie wody.
 - **Trwałe kolory** - wydruk nie blaknie pod wpływem światła ani ciepła z kuchenki.
 - **Łatwe usunięcie** - jeśli zmienisz aranżację, naklejka odchodzi bez śladów kleju na szkle.
 
@@ -122,7 +123,7 @@ Dla osób, które cenią rzemieślniczy charakter - etykiety z klasycznymi rycin
 
 ### Czy małe naklejki na przyprawy są wodoodporne?
 
-Tak. Drukujemy na folii winylowej z mocnym klejem, która jest w pełni odporna na wilgoć, parę i tłuszcze. Etykiety nie rozmakają i nie marszczą się nawet w kuchni narażonej na częste gotowanie.
+Tak. Drukujemy na folii winylowej z mocnym klejem, odpornej na wodę, promieniowanie UV i zadrapania. Etykiety nie rozmakają i nie marszczą się nawet w kuchni narażonej na częste gotowanie. Słoiki z etykietą myj ręcznie - folia nie nadaje się do zmywarki.
 
 ### Czy mogę zamówić naklejki z dowolnymi napisami na przyprawy?
 
@@ -142,6 +143,6 @@ Realizacja w MałeNaklejki zajmuje 2-3 dni robocze od zatwierdzenia projektu. Na
 
 ## Zamów własne naklejki na przyprawy i odmień swoją kuchnię
 
-Uporządkowana kuchnia to nie luksus - wystarczy chwila z generatorem AI lub darmowym programem Canva i jedno zamówienie w MałeNaklejki. Efekt? Jednolity, estetyczny komplet etykiet na lata, wydrukowany na trwałej folii za mniej niż 50 zł. Wgraj swój projekt i przekonaj się, jak drobna zmiana potrafi odmienić całą przestrzeń.
+Uporządkowana kuchnia to nie luksus - wystarczy chwila z generatorem AI lub darmowym programem Canva i jedno zamówienie w MałeNaklejki. Efekt? Jednolity, estetyczny komplet etykiet na trwałej folii za mniej niż 50 zł. Wgraj swój projekt i przekonaj się, jak drobna zmiana potrafi odmienić całą przestrzeń.
 
 <a href="/" style="display: inline-block; background-color: #02af7a; color: #ffffff; padding: 14px 28px; text-decoration: none; border-radius: 8px; font-weight: 600; font-size: 18px; margin-top: 24px; text-align: center;">Stwórz naklejki na przyprawy</a>

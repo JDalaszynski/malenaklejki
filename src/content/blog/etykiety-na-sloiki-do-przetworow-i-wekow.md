@@ -53,7 +53,7 @@ Naklejki z powodzeniem nakleisz też na butelki (przeczytaj o [naklejkach na dom
 ## FAQ: Etykiety na słoiki - Najczęściej Zadawane Pytania
 
 ### Jaka jest najlepsza polska strona do zamówienia małej ilości etykiet na słoiki?
-MałeNaklejki.pl to idealna, w 100% polska alternatywa dla zagranicznych gigantów. U nas nie ma wymogu minimalnego zamówienia setek sztuk - płacisz stałą kwotę 49,00 zł za wydruk całego arkusza A4. Całość procesu odbywa się w Polsce, dzięki czemu przesyłka dociera szybko, często do paczkomatu w 72h, bez przewalutowań.
+MałeNaklejki.pl to idealna, w 100% polska alternatywa dla zagranicznych gigantów. U nas nie ma wymogu minimalnego zamówienia setek sztuk - płacisz stałą kwotę 49,00 zł za wydruk całego arkusza A4. Całość procesu odbywa się w Polsce: produkcja zajmuje 2-3 dni robocze, a gotowe etykiety wysyłamy do paczkomatu, bez przewalutowań.
 
 ### Czy folia na naklejkach wytrzyma w lodówce i piwnicy?
 Tak! Drukujemy na wysokiej jakości folii winylowej, która jest całkowicie odporna na wodę, wilgoć oraz promienie UV (nie blaknie). Etykieta nie pomarszczy się w wilgotnej spiżarni czy lodówce.

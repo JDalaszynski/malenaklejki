@@ -127,7 +127,7 @@ const USE_CASES: {
   {
     icon: Baby,
     title: "Rysunek dziecka na folii",
-    text: "Sfotografuj pracę malucha telefonem, a my wytniemy fotonaklejkę po obrysie rysunku - miniaturowe dzieło sztuki, które zostanie na lata.",
+    text: "Sfotografuj pracę malucha telefonem, a my wytniemy fotonaklejkę po obrysie rysunku - miniaturowe dzieło sztuki na trwałej folii winylowej.",
   },
   {
     icon: Gift,

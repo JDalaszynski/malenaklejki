@@ -23,7 +23,7 @@ const PAGE_URL = `https://www.malenaklejki.pl${PAGE_PATH}`;
 export const metadata: Metadata = {
   title: "Polska alternatywa dla Sticker Mule i StickerApp",
   description:
-    "Polska alternatywa dla Sticker Mule i StickerApp: drukuj naklejki już od 1 arkusza A4 za 49 zł, odbiór w paczkomacie w 2-3 dni robocze, bez cła i bariery językowej.",
+    "Polska alternatywa dla Sticker Mule i StickerApp: drukuj naklejki już od 1 arkusza A4 za 49 zł, produkcja 2-3 dni robocze i odbiór w paczkomacie, bez cła i bariery językowej.",
   alternates: {
     canonical: PAGE_PATH,
   },
@@ -131,7 +131,7 @@ const ADVANTAGES: { icon: React.ElementType; title: string; text: string }[] = [
   },
   {
     icon: Truck,
-    title: "Paczkomat i wysyłka w 2-3 dni",
+    title: "Produkcja 2-3 dni i paczkomat",
     text: "Odbierasz w paczkomacie lub u kuriera w Polsce. Bez zagranicznej przesyłki, długiego oczekiwania i ryzyka cła.",
   },
   {

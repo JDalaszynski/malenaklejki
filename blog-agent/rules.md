@@ -32,7 +32,7 @@ Maksymalna czytelność. Krótkie akapity, zagnieżdżone nagłówki, tabele, wy
 * **Pustych ogólników bez wartości informacyjnej:** 
   Zawsze zastępuję je twardymi danymi.
   * ❌ ŹLE: "Szybka wysyłka", "Atrakcyjna cena", "Najwyższa jakość".
-  * ✅ DOBRZE: "Realizacja w 3 dni robocze", "Stała cena 49,00 zł za arkusz A4", "Mocny klej".
+  * ✅ DOBRZE: "Produkcja 2-3 dni robocze", "Stała cena 49,00 zł za arkusz A4", "Mocny klej".
 
 * **Suchego żargonu i pisania wyłącznie o funkcjach technicznych:** 
   * ❌ ŹLE: "Proces zautomatyzowanego cięcia ploterowego", "Algorytm detekcji tła".

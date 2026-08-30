@@ -138,7 +138,7 @@ const USE_CASES: {
   {
     icon: Car,
     title: "Naklejki motoryzacyjne i tuningowe",
-    text: "Emblematy, numery startowe i grafiki tuningowe cięte po obrysie trzymają się karoserii, szyby czy kasku i znoszą wodę oraz UV.",
+    text: "Emblematy, numery startowe i grafiki tuningowe cięte po obrysie sprawdzą się na szybie, kasku czy bagażniku i znoszą wodę oraz UV.",
     href: "/blog/naklejki-motoryzacyjne-i-tuningowe-z-wlasnym-nadrukiem",
     linkLabel: "Naklejki motoryzacyjne i tuningowe",
   },

@@ -1,6 +1,7 @@
 ---
 title: "Naklejki z własnym napisem - jak przygotować plik i zamówić"
 date: "2026-07-08"
+updated: "2026-08-30"
 description: "Naklejki z własnym napisem bez minimalnego nakładu - jak wygenerować plik lub ułożyć go w Canva i zamówić online w kilka minut. Stała cena 49 zł za arkusz A4."
 image: "/blog/naklejki-z-wlasnym-napisem-jak-przygotowac-plik-i-zamowic-online/naklejki-z-napisami-motywacyjnymi-na-laptopie.jpg"
 imageAlt: "Zestaw kolorowych, wyciętych po obrysie naklejek z własnymi motywującymi napisami takimi jak Believe in Yourself na obudowie laptopa."
@@ -84,7 +85,7 @@ Brak minimalnego nakładu - możesz zamówić jeden arkusz z jedną naklejką. B
 Twój napis trafi na trwałą folię winylową z mocnym klejem, która jest:
 
 - **Wodoodporna** - idealna na słoiczki, bidony i butelki
-- **Odporna na ścieranie i tłuszcze** - nie blaknie przy dotykaniu
+- **Odporna na ścieranie i zadrapania** - nie blaknie przy dotykaniu
 - **Bezpieczna dla powierzchni** - usuwa się bez pozostawiania kleju przy delikatnym odklejeniu
 
 Drukujemy w Polsce, na maszynach drukarskich wysokiej jakości z gamą kolorów CMYK. Kolory na wydruku mogą się minimalnie różnić od podglądu na ekranie monitora (szczególnie bardzo jaskrawe odcienie), dlatego jeśli zależy Ci na idealnym odwzorowaniu koloru marki (np. Pantone), skontaktuj się z nami przed zamówieniem.
