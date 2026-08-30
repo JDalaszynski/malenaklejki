@@ -25,17 +25,17 @@ const fredoka = Fredoka({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.malenaklejki.pl"),
-  title: "Naklejki z własnym nadrukiem | Zamów od 1 szt. online — MałeNaklejki",
+  title: "Małe naklejki z własnym nadrukiem od 1 szt. | MałeNaklejki",
   description:
-    "Stwórz personalizowane naklejki w kreatorze online — cięcie po konturze, druk na trwałym winylu, od 49 zł/arkusz A4. Produkcja 2-3 dni robocze. Generator AI w cenie!",
+    "Małe naklejki z własnym nadrukiem od 1 sztuki. Cięcie po obrysie, druk na trwałej folii winylowej, 49 zł za arkusz A4, produkcja 2-3 dni robocze.",
   alternates: {
     canonical: "/",
   },
   openGraph: {
     title:
-      "Naklejki z własnym nadrukiem | Zamów od 1 szt. online — MałeNaklejki",
+      "Małe naklejki z własnym nadrukiem od 1 szt. | MałeNaklejki",
     description:
-      "Stwórz personalizowane naklejki w kreatorze online — cięcie po konturze, druk na trwałym winylu, od 49 zł/arkusz A4. Produkcja 2-3 dni robocze.",
+      "Małe naklejki z własnym nadrukiem od 1 sztuki. Cięcie po obrysie, druk na trwałej folii winylowej, 49 zł za arkusz A4, produkcja 2-3 dni robocze.",
     url: "https://www.malenaklejki.pl",
     siteName: "MałeNaklejki",
     locale: "pl_PL",
@@ -45,15 +45,15 @@ export const metadata: Metadata = {
         url: "/images/og-main.jpg",
         width: 1200,
         height: 630,
-        alt: "MałeNaklejki — kreator personalizowanych naklejek na arkuszach A4",
+        alt: "MałeNaklejki - kreator personalizowanych naklejek na arkuszach A4",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Naklejki z własnym nadrukiem | Zamów od 1 szt. — MałeNaklejki",
+    title: "Małe naklejki z własnym nadrukiem od 1 szt. | MałeNaklejki",
     description:
-      "Stwórz personalizowane naklejki w kreatorze online — cięcie po konturze, druk na trwałym winylu, od 49 zł/arkusz A4. Generator AI w cenie!",
+      "Małe naklejki z własnym nadrukiem od 1 sztuki. Cięcie po obrysie, druk na trwałej folii winylowej, 49 zł za arkusz A4, produkcja 2-3 dni robocze.",
     images: ["/images/og-main.jpg"],
   },
   verification: {

@@ -2,6 +2,7 @@
 title: "Die cut i kiss-cut - różnice w cięciu naklejek reklamowych"
 slug: "co-to-jest-die-cut-i-kiss-cut-roznice-w-wyleciach-naklejek-reklamowych"
 date: "2026-07-14"
+updated: "2026-08-30"
 description: "Die cut sticker to naklejka wycięta po obrysie grafiki, kiss-cut zostaje na całym arkuszu. Poznaj różnice, koszty i podpowiedzi, które cięcie wybrać."
 image: "/blog/co-to-jest-die-cut-i-kiss-cut-roznice-w-wyleciach-naklejek-reklamowych/naklejka-die-cut-pies-corgi-wycieta-po-obrysie.png"
 imageAlt: "Dłoń trzymająca naklejkę die-cut przedstawiającą uśmiechniętego psa rasy corgi, wyciętą dokładnie po obrysie sylwetki, na tle zielonych liści"
@@ -73,7 +74,7 @@ Wymagania techniczne różnią się w zależności od wybranej opcji:
 - **Do kiss-cut:** wgraj pliki po kolei lub zestaw kilka wygenerowanych (np. przez Midjourney, ChatGPT lub Gemini) bądź przygotowanych w Canvie wzorów obok siebie - każdy zostanie wycięty osobno, a podkład pozostanie w całości jako jeden arkusz.
 - **Rozdzielczość:** minimum 300 dpi dla małych naklejek (poniżej 5 cm), żeby uniknąć pikselowania przy precyzyjnym cięciu wzdłuż konturu.
 
-Obie opcje wybierasz w tym samym kreatorze, bez dodatkowych opłat za typ cięcia - płacisz stałe 49,00 zł za cały arkusz A4, niezależnie od tego, ile naklejek na nim umieścisz. Gubisz się w terminach takich jak kanał alfa, DPI czy folia winylowa? Zajrzyj do naszego [słownika pojęć o naklejkach](/slownik-naklejek), gdzie tłumaczymy je krótko i konkretnie.
+Obie opcje wybierasz w tym samym kreatorze, bez dodatkowych opłat za typ cięcia - płacisz stałe 49,00 zł za cały arkusz A4, niezależnie od tego, ile naklejek na nim umieścisz. Gubisz się w terminach takich jak kanał alfa, DPI czy folia winylowa? Zajrzyj do naszego [słownika pojęć o naklejkach](/slownik-naklejek), gdzie tłumaczymy je krótko i konkretnie, albo sprawdź, [ile realnie wytrzymują naklejki wodoodporne](/blog/naklejki-wodoodporne-i-winylowe-jaka-folia-i-jak-dlugo-wytrzyma).
 
 ## Die cut i kiss-cut - najczęstsze pytania (FAQ)
 

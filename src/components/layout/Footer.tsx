@@ -70,6 +70,66 @@ export function Footer({ children }: FooterProps = {}) {
         <div className="max-w-5xl mx-auto flex flex-col items-center px-4 gap-6">
           {children}
 
+          {/* Rodzaje naklejek + Poradniki - dystrybucja linkowania wewnetrznego
+              na 100% podstron serwisu (blog-agent/plan.md -> Faza 4, P4.0.2). */}
+          <nav
+            aria-label="Rodzaje naklejek i poradniki"
+            className="w-full grid grid-cols-1 sm:grid-cols-2 gap-6 text-left border-b border-border/10 pb-6"
+          >
+            <div>
+              <p className="text-xs font-black uppercase tracking-wide text-foreground/70 mb-2">
+                Rodzaje naklejek
+              </p>
+              <ul className="flex flex-col gap-1.5">
+                {[
+                  { href: "/naklejki-die-cut", label: "Naklejki die cut" },
+                  { href: "/naklejki-foliowe", label: "Naklejki foliowe i wodoodporne" },
+                  { href: "/fotonaklejki", label: "Fotonaklejki ze zdjęcia" },
+                  { href: "/etykiety-na-sloiki", label: "Etykiety na słoiki" },
+                  { href: "/naklejki-dla-firm", label: "Naklejki dla firm" },
+                ].map((item) => (
+                  <li key={item.href}>
+                    <Link href={item.href} className="hover:underline transition-colors">
+                      {item.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <p className="text-xs font-black uppercase tracking-wide text-foreground/70 mb-2">
+                Poradniki
+              </p>
+              <ul className="flex flex-col gap-1.5">
+                {[
+                  {
+                    href: "/blog/jak-zamowic-idealne-naklejki-na-zamowienie-z-wlasnym-nadrukiem",
+                    label: "Naklejki na zamówienie - przewodnik",
+                  },
+                  {
+                    href: "/blog/drukowanie-naklejek-online-na-co-zwrocic-uwage-przed-wysylka-projektu",
+                    label: "Drukowanie naklejek online",
+                  },
+                  {
+                    href: "/blog/ile-kosztuja-naklejki-na-zamowienie-cena-za-arkusz-a4",
+                    label: "Ile kosztują naklejki na zamówienie?",
+                  },
+                  {
+                    href: "/blog/fajne-wzory-i-pomysly-na-naklejki-inspiracje-wg-zastosowania",
+                    label: "Fajne wzory na naklejki",
+                  },
+                  { href: "/slownik-naklejek", label: "Słownik naklejek" },
+                ].map((item) => (
+                  <li key={item.href}>
+                    <Link href={item.href} className="hover:underline transition-colors">
+                      {item.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </nav>
+
           {/* Footer Links */}
           <div className="flex flex-wrap justify-center gap-x-6 gap-y-2">
             <Link href="/regulamin" className="hover:underline font-semibold transition-colors">

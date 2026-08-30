@@ -1,11 +1,11 @@
 ---
-title: "Jak zrobić własne naklejki w telefonie - proste triki"
+title: "Jak zrobić naklejki w telefonie i wydrukować od 1 sztuki"
 slug: "jak-zrobic-wlasne-naklejki-w-telefonie-proste-aplikacje-i-triki"
 date: "2026-07-17"
-description: "Jak zrobić własne naklejki w telefonie? Poznaj proste aplikacje do wycinania tła i zamień zdjęcie w naklejkę wyciętą po obrysie w kilka minut, bez komputera."
+description: "Zrób naklejkę ze zdjęcia w telefonie: aplikacje do usuwania tła, gotowy plik i druk na trwałej folii od 49,00 zł za arkusz A4. Bez komputera."
 image: "/blog/jak-zrobic-wlasne-naklejki-w-telefonie-proste-aplikacje-i-triki/naklejka-ze-zdjecia-psa-zrobiona-telefonem-na-laptopie.jpg"
 imageAlt: "Naklejka wycięta po obrysie ze zdjęcia psa rasy golden retriever zrobionego telefonem, naklejona na pokrywie laptopa obok smartfona z tym samym zdjęciem w galerii."
-updated: "2026-08-17"
+updated: "2026-08-30"
 tags: ["naklejki", "smartfon", "DIY", "poradnik"]
 role: "supporting"
 pillar: true

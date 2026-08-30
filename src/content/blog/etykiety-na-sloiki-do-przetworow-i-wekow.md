@@ -2,6 +2,7 @@
 title: "Etykiety na słoiki do przetworów i weków - napisy na słoiki krok po kroku"
 slug: "etykiety-na-sloiki-do-przetworow-i-wekow"
 date: "2026-08-06"
+updated: "2026-08-30"
 description: "Dowiedz się, jak łatwo zrobić własne wodoodporne etykiety na słoiki do przetworów i weków. Naklejki na słoiki bez minimalnego nakładu - stała cena za arkusz A4."
 image: "/blog/etykiety-na-sloiki-do-przetworow-i-wekow/szklane-sloiki-z-przetworami-etykiety-na-sloiki-rustykalne.jpeg"
 tags: ["naklejki", "kuchnia", "etykiety", "przetwory"]
@@ -15,7 +16,7 @@ Domowe przetwory i weki to duma każdej kuchni. Niezależnie od tego, czy przygo
 
 Globalne platformy często zmuszają do zamawiania setek sztuk lub doliczają wysokie koszty wysyłki. MałeNaklejki.pl to w 100% polska alternatywa dla zagranicznych marek, w której stawiamy na proste i przejrzyste zasady. U nas drukujesz naklejki na słoiki personalizowane na arkuszach A4, gdzie stała cena to tylko 49,00 zł za sztukę. Sam decydujesz, ile mniejszych etykiet zmieścisz na jednym arkuszu. Zamawiasz w poniedziałek? Zazwyczaj już w środę odbierasz paczkę z paczkomatu - bez ukrytych opłat celnych czy bariery językowej. 
 
-Drukujemy na mocnej folii winylowej, co ma ogromne znaczenie w przypadku przetworów. Twoje napisy na słoiki nie rozmażą się pod wpływem wilgoci w piwnicy czy lodówce. 
+Drukujemy na mocnej folii winylowej, co ma ogromne znaczenie w przypadku przetworów. Twoje napisy na słoiki nie rozmażą się pod wpływem wilgoci w piwnicy czy lodówce - sprawdź, [ile wytrzymują naklejki wodoodporne](/blog/naklejki-wodoodporne-i-winylowe-jaka-folia-i-jak-dlugo-wytrzyma) i dlaczego słoika z etykietą nie warto wkładać do zmywarki. 
 
 ![Arkusz A4 z personalizowanymi naklejkami na słoiki](/blog/etykiety-na-sloiki-do-przetworow-i-wekow/naklejki-na-sloiki-personalizowane-arkusz-a4.jpeg)
 

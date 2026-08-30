@@ -2,7 +2,7 @@
 title: "Naklejki motoryzacyjne i tuningowe z własnym nadrukiem"
 slug: "naklejki-motoryzacyjne-i-tuningowe-z-wlasnym-nadrukiem"
 date: "2026-07-23"
-updated: "2026-08-17"
+updated: "2026-08-30"
 description: "Naklejki motoryzacyjne i wlepki tuningowe z własnym nadrukiem - stałe 49,00 zł za arkusz A4, cięcie po obrysie, bez minimalnego nakładu, gotowe w 2-3 dni."
 image: "/blog/naklejki-motoryzacyjne-i-tuningowe-z-wlasnym-nadrukiem/naklejki-tuningowe-na-czarnym-zderzaku-samochodu-sportowego.png"
 imageAlt: "Rząd naklejek tuningowych z logotypami marek motoryzacyjnych naklejonych na czarnym zderzaku samochodu sportowego."
@@ -91,9 +91,9 @@ Brak minimalnego nakładu ma tu jeszcze jedną zaletę: możesz najpierw zamówi
 
 ## Naklejki motoryzacyjne - najczęściej zadawane pytania (FAQ)
 
-### Czy naklejka tuningowa wytrzyma mycie auta na myjni?
+### Czy naklejka tuningowa wytrzyma mycie auta?
 
-Tak. Drukujemy na trwałej folii z mocnym klejem, odpornej na wodę, sól drogową i ścieranie. Odczekaj dobę od naklejenia przed pierwszym myciem, a na myjni ciśnieniowej nie kieruj lancy prosto w krawędź naklejki z małej odległości.
+Folia winylowa jest odporna na wodę, promieniowanie UV i zadrapania, więc zwykłe mycie samochodu jej nie szkodzi. Nie deklarujemy natomiast odporności na myjnię ciśnieniową - strumień pod dużym ciśnieniem potrafi podważyć krawędź każdej naklejki. Odczekaj dobę od naklejenia przed pierwszym myciem, a lancy nigdy nie kieruj prosto w krawędź z małej odległości.
 
 ### Czy naklejka zostawia ślady na lakierze po odklejeniu?
 

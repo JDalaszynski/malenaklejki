@@ -49,6 +49,8 @@ const FACTS = [
   "Plik: zalecane 300 DPI, maksymalny wymiar pojedynczej naklejki to 19 cm.",
   "Płatności: BLIK, Przelewy24. Wystawiamy fakturę VAT na NIP.",
   "Kraj produkcji: Polska - obsługa po polsku, bez przeliczania z euro i bez ceł.",
+  "Poza zakresem odporności: zmywarka, pranie i tkaniny, rozpuszczalniki, benzyna oraz tłuszcze techniczne. Nie deklarujemy odporności na myjnię ciśnieniową ani konkretnej liczby lat użytkowania na zewnątrz.",
+  "Czego nie oferujemy: folii do oklejania całych pojazdów (wrapping), folii hologramowej, brokatowej i transparentnej, naklejek repozycjonowalnych oraz naklejek na tkaninę.",
 ];
 
 const INTRO =

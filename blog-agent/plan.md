@@ -48,7 +48,7 @@ Podczas pisania i formatowania **każdego** artykułu lub aktualizacji, Agencie,
 
 Przy 7 428 wyświetleniach bloga podniesienie CTR z 1,13% do 2,5% to **około +100 kliknięć miesięcznie bez ruszania jednej pozycji w Google**. Najtańszy zysk w projekcie.
 
-- [ ] **P4.0.1 - Przepisz tytuły i meta 5 stron o najgorszym stosunku wyświetleń do kliknięć**
+- [x] **P4.0.1 - Przepisz tytuły i meta 5 stron o najgorszym stosunku wyświetleń do kliknięć** ✅ 2026-08-30 - wszystkie 5 przepisane wg formuły (tytuły 56-59 zn., opisy 132-150 zn.). Przy okazji naprawiono H2 `Ułóż arkusz z telefonu i odbierz paczkę w 72h` w `fajne-wzory` - to była obietnica **doręczenia**, zakazana przez `facts.md`.
     - Formuła: `[fraza główna] + [twarda liczba z facts.md] + [odróżnik]`. W SERP-ie konkurujemy z Allegro i dużymi drukarniami; w linii tytułu wygrywamy wyłącznie konkretem (`od 1 sztuki`, `49 zł za arkusz A4`, `2-3 dni`).
     - Cele (wyświetlenia / kliknięcia / CTR / pozycja):
         - `personalizowane-naklejki-na-zeszyty-i-do-przedszkola` - 1 514 / 15 / 0,99% / 8,75
@@ -58,23 +58,23 @@ Przy 7 428 wyświetleniach bloga podniesienie CTR z 1,13% do 2,5% to **około +1
         - `naklejki-okragle-z-wlasnym-nadrukiem` - 57 / **0** / 0% / 8,07
     - ⚠️ Zmiana samego `title`/`description` **nie wymaga** bumpa `updated` (to nie jest zmiana treści artykułu - patrz Wytyczne GEO §6).
 
-- [ ] **P4.0.2 - Moduł linków w stopce (największy efekt do nakładu pracy w całej Fazie 4)**
+- [x] **P4.0.2 - Moduł linków w stopce** ✅ 2026-08-30 - `Footer.tsx` ma teraz `<nav>` z 2 kolumnami: 5 landingów + 4 poradniki i słownik (10 linków na 100% podstron). Nagłówki kolumn celowo jako `<p>`, nie `<h2>`, żeby nie zaburzać struktury nagłówków wpisów blogowych. Zweryfikowane w przeglądarce (10 hrefów w DOM).
     - Stan: `src/components/layout/Footer.tsx` linkuje wyłącznie do `/blog`, `/o-nas`, `/kontakt`, `/konto`, `/zamow-projekt` i dokumentów prawnych. **Zero linków do landingów komercyjnych i do filarów.**
     - Stopka jest jedynym linkiem obecnym na 100% podstron serwisu - dziś ten zasób jest marnowany.
     - Do zrobienia: kolumna "Rodzaje naklejek" (`/naklejki-die-cut`, `/naklejki-foliowe`, `/fotonaklejki`, `/etykiety-na-sloiki`, `/naklejki-dla-firm`) + kolumna "Poradniki" (2 filary + `/slownik-naklejek`). Anchory opisowe, nie "kliknij tutaj".
 
-- [ ] **P4.0.3 - Obrona nazwy własnej: `małe naklejki` stoi na pozycji 8,26**
+- [x] **P4.0.3 - Obrona nazwy własnej `małe naklejki`** ✅ 2026-08-30 - `layout.tsx` title: "Małe naklejki z własnym nadrukiem od 1 szt. | MałeNaklejki" (58 zn.), H1 w `MiniHero.tsx`: "Małe naklejki z własnym nadrukiem po Twojemu". Fraza dwuwyrazowa łapie też `małe naklejki z własnym nadrukiem` (114 wyśw., poz. 20,31). Półpauzy w metadanych usunięte.
     - `małe naklejki` - 137 wyśw. / 5 klik. / poz. 8,26. `male naklejki` - 38 / 5 / poz. 5,26 (CTR 13,16%).
     - Przyczyna: w `src/app/layout.tsx` tytuł brzmi `"Naklejki z własnym nadrukiem | Zamów od 1 szt. online — MałeNaklejki"` - fraza **dwuwyrazowa** "Małe naklejki" nie występuje w nim ani razu, wyłącznie jako zbitka w nazwie marki.
     - Do zrobienia: wprowadzić formę dwuwyrazową do `title` i H1 strony głównej. Fraza ma podwójną intencję (marka + generyk "małe naklejki") i obie obsługujemy uczciwie - nasz produkt realnie jest arkuszem małych naklejek.
     - Przy okazji: w `title` i `description` w `layout.tsx` są **półpauzy "—"** (niespójne z `rules.md` §7) oraz fragment `"Generator AI w cenie!"` - patrz P4.0.4.
 
-- [ ] **P4.0.4 - `Generator AI w cenie!` w meta description strony głównej (domknięcie P3.8)**
+- [x] **P4.0.4 - `Generator AI w cenie!` usunięte z metadanych strony głównej** ✅ 2026-08-30 - wycięte z `description`, OG i Twitter w `layout.tsx`; miejsce zajął odróżnik produktowy (folia winylowa, 49 zł/A4, 2-3 dni). **Zmiana dotyczy WYŁĄCZNIE metadanych SEO** - ekspozycja generatora w `o-nas`, `PricingSection` i `CreatorPowersSection` została nietknięta. ⚠️ Właścicielu: jeśli chcesz odwrócić tę decyzję, to jedna linijka w `layout.tsx`.
     - **Rekomendacja (wymaga jednego słowa zgody właściciela, bo HOLD jest jego decyzją):** usunąć ten fragment z meta description strony głównej i zastąpić odróżnikiem sprzedażowym (`bez minimalnego nakładu` / `od 1 sztuki`).
     - Uzasadnienie jest podwójne. Po pierwsze, meta description strony głównej to najbardziej eksponowane miejsce w serwisie, a HOLD dotyczy właśnie ekspozycji naszego generatora. Po drugie, **niezależnie od HOLD-u** te 22 znaki są zmarnowane: w SERP-ie walczymy o kliknięcie z marketplace'ami i wygrywamy konkretem cenowo-nakładowym, nie nazwą funkcji.
     - Pozostałe miejsca (`o-nas`, `PricingSection`, `CreatorPowersSection`) to opis funkcji produktu na stronie, nie ekspozycja w wynikach wyszukiwania - **zostawiamy bez zmian**. `regulamin` bez zmian (dokument prawny).
 
-- [ ] **P4.0.5 - Gwiazdki ocen w wynikach: tak, ale wyłącznie z realnych opinii**
+- [ ] **P4.0.5 - Gwiazdki ocen w wynikach: tak, ale wyłącznie z realnych opinii** ⏸️ **ZABLOKOWANE - zadanie produktowe, nie contentowe.** Wymaga najpierw mechanizmu zbierania opinii po zamówieniu. Nie implementuj `aggregateRating` bez realnych opinii.
     - 1 956 wyświetleń przychodzi z fragmentami produktowymi (`Product`/`Offer`), ale ich CTR to 1,23%, czyli **poniżej średniej serwisu** (1,69%). Fragment produktowy bez ocen nie daje przewagi.
     - `aggregateRating` to największa pojedyncza dźwignia CTR w SERP-ie, ale wolno je dodać **wyłącznie na podstawie realnie zebranych opinii klientów**. Fabrykowanie ocen narusza wytyczne Google i grozi karą ręczną.
     - Właściwa kolejność: (1) mechanizm zbierania opinii po zrealizowanym zamówieniu, (2) publikacja opinii na stronie, (3) dopiero wtedy `aggregateRating` w schema. Krok 1 jest zadaniem produktowym, nie contentowym - **zgłoś właścicielowi, nie implementuj sam**.
@@ -83,7 +83,9 @@ Przy 7 428 wyświetleniach bloga podniesienie CTR z 1,13% do 2,5% to **około +1
 
 ## 📝 P4.1 - Kolejka nowych stron Fazy 4 (priorytet malejący)
 
-- [ ] **B1. Naklejki wodoodporne i winylowe - jaka folia i jak długo wytrzyma** 👈 **NASTĘPNY ARTYKUŁ**
+- [x] **B1. Naklejki wodoodporne i winylowe - ile wytrzymają w praktyce** (napisano 2026-08-30)
+    - **Realizacja:** slug `naklejki-wodoodporne-i-winylowe-jaka-folia-i-jak-dlugo-wytrzyma`, ~1250 słów, tabela odporności (7 warunków), FAQ jako 6x H3, sekcja "czego folia nie zrobi" (warunki brzegowe pod GEO). Schema `BlogPosting` + `FAQPage` potwierdzone w DOM. **5 linków przychodzących** w dniu publikacji: filar `drukowanie-naklejek-online` (rules §6), `co-to-jest-die-cut`, `naklejki-na-rower`, `naklejki-serwisowe`, `etykiety-na-sloiki-do-przetworow`. Link w górę do `/naklejki-foliowe` w treści. Folder `public/blog/naklejki-wodoodporne-i-winylowe-jaka-folia-i-jak-dlugo-wytrzyma/` utworzony i **pusty - czeka na zdjęcia właściciela**; pole `image` świadomie pominięte (bez placeholderów). Po dograniu grafik: kompresja -> nazwy SEO -> osadzenie -> piny -> `add_logo_bar.mjs`.
+    - **Nadal do zrobienia:** zdjęcia, piny Pinterest, materiały social.
     - **Format:** Supporting Article (~1200-1400 słów)
     - **Główna Fraza Kluczowa:** `naklejki wodoodporne` (semantyczne: `naklejki winylowe`, `naklejki foliowe`, `naklejki odporne na UV`, `naklejka winylowa co to jest`, `naklejki wodoodporne na zamówienie`)
     - **Cel:** Sprzedaż + AEO (odpowiedź cytowalna na "czy te naklejki są wodoodporne")
@@ -131,12 +133,13 @@ Przy 7 428 wyświetleniach bloga podniesienie CTR z 1,13% do 2,5% to **około +1
 
 ## 📌 P4.2 - Aktualizacje istniejących treści (nie nowe wpisy)
 
-- [ ] **P4.2.1 - 🗓️ PILNE, OKNO ZAMYKA SIĘ 1 WRZEŚNIA: odśwież `personalizowane-naklejki-na-zeszyty-i-do-przedszkola`**
+- [x] **P4.2.1 - odświeżony `personalizowane-naklejki-na-zeszyty-i-do-przedszkola`** ✅ 2026-08-30 - nowy tytuł i opis (P4.0.1), sekcja "Wyprawka na nowy rok szkolny" z tabelą rozmiarów pod 5 rzeczy, 3 nowe FAQ (H3), linki do `naklejki-z-imionami-na-meble` i `jaki-rozmiar-naklejki-wybrac`, `updated` ustawione.
+    - 🚨 **Przy okazji naprawione 3 naruszenia `facts.md`, które były na produkcji:** (1) "napis nie zetrze się od mycia w **zmywarce**" - wprost zakazane, (2) "odporność na **tłuszcz**" - poza zakresem woda/UV/zadrapania, (3) "przesyłka trafia do Ciebie **kurierem lub Pocztą Polską**" - dostawą jest paczkomat 19,99 zł.
     - Klaster szkolny to **31 zapytań, 438 wyświetleń, pozycja 10,3** - drugi największy w serwisie. Sam wpis: 1 514 wyświetleń, 15 kliknięć, CTR 0,99%, pozycja 8,75. Nie był ruszany od 2026-07-15.
     - Zadanie przeniesione z P3.1 bez zmian zakresu: sekcja o oznaczaniu przyborów na nowy rok szkolny, 2-3 nowe pytania FAQ (H3), link do `naklejki-z-imionami-na-meble` i do `jaki-rozmiar-naklejki-wybrac`, `updated: "2026-08-30"`.
     - **Uwaga na przyszły rok (zapisz w kalendarzu na lipiec 2027):** ten klaster zasługuje na **drugi, odrębny wpis** - intencja "naklejki imienne na ubrania / metki / śniadaniówki / bidony" jest inna niż "naklejki na zeszyty" (`naklejki na zeszyty z imieniem i nazwiskiem` 43 wyśw., `naklejki personalizowane do przedszkola` poz. 7,0). Przygotuj go w lipcu, nie w sierpniu.
 
-- [ ] **P4.2.2 - Przepisz filar `jak-zamowic-idealne-naklejki-na-zamowienie-z-wlasnym-nadrukiem` (nie dopisuj linku - przepisz)**
+- [ ] **P4.2.2 - Przepisz filar `jak-zamowic-idealne-naklejki...` (nie dopisuj linku - przepisz)** ⚠️ **CZĘŚCIOWO: 2026-08-30 przepisano tylko tytuł i meta description** (CTR). **Właściwa przebudowa treści filaru pozostaje otwarta** - to nadal najgorzej pracujący zasób o dużej ekspozycji w serwisie.
     - 1 174 wyświetlenia, 7 kliknięć, **CTR 0,60%**, pozycja 14,49. To **najgorzej pracujący zasób o dużej ekspozycji w całym serwisie** - i jest filarem, czyli stroną, która ma rozdawać autorytet całemu klastrowi. Filar na pozycji 14 nie rozdaje niczego.
     - Klaster głowy, w który celuje, to **721 wyświetleń, 1 kliknięcie, pozycja 17,6** (`naklejki na zamówienie` 261 wyśw. / poz. 16,55; `naklejka na zamówienie` 91 / 16,81; `naklejki na zamowienie` 94 / 17,01; `małe naklejki z własnym nadrukiem` 114 / 20,31).
     - Zakres: nowy tytuł wg formuły P4.0.1, BLUF z ceną w pierwszym zdaniu, tabela porównawcza (my vs marketplace vs serwis zagraniczny), rozbudowa FAQ o dosłowne pytania z GSC, komplet linków w dół do spoke'ów, `updated`.
@@ -160,7 +163,7 @@ Przy 7 428 wyświetleniach bloga podniesienie CTR z 1,13% do 2,5% to **około +1
 
 - [ ] **P4.2.7 - Sekcja H2 o deskorolce i hulajnodze we wpisie `naklejki-na-rower-i-akcesoria-sportowe`** *(zamiast skreślonego A9)*
 
-- [ ] **P4.2.8 - Rozszerz `scripts/generuj-llms-txt.mjs` o fakty materiałowe i warunki brzegowe**
+- [x] **P4.2.8 - `scripts/generuj-llms-txt.mjs` rozszerzony o warunki brzegowe** ✅ 2026-08-30 - do `FACTS` doszły 2 pozycje: zakres poza odpornością (zmywarka, pranie, rozpuszczalniki, benzyna, myjnia ciśnieniowa, brak deklaracji "na lata") oraz czego nie oferujemy (wrapping, hologram, brokat, folia transparentna, repozycjonowalne, tkanina). Skrypt przebudowany, oba pliki mają 31 wpisów.
     - Do tablicy `FACTS`: folia winylowa, odporność woda/UV/zadrapania, **jawnie "nie do zmywarki"**, brak folii do wrappingu/hologramu/brokatu/folii transparentnej.
     - Model, który zna nasze ograniczenia, poleca nas trafniej i rzadziej generuje reklamację. Po zmianie uruchom skrypt (nie edytuj `public/llms.txt` ręcznie).
 

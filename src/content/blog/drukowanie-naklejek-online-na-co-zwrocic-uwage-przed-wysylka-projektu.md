@@ -1,7 +1,7 @@
 ---
 title: "Drukowanie naklejek online - na co zwrócić uwagę?"
 date: "2026-07-10"
-updated: "2026-08-27"
+updated: "2026-08-30"
 description: "Drukowanie naklejek online krok po kroku - rozdzielczość, format pliku, cięcie po obrysie i cena 49 zł za arkusz A4. Sprawdź, zanim wyślesz projekt."
 image: "/blog/drukowanie-naklejek-online-na-co-zwrocic-uwage-przed-wysylka-projektu/drukowanie-naklejek-online-w-dowolnym-ksztalcie.jpg"
 imageAlt: "Dłoń trzymająca w palcach precyzyjnie wyciętą po obrysie naklejkę z napisem Kształt Dowolny na tle trawy - ekologiczne i trwałe drukowanie naklejek online w MałeNaklejki."
@@ -89,9 +89,11 @@ Monitory wyświetlają kolory w przestrzeni RGB (czerwony, zielony, niebieski), 
 Wszystkie naklejki w MałeNaklejki drukujemy na **trwałej folii winylowej z mocnym klejem**. To nie jest papier - to profesjonalny materiał, który:
 
 - **Jest w pełni wodoodporny** - sprawdza się na słoiczkach, bidonach, butelkach i opakowaniach narażonych na wilgoć.
-- **Nie blaknie przy dotykaniu** - odporny na ścieranie i tłuszcze z rąk.
+- **Nie blaknie przy dotykaniu** - odporny na ścieranie i zadrapania.
 - **Można go usunąć bez śladów** - przy delikatnym odklejeniu nie pozostawia kleju na powierzchni.
 - **Jest bezpieczny dla większości powierzchni** - naklejamy go na szkło, plastik, metal i drewno.
+
+Gdzie dokładnie leżą granice tej odporności i czego folia winylowa nie zrobi, rozpisaliśmy w osobnym poradniku: [naklejki wodoodporne i winylowe - ile wytrzymają w praktyce](/blog/naklejki-wodoodporne-i-winylowe-jaka-folia-i-jak-dlugo-wytrzyma).
 
 Drukujemy w Polsce, na maszynach cyfrowych wysokiej klasy z szeroką gamą kolorów CMYK. Efekt? Wydruki o żywych, nasyconych kolorach i ostrych detalach nawet na małych naklejkach.
 
