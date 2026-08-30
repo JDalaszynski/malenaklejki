@@ -88,6 +88,7 @@ export async function registerTransaction(data: {
     urlStatus: data.urlStatus,
     method: data.methodId,
     sign,
+    encoding: "UTF-8",
   };
 
   const url = `${getP24BaseUrl(config.P24_ENV)}/transaction/register`;
@@ -97,7 +98,7 @@ export async function registerTransaction(data: {
   const response = await fetch(url, {
     method: "POST",
     headers: {
-      "Content-Type": "application/json",
+      "Content-Type": "application/json; charset=utf-8",
       Authorization: `Basic ${auth}`,
     },
     body: JSON.stringify(payload),
@@ -155,7 +156,7 @@ export async function verifyTransaction(data: {
   const response = await fetch(url, {
     method: "PUT",
     headers: {
-      "Content-Type": "application/json",
+      "Content-Type": "application/json; charset=utf-8",
       Authorization: `Basic ${auth}`,
     },
     body: JSON.stringify(payload),

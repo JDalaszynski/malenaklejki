@@ -23,8 +23,175 @@ Podczas pisania i formatowania **każdego** artykułu lub aktualizacji, Agencie,
 
 ---
 
+# 🚀 FAZA 4 - Koncentracja i konwersja (audyt GSC 2026-08-30)
+
+> **Agencie automatyczny - kolejność pracy w Fazie 4 (nadpisuje kolejność Fazy 3):**
+> 1. Sekcja **P4.0** to zadania **techniczne/CTR, NIE artykuły** - wykonaj je jako edycje plików, nie generuj dla nich wpisów.
+> 2. Sekcja **P4.2** to **aktualizacje istniejących treści**, też nie nowe artykuły.
+> 3. Nowy artykuł bierz **wyłącznie** z sekcji **P4.1**, pierwszy niezaznaczony, respektując okna publikacji (`🗓️`). Temat z oznaczeniem `🗓️ OKNO` poza swoim oknem **pomiń** i weź następny.
+> 4. Kolejka Fazy 3 (P2) jest **zamrożona** - jej niezrealizowane pozycje zostały przeniesione do P4.1 z nowym priorytetem wynikającym z danych GSC.
+
+**Podstawa decyzji:** `blog-agent/strategy.md` §7 (pełna analiza) + eksport `blog-agent/GSC Dane Lipiec-Sierpień 2026/`.
+
+**Zwrot strategiczny:** przestajemy rosnąć wszerz. Proporcja pracy zmienia się z "~4 nowe wpisy / miesiąc" na **"1-2 nowe wpisy + 3-4 głębokie aktualizacje / miesiąc"**. Trzydzieści wpisów dało 9 314 wyświetleń przy średniej pozycji 12,4 i CTR 1,69% - kolejny wpis pisany tym samym trybem doda wyświetlenia, nie kliknięcia.
+
+**Trzy zasady obowiązujące całą Fazę 4:**
+1. Nowa strona powstaje **tylko** wtedy, gdy tego samego nie da się osiągnąć wzmocnieniem strony istniejącej.
+2. Żadna strona nie wychodzi bez **minimum 3 linków wewnętrznych w dniu publikacji**. Publikacja bez linków to publikacja na pozycję 30.
+3. Jedna strona = jedna intencja. Informacyjne zostaje na blogu, transakcyjne idzie na landing.
+
+**Ograniczenia produktowe bez zmian:** HOLD na NASZ wbudowany generator AI (zewnętrzne ChatGPT/Gemini/Midjourney - tak, jako pierwsze źródło grafiki); zakaz słowa "zaprojektuj/projektowanie" wobec naklejki i grafiki; prawda o produkcie wyłącznie wg `facts.md`; FAQ jako **H3** + osobna sekcja `##` z CTA po FAQ; dywiz "-", zero półpauz; link kontekstowy do filaru w 1. akapicie.
+
+---
+
+## ⚡ P4.0 - Sprint CTR (zadania techniczne, wykonaj PRZED kolejnym artykułem)
+
+Przy 7 428 wyświetleniach bloga podniesienie CTR z 1,13% do 2,5% to **około +100 kliknięć miesięcznie bez ruszania jednej pozycji w Google**. Najtańszy zysk w projekcie.
+
+- [ ] **P4.0.1 - Przepisz tytuły i meta 5 stron o najgorszym stosunku wyświetleń do kliknięć**
+    - Formuła: `[fraza główna] + [twarda liczba z facts.md] + [odróżnik]`. W SERP-ie konkurujemy z Allegro i dużymi drukarniami; w linii tytułu wygrywamy wyłącznie konkretem (`od 1 sztuki`, `49 zł za arkusz A4`, `2-3 dni`).
+    - Cele (wyświetlenia / kliknięcia / CTR / pozycja):
+        - `personalizowane-naklejki-na-zeszyty-i-do-przedszkola` - 1 514 / 15 / 0,99% / 8,75
+        - `jak-zrobic-wlasne-naklejki-w-telefonie-proste-aplikacje-i-triki` - 1 484 / 10 / 0,67% / 7,94
+        - `jak-zamowic-idealne-naklejki-na-zamowienie-z-wlasnym-nadrukiem` - 1 174 / 7 / **0,60%** / 14,49 (FILAR)
+        - `fajne-wzory-i-pomysly-na-naklejki-inspiracje-wg-zastosowania` - 170 / **0** / 0% / 8,99
+        - `naklejki-okragle-z-wlasnym-nadrukiem` - 57 / **0** / 0% / 8,07
+    - ⚠️ Zmiana samego `title`/`description` **nie wymaga** bumpa `updated` (to nie jest zmiana treści artykułu - patrz Wytyczne GEO §6).
+
+- [ ] **P4.0.2 - Moduł linków w stopce (największy efekt do nakładu pracy w całej Fazie 4)**
+    - Stan: `src/components/layout/Footer.tsx` linkuje wyłącznie do `/blog`, `/o-nas`, `/kontakt`, `/konto`, `/zamow-projekt` i dokumentów prawnych. **Zero linków do landingów komercyjnych i do filarów.**
+    - Stopka jest jedynym linkiem obecnym na 100% podstron serwisu - dziś ten zasób jest marnowany.
+    - Do zrobienia: kolumna "Rodzaje naklejek" (`/naklejki-die-cut`, `/naklejki-foliowe`, `/fotonaklejki`, `/etykiety-na-sloiki`, `/naklejki-dla-firm`) + kolumna "Poradniki" (2 filary + `/slownik-naklejek`). Anchory opisowe, nie "kliknij tutaj".
+
+- [ ] **P4.0.3 - Obrona nazwy własnej: `małe naklejki` stoi na pozycji 8,26**
+    - `małe naklejki` - 137 wyśw. / 5 klik. / poz. 8,26. `male naklejki` - 38 / 5 / poz. 5,26 (CTR 13,16%).
+    - Przyczyna: w `src/app/layout.tsx` tytuł brzmi `"Naklejki z własnym nadrukiem | Zamów od 1 szt. online — MałeNaklejki"` - fraza **dwuwyrazowa** "Małe naklejki" nie występuje w nim ani razu, wyłącznie jako zbitka w nazwie marki.
+    - Do zrobienia: wprowadzić formę dwuwyrazową do `title` i H1 strony głównej. Fraza ma podwójną intencję (marka + generyk "małe naklejki") i obie obsługujemy uczciwie - nasz produkt realnie jest arkuszem małych naklejek.
+    - Przy okazji: w `title` i `description` w `layout.tsx` są **półpauzy "—"** (niespójne z `rules.md` §7) oraz fragment `"Generator AI w cenie!"` - patrz P4.0.4.
+
+- [ ] **P4.0.4 - `Generator AI w cenie!` w meta description strony głównej (domknięcie P3.8)**
+    - **Rekomendacja (wymaga jednego słowa zgody właściciela, bo HOLD jest jego decyzją):** usunąć ten fragment z meta description strony głównej i zastąpić odróżnikiem sprzedażowym (`bez minimalnego nakładu` / `od 1 sztuki`).
+    - Uzasadnienie jest podwójne. Po pierwsze, meta description strony głównej to najbardziej eksponowane miejsce w serwisie, a HOLD dotyczy właśnie ekspozycji naszego generatora. Po drugie, **niezależnie od HOLD-u** te 22 znaki są zmarnowane: w SERP-ie walczymy o kliknięcie z marketplace'ami i wygrywamy konkretem cenowo-nakładowym, nie nazwą funkcji.
+    - Pozostałe miejsca (`o-nas`, `PricingSection`, `CreatorPowersSection`) to opis funkcji produktu na stronie, nie ekspozycja w wynikach wyszukiwania - **zostawiamy bez zmian**. `regulamin` bez zmian (dokument prawny).
+
+- [ ] **P4.0.5 - Gwiazdki ocen w wynikach: tak, ale wyłącznie z realnych opinii**
+    - 1 956 wyświetleń przychodzi z fragmentami produktowymi (`Product`/`Offer`), ale ich CTR to 1,23%, czyli **poniżej średniej serwisu** (1,69%). Fragment produktowy bez ocen nie daje przewagi.
+    - `aggregateRating` to największa pojedyncza dźwignia CTR w SERP-ie, ale wolno je dodać **wyłącznie na podstawie realnie zebranych opinii klientów**. Fabrykowanie ocen narusza wytyczne Google i grozi karą ręczną.
+    - Właściwa kolejność: (1) mechanizm zbierania opinii po zrealizowanym zamówieniu, (2) publikacja opinii na stronie, (3) dopiero wtedy `aggregateRating` w schema. Krok 1 jest zadaniem produktowym, nie contentowym - **zgłoś właścicielowi, nie implementuj sam**.
+
+---
+
+## 📝 P4.1 - Kolejka nowych stron Fazy 4 (priorytet malejący)
+
+- [ ] **B1. Naklejki wodoodporne i winylowe - jaka folia i jak długo wytrzyma** 👈 **NASTĘPNY ARTYKUŁ**
+    - **Format:** Supporting Article (~1200-1400 słów)
+    - **Główna Fraza Kluczowa:** `naklejki wodoodporne` (semantyczne: `naklejki winylowe`, `naklejki foliowe`, `naklejki odporne na UV`, `naklejka winylowa co to jest`, `naklejki wodoodporne na zamówienie`)
+    - **Cel:** Sprzedaż + AEO (odpowiedź cytowalna na "czy te naklejki są wodoodporne")
+    - **Persona:** Wszystkie - pytanie o trwałość pada tuż przed zakupem, niezależnie od niszy; najmocniej rzemiosło, moto/rower, kuchnia i e-commerce
+    - **Link nadrzędny (Filar):** `/blog/drukowanie-naklejek-online-na-co-zwrocic-uwage-przed-wysylka-projektu` + **obowiązkowo link w górę do landingu `/naklejki-foliowe`**
+    - **Dlaczego pierwszy (dane GSC):** klaster materiałowy ma **238 wyświetleń, 0 kliknięć i średnią pozycję 43,2** (`naklejki foliowe` 132 wyśw. / poz. 44,51; `naklejki winylowe` 56 / 45,77; `naklejki wodoodporne` 32 / 32,56; `naklejki odporne na uv` 7 / 50). Landing `/naklejki-foliowe` stoi na 34,95 i **nie ma ani jednego wspierającego wpisu blogowego**. Intencja jest czysto zakupowa, konkurencja słabsza niż o głowę `naklejki na zamówienie`, a `facts.md` pozwala pisać o tym twardo i uczciwie. Najlepszy stosunek zysku do ryzyka w całym zestawie danych.
+    - **Struktura (BLUF + tabela):** odpowiedź w 1. zdaniu (druk na folii winylowej, odporność na wodę, UV i zadrapania, 49,00 zł brutto za arkusz A4) -> **tabela "warunek użytkowania -> czy folia sobie poradzi"** (deszcz i mycie ręczne, słońce/UV, tarcie i zadrapania, zmywarka, rozpuszczalniki) -> czym folia winylowa różni się od papieru samoprzylepnego -> gdzie wodoodporność realnie decyduje (bidon, kask, rower, słoik w lodówce, paczka w deszczu, naklejka serwisowa na urządzeniu) z linkami do spoke'ów -> jak przygotować plik, żeby kolory przetrwały (300 DPI) -> FAQ (H3) -> CTA.
+    - **🚨 Granice merytoryczne (bezwzględne, wg `facts.md`):** odporność **wyłącznie** woda / UV / zadrapania. **Zmywarka - NIE**, napisz to wprost. **Nie deklaruj** odporności na rozpuszczalniki, tłuszcze, benzynę, pranie ani tkaninę. **Nie obiecuj sufitu trwałości zewnętrznej** ("na lata", "na karoserię", "myjnia ciśnieniowa"). Nie oferujemy folii do wrappingu, hologramu, brokatu ani folii transparentnej. Jawne przyznanie "nie do zmywarki" jest **atutem**, nie słabością - buduje wiarygodność u czytelnika i u modeli LLM.
+    - **Linkowanie przy publikacji (min. 3 przychodzące):** `/naklejki-foliowe` (w górę), `co-to-jest-die-cut-i-kiss-cut`, `naklejki-na-rower`, `etykiety-na-sloiki-do-przetworow`, `naklejki-serwisowe-dla-firm` + backlink z filaru `drukowanie-naklejek-online`.
+
+- [ ] **B2. 🏗️ LANDING (nie wpis blogowy): `/wlepki-na-zamowienie`**
+    - **To zadanie dla `landing-agent/`, nie dla autoblога** - odnotowane tutaj, bo wynika z tej samej analizy. Przekaż je do `landing-agent/plan.md`.
+    - **Frazy transakcyjne bez własnej strony:** `produkcja vlepek` (44 wyśw. / poz. **35,91**), `projekt vlepki` (43 / **35,14**), `druk vlepek` (29 / **37,59**), `wlepki na zamówienie` (194 / 14,16), `vlepki na zamówienie` (3 / 13,67), `custom wlepy` (5 / 8,20).
+    - **Dlaczego landing, nie wpis:** klaster wlepek jest **najlepszy w serwisie** (673 wyśw., 8 klik.), a `vlepki kibicowskie na zamówienie` ma **CTR 13,64%** - najwyższy w całym zbiorze. Frazy z leksyku produkcyjnego ("produkcja", "druk", "projekt") stoją na pozycji 35+, bo odpowiada na nie wpis **poradnikowy**, a Google chce tam strony **usługowej**. Identyczny błąd naprawiliśmy już przy `fotonaklejki` (poz. 27-39 -> **17,01** w miesiąc od zbudowania landingu).
+    - **⚠️ Rozdział intencji (warunek konieczny):** wpis `wklepki-i-wlepy-z-wlasnym-nadrukiem-dla-artystow-i-spolecznosci` to najmocniejsza strona bloga (24 klik. / 1 323 wyśw.) i **zostaje przy intencji informacyjnej** ("co to są wlepki", "jak zrobić wlepki", społeczności/artyści). Landing bierze wyłącznie intencję zakupową. Bez tego rozdziału stworzymy kanibalizację i stracimy stronę, która dziś zarabia najwięcej na blogu.
+
+- [ ] **B3. 🗓️ OKNO PUBLIKACJI: 10-25 października 2026 - Naklejki świąteczne i etykiety na prezenty**
+    - *(przeniesione z Fazy 3 jako A5, treść zadania bez zmian - patrz sekcja "P2 - Kolejka artykułów Fazy 3" niżej)*
+    - **Format:** Supporting Article (~1200-1400 słów) | **Główna Fraza Kluczowa:** `naklejki świąteczne`
+    - **Link nadrzędny (Filar):** `/blog/jak-zamowic-idealne-naklejki-na-zamowienie-z-wlasnym-nadrukiem`
+    - **Poza oknem czasowym NIE pisz** - wpis opublikowany w grudniu nie zdąży się wypozycjonować, a opublikowany w sierpniu traci sygnał świeżości przed szczytem. W kolejnych latach odświeżasz ten sam URL polem `updated`, nie tworzysz nowego wpisu.
+
+- [ ] **B4. Vlepki kibicowskie i klubowe - wlepy dla kibiców, klubów i ekip**
+    - **Format:** Supporting Article (~900-1100 słów)
+    - **Główna Fraza Kluczowa:** `vlepki kibicowskie` (semantyczne: `wlepki kibicowskie`, `wlepy klubowe`, `wlepki z logo`, `własne wlepy`)
+    - **Cel:** Sprzedaż (nisza o najwyższym potwierdzonym CTR w serwisie)
+    - **Persona:** Społeczności, kluby, ekipy, fankluby - rozszerzenie persony "Artyści i Twórcy Internetowi"
+    - **Link nadrzędny (Filar):** `/blog/jak-zamowic-idealne-naklejki-na-zamowienie-z-wlasnym-nadrukiem` + link w górę do landingu z **B2** (jeśli już istnieje)
+    - **Dlaczego:** `vlepki kibicowskie na zamówienie` - 22 wyświetlenia, 3 kliknięcia, **CTR 13,64%**, pozycja 8,77. Najwyższy CTR w całym zbiorze 280 zapytań. Do tego `wlepy klubowe` (11 wyśw. / poz. 8,55), `wlepki kibicowskie` (1 / 11), `wlepki z logo` (3 / 11,33). To nisza, w której **nie konkurujemy z marketplace'ami** - a pojedyncze sztuki docięte do kształtu są dokładnie tym, czego ta grupa potrzebuje.
+    - **⚠️ Granica treści:** piszemy o wlepkach klubowych, kibicowskich i ekipowych jako o merchu i identyfikacji społeczności. **Nie wchodzimy** w treści związane z przemocą, wrogością wobec innych klubów ani z nielegalnym naklejaniem w przestrzeni publicznej. Jeśli temat zaczyna zbaczać w tę stronę - przerwij i zapytaj właściciela.
+
+- [ ] **B5. Naklejki z kodem QR - menu, wizytówka i opinie w jednej naklejce**
+    - *(przeniesione z Fazy 3 jako A6, treść zadania bez zmian - patrz sekcja "P2" niżej)*
+    - **Zmiana priorytetu wobec Fazy 3 i jej uzasadnienie:** klaster B2B ma dziś **184 wyświetlenia, 0 kliknięć i pozycję 30,4** przy czterech opublikowanych wpisach i landingu `/naklejki-dla-firm` (109 wyśw., poz. 28,81, 0 klik.). Piąty wpis nie naprawi klastra, który stoi na pozycji 30 - **najpierw P4.2.5** (wypchnięcie landingu linkowaniem).
+    - **Dlaczego mimo to zostaje w kolejce, a nie zostaje skreślony:** w GSC nie ma zapytań o kod QR, ale to znaczy tylko tyle, że **nie mamy pokrycia** - nie że nie ma popytu. Dodatkowo `naklejki z kodem QR` to znacznie dłuższy ogon niż `naklejki firmowe` (poz. 39,9) czy `naklejki warsztatowe` (poz. 41,4), gdzie przegrywamy autorytetem z dużymi drukarniami. Długi ogon może zarankować mimo słabej domeny.
+
+- [ ] **B6. Etykiety na kosmetyki naturalne i świece - co umieścić na opakowaniu małej manufaktury**
+    - *(przeniesione z Fazy 3 jako A7, treść zadania i **bezwzględne ograniczenie prawne** bez zmian - patrz sekcja "P2" niżej)*
+    - **Uzasadnienie utrzymania w kolejce:** leksyk "etykiety" jest w GSC obecny, ale stoi na **pozycji 31,0 przy zerze kliknięć** - mamy ekspozycję i nie mamy odpowiedzi. Persona (manufaktury kosmetyczne, świecarnie, mydlarnie) jest w `strategy.md` §2 od początku i wciąż nie ma własnego wpisu.
+    - **Uzasadnienie niskiego priorytetu:** landing `/etykiety-na-sloiki` powstał dopiero 2026-08-25 i ma 5 dni danych (62 wyśw., poz. 30,81). **Zanim dołożymy spoke, poczekaj na jego pierwszy pełny miesiąc** - inaczej nie odróżnimy efektu landingu od efektu wpisu.
+
+- [x] ~~**A9. Naklejki na deskorolkę, hulajnogę i sprzęt sportowy**~~ - **SKREŚLONE 2026-08-30 na podstawie danych.** `plan.md` warunkował ten wpis potwierdzeniem wolumenu w GSC. W 280 zapytaniach **nie ma ani jednego** o deskorolce, hulajnodze czy sprzęcie sportowym, a temat mocno zachodzi na `naklejki-na-rower` i `wklepki-i-wlepy`. Zamiast wpisu -> **P4.2.7** (sekcja H2 we wpisie o rowerze).
+
+---
+
+## 📌 P4.2 - Aktualizacje istniejących treści (nie nowe wpisy)
+
+- [ ] **P4.2.1 - 🗓️ PILNE, OKNO ZAMYKA SIĘ 1 WRZEŚNIA: odśwież `personalizowane-naklejki-na-zeszyty-i-do-przedszkola`**
+    - Klaster szkolny to **31 zapytań, 438 wyświetleń, pozycja 10,3** - drugi największy w serwisie. Sam wpis: 1 514 wyświetleń, 15 kliknięć, CTR 0,99%, pozycja 8,75. Nie był ruszany od 2026-07-15.
+    - Zadanie przeniesione z P3.1 bez zmian zakresu: sekcja o oznaczaniu przyborów na nowy rok szkolny, 2-3 nowe pytania FAQ (H3), link do `naklejki-z-imionami-na-meble` i do `jaki-rozmiar-naklejki-wybrac`, `updated: "2026-08-30"`.
+    - **Uwaga na przyszły rok (zapisz w kalendarzu na lipiec 2027):** ten klaster zasługuje na **drugi, odrębny wpis** - intencja "naklejki imienne na ubrania / metki / śniadaniówki / bidony" jest inna niż "naklejki na zeszyty" (`naklejki na zeszyty z imieniem i nazwiskiem` 43 wyśw., `naklejki personalizowane do przedszkola` poz. 7,0). Przygotuj go w lipcu, nie w sierpniu.
+
+- [ ] **P4.2.2 - Przepisz filar `jak-zamowic-idealne-naklejki-na-zamowienie-z-wlasnym-nadrukiem` (nie dopisuj linku - przepisz)**
+    - 1 174 wyświetlenia, 7 kliknięć, **CTR 0,60%**, pozycja 14,49. To **najgorzej pracujący zasób o dużej ekspozycji w całym serwisie** - i jest filarem, czyli stroną, która ma rozdawać autorytet całemu klastrowi. Filar na pozycji 14 nie rozdaje niczego.
+    - Klaster głowy, w który celuje, to **721 wyświetleń, 1 kliknięcie, pozycja 17,6** (`naklejki na zamówienie` 261 wyśw. / poz. 16,55; `naklejka na zamówienie` 91 / 16,81; `naklejki na zamowienie` 94 / 17,01; `małe naklejki z własnym nadrukiem` 114 / 20,31).
+    - Zakres: nowy tytuł wg formuły P4.0.1, BLUF z ceną w pierwszym zdaniu, tabela porównawcza (my vs marketplace vs serwis zagraniczny), rozbudowa FAQ o dosłowne pytania z GSC, komplet linków w dół do spoke'ów, `updated`.
+
+- [ ] **P4.2.3 - Rozbuduj `fajne-wzory-i-pomysly` do roli realnego huba** *(przeniesione z P3.2)*
+    - 170 wyświetleń, **0 kliknięć**, pozycja 8,99, **1 link przychodzący**. Pozycja 9 przy zerze kliknięć oznacza, że strona jest widziana i odrzucana - potrzebuje jednocześnie nowego tytułu (P4.0.1) i linkowania.
+    - Sekcje z linkami do **wszystkich** nisz + podpięcie z `SeoContentSection.tsx` i z obu filarów.
+
+- [ ] **P4.2.4 - Dosyć linkowania w ogonie (P1.6 przeniesione, zasada ciągła)**
+    - Po **1 linku przychodzącym** mają: `fajne-wzory`, `jak-zrobic-wlasne-naklejki-program`, `naklejki-z-imionami-na-meble`. Po 2: `etykiety-na-sloiki-do-przetworow`, `jaki-rozmiar-naklejki-wybrac`, `naklejki-firmowe-na-eventy`, `naklejki-na-koperty-slubne`, `naklejki-na-motory`, `naklejki-serwisowe`, `plomby-na-paczki`.
+    - **Cel Fazy 4: żaden wpis poniżej 3 linków przychodzących.**
+
+- [ ] **P4.2.5 - Wypchnij `/naklejki-dla-firm` z pozycji 28,81 (warunek wstępny dla B5 i B6)**
+    - 109 wyświetleń, **0 kliknięć**, pozycja 28,81. Cztery wpisy B2B istnieją, ale landing ma tylko 6 linków z bloga i 2 z komponentów.
+    - Zadanie: linki w górę do landingu z **każdego** wpisu B2B (`naklejka-z-logo-firmy`, `naklejki-z-wlasnym-logo-na-sloiki`, `naklejki-serwisowe`, `naklejki-firmowe-na-eventy`, `plomby-na-paczki`) + z modułu stopki (P4.0.2) + z `SeoContentSection.tsx`.
+
+- [ ] **P4.2.6 - Rozbuduj `/slownik-naklejek` jako główny zasób GEO**
+    - **To najlepiej rankujący landing w serwisie: pozycja 6,78, CTR 1,59%** - lepszy niż jakikolwiek inny landing. Słownik jest maszyną definicyjną, czyli dokładnie tym, co modele LLM cytują najchętniej.
+    - Dopisz pojęcia z luk: `naklejki wodoodporne`, `folia winylowa`, `wlepka / vlepka`, `etykieta a naklejka` (luka leksykalna z `keywords.md` §9b), `arkusz A4`, `300 DPI`, `quiet zone` (pod przyszły wpis o QR).
+    - Powiąż wpisy ze słownikiem przez `about`/`mentions` w schema (zaległość z P1.5).
+
+- [ ] **P4.2.7 - Sekcja H2 o deskorolce i hulajnodze we wpisie `naklejki-na-rower-i-akcesoria-sportowe`** *(zamiast skreślonego A9)*
+
+- [ ] **P4.2.8 - Rozszerz `scripts/generuj-llms-txt.mjs` o fakty materiałowe i warunki brzegowe**
+    - Do tablicy `FACTS`: folia winylowa, odporność woda/UV/zadrapania, **jawnie "nie do zmywarki"**, brak folii do wrappingu/hologramu/brokatu/folii transparentnej.
+    - Model, który zna nasze ograniczenia, poleca nas trafniej i rzadziej generuje reklamację. Po zmianie uruchom skrypt (nie edytuj `public/llms.txt` ręcznie).
+
+---
+
+## 📊 Mierniki Fazy 4 (weryfikacja 2026-11-30)
+
+| Miernik | Stan 2026-08-28 | Cel |
+| :--- | ---: | ---: |
+| CTR bloga | 1,13% | **2,50%** |
+| Średnia pozycja serwisu | 12,4 | **< 10,0** |
+| Kliknięcia / tydzień | 40 | **120** |
+| Udział landingów w kliknięciach | 6% | **20%** |
+| Zapytania z min. 1 kliknięciem | 15 | **40** |
+| Strony z >100 wyśw. i 0 kliknięć | 3 | **0** |
+| Wpisy z <3 linkami przychodzącymi | 11 | **0** |
+
+**Czego NIE mierzyć:** liczby opublikowanych artykułów. To była właściwa miara Faz 1-2 i jest **błędną** miarą Fazy 4 - premiuje dokładnie to zachowanie, które ograniczamy.
+
+**Kontrola kierunku po 90 dniach:** jeśli CTR wzrośnie, a średnia pozycja stanie w miejscu - barierą jest autorytet domeny (linkowanie zewnętrzne), nie treść, i Faza 5 musi przenieść ciężar poza treść. Jeśli wzrosną oba - model "koncentracja zamiast ekspansji" jest właściwy.
+
+**Zastrzeżenie do wszystkich liczb w tej sekcji:** `Zapytania.csv` pokrywa 3 547 z 9 314 wyświetleń (38%), resztę Google anonimizuje. GSC pokazuje wyłącznie zapytania, na które **już mamy wyświetlenia** - brak zapytania w danych nie dowodzi braku popytu, tylko braku pokrycia.
+
+
+---
+
 # 🔍 FAZA 3 - Audyt i strategia SEO/GEO/AEO (2026-08-17)
 
+> ### ⚠️ SEKCJA ARCHIWALNA - kolejka P2 ZAMROŻONA 2026-08-30
+> Faza 3 jest zamknięta. Jej niezrealizowane tematy (A5, A6, A7) zostały przeniesione do **FAZY 4** wyżej jako **B3, B5 i B6**, z priorytetem wynikającym z danych GSC; A9 zostało **skreślone**. Opisy zadań poniżej pozostają aktualne merytorycznie i służą jako źródło szczegółów dla B3/B5/B6 - **ale nie bierz stąd tematu do napisania**. Kolejka obowiązująca to **P4.1**.
+>
 > **Agencie automatyczny - kolejność pracy:** sekcje **P0** i **P1** to zadania **naprawcze/techniczne, NIE artykuły** - wykonaj je jako edycje istniejących plików. Dopiero potem bierz pierwszy niewykonany temat z sekcji **P2 - Kolejka artykułów Fazy 3**. Nie generuj artykułu dla pozycji P0/P1.
 
 ## Zakres audytu
@@ -158,7 +325,7 @@ Fazy 1-2 budowały **pokrycie person i nisz** - to zadanie jest w zasadzie wykon
     - **Struktura (BLUF + tabele):** odpowiedź w 1. zdaniu (49,00 zł brutto za arkusz A4, bez minimalnego zamówienia) -> **tabela "koszt jednostkowy wg rozmiaru"**: rozmiar naklejki -> ile sztuk zmieści się na A4 -> koszt 1 szt. (dla kilku typowych rozmiarów, z zaznaczeniem, że liczba zależy od kształtu i odstępów) -> co wpływa na końcową kwotę (dostawa 19,99 zł paczkomat, forma zestawu: arkusz vs pojedyncze sztuki) -> **dlaczego u nas nie ma progów nakładowych** (przewaga PL: bez przygotowalni, bez matrycy, bez przeliczania z euro) -> kiedy taniej wyjdzie druk masowy w drukarni offsetowej (uczciwie: przy tysiącach sztuk) -> FAQ -> CTA.
 
 
-- [ ] **A5. Naklejki świąteczne i etykiety na prezenty - personalizacja paczek na Boże Narodzenie**
+- [ ] **A5. Naklejki świąteczne i etykiety na prezenty - personalizacja paczek na Boże Narodzenie** *(→ przeniesione do Fazy 4 jako **B3**; szczegóły poniżej pozostają aktualne)*
     - **Format:** Supporting Article (~1200-1400 słów) | **🗓️ OKNO PUBLIKACJI: 10-25 października 2026**
     - **Główna Fraza Kluczowa:** `naklejki świąteczne` (semantyczne: `etykiety na prezenty`, `naklejki na prezenty świąteczne`, `naklejki bożonarodzeniowe`, `naklejki na słoiki jako prezent`)
     - **Cel:** Sprzedaż sezonowa (szczyt: listopad-grudzień)
@@ -168,7 +335,7 @@ Fazy 1-2 budowały **pokrycie person i nisz** - to zadanie jest w zasadzie wykon
     - **Struktura:** BLUF -> 6 zastosowań (etykieta na prezent zamiast bilecika, personalizacja paczek dla klientów, słoik/konfitura jako prezent - link do wpisu o przetworach, kalendarz adwentowy z numerami, naklejki dla firm do paczek świątecznych - link do `/naklejki-dla-firm`, podziękowania) -> skąd wziąć świąteczną grafikę (**zewnętrzne generatory AI jako pierwsze źródło**, potem Canva/Word) -> deadline zamówień przed świętami (produkcja 2-3 dni + kurier - **bez obiecywania konkretnej daty granicznej bez zgody właściciela**) -> FAQ -> CTA.
     - **Uwaga sezonowa:** przy publikacji dopisz link z tego wpisu do `etykiety-na-sloiki-do-przetworow` i `naklejki-na-koperty-slubne` (prezenty/podziękowania), a z filaru link w dół (P0.5 / P1.6).
 
-- [ ] **A6. Naklejki z kodem QR - menu, wizytówka i opinie w jednej naklejce**
+- [ ] **A6. Naklejki z kodem QR - menu, wizytówka i opinie w jednej naklejce** *(→ przeniesione do Fazy 4 jako **B5**, niższy priorytet)*
     - **Format:** Supporting Article (~1100-1300 słów)
     - **Główna Fraza Kluczowa:** `naklejki z kodem QR` (semantyczne: `naklejka QR na zamówienie`, `kod QR na naklejce`, `naklejka z QR do menu`)
     - **Cel:** Sprzedaż (B2B, nowa nisza)
@@ -178,7 +345,7 @@ Fazy 1-2 budowały **pokrycie person i nisz** - to zadanie jest w zasadzie wykon
     - **Struktura:** BLUF -> 5 zastosowań (menu w lokalu, wizytówka na produkcie, naklejka serwisowa z QR do zgłoszeń - link do wpisu serwisowego, QR na paczce - link do A4, QR na stoisku targowym) -> **jak przygotować kod, żeby zadziałał po wydruku**: darmowy generator QR online, kontrast, jasne tło, margines (quiet zone), minimalny rozmiar, PNG w wysokiej rozdzielczości, **przetestuj przed wysłaniem pliku** -> dlaczego folia winylowa ma tu znaczenie (odporność na wodę i UV) -> FAQ -> CTA.
     - **⚠️ Uwaga merytoryczna:** kod generuje się w **zewnętrznym, darmowym generatorze QR** - to nie jest funkcja naszego kreatora, nie sugeruj że jest. Nie deklaruj gwarancji skanowalności - dawaj zalecenia i wprost każ przetestować wydruk.
 
-- [ ] **A7. Etykiety na kosmetyki naturalne i świece - co umieścić na opakowaniu małej manufaktury**
+- [ ] **A7. Etykiety na kosmetyki naturalne i świece - co umieścić na opakowaniu małej manufaktury** *(→ przeniesione do Fazy 4 jako **B6**, niższy priorytet)*
     - **Format:** Supporting Article (~1200-1400 słów)
     - **Główna Fraza Kluczowa:** `etykiety na kosmetyki naturalne` (semantyczne: `etykiety ze składem`, `etykiety na świeczki`, `naklejki na świece sojowe`, `etykiety na mydło`)
     - **Cel:** Sprzedaż (B2B, persona producenci świec i kosmetyków - dotąd bez własnego wpisu)
@@ -188,7 +355,7 @@ Fazy 1-2 budowały **pokrycie person i nisz** - to zadanie jest w zasadzie wykon
     - **Struktura:** BLUF -> etykieta a naklejka (leksyk) -> **co zwykle znajduje się na etykiecie małej manufaktury** (nazwa, skład, pojemność, dane producenta, data/partia) -> kształt i rozmiar pod typowe opakowania (słoik świecy, buteleczka, kostka mydła) -> odporność: woda, UV, tłuszcze z kosmetyku - **uczciwie, bez obietnicy odporności na rozpuszczalniki i bez zmywarki** -> mały nakład jako przewaga przy testowaniu wariantów produktu -> FAQ -> CTA.
     - **🚨 Ograniczenie prawne (bezwzględne):** oznakowanie kosmetyków i świec podlega przepisom (m.in. INCI, CLP). **Nie udzielaj porady prawnej i nie twierdź, że nasza etykieta spełnia wymogi prawne.** Pisz opisowo ("producenci zwykle umieszczają...") i **zawsze odsyłaj do sprawdzenia aktualnych przepisów lub konsultacji ze specjalistą**. To warunek publikacji tego wpisu.
 
-- [ ] **A9. (Opcjonalny, najniższy priorytet) Naklejki na deskorolkę, hulajnogę i sprzęt sportowy**
+- [x] ~~**A9. Naklejki na deskorolkę, hulajnogę i sprzęt sportowy**~~ **SKREŚLONE 2026-08-30** - warunek "tylko jeśli GSC potwierdzi odrębny wolumen" NIE został spełniony (0 zapytań w 280). Zamiast wpisu → P4.2.7 (sekcja H2 we wpisie o rowerze).
     - **Format:** Supporting Article (~900-1100 słów)
     - **Główna Fraza Kluczowa:** `naklejki na deskorolkę` (semantyczne: `naklejki na hulajnogę`, `naklejki na sprzęt sportowy`)
     - **Link nadrzędny (Filar):** `/blog/jak-zamowic-idealne-naklejki-na-zamowienie-z-wlasnym-nadrukiem`
@@ -198,7 +365,7 @@ Fazy 1-2 budowały **pokrycie person i nisz** - to zadanie jest w zasadzie wykon
 
 ## 📌 P3 - Aktualizacje istniejących treści (nie nowe wpisy)
 
-- [ ] **P3.1 - 🗓️ PILNE, SEZON TRWA: odśwież `personalizowane-naklejki-na-zeszyty-i-do-przedszkola`**
+- [ ] **P3.1 - 🗓️ PILNE, SEZON TRWA: odśwież `personalizowane-naklejki-na-zeszyty-i-do-przedszkola`** *(→ realizowane w Fazie 4 jako **P4.2.1**, z danymi GSC)*
     - Szczyt zapytań "powrót do szkoły" przypada na przełom sierpnia i września - **czyli teraz**. Wpis jest z 2026-07-15 i nie był ruszany.
     - Dodaj sekcję o oznaczaniu przyborów na nowy rok szkolny, dopisz 2-3 pytania FAQ (H3), dorzuć link do wpisu o meblach/imionach i do A2 (rozmiary), ustaw **`updated: "2026-08-XX"`**. To najtańsza możliwa konwersja w tym miesiącu.
 - [ ] **P3.2 - Rozbuduj `fajne-wzory-i-pomysly...` do roli prawdziwego huba** (dziś linkuje do 5 wpisów, ma 0 linków przychodzących). Dodaj sekcje z linkami do **wszystkich** nisz (nalewki, alkohol/wesele, serwisowe, eventy, rower, okrągłe, przetwory, wlepki) i podepnij go z `SeoContentSection.tsx` oraz z filaru.

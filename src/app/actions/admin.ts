@@ -104,7 +104,7 @@ export async function updateOrderStatus(raw: unknown): Promise<Result> {
   // nieustawioną — tam wpłatę księguje sprzedawca ręcznie.
   if (update.status === "PAID") {
     // Faktura w inFakcie powstaje niezależnie od powiadomień — przelew tradycyjny
-    // i sprzedaż z Vinted mają trafić do księgowości tak samo jak płatność online.
+    // i sprzedaż dopisana ręcznie mają trafić do księgowości tak samo jak płatność online.
     await issueInvoiceForOrderSafely(input.orderId);
 
     if (input.notify) {
@@ -509,7 +509,8 @@ const manualSaleSchema = z.object({
   /** Dzień sprzedaży w formacie z pola `<input type="date">`. */
   soldOn: z.string().regex(/^\d{4}-\d{2}-\d{2}$/, "Podaj datę sprzedaży"),
   sheets: z.coerce.number().int().min(1, "Podaj liczbę arkuszy").max(10000),
-  amount: z.coerce.number().min(0).max(1000000).default(0),
+  /** Kwota brutto jest wymagana — bez niej nie policzymy zysku z wpisu. */
+  amount: z.coerce.number().gt(0, "Podaj kwotę brutto").max(1000000),
   note: z.string().trim().max(200).default(""),
 });
 

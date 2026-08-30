@@ -23,14 +23,17 @@ export const PAYMENT_METHOD_LABELS: Record<string, string> = {
   przelewy24: "Przelewy24",
   blik: "BLIK",
   przelew: "Przelew tradycyjny",
-  vinted: "Vinted",
   manual: "Dodane ręcznie",
+  // Sklep nie przyjmuje już zamówień przez Vinted — etykieta została tylko po
+  // to, żeby archiwalne zamówienia nie pokazywały w panelu surowego „vinted".
+  vinted: "Vinted (archiwalne)",
 };
 
 export const DELIVERY_METHOD_LABELS: Record<string, string> = {
   kurier: "Kurier pod drzwi",
   paczkomat: "Paczkomat InPost",
-  vinted: "Wysyłka Vinted",
+  /** Jak wyżej — wyłącznie dla zamówień sprzed wycofania Vinted. */
+  vinted: "Wysyłka Vinted (archiwalne)",
 };
 
 /**

@@ -1,23 +1,23 @@
 import type { Metadata } from "next";
 
-import { AdminLayout, Card } from "@/components/admin/AdminLayout";
-import {
-  MonthlyChart,
-  MonthlyTable,
-  SheetSummary,
-  StatTile,
-  trend,
-} from "@/components/admin/SheetStats";
+import { AdminLayout, CollapsibleCard } from "@/components/admin/AdminLayout";
+import { CostModel, delta } from "@/components/admin/ProfitStats";
+import { MonthlyPanel, StatsOverview, type StatsPeriod } from "@/components/admin/StatsPanels";
 import { requireAdmin } from "@/lib/auth/dal";
 import { currentMonthValue } from "@/lib/admin/filters";
 import {
+  COST_RATES,
+  EMPTY_STATS,
+  daysInYear,
+  financeOf,
   loadManualSales,
   loadPaidOrders,
   monthKey,
   monthlyBreakdown,
-  summarizeSheets,
+  summarize,
   toSalesEntries,
-  PROFIT_PER_SHEET,
+  type ManualSaleRow,
+  type MonthlyStats,
 } from "@/lib/admin/stats";
 import { ManualSales } from "@/components/admin/ManualSales";
 import { formatPln } from "@/lib/orders/status";
@@ -29,6 +29,23 @@ export const metadata: Metadata = {
 
 export const dynamic = "force-dynamic";
 
+const EMPTY_MONTH: MonthlyStats = {
+  ...EMPTY_STATS,
+  month: "",
+  label: "",
+  days: 0,
+  profitPerDay: 0,
+};
+
+const DAY_MS = 86_400_000;
+
+/** Dni od pierwszej sprzedaży do dziś — mianownik średniej dla całej historii. */
+function daysSince(iso: string): number {
+  const start = new Date(iso).getTime();
+  if (Number.isNaN(start)) return 0;
+  return Math.max(1, Math.round((Date.now() - start) / DAY_MS) + 1);
+}
+
 export default async function StatsPage() {
   const admin = await requireAdmin();
 
@@ -39,81 +56,101 @@ export default async function StatsPage() {
   const entries = toSalesEntries(orders, manualSales);
   const months = monthlyBreakdown(entries, 12);
 
-  const thisMonth = currentMonthValue();
-  const year = thisMonth.slice(0, 4);
+  const year = Number(currentMonthValue().slice(0, 4));
 
-  const empty = { sheets: 0, profit: 0, orders: 0, manualSheets: 0, gross: 0 };
-  const current = months[months.length - 1] ?? empty;
-  const previous = months[months.length - 2] ?? empty;
+  const current = months[months.length - 1] ?? EMPTY_MONTH;
+  const previous = months[months.length - 2] ?? EMPTY_MONTH;
 
-  const yearStats = summarizeSheets(
-    entries.filter((entry) => monthKey(entry.date).startsWith(year))
+  const yearStats = summarize(
+    entries.filter((entry) => monthKey(entry.date).startsWith(String(year)))
   );
-  const allTime = summarizeSheets(entries);
+  const yearDays = daysInYear(year);
 
-  const best = [...months].sort((a, b) => b.sheets - a.sheets)[0];
+  const allTime = summarize(entries);
+  const firstSale = entries.reduce(
+    (earliest, entry) => (!earliest || entry.date < earliest ? entry.date : earliest),
+    ""
+  );
+  const allTimeDays = firstSale ? daysSince(firstSale) : 0;
+
+  const periods: StatsPeriod[] = [
+    {
+      id: "month",
+      label: "Ten miesiąc",
+      caption: `${current.label} — od pierwszego dnia miesiąca do dziś (${current.days} ${
+        current.days === 1 ? "dzień" : "dni"
+      }).`,
+      stats: current,
+      days: current.days,
+      profitPerDay: current.profitPerDay,
+      note: previous.label
+        ? `Względem poprzedniego miesiąca (${previous.label}): zysk ${delta(
+            current.profit,
+            previous.profit
+          )} — było ${formatPln(previous.profit)}, arkusze ${delta(
+            current.sheets,
+            previous.sheets
+          )} — było ${previous.sheets}.`
+        : undefined,
+    },
+    {
+      id: "year",
+      label: `Rok ${year}`,
+      caption: `Narastająco od stycznia ${year} — ${yearDays} dni.`,
+      stats: yearStats,
+      days: yearDays,
+      profitPerDay: Math.round((yearStats.profit / yearDays) * 100) / 100,
+    },
+    {
+      id: "all",
+      label: "Cały czas",
+      caption: allTimeDays
+        ? `Cała historia sklepu — ${allTimeDays} dni od pierwszej sprzedaży.`
+        : "Cała historia sklepu.",
+      stats: allTime,
+      days: allTimeDays,
+      profitPerDay: allTimeDays ? Math.round((allTime.profit / allTimeDays) * 100) / 100 : 0,
+    },
+  ];
+
+  // Rachunek modelowego zamówienia — te same funkcje, co reszta strony, więc
+  // przykład nie może rozjechać się ze stawkami.
+  const example = summarize([
+    {
+      date: new Date().toISOString(),
+      sheets: 1,
+      gross: 49 + COST_RATES.shippingGross,
+      manual: false,
+    },
+  ]);
+
+  const manualRows: ManualSaleRow[] = manualSales.map((sale) => {
+    const finance = financeOf({ sheets: sale.sheets, gross: sale.amount });
+    return { ...sale, profit: finance.unpriced ? null : finance.profit };
+  });
 
   return (
     <AdminLayout
       adminEmail={admin.email ?? ""}
       title="Statystyki"
-      subtitle={`Opłacone zamówienia ze sklepu plus sprzedaż dopisana ręcznie. Zysk to ${PROFIT_PER_SHEET} zł od każdego sprzedanego arkusza.`}
+      subtitle="Opłacone zamówienia i sprzedaż dopisana ręcznie: przychód netto minus koszty arkuszy, przesyłek i drobnicy."
     >
-      <Card
-        title="Ten miesiąc"
-        description="Sprzedaż od pierwszego dnia bieżącego miesiąca."
+      <StatsOverview periods={periods} />
+
+      <MonthlyPanel months={months} />
+
+      <CollapsibleCard
+        title="Jak liczymy zysk"
+        description={`Arkusz ${formatPln(COST_RATES.sheetGross)}, kurier ${formatPln(
+          COST_RATES.shippingGross
+        )}, koszt dodatkowy ${formatPln(COST_RATES.extraGross)}, VAT ${Math.round(
+          COST_RATES.vatRate * 100
+        )}%.`}
       >
-        <SheetSummary stats={current} />
-        <p className="text-sm font-semibold text-muted-foreground mt-4">
-          Arkusze: {trend(current.sheets, previous.sheets)} (poprzednio {previous.sheets}).
-        </p>
-      </Card>
+        <CostModel example={example} />
+      </CollapsibleCard>
 
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
-        <StatTile
-          label={`Arkusze w ${year}`}
-          value={String(yearStats.sheets)}
-          hint={
-            yearStats.manualSheets
-              ? `${yearStats.orders} zamówień + ${yearStats.manualSheets} ark. dopisanych`
-              : `${yearStats.orders} opłaconych zamówień`
-          }
-        />
-        <StatTile
-          label={`Zysk w ${year}`}
-          value={formatPln(yearStats.profit)}
-          hint="narastająco od stycznia"
-          accent
-        />
-        <StatTile
-          label="Arkusze łącznie"
-          value={String(allTime.sheets)}
-          hint="cała historia sklepu"
-        />
-        <StatTile
-          label="Zysk łącznie"
-          value={formatPln(allTime.profit)}
-          hint={`obrót brutto ${formatPln(allTime.gross)}`}
-          accent
-        />
-      </div>
-
-      <Card
-        title="Ostatnie 12 miesięcy"
-        description={
-          best && best.sheets > 0
-            ? `Najlepszy miesiąc: ${best.label} — ${best.sheets} arkuszy, ${formatPln(best.profit)} zysku.`
-            : "Brak opłaconych zamówień w tym okresie."
-        }
-      >
-        <MonthlyChart months={months} />
-      </Card>
-
-      <Card title="Miesiąc po miesiącu">
-        <MonthlyTable months={months} />
-      </Card>
-
-      <ManualSales sales={manualSales} profitPerSheet={PROFIT_PER_SHEET} />
+      <ManualSales sales={manualRows} />
     </AdminLayout>
   );
 }

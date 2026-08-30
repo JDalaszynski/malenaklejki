@@ -128,7 +128,6 @@ export function OrderFilters({ basePath = "/admin" }: { basePath?: string }) {
           <option value="przelewy24">Przelewy24</option>
           <option value="blik">BLIK</option>
           <option value="przelew">Przelew tradycyjny</option>
-          <option value="vinted">Vinted</option>
           <option value="manual">Dodane ręcznie</option>
         </select>
 

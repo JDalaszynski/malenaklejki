@@ -3,11 +3,13 @@ import { Check, ExternalLink, Minus } from "lucide-react";
 
 import type { AdminOrder } from "@/lib/admin/queries";
 import { StatusPill } from "@/components/account/StatusPill";
+import { orderFinance } from "@/lib/admin/stats";
 import {
   DELIVERY_METHOD_LABELS,
   PAYMENT_METHOD_LABELS,
   formatDateTime,
   formatPln,
+  normalizePaymentStatus,
   paymentStatusOf,
 } from "@/lib/orders/status";
 
@@ -51,7 +53,7 @@ export function OrdersTable({
       <table className="w-full text-sm border-collapse">
         <thead>
           <tr className="text-left">
-            {["Numer", "Data", "Klient", "Kwota", "Płatność", "Base", "Faktura", "Metoda", ""].map(
+            {["Numer", "Data", "Klient", "Kwota", "Zysk", "Płatność", "Base", "Faktura", "Metoda", ""].map(
               (heading) => (
                 <th
                   key={heading}
@@ -66,6 +68,10 @@ export function OrdersTable({
         <tbody>
           {orders.map((order) => {
             const payment = paymentStatusOf(order.status);
+            // Zysk pokazujemy dopiero po zapłacie — z nieopłaconego zamówienia
+            // nie ma jeszcze czego liczyć.
+            const isPaid = normalizePaymentStatus(order.status) === "PAID";
+            const profit = isPaid ? orderFinance(order).profit : null;
             const inBaselinker = order.baselinkerOrderId !== null;
             const hasInvoice = order.infakt?.status === "ISSUED" || Boolean(order.invoiceNumber);
 
@@ -97,6 +103,13 @@ export function OrdersTable({
                 </td>
                 <td className="py-3 pr-4 whitespace-nowrap font-extrabold text-foreground tabular-nums">
                   {formatPln(order.totals.total)}
+                </td>
+                <td className="py-3 pr-4 whitespace-nowrap font-extrabold text-primary tabular-nums">
+                  {profit === null ? (
+                    <span className="font-medium text-muted-foreground">—</span>
+                  ) : (
+                    formatPln(profit)
+                  )}
                 </td>
                 <td className="py-3 pr-4">
                   <StatusPill tone={payment.tone}>{payment.label}</StatusPill>

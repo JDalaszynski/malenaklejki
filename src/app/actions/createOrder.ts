@@ -30,8 +30,8 @@ const CreateOrderSchema = z.object({
   firstName: z.string().min(1).max(100),
   lastName: z.string().min(1).max(100),
   phone: z.string().regex(/^[0-9+\s\-()]{7,20}$/),
-  deliveryMethod: z.enum(["kurier", "paczkomat", "vinted"]),
-  paymentMethod: z.enum(["przelewy24", "blik", "przelew", "vinted"]),
+  deliveryMethod: z.enum(["kurier", "paczkomat"]),
+  paymentMethod: z.enum(["przelewy24", "blik", "przelew"]),
   street: z.string().max(100).optional(),
   building: z.string().max(20).optional(),
   city: z.string().max(100).optional(),
@@ -56,7 +56,7 @@ const CreateOrderSchema = z.object({
 });
 
 import { registerTransaction } from "@/lib/p24";
-import { buildManualTransferEmailHtml, buildNewOrderSellerEmailHtml, buildOrderAttachments, buildVintedOrderCustomerEmailHtml, buildVintedOrderSellerEmailHtml } from "@/lib/emails";
+import { buildManualTransferEmailHtml, buildNewOrderSellerEmailHtml, buildOrderAttachments } from "@/lib/emails";
 import { sendOrderToBaseLinker } from "@/lib/baselinker";
 
 /**
@@ -168,7 +168,7 @@ async function doCreateOrder(rawData: any) {
       (sum, item) => sum + item.pricePerSheet * item.sheetQuantity,
       0
     );
-    const shippingCost = data.paymentMethod === "vinted" ? 0 : 19.99;
+    const shippingCost = 19.99;
     const serverTotal = serverSubtotal + shippingCost;
 
     // Build the final data object with trusted totals
@@ -303,18 +303,14 @@ async function doCreateOrder(rawData: any) {
 
       const attachments = await buildOrderAttachments(finalData.items, orderNumber);
 
-      const htmlContent = finalData.paymentMethod === "vinted"
-        ? buildVintedOrderSellerEmailHtml(finalData, orderNumber)
-        : buildNewOrderSellerEmailHtml(finalData, orderNumber);
+      const htmlContent = buildNewOrderSellerEmailHtml(finalData, orderNumber);
 
       let paymentInfo = "";
       if (finalData.paymentMethod === "przelewy24" || finalData.paymentMethod === "blik") {
          paymentInfo = " (Oczekuje na płatność)";
       }
 
-      const subject = finalData.paymentMethod === "vinted"
-        ? `👗 Nowe zamówienie VINTED ${orderNumber} - ${finalData.firstName} ${finalData.lastName} (${finalData.total.toFixed(2).replace('.', ',')} zł)`
-        : `🛒 Nowe zamówienie${paymentInfo} ${orderNumber} - ${finalData.firstName} ${finalData.lastName} (${finalData.total.toFixed(2).replace('.', ',')} zł)`;
+      const subject = `🛒 Nowe zamówienie${paymentInfo} ${orderNumber} - ${finalData.firstName} ${finalData.lastName} (${finalData.total.toFixed(2).replace('.', ',')} zł)`;
 
       const sellerEmailPayload: any = {
         sender: { name: "MałeNaklejki - System zamówień", email: siteFromEmail },
@@ -345,24 +341,6 @@ async function doCreateOrder(rawData: any) {
         sender: { name: "MałeNaklejki", email: "kontakt@malenaklejki.pl" },
         to: [{ email: finalData.email, name: `${finalData.firstName} ${finalData.lastName}` }],
         subject: `Zamówienie ${orderNumber} - dane do przelewu`,
-        htmlContent: emailHtml,
-      });
-
-      return {
-        success: true,
-        orderId: orderRef.id,
-        orderNumber,
-        redirectUrl: offlineReturnUrl, // Bezpośrednio na ekran sukcesu
-      };
-    }
-
-    if (finalData.paymentMethod === "vinted") {
-      // Wyślij e-mail z instrukcją zakupu przez Vinted
-      const emailHtml = buildVintedOrderCustomerEmailHtml(finalData, orderNumber, vacationNotice);
-      await sendEmail({
-        sender: { name: "MałeNaklejki", email: "kontakt@malenaklejki.pl" },
-        to: [{ email: finalData.email, name: `${finalData.firstName} ${finalData.lastName}` }],
-        subject: `Zamówienie ${orderNumber} - płatność przez Vinted`,
         htmlContent: emailHtml,
       });
 

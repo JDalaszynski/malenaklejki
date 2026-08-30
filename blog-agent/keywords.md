@@ -192,3 +192,68 @@ Pokryte przez filar `naklejki-na-zamowienie...` + stronę główną; dodaj tylko
 * 🟡 `fajne wzory na naklejki` - intencja inspiracyjna/przeglądowa (top-funnel). Opcjonalny wpis "pomysły/inspiracje na naklejki" jako **hub linkowania wewnętrznego** do wszystkich spoke'ów niszowych + kreator. Niższy priorytet (niska konwersja, ale dobre pod topical authority i linkowanie).
 * ⚠️ `naklejki łatwo usuwalne` - **uwaga na prawdę o produkcie:** mamy **mocny klej**, atut to "czyste odklejanie **bez śladów**", NIE klej repozycjonowalny/wielokrotny. NIE budować strony obiecującej "łatwo usuwalne / wielokrotnego użytku". Obsłuż jako FAQ/semantyka: "czy naklejki zostawiają ślady?" -> NIE (folia schodzi czysto). Atut "0 śladów" jest już na `/`.
 * 🟡 `sticker` - ang. generyk, znikoma polska intencja zakupowa; nie celuj osobno, funkcjonuje jako semantyka (marka/glosariusz `/slownik-naklejek`).
+
+---
+
+## 10. Materiał i trwałość (NOWY klaster - audyt GSC 2026-08-30) 🔴 NAJWIĘKSZA LUKA KOMERCYJNA
+
+Klaster **nieobecny w tej bazie do 2026-08-30**, mimo że generuje realną ekspozycję. Dane GSC (lipiec-sierpień 2026): **238 wyświetleń, 0 kliknięć, średnia pozycja 43,2**. Intencja czysto zakupowa, konkurencja słabsza niż o głowę `naklejki na zamówienie`. Obsługiwany przez wpis **B1** (`plan.md` → Faza 4) + landing `/naklejki-foliowe`.
+
+| Fraza | Wyśw. | Pozycja | Status |
+| :--- | ---: | ---: | :--- |
+| `naklejki foliowe` | 132 | 44,51 | 🔴 landing istnieje, nie rankuje |
+| `naklejki winylowe` | 56 | 45,77 | 🔴 brak treści |
+| `naklejki wodoodporne` / `wodoodporne naklejki` | 32 | 32,56 | 🔴 **główna fraza wpisu B1** |
+| `naklejki odporne na uv` | 7 | 50,00 | 🔴 brak treści |
+| `naklejki foliowe na zamówienie` | 3 | 48,00 | 🟡 wariant transakcyjny |
+| `naklejka winylowa` / `naklejka winylowa co to jest` | 2 | 37-43 | 🟡 intencja definicyjna → `/slownik-naklejek` |
+| `naklejka wodoodporna` | 1 | 31,00 | 🟡 wariant liczby pojedynczej |
+| `naklejki wodne na zamówienie` | 1 | 53,00 | ⚠️ inna intencja (kalkomania) - NIE celuj |
+
+* ⚠️ **Granice wg `facts.md` (bezwzględne):** odporność **wyłącznie** woda / UV / zadrapania. **Zmywarka - NIE**, pisz to wprost. Nie deklaruj odporności na rozpuszczalniki, tłuszcze, benzynę, pranie, tkaninę. Nie obiecuj sufitu trwałości zewnętrznej ("na lata", "na karoserię", "myjnia ciśnieniowa"). Nie oferujemy folii do wrappingu, hologramu, brokatu ani folii transparentnej.
+* 💡 **Jawne przyznanie "nie do zmywarki" jest atutem, nie słabością** - buduje wiarygodność u czytelnika i u modeli LLM, które cytują warunki brzegowe równie chętnie jak zalety.
+
+---
+
+## 11. Cena, rozmiar i kalkulacja (domknięcie zaległego P3.5)
+
+Klaster obsłużony wpisami **A1** (`ile-kosztuja-naklejki-na-zamowienie-cena-za-arkusz-a4`, pozycja **6,09**) i **A2** (`jaki-rozmiar-naklejki-wybrac`, pozycja **5,64**). Obie weszły znacznie powyżej średniej serwisu (12,4) w kilka dni - **potwierdzenie, że treść z wyciągalnymi liczbami rankuje**. Nowych stron nie budujemy; frazy poniżej wplatamy w istniejące wpisy.
+
+* ✅ `naklejki na zamówienie cena` / `druk naklejek cena` / `cennik naklejek` - pokryte przez A1.
+* ✅ `ile naklejek zmieści się na A4` / `rozmiary naklejek` / `jaki rozmiar naklejki` - pokryte przez A2.
+* 🟡 `tanie naklejki` (41 wyśw., poz. 36,49) / `naklejki tanio` (2, poz. 50) / `tanie naklejki własne online` (4, poz. 29) - intencja cenowa, ale **uwaga na pozycjonowanie marki**: nie budujemy komunikatu "najtaniej", bo nim nie jesteśmy. Odpowiadamy przewidywalnością (stała cena, brak progów), nie niską ceną.
+* 🟡 `ile kosztuje taka naklejka` (poz. **1,0**) / `naklejki małe partia cena` / `vlepki cennik` / `wlepki com cennik` - zapytania konwersacyjne, wpleć jako **dosłowne pytania FAQ (H3)**.
+
+---
+
+## 12. Sezonowe i kalendarzowe (domknięcie zaległego P3.5)
+
+* 🗓️ **Święta (okno publikacji 10-25.10, wpis B3):** `naklejki świąteczne`, `etykiety na prezenty`, `naklejki na prezenty świąteczne`, `naklejki bożonarodzeniowe`, `naklejki na słoiki jako prezent`.
+* 🗓️ **Szkoła (szczyt: przełom sierpnia i września; 438 wyśw., poz. 10,3 - drugi klaster serwisu):** `naklejki na zeszyty personalizowane` (150 wyśw.), `personalizowane naklejki na zeszyty` (78), `naklejki na zeszyty z imieniem i nazwiskiem` (43), `naklejki personalizowane na zeszyty` (41), `naklejki do przedszkola` (29), `naklejki personalizowane do szkoły` (23), `zestaw naklejek do szkoły`, `naklejki na zeszyty dla chłopca`.
+    * 💡 **Odrębna podintencja bez pokrycia:** `naklejki imienne na ubrania / metki / śniadaniówki / bidony` - to **inna potrzeba** niż "na zeszyty" i zasługuje na własny wpis. Przygotuj w **lipcu 2027**, nie w sierpniu (patrz `plan.md` → P4.2.1).
+* 🗓️ **E-commerce/paczki (listopad):** pokryte wpisem `plomby-na-paczki-wysylkowe-i-naklejki-na-przesylki` (2026-08-27) - w listopadzie odświeżenie i linkowanie, nie nowy wpis.
+* 🗓️ **Walentynki (styczeń):** brak pokrycia i brak danych - zaplanować w grudniu 2026.
+
+---
+
+## 13. Podklastry B2B dopisane do §8 (domknięcie zaległego P3.5)
+
+* **Kod QR (wpis B5):** `naklejki z kodem QR`, `naklejka QR na zamówienie`, `kod QR na naklejce`, `naklejka z QR do menu`. ⚠️ Kod generuje się w **zewnętrznym, darmowym generatorze** - to nie jest funkcja naszego kreatora. Nie deklaruj gwarancji skanowalności po wydruku; dawaj zalecenia (kontrast, jasne tło, quiet zone, minimalny rozmiar) i **wprost każ przetestować**.
+* **Paczki i plomby:** pokryte wpisem `plomby-na-paczki-wysylkowe-i-naklejki-na-przesylki`. ⚠️ **Nie obiecuj właściwości security/void** ("nie da się zdjąć bez śladu") - `facts.md` tego zabrania.
+
+---
+
+## 14. Klaster wlepek - rozdział intencji (audyt GSC 2026-08-30)
+
+**Najlepszy klaster serwisu:** 31 zapytań, 673 wyświetlenia, 8 kliknięć. `vlepki kibicowskie na zamówienie` ma **CTR 13,64%** - najwyższy w całym zbiorze 280 zapytań. Klaster jest jednak **rozjechany między intencjami** i to jest przyczyną strat.
+
+**Intencja INFORMACYJNA → zostaje we wpisie `wklepki-i-wlepy-z-wlasnym-nadrukiem-dla-artystow-i-spolecznosci`** (24 klik. / 1 323 wyśw. - najmocniejsza strona bloga):
+* `wlepki na zamówienie` (194 wyśw., poz. 14,16), `wlepy na zamówienie` (103, 12,68), `własne wlepy` (71, 9,25), `wlepki z własnym nadrukiem` (46, 11,20), `wlepy z własnym nadrukiem` (32, 11,62), `jak zrobić wlepki` (CTR 33%!), `co to wlepy` (poz. 11).
+
+**Intencja TRANSAKCYJNA/PRODUKCYJNA → wymaga landingu `/wlepki-na-zamowienie` (zadanie B2, dla `landing-agent`):**
+* `produkcja vlepek` (44 wyśw., poz. **35,91**), `projekt vlepki` (43, **35,14**), `druk vlepek` (29, **37,59**), `druk wlepek` (8, 26,00), `produkcja wlepek` (2, 17,50), `vlepki produkcja` (1, 29,00), `drukowanie vlepek` (1, 35,00).
+* 💡 **Diagnoza:** frazy z leksyku produkcyjnego stoją na pozycji 35+, bo odpowiada na nie wpis **poradnikowy**, a Google chce tam strony **usługowej**. Ten sam błąd naprawiliśmy przy `fotonaklejki` (poz. 27-39 → **17,01** w miesiąc od zbudowania landingu).
+
+**Podnisza SPOŁECZNOŚCIOWA → osobny wpis B4:**
+* `vlepki kibicowskie na zamówienie` (22 wyśw., 3 klik., **CTR 13,64%**, poz. 8,77), `wlepy klubowe` (11, 8,55), `wlepki z logo` (3, 11,33), `wlepki kibicowskie` (1, 11,00), `custom wlepy` (5, 8,20).
+* ⚠️ **Granica treści:** wlepki klubowe i kibicowskie opisujemy jako merch i identyfikację społeczności. **Nie wchodzimy** w treści związane z przemocą, wrogością wobec innych klubów ani z nielegalnym naklejaniem w przestrzeni publicznej.

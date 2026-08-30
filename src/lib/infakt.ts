@@ -28,8 +28,9 @@ export const INFAKT_PAYMENT_METHODS: Record<string, string> = {
   blik: "przelewy24",
   przelew: "transfer",
   stripe: "card",
-  vinted: "other",
   manual: "other",
+  /** Wycofane — zostaje dla faktur do archiwalnych zamówień z Vinted. */
+  vinted: "other",
 };
 
 /** Odstępy między kolejnymi sprawdzeniami statusu zlecenia (łącznie ~9 s). */

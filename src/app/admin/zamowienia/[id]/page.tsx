@@ -11,6 +11,8 @@ import { StatusPill } from "@/components/account/StatusPill";
 import { requireAdmin } from "@/lib/auth/dal";
 import { getOrder } from "@/lib/admin/queries";
 import { listAuditForOrder } from "@/lib/admin/audit";
+import { countSheets, orderStats } from "@/lib/admin/stats";
+import { ProfitBreakdown } from "@/components/admin/ProfitStats";
 import { isBeforeInvoicing } from "@/lib/orders/invoicing";
 import {
   formatDateTime,
@@ -46,6 +48,9 @@ export default async function AdminOrderPage({ params }: { params: Promise<{ id:
   const audit = await listAuditForOrder(id);
   const payment = paymentStatusOf(order.status);
   const fulfillment = fulfillmentStatusOf(order.fulfillmentStatus);
+  const isPaid = normalizePaymentStatus(order.status) === "PAID";
+  const finance = orderStats(order);
+  const sheets = countSheets(order);
 
   return (
     <AdminLayout
@@ -84,6 +89,17 @@ export default async function AdminOrderPage({ params }: { params: Promise<{ id:
           fulfillmentStatus={order.fulfillmentStatus}
           trackingNumber={order.trackingNumber}
         />
+      </Card>
+
+      <Card
+        title="Rachunek zamówienia"
+        description={
+          isPaid
+            ? `Ile zostaje na czysto z tego zamówienia (${sheets} ark.).`
+            : `Ile zostanie na czysto, gdy klient zapłaci (${sheets} ark.). Zamówienie nie jest jeszcze opłacone, więc do statystyk nie wchodzi.`
+        }
+      >
+        <ProfitBreakdown stats={finance} />
       </Card>
 
       <Card

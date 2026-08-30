@@ -155,7 +155,6 @@ export function OrderEditForm({
               <select className={inputClass} {...register("source")}>
                 <option value="manual">Dodane ręcznie</option>
                 <option value="shop">Sklep</option>
-                <option value="vinted">Vinted</option>
                 <option value="allegro">Allegro</option>
                 <option value="other">Inne</option>
               </select>
@@ -204,7 +203,6 @@ export function OrderEditForm({
             <select className={inputClass} {...register("deliveryMethod")}>
               <option value="paczkomat">Paczkomat InPost</option>
               <option value="kurier">Kurier pod drzwi</option>
-              <option value="vinted">Wysyłka Vinted</option>
               <option value="odbior">Odbiór osobisty</option>
             </select>
           </Field>
@@ -246,7 +244,6 @@ export function OrderEditForm({
               <option value="przelewy24">Przelewy24</option>
               <option value="blik">BLIK</option>
               <option value="przelew">Przelew tradycyjny</option>
-              <option value="vinted">Vinted</option>
               <option value="manual">Inna / gotówka</option>
             </select>
           </Field>

@@ -6,10 +6,9 @@ import { PackagePlus } from "lucide-react";
 import { AdminLayout, Card } from "@/components/admin/AdminLayout";
 import { OrderFilters } from "@/components/admin/OrderFilters";
 import { OrdersTable } from "@/components/admin/OrdersTable";
-import { StatsBar } from "@/components/admin/StatsBar";
 import { SweepCard } from "@/components/admin/SweepCard";
 import { requireAdmin } from "@/lib/auth/dal";
-import { listOrders, summarize } from "@/lib/admin/queries";
+import { listOrders } from "@/lib/admin/queries";
 import { parseFilters, type AdminSearchParams } from "@/lib/admin/filters";
 import { sweepAbandonedOrders, ABANDONED_AFTER_DAYS } from "@/lib/orders/sweep";
 
@@ -29,7 +28,6 @@ export default async function AdminOrdersPage({
   const params = await searchParams;
   const filters = parseFilters(params);
   const orders = await listOrders(filters);
-  const stats = summarize(orders);
 
   // Tylko podgląd — samo wejście na listę niczego nie kasuje.
   const sweep = await sweepAbandonedOrders({ dryRun: true });
@@ -49,8 +47,6 @@ export default async function AdminOrdersPage({
         </Link>
       }
     >
-      <StatsBar stats={stats} />
-
       <SweepCard matched={sweep.matched} afterDays={ABANDONED_AFTER_DAYS} />
 
       <Card>

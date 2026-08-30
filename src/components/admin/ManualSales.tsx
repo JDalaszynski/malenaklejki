@@ -10,18 +10,25 @@ import { Loader2, Plus, Trash2 } from "lucide-react";
 import { addManualSale, deleteManualSale } from "@/app/actions/admin";
 import { FormAlert } from "@/components/auth/fields";
 import { formatDate, formatPln } from "@/lib/orders/status";
-import type { ManualSale } from "@/lib/admin/stats";
-import { Card } from "./AdminLayout";
+import type { ManualSaleRow } from "@/lib/admin/stats";
+import { CollapsibleCard } from "./AdminLayout";
 
 const inputClass =
   "h-11 w-full rounded-xl border border-slate-300 dark:border-white/20 bg-background px-3 text-sm font-semibold focus-visible:outline-none focus-visible:border-primary focus-visible:ring-2 focus-visible:ring-primary/20";
 
-/** Kwoty wpisuje się tak, jak się je mówi — „68,99" ma działać jak „68.99". */
+/**
+ * Kwoty wpisuje się tak, jak się je mówi — „68,99" ma działać jak „68.99".
+ * Kwota jest wymagana: bez niej nie da się policzyć zysku z tej sprzedaży.
+ */
 const amountSchema = z
   .string()
+  .min(1, { message: "Podaj kwotę brutto" })
   .max(20)
-  .refine((value) => value.trim() === "" || !Number.isNaN(Number(value.replace(",", "."))), {
+  .refine((value) => !Number.isNaN(Number(value.replace(",", "."))), {
     message: "Kwota musi być liczbą",
+  })
+  .refine((value) => Number(value.replace(",", ".")) > 0, {
+    message: "Kwota musi być większa od zera",
   });
 
 const schema = z.object({
@@ -67,14 +74,7 @@ function Field({
   );
 }
 
-export function ManualSales({
-  sales,
-  profitPerSheet,
-}: {
-  sales: ManualSale[];
-  /** Stawka z `lib/admin/stats` — moduł jest server-only, więc dostajemy ją propsem. */
-  profitPerSheet: number;
-}) {
+export function ManualSales({ sales }: { sales: ManualSaleRow[] }) {
   const router = useRouter();
   const [error, setError] = useState<string | null>(null);
   const [added, setAdded] = useState<number | null>(null);
@@ -98,7 +98,7 @@ export function ManualSales({
     const result = await addManualSale({
       soldOn: values.soldOn,
       sheets: values.sheets,
-      amount: values.amount.trim() === "" ? 0 : Number(values.amount.replace(",", ".")),
+      amount: Number(values.amount.replace(",", ".")),
       note: values.note,
     });
 
@@ -112,7 +112,7 @@ export function ManualSales({
     router.refresh();
   };
 
-  const remove = (sale: ManualSale) => {
+  const remove = (sale: ManualSaleRow) => {
     if (!window.confirm(`Usunąć wpis na ${sale.sheets} ark. z ${formatDate(sale.soldAt)}?`)) return;
     setRemovingId(sale.id);
     setError(null);
@@ -128,9 +128,13 @@ export function ManualSales({
   };
 
   return (
-    <Card
+    <CollapsibleCard
       title="Sprzedaż poza sklepem"
-      description="Arkusze sprzedane mailem albo z ręki — dopisz je tutaj, a doliczą się do statystyk powyżej."
+      description={
+        sales.length
+          ? `${sales.length} ${sales.length === 1 ? "wpis" : "wpisów"} — arkusze sprzedane mailem albo z ręki, liczone z tymi samymi kosztami.`
+          : "Arkusze sprzedane mailem albo z ręki — dopisz je tutaj, a doliczą się do statystyk powyżej."
+      }
     >
       <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
@@ -149,7 +153,7 @@ export function ManualSales({
             />
           </Field>
 
-          <Field label="Kwota brutto" hint="(opcjonalnie)" error={errors.amount?.message}>
+          <Field label="Kwota brutto" hint="(z dostawą)" error={errors.amount?.message}>
             <input
               type="text"
               inputMode="decimal"
@@ -190,7 +194,8 @@ export function ManualSales({
             Dopisz sprzedaż
           </button>
           <p className="text-xs font-medium text-muted-foreground">
-            Kwota wchodzi tylko do obrotu brutto — zysk liczy się od liczby arkuszy.
+            Zysk liczy się tak samo jak przy zamówieniu ze sklepu: kwota netto minus arkusze,
+            przesyłka i koszt dodatkowy.
           </p>
         </div>
       </form>
@@ -206,8 +211,8 @@ export function ManualSales({
           >
             <span className="w-24 shrink-0">Data</span>
             <span className="w-24 shrink-0">Arkusze</span>
-            <span className="w-28 shrink-0">Zysk</span>
             <span className="w-28 shrink-0">Sprzedaż</span>
+            <span className="w-28 shrink-0">Zysk</span>
             <span className="flex-1 min-w-40">Opis</span>
           </div>
           <ul className="flex flex-col divide-y divide-border/40">
@@ -219,11 +224,11 @@ export function ManualSales({
                 <span className="w-24 shrink-0 text-sm font-extrabold tabular-nums">
                   {sale.sheets} ark.
                 </span>
-                <span className="w-28 shrink-0 text-sm font-bold tabular-nums text-primary">
-                  {formatPln(sale.sheets * profitPerSheet)}
-                </span>
                 <span className="w-28 shrink-0 text-sm font-medium tabular-nums text-muted-foreground">
                   {sale.amount ? formatPln(sale.amount) : "—"}
+                </span>
+                <span className="w-28 shrink-0 text-sm font-bold tabular-nums text-primary">
+                  {sale.profit === null ? "—" : formatPln(sale.profit)}
                 </span>
                 <span className="flex-1 min-w-40 text-sm font-medium text-muted-foreground truncate">
                   {sale.note || "—"}
@@ -247,6 +252,6 @@ export function ManualSales({
           </ul>
         </div>
       )}
-    </Card>
+    </CollapsibleCard>
   );
 }

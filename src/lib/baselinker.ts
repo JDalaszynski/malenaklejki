@@ -262,7 +262,7 @@ export function buildBaseLinkerOrderParams(order: BLOrderSource): BLOrderParamet
       storage: "db",
       storage_id: 0,
       product_id: BL_PRODUCT.id,
-      name: BL_PRODUCT.name,
+      name: order.orderNumber ? `${BL_PRODUCT.name} - ${order.orderNumber}` : BL_PRODUCT.name,
       price_brutto: BL_UNIT_PRICE_BRUTTO,
       attributes: buildProductAttributes(item),
       tax_rate: (item.taxRate as number) ?? 23,

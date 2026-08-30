@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ChevronDown } from "lucide-react";
 import { Header } from "@/components/layout/Header";
 import { AdminNav } from "./AdminNav";
 import { AdminUserBar } from "./AdminUserBar";
@@ -80,5 +81,49 @@ export function Card({
       )}
       {children}
     </section>
+  );
+}
+
+/**
+ * Karta, która zaczyna się zwinięta.
+ *
+ * Świadomie na `<details>`, nie na stanie Reacta — sekcja rozwija się bez
+ * JS-a, a strona statystyk może trzymać komplet danych bez rozciągania się
+ * na kilka ekranów.
+ */
+export function CollapsibleCard({
+  title,
+  description,
+  defaultOpen = false,
+  children,
+}: {
+  title: string;
+  description?: string;
+  defaultOpen?: boolean;
+  children: React.ReactNode;
+}) {
+  return (
+    <details
+      open={defaultOpen}
+      className="group bg-card border border-border/70 rounded-2xl shadow-[0_8px_30px_rgba(0,0,0,0.02)]"
+    >
+      <summary className="flex items-start justify-between gap-3 p-5 sm:p-6 cursor-pointer list-none [&::-webkit-details-marker]:hidden rounded-2xl hover:bg-muted/20 transition-colors">
+        <div>
+          <h2 className="text-lg font-extrabold text-foreground">{title}</h2>
+          {description && (
+            <p className="text-sm font-medium text-muted-foreground mt-0.5">{description}</p>
+          )}
+        </div>
+        <span className="shrink-0 inline-flex items-center gap-1.5 text-xs font-bold text-muted-foreground">
+          <span className="hidden sm:inline group-open:hidden">Rozwiń</span>
+          <span className="hidden group-open:sm:inline">Zwiń</span>
+          <ChevronDown
+            className="w-4 h-4 transition-transform group-open:rotate-180"
+            aria-hidden
+          />
+        </span>
+      </summary>
+      <div className="px-5 sm:px-6 pb-5 sm:pb-6">{children}</div>
+    </details>
   );
 }

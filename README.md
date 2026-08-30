@@ -43,7 +43,7 @@
 ### 3. E-Commerce, Koszyk i Płatności
 - **Zarządzanie stanem koszyka:** Szybki, reaktywny store Zustand (`cartStore.ts`) przechowujący konfigurację arkuszy, parametry naklejek i wycenę.
 - **Wielokanałowy Checkout:**
-  - **Metody dostawy:** Paczkomaty InPost (wyszukiwarka punktów), Kurier DPD/InPost, opcja etykiet Vinted.
+  - **Metody dostawy:** Paczkomaty InPost (wyszukiwarka punktów), Kurier DPD/InPost.
   - **Bramki płatności:** **Przelewy24 (P24)** z pełną obsługą BLIK, kart i szybkich przelewów, obsługa **Stripe** oraz płatności przelewem tradycyjnym.
   - **Dane firmowe / Faktury:** Obsługa NIP, automatyczne walidacje i zapis danych rozliczeniowych.
 - **Przerwa urlopowa:** Konfigurowana w panelu administratora (`/admin/ustawienia`) — baner nad nagłówkiem sklepu wraz z zapowiedzią przed startem, podmieniony termin wysyłki w kreatorze i koszyku, informacja w mailach do klienta oraz opcjonalne wstrzymanie przyjmowania zamówień (blokada egzekwowana także po stronie serwera).

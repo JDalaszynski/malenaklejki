@@ -10,8 +10,8 @@ import { getVacationSettingsFresh } from "@/lib/settings/vacationStore";
  * Powiadomienia wysyłane po zaksięgowaniu płatności.
  *
  * Ta sama ścieżka obsługuje webhook Przelewy24 i ręczne oznaczenie zamówienia
- * jako opłacone w panelu — dzięki temu przelew tradycyjny i sprzedaż z Vinted
- * kończą się dokładnie tym samym zestawem wiadomości co płatność online.
+ * jako opłacone w panelu — dzięki temu przelew tradycyjny i zamówienia dodane
+ * ręcznie kończą się dokładnie tym samym zestawem wiadomości co płatność online.
  *
  * Wiadomość do sprzedawcy jest tu najważniejsza — bez niej zamówienie wygląda
  * na nieopłacone, mimo że pieniądze doszły. Dlatego każdy wcześniejszy krok
