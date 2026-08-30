@@ -70,6 +70,14 @@ Konwersja i E-E-A-T: Zawsze wplatam kontekstowe CTA kierujące do kreatora onlin
 
 ---
 
+## 6b. Nagłówek sekcji FAQ - MUSI zawierać ciąg "FAQ" (twardy wymóg techniczny)
+* Schemat `FAQPage` jest budowany automatycznie przez `src/lib/blog.ts`, który wyszukuje sekcję regexem `/##.*FAQ.*/i`. **Nagłówek H2 sekcji pytań bez dosłownego ciągu "FAQ" oznacza ciche zniknięcie schematu** - artykuł nadal się wyświetla, więc błędu nie widać gołym okiem, ale tracisz szansę na rich result i na cytowanie przez modele LLM.
+* ✅ DOBRZE: `## Naklejki wodoodporne - najczęściej zadawane pytania (FAQ)`
+* ❌ ŹLE: `## Naklejki wodoodporne - najczęściej zadawane pytania`
+* Same pytania zawsze jako **H3 zakończone znakiem zapytania** - parser wyciąga pary pytanie/odpowiedź właśnie po nich.
+
+---
+
 ## 7. Typografia i znaki interpunkcyjne
 * **Zawsze używaj dywizu ("-") zamiast półpauzy ("–").** Upewnij się, że w wygenerowanym tekście nie występuje znak półpauzy ("–"). Wszystkie takie znaki zamieniaj na standardowy myślnik/dywiz "-".
 
