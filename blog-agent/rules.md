@@ -70,8 +70,9 @@ Konwersja i E-E-A-T: Zawsze wplatam kontekstowe CTA kierujące do kreatora onlin
 
 ---
 
-## 6b. Nagłówek sekcji FAQ - MUSI zawierać ciąg "FAQ" (twardy wymóg techniczny)
-* Schemat `FAQPage` jest budowany automatycznie przez `src/lib/blog.ts`, który wyszukuje sekcję regexem `/##.*FAQ.*/i`. **Nagłówek H2 sekcji pytań bez dosłownego ciągu "FAQ" oznacza ciche zniknięcie schematu** - artykuł nadal się wyświetla, więc błędu nie widać gołym okiem, ale tracisz szansę na rich result i na cytowanie przez modele LLM.
+## 6b. Sekcja FAQ - jak ją nazwać, żeby powstał schemat `FAQPage`
+* Schemat `FAQPage` buduje automatycznie funkcja `parseFaq()` w `src/lib/blog.ts`. Od 2026-08-31 rozpoznaje ona także polskie warianty nazwy sekcji ("najczęściej zadawane pytania", "najczęstsze pytania", "często zadawane pytania", "pytania i odpowiedzi"), więc nagłówek bez skrótu **nie powoduje już cichej utraty schematu**.
+* **Mimo to trzymaj się konwencji ze skrótem "(FAQ)"** - jest spójna z wszystkimi wpisami i odporna na nietypowe sformułowania nagłówka. Po publikacji warto zerknąć, czy `FAQPage` faktycznie jest w JSON-LD.
 * ✅ DOBRZE: `## Naklejki wodoodporne - najczęściej zadawane pytania (FAQ)`
 * ❌ ŹLE: `## Naklejki wodoodporne - najczęściej zadawane pytania`
 * Same pytania zawsze jako **H3 zakończone znakiem zapytania** - parser wyciąga pary pytanie/odpowiedź właśnie po nich.

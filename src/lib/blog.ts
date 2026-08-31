@@ -31,6 +31,53 @@ export interface BlogPost {
 
 const postsDirectory = path.join(process.cwd(), "src/content/blog");
 
+/**
+ * Nagłówki H2, po których rozpoznajemy sekcję FAQ.
+ *
+ * Parser historycznie wymagał w nagłówku dosłownego ciągu "FAQ" - sekcja
+ * nazwana samym "najczęściej zadawane pytania" powodowała **ciche zniknięcie
+ * schematu `FAQPage`**: strona renderowała się normalnie, więc braku rich
+ * resulta nie było widać bez zaglądania w JSON-LD. Stąd tolerancja na polskie
+ * warianty nazewnictwa. Konwencja redakcyjna nadal zaleca skrót "(FAQ)"
+ * w nagłówku - patrz `blog-agent/rules.md` §6b.
+ */
+const FAQ_HEADING_REGEX =
+  /^##[^\n]*(?:FAQ|(?:naj(?:częściej|częstsze)|często)\s+(?:zadawane\s+)?pytania|pytania\s+i\s+odpowiedzi)[^\n]*$/im;
+
+/** Pary pytanie (H3) + odpowiedź, aż do kolejnego H3, kolejnego H2 lub końca sekcji. */
+const FAQ_QA_REGEX = /###\s+(.+?)\s*\n+([\s\S]+?)(?=(?:\n###\s+)|\n##\s+|$)/g;
+
+/**
+ * Wyciąga pary pytanie/odpowiedź z sekcji FAQ artykułu na potrzeby schematu
+ * `FAQPage`. Jedno źródło prawdy dla `getBlogPosts` i `getBlogPostBySlug` -
+ * wcześniej ta logika była zduplikowana w obu funkcjach.
+ */
+function parseFaq(content: string): FAQItem[] {
+  const heading = FAQ_HEADING_REGEX.exec(content);
+  if (!heading) return [];
+
+  // Sekcja FAQ kończy się na kolejnym H2 (zwykle sekcji z CTA), żeby nagłówki
+  // H3 spoza FAQ nie trafiły do schematu jako rzekome pytania.
+  const afterHeading = content.slice(heading.index + heading[0].length);
+  const nextH2 = afterHeading.search(/\n##\s/);
+  const faqText = nextH2 === -1 ? afterHeading : afterHeading.slice(0, nextH2);
+
+  const faq: FAQItem[] = [];
+  const qaRegex = new RegExp(FAQ_QA_REGEX.source, FAQ_QA_REGEX.flags);
+  let qaMatch: RegExpExecArray | null;
+  while ((qaMatch = qaRegex.exec(faqText)) !== null) {
+    const answer = qaMatch[2]
+      .trim()
+      // Uproszczone czyszczenie markdownu pod JSON-LD.
+      .replace(/\*\*(.*?)\*\*/g, "$1")
+      .replace(/_(.*?)_/g, "$1")
+      .replace(/\[(.*?)\]\(.*?\)/g, "$1")
+      .replace(/>\s?/g, "");
+    faq.push({ question: qaMatch[1].trim(), answer });
+  }
+  return faq;
+}
+
 export async function getBlogPosts(): Promise<BlogPost[]> {
   try {
     // Ensure directory exists
@@ -50,25 +97,7 @@ export async function getBlogPosts(): Promise<BlogPost[]> {
           const wordCount = content.trim().split(/\s+/).length;
           const readingTime = Math.ceil(wordCount / 200) + " min";
 
-            // Parse FAQs
-            const faq: FAQItem[] = [];
-            const faqSectionRegex = /##.*FAQ.*([\s\S]*)/i;
-            const faqMatch = content.match(faqSectionRegex);
-            if (faqMatch) {
-              const faqText = faqMatch[1];
-              const qaRegex = /###\s+(.+?)\s*\n+([\s\S]+?)(?=(?:\n###\s+)|\n##\s+|$)/g;
-              let qaMatch;
-              while ((qaMatch = qaRegex.exec(faqText)) !== null) {
-                const question = qaMatch[1].trim();
-                let answer = qaMatch[2].trim();
-                // Simple markdown cleanup for the JSON-LD
-                answer = answer.replace(/\*\*(.*?)\*\*/g, '$1');
-                answer = answer.replace(/_(.*?)_/g, '$1');
-                answer = answer.replace(/\[(.*?)\]\(.*?\)/g, '$1');
-                answer = answer.replace(/>\s?/g, '');
-                faq.push({ question, answer });
-              }
-            }
+            const faq = parseFaq(content);
 
             return {
               slug,
@@ -109,25 +138,7 @@ export async function getBlogPostBySlug(slug: string): Promise<BlogPost | null> 
     const wordCount = content.trim().split(/\s+/).length;
     const readingTime = Math.ceil(wordCount / 200) + " min";
 
-    // Parse FAQs
-    const faq: FAQItem[] = [];
-    const faqSectionRegex = /##.*FAQ.*([\s\S]*)/i;
-    const faqMatch = content.match(faqSectionRegex);
-    if (faqMatch) {
-      const faqText = faqMatch[1];
-      const qaRegex = /###\s+(.+?)\s*\n+([\s\S]+?)(?=(?:\n###\s+)|\n##\s+|$)/g;
-      let qaMatch;
-      while ((qaMatch = qaRegex.exec(faqText)) !== null) {
-        const question = qaMatch[1].trim();
-        let answer = qaMatch[2].trim();
-        // Simple markdown cleanup for the JSON-LD
-        answer = answer.replace(/\*\*(.*?)\*\*/g, '$1');
-        answer = answer.replace(/_(.*?)_/g, '$1');
-        answer = answer.replace(/\[(.*?)\]\(.*?\)/g, '$1');
-        answer = answer.replace(/>\s?/g, '');
-        faq.push({ question, answer });
-      }
-    }
+    const faq = parseFaq(content);
 
     return {
       slug,
