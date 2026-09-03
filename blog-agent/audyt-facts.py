@@ -2,7 +2,8 @@ import re,glob,io,os
 os.chdir(os.path.join(os.path.dirname(os.path.abspath(__file__)), ".."))
 FILES=(sorted(glob.glob('src/content/blog/*.md'))
        +sorted(glob.glob('src/app/**/*.tsx',recursive=True))
-       +sorted(glob.glob('src/components/**/*.tsx',recursive=True)))
+       +sorted(glob.glob('src/components/**/*.tsx',recursive=True))
+       +sorted(glob.glob('src/lib/**/*.ts',recursive=True)))
 FILES=[f for f in FILES if '/admin/' not in f and '/konto/' not in f and '/checkout' not in f]
 RULES=[
  ('A. ZMYWARKA', r'zmywar\w*'),

@@ -4,29 +4,8 @@ import { StickyCTAButton } from "@/components/blog/StickyCTAButton";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { Metadata } from "next";
 import Link from "next/link";
-import {
-  BookOpen,
-  Scissors,
-  Layers,
-  Spline,
-  PenTool,
-  Droplets,
-  StickyNote,
-  Sticker,
-  Printer,
-  Palette,
-  Monitor,
-  FileImage,
-  Shapes,
-  Square,
-  Ruler,
-  Eraser,
-  Camera,
-  Tag,
-  ArrowRight,
-  ShieldCheck,
-  Clock,
-} from "lucide-react";
+import { BookOpen, ArrowRight, ShieldCheck, Clock, Scissors, Droplets } from "lucide-react";
+import { GLOSSARY, ALL_TERMS } from "@/lib/dictionaryTerms";
 
 const PAGE_PATH = "/slownik-naklejek";
 const PAGE_URL = `https://www.malenaklejki.pl${PAGE_PATH}`;
@@ -63,203 +42,6 @@ export const metadata: Metadata = {
     ],
   },
 };
-
-/**
- * Wszystkie pojęcia trzymamy w jednej tablicy, żeby widoczny glosariusz i schemat
- * DefinedTermSet (JSON-LD) były ZAWSZE identyczne. `def` to czysty tekst - ten sam
- * string zasila render i schemat, więc definicje nie mogą się rozjechać. Ewentualny
- * link jest osobnym elementem (chip "powiazane"), a nie częścią definicji.
- */
-type Term = {
-  icon: React.ElementType;
-  name: string;
-  def: string;
-  href?: string;
-  linkLabel?: string;
-};
-
-type TermGroup = {
-  id: string;
-  heading: string;
-  intro: string;
-  terms: Term[];
-  images?: { src: string; alt: string }[];
-};
-
-const GLOSSARY: TermGroup[] = [
-  {
-    id: "ciecie",
-    heading: "Rodzaje cięcia i kształt naklejek",
-    intro:
-      "Od sposobu cięcia zależy, czy naklejka ma kształt Twojej grafiki, czy zostaje na prostokątnym arkuszu. To najczęściej mylone pojęcia przy zamawianiu.",
-    terms: [
-      {
-        icon: Scissors,
-        name: "Die-cut (cięcie po obrysie)",
-        def: "Die-cut to naklejka wycięta dokładnie po obrysie grafiki - bez marginesu i bez prostokątnego tła. Ploter prowadzi ostrze wzdłuż konturu motywu, więc naklejka przybiera kształt sylwetki, logo czy napisu. Efekt wygląda jak profesjonalny merch dopasowany na miarę do projektu.",
-        href: "/naklejki-die-cut",
-        linkLabel: "Zamów naklejki die-cut",
-      },
-      {
-        icon: Layers,
-        name: "Kiss-cut",
-        def: "Kiss-cut to cięcie tylko przez wierzchnią warstwę folii, bez przecinania papieru podkładowego. Naklejka ma kształt grafiki, ale zostaje na całym prostokątnym arkuszu, z którego odklejasz ją pojedynczo. Sprawdza się przy masowym naklejaniu, na przykład etykiet na słoiki.",
-        href: "/blog/co-to-jest-die-cut-i-kiss-cut-roznice-w-wyleciach-naklejek-reklamowych",
-        linkLabel: "Die-cut vs kiss-cut",
-      },
-      {
-        icon: Spline,
-        name: "Linia cięcia (kontur, cut line)",
-        def: "Linia cięcia to ścieżka, wzdłuż której ploter tnie folię i która wyznacza granicę naklejki. Przy cięciu po obrysie biegnie dokładnie po krawędzi grafiki. W kreatorze kontur powstaje automatycznie po wgraniu pliku, bez rysowania go ręcznie w Photoshopie.",
-      },
-      {
-        icon: PenTool,
-        name: "Wykrojnik (matryca tnąca)",
-        def: "Wykrojnik to metalowa forma z nożem w kształcie wzoru, którą w tradycyjnym druku wykrawa się naklejki. Przy druku cyfrowym od 1 sztuki zastępuje go ploter tnący sterowany linią cięcia, dzięki czemu nie płacisz za osobną matrycę dla każdego kształtu.",
-      },
-    ],
-    images: [
-      {
-        src: "/landing/slownik-naklejek/die-cut-naklejka-ciecie-po-obrysie-kontur.jpg",
-        alt: "Naklejka die-cut wycięta po obrysie z widocznym białym konturem - motyw Świat Naklejek Atlas na ekranie telefonu i jako gotowa naklejka cięta po linii cięcia.",
-      },
-      {
-        src: "/landing/slownik-naklejek/naklejka-die-cut-z-widoczna-linia-ciecia.jpg",
-        alt: "Naklejka die-cut z rekinem wycięta dokładnie po obrysie grafiki - wyraźna linia cięcia (kontur) wokół motywu na trwałej folii winylowej.",
-      },
-    ],
-  },
-  {
-    id: "materialy",
-    heading: "Materiał, folia i wykończenie naklejek",
-    intro:
-      "Z czego zrobiona jest naklejka i co decyduje o jej trwałości. W MałeNaklejki rdzeniem oferty jest folia winylowa odporna na wodę, UV i zadrapania.",
-    terms: [
-      {
-        icon: Droplets,
-        name: "Folia winylowa (winyl)",
-        def: "Folia winylowa to trwałe tworzywo, na którym drukujemy naklejki zamiast papieru. Jest odporna na wodę, promieniowanie UV i zadrapania, ma mocny klej i nie zostawia śladów po odklejeniu. To rdzeń oferty MałeNaklejki - wszystkie naklejki powstają na tej samej folii.",
-        href: "/naklejki-foliowe",
-        linkLabel: "Naklejki foliowe",
-      },
-      {
-        icon: StickyNote,
-        name: "Papier podkładowy (liner)",
-        def: "Papier podkładowy to spodnia warstwa, z której odklejasz gotową naklejkę, i która chroni klej do momentu naklejenia. Przy cięciu kiss-cut cały komplet naklejek zostaje na jednym prostokątnym podkładzie, a przy die-cut podkład jest przycięty do kształtu naklejki.",
-      },
-      {
-        icon: Sticker,
-        name: "Klej (warstwa klejąca)",
-        def: "Klej to warstwa pod folią, która utrzymuje naklejkę na powierzchni. W naklejkach MałeNaklejki jest mocny, dobrze trzyma na gładkich powierzchniach i po odklejeniu nie zostawia śladów. Nie jest jednak przystosowany do wielokrotnego przeklejania.",
-      },
-      {
-        icon: ShieldCheck,
-        name: "Naklejki łatwo usuwalne (bez śladów)",
-        def: "Folia z mocnym klejem, która gwarantuje niezwykle trwałe przyleganie na gładkich powierzchniach, ale po podważeniu schodzi w jednym kawałku bez zostawiania trudnych do zmycia śladów. Ważne: nie oznacza to 'kleju repozycjonowalnego' - raz naklejona naklejka nie nadaje się do wielokrotnego przyklejania.",
-      },
-      {
-        icon: Layers,
-        name: "Laminat",
-        def: "Laminat to dodatkowa przezroczysta warstwa ochronna, którą w niektórych technologiach nakłada się na wydruk dla większej odporności i połysku. W naklejkach MałeNaklejki odporność na wodę, promieniowanie UV i zadrapania zapewnia trwała folia winylowa, na której drukujemy.",
-      },
-    ],
-  },
-  {
-    id: "kolory",
-    heading: "Druk, rozdzielczość i kolory",
-    intro:
-      "Pojęcia, które decydują o ostrości i wierności kolorów wydruku. Naklejki MałeNaklejki drukujemy w rozdzielczości 300 DPI w pełnym kolorze.",
-    terms: [
-      {
-        icon: Printer,
-        name: "DPI (rozdzielczość druku)",
-        def: "DPI (dots per inch) to liczba punktów druku na cal - im wyższa, tym ostrzejszy i bardziej szczegółowy wydruk. Naklejki MałeNaklejki drukujemy w 300 DPI. Dla małych naklejek poniżej 5 cm warto przygotować plik właśnie w 300 DPI, żeby krawędzie i detale były wyraźne.",
-      },
-      {
-        icon: Palette,
-        name: "CMYK",
-        def: "CMYK to tryb kolorów używany w druku, oparty na czterech farbach: cyjan, magenta, żółty i czarny. Pliki przygotowane w CMYK najwierniej oddają kolory na wydruku. Jeśli wgrasz plik w RGB, zostanie przeliczony na CMYK, co może lekko zmienić najbardziej jaskrawe odcienie.",
-      },
-      {
-        icon: Monitor,
-        name: "RGB",
-        def: "RGB to tryb kolorów ekranów, oparty na świetle czerwonym, zielonym i niebieskim. Grafika z telefonu czy monitora jest zwykle w RGB. Przy druku kolory RGB są konwertowane na CMYK, dlatego bardzo intensywne neony na wydruku mogą wyglądać nieco spokojniej niż na ekranie.",
-      },
-    ],
-  },
-  {
-    id: "pliki",
-    heading: "Pliki graficzne i format arkusza",
-    intro:
-      "Jak przygotować grafikę i co dzieje się z nią w kreatorze. Dobry plik to najkrótsza droga do ostrej naklejki wyciętej dokładnie po obrysie.",
-    terms: [
-      {
-        icon: FileImage,
-        name: "PNG i kanał alfa (przezroczyste tło)",
-        def: "PNG to format pliku, który zapisuje przezroczystość dzięki tak zwanemu kanałowi alfa. Grafika PNG z przezroczystym tłem to najlepszy materiał do cięcia po obrysie - kreator od razu rozpoznaje kontur motywu i nie musi zgadywać, gdzie kończy się tło.",
-      },
-      {
-        icon: Shapes,
-        name: "Wektor i raster",
-        def: "Raster (JPG, PNG) to obraz zbudowany z pikseli - zbyt mocno powiększony zaczyna się rozmywać. Wektor (SVG, PDF) opisuje kształty matematycznie, więc skaluje się bez utraty jakości. Do naklejek nadają się oba formaty, ale przy dużym powiększeniu grafiki wektorowe dają najostrzejsze krawędzie.",
-      },
-      {
-        icon: Square,
-        name: "Arkusz A4",
-        def: "Arkusz A4 (21 x 29,7 cm) to jednostka rozliczeniowa w MałeNaklejki. Płacisz stałe 49,00 zł brutto za cały arkusz, niezależnie od tego, czy umieścisz na nim jedną dużą naklejkę do 19 cm, czy kilkadziesiąt małych. Nie ma minimalnego nakładu - zamówisz nawet jeden arkusz.",
-      },
-      {
-        icon: Eraser,
-        name: "Automatyczne usuwanie tła",
-        def: "Usuwanie tła to oddzielenie głównego motywu od reszty zdjęcia, żeby naklejka nie miała prostokątnego tła. W kreatorze dzieje się to automatycznie po wgraniu zdjęcia - system odcina tło i wyznacza kontur do cięcia, bez Photoshopa i bez ręcznego wycinania.",
-      },
-    ],
-    images: [
-      {
-        src: "/landing/slownik-naklejek/arkusz-a4-z-naklejkami-kiss-cut.jpg",
-        alt: "Arkusz A4 z kilkunastoma naklejkami w stylu boho wyciętymi metodą kiss-cut - cały komplet na jednym podkładzie, obok podgląd arkusza w telefonie.",
-      },
-    ],
-  },
-  {
-    id: "potoczne",
-    heading: "Słownik potoczny: wlepki, fotonaklejki, etykiety",
-    intro:
-      "Nazwy, które klienci stosują zamiennie ze słowem naklejka. Warto wiedzieć, co dokładnie kryje się pod każdą z nich.",
-    terms: [
-      {
-        icon: Sticker,
-        name: "Wlepka (wlepki)",
-        def: "Wlepka to potoczna nazwa naklejki, popularna wśród twórców oraz w kulturze skate i street. Zwykle chodzi o niewielką naklejkę z autorską grafiką lub logo, rozdawaną fanom albo naklejaną na laptopa, deskorolkę czy notes.",
-        href: "/blog/wklepki-i-wlepy-z-wlasnym-nadrukiem-dla-artystow-i-spolecznosci",
-        linkLabel: "Wlepki dla twórców",
-      },
-      {
-        icon: Camera,
-        name: "Fotonaklejka",
-        def: "Fotonaklejka to naklejka zrobiona z własnego zdjęcia - pupila, rodziny, wakacji czy rysunku dziecka. Zdjęcie trafia do kreatora, system usuwa tło i wycina motyw po obrysie, a wydruk powstaje na trwałej folii winylowej.",
-        href: "/fotonaklejki",
-        linkLabel: "Fotonaklejki ze zdjęcia",
-      },
-      {
-        icon: Tag,
-        name: "Naklejka a etykieta",
-        def: "Naklejka to szerokie pojęcie, obejmujące grafiki ozdobne, reklamowe i informacyjne. Etykieta to naklejka o funkcji informacyjnej - z nazwą produktu, składem czy logo na słoiku lub butelce. Powstają tak samo, na tej samej folii winylowej, a różni je przeznaczenie.",
-        href: "/naklejki-dla-firm",
-        linkLabel: "Naklejki dla firm",
-      },
-    ],
-    images: [
-      {
-        src: "/landing/slownik-naklejek/wlepka-die-cut-na-etui-telefonu.jpg",
-        alt: "Wlepka die-cut z kwiatkiem naklejona na etui telefonu - mała autorska naklejka wycięta po obrysie na trwałej folii winylowej.",
-      },
-    ],
-  },
-];
-
-// Płaska lista pojęć do schematu DefinedTermSet (parytet z widocznym glosariuszem).
-const ALL_TERMS: Term[] = GLOSSARY.flatMap((g) => g.terms);
 
 const FAQS: { q: string; a: string }[] = [
   {
@@ -361,6 +143,7 @@ export default function SlownikNaklejekPage() {
           inLanguage: "pl-PL",
           hasDefinedTerm: ALL_TERMS.map((t) => ({
             "@type": "DefinedTerm",
+            "@id": `${PAGE_URL}#${t.slug}`,
             name: t.name,
             description: t.def,
             inDefinedTermSet: `${PAGE_URL}#slownik`,
@@ -616,8 +399,9 @@ export default function SlownikNaklejekPage() {
                 const Icon = term.icon;
                 return (
                   <div
-                    key={term.name}
-                    className="bg-white dark:bg-[#003a3b] rounded-2xl border border-border/40 p-5 shadow-sm space-y-2"
+                    key={term.slug}
+                    id={term.slug}
+                    className="bg-white dark:bg-[#003a3b] rounded-2xl border border-border/40 p-5 shadow-sm space-y-2 scroll-mt-24"
                   >
                     <div className="flex items-center gap-3">
                       <span className="shrink-0 w-10 h-10 rounded-xl bg-primary/10 text-primary flex items-center justify-center">

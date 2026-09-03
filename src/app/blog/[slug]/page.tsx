@@ -7,6 +7,7 @@ import { Calendar, Clock, ChevronLeft, RefreshCw } from "lucide-react";
 import { Metadata } from "next";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { StickyCTAButton } from "@/components/blog/StickyCTAButton";
+import { findMentionedTerms, DICTIONARY_URL } from "@/lib/dictionaryTerms";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -141,6 +142,11 @@ export default async function BlogPostPage({ params }: PageProps) {
     notFound();
   }
 
+  // Pojęcia ze słownika (`/slownik-naklejek`) wykryte w treści artykułu, zasilają
+  // `mentions` w schemacie niżej (P4.2.6, blog-agent/plan.md) - jedno źródło prawdy
+  // w src/lib/dictionaryTerms.ts, żeby glosariusz i linkowanie nie mogły się rozjechać.
+  const mentionedTerms = findMentionedTerms(`${post.title} ${post.content}`);
+
   const allPosts = await getBlogPosts();
   const relatedPosts = allPosts
     .filter((p) => p.slug !== slug)
@@ -215,6 +221,15 @@ export default async function BlogPostPage({ params }: PageProps) {
             .replace(/<[^>]*>/g, "")
             .trim()
             .split(/\s+/).length,
+          ...(mentionedTerms.length > 0
+            ? {
+                mentions: mentionedTerms.map((term) => ({
+                  "@type": "DefinedTerm",
+                  "@id": `${DICTIONARY_URL}#${term.slug}`,
+                  name: term.name,
+                })),
+              }
+            : {}),
         }}
       />
       {post.faq && (
