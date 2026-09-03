@@ -182,7 +182,10 @@ Przy 7 428 wyświetleniach bloga podniesienie CTR z 1,13% do 2,5% to **około +1
     - Zweryfikowane na żywo: `DefinedTermSet` ma 20 pojęć (wcześniej 19), wszystkie z `@id`; wpis o naklejkach wodoodpornych dostał automatycznie 6 trafnych `mentions` (folia winylowa, naklejki wodoodporne, klej, naklejki łatwo usuwalne, DPI, arkusz A4); wpis o wlepkach kibicowskich dostał 5 (w tym "Wlepka / vlepka").
     - Skaner `blog-agent/audyt-facts.py` rozszerzony o `src/lib/**/*.ts` - nowy plik ze słownikiem będzie odtąd stale kontrolowany pod kątem `facts.md`.
 
-- [ ] **P4.2.7 - Sekcja H2 o deskorolce i hulajnodze we wpisie `naklejki-na-rower-i-akcesoria-sportowe`** *(zamiast skreślonego A9)*
+- [x] **P4.2.7 - Sekcja H2 o deskorolce i hulajnodze we wpisie `naklejki-na-rower-i-akcesoria-sportowe`** ✅ 2026-08-31 *(zamiast skreślonego A9)*
+    - Dodana sekcja `## Naklejki na deskorolkę i hulajnogę - personalizacja sprzętu do jazdy` - rozróżnia gładki spód deski (dobre miejsce na duży wzór) od grip tape'u (naklejka się tam trwale nie trzyma), oraz hulajnogę zwykłą i elektryczną. Uczciwe zastrzeżenie o griptape zamiast pustej obietnicy - spójne ze stylem reszty bloga (por. ostrzeżenie o starym tynku w FAQ `fajne-wzory`).
+    - Dopisane 1 pytanie FAQ (H3) o przyczepności do grip tape'u oraz link w dół do [ile wytrzymują naklejki wodoodporne](/blog/naklejki-wodoodporne-i-winylowe-jaka-folia-i-jak-dlugo-wytrzyma).
+    - Zweryfikowane na żywo: nowy H2 w DOM, FAQ 6 -> 7 pytań, schema `mentions` automatycznie dociągnęła "Naklejki wodoodporne" dzięki nowemu linkowi (mechanizm z P4.2.6 działa bez ręcznej interwencji).
 
 - [x] **P4.2.9 (NOWE) - Pełny audyt zgodności z `facts.md`** ✅ 2026-08-30 - przeskanowane **wszystkie 31 wpisów i 12 landingów** wg 13 kategorii zakazów z `facts.md`. Skaner: `blog-agent/audyt-facts.py` (uruchamiaj po każdej większej partii treści).
     - **Znaleziono i naprawiono 21 naruszeń w 15 plikach.** Rozkład: 12x obietnica **doręczenia** ("paczka do paczkomatu w 72h", "odbiór w 2-3 dni"), 5x odporność na **tłuszcze** (poza zakresem woda/UV/zadrapania), 4x **sufit trwałości** ("na lata", "wytrzyma myjnię ciśnieniową i sól drogową", "trzymają się karoserii").
