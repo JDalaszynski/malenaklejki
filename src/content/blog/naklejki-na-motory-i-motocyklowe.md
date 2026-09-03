@@ -1,8 +1,10 @@
 ---
 title: "Naklejki na motory i motocyklowe - personalizacja motocykla, kasku i baku"
 description: "Naklejki na motory i wlepki motocyklowe na kask, bak i owiewki. Personalizacja jednośladu bez pełnego oklejania - już od 1 arkusza A4 za 49,00 zł."
+image: "/blog/naklejki-na-motory-i-motocyklowe/naklejki-na-kask-motocyklowy-wlasny-nadruk.jpg"
+imageAlt: "Matowo czarny kask motocyklowy oklejony kilkoma mniejszymi naklejkami z własnym nadrukiem, postawiony na siedzeniu motocykla o zmierzchu."
 date: "2026-08-16"
-updated: "2026-08-30"
+updated: "2026-09-03"
 tags: ["naklejki", "motocykle", "hobby"]
 role: "supporting"
 ---

@@ -133,6 +133,26 @@ Przy 7 428 wyświetleniach bloga podniesienie CTR z 1,13% do 2,5% to **około +1
 
 ---
 
+- [x] **P4.2.11 (NOWE) - Uzupełnienie zdjęć: 8 wpisów blogowych + 2 landingi bez zdjęć** ✅ 2026-09-03
+    - **Kontekst:** przegląd `public/blog/*` i `public/landing/*` wykazał, że każdy folder z gotowymi zdjęciami jest już w pełni wykorzystany (0 osieroconych plików) - luka dotyczyła wyłącznie miejsc bez zdjęć: `naklejki-na-motory-i-motocyklowe`, `ile-kosztuja-naklejki-na-zamowienie-cena-za-arkusz-a4`, `jaki-rozmiar-naklejki-wybrac`, `fajne-wzory-i-pomysly-na-naklejki-inspiracje-wg-zastosowania` (brak folderu), `vlepki-kibicowskie-i-klubowe`, `plomby-na-paczki-wysylkowe`, `naklejki-wodoodporne-i-winylowe`, `gdzie-zamowic-naklejki-w-malym-nakladzie` (folder pusty) oraz landingi `/wlepki-na-zamowienie` i `/etykiety-na-sloiki`.
+    - **Metoda (na wyraźne polecenie właściciela):** **kopiowanie** (nie przenoszenie) tematycznie pasujących zdjęć z folderów, które mają nadwyżkę (4-8 zdjęć), do folderów pustych. Priorytet: żeby czytelnik widział realną naklejkę, nie pustą przestrzeń - dopuszczono duplikaty tego samego pliku na dwóch stronach (blog-do-blog, niższe ryzyko niż strona główna-do-bloga).
+    - **Dobór 1:1 tematyczny:**
+        - `naklejki-na-motory-i-motocyklowe` ← kask motocyklowy ze `naklejki-motoryzacyjne-i-tuningowe` (jedyne motocyklowe zdjęcie w folderze o aucie/tuningu - trafiało tam przez pomyłkę, teraz jest we właściwym miejscu, cross-link między postami już istniał).
+        - `naklejki-wodoodporne-i-winylowe` ← butelka z kroplami wody z `jak-zrobic-wlasne-naklejki-program` (idealny wizualny dowód wodoodporności) + etykiety na słoiki z `etykiety-na-sloiki-do-przetworow` (osadzone dokładnie przy akapicie o słoikach w lodówce).
+        - `plomby-na-paczki-wysylkowe` ← 2 zdjęcia plomby na kartonie z `jak-zrobic-wlasne-naklejki-program` i `naklejki-okragle-z-wlasnym-nadrukiem` (oba dosłownie "plomba na paczce e-commerce").
+        - `gdzie-zamowic-naklejki-w-malym-nakladzie` ← kolaż różnych wzorów z `naklejki-maly-naklad` (ta sama fraza kluczowa "mały nakład").
+        - `ile-kosztuja-naklejki-na-zamowienie` ← arkusz z różnymi naklejkami z `jak-zrobic-wlasne-naklejki-program`.
+        - `jaki-rozmiar-naklejki-wybrac` ← zestaw naklejek w różnych rozmiarach z `naklejki-okragle-z-wlasnym-nadrukiem`.
+        - `fajne-wzory-i-pomysly` ← kolaż wlepek z `public/images/zastosowania/` (jedyny przypadek reuse poza blogiem - świadomie zaakceptowany).
+        - `vlepki-kibicowskie-i-klubowe` ← kolaż klubów kolarskich (vintage, fikcyjne nazwy) z `naklejki-na-rower` jako okładka + kolaż sportowy/klubowy z `wklepki-i-wlepy` jako drugie zdjęcie w treści.
+        - `/wlepki-na-zamowienie` (landing) ← kolaż wlepek rave/punk z `wklepki-i-wlepy`, osadzony w sekcji "Jak wygląda produkcja" + ustawiony jako `openGraph`/`twitter` image.
+        - `/etykiety-na-sloiki` (landing) ← szklane słoiki z `etykiety-na-sloiki-do-przetworow`, osadzone w sekcji "Czym są etykiety" + ustawiony jako `openGraph`/`twitter` image.
+    - **Odrzucone jako kandydaci (świadomie pominięte przy pierwszym doborze, ostatecznie część i tak użyta po korekcie instrukcji właściciela):** zdjęcie z maskami/"ANTIFA"/"STADIUM DESTROY" (estetyka ultras/hooligan) - **pominięte trwale**, niezależnie od złagodzenia zasad dot. znaków towarowych, bo to inna kategoria ryzyka (bezpieczeństwo marki, nie prawo autorskie) i wprost koliduje z granicą treści ustaloną dla wpisu B4 ("zero przemocy i wrogości kibicowskiej").
+    - **Kompresja:** 4 pliki PNG (do 11 MB) przekonwertowane do JPEG (`sharp`, quality 88, mozjpeg, ~1024 px) - zejście do 93-300 KB, zgodnie z `rules.md` §8. Frontmatter/kod zaktualizowany na nowe rozszerzenia `.jpg`.
+    - **Landingi:** dodano `<img>` wg wzorca `/naklejki-foliowe` (`aspect-video`, `object-cover`, `rounded-2xl`), zaktualizowano `openGraph`/`twitter` image (zamiast generycznego `/images/og-main.jpg`), `dateModified` w schemacie `WebPage` i widoczną "Ostatnią aktualizację" - z 2026-08-25/08-31 na 2026-09-03.
+    - **Blog:** ustawiono frontmatter `image:`/`imageAlt:` dla 8 wpisów (renderuje się automatycznie na górze artykułu przez `post.image` w `blog/[slug]/page.tsx` - nie wymaga osobnego osadzania w treści), plus inline `![]()` dla 3 wpisów z 2 zdjęciami. `updated` bumpnięte na wszystkich 8+3 dotkniętych plikach.
+    - Zweryfikowane na żywym serwerze: `naturalWidth > 0` dla wszystkich 12 nowych `<img>` (10 miejsc, w tym 3 z dwoma zdjęciami) - zero zepsutych ścieżek. `tsc --noEmit` i `next build` czyste. Skaner `blog-agent/audyt-facts.py` bez nowych naruszeń (wszystkie trafienia to pre-istniejący tekst, poprawne zaprzeczenia).
+
 ## 📌 P4.2 - Aktualizacje istniejących treści (nie nowe wpisy)
 
 - [x] **P4.2.1 - odświeżony `personalizowane-naklejki-na-zeszyty-i-do-przedszkola`** ✅ 2026-08-30 - nowy tytuł i opis (P4.0.1), sekcja "Wyprawka na nowy rok szkolny" z tabelą rozmiarów pod 5 rzeczy, 3 nowe FAQ (H3), linki do `naklejki-z-imionami-na-meble` i `jaki-rozmiar-naklejki-wybrac`, `updated` ustawione.

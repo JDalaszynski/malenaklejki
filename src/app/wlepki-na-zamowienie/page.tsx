@@ -40,10 +40,10 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/images/og-main.jpg",
-        width: 1200,
-        height: 630,
-        alt: "Kreator zestawu naklejek MałeNaklejki z arkuszem A4 pełnym naklejek wyciętych po obrysie - personalizowane naklejki od 1 sztuki.",
+        url: "/landing/wlepki-na-zamowienie/wlepki-na-zamowienie-kolaz-wzorow.jpeg",
+        width: 1024,
+        height: 1177,
+        alt: "Zestaw kilkudziesięciu wlepek z własnym nadrukiem w różnych stylach graficznych, pokazujący różnorodność wzorów do wycięcia po obrysie.",
       },
     ],
   },
@@ -52,7 +52,7 @@ export const metadata: Metadata = {
     title: "Wlepki na zamówienie - vlepy z własnym nadrukiem od 49 zł",
     description:
       "Produkcja wlepek na zamówienie: pojedyncze sztuki cięte po obrysie. Stała cena 49,00 zł brutto za arkusz A4, produkcja 2-3 dni robocze.",
-    images: ["/images/og-main.jpg"],
+    images: ["/landing/wlepki-na-zamowienie/wlepki-na-zamowienie-kolaz-wzorow.jpeg"],
   },
 };
 
@@ -298,7 +298,7 @@ export default function WlepkiNaZamowieniePage() {
           name: "Wlepki na zamówienie z własnym nadrukiem",
           url: PAGE_URL,
           isPartOf: { "@id": "https://www.malenaklejki.pl/#website" },
-          dateModified: "2026-08-31T00:00:00+02:00",
+          dateModified: "2026-09-03T00:00:00+02:00",
         }}
       />
 
@@ -371,8 +371,8 @@ export default function WlepkiNaZamowieniePage() {
               <ShieldCheck className="w-3.5 h-3.5" /> W 100% polska produkcja
             </span>
             <span className="text-xs font-bold text-muted-foreground/60 flex items-center gap-1.5">
-              <Clock className="w-3.5 h-3.5" /> Ostatnia aktualizacja: 31
-              sierpnia 2026
+              <Clock className="w-3.5 h-3.5" /> Ostatnia aktualizacja: 3
+              września 2026
             </span>
           </div>
         </section>
@@ -439,6 +439,12 @@ export default function WlepkiNaZamowieniePage() {
             arkusza jest znana od razu i nie zmienia się od liczby wzorów czy
             skomplikowania kształtu.
           </p>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/landing/wlepki-na-zamowienie/wlepki-na-zamowienie-kolaz-wzorow.jpeg"
+            alt="Zestaw kilkudziesięciu wlepek z własnym nadrukiem w różnych stylach graficznych, pokazujący różnorodność wzorów do wycięcia po obrysie."
+            className="rounded-2xl shadow-sm border border-border/40 w-full my-6 object-cover aspect-video"
+          />
         </section>
 
         {/* Specyfikacja */}

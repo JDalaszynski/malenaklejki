@@ -2,8 +2,10 @@
 title: "Jaki rozmiar naklejki wybrać? Wymiary i ile naklejek zmieści się na arkuszu A4"
 slug: "jaki-rozmiar-naklejki-wybrac"
 date: "2026-08-20"
+updated: "2026-09-03"
 description: "Zastanawiasz się, jaki rozmiar naklejki wybrać? Zobacz, jak dopasować wymiary i sprawdź, ile naklejek zmieści się na jednym arkuszu A4."
-image: ""
+image: "/blog/jaki-rozmiar-naklejki-wybrac/zestaw-naklejek-rozne-rozmiary-i-wzory.jpg"
+imageAlt: "Duży zestaw okrągłych naklejek z własnym nadrukiem w różnych rozmiarach - minimalistyczne wzory i cytaty rozłożone na drewnianym blacie."
 tags: ["naklejki", "poradnik", "rozmiary", "marketing"]
 role: "supporting"
 cta_text: "Sprawdź rozmiary w kreatorze"

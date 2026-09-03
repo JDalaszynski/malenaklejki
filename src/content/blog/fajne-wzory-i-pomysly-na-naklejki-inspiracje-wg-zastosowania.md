@@ -1,8 +1,10 @@
 ---
 title: "Fajne wzory na naklejki - pomysły wg zastosowania, 49 zł/A4"
 description: "Brakuje Ci pomysłu na wzór? Zobacz inspiracje na naklejki na laptopa, motocykl, słoiki i ślub - i wydrukuj własny arkusz A4 za 49,00 zł."
+image: "/blog/fajne-wzory-i-pomysly-na-naklejki-inspiracje-wg-zastosowania/fajne-wzory-na-naklejki-inspiracja.jpg"
+imageAlt: "Kolaż różnorodnych wlepek z własnym nadrukiem - inspiracja na fajne wzory naklejek do wycięcia po obrysie."
 date: "2026-08-16"
-updated: "2026-08-31"
+updated: "2026-09-03"
 tags: ["naklejki", "wzory", "inspiracje"]
 role: "supporting"
 ---

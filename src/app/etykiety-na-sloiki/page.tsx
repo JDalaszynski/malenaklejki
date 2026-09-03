@@ -41,10 +41,10 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/images/og-main.jpg",
-        width: 1200,
-        height: 630,
-        alt: "Kreator zestawu naklejek MałeNaklejki z arkuszem A4 pełnym naklejek wyciętych po obrysie - personalizowane naklejki od 1 sztuki.",
+        url: "/landing/etykiety-na-sloiki/etykiety-na-sloiki-szklane-sloje-rustykalne.jpeg",
+        width: 1024,
+        height: 1177,
+        alt: "Szklane słoiki z przetworami i etykietami na zamówienie w rustykalnej aranżacji spiżarni.",
       },
     ],
   },
@@ -53,7 +53,7 @@ export const metadata: Metadata = {
     title: "Etykiety na słoiki - własne napisy i naklejki od 49 zł",
     description:
       "Etykiety na słoiki z własnym nadrukiem na wodoodpornej folii winylowej. Stała cena 49,00 zł brutto za arkusz A4, produkcja 2-3 dni robocze.",
-    images: ["/images/og-main.jpg"],
+    images: ["/landing/etykiety-na-sloiki/etykiety-na-sloiki-szklane-sloje-rustykalne.jpeg"],
   },
 };
 
@@ -327,7 +327,7 @@ export default function EtykietyNaSloikiPage() {
           name: "Etykiety na słoiki z własnym nadrukiem",
           url: PAGE_URL,
           isPartOf: { "@id": "https://www.malenaklejki.pl/#website" },
-          dateModified: "2026-08-25T00:00:00+02:00",
+          dateModified: "2026-09-03T00:00:00+02:00",
         }}
       />
 
@@ -403,8 +403,8 @@ export default function EtykietyNaSloikiPage() {
               <ShieldCheck className="w-3.5 h-3.5" /> W 100% polska produkcja
             </span>
             <span className="text-xs font-bold text-muted-foreground/60 flex items-center gap-1.5">
-              <Clock className="w-3.5 h-3.5" /> Ostatnia aktualizacja: 25
-              sierpnia 2026
+              <Clock className="w-3.5 h-3.5" /> Ostatnia aktualizacja: 3
+              września 2026
             </span>
           </div>
         </section>
@@ -475,6 +475,12 @@ export default function EtykietyNaSloikiPage() {
             </Link>
             .
           </p>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/landing/etykiety-na-sloiki/etykiety-na-sloiki-szklane-sloje-rustykalne.jpeg"
+            alt="Szklane słoiki z przetworami i etykietami na zamówienie w rustykalnej aranżacji spiżarni."
+            className="rounded-2xl shadow-sm border border-border/40 w-full my-6 object-cover aspect-video"
+          />
         </section>
 
         {/* Specyfikacja */}
