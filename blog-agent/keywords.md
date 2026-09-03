@@ -250,7 +250,7 @@ Klaster obsłużony wpisami **A1** (`ile-kosztuja-naklejki-na-zamowienie-cena-za
 **Intencja INFORMACYJNA → zostaje we wpisie `wklepki-i-wlepy-z-wlasnym-nadrukiem-dla-artystow-i-spolecznosci`** (24 klik. / 1 323 wyśw. - najmocniejsza strona bloga):
 * `wlepki na zamówienie` (194 wyśw., poz. 14,16), `wlepy na zamówienie` (103, 12,68), `własne wlepy` (71, 9,25), `wlepki z własnym nadrukiem` (46, 11,20), `wlepy z własnym nadrukiem` (32, 11,62), `jak zrobić wlepki` (CTR 33%!), `co to wlepy` (poz. 11).
 
-**Intencja TRANSAKCYJNA/PRODUKCYJNA → wymaga landingu `/wlepki-na-zamowienie` (zadanie B2, dla `landing-agent`):**
+**Intencja TRANSAKCYJNA/PRODUKCYJNA → landing `/wlepki-na-zamowienie`** ✅ zbudowany 2026-08-31 (zadanie B2):
 * `produkcja vlepek` (44 wyśw., poz. **35,91**), `projekt vlepki` (43, **35,14**), `druk vlepek` (29, **37,59**), `druk wlepek` (8, 26,00), `produkcja wlepek` (2, 17,50), `vlepki produkcja` (1, 29,00), `drukowanie vlepek` (1, 35,00).
 * 💡 **Diagnoza:** frazy z leksyku produkcyjnego stoją na pozycji 35+, bo odpowiada na nie wpis **poradnikowy**, a Google chce tam strony **usługowej**. Ten sam błąd naprawiliśmy przy `fotonaklejki` (poz. 27-39 → **17,01** w miesiąc od zbudowania landingu).
 

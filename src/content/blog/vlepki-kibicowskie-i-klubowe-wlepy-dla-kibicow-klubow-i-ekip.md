@@ -8,7 +8,7 @@ role: "supporting"
 cta_text: "Zamów wlepki kibicowskie"
 ---
 
-Wlepki kibicowskie i klubowe (często pisane też jako "vlepki") zamówisz w MałeNaklejki za stałe **49,00 zł brutto od arkusza A4** - bez minimalnego nakładu i bez dopłat za mały wolumen. Wgraj logo klubu, barwy sekcji albo hasło ekipy, wybierz cięcie po obrysie, a gotowe wlepki odbierzesz jako pojedyncze sztuki, w pełni przygotowane do rozdania na trybunach czy w szatni. Jeśli zamawiasz po raz pierwszy, zajrzyj też do przewodnika [jak zamówić idealne naklejki na zamówienie z własnym nadrukiem](/blog/jak-zamowic-idealne-naklejki-na-zamowienie-z-wlasnym-nadrukiem).
+Wlepki kibicowskie i klubowe (często pisane też jako "vlepki") zamówisz w MałeNaklejki za stałe **49,00 zł brutto od arkusza A4** - bez minimalnego nakładu i bez dopłat za mały wolumen. Wgraj logo klubu, barwy sekcji albo hasło ekipy, wybierz cięcie po obrysie, a gotowe wlepki odbierzesz jako pojedyncze sztuki, w pełni przygotowane do rozdania na trybunach czy w szatni. Jeśli zamawiasz po raz pierwszy, zajrzyj też do przewodnika [jak zamówić idealne naklejki na zamówienie z własnym nadrukiem](/blog/jak-zamowic-idealne-naklejki-na-zamowienie-z-wlasnym-nadrukiem), a pełną specyfikację samej [produkcji wlepek na zamówienie](/wlepki-na-zamowienie) znajdziesz na osobnej stronie.
 
 ## Czym różnią się wlepki kibicowskie od zwykłych wlepek?
 

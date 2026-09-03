@@ -28,6 +28,7 @@ const PAGES = [
   { url: "/naklejki-foliowe", title: "Naklejki foliowe (winylowe)", desc: "Folia winylowa odporna na wodę, UV i zadrapania." },
   { url: "/naklejki-dla-firm", title: "Naklejki dla firm", desc: "Oferta B2B: branding produktów, opakowań i gadżetów, faktura VAT." },
   { url: "/etykiety-na-sloiki", title: "Etykiety na słoiki", desc: "Własne etykiety i napisy na słoiki, weki, butelki, świece i kosmetyki." },
+  { url: "/wlepki-na-zamowienie", title: "Wlepki na zamówienie", desc: "Produkcja wlepek i vlepek: pojedyncze sztuki cięte po obrysie lub arkusz A4, od 1 sztuki." },
   { url: "/alternatywa-dla-sticker-mule-i-stickerapp", title: "Polska alternatywa dla Sticker Mule i StickerApp", desc: "Porównanie z serwisami zagranicznymi: cena, nakład, czas, język obsługi." },
   { url: "/slownik-naklejek", title: "Słownik naklejek", desc: "Baza wiedzy o rodzajach cięcia, materiałach i technologiach druku." },
   { url: "/blog", title: "Blog", desc: "Poradniki i inspiracje: przygotowanie pliku, zastosowania, ceny." },

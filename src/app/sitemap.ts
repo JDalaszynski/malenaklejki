@@ -28,6 +28,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { path: "/naklejki-die-cut", lastModified: "2026-07-29" },
     { path: "/slownik-naklejek", lastModified: "2026-07-29" },
     { path: "/etykiety-na-sloiki", lastModified: "2026-08-25" },
+    { path: "/wlepki-na-zamowienie", lastModified: "2026-08-31" },
   ];
 
   const staticEntries = staticRoutes.map(({ path, lastModified }) => ({

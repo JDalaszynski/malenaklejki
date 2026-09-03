@@ -11,7 +11,7 @@ role: "supporting"
 cta_text: "Zamów własne wlepki"
 ---
 
-Wydrukuj wlepki z własnym nadrukiem w [drukowaniu naklejek online](/blog/drukowanie-naklejek-online-na-co-zwrocic-uwage-przed-wysylka-projektu) MałeNaklejki za stałe **49,00 zł** od arkusza A4 - bez minimalnego nakładu i bez dopłat za to, że wzorów jest niewiele. Wgraj plik z własną grafiką, wybierz cięcie po obrysie, a gotowe wlepki odbierzesz jako pojedyncze sztuki, w pełni przygotowane do rozdania na koncercie, dołączenia do przesyłki albo sprzedaży obok merchu.
+Wydrukuj wlepki z własnym nadrukiem w [drukowaniu naklejek online](/blog/drukowanie-naklejek-online-na-co-zwrocic-uwage-przed-wysylka-projektu) MałeNaklejki za stałe **49,00 zł** od arkusza A4 - bez minimalnego nakładu i bez dopłat za to, że wzorów jest niewiele. Wgraj plik z własną grafiką, wybierz cięcie po obrysie, a gotowe wlepki odbierzesz jako pojedyncze sztuki, w pełni przygotowane do rozdania na koncercie, dołączenia do przesyłki albo sprzedaży obok merchu. Chcesz przejść od razu do zamówienia? Sprawdź [produkcję wlepek na zamówienie](/wlepki-na-zamowienie) - tam znajdziesz specyfikację, cennik i FAQ dla samego procesu druku.
 
 ![Zestaw kilkudziesięciu wlepek z własnym nadrukiem w różnych stylach graficznych - rave, punk, glitch i vaporwave - pokazujący różnorodność wzorów do wycięcia po obrysie.](/blog/wklepki-i-wlepy-z-wlasnym-nadrukiem-dla-artystow-i-spolecznosci/wlepki-artystyczne-kolaz-stylow-rave-i-punk.jpeg)
 
