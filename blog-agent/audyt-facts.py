@@ -1,6 +1,8 @@
 import re,glob,io,os
 os.chdir(os.path.join(os.path.dirname(os.path.abspath(__file__)), ".."))
-FILES=sorted(glob.glob('src/content/blog/*.md'))+sorted(glob.glob('src/app/**/page.tsx',recursive=True))
+FILES=(sorted(glob.glob('src/content/blog/*.md'))
+       +sorted(glob.glob('src/app/**/*.tsx',recursive=True))
+       +sorted(glob.glob('src/components/**/*.tsx',recursive=True)))
 FILES=[f for f in FILES if '/admin/' not in f and '/konto/' not in f and '/checkout' not in f]
 RULES=[
  ('A. ZMYWARKA', r'zmywar\w*'),
@@ -10,7 +12,7 @@ RULES=[
  ('E. OBIETNICA DORĘCZENIA', r'(dostarcz\w+ w \d|odbierzesz w \d|dotr[ąa] do (Ciebie|Was) w \d|wysyłk[aię]\w* w \d|w 72\s?h|72 godzin|paczk[aę] w \d|przesyłk[aę] w \d|u Ciebie w \d)'),
  ('F. MATERIAŁY NIEOFEROWANE', r'(hologram\w*|brokat\w*|transparentn\w*|wrapping\w*|oklejani\w* całych)'),
  ('G. DARMOWA DOSTAWA / RABAT', r'(darmow\w* (dostaw|wysyłk)\w*|rabat\w* (hurtow|ilościow)\w*|prog[ui] (ilościow|nakład)\w*|im więcej.{0,20}tym tani)'),
- ('H. SECURITY / VOID', r'(void\b|nie da si[ęe] (zdj|odklei)|zabezpieczeni\w* przed otwarciem|plomb\w* gwarantuj)'),
+ ('H. SECURITY / VOID', r'("VOID"|właściwości?\w* (typu )?(security|void)|nie da si[ęe] (zdj|odklei)|zabezpieczeni\w* przed otwarciem|plomb\w* gwarantuj)'),
  ('I. GWARANCJA QR', r'(gwarant\w*.{0,30}(qr|skanow)|kod QR.{0,25}zawsze zadziała|na pewno się zeskanuje)'),
  ('J. LICZBA SZT. NA A4 JAKO GWARANCJA', r'(zmieści się (dokładnie|aż)|dokładnie \d+ naklej\w+ na (arkusz|A4)|gwarantujemy \d+ szt)'),
  ('K. DANE KONKURENCJI LICZBOWE', r'(StickerApp|Sticker\s?Mule|Redbubble|Stikets|Zap Creatives)[^.]{0,80}?(\d+\s?(zł|euro|eur|€|szt|dni|sztuk))'),

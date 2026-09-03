@@ -54,7 +54,7 @@ export function SeoContentSection() {
                 <li>Wgraj grafikę w formacie PNG, JPG lub zrób zdjęcie telefonem.</li>
                 <li>System samodzielnie usunie tło i wygeneruje precyzyjne <Link href="/slownik-naklejek" className={inlineLink}>linie cięcia (kontur)</Link>.</li>
                 <li>Ustal wymiary i rozmieść dowolną liczbę wlepek na arkuszu w trybie 3D.</li>
-                <li>Sfinalizuj zamówienie (BLIK, przelew), a my zajmiemy się ekspresowym drukiem w 72h!</li>
+                <li>Sfinalizuj zamówienie (BLIK, przelew), a my wyprodukujemy naklejki w 2-3 dni robocze!</li>
               </ol>
             </section>
 
@@ -68,7 +68,7 @@ export function SeoContentSection() {
             <section className="space-y-3">
               <h3 className={`text-xl font-extrabold text-foreground ${displayFont}`}>Czy naklejki łatwo się odklejają i nie zostawiają śladów?</h3>
               <p>
-                Tak - drukujemy na folii z mocnym klejem, która trzyma się pewnie, a mimo to schodzi czysto: po odklejeniu nie zostaje ani klej, ani ślad. To nie są jednak naklejki wielokrotnego użytku - klej jest trwały, więc naklejasz raz, na lata. Dzięki temu Twoje <strong>własne naklejki</strong> bez obaw umieścisz na laptopie, bidonie czy słoiku, a gdy zechcesz je zdjąć, powierzchnia zostaje czysta.
+                Tak - drukujemy na folii z mocnym klejem, która trzyma się pewnie, a mimo to schodzi czysto: po odklejeniu nie zostaje ani klej, ani ślad. To nie są jednak naklejki wielokrotnego użytku - klej jest mocny i trwały, ale naklejasz raz, bez możliwości przełożenia w inne miejsce. Dzięki temu Twoje <strong>własne naklejki</strong> bez obaw umieścisz na laptopie, bidonie czy słoiku, a gdy zechcesz je zdjąć, powierzchnia zostaje czysta.
               </p>
             </section>
           </div>
@@ -91,8 +91,8 @@ export function SeoContentSection() {
             <span className="text-[11px] font-bold text-muted-foreground uppercase tracking-wider">Czyste odklejanie</span>
           </div>
           <div className="flex flex-col items-center text-center gap-1">
-            <span className="text-3xl font-black text-primary">72h</span>
-            <span className="text-[11px] font-bold text-muted-foreground uppercase tracking-wider">Czas realizacji</span>
+            <span className="text-3xl font-black text-primary">2-3 dni</span>
+            <span className="text-[11px] font-bold text-muted-foreground uppercase tracking-wider">Czas produkcji</span>
           </div>
         </div>
       </Reveal>
