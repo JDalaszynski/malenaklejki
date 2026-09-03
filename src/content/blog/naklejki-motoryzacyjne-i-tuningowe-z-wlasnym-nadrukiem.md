@@ -2,7 +2,7 @@
 title: "Naklejki motoryzacyjne i tuningowe z własnym nadrukiem"
 slug: "naklejki-motoryzacyjne-i-tuningowe-z-wlasnym-nadrukiem"
 date: "2026-07-23"
-updated: "2026-08-30"
+updated: "2026-08-31"
 description: "Naklejki motoryzacyjne i wlepki tuningowe z własnym nadrukiem - stałe 49,00 zł za arkusz A4, cięcie po obrysie, bez minimalnego nakładu, gotowe w 2-3 dni."
 image: "/blog/naklejki-motoryzacyjne-i-tuningowe-z-wlasnym-nadrukiem/naklejki-tuningowe-na-czarnym-zderzaku-samochodu-sportowego.png"
 imageAlt: "Rząd naklejek tuningowych z logotypami marek motoryzacyjnych naklejonych na czarnym zderzaku samochodu sportowego."
@@ -88,6 +88,8 @@ Wybierasz też formę wykończenia. **Pozostawione na arkuszu** wygodnie przecho
 Brak minimalnego nakładu ma tu jeszcze jedną zaletę: możesz najpierw zamówić jeden arkusz testowy, sprawdzić kolory i rozmiar na aucie, a dopiero potem domówić resztę dla całej ekipy. Więcej o tym podejściu piszemy przy [naklejkach w małym nakładzie](/blog/naklejki-maly-naklad-jak-zamowic-pojedyncze-sztuki-bez-przeplacania).
 
 ![Matowo czarny kask motocyklowy oklejony kilkoma mniejszymi naklejkami z hasłami, postawiony na siedzeniu motocykla o zmierzchu.](/blog/naklejki-motoryzacyjne-i-tuningowe-z-wlasnym-nadrukiem/naklejki-na-kask-motocyklowy-dopasowane-do-skorupy.png)
+
+Jeździsz motocyklem, a nie samochodem? Kask, bak i owiewki mają inną specyfikę niż karoseria auta - sprawdź osobny poradnik o [naklejkach na motory i motocyklowe](/blog/naklejki-na-motory-i-motocyklowe).
 
 ## Naklejki motoryzacyjne - najczęściej zadawane pytania (FAQ)
 

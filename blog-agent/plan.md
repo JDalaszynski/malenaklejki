@@ -156,7 +156,10 @@ Przy 7 428 wyświetleniach bloga podniesienie CTR z 1,13% do 2,5% to **około +1
     - 170 wyświetleń, **0 kliknięć**, pozycja 8,99, **1 link przychodzący**. Pozycja 9 przy zerze kliknięć oznacza, że strona jest widziana i odrzucana - potrzebuje jednocześnie nowego tytułu (P4.0.1) i linkowania.
     - Sekcje z linkami do **wszystkich** nisz + podpięcie z `SeoContentSection.tsx` i z obu filarów.
 
-- [ ] **P4.2.4 - Dosyć linkowania w ogonie (P1.6 przeniesione, zasada ciągła)**
+- [x] **P4.2.4 - Dosyć linkowania w ogonie** ✅ 2026-08-31 *(P1.6 przeniesione)* - po przebudowie filaru (P4.2.2) i huba `fajne-wzory` (P4.2.3) z 8 wpisów poniżej 3 linków przychodzących zostały tylko 2: `naklejki-na-koperty-slubne-i-podziekowania-dla-gosci` i `naklejki-na-motory-i-motocyklowe` (po 2 linki - z huba i z filaru, zero z pokrewnego spoke'a).
+    - Dodane 2 kontekstowe backlinki z sąsiednich nisz: `naklejki-motoryzacyjne-i-tuningowe` -> `naklejki-na-motory-i-motocyklowe` (para siostrzana auto/motocykl z `keywords.md` §9c, wcześniej link był tylko w jedną stronę) i `personalizowane-naklejki-na-alkohol` -> `naklejki-na-koperty-slubne` (ta sama nisza ślubna, naturalne dopięcie sekcji "jak zaplanować wesele").
+    - **Cel Fazy 4 osiągnięty: 0 wpisów w całym serwisie poniżej 3 linków przychodzących** (przeliczone skryptem po `/blog/<slug>` z `\b`, licząc źródła z `src/content/blog/`, `src/components/` i `src/app/`, bez self-referencji). Zweryfikowany nowy link na żywo w przeglądarce.
+    - **Zasada pozostaje ciągła** - przy każdej kolejnej publikacji nadal dokładaj 2-3 linki z pokrewnych spoke'ów, żeby nowy wpis nie startował od zera.
     - Po **1 linku przychodzącym** mają: `fajne-wzory`, `jak-zrobic-wlasne-naklejki-program`, `naklejki-z-imionami-na-meble`. Po 2: `etykiety-na-sloiki-do-przetworow`, `jaki-rozmiar-naklejki-wybrac`, `naklejki-firmowe-na-eventy`, `naklejki-na-koperty-slubne`, `naklejki-na-motory`, `naklejki-serwisowe`, `plomby-na-paczki`.
     - **Cel Fazy 4: żaden wpis poniżej 3 linków przychodzących.**
 
