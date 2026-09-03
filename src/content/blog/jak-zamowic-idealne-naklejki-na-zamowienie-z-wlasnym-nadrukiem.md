@@ -136,7 +136,7 @@ Personalizacja rzeczy, których używasz codziennie: [naklejki na rower i akceso
 
 ### Twórcy, społeczności i wspomnienia
 
-Merch w małym nakładzie i pamiątki: [wlepki z własnym nadrukiem dla artystów i fanklubów](/blog/wklepki-i-wlepy-z-wlasnym-nadrukiem-dla-artystow-i-spolecznosci), [naklejka ze zdjęcia lub własnego rysunku](/blog/naklejka-ze-zdjecia-jak-przeniesc-wspomnienia-na-naklejke) i [fotonaklejki](/fotonaklejki) prosto z aparatu w telefonie.
+Merch w małym nakładzie i pamiątki: [wlepki z własnym nadrukiem dla artystów i fanklubów](/blog/wklepki-i-wlepy-z-wlasnym-nadrukiem-dla-artystow-i-spolecznosci), [wlepki kibicowskie i klubowe](/blog/vlepki-kibicowskie-i-klubowe-wlepy-dla-kibicow-klubow-i-ekip), [naklejka ze zdjęcia lub własnego rysunku](/blog/naklejka-ze-zdjecia-jak-przeniesc-wspomnienia-na-naklejke) i [fotonaklejki](/fotonaklejki) prosto z aparatu w telefonie.
 
 ### Dzieci i szkoła
 

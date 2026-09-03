@@ -83,6 +83,8 @@ Przy 7 428 wyświetleniach bloga podniesienie CTR z 1,13% do 2,5% to **około +1
 
 ## 📝 P4.1 - Kolejka nowych stron Fazy 4 (priorytet malejący)
 
+> **Weryfikacja pokrycia fraz (2026-08-31):** przejechane wszystkie 66 zapytań z eksportu GSC o wyświetleniach ≥10. Poza kolejką B1-B6 nic nie wymaga nowej strony - wszystko inne jest już obsłużone istniejącą treścią albo świadomie odłożone (`tanie naklejki` odrzucone w §11 keywords.md, `etykiety na słoiki do druku` odrzucone w strategy.md §7 jako zła intencja). Jedna drobna luka leksykalna znaleziona przy okazji: `wykroje die-cut i kiss-cut` (104 wyśw., poz. 12,76, 0 klik.) - słowo "wykroje" nie występuje ani w poście `co-to-jest-die-cut...`, ani na landingu `/naklejki-die-cut`. To nie uzasadnia nowego wpisu (sama treść już odpowiada na pytanie), ale warto przy najbliższej aktualizacji dopisać "wykroje" jako wariant semantyczny w H2/H3.
+
 - [x] **B1. Naklejki wodoodporne i winylowe - ile wytrzymają w praktyce** (napisano 2026-08-30)
     - **Realizacja:** slug `naklejki-wodoodporne-i-winylowe-jaka-folia-i-jak-dlugo-wytrzyma`, ~1250 słów, tabela odporności (7 warunków), FAQ jako 6x H3, sekcja "czego folia nie zrobi" (warunki brzegowe pod GEO). Schema `BlogPosting` + `FAQPage` potwierdzone w DOM. **5 linków przychodzących** w dniu publikacji: filar `drukowanie-naklejek-online` (rules §6), `co-to-jest-die-cut`, `naklejki-na-rower`, `naklejki-serwisowe`, `etykiety-na-sloiki-do-przetworow`. Link w górę do `/naklejki-foliowe` w treści. Folder `public/blog/naklejki-wodoodporne-i-winylowe-jaka-folia-i-jak-dlugo-wytrzyma/` utworzony i **pusty - czeka na zdjęcia właściciela**; pole `image` świadomie pominięte (bez placeholderów). Po dograniu grafik: kompresja -> nazwy SEO -> osadzenie -> piny -> `add_logo_bar.mjs`.
     - **Nadal do zrobienia:** zdjęcia, piny Pinterest, materiały social.
@@ -108,14 +110,14 @@ Przy 7 428 wyświetleniach bloga podniesienie CTR z 1,13% do 2,5% to **około +1
     - **Link nadrzędny (Filar):** `/blog/jak-zamowic-idealne-naklejki-na-zamowienie-z-wlasnym-nadrukiem`
     - **Poza oknem czasowym NIE pisz** - wpis opublikowany w grudniu nie zdąży się wypozycjonować, a opublikowany w sierpniu traci sygnał świeżości przed szczytem. W kolejnych latach odświeżasz ten sam URL polem `updated`, nie tworzysz nowego wpisu.
 
-- [ ] **B4. Vlepki kibicowskie i klubowe - wlepy dla kibiców, klubów i ekip**
-    - **Format:** Supporting Article (~900-1100 słów)
-    - **Główna Fraza Kluczowa:** `vlepki kibicowskie` (semantyczne: `wlepki kibicowskie`, `wlepy klubowe`, `wlepki z logo`, `własne wlepy`)
-    - **Cel:** Sprzedaż (nisza o najwyższym potwierdzonym CTR w serwisie)
-    - **Persona:** Społeczności, kluby, ekipy, fankluby - rozszerzenie persony "Artyści i Twórcy Internetowi"
-    - **Link nadrzędny (Filar):** `/blog/jak-zamowic-idealne-naklejki-na-zamowienie-z-wlasnym-nadrukiem` + link w górę do landingu z **B2** (jeśli już istnieje)
-    - **Dlaczego:** `vlepki kibicowskie na zamówienie` - 22 wyświetlenia, 3 kliknięcia, **CTR 13,64%**, pozycja 8,77. Najwyższy CTR w całym zbiorze 280 zapytań. Do tego `wlepy klubowe` (11 wyśw. / poz. 8,55), `wlepki kibicowskie` (1 / 11), `wlepki z logo` (3 / 11,33). To nisza, w której **nie konkurujemy z marketplace'ami** - a pojedyncze sztuki docięte do kształtu są dokładnie tym, czego ta grupa potrzebuje.
-    - **⚠️ Granica treści:** piszemy o wlepkach klubowych, kibicowskich i ekipowych jako o merchu i identyfikacji społeczności. **Nie wchodzimy** w treści związane z przemocą, wrogością wobec innych klubów ani z nielegalnym naklejaniem w przestrzeni publicznej. Jeśli temat zaczyna zbaczać w tę stronę - przerwij i zapytaj właściciela.
+- [x] **B4. Wlepki kibicowskie i klubowe - vlepy dla kibiców i ekip** (napisano 2026-08-31)
+    - **Realizacja:** slug `vlepki-kibicowskie-i-klubowe-wlepy-dla-kibicow-klubow-i-ekip`, 944 słowa, tabela cenowa (3 rozmiary), sekcja arkusz vs pojedyncze sztuki, FAQ jako 5x H3. Schema `BlogPosting` + `FAQPage` potwierdzone w DOM (9 linków wewnętrznych).
+    - **Rozróżnienie od `wklepki-i-wlepy`:** ta strona zostaje przy intencji ogólnej (artyści, fankluby internetowe, "co to są wlepki"), B4 wchodzi wąsko w niszę sportową/klubową (kibice, sekcje, koła studenckie, drużyny amatorskie) - zero nakładania się treści, wzajemne linkowanie.
+    - **Granica treści dotrzymana:** wyłącznie identyfikacja klubowa i merch (herby, barwy, integracja ekipy) - zero wątków o przemocy kibicowskiej czy nielegalnym naklejaniu.
+    - **3 linki przychodzące w dniu publikacji:** filar (`jak-zamowic-idealne-naklejki`, sekcja "Twórcy, społeczności i wspomnienia"), `wklepki-i-wlepy` (siostrzana nisza) i `co-to-jest-die-cut-i-kiss-cut` (spoke techniczny). Zweryfikowane na żywo w przeglądarce.
+    - **B2 (landing `/wlepki-na-zamowienie`) nie istnieje jeszcze** - link do niego pominięty zgodnie z zapisem "jeśli już istnieje"; dopisać, gdy `landing-agent` go zbuduje.
+    - **Przy okazji naprawiony realny błąd `facts.md` w `wklepki-i-wlepy`:** "wytrzymuje deszcz, dotyk i wielokrotne przeklejanie na inne powierzchnie" - to obietnica repozycjonowalności (mamy mocny klej, NIE klej wielokrotnego użytku), której poprzedni skaner nie łapał (inna forma gramatyczna niż "repozycjonowalne"). Regex kategorii D rozszerzony o "wielokrotne przeklejanie/przyklejanie".
+    - **Nadal do zrobienia:** zdjęcia (folder `public/blog/vlepki-kibicowskie-i-klubowe-wlepy-dla-kibicow-klubow-i-ekip/` utworzony i pusty), piny Pinterest, materiały social.
 
 - [ ] **B5. Naklejki z kodem QR - menu, wizytówka i opinie w jednej naklejce**
     - *(przeniesione z Fazy 3 jako A6, treść zadania bez zmian - patrz sekcja "P2" niżej)*

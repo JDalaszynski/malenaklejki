@@ -36,12 +36,12 @@ MałeNaklejki (malenaklejki.pl) to polska drukarnia naklejek online. W kreatorze
 - [Naklejki na zamówienie - własny nadruk od 1 szt., 49 zł/A4](https://www.malenaklejki.pl/blog/jak-zamowic-idealne-naklejki-na-zamowienie-z-wlasnym-nadrukiem) - Naklejki na zamówienie z własnym nadrukiem bez minimalnego nakładu. Stała cena 49,00 zł brutto za arkusz A4, produkcja 2-3 dni robocze.
 
 ## Najnowsze artykuły
+- [Wlepki kibicowskie i klubowe - vlepy dla kibiców i ekip](https://www.malenaklejki.pl/blog/vlepki-kibicowskie-i-klubowe-wlepy-dla-kibicow-klubow-i-ekip) - Wlepki (vlepki) kibicowskie i klubowe z własnym nadrukiem - pojedyncze sztuki cięte po obrysie, bez minimalnego nakładu. Stała cena 49,00 zł za arkusz A4.
 - [Naklejki wodoodporne i winylowe - ile wytrzymają w praktyce](https://www.malenaklejki.pl/blog/naklejki-wodoodporne-i-winylowe-jaka-folia-i-jak-dlugo-wytrzyma) - Czy naklejki wodoodporne wytrzymają deszcz, słońce i mycie? Sprawdź, co realnie znosi folia winylowa i czego lepiej unikać. Stała cena 49,00 zł za arkusz A4.
 - [Plomby na paczki wysyłkowe i naklejki na przesyłki](https://www.malenaklejki.pl/blog/plomby-na-paczki-wysylkowe-i-naklejki-na-przesylki) - Plomby na paczki wysyłkowe i naklejki na przesyłki - co realnie robi plomba, jaki rozmiar wybrać i ile sztuk wyjdzie z arkusza A4 za 49,00 zł brutto.
 - [Gdzie zamówić naklejki w małym nakładzie? Porównanie opcji](https://www.malenaklejki.pl/blog/gdzie-zamowic-naklejki-w-malym-nakladzie-porownanie) - Gdzie zamówić naklejki w małym nakładzie? Porównujemy drukarnię lokalną, Allegro i serwisy zagraniczne z polskim kreatorem online. Arkusz A4 za 49,00 zł.
 - [Jaki rozmiar naklejki wybrać? Wymiary i ile naklejek zmieści się na arkuszu A4](https://www.malenaklejki.pl/blog/jaki-rozmiar-naklejki-wybrac) - Zastanawiasz się, jaki rozmiar naklejki wybrać? Zobacz, jak dopasować wymiary i sprawdź, ile naklejek zmieści się na jednym arkuszu A4.
-- [Ile kosztują naklejki na zamówienie? Cena za arkusz A4 i koszt jednej sztuki](https://www.malenaklejki.pl/blog/ile-kosztuja-naklejki-na-zamowienie-cena-za-arkusz-a4) - Sprawdź, ile kosztują naklejki na zamówienie. Stała cena 49,00 zł za arkusz A4, brak minimalnego nakładu i wyliczenie kosztu za 1 sztukę. Bez ukrytych opłat.
 
 ## Dodatkowe informacje
-Pełna lista 31 artykułów oraz zasady dla agentów AI znajdują się w pliku [llms-full.txt](https://www.malenaklejki.pl/llms-full.txt).
+Pełna lista 32 artykułów oraz zasady dla agentów AI znajdują się w pliku [llms-full.txt](https://www.malenaklejki.pl/llms-full.txt).
 Mapa strony: [sitemap.xml](https://www.malenaklejki.pl/sitemap.xml).
