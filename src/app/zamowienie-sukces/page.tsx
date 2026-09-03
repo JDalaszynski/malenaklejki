@@ -348,15 +348,15 @@ function SuccessContent() {
             <p className="text-muted-foreground text-sm font-medium mt-0.5">
               {isPrzelew ? (
                 <>
-                  Produkcja i wysyłka:{" "}
+                  Produkcja:{" "}
                   <strong className="text-foreground">2-3 dni robocze</strong>{" "}
-                  od zaksięgowania przelewu na konto.
+                  od zaksięgowania przelewu na konto, a potem wysyłka do paczkomatu.
                 </>
               ) : (
                 <>
-                  Produkcja i wysyłka:{" "}
+                  Produkcja:{" "}
                   <strong className="text-foreground">2-3 dni roboczych</strong>{" "}
-                  od złożenia zamówienia i jego opłacenia.
+                  od złożenia zamówienia i jego opłacenia, a potem wysyłka do paczkomatu.
                 </>
               )}
             </p>

@@ -30,7 +30,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Polska alternatywa dla Sticker Mule i StickerApp",
     description:
-      "Drukuj naklejki z własnym nadrukiem w polskiej drukarni: od 1 arkusza A4 za 49 zł, odbiór w paczkomacie w 2-3 dni, obsługa po polsku i płatność BLIK.",
+      "Drukuj naklejki z własnym nadrukiem w polskiej drukarni: od 1 arkusza A4 za 49 zł, produkcja 2-3 dni robocze, obsługa po polsku i płatność BLIK.",
     url: PAGE_URL,
     type: "website",
     images: [
@@ -46,7 +46,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Polska alternatywa dla Sticker Mule i StickerApp",
     description:
-      "Naklejki z własnym nadrukiem od 1 arkusza A4 za 49 zł, odbiór w paczkomacie w 2-3 dni. Bez cła i bariery językowej.",
+      "Naklejki z własnym nadrukiem od 1 arkusza A4 za 49 zł, produkcja 2-3 dni robocze. Bez cła i bariery językowej.",
     images: [
       "/landing/alternatywa-dla-sticker-mule-i-stickerapp/polska-alternatywa-dla-sticker-mule.png",
     ],
@@ -61,7 +61,7 @@ export const metadata: Metadata = {
 const FAQS: { q: string; a: string }[] = [
   {
     q: "Jaka jest najlepsza polska alternatywa dla Sticker Mule?",
-    a: "To malenaklejki.pl - w 100% polska drukarnia naklejek z własnym nadrukiem. Zamawiasz w złotówkach (stałe 49,00 zł za arkusz A4), bez minimalnego nakładu, z obsługą po polsku i odbiorem w paczkomacie w 2-3 dni robocze. Nie czekasz na przesyłkę zza granicy ani nie przeliczasz cen z dolarów.",
+    a: "To malenaklejki.pl - w 100% polska drukarnia naklejek z własnym nadrukiem. Zamawiasz w złotówkach (stałe 49,00 zł za arkusz A4), bez minimalnego nakładu, z obsługą po polsku, produkcją w 2-3 dni robocze i odbiorem w paczkomacie. Nie czekasz na przesyłkę zza granicy ani nie przeliczasz cen z dolarów.",
   },
   {
     q: "Czym malenaklejki.pl różni się od StickerApp?",
@@ -73,7 +73,7 @@ const FAQS: { q: string; a: string }[] = [
   },
   {
     q: "Ile kosztuje dostawa w porównaniu do Sticker Mule i StickerApp?",
-    a: "Naklejki wysyłamy w Polsce z odbiorem w paczkomacie lub u kuriera, w 2-3 dni robocze. Zamawiając z zagranicy dopłacasz do międzynarodowej przesyłki, czekasz dłużej, a przy paczkach spoza Unii Europejskiej może dojść cło i VAT importowy. U polskiego producenta ten problem nie istnieje.",
+    a: "Naklejki produkujemy w Polsce w 2-3 dni robocze, a potem wysyłamy z odbiorem w paczkomacie lub u kuriera (koszt dostawy 19,99 zł). Zamawiając z zagranicy dopłacasz do międzynarodowej przesyłki, czekasz dłużej, a przy paczkach spoza Unii Europejskiej może dojść cło i VAT importowy. U polskiego producenta ten problem nie istnieje.",
   },
   {
     q: "Czy jakość jest porównywalna z zagranicznymi drukarniami?",
@@ -179,7 +179,7 @@ export default function AlternatywaPage() {
           "@type": "Product",
           name: "Naklejki z własnym nadrukiem (arkusz A4)",
           description:
-            "Naklejki z własnym nadrukiem drukowane na trwałej folii winylowej. Stała cena 49,00 zł za arkusz A4, bez minimalnego nakładu. Polska produkcja i odbiór w paczkomacie w 2-3 dni.",
+            "Naklejki z własnym nadrukiem drukowane na trwałej folii winylowej. Stała cena 49,00 zł za arkusz A4, bez minimalnego nakładu. Polska produkcja w 2-3 dni robocze.",
           image: "https://www.malenaklejki.pl/images/logo/favicon.png",
           brand: { "@type": "Brand", name: "MałeNaklejki" },
           category: "Naklejki z własnym nadrukiem",
@@ -305,8 +305,8 @@ export default function AlternatywaPage() {
             StickerApp, ale bez zagranicznej wysyłki i płacenia w obcej walucie?{" "}
             <strong>malenaklejki.pl</strong> to polska drukarnia naklejek:
             drukujemy już od <strong>1 arkusza A4 za stałe 49,00 zł</strong>,
-            tniemy po obrysie i wysyłamy do paczkomatu w{" "}
-            <strong>2-3 dni robocze</strong>. Bez minimalnego nakładu, bez cła i
+            tniemy po obrysie i produkujemy w{" "}
+            <strong>2-3 dni robocze</strong>, a potem wysyłamy do paczkomatu. Bez minimalnego nakładu, bez cła i
             bez bariery językowej. Jeśli zamawiasz po raz pierwszy, zacznij od
             przewodnika, jak zamówić{" "}
             <Link

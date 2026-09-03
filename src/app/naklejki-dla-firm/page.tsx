@@ -27,7 +27,7 @@ const PAGE_URL = `https://www.malenaklejki.pl${PAGE_PATH}`;
 export const metadata: Metadata = {
   title: "Naklejki dla firm z logo - faktura VAT, od 1 arkusza",
   description:
-    "Naklejki dla firm z własnym logo w polskiej drukarni: stała cena 49 zł brutto za arkusz A4, faktura VAT, bez minimalnego nakładu, odbiór w paczkomacie w 2-3 dni.",
+    "Naklejki dla firm z własnym logo w polskiej drukarni: stała cena 49 zł brutto za arkusz A4, faktura VAT, bez minimalnego nakładu, produkcja 2-3 dni robocze.",
   alternates: {
     canonical: PAGE_PATH,
   },
@@ -50,7 +50,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Naklejki dla firm z własnym logo - druk od 1 arkusza A4",
     description:
-      "Naklejki firmowe z logo: 49 zł brutto za arkusz A4, faktura VAT, bez minimalnego nakładu, odbiór w paczkomacie w 2-3 dni.",
+      "Naklejki firmowe z logo: 49 zł brutto za arkusz A4, faktura VAT, bez minimalnego nakładu, produkcja 2-3 dni robocze.",
     images: ["/landing/naklejki-dla-firm/naklejki-dla-firm-na-paczki.png"],
   },
 };
@@ -353,8 +353,8 @@ export default function NaklejkiDlaFirmPage() {
             Zamów <strong>naklejki firmowe z logo</strong> w polskiej drukarni:
             drukujemy już od{" "}
             <strong>1 arkusza A4 za stałe 49,00 zł brutto</strong>, wystawiamy{" "}
-            <strong>fakturę VAT</strong> i wysyłamy z odbiorem w paczkomacie w{" "}
-            <strong>2-3 dni robocze</strong>. Bez minimalnego nakładu i bez
+            <strong>fakturę VAT</strong>, a naklejki produkujemy w{" "}
+            <strong>2-3 dni robocze</strong> i wysyłamy do paczkomatu. Bez minimalnego nakładu i bez
             opłat za przygotowanie pliku. Jeśli zamawiasz po raz pierwszy,
             sprawdź, jak skutecznie{" "}
             <Link

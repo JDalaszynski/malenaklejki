@@ -9,7 +9,7 @@ RULES=[
  ('B. ODPORNOŚĆ POZA ZAKRESEM', r'\b(rozpuszczaln\w*|benzyn\w*|tłuszcz\w*|tluszcz\w*|sól drogow\w*|soli drogow\w*|pranie|prania|tkanin\w*|na materia[łl]\w*)\b'),
  ('C. SUFIT TRWAŁOŚCI / MYJNIA', r'(myjni\w*|ciśnieniow\w*|przez lata|na lata|po latach|latami|kilka lat|wiele lat|karoseri\w*)'),
  ('D. REPOZYCJONOWALNE / WIELOKROTNE', r'(repozycjonowal\w*|wielokrotnego u[żz]ytku|wielorazow\w*|łatwo usuwaln\w*|ponownie przyklei\w*|przyklei[ćc] ponownie)'),
- ('E. OBIETNICA DORĘCZENIA', r'(dostarcz\w+ w \d|odbierzesz w \d|dotr[ąa] do (Ciebie|Was) w \d|wysyłk[aię]\w* w \d|w 72\s?h|72 godzin|paczk[aę] w \d|przesyłk[aę] w \d|u Ciebie w \d)'),
+ ('E. OBIETNICA DORĘCZENIA', r'(dostarcz\w+ w \d|odbierzesz w \d|odbi[óo]r\w* (w |na )?paczkomaci\w*.{0,15}w \d|dotr[ąa] do (Ciebie|Was) w \d|wysyłk[aię]\w* w \d|w 72\s?h|72 godzin|paczk[aę] w \d|przesyłk[aę] w \d|u Ciebie w \d)'),
  ('F. MATERIAŁY NIEOFEROWANE', r'(hologram\w*|brokat\w*|transparentn\w*|wrapping\w*|oklejani\w* całych)'),
  ('G. DARMOWA DOSTAWA / RABAT', r'(darmow\w* (dostaw|wysyłk)\w*|rabat\w* (hurtow|ilościow)\w*|prog[ui] (ilościow|nakład)\w*|im więcej.{0,20}tym tani)'),
  ('H. SECURITY / VOID', r'("VOID"|właściwości?\w* (typu )?(security|void)|nie da si[ęe] (zdj|odklei)|zabezpieczeni\w* przed otwarciem|plomb\w* gwarantuj)'),
