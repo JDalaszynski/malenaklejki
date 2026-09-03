@@ -25,17 +25,17 @@ const fredoka = Fredoka({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.malenaklejki.pl"),
-  title: "Małe naklejki z własnym nadrukiem od 1 szt. | MałeNaklejki",
+  title: "Naklejki z własnym nadrukiem od 1 szt. | MałeNaklejki",
   description:
-    "Małe naklejki z własnym nadrukiem od 1 sztuki. Cięcie po obrysie, druk na trwałej folii winylowej, 49 zł za arkusz A4, produkcja 2-3 dni robocze.",
+    "Naklejki z własnym nadrukiem od 1 sztuki. Cięcie po obrysie, druk na trwałej folii winylowej, 49 zł za arkusz A4, produkcja 2-3 dni robocze.",
   alternates: {
     canonical: "/",
   },
   openGraph: {
     title:
-      "Małe naklejki z własnym nadrukiem od 1 szt. | MałeNaklejki",
+      "Naklejki z własnym nadrukiem od 1 szt. | MałeNaklejki",
     description:
-      "Małe naklejki z własnym nadrukiem od 1 sztuki. Cięcie po obrysie, druk na trwałej folii winylowej, 49 zł za arkusz A4, produkcja 2-3 dni robocze.",
+      "Naklejki z własnym nadrukiem od 1 sztuki. Cięcie po obrysie, druk na trwałej folii winylowej, 49 zł za arkusz A4, produkcja 2-3 dni robocze.",
     url: "https://www.malenaklejki.pl",
     siteName: "MałeNaklejki",
     locale: "pl_PL",
@@ -51,9 +51,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Małe naklejki z własnym nadrukiem od 1 szt. | MałeNaklejki",
+    title: "Naklejki z własnym nadrukiem od 1 szt. | MałeNaklejki",
     description:
-      "Małe naklejki z własnym nadrukiem od 1 sztuki. Cięcie po obrysie, druk na trwałej folii winylowej, 49 zł za arkusz A4, produkcja 2-3 dni robocze.",
+      "Naklejki z własnym nadrukiem od 1 sztuki. Cięcie po obrysie, druk na trwałej folii winylowej, 49 zł za arkusz A4, produkcja 2-3 dni robocze.",
     images: ["/images/og-main.jpg"],
   },
   verification: {

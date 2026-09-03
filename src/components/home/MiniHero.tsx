@@ -134,7 +134,7 @@ export function MiniHeroContent() {
         <h1
           className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight text-foreground max-w-4xl font-heading leading-[1.15] drop-shadow-sm"
         >
-          Małe naklejki z własnym nadrukiem <br className="hidden sm:block" />
+          Naklejki z własnym nadrukiem <br className="hidden sm:block" />
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-emerald-400">po Twojemu</span>
         </h1>
 
