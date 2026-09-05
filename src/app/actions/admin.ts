@@ -128,6 +128,45 @@ export async function updateOrderStatus(raw: unknown): Promise<Result> {
   return { success: true };
 }
 
+/**
+ * Ponowna wysyłka powiadomień o płatności dla zamówienia, które jest już
+ * PAID w bazie — np. gdy webhook P24 ustawił status, ale mail nie doszedł
+ * (padła wysyłka albo funkcja została ubita w trakcie). `updateOrderStatus`
+ * tego nie obsługuje: pomija zapis, gdy status się nie zmienia, więc dla
+ * zamówienia już oznaczonego jako opłacone nie ma jak ponowić maili.
+ */
+export async function resendPaidOrderNotifications(orderId: string): Promise<Result> {
+  const actor = await requireAdminActor();
+  if (!actor) return DENIED;
+
+  const ref = db.collection("orders").doc(orderId);
+  const snapshot = await ref.get();
+  if (!snapshot.exists) return { success: false, error: "Zamówienie nie istnieje." };
+
+  const data = snapshot.data()!;
+  const order = { ...data, id: orderId };
+  if (data.status !== "PAID") {
+    return { success: false, error: "Zamówienie nie jest oznaczone jako opłacone." };
+  }
+
+  try {
+    await sendPaidOrderNotifications(order, { orderId });
+  } catch (error) {
+    console.error("resendPaidOrderNotifications error:", error);
+    return { success: false, error: "Wysyłka nie powiodła się. Sprawdź logi." };
+  }
+
+  await recordAudit({
+    actorEmail: actor.email,
+    action: "Ponowna wysyłka powiadomień o płatności",
+    orderId,
+    orderNumber: data.orderNumber,
+  });
+
+  refreshAdminViews(orderId);
+  return { success: true };
+}
+
 /* ------------------------------------------------------------------ */
 /* Edycja danych zamówienia                                            */
 /* ------------------------------------------------------------------ */

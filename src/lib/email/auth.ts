@@ -16,6 +16,7 @@ export async function sendTransactionalEmail(payload: object): Promise<boolean> 
       method: "POST",
       headers: { "api-key": apiKey, "Content-Type": "application/json" },
       body: JSON.stringify(payload),
+      signal: AbortSignal.timeout(20000),
     });
     if (!response.ok) {
       console.error("Brevo error:", response.status, await response.text());

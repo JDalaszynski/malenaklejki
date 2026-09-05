@@ -102,6 +102,7 @@ export async function registerTransaction(data: {
       Authorization: `Basic ${auth}`,
     },
     body: JSON.stringify(payload),
+    signal: AbortSignal.timeout(15000),
   });
 
   if (!response.ok) {
@@ -160,6 +161,7 @@ export async function verifyTransaction(data: {
       Authorization: `Basic ${auth}`,
     },
     body: JSON.stringify(payload),
+    signal: AbortSignal.timeout(15000),
   });
 
   if (!response.ok) {
@@ -181,6 +183,7 @@ export async function getTransactionBySessionId(sessionId: string) {
     headers: {
       Authorization: `Basic ${auth}`,
     },
+    signal: AbortSignal.timeout(15000),
   });
 
   if (response.status === 404) {

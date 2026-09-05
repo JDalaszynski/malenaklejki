@@ -4,7 +4,7 @@ import { useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
 import { Check, Loader2 } from "lucide-react";
 
-import { updateOrderStatus } from "@/app/actions/admin";
+import { updateOrderStatus, resendPaidOrderNotifications } from "@/app/actions/admin";
 import { FULFILLMENT_STATUSES, PAYMENT_STATUSES } from "@/lib/orders/status";
 import { FormAlert } from "@/components/auth/fields";
 
@@ -29,6 +29,7 @@ export function StatusControls({
   const [tracking, setTracking] = useState(trackingNumber ?? "");
   const [notify, setNotify] = useState(true);
   const [message, setMessage] = useState<{ tone: "success" | "error"; text: string } | null>(null);
+  const [isResending, startResendTransition] = useTransition();
 
   const becomingPaid = nextStatus === "PAID" && status !== "PAID";
   const dirty =
@@ -52,6 +53,19 @@ export function StatusControls({
         return;
       }
       setMessage({ tone: "success", text: "Zapisano." });
+      router.refresh();
+    });
+  };
+
+  const resendNotifications = () => {
+    setMessage(null);
+    startResendTransition(async () => {
+      const result = await resendPaidOrderNotifications(orderId);
+      if (!result.success) {
+        setMessage({ tone: "error", text: result.error });
+        return;
+      }
+      setMessage({ tone: "success", text: "Powiadomienia wysłane ponownie." });
       router.refresh();
     });
   };
@@ -117,7 +131,7 @@ export function StatusControls({
         </label>
       )}
 
-      <div>
+      <div className="flex flex-wrap items-center gap-3">
         <button
           type="button"
           onClick={save}
@@ -131,6 +145,18 @@ export function StatusControls({
           )}
           Zapisz statusy
         </button>
+
+        {status === "PAID" && (
+          <button
+            type="button"
+            onClick={resendNotifications}
+            disabled={isResending}
+            className="inline-flex items-center justify-center gap-2 rounded-xl text-sm font-bold border border-slate-300 dark:border-white/20 bg-background hover:bg-slate-50 dark:hover:bg-white/5 active:scale-[0.98] h-11 px-6 transition-all cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+          >
+            {isResending && <Loader2 className="w-4 h-4 animate-spin" aria-hidden />}
+            Wyślij ponownie mail o płatności
+          </button>
+        )}
       </div>
     </div>
   );

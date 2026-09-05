@@ -51,21 +51,30 @@ export async function POST(req: NextRequest) {
     }
 
     const orderData = orderSnap.data()!;
-    if (orderData.status === "PAID") {
-      console.log(`P24: Zamówienie ${sessionId} jest już opłacone.`);
+    // Duplikat od P24 pomijamy tylko, jeśli mail o płatności faktycznie poszedł.
+    // Sam `status === "PAID"` to za mało: poprzednie wywołanie mogło ustawić
+    // status i zostać ubite (limit czasu, zawieszony fetch) tuż przed wysyłką
+    // maila — wtedy każdy kolejny retry P24 trafiałby w tę gałąź i mail nigdy
+    // by nie poszedł, mimo ponawianych webhooków.
+    if (orderData.status === "PAID" && orderData.paidNotificationsSentAt) {
+      console.log(`P24: Zamówienie ${sessionId} jest już opłacone i powiadomione.`);
       return NextResponse.json({ status: "ok" }, { status: 200 }); // Ignorujemy duplikaty
     }
 
-    await orderRef.update({
-      status: "PAID",
-      paidAt: new Date().toISOString(),
-      p24OrderId: orderId,
-      // Spóźniona płatność wyjmuje zamówienie z kosza. Nieopłacone zamówienia
-      // trafiają tam po tygodniu, a przelew tradycyjny bywa księgowany później —
-      // bez tego opłacone zamówienie zostałoby w koszu i wypadło z ewidencji.
-      deletedAt: null,
-    });
-    console.log(`P24: Zamówienie ${sessionId} oznaczone jako PAID.`);
+    if (orderData.status !== "PAID") {
+      await orderRef.update({
+        status: "PAID",
+        paidAt: new Date().toISOString(),
+        p24OrderId: orderId,
+        // Spóźniona płatność wyjmuje zamówienie z kosza. Nieopłacone zamówienia
+        // trafiają tam po tygodniu, a przelew tradycyjny bywa księgowany później —
+        // bez tego opłacone zamówienie zostałoby w koszu i wypadło z ewidencji.
+        deletedAt: null,
+      });
+      console.log(`P24: Zamówienie ${sessionId} oznaczone jako PAID.`);
+    } else {
+      console.log(`P24: Zamówienie ${sessionId} już PAID, ale bez potwierdzenia wysyłki — ponawiam powiadomienia.`);
+    }
 
     // Najpierw maile, dopiero potem faktura.
     //
@@ -73,7 +82,7 @@ export async function POST(req: NextRequest) {
     // faktury to kilkanaście sekund odpytywania inFaktu, więc funkcja bywała
     // ubijana zanim doszła do wysyłki i sprzedawcy zostawał w skrzynce wyłącznie
     // mail o zamówieniu oczekującym na płatność.
-    await sendPaidOrderNotifications(orderData, { orderId: orderIdFromSession });
+    await sendPaidOrderNotifications({ ...orderData, status: "PAID" }, { orderId: orderIdFromSession });
 
     // Płatności celowo nie przenosimy do BaseLinkera — zamówienie ma tam
     // zostać nieopłacone, sprzedawca księguje wpłatę ręcznie.

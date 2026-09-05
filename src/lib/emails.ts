@@ -736,7 +736,7 @@ export function buildManualTransferEmailHtml(
 
 async function downloadImageAsBase64(url: string): Promise<string | null> {
   try {
-    const res = await fetch(url);
+    const res = await fetch(url, { signal: AbortSignal.timeout(15000) });
     if (!res.ok) throw new Error(`Failed to fetch image: ${res.statusText}`);
     const arrayBuffer = await res.arrayBuffer();
     let buffer = Buffer.from(arrayBuffer);
@@ -775,38 +775,35 @@ export async function buildOrderAttachments(
   items: any[],
   orderNumber: string
 ): Promise<Array<{ content: string; name: string; type: string }>> {
-  const attachments: Array<{ content: string; name: string; type: string }> = [];
   const prefix = orderNumber.replace(/[^a-zA-Z0-9-]/g, "_");
 
-  for (let i = 0; i < items.length; i++) {
-    const item = items[i];
+  // Pobieramy wszystkie obrazki równolegle — przy kilku arkuszach sekwencyjne
+  // pobieranie (bez timeoutu na fetch) potrafiło zająć tyle czasu, że funkcja
+  // webhooka była ubijana w trakcie, zanim mail zdążył pójść.
+  const jobs = items.flatMap((item, i) => {
     const itemIndex = i + 1;
+    const jobsForItem: Array<Promise<{ content: string; name: string; type: string } | null>> = [];
 
-    // 1. Druk (imageUrl)
     if (item.imageUrl) {
-      const printBase64 = await downloadImageAsBase64(item.imageUrl);
-      if (printBase64) {
-        attachments.push({
-          content: printBase64,
-          name: `${prefix}-arkusz-${itemIndex}-DRUK.png`,
-          type: "image/png",
-        });
-      }
+      jobsForItem.push(
+        downloadImageAsBase64(item.imageUrl).then((content) =>
+          content ? { content, name: `${prefix}-arkusz-${itemIndex}-DRUK.png`, type: "image/png" } : null
+        )
+      );
     }
 
-    // 2. Linie cięcia (cutLinesImageUrl lub fallback do imageUrl)
     const cutUrl = item.cutLinesImageUrl || item.imageUrl;
     if (cutUrl) {
-      const cutBase64 = await downloadImageAsBase64(cutUrl);
-      if (cutBase64) {
-        attachments.push({
-          content: cutBase64,
-          name: `${prefix}-arkusz-${itemIndex}-LINIE-CIECIA.png`,
-          type: "image/png",
-        });
-      }
+      jobsForItem.push(
+        downloadImageAsBase64(cutUrl).then((content) =>
+          content ? { content, name: `${prefix}-arkusz-${itemIndex}-LINIE-CIECIA.png`, type: "image/png" } : null
+        )
+      );
     }
-  }
 
-  return attachments;
+    return jobsForItem;
+  });
+
+  const results = await Promise.all(jobs);
+  return results.filter((r): r is { content: string; name: string; type: string } => r !== null);
 }

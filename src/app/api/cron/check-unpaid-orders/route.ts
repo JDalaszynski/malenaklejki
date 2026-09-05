@@ -24,6 +24,7 @@ async function sendEmail(payload: object): Promise<boolean> {
       "Content-Type": "application/json",
     },
     body: JSON.stringify(payload),
+    signal: AbortSignal.timeout(20000),
   });
   if (!response.ok) {
     const text = await response.text();
