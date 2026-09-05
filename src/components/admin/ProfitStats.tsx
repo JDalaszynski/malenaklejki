@@ -1,5 +1,5 @@
-import type { MonthlyStats, PeriodStats } from "@/lib/admin/costs";
-import { COST_RATES } from "@/lib/admin/costs";
+import type { MonthlyStatsWithTax, PeriodStats, TaxBreakdown } from "@/lib/admin/costs";
+import { COST_RATES, TAX_RATES, round2 } from "@/lib/admin/costs";
 import { formatPln } from "@/lib/orders/status";
 
 function plural(count: number, one: string, few: string, many: string): string {
@@ -69,15 +69,18 @@ export function delta(current: number, previous: number): string {
 }
 
 /**
- * Cztery liczby, po które wchodzi się na tę stronę: ile zostaje na czysto,
- * ile to daje dziennie, ile na jednym zamówieniu i z ilu arkuszy.
+ * Pięć liczb, po które wchodzi się na tę stronę: ile realnie zostaje na
+ * koncie po ZUS, zdrowotnej i PIT, ile to daje dziennie, ile na czysto
+ * operacyjnie, ile na jednym zamówieniu i z ilu arkuszy.
  */
 export function ProfitSummary({
   stats,
+  tax,
   days,
   profitPerDay,
 }: {
   stats: PeriodStats;
+  tax: TaxBreakdown;
   /** Dni, przez które dzielimy zysk — pominięte, gdy średnia dzienna nie ma sensu. */
   days?: number;
   profitPerDay?: number;
@@ -89,29 +92,33 @@ export function ProfitSummary({
     : `${stats.orders} ${plural(stats.orders, "zamówienie", "zamówienia", "zamówień")}`;
 
   return (
-    <div className="grid grid-cols-2 lg:grid-cols-5 gap-3">
+    <div className="grid grid-cols-2 lg:grid-cols-6 gap-3">
       <StatTile
-        label="Zysk na czysto"
-        value={formatPln(stats.profit)}
-        hint={`z obrotu ${shortPln(stats.gross)} brutto`}
+        label="Do ręki"
+        value={formatPln(tax.profitAfterTax)}
+        hint={`po ZUS, zdrowotnej i PIT — operacyjnie ${shortPln(stats.profit)}`}
         hero
         className="col-span-2"
       />
       <StatTile
         label="Średnio dziennie"
         value={days ? formatPln(profitPerDay ?? 0) : "—"}
-        hint={days ? `zysk ÷ ${days} ${daysLabel(days)}` : "poza skalą okresu"}
+        hint={days ? `do ręki ÷ ${days} ${daysLabel(days)}` : "poza skalą okresu"}
+      />
+      <StatTile
+        label="Zysk operacyjny"
+        value={formatPln(stats.profit)}
+        hint="przed ZUS, zdrowotną i PIT"
       />
       <StatTile
         label="Zysk z zamówienia"
         value={sales ? formatPln(stats.profitPerSale) : "—"}
-        hint={sales ? `średnio z ${sales} ${salesLabel(sales)}` : "brak sprzedaży"}
+        hint={sales ? `średnio z ${sales} ${salesLabel(sales)}, operacyjnie` : "brak sprzedaży"}
       />
       <StatTile
         label="Sprzedane arkusze"
         value={String(stats.sheets)}
         hint={sheetsHint}
-        className="col-span-2 lg:col-span-1"
       />
     </div>
   );
@@ -163,9 +170,20 @@ function BreakdownRow({
 
 /**
  * Cały rachunek okresu w jednej kolumnie: od tego, co wpłacili klienci, do
- * tego, co zostaje w kieszeni. Każda linia jest sprawdzalna kalkulatorem.
+ * tego, co realnie zostaje w kieszeni po ZUS, zdrowotnej i PIT. Każda linia
+ * jest sprawdzalna kalkulatorem.
  */
-export function ProfitBreakdown({ stats }: { stats: PeriodStats }) {
+export function ProfitBreakdown({
+  stats,
+  tax,
+  months = 0,
+}: {
+  stats: PeriodStats;
+  /** Pominięte dla przykładu jednego zamówienia — ZUS i PIT nie liczą się od pojedynczej sprzedaży. */
+  tax?: TaxBreakdown;
+  /** Miesięcy w okresie — ZUS to stawka miesięczna, więc mnożnik podpisu. */
+  months?: number;
+}) {
   const sales = pricedSales(stats);
 
   return (
@@ -197,36 +215,92 @@ export function ProfitBreakdown({ stats }: { stats: PeriodStats }) {
           amount={stats.extraCost}
           sign="−"
         />
-        <BreakdownRow label="Zysk na czysto" amount={stats.profit} sign="=" total />
+        <BreakdownRow label="Zysk operacyjny" amount={stats.profit} sign="=" total={!tax} />
+        {tax && (
+          <>
+            <BreakdownRow
+              label="ZUS społeczny"
+              hint={months > 1 ? `${months} × ${formatPln(TAX_RATES.zusSocialMonthly)}` : "pełny ZUS"}
+              amount={tax.zusSocial}
+              sign="−"
+            />
+            <BreakdownRow
+              label="Składka zdrowotna"
+              hint={`${Math.round(TAX_RATES.healthInsuranceRate * 100)}% dochodu po ZUS`}
+              amount={tax.healthInsurance}
+              sign="−"
+            />
+            <BreakdownRow
+              label="PIT"
+              hint={`skala ${Math.round(TAX_RATES.pitRateLow * 100)}/${Math.round(
+                TAX_RATES.pitRateHigh * 100
+              )}%, po uldze ${formatPln(TAX_RATES.taxReliefMonthly)}/mies.`}
+              amount={tax.pit}
+              sign="−"
+            />
+            <BreakdownRow label="Do ręki" amount={tax.profitAfterTax} sign="=" total />
+          </>
+        )}
         <p className="text-xs font-medium text-muted-foreground mt-2">
           Koszty z fakturą (arkusze, kurier) odejmujemy w kwotach netto — VAT z nich odliczasz.
           Koszt dodatkowy schodzi w pełnej kwocie brutto.
+          {tax &&
+            " ZUS i PIT liczone dla pełnego ZUS na skali podatkowej, próg 32% narastająco od stycznia — realna kwota zależy od Twojej bieżącej deklaracji ZUS."}
         </p>
       </div>
 
-      <div className="rounded-2xl border border-border/60 bg-muted/20 p-4 flex flex-col gap-3 self-start">
-        <p className="text-[11px] font-black uppercase tracking-wider text-muted-foreground">
-          VAT do urzędu
-        </p>
-        <dl className="flex flex-col gap-1.5 text-sm">
-          <div className="flex justify-between gap-3">
-            <dt className="font-medium text-muted-foreground">Należny</dt>
-            <dd className="font-bold tabular-nums">{formatPln(stats.vatDue)}</dd>
+      <div className="flex flex-col gap-4 self-start">
+        <div className="rounded-2xl border border-border/60 bg-muted/20 p-4 flex flex-col gap-3">
+          <p className="text-[11px] font-black uppercase tracking-wider text-muted-foreground">
+            VAT do urzędu
+          </p>
+          <dl className="flex flex-col gap-1.5 text-sm">
+            <div className="flex justify-between gap-3">
+              <dt className="font-medium text-muted-foreground">Należny</dt>
+              <dd className="font-bold tabular-nums">{formatPln(stats.vatDue)}</dd>
+            </div>
+            <div className="flex justify-between gap-3">
+              <dt className="font-medium text-muted-foreground">Naliczony</dt>
+              <dd className="font-bold tabular-nums">−{formatPln(stats.vatDeductible)}</dd>
+            </div>
+            <div className="flex justify-between gap-3 border-t border-border/60 pt-1.5">
+              <dt className="font-extrabold">Do zapłaty</dt>
+              <dd className="font-extrabold tabular-nums">{formatPln(stats.vatPayable)}</dd>
+            </div>
+          </dl>
+          <p className="text-xs font-medium text-muted-foreground">
+            Naliczony to VAT z faktur za arkusze i kuriera. Koszt dodatkowy nie wchodzi
+            w koszty firmy, więc nie daje odliczenia.
+          </p>
+        </div>
+
+        {tax && (
+          <div className="rounded-2xl border border-border/60 bg-muted/20 p-4 flex flex-col gap-3">
+            <p className="text-[11px] font-black uppercase tracking-wider text-muted-foreground">
+              ZUS i PIT
+            </p>
+            <dl className="flex flex-col gap-1.5 text-sm">
+              <div className="flex justify-between gap-3">
+                <dt className="font-medium text-muted-foreground">ZUS społeczny</dt>
+                <dd className="font-bold tabular-nums">−{formatPln(tax.zusSocial)}</dd>
+              </div>
+              <div className="flex justify-between gap-3">
+                <dt className="font-medium text-muted-foreground">Zdrowotna</dt>
+                <dd className="font-bold tabular-nums">−{formatPln(tax.healthInsurance)}</dd>
+              </div>
+              <div className="flex justify-between gap-3">
+                <dt className="font-medium text-muted-foreground">PIT</dt>
+                <dd className="font-bold tabular-nums">−{formatPln(tax.pit)}</dd>
+              </div>
+              <div className="flex justify-between gap-3 border-t border-border/60 pt-1.5">
+                <dt className="font-extrabold">Do ręki</dt>
+                <dd className="font-extrabold tabular-nums">{formatPln(tax.profitAfterTax)}</dd>
+              </div>
+            </dl>
           </div>
-          <div className="flex justify-between gap-3">
-            <dt className="font-medium text-muted-foreground">Naliczony</dt>
-            <dd className="font-bold tabular-nums">−{formatPln(stats.vatDeductible)}</dd>
-          </div>
-          <div className="flex justify-between gap-3 border-t border-border/60 pt-1.5">
-            <dt className="font-extrabold">Do zapłaty</dt>
-            <dd className="font-extrabold tabular-nums">{formatPln(stats.vatPayable)}</dd>
-          </div>
-        </dl>
-        <p className="text-xs font-medium text-muted-foreground">
-          Naliczony to VAT z faktur za arkusze i kuriera. Koszt dodatkowy nie wchodzi
-          w koszty firmy, więc nie daje odliczenia.
-        </p>
-        <div className="border-t border-border/60 pt-3 flex flex-col gap-1.5 text-sm">
+        )}
+
+        <div className="rounded-2xl border border-border/60 bg-muted/20 p-4 flex flex-col gap-1.5 text-sm">
           <div className="flex justify-between gap-3">
             <span className="font-medium text-muted-foreground">Marża</span>
             <span className="font-bold tabular-nums">{stats.margin}%</span>
@@ -244,11 +318,12 @@ export function ProfitBreakdown({ stats }: { stats: PeriodStats }) {
 }
 
 /**
- * Rozkład zysku w czasie. Słupki są proporcjonalne do najlepszego miesiąca —
- * chodzi o wyłapanie trendu, nie o odczyt dokładnych wartości (te są w tabeli).
+ * Rozkład zysku w czasie (po ZUS, zdrowotnej i PIT). Słupki są proporcjonalne
+ * do najlepszego miesiąca — chodzi o wyłapanie trendu, nie o odczyt
+ * dokładnych wartości (te są w tabeli).
  */
-export function MonthlyChart({ months }: { months: MonthlyStats[] }) {
-  const max = Math.max(...months.map((month) => Math.max(month.profit, 0)), 1);
+export function MonthlyChart({ months }: { months: MonthlyStatsWithTax[] }) {
+  const max = Math.max(...months.map((month) => Math.max(month.profitAfterTax, 0)), 1);
 
   return (
     <div className="flex flex-col gap-2.5">
@@ -260,14 +335,14 @@ export function MonthlyChart({ months }: { months: MonthlyStats[] }) {
           <div className="flex-1 h-7 rounded-lg bg-muted/40 overflow-hidden">
             <div
               className="h-full rounded-lg bg-primary/80 min-w-[2px] transition-[width]"
-              style={{ width: `${(Math.max(month.profit, 0) / max) * 100}%` }}
+              style={{ width: `${(Math.max(month.profitAfterTax, 0) / max) * 100}%` }}
             />
           </div>
           <span className="w-28 shrink-0 text-right text-xs font-extrabold tabular-nums text-primary">
-            {formatPln(month.profit)}
+            {formatPln(month.profitAfterTax)}
           </span>
           <span className="hidden sm:block w-24 shrink-0 text-right text-xs font-bold tabular-nums text-muted-foreground">
-            {formatPln(month.profitPerDay)}/dzień
+            {formatPln(month.profitAfterTaxPerDay)}/dzień
           </span>
           <span className="hidden lg:block w-24 shrink-0 text-right text-xs font-medium tabular-nums text-muted-foreground">
             {month.sheets} {sheetsLabel(month.sheets)}
@@ -278,23 +353,36 @@ export function MonthlyChart({ months }: { months: MonthlyStats[] }) {
   );
 }
 
-export function MonthlyTable({ months }: { months: MonthlyStats[] }) {
+export function MonthlyTable({ months }: { months: MonthlyStatsWithTax[] }) {
   const total = months.reduce(
     (sum, month) => ({
       orders: sum.orders + month.orders,
       manualEntries: sum.manualEntries + month.manualEntries,
       sheets: sum.sheets + month.sheets,
-      gross: Math.round((sum.gross + month.gross) * 100) / 100,
-      costTotal: Math.round((sum.costTotal + month.costTotal) * 100) / 100,
-      profit: Math.round((sum.profit + month.profit) * 100) / 100,
-      netRevenue: Math.round((sum.netRevenue + month.netRevenue) * 100) / 100,
+      gross: round2(sum.gross + month.gross),
+      costTotal: round2(sum.costTotal + month.costTotal),
+      profit: round2(sum.profit + month.profit),
+      netRevenue: round2(sum.netRevenue + month.netRevenue),
+      zusAndPit: round2(sum.zusAndPit + month.zusSocial + month.healthInsurance + month.pit),
+      profitAfterTax: round2(sum.profitAfterTax + month.profitAfterTax),
       days: sum.days + month.days,
     }),
-    { orders: 0, manualEntries: 0, sheets: 0, gross: 0, costTotal: 0, profit: 0, netRevenue: 0, days: 0 }
+    {
+      orders: 0,
+      manualEntries: 0,
+      sheets: 0,
+      gross: 0,
+      costTotal: 0,
+      profit: 0,
+      netRevenue: 0,
+      zusAndPit: 0,
+      profitAfterTax: 0,
+      days: 0,
+    }
   );
 
   const totalMargin = total.netRevenue ? Math.round((total.profit / total.netRevenue) * 100) : 0;
-  const totalPerDay = total.days ? Math.round((total.profit / total.days) * 100) / 100 : 0;
+  const totalPerDay = total.days ? round2(total.profitAfterTax / total.days) : 0;
 
   const headings = [
     "Miesiąc",
@@ -302,8 +390,10 @@ export function MonthlyTable({ months }: { months: MonthlyStats[] }) {
     "Arkusze",
     "Obrót brutto",
     "Koszty",
-    "Zysk na czysto",
-    "Zysk / dzień",
+    "Zysk operacyjny",
+    "ZUS + zdrow. + PIT",
+    "Do ręki",
+    "Do ręki / dzień",
     "Marża",
   ];
 
@@ -342,11 +432,17 @@ export function MonthlyTable({ months }: { months: MonthlyStats[] }) {
               <td className="py-2.5 pr-4 tabular-nums text-muted-foreground whitespace-nowrap">
                 {formatPln(month.costTotal)}
               </td>
-              <td className="py-2.5 pr-4 tabular-nums font-extrabold text-primary whitespace-nowrap">
+              <td className="py-2.5 pr-4 tabular-nums font-bold whitespace-nowrap">
                 {formatPln(month.profit)}
               </td>
+              <td className="py-2.5 pr-4 tabular-nums text-muted-foreground whitespace-nowrap">
+                −{formatPln(month.zusSocial + month.healthInsurance + month.pit)}
+              </td>
+              <td className="py-2.5 pr-4 tabular-nums font-extrabold text-primary whitespace-nowrap">
+                {formatPln(month.profitAfterTax)}
+              </td>
               <td className="py-2.5 pr-4 tabular-nums font-bold whitespace-nowrap">
-                {formatPln(month.profitPerDay)}
+                {formatPln(month.profitAfterTaxPerDay)}
               </td>
               <td className="py-2.5 pr-4 tabular-nums text-muted-foreground">{month.margin}%</td>
             </tr>
@@ -362,7 +458,9 @@ export function MonthlyTable({ months }: { months: MonthlyStats[] }) {
             <td className="py-3 pr-4 tabular-nums">{total.sheets}</td>
             <td className="py-3 pr-4 tabular-nums">{formatPln(total.gross)}</td>
             <td className="py-3 pr-4 tabular-nums">{formatPln(total.costTotal)}</td>
-            <td className="py-3 pr-4 tabular-nums text-primary">{formatPln(total.profit)}</td>
+            <td className="py-3 pr-4 tabular-nums">{formatPln(total.profit)}</td>
+            <td className="py-3 pr-4 tabular-nums">−{formatPln(total.zusAndPit)}</td>
+            <td className="py-3 pr-4 tabular-nums text-primary">{formatPln(total.profitAfterTax)}</td>
             <td className="py-3 pr-4 tabular-nums">{formatPln(totalPerDay)}</td>
             <td className="py-3 pr-4 tabular-nums">{totalMargin}%</td>
           </tr>

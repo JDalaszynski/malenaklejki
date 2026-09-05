@@ -21,9 +21,28 @@ export const COST_RATES = {
   vatRate: 0.23,
 } as const;
 
+/**
+ * Stawki ZUS i PIT na skali podatkowej (2026) — do dociążenia zysku
+ * operacyjnego realnymi obciążeniami jednoosobowej działalności. Zmieniają
+ * się co roku (ZUS zawsze, progi PIT rzadziej), więc warto je co roku
+ * zweryfikować z bieżącą deklaracją ZUS DRA i przepisami.
+ */
+export const TAX_RATES = {
+  /** Pełny ZUS społeczny (eme+rent+chorobowe+wypadkowe+FP), bez zdrowotnej. */
+  zusSocialMonthly: 1926.77,
+  /** Składka zdrowotna na skali — 9% dochodu, nieodliczana od podstawy PIT od 2022. */
+  healthInsuranceRate: 0.09,
+  /** Próg drugiej stawki PIT, dochód narastająco w roku kalendarzowym. */
+  pitThreshold: 120_000,
+  pitRateLow: 0.12,
+  pitRateHigh: 0.32,
+  /** Kwota zmniejszająca podatek — 3600 zł rocznie, rozliczana 300 zł miesięcznie, bez przenoszenia niewykorzystanej części. */
+  taxReliefMonthly: 300,
+} as const;
+
 const TIME_ZONE = "Europe/Warsaw";
 
-const round2 = (value: number): number => Math.round(value * 100) / 100;
+export const round2 = (value: number): number => Math.round(value * 100) / 100;
 
 /** Kwota netto z brutto przy stawce 23%. */
 export function netOf(gross: number): number {
@@ -293,23 +312,35 @@ export function daysInYear(year: number): number {
   return Math.round((end - start) / 86_400_000) + 1;
 }
 
-/** Ostatnie `count` miesięcy — także te bez sprzedaży, żeby wykres nie kłamał. */
-export function monthlyBreakdown(entries: SalesEntry[], count = 12): MonthlyStats[] {
-  const buckets = new Map<string, SalesEntry[]>();
-
-  const today = todayInWarsaw();
-  for (let i = count - 1; i >= 0; i--) {
-    const date = new Date(today.year, today.month - 1 - i, 1);
-    buckets.set(`${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0")}`, []);
+/** Kolejne `RRRR-MM` od `from` do `to` włącznie (oba w tym formacie). */
+function monthKeysBetween(from: string, to: string): string[] {
+  const [fromYear, fromMonth] = from.split("-").map(Number);
+  const [toYear, toMonth] = to.split("-").map(Number);
+  const keys: string[] = [];
+  let year = fromYear;
+  let month = fromMonth;
+  while (year < toYear || (year === toYear && month <= toMonth)) {
+    keys.push(`${year}-${String(month).padStart(2, "0")}`);
+    month += 1;
+    if (month > 12) {
+      month = 1;
+      year += 1;
+    }
   }
+  return keys;
+}
+
+/** Wpisy pogrupowane w podane miesiące — także te bez sprzedaży, żeby wykres nie kłamał. */
+function bucketByMonth(entries: SalesEntry[], keys: string[]): MonthlyStats[] {
+  const buckets = new Map<string, SalesEntry[]>(keys.map((key) => [key, []]));
 
   for (const entry of entries) {
     const bucket = buckets.get(monthKey(entry.date));
     if (bucket) bucket.push(entry);
   }
 
-  return [...buckets.entries()].map(([month, list]) => {
-    const stats = summarize(list);
+  return keys.map((month) => {
+    const stats = summarize(buckets.get(month) ?? []);
     const days = daysInMonth(month);
     return {
       ...stats,
@@ -319,4 +350,134 @@ export function monthlyBreakdown(entries: SalesEntry[], count = 12): MonthlyStat
       profitPerDay: days ? round2(stats.profit / days) : 0,
     };
   });
+}
+
+/** Ostatnie `count` miesięcy licząc od bieżącego. */
+export function monthlyBreakdown(entries: SalesEntry[], count = 12): MonthlyStats[] {
+  const today = todayInWarsaw();
+  const keys: string[] = [];
+  for (let i = count - 1; i >= 0; i--) {
+    const date = new Date(today.year, today.month - 1 - i, 1);
+    keys.push(`${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0")}`);
+  }
+  return bucketByMonth(entries, keys);
+}
+
+/**
+ * Miesiące danego roku, od stycznia do grudnia — a dla roku trwającego, do
+ * bieżącego miesiąca. Potrzebne osobno od `monthlyBreakdown`, bo próg PIT
+ * liczy się narastająco od stycznia, nie od początku dowolnego okna.
+ */
+export function yearMonthlyBreakdown(entries: SalesEntry[], year: number): MonthlyStats[] {
+  const today = todayInWarsaw();
+  const lastMonth = year === today.year ? today.month : 12;
+  return bucketByMonth(
+    entries,
+    monthKeysBetween(`${year}-01`, `${year}-${String(lastMonth).padStart(2, "0")}`)
+  );
+}
+
+/** Wszystkie miesiące od pierwszej sprzedaży do dziś — dla ZUS/PIT „cały czas". */
+export function allTimeMonthlyBreakdown(entries: SalesEntry[], firstSaleIso: string): MonthlyStats[] {
+  const from = firstSaleIso ? monthKey(firstSaleIso) : "";
+  if (!from) return [];
+  const today = todayInWarsaw();
+  return bucketByMonth(
+    entries,
+    monthKeysBetween(from, `${today.year}-${String(today.month).padStart(2, "0")}`)
+  );
+}
+
+/**
+ * Obciążenia jednej sprzedaży ZUS-em i podatkiem nie mają sensu — ZUS jest
+ * miesięczny, a PIT liczy się narastająco. Dlatego rachunek zawsze zaczyna
+ * się od `PeriodStats` całego miesiąca, nie od pojedynczego zamówienia.
+ */
+export type TaxBreakdown = {
+  zusSocial: number;
+  healthInsurance: number;
+  /** Dochód po ZUS społecznym — podstawa i zdrowotnej, i PIT. */
+  pitBase: number;
+  pit: number;
+  /** To, co faktycznie zostaje na koncie po ZUS, zdrowotnej i PIT. */
+  profitAfterTax: number;
+  /** `profitAfterTax` na dzień — 0 poza kontekstem miesiąca (patrz `sumTaxes`). */
+  profitAfterTaxPerDay: number;
+};
+
+export const EMPTY_TAX: TaxBreakdown = {
+  zusSocial: 0,
+  healthInsurance: 0,
+  pitBase: 0,
+  pit: 0,
+  profitAfterTax: 0,
+  profitAfterTaxPerDay: 0,
+};
+
+export type MonthlyStatsWithTax = MonthlyStats & TaxBreakdown;
+
+/**
+ * Dokłada ZUS, składkę zdrowotną i PIT do miesięcznych zestawień.
+ *
+ * Zakłada, że `months` idzie chronologicznie i liczy próg 120 000 zł
+ * narastająco od stycznia każdego roku w tej liście — jeśli okno nie zaczyna
+ * się w styczniu (np. starszy rok w widoku „ostatnie 12 miesięcy"), próg
+ * liczy się od początku okna, nie od stycznia tamtego roku.
+ */
+export function withTaxes(months: MonthlyStats[]): MonthlyStatsWithTax[] {
+  let yearCumulativeBase = 0;
+  let currentYear = "";
+
+  return months.map((month) => {
+    const year = month.month.slice(0, 4);
+    if (year !== currentYear) {
+      currentYear = year;
+      yearCumulativeBase = 0;
+    }
+
+    const zusSocial = round2(TAX_RATES.zusSocialMonthly);
+    const pitBase = round2(Math.max(0, month.profit - zusSocial));
+    const healthInsurance = round2(pitBase * TAX_RATES.healthInsuranceRate);
+
+    const remainingLowBracket = Math.max(0, TAX_RATES.pitThreshold - yearCumulativeBase);
+    const lowBracketPortion = Math.min(pitBase, remainingLowBracket);
+    const highBracketPortion = round2(pitBase - lowBracketPortion);
+    yearCumulativeBase = round2(yearCumulativeBase + pitBase);
+
+    const pitBeforeRelief = round2(
+      lowBracketPortion * TAX_RATES.pitRateLow + highBracketPortion * TAX_RATES.pitRateHigh
+    );
+    const pit = round2(Math.max(0, pitBeforeRelief - TAX_RATES.taxReliefMonthly));
+    const profitAfterTax = round2(month.profit - zusSocial - healthInsurance - pit);
+    const profitAfterTaxPerDay = month.days ? round2(profitAfterTax / month.days) : 0;
+
+    return {
+      ...month,
+      zusSocial,
+      healthInsurance,
+      pitBase,
+      pit,
+      profitAfterTax,
+      profitAfterTaxPerDay,
+    };
+  });
+}
+
+/**
+ * Suma ZUS/PIT po miesiącach — dla kart okresu, które pokazują jedną liczbę.
+ * `profitAfterTaxPerDay` w wyniku jest zerowe — dzielnik (dni okresu) ustala
+ * wywołujący, bo różni się dla „ten miesiąc", roku i całej historii.
+ */
+export function sumTaxes(months: TaxBreakdown[]): TaxBreakdown {
+  return months.reduce(
+    (sum, month) => ({
+      zusSocial: round2(sum.zusSocial + month.zusSocial),
+      healthInsurance: round2(sum.healthInsurance + month.healthInsurance),
+      pitBase: round2(sum.pitBase + month.pitBase),
+      pit: round2(sum.pit + month.pit),
+      profitAfterTax: round2(sum.profitAfterTax + month.profitAfterTax),
+      profitAfterTaxPerDay: 0,
+    }),
+    { ...EMPTY_TAX }
+  );
 }

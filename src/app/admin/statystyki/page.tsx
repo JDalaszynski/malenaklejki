@@ -8,14 +8,20 @@ import { currentMonthValue } from "@/lib/admin/filters";
 import {
   COST_RATES,
   EMPTY_STATS,
+  EMPTY_TAX,
+  allTimeMonthlyBreakdown,
   daysInYear,
   financeOf,
   loadManualSales,
   loadPaidOrders,
   monthKey,
   monthlyBreakdown,
+  round2,
+  sumTaxes,
   summarize,
   toSalesEntries,
+  withTaxes,
+  yearMonthlyBreakdown,
   type ManualSaleRow,
   type MonthlyStats,
 } from "@/lib/admin/stats";
@@ -54,23 +60,27 @@ export default async function StatsPage() {
   // Zamówienia ze sklepu i sprzedaż dopisana ręcznie liczą się tak samo,
   // więc dalej pracujemy już tylko na wspólnej liście wpisów.
   const entries = toSalesEntries(orders, manualSales);
-  const months = monthlyBreakdown(entries, 12);
+  const months = withTaxes(monthlyBreakdown(entries, 12));
 
   const year = Number(currentMonthValue().slice(0, 4));
 
-  const current = months[months.length - 1] ?? EMPTY_MONTH;
-  const previous = months[months.length - 2] ?? EMPTY_MONTH;
+  const current = months[months.length - 1] ?? { ...EMPTY_MONTH, ...EMPTY_TAX };
+  const previous = months[months.length - 2] ?? { ...EMPTY_MONTH, ...EMPTY_TAX };
 
+  const yearMonths = withTaxes(yearMonthlyBreakdown(entries, year));
   const yearStats = summarize(
     entries.filter((entry) => monthKey(entry.date).startsWith(String(year)))
   );
+  const yearTax = sumTaxes(yearMonths);
   const yearDays = daysInYear(year);
 
-  const allTime = summarize(entries);
   const firstSale = entries.reduce(
     (earliest, entry) => (!earliest || entry.date < earliest ? entry.date : earliest),
     ""
   );
+  const allTimeMonths = withTaxes(allTimeMonthlyBreakdown(entries, firstSale));
+  const allTime = summarize(entries);
+  const allTimeTax = sumTaxes(allTimeMonths);
   const allTimeDays = firstSale ? daysSince(firstSale) : 0;
 
   const periods: StatsPeriod[] = [
@@ -81,8 +91,10 @@ export default async function StatsPage() {
         current.days === 1 ? "dzień" : "dni"
       }).`,
       stats: current,
+      tax: current,
+      months: 1,
       days: current.days,
-      profitPerDay: current.profitPerDay,
+      profitPerDay: current.days ? round2(current.profitAfterTax / current.days) : 0,
       note: previous.label
         ? `Względem poprzedniego miesiąca (${previous.label}): zysk ${delta(
             current.profit,
@@ -98,8 +110,10 @@ export default async function StatsPage() {
       label: `Rok ${year}`,
       caption: `Narastająco od stycznia ${year} — ${yearDays} dni.`,
       stats: yearStats,
+      tax: yearTax,
+      months: yearMonths.length,
       days: yearDays,
-      profitPerDay: Math.round((yearStats.profit / yearDays) * 100) / 100,
+      profitPerDay: yearDays ? round2(yearTax.profitAfterTax / yearDays) : 0,
     },
     {
       id: "all",
@@ -108,8 +122,10 @@ export default async function StatsPage() {
         ? `Cała historia sklepu — ${allTimeDays} dni od pierwszej sprzedaży.`
         : "Cała historia sklepu.",
       stats: allTime,
+      tax: allTimeTax,
+      months: allTimeMonths.length,
       days: allTimeDays,
-      profitPerDay: allTimeDays ? Math.round((allTime.profit / allTimeDays) * 100) / 100 : 0,
+      profitPerDay: allTimeDays ? round2(allTimeTax.profitAfterTax / allTimeDays) : 0,
     },
   ];
 
@@ -133,7 +149,7 @@ export default async function StatsPage() {
     <AdminLayout
       adminEmail={admin.email ?? ""}
       title="Statystyki"
-      subtitle="Opłacone zamówienia i sprzedaż dopisana ręcznie: przychód netto minus koszty arkuszy, przesyłek i drobnicy."
+      subtitle="Opłacone zamówienia i sprzedaż dopisana ręcznie: przychód netto minus koszty, ZUS, składka zdrowotna i PIT na skali."
     >
       <StatsOverview periods={periods} />
 

@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { ChevronDown } from "lucide-react";
 
-import type { MonthlyStats, PeriodStats } from "@/lib/admin/costs";
+import type { MonthlyStatsWithTax, PeriodStats, TaxBreakdown } from "@/lib/admin/costs";
 import { formatPln } from "@/lib/orders/status";
 import { Card } from "./AdminLayout";
 import { MonthlyChart, MonthlyTable, ProfitBreakdown, ProfitSummary } from "./ProfitStats";
@@ -70,6 +70,10 @@ export type StatsPeriod = {
   label: string;
   caption: string;
   stats: PeriodStats;
+  /** ZUS, zdrowotna i PIT za ten sam okres. */
+  tax: TaxBreakdown;
+  /** Liczba miesięcy w okresie — ZUS to stawka miesięczna, więc mnożnik hintu. */
+  months: number;
   /** Dni, przez które dzielimy zysk — 0, gdy średnia dzienna nie ma sensu. */
   days: number;
   profitPerDay: number;
@@ -101,6 +105,7 @@ export function StatsOverview({ periods }: { periods: StatsPeriod[] }) {
     >
       <ProfitSummary
         stats={period.stats}
+        tax={period.tax}
         days={period.days}
         profitPerDay={period.profitPerDay}
       />
@@ -117,8 +122,8 @@ export function StatsOverview({ periods }: { periods: StatsPeriod[] }) {
         </p>
       )}
 
-      <Details summary="Rachunek — od wpłat klientów do zysku">
-        <ProfitBreakdown stats={period.stats} />
+      <Details summary="Rachunek — od wpłat klientów do tego, co zostaje na koncie">
+        <ProfitBreakdown stats={period.stats} tax={period.tax} months={period.months} />
       </Details>
     </Card>
   );
@@ -128,18 +133,18 @@ export function StatsOverview({ periods }: { periods: StatsPeriod[] }) {
  * Historia w jednej karcie: wykres do wyłapania trendu, tabela do odczytu
  * konkretnych kwot. Dwie karty pod sobą pokazywały to samo dwa razy.
  */
-export function MonthlyPanel({ months }: { months: MonthlyStats[] }) {
+export function MonthlyPanel({ months }: { months: MonthlyStatsWithTax[] }) {
   const [view, setView] = useState<"chart" | "table">("chart");
-  const best = [...months].sort((a, b) => b.profit - a.profit)[0];
+  const best = [...months].sort((a, b) => b.profitAfterTax - a.profitAfterTax)[0];
 
   return (
     <Card
       title="Ostatnie 12 miesięcy"
       description={
-        best && best.profit > 0
-          ? `Najlepszy miesiąc: ${best.label} — ${formatPln(best.profit)} zysku, ${formatPln(
-              best.profitPerDay
-            )} dziennie.`
+        best && best.profitAfterTax > 0
+          ? `Najlepszy miesiąc: ${best.label} — ${formatPln(
+              best.profitAfterTax
+            )} do ręki, ${formatPln(best.profitPerDay)} dziennie operacyjnie.`
           : "Brak sprzedaży w tym okresie."
       }
       actions={
