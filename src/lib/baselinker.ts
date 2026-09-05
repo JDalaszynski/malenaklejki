@@ -313,6 +313,7 @@ async function callBaseLinkerAPI(method: string, parameters: object) {
         "Content-Type": "application/x-www-form-urlencoded",
       },
       body: body.toString(),
+      signal: AbortSignal.timeout(15000),
     });
 
     if (!response.ok) {

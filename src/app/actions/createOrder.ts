@@ -58,6 +58,7 @@ const CreateOrderSchema = z.object({
 import { registerTransaction } from "@/lib/p24";
 import { buildManualTransferEmailHtml, buildNewOrderSellerEmailHtml, buildOrderAttachments } from "@/lib/emails";
 import { sendOrderToBaseLinker } from "@/lib/baselinker";
+import { sendTransactionalEmail } from "@/lib/email/auth";
 
 /**
  * Generates a human-readable order number: MNK-YYYYMMDD-XXXX
@@ -100,32 +101,10 @@ function buildP24Description(
   return desc;
 }
 
-/**
- * Sends an email via Brevo. Returns true on success.
- */
-async function sendEmail(payload: object): Promise<boolean> {
-  const apiKey = process.env.BREVO_API_KEY;
-  if (!apiKey) {
-    console.error("BREVO_API_KEY is not set");
-    return false;
-  }
-  const response = await fetch("https://api.brevo.com/v3/smtp/email", {
-    method: "POST",
-    headers: {
-      "api-key": apiKey,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(payload),
-  });
-  if (!response.ok) {
-    const text = await response.text();
-    console.error("Brevo error:", response.status, text);
-    return false;
-  }
-  return true;
-}
-
 // Usunięto szablony email. Zostały przeniesione do src/lib/emails.ts i są używane w webhooku P24.
+// Wysyłka idzie przez sendTransactionalEmail (src/lib/email/auth.ts) — ten sam
+// timeout na fetchu do Brevo co przy mailu o płatności, po incydencie z
+// 4d91497, gdzie brak timeoutu gubił maile przy ubitej funkcji.
 
 async function doCreateOrder(rawData: any) {
   try {
@@ -321,8 +300,18 @@ async function doCreateOrder(rawData: any) {
       if (attachments.length > 0) {
         sellerEmailPayload.attachment = attachments;
       }
-      await sendEmail(sellerEmailPayload);
-      console.log(`Initial seller notification email sent for order ${orderNumber}`);
+      const sent = await sendTransactionalEmail(sellerEmailPayload);
+      if (sent) {
+        // Znacznik po sukcesie — bez niego nie dało się odróżnić zamówienia,
+        // przy którym mail faktycznie wyszedł, od takiego, gdzie ubita funkcja
+        // go zgubiła (ten sam problem co z mailem o płatności w 4d91497).
+        await orderRef.update({ newOrderNotificationSentAt: new Date().toISOString() }).catch((err) => {
+          console.error(`Nie zapisano znacznika newOrderNotificationSentAt przy ${orderNumber}:`, err);
+        });
+        console.log(`Initial seller notification email sent for order ${orderNumber}`);
+      } else {
+        console.error(`Failed to send initial seller notification email for order ${orderNumber}`);
+      }
     } catch (emailErr) {
       console.error("Failed to send initial seller notification email:", emailErr);
     }
@@ -337,7 +326,7 @@ async function doCreateOrder(rawData: any) {
     if (finalData.paymentMethod === "przelew") {
       // Wyślij e-mail z danymi do przelewu
       const emailHtml = buildManualTransferEmailHtml(finalData, orderNumber, vacationNotice);
-      await sendEmail({
+      await sendTransactionalEmail({
         sender: { name: "MałeNaklejki", email: "kontakt@malenaklejki.pl" },
         to: [{ email: finalData.email, name: `${finalData.firstName} ${finalData.lastName}` }],
         subject: `Zamówienie ${orderNumber} - dane do przelewu`,

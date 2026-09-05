@@ -1,12 +1,12 @@
-"use client";
-
 import { CheckoutForm } from "@/components/checkout/CheckoutForm";
 import { Header } from "@/components/layout/Header";
-import { useRouter } from "next/navigation";
+
+// Domyślny limit czasu platformy potrafił ubić akcję createOrder w trakcie
+// sekwencyjnych wywołań (BaseLinker, Brevo, P24), zanim mail o nowym
+// zamówieniu zdążył wyjść do sprzedawcy — ten sam problem co w 4d91497.
+export const maxDuration = 60;
 
 export default function CheckoutPage() {
-  const router = useRouter();
-
   return (
     <div className="flex flex-col min-h-screen text-foreground bg-[#edf6f2] dark:bg-[#002c2e]">
       <Header zen={true} />
