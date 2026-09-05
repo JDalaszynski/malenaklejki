@@ -208,3 +208,18 @@ export async function getOrder(orderId: string): Promise<AdminOrder | null> {
   return toAdminOrder(snapshot.id, snapshot.data()!);
 }
 
+/**
+ * Cała historia zamówień jednego konta, łącznie z koszem — na stronie klienta
+ * w panelu admin liczy się pełny obraz, nie tylko to, co jeszcze widać w liście.
+ */
+export async function listOrdersForUser(userId: string, limit = 200): Promise<AdminOrder[]> {
+  const snapshot = await db
+    .collection("orders")
+    .where("userId", "==", userId)
+    .orderBy("createdAt", "desc")
+    .limit(limit)
+    .get();
+
+  return snapshot.docs.map((doc) => toAdminOrder(doc.id, doc.data()));
+}
+

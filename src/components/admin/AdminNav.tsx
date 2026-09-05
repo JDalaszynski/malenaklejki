@@ -2,11 +2,12 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { BarChart3, FileSpreadsheet, PackagePlus, Receipt, Settings, Trash2 } from "lucide-react";
+import { BarChart3, FileSpreadsheet, PackagePlus, Receipt, Settings, Trash2, Users } from "lucide-react";
 
 const ITEMS = [
   { href: "/admin", label: "Zamówienia", icon: Receipt, exact: true },
   { href: "/admin/zamowienia/nowe", label: "Nowe zamówienie", icon: PackagePlus, exact: true },
+  { href: "/admin/uzytkownicy", label: "Użytkownicy", icon: Users, exact: false },
   { href: "/admin/statystyki", label: "Statystyki", icon: BarChart3, exact: false },
   { href: "/admin/raporty", label: "Raporty", icon: FileSpreadsheet, exact: false },
   { href: "/admin/kosz", label: "Kosz", icon: Trash2, exact: false },
