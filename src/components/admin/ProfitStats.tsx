@@ -280,11 +280,49 @@ export function ProfitBreakdown({
             <span className="font-bold tabular-nums">{stats.margin}%</span>
           </div>
           <div className="flex justify-between gap-3">
-            <span className="font-medium text-muted-foreground">Zysk z arkusza</span>
+            <span className="font-medium text-muted-foreground">Zysk operacyjny / arkusz</span>
             <span className="font-bold tabular-nums">
               {stats.sheets ? formatPln(stats.profitPerSheet) : "—"}
             </span>
           </div>
+
+          {tax && (
+            <>
+              <p className="text-[11px] font-black uppercase tracking-wider text-muted-foreground mt-2 pt-2 border-t border-border/60">
+                Na arkusz, średnio w tym okresie
+              </p>
+              <div className="flex justify-between gap-3">
+                <span className="font-medium text-muted-foreground">− ZUS</span>
+                <span className="font-bold tabular-nums">
+                  {stats.sheets ? formatPln(tax.zusSocial / stats.sheets) : "—"}
+                </span>
+              </div>
+              <div className="flex justify-between gap-3">
+                <span className="font-medium text-muted-foreground">− Zdrowotna</span>
+                <span className="font-bold tabular-nums">
+                  {stats.sheets ? formatPln(tax.healthInsurance / stats.sheets) : "—"}
+                </span>
+              </div>
+              <div className="flex justify-between gap-3">
+                <span className="font-medium text-muted-foreground">− PIT</span>
+                <span className="font-bold tabular-nums">
+                  {stats.sheets ? formatPln(tax.pit / stats.sheets) : "—"}
+                </span>
+              </div>
+              <div className="flex justify-between gap-3 border-t border-border/60 pt-1.5">
+                <span className="font-extrabold">= Zysk właściwy / arkusz</span>
+                <span className="font-extrabold tabular-nums">
+                  {stats.sheets ? formatPln(tax.profitAfterTax / stats.sheets) : "—"}
+                </span>
+              </div>
+              <p className="text-xs font-medium text-muted-foreground mt-1">
+                ZUS to stała opłata miesięczna, nie rośnie z liczbą sprzedanych arkuszy — ta kwota
+                to tylko koszt ZUS tego okresu rozłożony na sprzedane sztuki, więc mocno skacze
+                między miesiącami słabszymi i mocniejszymi sprzedażowo. Zdrowotna i PIT liczą się
+                od dochodu, więc trzymają się bliżej stałej stawki.
+              </p>
+            </>
+          )}
         </div>
       </div>
     </div>

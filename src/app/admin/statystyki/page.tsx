@@ -60,25 +60,30 @@ export default async function StatsPage() {
   // Zamówienia ze sklepu i sprzedaż dopisana ręcznie liczą się tak samo,
   // więc dalej pracujemy już tylko na wspólnej liście wpisów.
   const entries = toSalesEntries(orders, manualSales);
-  const months = withTaxes(monthlyBreakdown(entries, 12));
+
+  const firstSale = entries.reduce(
+    (earliest, entry) => (!earliest || entry.date < earliest ? entry.date : earliest),
+    ""
+  );
+  // ZUS zaczyna się dopiero od pierwszej sprzedaży — miesiące sprzed startu
+  // sklepu (zerowy obrót) nie mogą dostawać fikcyjnej straty z pełnego ZUS-u.
+  const activeFrom = firstSale ? monthKey(firstSale) : undefined;
+
+  const months = withTaxes(monthlyBreakdown(entries, 12), activeFrom);
 
   const year = Number(currentMonthValue().slice(0, 4));
 
   const current = months[months.length - 1] ?? { ...EMPTY_MONTH, ...EMPTY_TAX };
   const previous = months[months.length - 2] ?? { ...EMPTY_MONTH, ...EMPTY_TAX };
 
-  const yearMonths = withTaxes(yearMonthlyBreakdown(entries, year));
+  const yearMonths = withTaxes(yearMonthlyBreakdown(entries, year), activeFrom);
   const yearStats = summarize(
     entries.filter((entry) => monthKey(entry.date).startsWith(String(year)))
   );
   const yearTax = sumTaxes(yearMonths);
   const yearDays = daysInYear(year);
 
-  const firstSale = entries.reduce(
-    (earliest, entry) => (!earliest || entry.date < earliest ? entry.date : earliest),
-    ""
-  );
-  const allTimeMonths = withTaxes(allTimeMonthlyBreakdown(entries, firstSale));
+  const allTimeMonths = withTaxes(allTimeMonthlyBreakdown(entries, firstSale), activeFrom);
   const allTime = summarize(entries);
   const allTimeTax = sumTaxes(allTimeMonths);
   const allTimeDays = firstSale ? daysSince(firstSale) : 0;

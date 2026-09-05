@@ -423,8 +423,13 @@ export type MonthlyStatsWithTax = MonthlyStats & TaxBreakdown;
  * narastająco od stycznia każdego roku w tej liście — jeśli okno nie zaczyna
  * się w styczniu (np. starszy rok w widoku „ostatnie 12 miesięcy"), próg
  * liczy się od początku okna, nie od stycznia tamtego roku.
+ *
+ * `activeFrom` (`RRRR-MM` pierwszej sprzedaży) pomija ZUS dla miesięcy sprzed
+ * niej — bez tego okno „ostatnie 12 miesięcy" czy „rok" doliczałoby pełny ZUS
+ * do miesięcy sprzed startu sklepu, których obrót i tak jest zerowy, i cały
+ * okres wychodziłby na fikcyjnym minusie.
  */
-export function withTaxes(months: MonthlyStats[]): MonthlyStatsWithTax[] {
+export function withTaxes(months: MonthlyStats[], activeFrom?: string): MonthlyStatsWithTax[] {
   let yearCumulativeBase = 0;
   let currentYear = "";
 
@@ -433,6 +438,10 @@ export function withTaxes(months: MonthlyStats[]): MonthlyStatsWithTax[] {
     if (year !== currentYear) {
       currentYear = year;
       yearCumulativeBase = 0;
+    }
+
+    if (activeFrom && month.month < activeFrom) {
+      return { ...month, ...EMPTY_TAX };
     }
 
     const zusSocial = round2(TAX_RATES.zusSocialMonthly);
