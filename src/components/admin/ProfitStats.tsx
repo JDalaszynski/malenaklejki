@@ -70,7 +70,7 @@ export function delta(current: number, previous: number): string {
 
 /**
  * Cztery liczby, po które wchodzi się na tę stronę: ile realnie zostaje na
- * koncie po ZUS, zdrowotnej i PIT, ile to daje dziennie, ile na jednym
+ * koncie po zdrowotnej i PIT, ile to daje dziennie, ile na jednym
  * zamówieniu i z ilu arkuszy. Zysk operacyjny (przed obciążeniami) jest
  * podpisany pod hero-kafelkiem i rozpisany w rachunku niżej — osobny kafelek
  * na niego dublowałby to, co już widać.
@@ -98,7 +98,7 @@ export function ProfitSummary({
       <StatTile
         label="Do ręki"
         value={formatPln(tax.profitAfterTax)}
-        hint={`po ZUS, zdrowotnej i PIT — operacyjnie ${shortPln(stats.profit)}`}
+        hint={`po zdrowotnej i PIT — operacyjnie ${shortPln(stats.profit)}`}
         hero
         className="col-span-2"
       />
@@ -110,7 +110,7 @@ export function ProfitSummary({
       <StatTile
         label="Zysk z zamówienia"
         value={sales ? formatPln(stats.profitPerSale) : "—"}
-        hint={sales ? `średnio z ${sales} ${salesLabel(sales)}, przed ZUS i PIT` : "brak sprzedaży"}
+        hint={sales ? `średnio z ${sales} ${salesLabel(sales)}, przed zdrowotną i PIT` : "brak sprzedaży"}
       />
       <StatTile
         label="Sprzedane arkusze"
@@ -167,19 +167,16 @@ function BreakdownRow({
 
 /**
  * Cały rachunek okresu w jednej kolumnie: od tego, co wpłacili klienci, do
- * tego, co realnie zostaje w kieszeni po ZUS, zdrowotnej i PIT. Każda linia
+ * tego, co realnie zostaje w kieszeni po zdrowotnej i PIT. Każda linia
  * jest sprawdzalna kalkulatorem.
  */
 export function ProfitBreakdown({
   stats,
   tax,
-  months = 0,
 }: {
   stats: PeriodStats;
-  /** Pominięte dla przykładu jednego zamówienia — ZUS i PIT nie liczą się od pojedynczej sprzedaży. */
+  /** Pominięte dla przykładu jednego zamówienia — PIT nie liczy się od pojedynczej sprzedaży. */
   tax?: TaxBreakdown;
-  /** Miesięcy w okresie — ZUS to stawka miesięczna, więc mnożnik podpisu. */
-  months?: number;
 }) {
   const sales = pricedSales(stats);
 
@@ -219,14 +216,8 @@ export function ProfitBreakdown({
               Obciążenia właściciela
             </p>
             <BreakdownRow
-              label="ZUS społeczny"
-              hint={months > 1 ? `${months} × ${formatPln(TAX_RATES.zusSocialMonthly)}` : "pełny ZUS"}
-              amount={tax.zusSocial}
-              sign="−"
-            />
-            <BreakdownRow
               label="Składka zdrowotna"
-              hint={`${Math.round(TAX_RATES.healthInsuranceRate * 100)}% dochodu po ZUS`}
+              hint={`${Math.round(TAX_RATES.healthInsuranceRate * 100)}% dochodu`}
               amount={tax.healthInsurance}
               sign="−"
             />
@@ -245,7 +236,7 @@ export function ProfitBreakdown({
           Koszty z fakturą (arkusze, kurier) odejmujemy w kwotach netto — VAT z nich odliczasz.
           Koszt dodatkowy schodzi w pełnej kwocie brutto.
           {tax &&
-            " ZUS i PIT liczone dla pełnego ZUS na skali podatkowej, próg 32% narastająco od stycznia — realna kwota zależy od Twojej bieżącej deklaracji ZUS."}
+            " Zdrowotna i PIT liczone na skali podatkowej, próg 32% narastająco od stycznia. Bez ZUS społecznego — to stała opłata miesięczna, niezależna od sprzedaży, więc świadomie zostaje poza tym rachunkiem."}
         </p>
       </div>
 
@@ -292,12 +283,6 @@ export function ProfitBreakdown({
                 Na arkusz, średnio w tym okresie
               </p>
               <div className="flex justify-between gap-3">
-                <span className="font-medium text-muted-foreground">− ZUS</span>
-                <span className="font-bold tabular-nums">
-                  {stats.sheets ? formatPln(tax.zusSocial / stats.sheets) : "—"}
-                </span>
-              </div>
-              <div className="flex justify-between gap-3">
                 <span className="font-medium text-muted-foreground">− Zdrowotna</span>
                 <span className="font-bold tabular-nums">
                   {stats.sheets ? formatPln(tax.healthInsurance / stats.sheets) : "—"}
@@ -316,10 +301,9 @@ export function ProfitBreakdown({
                 </span>
               </div>
               <p className="text-xs font-medium text-muted-foreground mt-1">
-                ZUS to stała opłata miesięczna, nie rośnie z liczbą sprzedanych arkuszy — ta kwota
-                to tylko koszt ZUS tego okresu rozłożony na sprzedane sztuki, więc mocno skacze
-                między miesiącami słabszymi i mocniejszymi sprzedażowo. Zdrowotna i PIT liczą się
-                od dochodu, więc trzymają się bliżej stałej stawki.
+                Zdrowotna i PIT liczą się od dochodu, więc na arkusz trzymają się blisko stałej
+                stawki. Bez ZUS-u społecznego — to stała opłata miesięczna niezależna od
+                sprzedaży, więc rozkładanie jej na sztuki tylko by myliło.
               </p>
             </>
           )}
@@ -330,7 +314,7 @@ export function ProfitBreakdown({
 }
 
 /**
- * Rozkład zysku w czasie (po ZUS, zdrowotnej i PIT). Słupki są proporcjonalne
+ * Rozkład zysku w czasie (po zdrowotnej i PIT). Słupki są proporcjonalne
  * do najlepszego miesiąca — chodzi o wyłapanie trendu, nie o odczyt
  * dokładnych wartości (te są w tabeli).
  */
@@ -375,7 +359,7 @@ export function MonthlyTable({ months }: { months: MonthlyStatsWithTax[] }) {
       costTotal: round2(sum.costTotal + month.costTotal),
       profit: round2(sum.profit + month.profit),
       netRevenue: round2(sum.netRevenue + month.netRevenue),
-      zusAndPit: round2(sum.zusAndPit + month.zusSocial + month.healthInsurance + month.pit),
+      tax: round2(sum.tax + month.healthInsurance + month.pit),
       profitAfterTax: round2(sum.profitAfterTax + month.profitAfterTax),
     }),
     {
@@ -386,7 +370,7 @@ export function MonthlyTable({ months }: { months: MonthlyStatsWithTax[] }) {
       costTotal: 0,
       profit: 0,
       netRevenue: 0,
-      zusAndPit: 0,
+      tax: 0,
       profitAfterTax: 0,
     }
   );
@@ -400,7 +384,7 @@ export function MonthlyTable({ months }: { months: MonthlyStatsWithTax[] }) {
     "Obrót brutto",
     "Koszty",
     "Zysk operacyjny",
-    "ZUS + zdrow. + PIT",
+    "Zdrow. + PIT",
     "Do ręki",
     "Marża",
   ];
@@ -444,7 +428,7 @@ export function MonthlyTable({ months }: { months: MonthlyStatsWithTax[] }) {
                 {formatPln(month.profit)}
               </td>
               <td className="py-2.5 pr-4 tabular-nums text-muted-foreground whitespace-nowrap">
-                −{formatPln(month.zusSocial + month.healthInsurance + month.pit)}
+                −{formatPln(month.healthInsurance + month.pit)}
               </td>
               <td className="py-2.5 pr-4 tabular-nums font-extrabold text-primary whitespace-nowrap">
                 {formatPln(month.profitAfterTax)}
@@ -464,7 +448,7 @@ export function MonthlyTable({ months }: { months: MonthlyStatsWithTax[] }) {
             <td className="py-3 pr-4 tabular-nums">{formatPln(total.gross)}</td>
             <td className="py-3 pr-4 tabular-nums">{formatPln(total.costTotal)}</td>
             <td className="py-3 pr-4 tabular-nums">{formatPln(total.profit)}</td>
-            <td className="py-3 pr-4 tabular-nums">−{formatPln(total.zusAndPit)}</td>
+            <td className="py-3 pr-4 tabular-nums">−{formatPln(total.tax)}</td>
             <td className="py-3 pr-4 tabular-nums text-primary">{formatPln(total.profitAfterTax)}</td>
             <td className="py-3 pr-4 tabular-nums">{totalMargin}%</td>
           </tr>
@@ -504,14 +488,9 @@ export function CostModel({ example }: { example: PeriodStats }) {
 
   const ownerRates = [
     {
-      label: "ZUS społeczny",
-      value: `${formatPln(TAX_RATES.zusSocialMonthly)} / mies.`,
-      hint: "pełny ZUS, stała kwota niezależna od sprzedaży",
-    },
-    {
       label: "Składka zdrowotna",
       value: `${Math.round(TAX_RATES.healthInsuranceRate * 100)}%`,
-      hint: "od dochodu po ZUS społecznym, na skali",
+      hint: "od dochodu (zysku operacyjnego), na skali",
     },
     {
       label: "PIT — skala",
@@ -567,9 +546,9 @@ export function CostModel({ example }: { example: PeriodStats }) {
         </p>
         <ProfitBreakdown stats={example} />
         <p className="text-xs font-medium text-muted-foreground mt-3">
-          ZUS jest miesięczny, nie od zamówienia, więc w przykładzie jednego zamówienia
-          rachunek kończy się na zysku operacyjnym — pełny rachunek z ZUS i PIT jest w
-          kartach zysku wyżej.
+          Zdrowotna i PIT liczą się narastająco w miesiącu i w roku, nie od pojedynczego
+          zamówienia, więc w tym przykładzie rachunek kończy się na zysku operacyjnym — pełny
+          rachunek ze zdrowotną i PIT jest w kartach zysku wyżej.
         </p>
       </div>
     </div>

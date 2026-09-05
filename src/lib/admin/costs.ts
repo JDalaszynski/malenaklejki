@@ -22,14 +22,13 @@ export const COST_RATES = {
 } as const;
 
 /**
- * Stawki ZUS i PIT na skali podatkowej (2026) — do dociążenia zysku
- * operacyjnego realnymi obciążeniami jednoosobowej działalności. Zmieniają
- * się co roku (ZUS zawsze, progi PIT rzadziej), więc warto je co roku
- * zweryfikować z bieżącą deklaracją ZUS DRA i przepisami.
+ * Stawki PIT na skali podatkowej (2026) — do dociążenia zysku operacyjnego
+ * realnymi obciążeniami jednoosobowej działalności. Świadomie bez ZUS
+ * społecznego: to stała opłata miesięczna niezależna od sprzedaży, więc
+ * w statystykach sklepu tylko zniekształcała obraz zamiast go doprecyzować.
+ * Progi PIT zmieniają się rzadko, ale warto je raz do roku zweryfikować.
  */
 export const TAX_RATES = {
-  /** Pełny ZUS społeczny (eme+rent+chorobowe+wypadkowe+FP), bez zdrowotnej. */
-  zusSocialMonthly: 1926.77,
   /** Składka zdrowotna na skali — 9% dochodu, nieodliczana od podstawy PIT od 2022. */
   healthInsuranceRate: 0.09,
   /** Próg drugiej stawki PIT, dochód narastająco w roku kalendarzowym. */
@@ -377,7 +376,7 @@ export function yearMonthlyBreakdown(entries: SalesEntry[], year: number): Month
   );
 }
 
-/** Wszystkie miesiące od pierwszej sprzedaży do dziś — dla ZUS/PIT „cały czas". */
+/** Wszystkie miesiące od pierwszej sprzedaży do dziś — dla PIT „cały czas". */
 export function allTimeMonthlyBreakdown(entries: SalesEntry[], firstSaleIso: string): MonthlyStats[] {
   const from = firstSaleIso ? monthKey(firstSaleIso) : "";
   if (!from) return [];
@@ -389,24 +388,22 @@ export function allTimeMonthlyBreakdown(entries: SalesEntry[], firstSaleIso: str
 }
 
 /**
- * Obciążenia jednej sprzedaży ZUS-em i podatkiem nie mają sensu — ZUS jest
- * miesięczny, a PIT liczy się narastająco. Dlatego rachunek zawsze zaczyna
- * się od `PeriodStats` całego miesiąca, nie od pojedynczego zamówienia.
+ * Obciążenie jednej sprzedaży podatkiem nie ma sensu — PIT liczy się
+ * narastająco w roku. Dlatego rachunek zawsze zaczyna się od `PeriodStats`
+ * całego miesiąca, nie od pojedynczego zamówienia.
  */
 export type TaxBreakdown = {
-  zusSocial: number;
   healthInsurance: number;
-  /** Dochód po ZUS społecznym — podstawa i zdrowotnej, i PIT. */
+  /** Dochód (zysk operacyjny) — podstawa i zdrowotnej, i PIT. */
   pitBase: number;
   pit: number;
-  /** To, co faktycznie zostaje na koncie po ZUS, zdrowotnej i PIT. */
+  /** To, co faktycznie zostaje na koncie po zdrowotnej i PIT. */
   profitAfterTax: number;
   /** `profitAfterTax` na dzień — 0 poza kontekstem miesiąca (patrz `sumTaxes`). */
   profitAfterTaxPerDay: number;
 };
 
 export const EMPTY_TAX: TaxBreakdown = {
-  zusSocial: 0,
   healthInsurance: 0,
   pitBase: 0,
   pit: 0,
@@ -417,19 +414,17 @@ export const EMPTY_TAX: TaxBreakdown = {
 export type MonthlyStatsWithTax = MonthlyStats & TaxBreakdown;
 
 /**
- * Dokłada ZUS, składkę zdrowotną i PIT do miesięcznych zestawień.
+ * Dokłada składkę zdrowotną i PIT do miesięcznych zestawień.
  *
  * Zakłada, że `months` idzie chronologicznie i liczy próg 120 000 zł
  * narastająco od stycznia każdego roku w tej liście — jeśli okno nie zaczyna
  * się w styczniu (np. starszy rok w widoku „ostatnie 12 miesięcy"), próg
  * liczy się od początku okna, nie od stycznia tamtego roku.
  *
- * `activeFrom` (`RRRR-MM` pierwszej sprzedaży) pomija ZUS dla miesięcy sprzed
- * niej — bez tego okno „ostatnie 12 miesięcy" czy „rok" doliczałoby pełny ZUS
- * do miesięcy sprzed startu sklepu, których obrót i tak jest zerowy, i cały
- * okres wychodziłby na fikcyjnym minusie.
+ * Świadomie bez ZUS społecznego: to stała opłata miesięczna niezależna od
+ * sprzedaży, więc w statystykach sklepu tylko zniekształcała obraz zysku.
  */
-export function withTaxes(months: MonthlyStats[], activeFrom?: string): MonthlyStatsWithTax[] {
+export function withTaxes(months: MonthlyStats[]): MonthlyStatsWithTax[] {
   let yearCumulativeBase = 0;
   let currentYear = "";
 
@@ -440,12 +435,7 @@ export function withTaxes(months: MonthlyStats[], activeFrom?: string): MonthlyS
       yearCumulativeBase = 0;
     }
 
-    if (activeFrom && month.month < activeFrom) {
-      return { ...month, ...EMPTY_TAX };
-    }
-
-    const zusSocial = round2(TAX_RATES.zusSocialMonthly);
-    const pitBase = round2(Math.max(0, month.profit - zusSocial));
+    const pitBase = round2(Math.max(0, month.profit));
     const healthInsurance = round2(pitBase * TAX_RATES.healthInsuranceRate);
 
     const remainingLowBracket = Math.max(0, TAX_RATES.pitThreshold - yearCumulativeBase);
@@ -457,12 +447,11 @@ export function withTaxes(months: MonthlyStats[], activeFrom?: string): MonthlyS
       lowBracketPortion * TAX_RATES.pitRateLow + highBracketPortion * TAX_RATES.pitRateHigh
     );
     const pit = round2(Math.max(0, pitBeforeRelief - TAX_RATES.taxReliefMonthly));
-    const profitAfterTax = round2(month.profit - zusSocial - healthInsurance - pit);
+    const profitAfterTax = round2(month.profit - healthInsurance - pit);
     const profitAfterTaxPerDay = month.days ? round2(profitAfterTax / month.days) : 0;
 
     return {
       ...month,
-      zusSocial,
       healthInsurance,
       pitBase,
       pit,
@@ -473,14 +462,13 @@ export function withTaxes(months: MonthlyStats[], activeFrom?: string): MonthlyS
 }
 
 /**
- * Suma ZUS/PIT po miesiącach — dla kart okresu, które pokazują jedną liczbę.
- * `profitAfterTaxPerDay` w wyniku jest zerowe — dzielnik (dni okresu) ustala
- * wywołujący, bo różni się dla „ten miesiąc", roku i całej historii.
+ * Suma zdrowotnej/PIT po miesiącach — dla kart okresu, które pokazują jedną
+ * liczbę. `profitAfterTaxPerDay` w wyniku jest zerowe — dzielnik (dni okresu)
+ * ustala wywołujący, bo różni się dla „ten miesiąc", roku i całej historii.
  */
 export function sumTaxes(months: TaxBreakdown[]): TaxBreakdown {
   return months.reduce(
     (sum, month) => ({
-      zusSocial: round2(sum.zusSocial + month.zusSocial),
       healthInsurance: round2(sum.healthInsurance + month.healthInsurance),
       pitBase: round2(sum.pitBase + month.pitBase),
       pit: round2(sum.pit + month.pit),

@@ -70,10 +70,8 @@ export type StatsPeriod = {
   label: string;
   caption: string;
   stats: PeriodStats;
-  /** ZUS, zdrowotna i PIT za ten sam okres. */
+  /** Zdrowotna i PIT za ten sam okres. */
   tax: TaxBreakdown;
-  /** Liczba miesięcy w okresie — ZUS to stawka miesięczna, więc mnożnik hintu. */
-  months: number;
   /** Dni, przez które dzielimy zysk — 0, gdy średnia dzienna nie ma sensu. */
   days: number;
   profitPerDay: number;
@@ -123,7 +121,7 @@ export function StatsOverview({ periods }: { periods: StatsPeriod[] }) {
       )}
 
       <Details summary="Rachunek — od wpłat klientów do tego, co zostaje na koncie">
-        <ProfitBreakdown stats={period.stats} tax={period.tax} months={period.months} />
+        <ProfitBreakdown stats={period.stats} tax={period.tax} />
       </Details>
     </Card>
   );
