@@ -69,9 +69,11 @@ export function delta(current: number, previous: number): string {
 }
 
 /**
- * Pięć liczb, po które wchodzi się na tę stronę: ile realnie zostaje na
- * koncie po ZUS, zdrowotnej i PIT, ile to daje dziennie, ile na czysto
- * operacyjnie, ile na jednym zamówieniu i z ilu arkuszy.
+ * Cztery liczby, po które wchodzi się na tę stronę: ile realnie zostaje na
+ * koncie po ZUS, zdrowotnej i PIT, ile to daje dziennie, ile na jednym
+ * zamówieniu i z ilu arkuszy. Zysk operacyjny (przed obciążeniami) jest
+ * podpisany pod hero-kafelkiem i rozpisany w rachunku niżej — osobny kafelek
+ * na niego dublowałby to, co już widać.
  */
 export function ProfitSummary({
   stats,
@@ -92,7 +94,7 @@ export function ProfitSummary({
     : `${stats.orders} ${plural(stats.orders, "zamówienie", "zamówienia", "zamówień")}`;
 
   return (
-    <div className="grid grid-cols-2 lg:grid-cols-6 gap-3">
+    <div className="grid grid-cols-2 lg:grid-cols-5 gap-3">
       <StatTile
         label="Do ręki"
         value={formatPln(tax.profitAfterTax)}
@@ -106,14 +108,9 @@ export function ProfitSummary({
         hint={days ? `do ręki ÷ ${days} ${daysLabel(days)}` : "poza skalą okresu"}
       />
       <StatTile
-        label="Zysk operacyjny"
-        value={formatPln(stats.profit)}
-        hint="przed ZUS, zdrowotną i PIT"
-      />
-      <StatTile
         label="Zysk z zamówienia"
         value={sales ? formatPln(stats.profitPerSale) : "—"}
-        hint={sales ? `średnio z ${sales} ${salesLabel(sales)}, operacyjnie` : "brak sprzedaży"}
+        hint={sales ? `średnio z ${sales} ${salesLabel(sales)}, przed ZUS i PIT` : "brak sprzedaży"}
       />
       <StatTile
         label="Sprzedane arkusze"
@@ -218,6 +215,9 @@ export function ProfitBreakdown({
         <BreakdownRow label="Zysk operacyjny" amount={stats.profit} sign="=" total={!tax} />
         {tax && (
           <>
+            <p className="text-[11px] font-black uppercase tracking-wider text-muted-foreground mt-4 pt-3 border-t border-border/60">
+              Obciążenia właściciela
+            </p>
             <BreakdownRow
               label="ZUS społeczny"
               hint={months > 1 ? `${months} × ${formatPln(TAX_RATES.zusSocialMonthly)}` : "pełny ZUS"}
@@ -273,32 +273,6 @@ export function ProfitBreakdown({
             w koszty firmy, więc nie daje odliczenia.
           </p>
         </div>
-
-        {tax && (
-          <div className="rounded-2xl border border-border/60 bg-muted/20 p-4 flex flex-col gap-3">
-            <p className="text-[11px] font-black uppercase tracking-wider text-muted-foreground">
-              ZUS i PIT
-            </p>
-            <dl className="flex flex-col gap-1.5 text-sm">
-              <div className="flex justify-between gap-3">
-                <dt className="font-medium text-muted-foreground">ZUS społeczny</dt>
-                <dd className="font-bold tabular-nums">−{formatPln(tax.zusSocial)}</dd>
-              </div>
-              <div className="flex justify-between gap-3">
-                <dt className="font-medium text-muted-foreground">Zdrowotna</dt>
-                <dd className="font-bold tabular-nums">−{formatPln(tax.healthInsurance)}</dd>
-              </div>
-              <div className="flex justify-between gap-3">
-                <dt className="font-medium text-muted-foreground">PIT</dt>
-                <dd className="font-bold tabular-nums">−{formatPln(tax.pit)}</dd>
-              </div>
-              <div className="flex justify-between gap-3 border-t border-border/60 pt-1.5">
-                <dt className="font-extrabold">Do ręki</dt>
-                <dd className="font-extrabold tabular-nums">{formatPln(tax.profitAfterTax)}</dd>
-              </div>
-            </dl>
-          </div>
-        )}
 
         <div className="rounded-2xl border border-border/60 bg-muted/20 p-4 flex flex-col gap-1.5 text-sm">
           <div className="flex justify-between gap-3">
@@ -365,7 +339,6 @@ export function MonthlyTable({ months }: { months: MonthlyStatsWithTax[] }) {
       netRevenue: round2(sum.netRevenue + month.netRevenue),
       zusAndPit: round2(sum.zusAndPit + month.zusSocial + month.healthInsurance + month.pit),
       profitAfterTax: round2(sum.profitAfterTax + month.profitAfterTax),
-      days: sum.days + month.days,
     }),
     {
       orders: 0,
@@ -377,12 +350,10 @@ export function MonthlyTable({ months }: { months: MonthlyStatsWithTax[] }) {
       netRevenue: 0,
       zusAndPit: 0,
       profitAfterTax: 0,
-      days: 0,
     }
   );
 
   const totalMargin = total.netRevenue ? Math.round((total.profit / total.netRevenue) * 100) : 0;
-  const totalPerDay = total.days ? round2(total.profitAfterTax / total.days) : 0;
 
   const headings = [
     "Miesiąc",
@@ -393,7 +364,6 @@ export function MonthlyTable({ months }: { months: MonthlyStatsWithTax[] }) {
     "Zysk operacyjny",
     "ZUS + zdrow. + PIT",
     "Do ręki",
-    "Do ręki / dzień",
     "Marża",
   ];
 
@@ -441,9 +411,6 @@ export function MonthlyTable({ months }: { months: MonthlyStatsWithTax[] }) {
               <td className="py-2.5 pr-4 tabular-nums font-extrabold text-primary whitespace-nowrap">
                 {formatPln(month.profitAfterTax)}
               </td>
-              <td className="py-2.5 pr-4 tabular-nums font-bold whitespace-nowrap">
-                {formatPln(month.profitAfterTaxPerDay)}
-              </td>
               <td className="py-2.5 pr-4 tabular-nums text-muted-foreground">{month.margin}%</td>
             </tr>
           ))}
@@ -461,7 +428,6 @@ export function MonthlyTable({ months }: { months: MonthlyStatsWithTax[] }) {
             <td className="py-3 pr-4 tabular-nums">{formatPln(total.profit)}</td>
             <td className="py-3 pr-4 tabular-nums">−{formatPln(total.zusAndPit)}</td>
             <td className="py-3 pr-4 tabular-nums text-primary">{formatPln(total.profitAfterTax)}</td>
-            <td className="py-3 pr-4 tabular-nums">{formatPln(totalPerDay)}</td>
             <td className="py-3 pr-4 tabular-nums">{totalMargin}%</td>
           </tr>
         </tbody>
@@ -498,18 +464,63 @@ export function CostModel({ example }: { example: PeriodStats }) {
     },
   ];
 
+  const ownerRates = [
+    {
+      label: "ZUS społeczny",
+      value: `${formatPln(TAX_RATES.zusSocialMonthly)} / mies.`,
+      hint: "pełny ZUS, stała kwota niezależna od sprzedaży",
+    },
+    {
+      label: "Składka zdrowotna",
+      value: `${Math.round(TAX_RATES.healthInsuranceRate * 100)}%`,
+      hint: "od dochodu po ZUS społecznym, na skali",
+    },
+    {
+      label: "PIT — skala",
+      value: `${Math.round(TAX_RATES.pitRateLow * 100)} / ${Math.round(TAX_RATES.pitRateHigh * 100)}%`,
+      hint: `do / powyżej ${formatPln(TAX_RATES.pitThreshold)} dochodu rocznie`,
+    },
+    {
+      label: "Ulga podatkowa",
+      value: `${formatPln(TAX_RATES.taxReliefMonthly)} / mies.`,
+      hint: "kwota zmniejszająca PIT, bez przenoszenia na kolejny miesiąc",
+    },
+  ];
+
   return (
     <div className="flex flex-col gap-5">
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
-        {rates.map((rate) => (
-          <div key={rate.label} className="rounded-2xl border border-border/60 bg-muted/20 p-4">
-            <p className="text-[11px] font-black uppercase tracking-wider text-muted-foreground">
-              {rate.label}
-            </p>
-            <p className="text-lg font-extrabold tabular-nums mt-1">{rate.value}</p>
-            <p className="text-xs font-medium text-muted-foreground mt-0.5">{rate.hint}</p>
-          </div>
-        ))}
+      <div>
+        <p className="text-[11px] font-black uppercase tracking-wider text-muted-foreground mb-3">
+          Koszty sprzedaży
+        </p>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+          {rates.map((rate) => (
+            <div key={rate.label} className="rounded-2xl border border-border/60 bg-muted/20 p-4">
+              <p className="text-[11px] font-black uppercase tracking-wider text-muted-foreground">
+                {rate.label}
+              </p>
+              <p className="text-lg font-extrabold tabular-nums mt-1">{rate.value}</p>
+              <p className="text-xs font-medium text-muted-foreground mt-0.5">{rate.hint}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div>
+        <p className="text-[11px] font-black uppercase tracking-wider text-muted-foreground mb-3">
+          Obciążenia właściciela — skala podatkowa
+        </p>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+          {ownerRates.map((rate) => (
+            <div key={rate.label} className="rounded-2xl border border-border/60 bg-muted/20 p-4">
+              <p className="text-[11px] font-black uppercase tracking-wider text-muted-foreground">
+                {rate.label}
+              </p>
+              <p className="text-lg font-extrabold tabular-nums mt-1">{rate.value}</p>
+              <p className="text-xs font-medium text-muted-foreground mt-0.5">{rate.hint}</p>
+            </div>
+          ))}
+        </div>
       </div>
 
       <div className="rounded-2xl border border-border/60 p-4 sm:p-5">
@@ -517,6 +528,11 @@ export function CostModel({ example }: { example: PeriodStats }) {
           Przykład: jedno zamówienie na 1 arkusz za {formatPln(example.gross)}
         </p>
         <ProfitBreakdown stats={example} />
+        <p className="text-xs font-medium text-muted-foreground mt-3">
+          ZUS jest miesięczny, nie od zamówienia, więc w przykładzie jednego zamówienia
+          rachunek kończy się na zysku operacyjnym — pełny rachunek z ZUS i PIT jest w
+          kartach zysku wyżej.
+        </p>
       </div>
     </div>
   );
