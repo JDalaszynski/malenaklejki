@@ -4,7 +4,12 @@ import { notFound } from "next/navigation";
 import { ArrowLeft, Download, FileText } from "lucide-react";
 
 import { AdminLayout, Card } from "@/components/admin/AdminLayout";
-import { BaseLinkerButton, DangerZone, InvoiceControls } from "@/components/admin/OrderActions";
+import {
+  BaseLinkerButton,
+  DangerZone,
+  InvoiceControls,
+  StatsExclusionToggle,
+} from "@/components/admin/OrderActions";
 import { OrderEditForm } from "@/components/admin/OrderEditForm";
 import { StatusControls } from "@/components/admin/StatusControls";
 import { StatusPill } from "@/components/account/StatusPill";
@@ -73,6 +78,7 @@ export default async function AdminOrderPage({ params }: { params: Promise<{ id:
           <StatusPill tone={fulfillment.tone}>{fulfillment.label}</StatusPill>
           {order.billing.wantsInvoice && <StatusPill tone="info">Faktura VAT</StatusPill>}
           {order.deletedAt && <StatusPill tone="danger">W koszu</StatusPill>}
+          {order.excludedFromStats && <StatusPill tone="warning">Poza statystykami</StatusPill>}
           <StatusPill tone="neutral">Źródło: {order.source}</StatusPill>
           {order.userId ? (
             <StatusPill tone="success">Przypisane do konta</StatusPill>
@@ -100,6 +106,10 @@ export default async function AdminOrderPage({ params }: { params: Promise<{ id:
         }
       >
         <ProfitBreakdown stats={finance} />
+
+        <div className="mt-5 pt-5 border-t border-border/60">
+          <StatsExclusionToggle orderId={order.id} excluded={order.excludedFromStats} />
+        </div>
       </Card>
 
       <Card

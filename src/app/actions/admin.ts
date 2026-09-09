@@ -290,6 +290,53 @@ export async function updateOrder(raw: unknown): Promise<Result> {
 }
 
 /* ------------------------------------------------------------------ */
+/* Statystyki                                                          */
+/* ------------------------------------------------------------------ */
+
+const statsExclusionSchema = z.object({
+  orderId: z.string().min(1).max(128),
+  excluded: z.boolean(),
+});
+
+/**
+ * Wypisanie zamówienia ze statystyk.
+ *
+ * Dotyczy wyłącznie strony ze statystykami (zysk, arkusze, podatki) — do
+ * ewidencji sprzedaży i pliku CSV zamówienie wchodzi dalej normalnie, bo
+ * księgowo nadal jest sprzedażą. Do kosza to nie ma nic wspólnego: zamówienie
+ * zostaje na liście i w raportach.
+ */
+export async function setOrderStatsExclusion(raw: unknown): Promise<Result> {
+  const actor = await requireAdminActor();
+  if (!actor) return DENIED;
+
+  const parsed = statsExclusionSchema.safeParse(raw);
+  if (!parsed.success) return { success: false, error: "Błędne dane." };
+  const { orderId, excluded } = parsed.data;
+
+  const ref = db.collection("orders").doc(orderId);
+  const snapshot = await ref.get();
+  if (!snapshot.exists) return { success: false, error: "Zamówienie nie istnieje." };
+
+  const before = snapshot.data()!;
+  if (Boolean(before.excludedFromStats) === excluded) return { success: true };
+
+  await ref.update({ excludedFromStats: excluded, updatedAt: new Date().toISOString() });
+  await recordAudit({
+    actorEmail: actor.email,
+    action: excluded ? "Wyłączenie ze statystyk" : "Włączenie do statystyk",
+    orderId,
+    orderNumber: before.orderNumber,
+    details: excluded
+      ? "zamówienie pomijane w statystykach (ewidencja CSV bez zmian)"
+      : "zamówienie znów liczone w statystykach",
+  });
+
+  refreshAdminViews(orderId);
+  return { success: true };
+}
+
+/* ------------------------------------------------------------------ */
 /* Kosz                                                                */
 /* ------------------------------------------------------------------ */
 

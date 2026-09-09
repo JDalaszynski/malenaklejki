@@ -10,6 +10,7 @@ import {
   moveOrderToTrash,
   pushOrderToBaseLinker,
   restoreOrder,
+  setOrderStatsExclusion,
 } from "@/app/actions/admin";
 import { FormAlert } from "@/components/auth/fields";
 import { formatDate } from "@/lib/orders/status";
@@ -155,6 +156,68 @@ export function InvoiceControls({
           Do sprawdzenia: {invoice.warnings.join(" ")}
         </p>
       )}
+
+      {error && (
+        <p className="text-xs font-bold text-destructive bg-destructive/10 border border-destructive/25 rounded-lg px-3 py-1.5">
+          {error}
+        </p>
+      )}
+    </div>
+  );
+}
+
+/**
+ * Wypisanie zamówienia ze statystyk — dla sprzedaży, która nie powinna zaburzać
+ * średnich (test, zamówienie dla siebie, reklamacja rozliczona osobno).
+ * Zapisuje się od razu, bo to jedno odhaczenie, a nie formularz.
+ */
+export function StatsExclusionToggle({
+  orderId,
+  excluded,
+}: {
+  orderId: string;
+  excluded: boolean;
+}) {
+  const router = useRouter();
+  const [isPending, startTransition] = useTransition();
+  const [checked, setChecked] = useState(excluded);
+  const [error, setError] = useState<string | null>(null);
+
+  const toggle = (next: boolean) => {
+    setChecked(next);
+    setError(null);
+    startTransition(async () => {
+      const result = await setOrderStatsExclusion({ orderId, excluded: next });
+      if (!result.success) {
+        setChecked(!next);
+        setError(result.error);
+        return;
+      }
+      router.refresh();
+    });
+  };
+
+  return (
+    <div className="flex flex-col gap-2">
+      <label className="flex items-start gap-3 cursor-pointer rounded-2xl border border-border/60 bg-muted/20 px-4 py-3">
+        <input
+          type="checkbox"
+          checked={checked}
+          disabled={isPending}
+          onChange={(event) => toggle(event.target.checked)}
+          className="mt-0.5 w-5 h-5 rounded border-gray-300 text-foreground focus:ring-foreground shrink-0 disabled:opacity-60"
+        />
+        <span className="text-sm font-semibold text-foreground leading-relaxed">
+          Nie licz tego zamówienia w statystykach
+          <span className="block text-xs font-medium text-muted-foreground mt-0.5">
+            Zysk, arkusze i podatki na stronie statystyk pominą to zamówienie. Do ewidencji
+            sprzedaży i pliku CSV wejdzie normalnie.
+          </span>
+        </span>
+        {isPending && (
+          <Loader2 className="w-4 h-4 animate-spin text-muted-foreground shrink-0" aria-hidden />
+        )}
+      </label>
 
       {error && (
         <p className="text-xs font-bold text-destructive bg-destructive/10 border border-destructive/25 rounded-lg px-3 py-1.5">

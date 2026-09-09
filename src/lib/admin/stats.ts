@@ -45,14 +45,24 @@ export function orderStats(order: AdminOrder): PeriodStats {
   ]);
 }
 
+/**
+ * Zamówienia i sprzedaż ręczna sprowadzone do wpisów statystyk.
+ *
+ * Zamówienia odhaczone w panelu jako wyłączone ze statystyk wypadają właśnie
+ * tutaj — to jedyne wejście do liczenia zysku, a ewidencja sprzedaży
+ * (`lib/admin/report`) idzie własną drogą i bierze je normalnie, bo do urzędu
+ * musi trafić każda transakcja.
+ */
 export function toSalesEntries(orders: AdminOrder[], manual: ManualSale[]): SalesEntry[] {
   return [
-    ...orders.map((order) => ({
-      date: statsDate(order),
-      sheets: countSheets(order),
-      gross: order.totals.total,
-      manual: false,
-    })),
+    ...orders
+      .filter((order) => !order.excludedFromStats)
+      .map((order) => ({
+        date: statsDate(order),
+        sheets: countSheets(order),
+        gross: order.totals.total,
+        manual: false,
+      })),
     ...manual.map((sale) => ({
       date: sale.soldAt,
       sheets: sale.sheets,

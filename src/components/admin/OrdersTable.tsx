@@ -89,6 +89,14 @@ export function OrdersTable({
                       FV
                     </span>
                   )}
+                  {order.excludedFromStats && (
+                    <span
+                      title="Wyłączone ze statystyk"
+                      className="ml-2 text-[10px] font-black uppercase tracking-wider text-muted-foreground"
+                    >
+                      BEZ STAT.
+                    </span>
+                  )}
                 </td>
                 <td className="py-3 pr-4 whitespace-nowrap font-medium text-muted-foreground tabular-nums">
                   {formatDateTime(order.createdAt)}
@@ -104,7 +112,11 @@ export function OrdersTable({
                 <td className="py-3 pr-4 whitespace-nowrap font-extrabold text-foreground tabular-nums">
                   {formatPln(order.totals.total)}
                 </td>
-                <td className="py-3 pr-4 whitespace-nowrap font-extrabold text-primary tabular-nums">
+                <td
+                  className={`py-3 pr-4 whitespace-nowrap font-extrabold tabular-nums ${
+                    order.excludedFromStats ? "text-muted-foreground" : "text-primary"
+                  }`}
+                >
                   {profit === null ? (
                     <span className="font-medium text-muted-foreground">—</span>
                   ) : (

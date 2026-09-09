@@ -26,6 +26,8 @@ export type AdminOrder = {
   deletedAt: string | null;
   status: string;
   fulfillmentStatus: string;
+  /** Zamówienie pominięte w statystykach (ewidencja CSV bierze je normalnie). */
+  excludedFromStats: boolean;
   trackingNumber: string | null;
   internalNote: string | null;
   userId: string | null;
@@ -83,6 +85,7 @@ export function toAdminOrder(id: string, data: FirebaseFirestore.DocumentData): 
     deletedAt: data.deletedAt ?? null,
     status: data.status ?? "PENDING_PAYMENT",
     fulfillmentStatus: data.fulfillmentStatus ?? "NEW",
+    excludedFromStats: Boolean(data.excludedFromStats),
     trackingNumber: data.trackingNumber ?? null,
     internalNote: data.internalNote ?? null,
     userId: data.userId ?? null,
