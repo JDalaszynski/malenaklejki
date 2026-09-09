@@ -1941,23 +1941,17 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
     return destCanvas;
   };
 
-  // Add sheet to Cart
-  const handleAddToCart = () => {
-    if (stickers.length === 0) return;
-
-    if (stickers.length === 1 && !showSingleStickerWarning) {
-      setShowSingleStickerWarning(true);
-      return;
-    }
-
+  // Walidacja arkusza wspólna dla wszystkich ścieżek dodania do koszyka
+  const validateSheetForCart = () => {
     const stickersWithNoCutLine = stickers.filter(
       (s) => s.cutLineType === "none",
     );
     if (stickersWithNoCutLine.length > 0) {
       const count = stickersWithNoCutLine.length;
       const noun = count === 1 ? "naklejki" : "naklejek";
+      setOverlappingStickerIds(stickersWithNoCutLine.map((s) => s.id));
       setError(`Wybierz linię cięcia dla ${count} ${noun} na arkuszu!`);
-      return;
+      return false;
     }
 
     // 1. Sprawdz czy linie ciecia naklejek mieszcza sie w marginesach bezpieczenstwa arkusza
@@ -1967,7 +1961,7 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
       setError(
         "Linie cięcia naklejek wychodzą poza margines bezpieczeństwa arkusza! Przesuń naklejki do środka.",
       );
-      return;
+      return false;
     }
 
     // 2. Sprawdź nachodzenie na siebie naklejek
@@ -1988,6 +1982,24 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
       setError(
         "Naklejki na arkuszu nachodzą na siebie! Uporządkuj je przed dodaniem do koszyka.",
       );
+      return false;
+    }
+
+    // Arkusz poprawny - skasuj ewentualny poprzedni komunikat o błędzie
+    setError(null);
+    return true;
+  };
+
+  // Add sheet to Cart
+  const handleAddToCart = () => {
+    if (stickers.length === 0) return;
+
+    // Waliduj przed pokazaniem modala o pojedynczej naklejce - inaczej
+    // "Dodaj do koszyka" w modalu omijałoby wszystkie kontrole.
+    if (!validateSheetForCart()) return;
+
+    if (stickers.length === 1 && !showSingleStickerWarning) {
+      setShowSingleStickerWarning(true);
       return;
     }
 
@@ -1996,6 +2008,10 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
 
   // Actual logic to save and add to cart after confirmation
   const executeAddToCart = async () => {
+    if (stickers.length === 0) return;
+    // Siatka bezpieczeństwa: żadna ścieżka nie może zapisać arkusza bez walidacji
+    if (!validateSheetForCart()) return;
+
     setIsAddingToCart(true);
     setError(null);
 
