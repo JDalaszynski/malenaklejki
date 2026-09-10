@@ -204,5 +204,12 @@ console.log("\n=== 7. ZMIENNE ŚRODOWISKOWE (lokalnie) ===");
 for (const v of ["NEXT_PUBLIC_APP_URL", "BREVO_API_KEY", "ADMIN_EMAIL", "CRON_SECRET"]) {
   env[v] ? ok(`${v} ustawione${v === "NEXT_PUBLIC_APP_URL" ? ` = ${env[v]}` : ""}`) : no(`${v} — brak`);
 }
+if (env.NEXT_PUBLIC_GA_ID) {
+  if (env.GA_MEASUREMENT_PROTOCOL_SECRET) {
+    ok("GA_MEASUREMENT_PROTOCOL_SECRET ustawione — zakup opłacony w P24 raportuje do GA4 serwer");
+  } else {
+    info("GA_MEASUREMENT_PROTOCOL_SECRET — brak (opcjonalne; zakup raportuje wtedy tylko przeglądarka)");
+  }
+}
 console.log("");
 process.exit(0);

@@ -4,6 +4,7 @@ import { db, FieldValue } from "@/lib/firebase/admin";
 import { z } from "zod";
 import { consumeRateLimit, formatRetryAfter } from "@/lib/auth/rateLimit";
 import { readSession } from "@/lib/auth/session";
+import { isServerPurchaseTrackingEnabled, readGaIdentifiers, toAnalyticsSheets } from "@/lib/orders/gaPurchase";
 import { attachCartLayout } from "@/lib/orders/layout";
 import { createAccountFromOrder } from "@/lib/auth/accountFromOrder";
 import { headers } from "next/headers";
@@ -184,6 +185,9 @@ async function doCreateOrder(rawData: any) {
     // `customerEmailLower` jest kluczem, po którym je wtedy odnajdujemy.
     const session = await readSession();
     const emailLower = finalData.email.toLowerCase().trim();
+    // Identyfikatory GA z ciasteczek (tylko po zgodzie na analitykę) — webhook P24
+    // przypisze po nich zakup do tej wizyty (patrz `sendPurchaseToGa`).
+    const gaIdentifiers = await readGaIdentifiers();
 
     const orderData = {
       id: orderRef.id,
@@ -191,6 +195,7 @@ async function doCreateOrder(rawData: any) {
       status: "PENDING_PAYMENT",
       fulfillmentStatus: "NEW",
       source: "shop",
+      analytics: gaIdentifiers ?? undefined,
       userId: session?.uid ?? null,
       customerEmailLower: emailLower,
       deletedAt: null,
@@ -393,13 +398,13 @@ export async function getOrderStatus(orderId: string) {
       paymentMethod: orderData.payment?.method || orderData.paymentMethod || null,
       // Pozycje bez danych klienta — tylko tyle, ile potrzeba do zdarzenia
       // `purchase` w GA4 (liczba arkuszy, cena, forma wykończenia).
-      items: Array.isArray(orderData.items)
-        ? orderData.items.map((item: Record<string, unknown>) => ({
-            sheetQuantity: Number(item.sheetQuantity) || 0,
-            pricePerSheet: Number(item.pricePerSheet) || 0,
-            deliveryForm: item.deliveryForm === "individual" ? ("individual" as const) : ("sheet" as const),
-          }))
-        : [],
+      items: toAnalyticsSheets(orderData.items),
+      // Płatność online przy zgodzie na analitykę raportuje do GA4 webhook P24
+      // (`sendPurchaseToGa`) — strona sukcesu wtedy już jej nie wysyła.
+      purchaseReportedByServer:
+        (orderData.payment?.method ?? orderData.paymentMethod) !== "przelew" &&
+        Boolean(orderData.analytics?.gaClientId) &&
+        isServerPurchaseTrackingEnabled(),
     };
   } catch (error: any) {
     console.error("getOrderStatus error:", error);

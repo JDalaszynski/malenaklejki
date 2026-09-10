@@ -44,15 +44,20 @@ function SuccessContent() {
     sheets: AnalyticsSheet[];
     shipping: number;
     paymentType: string;
+    reportedByServer: boolean;
   } | null>(null);
 
-  // Zakup liczymy w chwili, gdy klient widzi ekran sukcesu: po potwierdzeniu
-  // płatności P24/BLIK albo od razu przy przelewie tradycyjnym (zamówienie
-  // złożone, wpłata dopiero w drodze — rozróżnia je `payment_type`).
+  // Zakup liczymy w chwili, gdy klient widzi ekran sukcesu: przy przelewie
+  // tradycyjnym od razu (zamówienie złożone, wpłata w drodze — rozróżnia je
+  // `payment_type`), przy P24/BLIK po potwierdzeniu płatności. Płatność online
+  // przy zgodzie na analitykę raportuje już serwer z webhooka P24, więc tu ją
+  // pomijamy, żeby nie policzyć zakupu dwa razy.
   useEffect(() => {
     const number = orderNumber || orderNumberParam;
     if (paymentStatus !== "success" || !orderId || !number || !purchaseDetails) return;
-    trackPurchase({ orderId, orderNumber: number, ...purchaseDetails });
+    const { reportedByServer, ...details } = purchaseDetails;
+    if (reportedByServer) return;
+    trackPurchase({ orderId, orderNumber: number, ...details });
   }, [paymentStatus, orderId, orderNumber, orderNumberParam, purchaseDetails]);
 
   const pollCountRef = useRef(0);
@@ -70,6 +75,7 @@ function SuccessContent() {
                 sheets: res.items,
                 shipping: res.shipping || 0,
                 paymentType: res.paymentMethod || "przelew",
+                reportedByServer: Boolean(res.purchaseReportedByServer),
               });
             }
           }
@@ -97,6 +103,7 @@ function SuccessContent() {
               sheets: res.items,
               shipping: res.shipping || 0,
               paymentType: res.paymentMethod || "nieznana",
+              reportedByServer: Boolean(res.purchaseReportedByServer),
             });
           }
 

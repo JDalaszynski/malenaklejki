@@ -5,6 +5,7 @@ import { sweepAbandonedOrders } from "@/lib/orders/sweep";
 import { buildUnpaidOrderSellerEmailHtml } from "@/lib/emails";
 import { issueInvoiceForOrderSafely } from "@/lib/orders/invoicing";
 import { sendPaidOrderNotifications } from "@/lib/orders/notifications";
+import { sendPurchaseToGa } from "@/lib/orders/gaPurchase";
 
 export const dynamic = "force-dynamic";
 // Wystawienie faktury w inFakcie to kilka sekund odpytywania o status zlecenia,
@@ -186,6 +187,10 @@ export async function GET(req: NextRequest) {
 
         // Faktura w inFakcie — płatność odnaleziona po czasie księguje się tak samo.
         await issueInvoiceForOrderSafely(order.id);
+
+        // Zakup do GA4 — ta sama ścieżka co w webhooku P24, znacznik w zamówieniu
+        // chroni przed podwójnym wysłaniem.
+        await sendPurchaseToGa(order.id);
 
       } else {
         console.log(`Zamówienie ${order.orderNumber} NIE zostało opłacone. Oznaczanie jako PAYMENT_FAILED i wysyłanie alertu.`);

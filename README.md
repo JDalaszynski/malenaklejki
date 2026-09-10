@@ -206,6 +206,7 @@ Poniższa tabela przedstawia zestaw zmiennych wykorzystywanych przez aplikację:
 | `ADMIN_EMAIL` | Tak | Adres e-mail do odbierania powiadomień o zamówieniach (np. `kontakt@malenaklejki.pl`). |
 | `GEMINI_API_KEY` | Tak | Klucz API Google AI Studio / Gemini do wbudowanego generatora naklejek. |
 | `NEXT_PUBLIC_GA_ID` | Opcjonalnie | Identyfikator Google Analytics 4 (np. `G-XXXXXXXXXX`). |
+| `GA_MEASUREMENT_PROTOCOL_SECRET` | Opcjonalnie | Sekret API Measurement Protocol (GA4 → Administracja → Strumienie danych → strumień www → Sekrety interfejsu API Measurement Protocol). Z nim zakup opłacony przez Przelewy24 raportuje do GA4 serwer z webhooka, a nie przeglądarka. Tylko po stronie serwera - bez prefiksu `NEXT_PUBLIC_`. |
 | `NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION` | Opcjonalnie | Token weryfikacyjny Google Search Console. |
 | `BASELINKER_TOKEN` | Opcjonalnie | Token API do automatycznego przekazywania zamówień do BaseLinkera. |
 

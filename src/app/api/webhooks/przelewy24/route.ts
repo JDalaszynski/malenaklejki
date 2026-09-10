@@ -1,8 +1,9 @@
-import { NextRequest, NextResponse } from "next/server";
+import { after, NextRequest, NextResponse } from "next/server";
 import { verifyWebhookSignature, verifyTransaction } from "@/lib/p24";
 import { db } from "@/lib/firebase/admin";
 import { sendPaidOrderNotifications } from "@/lib/orders/notifications";
 import { issueInvoiceForOrderSafely } from "@/lib/orders/invoicing";
+import { sendPurchaseToGa } from "@/lib/orders/gaPurchase";
 
 export const dynamic = "force-dynamic";
 // Wystawienie faktury w inFakcie to kilka sekund odpytywania o status zlecenia,
@@ -75,6 +76,10 @@ export async function POST(req: NextRequest) {
     } else {
       console.log(`P24: Zamówienie ${sessionId} już PAID, ale bez potwierdzenia wysyłki — ponawiam powiadomienia.`);
     }
+
+    // Zakup do GA4 idzie po wysłaniu odpowiedzi — nie może opóźnić maili ani
+    // faktury, a `after` wykona się nawet wtedy, gdy któryś krok niżej rzuci.
+    after(() => sendPurchaseToGa(orderIdFromSession));
 
     // Najpierw maile, dopiero potem faktura.
     //

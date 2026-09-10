@@ -34,7 +34,7 @@ function send(eventName: string, params: Record<string, unknown>) {
   }
 }
 
-function toItems(sheets: AnalyticsSheet[], listName?: string) {
+export function toItems(sheets: AnalyticsSheet[], listName?: string) {
   return sheets.map((sheet, index) => ({
     item_id: "arkusz-a4",
     item_name: "Arkusz naklejek A4",
@@ -46,7 +46,7 @@ function toItems(sheets: AnalyticsSheet[], listName?: string) {
   }));
 }
 
-function sheetsValue(sheets: AnalyticsSheet[]) {
+export function sheetsValue(sheets: AnalyticsSheet[]) {
   const sum = sheets.reduce((acc, sheet) => acc + sheet.pricePerSheet * sheet.sheetQuantity, 0);
   return Math.round(sum * 100) / 100;
 }
