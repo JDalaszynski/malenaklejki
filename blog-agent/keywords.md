@@ -228,9 +228,24 @@ Klaster obsłużony wpisami **A1** (`ile-kosztuja-naklejki-na-zamowienie-cena-za
 
 ## 12. Sezonowe i kalendarzowe (domknięcie zaległego P3.5)
 
-* 🗓️ **Święta (okno publikacji 10-25.10, wpis B3):** `naklejki świąteczne`, `etykiety na prezenty`, `naklejki na prezenty świąteczne`, `naklejki bożonarodzeniowe`, `naklejki na słoiki jako prezent`.
+* 🗓️ **Święta (hub B3, okno publikacji 1-20.10; pełna strategia: `blog-agent/strategia-swieta-2026.md`):**
+    > ⚠️ **Wszystko poniżej to hipotezy.** Eksport GSC kończy się 2026-08-28 i nie zawiera ani jednego zapytania świątecznego. Zweryfikuj w eksportach za X i XI 2026, zanim oprzesz na tych frazach cokolwiek poza hubem i odświeżeniami.
+
+    | Klaster | Frazy | Strona docelowa | Status |
+    | :--- | :--- | :--- | :--- |
+    | Personalizowane naklejki świąteczne (rdzeń) | `naklejki świąteczne` (w tytule, ale z modyfikatorem), `naklejki świąteczne z własnym nadrukiem`, `personalizowane naklejki świąteczne`, `naklejki świąteczne na zamówienie`, `naklejki bożonarodzeniowe` | hub B3 | ✅ |
+    | Etykiety na prezenty | `etykiety na prezenty`, `naklejki na prezenty z imieniem`, `personalizowane etykiety na prezenty`, `naklejki do pakowania prezentów`, `naklejki na prezenty świąteczne` | hub B3 (H2) | ✅ |
+    | Prezent z kuchni | `etykiety na nalewki na prezent`, `naklejki na słoiki świąteczne`, `naklejki na słoiki jako prezent`, `prezent ze słoika`, `etykiety na pierniki` (⚠️ tylko na opakowanie) | hub B3 + odświeżenie nalewek i przetworów (P4.3.3) | ✅ |
+    | Prezent ze zdjęcia | `naklejki ze zdjęciem na prezent`, `prezent ze zdjęciem`, `naklejki z pupilem`, `prezent dla babci ze zdjęciem` | hub B3 + `naklejka-ze-zdjecia` + `/fotonaklejki` (P4.3.5) | ✅ |
+    | Paczki firmowe i e-commerce | `naklejki na paczki świąteczne`, `świąteczne naklejki z logo`, `naklejki na upominki firmowe`, `plomby na paczki świąteczne` | hub B3 + plomby + eventy (P4.3.4) | ✅ |
+    | Kalendarz adwentowy | `naklejki z numerami do kalendarza adwentowego`, `cyferki do kalendarza adwentowego` | **sekcja w hubie, nie osobna strona** (klaster mocno DIY) | 🟡 |
+    | Mikołajki (6.12) | `naklejki na mikołajki`, `drobny prezent na mikołajki` | akapit w hubie | 🟡 |
+    | Gotowe wzory bez personalizacji | `naklejki świąteczne dla dzieci`, `naklejki świąteczne` jako produkt gotowy | **nie celuj**, dopóki nie ma katalogu gotowych arkuszy (P1 z `analiza-nisz-2026-09-09.md`) | ⛔ |
+    | DIY / do druku | `naklejki świąteczne do druku`, `etykiety na prezenty do wydruku`, `... pdf` | **nie celuj** (decyzja odmowna `strategy.md` §7) | ⛔ |
+
+    * ⚠️ Granice: bez daty granicznej dostawy bez zgody właściciela, bez kontaktu z żywnością (pierniki: naklejka na opakowanie), bez tkanin, "nie do zmywarki" przy słoikach i butelkach, bez postaci licencjonowanych i znaków towarowych, bez ekspozycji naszego generatora AI.
 * 🗓️ **Szkoła (szczyt: przełom sierpnia i września; 438 wyśw., poz. 10,3 - drugi klaster serwisu):** `naklejki na zeszyty personalizowane` (150 wyśw.), `personalizowane naklejki na zeszyty` (78), `naklejki na zeszyty z imieniem i nazwiskiem` (43), `naklejki personalizowane na zeszyty` (41), `naklejki do przedszkola` (29), `naklejki personalizowane do szkoły` (23), `zestaw naklejek do szkoły`, `naklejki na zeszyty dla chłopca`.
-    * 💡 **Odrębna podintencja bez pokrycia:** `naklejki imienne na ubrania / metki / śniadaniówki / bidony` - to **inna potrzeba** niż "na zeszyty" i zasługuje na własny wpis. Przygotuj w **lipcu 2027**, nie w sierpniu (patrz `plan.md` → P4.2.1).
+    * 💡 **Odrębna podintencja bez pokrycia:** `naklejki imienne na rzeczy do przedszkola / śniadaniówki / bidony / pojemniki` - to **inna potrzeba** niż "na zeszyty" i zasługuje na własny wpis. Przygotuj w **lipcu 2027**, nie w sierpniu (patrz `plan.md` → P4.2.1). ⚠️ **Bez ubrań i metek** - naklejek na tkaninę nie oferujemy (`facts.md`; poprawka 2026-09-10). Przy bidonie i śniadaniówce napisz wprost "nie do zmywarki".
 * 🗓️ **E-commerce/paczki (listopad):** pokryte wpisem `plomby-na-paczki-wysylkowe-i-naklejki-na-przesylki` (2026-08-27) - w listopadzie odświeżenie i linkowanie, nie nowy wpis.
 * 🗓️ **Walentynki (styczeń):** brak pokrycia i brak danych - zaplanować w grudniu 2026.
 

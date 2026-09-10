@@ -30,6 +30,7 @@ Podczas pisania i formatowania **każdego** artykułu lub aktualizacji, Agencie,
 > 2. Sekcja **P4.2** to **aktualizacje istniejących treści**, też nie nowe artykuły.
 > 3. Nowy artykuł bierz **wyłącznie** z sekcji **P4.1**, pierwszy niezaznaczony, respektując okna publikacji (`🗓️`). Temat z oznaczeniem `🗓️ OKNO` poza swoim oknem **pomiń** i weź następny.
 > 4. Kolejka Fazy 3 (P2) jest **zamrożona** - jej niezrealizowane pozycje zostały przeniesione do P4.1 z nowym priorytetem wynikającym z danych GSC.
+> 5. **Sezon świąteczny (od 2026-09-10):** zadania z sekcji **P4.3** mają okna czasowe (`🗓️`). W swoim oknie mają **pierwszeństwo przed B5/B6** z P4.1. Poza oknem pomiń je tak samo jak B3. Uzasadnienie, brief huba i granice merytoryczne: `blog-agent/strategia-swieta-2026.md`.
 
 **Podstawa decyzji:** `blog-agent/strategy.md` §7 (pełna analiza) + eksport `blog-agent/GSC Dane Lipiec-Sierpień 2026/`.
 
@@ -104,11 +105,16 @@ Przy 7 428 wyświetleniach bloga podniesienie CTR z 1,13% do 2,5% to **około +1
     - **Dlaczego landing, nie wpis:** klaster wlepek jest **najlepszy w serwisie** (673 wyśw., 8 klik.), a `vlepki kibicowskie na zamówienie` ma **CTR 13,64%** - najwyższy w całym zbiorze. Frazy z leksyku produkcyjnego ("produkcja", "druk", "projekt") stoją na pozycji 35+, bo odpowiada na nie wpis **poradnikowy**, a Google chce tam strony **usługowej**. Identyczny błąd naprawiliśmy już przy `fotonaklejki` (poz. 27-39 -> **17,01** w miesiąc od zbudowania landingu).
     - **⚠️ Rozdział intencji (warunek konieczny):** wpis `wklepki-i-wlepy-z-wlasnym-nadrukiem-dla-artystow-i-spolecznosci` to najmocniejsza strona bloga (24 klik. / 1 323 wyśw.) i **zostaje przy intencji informacyjnej** ("co to są wlepki", "jak zrobić wlepki", społeczności/artyści). Landing bierze wyłącznie intencję zakupową. Bez tego rozdziału stworzymy kanibalizację i stracimy stronę, która dziś zarabia najwięcej na blogu.
 
-- [ ] **B3. 🗓️ OKNO PUBLIKACJI: 10-25 października 2026 - Naklejki świąteczne i etykiety na prezenty**
-    - *(przeniesione z Fazy 3 jako A5, treść zadania bez zmian - patrz sekcja "P2 - Kolejka artykułów Fazy 3" niżej)*
-    - **Format:** Supporting Article (~1200-1400 słów) | **Główna Fraza Kluczowa:** `naklejki świąteczne`
+- [ ] **B3. 🗓️ OKNO PUBLIKACJI: 1-20 października 2026 (cel: pierwszy tydzień) - Hub świąteczny: naklejki świąteczne i etykiety na prezenty**
+    - **Zmiana 2026-09-10:** okno przesunięte z 10-25.10 na 1-20.10, a brief rozbudowany do roli **huba sezonu**. Hub musi istnieć przed odświeżeniami z P4.3, które mają do niego linkować, a piny potrzebują czasu przed listopadem. Świeżość w szczycie odnawia realna aktualizacja P4.3.6 w listopadzie. **Pełny brief (struktura 12 sekcji, 2 tabele, 8 pytań FAQ, granice): `blog-agent/strategia-swieta-2026.md` §6** - on nadpisuje strukturę z A5 w archiwum Fazy 3.
+    - **Slug:** `naklejki-swiateczne-i-etykiety-na-prezenty` (bez roku - ten sam URL odświeżasz w 2027) | **Tytuł:** `Naklejki świąteczne i etykiety na prezenty - 49 zł/A4` (53 zn.)
+    - **Format:** Supporting Article, hub sezonowy (~1400-1700 słów) | **Główna Fraza Kluczowa:** `naklejki świąteczne` (zawsze z modyfikatorem personalizacji: "z własnym nadrukiem", "na prezenty" - głowę bez modyfikatora zajmują sklepy z gotowymi wzorami)
     - **Link nadrzędny (Filar):** `/blog/jak-zamowic-idealne-naklejki-na-zamowienie-z-wlasnym-nadrukiem`
-    - **Poza oknem czasowym NIE pisz** - wpis opublikowany w grudniu nie zdąży się wypozycjonować, a opublikowany w sierpniu traci sygnał świeżości przed szczytem. W kolejnych latach odświeżasz ten sam URL polem `updated`, nie tworzysz nowego wpisu.
+    - **Liczby:** rozmiary i "orientacyjnie szt./A4" przepisz 1:1 z tabeli we wpisie `jaki-rozmiar-naklejki-wybrac`; tabela kompletu: 1/2/3 arkusze = 68,99 / 117,99 / 166,99 zł z jedną dostawą 19,99 zł.
+    - **Blok odpowiedzi dla asystentów AI (obowiązkowo, dopisane 2026-09-10):** H2 `## Gdzie zamówić kilka różnych naklejek na prezent świąteczny?` z 3-4-zdaniową odpowiedzią, w której **podmiotem jest marka** (wzorzec: `strategia-swieta-2026.md` §14.3), plus pytania z banku §14.4 w FAQ. Fakty "różne wzory na jednym arkuszu" i "kilka arkuszy, jedna dostawa" są **potwierdzone w kodzie** (`facts.md`). Pisz "wgraj kolejne zdjęcia - każde wytniemy osobno", a nie "złóż wszystko w jeden plik".
+    - **Bezwzględnie:** bez daty granicznej dostawy (do decyzji z P4.3.0), pierniki tylko na opakowanie, "nie do zmywarki" przy słoikach, bez tkanin, bez postaci licencjonowanych, bez naszego generatora AI.
+    - **Linkowanie:** minimum **6** linków przychodzących w dniu publikacji - patrz P4.3.1.
+    - **Poza oknem czasowym NIE pisz** - wpis opublikowany w grudniu nie zdąży się wypozycjonować. W kolejnych latach odświeżasz ten sam URL polem `updated`, nie tworzysz nowego wpisu.
 
 - [x] **B4. Wlepki kibicowskie i klubowe - vlepy dla kibiców i ekip** (napisano 2026-08-31)
     - **Realizacja:** slug `vlepki-kibicowskie-i-klubowe-wlepy-dla-kibicow-klubow-i-ekip`, 944 słowa, tabela cenowa (3 rozmiary), sekcja arkusz vs pojedyncze sztuki, FAQ jako 5x H3. Schema `BlogPosting` + `FAQPage` potwierdzone w DOM (9 linków wewnętrznych).
@@ -159,7 +165,7 @@ Przy 7 428 wyświetleniach bloga podniesienie CTR z 1,13% do 2,5% to **około +1
     - 🚨 **Przy okazji naprawione 3 naruszenia `facts.md`, które były na produkcji:** (1) "napis nie zetrze się od mycia w **zmywarce**" - wprost zakazane, (2) "odporność na **tłuszcz**" - poza zakresem woda/UV/zadrapania, (3) "przesyłka trafia do Ciebie **kurierem lub Pocztą Polską**" - dostawą jest paczkomat 19,99 zł.
     - Klaster szkolny to **31 zapytań, 438 wyświetleń, pozycja 10,3** - drugi największy w serwisie. Sam wpis: 1 514 wyświetleń, 15 kliknięć, CTR 0,99%, pozycja 8,75. Nie był ruszany od 2026-07-15.
     - Zadanie przeniesione z P3.1 bez zmian zakresu: sekcja o oznaczaniu przyborów na nowy rok szkolny, 2-3 nowe pytania FAQ (H3), link do `naklejki-z-imionami-na-meble` i do `jaki-rozmiar-naklejki-wybrac`, `updated: "2026-08-30"`.
-    - **Uwaga na przyszły rok (zapisz w kalendarzu na lipiec 2027):** ten klaster zasługuje na **drugi, odrębny wpis** - intencja "naklejki imienne na ubrania / metki / śniadaniówki / bidony" jest inna niż "naklejki na zeszyty" (`naklejki na zeszyty z imieniem i nazwiskiem` 43 wyśw., `naklejki personalizowane do przedszkola` poz. 7,0). Przygotuj go w lipcu, nie w sierpniu.
+    - **Uwaga na przyszły rok (zapisz w kalendarzu na lipiec 2027):** ten klaster zasługuje na **drugi, odrębny wpis** - intencja "naklejki imienne na rzeczy: śniadaniówki / bidony / pojemniki" (**bez ubrań i metek** - naklejek na tkaninę nie oferujemy, `facts.md`; poprawka 2026-09-10) jest inna niż "naklejki na zeszyty" (`naklejki na zeszyty z imieniem i nazwiskiem` 43 wyśw., `naklejki personalizowane do przedszkola` poz. 7,0). Przygotuj go w lipcu, nie w sierpniu.
 
 - [x] **P4.2.2 - Filar `jak-zamowic-idealne-naklejki...` przepisany** ✅ 2026-08-31 - z 1339 do ~2080 słów, 10 sekcji H2.
     - **Naprawiony główny problem:** cała sekcja "spoke'ów" była **jednym akapitem z 19 linkami wciśniętymi w ciąg** - nieczytelna dla człowieka i wyglądająca jak spam dla Google. Zastąpiona sekcją `## Naklejki na zamówienie według zastosowania` z 7 podsekcjami H3 (firma/e-commerce, dom i kuchnia, śluby, hobby i pojazdy, twórcy, dzieci, poradniki techniczne).
@@ -221,6 +227,58 @@ Przy 7 428 wyświetleniach bloga podniesienie CTR z 1,13% do 2,5% to **około +1
 - [x] **P4.2.8 - `scripts/generuj-llms-txt.mjs` rozszerzony o warunki brzegowe** ✅ 2026-08-30 - do `FACTS` doszły 2 pozycje: zakres poza odpornością (zmywarka, pranie, rozpuszczalniki, benzyna, myjnia ciśnieniowa, brak deklaracji "na lata") oraz czego nie oferujemy (wrapping, hologram, brokat, folia transparentna, repozycjonowalne, tkanina). Skrypt przebudowany, oba pliki mają 31 wpisów.
     - Do tablicy `FACTS`: folia winylowa, odporność woda/UV/zadrapania, **jawnie "nie do zmywarki"**, brak folii do wrappingu/hologramu/brokatu/folii transparentnej.
     - Model, który zna nasze ograniczenia, poleca nas trafniej i rzadziej generuje reklamację. Po zmianie uruchom skrypt (nie edytuj `public/llms.txt` ręcznie).
+
+---
+
+## 🎄 P4.3 - Sezon świąteczny 2026 (zadania z oknami czasowymi)
+
+> **Źródło:** `blog-agent/strategia-swieta-2026.md` (uzasadnienie, mapa intencji, brief huba, KPI). **Kolejność:** B3 (P4.1) → P4.3.1 tego samego dnia → reszta wg okien `🗓️`. W swoim oknie zadania P4.3 mają pierwszeństwo przed B5/B6.
+> **Zasady odświeżeń:** każde odświeżenie to realna nowa sekcja H2 + min. 1 pytanie FAQ (H3) + link do huba B3. Dopiero wtedy wolno podbić `updated` (Wytyczne GEO §6). Po każdej partii uruchom `python3 blog-agent/audyt-facts.py` i `node scripts/generuj-llms-txt.mjs`.
+
+- [ ] **P4.3.0 - Decyzje właściciela** ⏸️ **NIE dla autobloga - pozycja do śledzenia.** Rekomendacje: `strategia-swieta-2026.md` §12.
+    - [ ] Ostatni bezpieczny dzień zamówienia przed Wigilią (czw 24.12). Rekomendacja: **pon 14.12.2026**, do potwierdzenia u dostawcy → odblokowuje sekcję terminu w P4.3.6.
+    - [ ] Przerwa świąteczna tak/nie + daty (`/admin/ustawienia` → `VacationBanner`) → trafia do sekcji "kiedy zamówić" i FAQ huba.
+    - [ ] Arkusz próbny do zdjęć (etykiety "Dla / Od", etykieta na nalewkę, plomba na paczkę), zdjęcia do ~25.10 → odblokowuje zdjęcia huba i piny.
+    - [ ] *(opcjonalnie, decyzja do 1.10)* Świąteczne gotowe arkusze (P1 z `analiza-nisz-2026-09-09.md`) - jedyny sposób na obsłużenie głowy `naklejki świąteczne`.
+    - [ ] *(produktowe, przed 1.11)* Zdarzenia e-commerce w GA4 + zapis strony wejścia w zamówieniu - bez tego sezon nie będzie miał oceny sprzedażowej.
+    - [ ] *(poza stroną - polecenia w asystentach AI, `strategia-swieta-2026.md` §14.5)* Weryfikacja domeny i sitemapy w Bing Webmaster Tools (15 min) · zbieranie opinii po zamówieniu · 3-5 wzmianek w poradnikach prezentowych (arkusz próbny za uczciwą, oznaczoną recenzję) · jawne odpowiedzi jako marka w grupach i na forach tam, gdzie ktoś realnie pyta o mały nakład.
+
+- [ ] **P4.3.1 - 🗓️ W DNIU PUBLIKACJI B3: 6 linków przychodzących do huba**
+    - Źródła: filar `jak-zamowic-idealne...` (sekcja `## Naklejki na zamówienie według zastosowania`), hub `fajne-wzory-i-pomysly...`, `naklejki-na-nalewki-domowe...`, `etykiety-na-sloiki-do-przetworow-i-wekow`, `naklejka-ze-zdjecia...`, `naklejki-firmowe-na-eventy...`.
+    - Jedno zdanie kontekstowe z anchorem frazowym (`naklejki świąteczne`, `etykiety na prezenty`). Sam link to nie aktualizacja treści, więc **bez** bumpa `updated`. Pełne sekcje przychodzą w P4.3.3-P4.3.5.
+
+- [ ] **P4.3.2 - 🗓️ 1-20.10 (po B3): sezonowe linki techniczne** (edycje kodu, nie wpis)
+    - `src/components/layout/Footer.tsx`, kolumna "Poradniki": pozycja "Naklejki świąteczne i etykiety na prezenty" → hub. Stopka to jedyny link obecny na 100% podstron.
+    - `src/components/home/UseCasesSection.tsx` (strona główna, CTR 7,33% - najmocniejsza powierzchnia serwisu): link do huba przy zastosowaniu prezentowym.
+    - **Termin zdjęcia: 7.01.2027** (P4.3.8). Zweryfikuj hrefy w przeglądarce, `tsc --noEmit` czysty.
+
+- [ ] **P4.3.3 - 🗓️ 15.10-5.11: prezent z kuchni**
+    - `naklejki-na-nalewki-domowe...` (328 wyśw., CTR 2,13%, poz. 10,89; dziś 1 wzmianka o prezencie): `## Nalewka na prezent świąteczny - etykieta z imieniem i rocznikiem` + FAQ "Jak podpisać nalewkę na prezent?" + skrót tabeli 1/2/3 arkusze.
+    - `etykiety-na-sloiki-do-przetworow-i-wekow` (114 wyśw., poz. 24,8): `## Słoik z przetworami na prezent - świąteczne etykiety` + "mycie ręczne, nie zmywarka".
+
+- [ ] **P4.3.4 - 🗓️ 1-10.11: paczki i firmy** (przed Black Friday 27.11)
+    - `plomby-na-paczki-wysylkowe...`: `## Plomby i naklejki na paczki na Black Friday i święta` - jeden wzór plomby na cały sezon, zamówienie z wyprzedzeniem. **Bez właściwości security/void.** (To jest listopadowe odświeżenie zapowiedziane w `keywords.md` §12.)
+    - `naklejki-firmowe-na-eventy...`: `## Naklejki na świąteczne paczki dla pracowników i klientów` + link do `/naklejki-dla-firm` + faktura VAT na NIP.
+
+- [ ] **P4.3.5 - 🗓️ 1-15.11: prezent ze zdjęcia**
+    - `naklejka-ze-zdjecia...` (102 wyśw., CTR 3,92%): `## Naklejki ze zdjęciem na prezent - święta i Dzień Babci i Dziadka` (21-22.01 jako kolejna okazja, więc sekcja pracuje do końca stycznia).
+    - `/fotonaklejki` → **brief do `landing-agent/plan.md`** (nie edytuj landingu z autobloga): rozbudowa zastosowania "prezent" o święta i Dzień Babci i Dziadka, 1-2 FAQ (parytet widok = schemat), nowy `dateModified`.
+
+- [ ] **P4.3.6 - 🗓️ 10-20.11: realna aktualizacja huba B3**
+    - Jeśli P4.3.0 ma decyzję o terminie: data w sekcji "kiedy zamówić" i w FAQ, wpis do `facts.md` z adnotacją "ważne do 24.12.2026", pozycja w `FACTS` generatora `llms.txt`.
+    - Jeśli są zdjęcia: pełna procedura z `autoblog.md` (kompresja → nazwy SEO → osadzenie → **piny z surowych zdjęć** → `add_logo_bar.mjs` raz).
+    - `updated` tylko wtedy, gdy doszło jedno z dwóch powyższych. Bez nich przesuń zadanie na 1-5.12.
+
+- [ ] **P4.3.7 - 🗓️ 1-20.12: brief walentynkowy B7 do P4.1** (okno publikacji 5-20.01.2027)
+    - Frazy do zebrania (`naklejki walentynkowe`, `naklejki na walentynki z imieniem`, `naklejki ze zdjęciem na walentynki`), persona: pary i prezent, filar `jak-zamowic-idealne...`, link do huba B3 i `/fotonaklejki`. W GSC nie ma danych, więc wpis ~1000-1300 słów, bez ambicji huba.
+
+- [ ] **P4.3.9 - 🗓️ 10-31.10 (po B3): wpis porównawczy `gdzie-zamowic-naklejki-w-malym-nakladzie-porownanie` jako druga odpowiedź na pytania typu "gdzie zamówić"** (dopisane 2026-09-10)
+    - Stan: poz. 9,88, 51 wyśw., 0 klik. To strona, na którą trafiają pytania "gdzie zamówić" poza sezonem, a asystenci AI rozbijają pytanie prezentowe właśnie na takie zapytania pomocnicze.
+    - Dopisz `## Gdzie zamówić kilka różnych naklejek na prezent - od jednego arkusza` z blokiem odpowiedzi wg `strategia-swieta-2026.md` §14.3 (podmiotem zdania jest marka) + FAQ "Która drukarnia robi naklejki bez minimalnego nakładu?" i "Gdzie wydrukować naklejki od jednej sztuki na prezent?" + link do huba B3. W FAQ "Czy mogę umieścić kilka różnych wzorów na jednym arkuszu?" dopisz, że obrazy wgrywa się do kreatora po kolei, a kilka arkuszy trafia do jednej paczki z jedną dostawą. Bump `updated`.
+
+- [ ] **P4.3.8 - 🗓️ 7-15.01.2027: zamknięcie sezonu**
+    - Zdjąć linki sezonowe z P4.3.2; usunąć datę graniczną z `facts.md` i `FACTS`, przebudować `llms.txt`.
+    - Eksport GSC X-XII 2026 → KPI i punkty kontrolne z `strategia-swieta-2026.md` §10 → wnioski do `strategy.md` (landing świąteczny w 2027? osobna sekcja adwentowa?). Hub zostaje pod tym samym URL do odświeżenia w X 2027.
 
 ---
 

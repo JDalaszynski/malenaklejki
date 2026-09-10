@@ -223,7 +223,7 @@ Wniosek dla planowania: **nowe wpisy B2B (QR, kosmetyki/świece) nie są skreśl
 #### OŚ 6 - Kalendarz sezonowy (utrzymany, doprecyzowany)
 * **Wrzesień = szkoła.** Klaster szkolny: 31 zapytań, 438 wyświetleń, pozycja 10,3 - drugi największy w serwisie. Wpis `personalizowane-naklejki-na-zeszyty` nie był ruszany od 2026-07-15. **Okno domyka się 1 września.**
 * **Uwaga na przyszły rok:** klaster szkolny zasługuje na **drugi wpis** (odrębna intencja "naklejki imienne na ubrania / metki / śniadaniówki" vs "na zeszyty"), przygotowany w lipcu, nie w sierpniu.
-* **Październik = święta** (okno publikacji 10-25.10, bez zmian). **Listopad = e-commerce/paczki** (wpis A4 opublikowany 2026-08-27 - w listopadzie odświeżenie i linkowanie, nie nowy wpis). **Styczeń = walentynki.**
+* **Październik = święta** (hub B3, okno publikacji **1-20.10** - przesunięte 2026-09-10 z 10-25.10, żeby odświeżenia i piny zdążyły przed listopadem; pełna strategia sezonu: `blog-agent/strategia-swieta-2026.md`). **Listopad = e-commerce/paczki** (wpis A4 opublikowany 2026-08-27 - w listopadzie odświeżenie i linkowanie, nie nowy wpis; w planie jako P4.3.4). **Styczeń = walentynki** (brief w grudniu, P4.3.7).
 
 ---
 
