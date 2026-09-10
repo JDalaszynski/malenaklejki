@@ -16,8 +16,8 @@ import { normalizePaymentStatus } from "@/lib/orders/status";
 /**
  * Wystawianie faktury w inFakcie po zaksięgowaniu płatności.
  *
- * Wejście jest jedno dla wszystkich ścieżek: webhooka Przelewy24, Stripe'a,
- * awaryjnego crona i ręcznego oznaczenia zapłaty w panelu. Dzięki temu każde
+ * Wejście jest jedno dla wszystkich ścieżek: webhooka Przelewy24, awaryjnego
+ * crona i ręcznego oznaczenia zapłaty w panelu. Dzięki temu każde
  * przejście zamówienia w PAID kończy się dokładnie tą samą fakturą.
  */
 

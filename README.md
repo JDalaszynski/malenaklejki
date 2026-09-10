@@ -44,7 +44,7 @@
 - **Zarządzanie stanem koszyka:** Szybki, reaktywny store Zustand (`cartStore.ts`) przechowujący konfigurację arkuszy, parametry naklejek i wycenę.
 - **Wielokanałowy Checkout:**
   - **Metody dostawy:** Paczkomaty InPost (wyszukiwarka punktów), Kurier DPD/InPost.
-  - **Bramki płatności:** **Przelewy24 (P24)** z pełną obsługą BLIK, kart i szybkich przelewów, obsługa **Stripe** oraz płatności przelewem tradycyjnym.
+  - **Bramki płatności:** **Przelewy24 (P24)** z pełną obsługą BLIK, kart i szybkich przelewów oraz płatności przelewem tradycyjnym.
   - **Dane firmowe / Faktury:** Obsługa NIP, automatyczne walidacje i zapis danych rozliczeniowych.
 - **Przerwa urlopowa:** Konfigurowana w panelu administratora (`/admin/ustawienia`) — baner nad nagłówkiem sklepu wraz z zapowiedzią przed startem, podmieniony termin wysyłki w kreatorze i koszyku, informacja w mailach do klienta oraz opcjonalne wstrzymanie przyjmowania zamówień (blokada egzekwowana także po stronie serwera).
 - **Integracja BaseLinker:** Automatyczne przekazywanie zamówień do panelu BaseLinker (`baselinker.ts`) w celu szybkiej wysyłki.
@@ -80,7 +80,7 @@
 | **Grafika & DTP** | `@imgly/background-removal`, `sharp`, `jspdf`, HTML5 Canvas API |
 | **Sztuczna Inteligencja (AI)** | Google GenAI SDK (`@google/genai`), Google Gemini 2.5 / 3.1 Flash Image |
 | **Backend, Baza & Storage** | [Firebase Firestore](https://firebase.google.com/), [Firebase Admin SDK](https://firebase.google.com/docs/admin/setup), [Firebase Storage](https://firebase.google.com/docs/storage) |
-| **Płatności & E-commerce** | [Przelewy24 (P24)](https://www.przelewy24.pl/), [Stripe](https://stripe.com/), [BaseLinker API](https://baselinker.com/) |
+| **Płatności & E-commerce** | [Przelewy24 (P24)](https://www.przelewy24.pl/), [BaseLinker API](https://baselinker.com/) |
 | **E-maile Transakcyjne** | [Brevo (Sendinblue) API](https://www.brevo.com/) (`@getbrevo/brevo`) |
 | **SEO & Content** | `gray-matter`, `marked`, IndexNow Protocol, Vercel Analytics |
 
@@ -110,7 +110,7 @@ malenaklejki/
 ├── src/
 │   ├── app/                 # Next.js App Router (strony, routing, Server Actions, API)
 │   │   ├── actions/         # Server Actions (createOrder, generateImage, contact)
-│   │   ├── api/             # Endpointy API (webhooks P24/Stripe, kompresja, proxy)
+│   │   ├── api/             # Endpointy API (webhook P24, kompresja, proxy)
 │   │   ├── blog/            # Dynamiczne podstrony bloga (/blog i /blog/[slug])
 │   │   ├── checkout/        # Formularz zamówienia i wybór metod dostawy/płatności
 │   │   ├── koszyk/          # Podgląd i zarządzanie koszykiem
