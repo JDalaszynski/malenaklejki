@@ -2,6 +2,7 @@
 title: "Naklejki na nalewki domowe - jak ozdobić butelki z nalewką?"
 slug: "naklejki-na-nalewki-domowe-jak-ozdobic-butelki-na-nalewki"
 date: "2026-07-16"
+updated: "2026-09-10"
 description: "Estetyczne naklejki na nalewki domowe z własnym projektem - wodoodporne, na okrągłe i prostokątne butelki. Zamów od 1 arkusza A4, gotowe w 2-3 dni robocze."
 image: "/blog/naklejki-na-nalewki-domowe-jak-ozdobic-butelki-na-nalewki/naklejki-na-nalewki-domowe-komplet-butelek-z-owocowymi-etykietami.png"
 imageAlt: "Komplet butelek z domowymi nalewkami owocowymi (wiśniowa, jagodowa, malinowa, morelowa) z estetycznymi naklejkami na nalewki domowe stojący na drewnianym stole."
@@ -110,7 +111,7 @@ Stała cena wynosi 49,00 zł za w pełni zadrukowany arkusz A4, niezależnie od 
 
 ### Czy mogę zamówić różne etykiety dla kilku smaków nalewek na jednym arkuszu?
 
-Tak. Przygotuj wszystkie warianty etykiet w jednym pliku, obok siebie, a nasz kreator wytnie każdą z nich osobno. Zapłacisz jedną cenę za cały arkusz A4.
+Tak. Wgraj do kreatora etykiety kolejnych smaków jedną po drugiej (albo przygotuj je obok siebie w jednym pliku) - każda trafi na ten sam arkusz i zostanie wycięta osobno. Zapłacisz jedną cenę za cały arkusz A4.
 
 ### Jaki kształt naklejki najlepiej sprawdzi się na butelce po winie lub wódce?
 

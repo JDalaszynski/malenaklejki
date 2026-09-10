@@ -47,6 +47,8 @@ const FACTS = [
   "Materiał: folia winylowa odporna na wodę, promieniowanie UV i zadrapania (nie nadaje się do zmywarki).",
   "Klej: mocny, nie zostawia śladów przy odklejaniu. Naklejki nie są repozycjonowalne.",
   "Cięcie: die-cut po obrysie grafiki, kiss-cut, koło, prostokąt - linię cięcia wyznacza kreator.",
+  "Różne wzory na jednym arkuszu: na jednym arkuszu A4 umieścisz kilka różnych obrazów (np. różne zdjęcia, imiona, wzory) - każdy jest wycinany osobno po swoim obrysie, a płacisz za arkusz, nie za liczbę wzorów.",
+  "Kilka arkuszy w jednym zamówieniu: różne arkusze trafiają do jednej paczki, a dostawa (19,99 zł) jest liczona raz za całe zamówienie.",
   "Plik: zalecane 300 DPI, maksymalny wymiar pojedynczej naklejki to 19 cm.",
   "Płatności: BLIK, Przelewy24. Wystawiamy fakturę VAT na NIP.",
   "Kraj produkcji: Polska - obsługa po polsku, bez przeliczania z euro i bez ceł.",

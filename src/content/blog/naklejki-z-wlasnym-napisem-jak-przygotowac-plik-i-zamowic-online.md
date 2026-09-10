@@ -1,7 +1,7 @@
 ---
 title: "Naklejki z własnym napisem - jak przygotować plik i zamówić"
 date: "2026-07-08"
-updated: "2026-08-30"
+updated: "2026-09-10"
 description: "Naklejki z własnym napisem bez minimalnego nakładu - jak wygenerować plik lub ułożyć go w Canva i zamówić online w kilka minut. Stała cena 49 zł za arkusz A4."
 image: "/blog/naklejki-z-wlasnym-napisem-jak-przygotowac-plik-i-zamowic-online/naklejki-z-napisami-motywacyjnymi-na-laptopie.jpg"
 imageAlt: "Zestaw kolorowych, wyciętych po obrysie naklejek z własnymi motywującymi napisami takimi jak Believe in Yourself na obudowie laptopa."
@@ -133,4 +133,4 @@ Realizacja zamówienia zajmuje 2-3 dni robocze od momentu zatwierdzenia projektu
 
 ### Czy mogę zamówić naklejki z napisem w kilku różnych wzorach na jednym arkuszu?
 
-Tak! Na jednym arkuszu A4 możesz umieścić kilka różnych projektów - wystarczy, że przed wgraniem umieścisz je obok siebie w jednym pliku (np. w Canva na jednej stronie z grafikami od AI). Każda naklejka zostanie wycięta oddzielnie.
+Tak! Na jednym arkuszu A4 możesz umieścić kilka różnych projektów - wgraj je do kreatora jeden po drugim, a każdy trafi na ten sam arkusz i zostanie wycięty oddzielnie po swoim obrysie. Jeśli wolisz, możesz też wcześniej ułożyć je obok siebie w jednym pliku (np. w Canva na jednej stronie z grafikami od AI).

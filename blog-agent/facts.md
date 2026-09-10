@@ -4,7 +4,7 @@
 >
 > Modele LLM cytują liczby. Sprzeczne liczby na jednej domenie osłabiają nas jako źródło i realnie ryzykują reklamacją.
 
-**Ostatnia aktualizacja:** 2026-08-17
+**Ostatnia aktualizacja:** 2026-09-10
 
 ---
 
@@ -24,6 +24,8 @@
 | Rozdzielczość pliku | **300 DPI** (zalecane) | "300 DPI"; przy małych naklejkach więcej | używane na wszystkich landingach |
 | Maks. wymiar naklejki | **19 cm** | ⚠️ patrz sekcja "do potwierdzenia" niżej | funkcjonuje w treściach (15x), formalnie niezatwierdzony |
 | Cięcie | die-cut po obrysie, kiss-cut, koło, prostokąt | kreator sam wyznacza linię cięcia | - |
+| Różne wzory na jednym arkuszu | **TAK** - kolejne obrazy wgrywane do kreatora trafiają na ten sam arkusz, każdy z własną linią cięcia | "wgraj kolejne zdjęcia lub grafiki - każdą wytniemy osobno"; płacisz za arkusz, nie za liczbę wzorów. Złożenie wzorów w jeden plik (np. w Canvie) to **opcja, nie wymóg** | kod: `HomePageClient.tsx:661`, `types/creator.ts` (`PlacedSticker`) - 2026-09-10 |
+| Kilka arkuszy w jednym zamówieniu | **TAK**, dostawa 19,99 zł liczona **raz za całe zamówienie** | "różne arkusze (np. etykiety na prezenty, na słoiki, na paczki) w jednej paczce, z jedną dostawą" | kod: `createOrder.ts:150` - 2026-09-10 |
 | Płatności | BLIK, Przelewy24 | - | `src/app/page.tsx` |
 
 ---
@@ -31,7 +33,7 @@
 ## ⚠️ NIE UŻYWAJ bez zgody właściciela
 
 * **Całkowity czas dostawy do klienta** (produkcja + kurier/paczkomat). Znamy koszt (19,99 zł) i czas produkcji - sumy **nie deklaruj**.
-* **Deadline zamówień przed świętami / konkretna data graniczna** - wymaga osobnej zgody (dotyczy wpisu A5).
+* **Deadline zamówień przed świętami / konkretna data graniczna** - wymaga osobnej zgody (dotyczy huba B3, dawniej A5; rekomendacja do decyzji: `strategia-swieta-2026.md` §12). Po zgodzie wpisz datę do tabeli faktów potwierdzonych **z adnotacją "ważne do 24.12.2026"**, dopisz ją do `FACTS` w `scripts/generuj-llms-txt.mjs` i przebuduj `llms.txt`. Po sezonie usuń oba wpisy.
 * **Sufit trwałości zewnętrznej** ("na lata", "na karoserię", "odporna na myjnię ciśnieniową") - poza woda/UV/zadrapania.
 * **Odporność na rozpuszczalniki, tłuszcze, benzynę, pranie, tkaninę.**
 * **Właściwości security / void / "nie da się zdjąć"** przy plombach na paczki.

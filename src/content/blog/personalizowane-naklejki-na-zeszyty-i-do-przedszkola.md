@@ -2,7 +2,7 @@
 title: "Personalizowane naklejki na zeszyty i przedszkole, 49 zł"
 slug: "personalizowane-naklejki-na-zeszyty-i-do-przedszkola"
 date: "2026-07-15"
-updated: "2026-08-30"
+updated: "2026-09-10"
 description: "Personalizowane naklejki na zeszyty i do przedszkola z imieniem dziecka. Wodoodporna folia, bez minimalnego nakładu, stała cena 49,00 zł za arkusz A4."
 image: "/blog/personalizowane-naklejki-na-zeszyty-i-do-przedszkola/naklejki-z-imieniem-dziecka-na-zeszytach-szkolnych.jpg"
 imageAlt: "Stos kolorowych zeszytów i segregatorów szkolnych z naklejonymi na grzbietach personalizowanymi naklejkami z imieniem, nazwiskiem i ikoną każdego dziecka"
@@ -48,7 +48,7 @@ Jeden zadrukowany arkusz A4 wystarczy na komplet małych naklejek z imionami na 
 - **Drzwi pokoju** - małe naklejki na drzwi z imieniem i ulubionym zwierzątkiem to prosta dekoracja i łatwa identyfikacja pokoju.
 - **Rowerek, hulajnoga, kask** - trwały nadruk odporny na warunki na zewnątrz.
 
-Wszystkie warianty zamówisz na jednym arkuszu - wystarczy, że przygotujesz kilka projektów obok siebie w jednym pliku, a kreator wytnie każdy z nich osobno.
+Wszystkie warianty zamówisz na jednym arkuszu - wgraj je do kreatora po kolei albo przygotuj obok siebie w jednym pliku, a kreator wytnie każdy z nich osobno.
 
 ![Bidon i pudełko śniadaniowe z naklejonymi personalizowanymi etykietami z imieniem, nazwiskiem i numerem klasy dziecka, stojące na stole obok plecaka](/blog/personalizowane-naklejki-na-zeszyty-i-do-przedszkola/naklejki-z-imieniem-na-bidonie-i-pudelku-sniadaniowym.jpg)
 
@@ -110,7 +110,7 @@ Jeśli wolisz przygotować dłuższy napis niż samo imię - np. z numerem telef
 
 ### Czy mogę zamówić naklejki z kilkoma różnymi imionami na jednym arkuszu?
 
-Tak. Na jednym arkuszu A4 umieścisz naklejki z imionami wszystkich dzieci - Twojego dziecka i na przykład rodzeństwa - wystarczy przygotować warianty obok siebie w jednym pliku przed wgraniem do kreatora.
+Tak. Na jednym arkuszu A4 umieścisz naklejki z imionami wszystkich dzieci - Twojego dziecka i na przykład rodzeństwa. Wgrywasz do kreatora kolejne pliki z imionami, a każdy trafia na ten sam arkusz i zostaje wycięty osobno. Możesz też wcześniej ułożyć warianty obok siebie w jednym pliku - oba sposoby kosztują tyle samo, bo płacisz za arkusz, nie za liczbę wzorów.
 
 ### Czy naklejka z imieniem dziecka jest wodoodporna?
 

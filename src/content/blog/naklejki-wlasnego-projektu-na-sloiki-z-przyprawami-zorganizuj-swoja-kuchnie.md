@@ -2,7 +2,7 @@
 title: "Naklejki na przyprawy na zamówienie - zorganizuj kuchnię"
 slug: "naklejki-wlasnego-projektu-na-sloiki-z-przyprawami-zorganizuj-swoja-kuchnie"
 date: "2026-07-13"
-updated: "2026-08-30"
+updated: "2026-09-10"
 description: "Małe naklejki na przyprawy na zamówienie od 1 sztuki. Stwórz etykiety na słoiczki, wydrukuj na trwałej folii i zorganizuj kuchnię raz na zawsze."
 image: "/blog/naklejki-wlasnego-projektu-na-sloiki-z-przyprawami-zorganizuj-swoja-kuchnie/naklejki-na-przyprawy-na-zamowienie-minimalistyczne-etykiety.png"
 imageAlt: "Dłoń trzymająca szklany słoiczek z papryką w proszku z minimalistyczną naklejką na przyprawy na zamówienie, w tle uporządkowana półka kuchenna z etykietowanymi słoikami"
@@ -135,7 +135,7 @@ Stała cena to **49,00 zł za arkusz A4**. Na jednym arkuszu zmieścisz od kilku
 
 ### Czy mogę umieścić różne nazwy przypraw na jednym arkuszu?
 
-Tak. Przygotuj wszystkie etykiety jako jeden plik (np. na jednej stronie w Canva) i wgraj go do kreatora. Każda naklejka zostanie wycięta osobno, a Ty zapłacisz za arkusz, nie za wzór.
+Tak. Wgraj do kreatora kolejne etykiety jedną po drugiej albo przygotuj je wcześniej jako jeden plik (np. na jednej stronie w Canva). Każda naklejka zostanie wycięta osobno, a Ty zapłacisz za arkusz, nie za wzór.
 
 ### Jak szybko dostanę zamówione naklejki?
 
