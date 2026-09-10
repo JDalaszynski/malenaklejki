@@ -389,7 +389,17 @@ export async function getOrderStatus(orderId: string) {
       status: orderData.status,
       orderNumber: orderData.orderNumber,
       total: orderData.totals?.total || 0,
+      shipping: orderData.totals?.shipping || 0,
       paymentMethod: orderData.payment?.method || orderData.paymentMethod || null,
+      // Pozycje bez danych klienta — tylko tyle, ile potrzeba do zdarzenia
+      // `purchase` w GA4 (liczba arkuszy, cena, forma wykończenia).
+      items: Array.isArray(orderData.items)
+        ? orderData.items.map((item: Record<string, unknown>) => ({
+            sheetQuantity: Number(item.sheetQuantity) || 0,
+            pricePerSheet: Number(item.pricePerSheet) || 0,
+            deliveryForm: item.deliveryForm === "individual" ? ("individual" as const) : ("sheet" as const),
+          }))
+        : [],
     };
   } catch (error: any) {
     console.error("getOrderStatus error:", error);

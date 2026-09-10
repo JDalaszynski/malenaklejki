@@ -6,6 +6,7 @@ import { Loader2, RotateCcw } from "lucide-react";
 
 import { loadSheetFromOrder } from "@/app/actions/orderSheets";
 import { useCartStore } from "@/store/cartStore";
+import { trackAddToCart } from "@/lib/analytics";
 
 export function SheetActions({
   orderId,
@@ -50,6 +51,7 @@ export function SheetActions({
       stickers: result.sheet.stickers,
       layoutPath: result.sheet.layoutPath,
     });
+    trackAddToCart(result.sheet, "historia zamówień");
 
     router.push("/koszyk");
   };

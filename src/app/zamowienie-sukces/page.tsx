@@ -17,6 +17,7 @@ import {
   Loader2,
 } from "lucide-react";
 import { getOrderStatus, retryOrderPayment } from "@/app/actions/createOrder";
+import { trackPurchase, type AnalyticsSheet } from "@/lib/analytics";
 
 function SuccessContent() {
   const searchParams = useSearchParams();
@@ -38,6 +39,21 @@ function SuccessContent() {
   const [retrying, setRetrying] = useState(false);
   const [retryError, setRetryError] = useState<string | null>(null);
   const [isPrzelew, setIsPrzelew] = useState(paymentMethodParam === "przelew");
+  // Pozycje i dostawa z bazy — potrzebne do zdarzenia `purchase` w GA4.
+  const [purchaseDetails, setPurchaseDetails] = useState<{
+    sheets: AnalyticsSheet[];
+    shipping: number;
+    paymentType: string;
+  } | null>(null);
+
+  // Zakup liczymy w chwili, gdy klient widzi ekran sukcesu: po potwierdzeniu
+  // płatności P24/BLIK albo od razu przy przelewie tradycyjnym (zamówienie
+  // złożone, wpłata dopiero w drodze — rozróżnia je `payment_type`).
+  useEffect(() => {
+    const number = orderNumber || orderNumberParam;
+    if (paymentStatus !== "success" || !orderId || !number || !purchaseDetails) return;
+    trackPurchase({ orderId, orderNumber: number, ...purchaseDetails });
+  }, [paymentStatus, orderId, orderNumber, orderNumberParam, purchaseDetails]);
 
   const pollCountRef = useRef(0);
   const maxPolls = 6; // up to 12 seconds total checking
@@ -49,6 +65,13 @@ function SuccessContent() {
           if (res && res.success) {
             if (res.total) setOrderTotal(res.total);
             if (res.orderNumber) setOrderNumber(res.orderNumber);
+            if (res.items) {
+              setPurchaseDetails({
+                sheets: res.items,
+                shipping: res.shipping || 0,
+                paymentType: res.paymentMethod || "przelew",
+              });
+            }
           }
         });
       }
@@ -69,6 +92,13 @@ function SuccessContent() {
         if (res && res.success) {
           if (res.orderNumber) setOrderNumber(res.orderNumber);
           if (res.total) setOrderTotal(res.total);
+          if (res.items) {
+            setPurchaseDetails({
+              sheets: res.items,
+              shipping: res.shipping || 0,
+              paymentType: res.paymentMethod || "nieznana",
+            });
+          }
 
           if (res.paymentMethod === "przelew") {
             setIsPrzelew(true);

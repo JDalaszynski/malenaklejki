@@ -3,9 +3,10 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { InPostGeowidget } from "./InPostGeowidget";
 import { useCartStore } from "@/store/cartStore";
+import { trackAddPaymentInfo, trackBeginCheckout } from "@/lib/analytics";
 import { createOrder } from "@/app/actions/createOrder";
 import { Loader2, X, Package } from "lucide-react";
 import { useRouter } from "next/navigation";
@@ -146,6 +147,15 @@ export function CheckoutForm() {
   const shippingCost = 19.99;
   const total = subtotal + shippingCost;
 
+  // `begin_checkout` wysyłamy raz na wejście do checkoutu, dopiero gdy koszyk
+  // z localStorage jest już wczytany.
+  const beginCheckoutSent = useRef(false);
+  useEffect(() => {
+    if (beginCheckoutSent.current || items.length === 0) return;
+    beginCheckoutSent.current = true;
+    trackBeginCheckout(items);
+  }, [items]);
+
   const onSubmit = async (data: CheckoutFormValues) => {
     if (items.length === 0) {
       alert("Twój koszyk jest pusty");
@@ -153,6 +163,7 @@ export function CheckoutForm() {
     }
 
     setIsSubmitting(true);
+    trackAddPaymentInfo(items, data.paymentMethod);
 
     // Yield to let React render the loading overlay and let the browser paint
     await new Promise((resolve) => setTimeout(resolve, 150));

@@ -17,6 +17,16 @@
       ],
       "port": 3100,
       "autoPort": true
+    },
+    {
+      "name": "dev-ga-test",
+      "runtimeExecutable": "sh",
+      "runtimeArgs": [
+        "-c",
+        "NEXT_PUBLIC_GA_ID=G-TEST0000000 exec npx next dev -p $PORT"
+      ],
+      "port": 3200,
+      "autoPort": true
     }
   ]
 }

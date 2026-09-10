@@ -55,6 +55,7 @@ import { FAQSection } from "@/components/home/FAQSection";
 import { FinalCTASection } from "@/components/home/FinalCTASection";
 import { PlacedSticker } from "@/types/creator";
 import { useCartStore } from "@/store/cartStore";
+import { trackAddToCart } from "@/lib/analytics";
 import {
   checkOverlap,
   getRotatedSize,
@@ -2110,6 +2111,7 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
         setEditCartItemId(null);
       } else {
         addItem(cartItemData);
+        trackAddToCart(cartItemData, "kreator");
       }
 
       router.push("/koszyk");
