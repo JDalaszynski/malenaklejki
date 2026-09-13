@@ -11,7 +11,7 @@ role: "supporting"
 cta_text: "Zamów okrągłe naklejki"
 ---
 
-Naklejki okrągłe z własnym nadrukiem to najbardziej uniwersalny format naklejki - równe koło pasuje do logo, plomby na paczkę, etykiety na słoik i minimalistycznej wlepki. W MałeNaklejki zamówisz je za stałe **49,00 zł** za arkusz A4, bez minimalnego nakładu - nawet w pojedynczej sztuce. Zanim wgrasz plik, zajrzyj do przewodnika o [drukowaniu naklejek online](/blog/drukowanie-naklejek-online-na-co-zwrocic-uwage-przed-wysylka-projektu), a jeśli wiesz już, że chcesz kształt koła - [stwórz własne naklejki](/) w kreatorze: wgraj grafikę, wybierz kadrowanie kołem i sprawdź podgląd 3D, zanim złożysz zamówienie.
+Naklejki okrągłe z własnym nadrukiem to najbardziej uniwersalny format naklejki - równe koło pasuje do logo, plomby na paczkę, etykiety na słoik i minimalistycznej wlepki. W MałeNaklejki zamówisz je za stałe **49,00 zł** za arkusz A4, bez minimalnego nakładu - nawet w pojedynczej sztuce. Zamawiasz na firmę? Okrągłe logo, plomby i etykiety produktowe rozliczysz fakturą VAT - komplet zastosowań biznesowych zebraliśmy na stronie [naklejki dla firm](/naklejki-dla-firm). Zanim wgrasz plik, zajrzyj do przewodnika o [drukowaniu naklejek online](/blog/drukowanie-naklejek-online-na-co-zwrocic-uwage-przed-wysylka-projektu), a jeśli wiesz już, że chcesz kształt koła - [stwórz własne naklejki](/) w kreatorze: wgraj grafikę, wybierz kadrowanie kołem i sprawdź podgląd 3D, zanim złożysz zamówienie.
 
 ## Naklejki okrągłe z własnym nadrukiem - kiedy kształt koła wygląda najlepiej?
 
@@ -51,7 +51,7 @@ Koło to klasyka firmowej identyfikacji - dobrze znosi zmniejszenie do 3-4 cm, j
 
 ### Okrągłe etykiety na słoiki, miód i kosmetyki naturalne
 
-Producenci miodu, dżemów, świec sojowych i kosmetyków naturalnych najczęściej sięgają właśnie po koło - równe kółko na wieczku lub froncie słoika wygląda schludnie i profesjonalnie. Drukujemy na **trwałej folii winylowej z mocnym klejem**, odpornej na wodę, promieniowanie UV i zadrapania, dlatego etykieta nie rozmięknie od wilgoci w spiżarni. Ważna prawda o produkcie: słoik z taką naklejką **myj ręcznie - folia nie jest przeznaczona do zmywarki**. Więcej o znakowaniu opakowań znajdziesz w poradniku o [naklejkach z logo na słoiki i opakowania](/blog/naklejki-z-wlasnym-logo-na-sloiki-i-opakowania).
+Producenci miodu, dżemów, świec sojowych i kosmetyków naturalnych najczęściej sięgają właśnie po koło - równe kółko na wieczku lub froncie słoika wygląda schludnie i profesjonalnie. Drukujemy na **trwałej folii winylowej z mocnym klejem**, odpornej na wodę, promieniowanie UV i zadrapania, dlatego etykieta nie rozmięknie od wilgoci w spiżarni. Ważna prawda o produkcie: słoik z taką naklejką **myj ręcznie - folia nie jest przeznaczona do zmywarki**. Więcej o znakowaniu opakowań znajdziesz w poradniku o [naklejkach z logo na słoiki i opakowania](/blog/naklejki-z-wlasnym-logo-na-sloiki-i-opakowania), a wymiary, kształty i cennik samego produktu - na stronie [etykiety na słoiki z własnym nadrukiem](/etykiety-na-sloiki).
 
 ![Rząd słoików z miodem na drewnianej półce, każdy z okrągłą etykietą manufaktury Pasieka Złocista z motywem pszczoły, w ciepłym świetle spiżarni.](/blog/naklejki-okragle-z-wlasnym-nadrukiem/okragle-etykiety-na-sloiki-z-miodem.jpg)
 
@@ -63,7 +63,7 @@ W sklepie internetowym okrągła naklejka zamyka karton, podkreśla moment rozpa
 
 ### Okrągłe wlepki i naklejki dla twórców - format przypinki
 
-Twórcy, ilustratorzy i zespoły chętnie robią serie okrągłych [wlepek z własnym nadrukiem](/blog/wklepki-i-wlepy-z-wlasnym-nadrukiem-dla-artystow-i-spolecznosci) w stylu przypinki - jeden format, wiele wzorów, spójny wygląd na stoisku czy w paczce z merchem. Kółka możesz odebrać jako pojedyncze, docięte sztuki gotowe do rozdania.
+Twórcy, ilustratorzy i zespoły chętnie robią serie okrągłych [wlepek z własnym nadrukiem](/blog/wklepki-i-wlepy-z-wlasnym-nadrukiem-dla-artystow-i-spolecznosci) w stylu przypinki - jeden format, wiele wzorów, spójny wygląd na stoisku czy w paczce z merchem. Kółka możesz odebrać jako pojedyncze, docięte sztuki gotowe do rozdania. Cennik i formy wykończenia dla samego druku znajdziesz na stronie [wlepki na zamówienie](/wlepki-na-zamowienie).
 
 ## Jak zamówić naklejki okrągłe z własnym nadrukiem krok po kroku?
 

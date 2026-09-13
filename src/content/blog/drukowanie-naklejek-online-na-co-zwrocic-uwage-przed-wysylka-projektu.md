@@ -1,8 +1,8 @@
 ---
-title: "Drukowanie naklejek online - na co zwrócić uwagę?"
+title: "Drukowanie naklejek online - jak przygotować plik 300 DPI"
 date: "2026-07-10"
 updated: "2026-08-30"
-description: "Drukowanie naklejek online krok po kroku - rozdzielczość, format pliku, cięcie po obrysie i cena 49 zł za arkusz A4. Sprawdź, zanim wyślesz projekt."
+description: "Drukowanie naklejek online: 300 dpi, PNG lub PDF i cięcie po obrysie. Poznaj 5 błędów, przez które wydruk wychodzi rozmazany - sprawdź plik przed wysyłką."
 image: "/blog/drukowanie-naklejek-online-na-co-zwrocic-uwage-przed-wysylka-projektu/drukowanie-naklejek-online-w-dowolnym-ksztalcie.jpg"
 imageAlt: "Dłoń trzymająca w palcach precyzyjnie wyciętą po obrysie naklejkę z napisem Kształt Dowolny na tle trawy - ekologiczne i trwałe drukowanie naklejek online w MałeNaklejki."
 tags: ["drukowanie naklejek", "poradnik techniczny", "naklejki online", "przygotowanie pliku"]

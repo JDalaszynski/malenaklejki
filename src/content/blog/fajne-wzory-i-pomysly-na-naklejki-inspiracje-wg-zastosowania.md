@@ -13,6 +13,8 @@ Decyzja o zamówieniu własnych wlepek to często pierwszy krok. Drugim bywa pus
 
 Niezależnie od tego, jakiej inspiracji szukasz, kluczowy pozostaje jeden element - wiedza o tym, jak prawidłowo przenieść swój pomysł do druku. Dlatego przed przejściem do konkretnych nisz, koniecznie sprawdź nasz przewodnik krok po kroku: [jak zamówić idealne naklejki na zamówienie z własnym nadrukiem](/blog/jak-zamowic-idealne-naklejki-na-zamowienie-z-wlasnym-nadrukiem).
 
+Wiesz już, do czego potrzebujesz wzoru? Przejdź od razu na stronę produktową: [wlepki na zamówienie](/wlepki-na-zamowienie) dla twórców, fanklubów i kibiców, [etykiety na słoiki](/etykiety-na-sloiki) do kuchni i spiżarni albo [naklejki dla firm](/naklejki-dla-firm) z fakturą VAT. Znajdziesz tam specyfikację materiału, kształty cięcia i cennik. Jeśli wolisz najpierw poszukać pomysłu - niżej czeka osiem nisz.
+
 ## Skąd wziąć darmowe wzory na naklejki do druku? Rewolucja AI
 
 Jeszcze do niedawna, by mieć unikalne naklejki, trzeba było płacić grafikowi lub spędzać godziny w programach do wektoryzacji. Dziś wystarczy wyobraźnia i wsparcie zewnętrznych generatorów obrazów AI, takich jak ChatGPT, Gemini, DALL-E czy Midjourney.
@@ -49,7 +51,7 @@ Rower, hulajnoga i sprzęt turystyczny żyją na zewnątrz, więc wzór musi zni
 Organizacja spiżarni to ostatnio prawdziwy hit wnętrzarski. Zamiast pisać po szkle zmywalnym markerem, klienci zamawiają piękne, jednolite naklejki.
 * **Co się sprawdza:** Minimalistyczne, czarno-białe napisy typu "Kawa", "Sól Himalajska", "Kasza Jaglana" w stylu skandynawskim. Bardzo modne są też małe etykiety z delikatnymi, botanicznymi rycinami (np. gałązka rozmarynu obok nazwy przyprawy) oraz kształt koła na wieczkach słoików.
 * **Dlaczego warto:** Nasze winylowe naklejki można bez strachu przetrzeć wilgotną szmatką w trakcie porządków (folia nie nadaje się jednak do zmywarki - słoiki myj ręcznie).
-* **Więcej inspiracji:** Dowiedz się, jak zorganizować przyprawy we wpisie [naklejki własnego projektu na słoiki z przyprawami](/blog/naklejki-wlasnego-projektu-na-sloiki-z-przyprawami-zorganizuj-swoja-kuchnie), jak podpisać sezonowe przetwory w [etykietach na słoiki do przetworów i weków](/blog/etykiety-na-sloiki-do-przetworow-i-wekow), jak ozdobić butelki w [naklejkach na nalewki domowe](/blog/naklejki-na-nalewki-domowe-jak-ozdobic-butelki-na-nalewki) oraz kiedy warto postawić na okrąg w [naklejkach okrągłych z własnym nadrukiem](/blog/naklejki-okragle-z-wlasnym-nadrukiem).
+* **Więcej inspiracji:** Dowiedz się, jak zorganizować przyprawy we wpisie [naklejki własnego projektu na słoiki z przyprawami](/blog/naklejki-wlasnego-projektu-na-sloiki-z-przyprawami-zorganizuj-swoja-kuchnie), jak podpisać sezonowe przetwory w [etykietach na słoiki do przetworów i weków](/blog/etykiety-na-sloiki-do-przetworow-i-wekow), jak ozdobić butelki w [naklejkach na nalewki domowe](/blog/naklejki-na-nalewki-domowe-jak-ozdobic-butelki-na-nalewki) oraz kiedy warto postawić na okrąg w [naklejkach okrągłych z własnym nadrukiem](/blog/naklejki-okragle-z-wlasnym-nadrukiem). Materiał, kształty i ceny samego produktu opisaliśmy na stronie [wodoodporne etykiety na słoiki](/etykiety-na-sloiki).
 
 ### 5. Podziękowania dla gości i akcenty ślubne
 
@@ -67,7 +69,8 @@ Każdy rodzic zna problem gubiących się bidonów, śniadaniówek czy kapci. Oz
 
 Wlepki to osobna kategoria myślenia o naklejce - liczy się nie tyle miejsce naklejenia, co rozdanie jak największej liczbie osób.
 * **Co się sprawdza:** Autorskie ilustracje twórców internetowych, logo zespołu muzycznego, hasła fanklubów i kibiców, pojedyncze sztuki docięte dokładnie do kształtu, gotowe do wsunięcia w kopertę albo rozdania na koncercie.
-* **Więcej inspiracji:** Pełny przegląd formatów i sposobów dystrybucji znajdziesz w [wlepkach z własnym nadrukiem dla artystów i fanklubów](/blog/wklepki-i-wlepy-z-wlasnym-nadrukiem-dla-artystow-i-spolecznosci).
+* **Więcej inspiracji:** Pełny przegląd formatów i sposobów dystrybucji znajdziesz w [wlepkach z własnym nadrukiem dla artystów i fanklubów](/blog/wklepki-i-wlepy-z-wlasnym-nadrukiem-dla-artystow-i-spolecznosci), a wlepki kibicowskie i klubowe opisaliśmy w [wlepkach dla kibiców, klubów i ekip](/blog/vlepki-kibicowskie-i-klubowe-wlepy-dla-kibicow-klubow-i-ekip).
+* **Zamówienie:** Cennik, formy wykończenia i wymagania dla pliku zebraliśmy na stronie opisującej [produkcję wlepek na zamówienie](/wlepki-na-zamowienie).
 
 ### 8. Branding dla firm i rzemiosła - zrób to sam
 

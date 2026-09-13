@@ -35,7 +35,7 @@ MałeNaklejki (malenaklejki.pl) to polska drukarnia naklejek online. W kreatorze
 - [Polityka prywatności](https://www.malenaklejki.pl/polityka-prywatnosci) - Zasady przetwarzania danych osobowych.
 
 ## Artykuły i poradnik - filary
-- [Drukowanie naklejek online - na co zwrócić uwagę?](https://www.malenaklejki.pl/blog/drukowanie-naklejek-online-na-co-zwrocic-uwage-przed-wysylka-projektu) - Drukowanie naklejek online krok po kroku - rozdzielczość, format pliku, cięcie po obrysie i cena 49 zł za arkusz A4. Sprawdź, zanim wyślesz projekt.
+- [Drukowanie naklejek online - jak przygotować plik 300 DPI](https://www.malenaklejki.pl/blog/drukowanie-naklejek-online-na-co-zwrocic-uwage-przed-wysylka-projektu) - Drukowanie naklejek online: 300 dpi, PNG lub PDF i cięcie po obrysie. Poznaj 5 błędów, przez które wydruk wychodzi rozmazany - sprawdź plik przed wysyłką.
 - [Naklejki na zamówienie - własny nadruk od 1 szt., 49 zł/A4](https://www.malenaklejki.pl/blog/jak-zamowic-idealne-naklejki-na-zamowienie-z-wlasnym-nadrukiem) - Naklejki na zamówienie z własnym nadrukiem bez minimalnego nakładu. Stała cena 49,00 zł brutto za arkusz A4, produkcja 2-3 dni robocze.
 
 ## Artykuły i poradnik - wpisy wspierające (30, od najnowszego)

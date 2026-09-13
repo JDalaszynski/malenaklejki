@@ -85,6 +85,7 @@ export function Footer({ children }: FooterProps = {}) {
                   { href: "/naklejki-die-cut", label: "Naklejki die cut" },
                   { href: "/naklejki-foliowe", label: "Naklejki foliowe i wodoodporne" },
                   { href: "/fotonaklejki", label: "Fotonaklejki ze zdjęcia" },
+                  { href: "/wlepki-na-zamowienie", label: "Wlepki na zamówienie" },
                   { href: "/etykiety-na-sloiki", label: "Etykiety na słoiki" },
                   { href: "/naklejki-dla-firm", label: "Naklejki dla firm" },
                 ].map((item) => (

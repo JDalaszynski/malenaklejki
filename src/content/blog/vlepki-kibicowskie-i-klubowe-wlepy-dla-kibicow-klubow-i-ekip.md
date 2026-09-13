@@ -11,7 +11,7 @@ role: "supporting"
 cta_text: "Zamów wlepki kibicowskie"
 ---
 
-Wlepki kibicowskie i klubowe (często pisane też jako "vlepki") zamówisz w MałeNaklejki za stałe **49,00 zł brutto od arkusza A4** - bez minimalnego nakładu i bez dopłat za mały wolumen. Wgraj logo klubu, barwy sekcji albo hasło ekipy, wybierz cięcie po obrysie, a gotowe wlepki odbierzesz jako pojedyncze sztuki, w pełni przygotowane do rozdania na trybunach czy w szatni. Jeśli zamawiasz po raz pierwszy, zajrzyj też do przewodnika [jak zamówić idealne naklejki na zamówienie z własnym nadrukiem](/blog/jak-zamowic-idealne-naklejki-na-zamowienie-z-wlasnym-nadrukiem), a pełną specyfikację samej [produkcji wlepek na zamówienie](/wlepki-na-zamowienie) znajdziesz na osobnej stronie.
+Wlepki kibicowskie i klubowe (często pisane też jako "vlepki") zamówisz w MałeNaklejki za stałe **49,00 zł brutto od arkusza A4** - bez minimalnego nakładu i bez dopłat za mały wolumen. Wgraj logo klubu, barwy sekcji albo hasło ekipy, wybierz cięcie po obrysie, a gotowe wlepki odbierzesz jako pojedyncze sztuki, w pełni przygotowane do rozdania na trybunach czy w szatni. Jeśli zamawiasz po raz pierwszy, zajrzyj też do przewodnika [jak zamówić idealne naklejki na zamówienie z własnym nadrukiem](/blog/jak-zamowic-idealne-naklejki-na-zamowienie-z-wlasnym-nadrukiem), a pełną specyfikację, cennik i FAQ znajdziesz na stronie [wlepki na zamówienie](/wlepki-na-zamowienie).
 
 ## Czym różnią się wlepki kibicowskie od zwykłych wlepek?
 
@@ -39,6 +39,8 @@ Wlepka po kształcie herbu albo logo (nie prostokąt) wygląda profesjonalnie i 
 4. **Sprawdź podgląd 3D** i złóż zamówienie - wlepki wyprodukujemy w 2-3 dni robocze i wyślemy do paczkomatu.
 
 Nie masz gotowego herbu w wysokiej rozdzielczości? Odtwórz go w prostym programie graficznym albo w darmowej Canvie - ważne, żeby linie herbu były wyraźne i grube, bo drobne detale na małej wlepce się zleją.
+
+Wymagania dla pliku, dostępne kształty cięcia i cennik opisaliśmy szerzej na stronie produktowej [wlepki na zamówienie](/wlepki-na-zamowienie).
 
 ## Arkusz czy pojedyncze sztuki - co wybrać na rozdawnictwo?
 

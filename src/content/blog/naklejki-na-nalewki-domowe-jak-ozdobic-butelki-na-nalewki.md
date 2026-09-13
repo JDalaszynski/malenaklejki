@@ -61,6 +61,8 @@ Nalewki i miody pitne często leżakują w wilgotnej piwnicy, chłodzą się w l
 - Nie blakną pod wpływem światła podczas wielomiesięcznego leżakowania.
 - Nie zostawiają śladów kleju na szkle, jeśli zdecydujesz się zdjąć etykietę i ponownie wykorzystać butelkę.
 
+Ta sama folia winylowa obsługuje [etykiety na słoiki z własnym nadrukiem](/etykiety-na-sloiki), więc butelki z nalewką i weki z przetworami opiszesz w jednym, spójnym stylu.
+
 ![Butelka domowego wina z naklejką "Wino Domowe Winobranie" stojąca w piwniczce wśród beczek - przykład wodoodpornej etykiety odpornej na wilgoć.](/blog/naklejki-na-nalewki-domowe-jak-ozdobic-butelki-na-nalewki/naklejka-na-butelke-domowego-wina-w-piwniczce.jpeg)
 
 ## Pomysły na etykiety do nalewek - 4 sprawdzone style
