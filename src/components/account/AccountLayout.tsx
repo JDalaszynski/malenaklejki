@@ -9,8 +9,9 @@ export function AccountLayout({
   banner,
   children,
 }: {
-  title: string;
-  subtitle?: string;
+  /** Węzeł, a nie tekst — ekran wczytywania podstawia tu pasek zastępczy. */
+  title: React.ReactNode;
+  subtitle?: React.ReactNode;
   actions?: React.ReactNode;
   banner?: React.ReactNode;
   children: React.ReactNode;
@@ -57,8 +58,8 @@ export function Panel({
   children,
   className = "",
 }: {
-  title?: string;
-  description?: string;
+  title?: React.ReactNode;
+  description?: React.ReactNode;
   actions?: React.ReactNode;
   children?: React.ReactNode;
   className?: string;

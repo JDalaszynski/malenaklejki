@@ -9,12 +9,16 @@ export function AdminLayout({
   subtitle,
   actions,
   adminEmail,
+  userBar,
   children,
 }: {
-  title: string;
-  subtitle?: string;
+  /** Węzeł, a nie tekst — ekran wczytywania podstawia tu pasek zastępczy. */
+  title: React.ReactNode;
+  subtitle?: React.ReactNode;
   actions?: React.ReactNode;
   adminEmail?: string;
+  /** Zastępuje pasek konta, gdy adresu admina jeszcze nie znamy. */
+  userBar?: React.ReactNode;
   children: React.ReactNode;
 }) {
   return (
@@ -42,7 +46,7 @@ export function AdminLayout({
 
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
           <AdminNav />
-          {adminEmail && <AdminUserBar email={adminEmail} />}
+          {userBar ?? (adminEmail ? <AdminUserBar email={adminEmail} /> : null)}
         </div>
 
         <div className="mt-6 flex flex-col gap-6">{children}</div>
@@ -58,8 +62,8 @@ export function Card({
   children,
   className = "",
 }: {
-  title?: string;
-  description?: string;
+  title?: React.ReactNode;
+  description?: React.ReactNode;
   actions?: React.ReactNode;
   children?: React.ReactNode;
   className?: string;
