@@ -2975,7 +2975,7 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
               </div>
 
               {/* Mobile: przycisk dodania naklejki pod arkuszem */}
-              <label className="sm:hidden w-10/12 mx-auto mt-4 flex flex-col items-center justify-center gap-1 py-2 px-1 rounded-3xl bg-primary hover:bg-primary/90 border border-primary/20 transition-all active:scale-[0.98] cursor-pointer shadow-sm">
+              <label className="sm:hidden w-10/12 mx-auto mt-3 flex flex-col items-center justify-center gap-1 py-2 px-1 rounded-3xl bg-primary hover:bg-primary/90 border border-primary/20 transition-all active:scale-[0.98] cursor-pointer shadow-sm">
                 <input
                   type="file"
                   accept="image/png, image/jpeg, image/jpg, image/webp, .png, .jpg, .jpeg, .webp"
@@ -2994,7 +2994,7 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
                 </span>
               </label>
 
-              <p className="text-[11px] text-muted-foreground bg-muted/20 border border-border/40 p-3 rounded-2xl font-bold mt-2 sm:mt-4 text-center max-w-md mx-auto">
+              <p className="text-[10px] leading-snug text-muted-foreground/70 font-medium mt-2 sm:mt-3 px-4 text-center max-w-sm mx-auto">
                 Uwaga: znaczne zmniejszenie naklejki może sprawić, że tekst i
                 małe elementy mogą stać się nieczytelne.
               </p>
