@@ -19,6 +19,7 @@ RULES=[
  ('K. DANE KONKURENCJI LICZBOWE', r'(StickerApp|Sticker\s?Mule|Redbubble|Stikets|Zap Creatives)[^.]{0,80}?(\d+\s?(zł|euro|eur|€|szt|dni|sztuk))'),
  ('L. NASZ GENERATOR AI (HOLD)', r'(nasz\w*|wbudowan\w*|w kreatorze)[^.]{0,40}generator\w*\s+ai|generator ai\s+w cenie'),
  ('M. "ZAPROJEKTUJ" NAKLEJKĘ/GRAFIKĘ', r'(zaprojektuj|projektowani\w*|projektuj\w*)\s+(własn\w+\s+)?(naklejk|grafik|wzór|wzor)'),
+ ('N. POWIERZCHNIA: MAT / WYSOKI POŁYSK / LAMINAT', r'(naklejk\w* matow\w*|matow\w* (naklejk|foli|wykończ)\w*|wysoki\w* połysk\w*|lustrzan\w* połysk\w*|(naklejk|foli)\w* (laminowan|lakierowan)\w*|(laminowan|lakierowan)\w* (naklejk|foli)\w*|mat(owe)? (lub|czy|albo) (błyszcz|połysk)\w*)'),
 ]
 hits={}
 for f in FILES:

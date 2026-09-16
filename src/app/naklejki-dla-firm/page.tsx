@@ -183,6 +183,7 @@ const ADVANTAGES: { icon: React.ElementType; title: string; text: string }[] = [
 
 const SPECS: { label: string; value: string }[] = [
   { label: "Materiał", value: "Trwała folia winylowa z mocnym klejem" },
+  { label: "Powierzchnia", value: "Subtelny połysk" },
   { label: "Druk", value: "300 DPI, pełny kolor" },
   { label: "Odporność", value: "Woda, promieniowanie UV, zadrapania" },
   { label: "Cięcie", value: "Po obrysie (die-cut), koło lub prostokąt" },

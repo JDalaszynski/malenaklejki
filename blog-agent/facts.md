@@ -4,7 +4,7 @@
 >
 > Modele LLM cytują liczby. Sprzeczne liczby na jednej domenie osłabiają nas jako źródło i realnie ryzykują reklamacją.
 
-**Ostatnia aktualizacja:** 2026-09-10
+**Ostatnia aktualizacja:** 2026-09-16
 
 ---
 
@@ -18,6 +18,7 @@
 | Faktura VAT | **TAK**, na NIP (jesteśmy płatnikiem VAT) | atut B2B | landing-agent 2026-07-24 |
 | Dostawa | **paczkomat, 19,99 zł** | brak darmowej dostawy - nie obiecuj jej | landing-agent 2026-07-24 |
 | Materiał | **folia winylowa** | "folia winylowa" / "trwały winyl" | landing-agent 2026-07-24 |
+| Powierzchnia naklejki | **subtelny połysk** - naklejki są delikatnie błyszczące; ta sama powierzchnia we wszystkich zamówieniach (w kreatorze nie ma wyboru mat/połysk) | "subtelny połysk", "delikatnie błyszcząca folia", "żywe kolory z subtelnym połyskiem". **NIE:** "matowe", "wysoki połysk", "lustrzany połysk", "glossy jak lakier", "laminowane / lakierowane" (warstwy ochronnej nie potwierdzono). Słowa **"wykończenie"** nie używaj dla połysku - w serwisie oznacza formę zestawu (arkusz / pojedyncze sztuki); w tabelach parametrów wiersz nazywa się **"Powierzchnia"** | właściciel 2026-09-16 |
 | Odporność | **woda, UV, zadrapania** | tylko te trzy | landing-agent 2026-07-24 |
 | Zmywarka | **NIE** | wprost: nie nadaje się do zmywarki, mycie ręczne | landing-agent 2026-07-24 |
 | Klej | **mocny klej, 0 śladów przy odklejaniu** | "nie zostawia śladów"; **NIE** "repozycjonowalny" / "wielokrotnego użytku" | rules/plan Faza 3 |
@@ -59,4 +60,4 @@
 
 ## 🚫 Czego nie oferujemy (fałszywa obietnica)
 
-Folia do wrappingu / oklejania całych pojazdów, hologram, brokat, folia transparentna, naklejki repozycjonowalne / wielokrotnego użytku, naklejki na tkaninę.
+Folia do wrappingu / oklejania całych pojazdów, hologram, brokat, folia transparentna, naklejki matowe (i wybór mat/połysk), naklejki repozycjonowalne / wielokrotnego użytku, naklejki na tkaninę.

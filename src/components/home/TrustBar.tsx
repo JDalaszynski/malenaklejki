@@ -1,9 +1,15 @@
 "use client";
 
-import { Truck, ShieldCheck, Layers, PackageOpen } from "lucide-react";
+import { Truck, ShieldCheck, Layers, PackageOpen, type LucideIcon } from "lucide-react";
 import { Reveal } from "./primitives";
 
-const FACTS = [
+const FACTS: {
+  icon: LucideIcon;
+  title: string;
+  sub: string;
+  /** Refleks światła na ikonie - tylko dla kafelka o połysku folii. */
+  glint?: boolean;
+}[] = [
   {
     icon: Truck,
     title: "Produkcja w 2-3 dni robocze",
@@ -16,23 +22,26 @@ const FACTS = [
   },
   {
     icon: Layers,
-    title: "Trwała folia i mocny klej",
-    sub: "Żywe kolory, precyzyjne cięcie",
+    title: "Subtelnie błyszcząca folia",
+    sub: "Trwały winyl i mocny klej",
+    glint: true,
   },
   {
     icon: PackageOpen,
     title: "Od 1 arkusza - bez minimum",
     sub: "Zero hurtowych nakładów",
   },
-] as const;
+];
 
 export function TrustBar() {
   return (
     <Reveal>
       <ul className="grid grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-7 py-2">
-        {FACTS.map(({ icon: Icon, title, sub }) => (
+        {FACTS.map(({ icon: Icon, title, sub, glint }) => (
           <li key={title} className="flex items-start gap-3.5">
-            <span className="shrink-0 w-11 h-11 rounded-2xl bg-primary/10 dark:bg-primary/20 text-primary flex items-center justify-center">
+            <span
+              className={`shrink-0 w-11 h-11 rounded-2xl bg-primary/10 dark:bg-primary/20 text-primary flex items-center justify-center ${glint ? "sheen-glint" : ""}`}
+            >
               <Icon aria-hidden className="w-5 h-5" />
             </span>
             <span className="flex flex-col gap-0.5 min-w-0">

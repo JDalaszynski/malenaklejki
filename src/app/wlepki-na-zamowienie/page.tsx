@@ -185,6 +185,7 @@ const SPECS: { label: string; value: string }[] = [
   { label: "Wykończenie", value: "Pojedyncze sztuki docięte po obrysie lub arkusz A4" },
   { label: "Kształt cięcia", value: "Die-cut po obrysie grafiki, koło lub prostokąt" },
   { label: "Materiał", value: "Trwała folia winylowa z mocnym klejem" },
+  { label: "Powierzchnia", value: "Subtelny połysk" },
   { label: "Odporność", value: "Woda, promieniowanie UV, zadrapania" },
   { label: "Mycie", value: "Ręczne - folia NIE nadaje się do zmywarki" },
   { label: "Druk", value: "300 DPI, pełny kolor" },

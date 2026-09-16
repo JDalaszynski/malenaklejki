@@ -154,7 +154,7 @@ export const GLOSSARY: TermGroup[] = [
         icon: Layers,
         slug: "laminat",
         name: "Laminat",
-        def: "Laminat to dodatkowa przezroczysta warstwa ochronna, którą w niektórych technologiach nakłada się na wydruk dla większej odporności i połysku. W naklejkach MałeNaklejki odporność na wodę, promieniowanie UV i zadrapania zapewnia trwała folia winylowa, na której drukujemy.",
+        def: "Laminat to dodatkowa przezroczysta warstwa ochronna, którą w niektórych technologiach nakłada się na wydruk dla większej odporności i połysku. W naklejkach MałeNaklejki odporność na wodę, promieniowanie UV i zadrapania zapewnia trwała folia winylowa, na której drukujemy. Gotowe naklejki mają subtelny połysk.",
         matchTerms: ["laminat"],
       },
     ],

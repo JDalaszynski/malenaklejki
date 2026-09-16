@@ -195,6 +195,7 @@ const SPECS: { label: string; value: string }[] = [
     value: "Koło, owal, prostokąt lub cięcie po obrysie grafiki (die-cut)",
   },
   { label: "Materiał", value: "Trwała folia winylowa z mocnym klejem" },
+  { label: "Powierzchnia", value: "Subtelny połysk" },
   { label: "Odporność", value: "Woda, promieniowanie UV, zadrapania" },
   {
     label: "Mycie",

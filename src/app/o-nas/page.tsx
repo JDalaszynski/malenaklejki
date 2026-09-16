@@ -132,6 +132,7 @@ const SPEC: { feature: string; value: string }[] = [
     value: "Brak - drukujemy już od 1 arkusza A4",
   },
   { feature: "Materiał", value: "Trwała folia winylowa z mocnym klejem" },
+  { feature: "Powierzchnia", value: "Subtelny połysk" },
   { feature: "Rozdzielczość druku", value: "300 DPI (zalecana dla plików)" },
   { feature: "Odporność", value: "Woda, promieniowanie UV, zadrapania" },
   {

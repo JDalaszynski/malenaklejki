@@ -156,6 +156,56 @@
   }
 }
 
+/* Rzadki refleks światła na kafelku "Subtelnie błyszcząca folia" (TrustBar).
+   Pokazuje wykończenie folii zamiast tylko o nim pisać - przelot trwa ~1,3 s,
+   potem długa pauza, żeby pasek parametrów nie migał. */
+@keyframes sheenGlint {
+  0% {
+    background-position: 150% 0%;
+  }
+  18%,
+  100% {
+    background-position: -50% 0%;
+  }
+}
+
+.sheen-glint {
+  position: relative;
+  overflow: hidden;
+}
+
+.sheen-glint::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: linear-gradient(
+    115deg,
+    transparent 40%,
+    rgb(255 255 255 / 0.75) 50%,
+    transparent 60%
+  );
+  background-size: 300% 100%;
+  background-repeat: no-repeat;
+  background-position: 150% 0%;
+  animation: sheenGlint 7s ease-in-out 1.2s infinite;
+}
+
+.dark .sheen-glint::after {
+  background-image: linear-gradient(
+    115deg,
+    transparent 40%,
+    rgb(255 255 255 / 0.3) 50%,
+    transparent 60%
+  );
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sheen-glint::after {
+    animation: none;
+  }
+}
+
 /* Delikatne falowanie krawędzi papieru w wizualizacji arkusza (A4Visualizer3D).
    Prawdziwa kartka nie ma idealnie prostego boku. Filtr SVG bywa kosztowny
    na słabszym sprzęcie, więc zostaje tylko tam, gdzie jest kursor. */

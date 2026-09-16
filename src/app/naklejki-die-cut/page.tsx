@@ -200,6 +200,7 @@ const SPECS: { label: string; value: string }[] = [
     value: "Automatyczne w kreatorze, bez Photoshopa",
   },
   { label: "Materiał", value: "Trwała folia winylowa z mocnym klejem" },
+  { label: "Powierzchnia", value: "Subtelny połysk" },
   { label: "Odporność", value: "Woda, promieniowanie UV, zadrapania" },
   { label: "Druk", value: "300 DPI, pełny kolor" },
   {

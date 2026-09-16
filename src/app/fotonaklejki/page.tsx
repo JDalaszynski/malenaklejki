@@ -187,6 +187,7 @@ const SPECS: { label: string; value: string }[] = [
   { label: "Źródło grafiki", value: "Własne zdjęcie lub plik (JPG, PNG, PDF)" },
   { label: "Usuwanie tła", value: "Automatyczne w kreatorze, bez Photoshopa" },
   { label: "Materiał", value: "Trwała folia winylowa z mocnym klejem" },
+  { label: "Powierzchnia", value: "Subtelny połysk" },
   { label: "Odporność", value: "Woda, promieniowanie UV, zadrapania" },
   { label: "Druk", value: "300 DPI, pełny kolor" },
   { label: "Cięcie", value: "Po obrysie (die-cut), koło lub prostokąt" },
