@@ -23,3 +23,16 @@ export function getIndividualStickersLabel(count: number): string {
   }
   return "pojedynczych naklejek";
 }
+
+/**
+ * Zwraca poprawną odmianę słowa "strona" w języku polskim w zależności od liczby.
+ */
+export function getPagesNoun(count: number): string {
+  if (count === 1) return "strona";
+  const mod10 = count % 10;
+  const mod100 = count % 100;
+  if (mod10 >= 2 && mod10 <= 4 && (mod100 < 10 || mod100 >= 20)) {
+    return "strony";
+  }
+  return "stron";
+}

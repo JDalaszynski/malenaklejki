@@ -43,3 +43,6 @@ env.local
 next-env.d.ts
 
 .vercel
+
+# zasoby pdf.js kopiowane z node_modules (scripts/kopiuj-zasoby-pdfjs.mjs)
+/public/pdfjs/

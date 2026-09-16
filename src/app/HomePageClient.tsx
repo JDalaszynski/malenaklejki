@@ -43,6 +43,13 @@ const AIGenerator = dynamic(
     })),
   { ssr: false },
 );
+const PdfImportModal = dynamic(
+  () =>
+    import("@/components/creator/PdfImportModal").then((mod) => ({
+      default: mod.PdfImportModal,
+    })),
+  { ssr: false },
+);
 import { JsonLd } from "@/components/seo/JsonLd";
 import { TrustBar } from "@/components/home/TrustBar";
 import { UseCasesSection } from "@/components/home/UseCasesSection";
@@ -71,6 +78,12 @@ import {
 } from "@/lib/utils/collision";
 import { getContourPoints } from "@/lib/utils/contour";
 import { getRenderImageUrl } from "@/lib/utils/transparentBackground";
+import {
+  getPdfStickerWidthCm,
+  isPdfFile,
+  MAX_PDF_BYTES,
+  type RenderedPdfPage,
+} from "@/lib/utils/pdf";
 import {
   getStickersNoun,
   getIndividualStickersLabel,
@@ -128,6 +141,9 @@ const StickerIcon = ({ className }: { className?: string }) => (
   </svg>
 );
 
+const STICKER_FILE_ACCEPT =
+  "image/png, image/jpeg, image/jpg, image/webp, application/pdf, .png, .jpg, .jpeg, .webp, .pdf";
+
 const compressPNGOnServer = async (dataUrl: string): Promise<Blob> => {
   const response = await fetch("/api/compress-png", {
     method: "POST",
@@ -151,6 +167,12 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
   // Creator state
   const shippingText = useEstimatedShipping();
   const [stickers, setStickers] = useState<PlacedSticker[]>([]);
+  // Bieżący arkusz dla kodu z nieświeżych domknięć: nasłuch wklejania jest
+  // rejestrowany raz przy montowaniu, a grafiki dokładamy asynchronicznie.
+  const stickersRef = useRef(stickers);
+  useEffect(() => {
+    stickersRef.current = stickers;
+  }, [stickers]);
   const [selectedStickerId, setSelectedStickerId] = useState<string | null>(
     null,
   );
@@ -355,6 +377,7 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
     useState<PlacedSticker | null>(null);
   const [addingMethod, setAddingMethod] = useState<"none" | "upload">("none");
   const [pendingImageUrl, setPendingImageUrl] = useState<string | null>(null);
+  const [pdfToImport, setPdfToImport] = useState<File | null>(null);
   const [showSingleStickerWarning, setShowSingleStickerWarning] = useState(false);
 
   // Loaders
@@ -381,33 +404,13 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
     setIsDraggingOverSheet(false);
   };
 
-  const handleDrop = async (e: React.DragEvent) => {
+  const handleDrop = (e: React.DragEvent) => {
     e.preventDefault();
     e.stopPropagation();
     setIsDraggingOverSheet(false);
 
-    const files = Array.from(e.dataTransfer.files);
-    const file = files[0];
-    if (!file || !file.type.startsWith("image/")) return;
-
-    setIsPageUploading(true);
-    setError(null);
-
-    try {
-      const fileName = `dropped-${getUUID()}-${file.name}`;
-      const dateFolder = new Date().toISOString().split("T")[0];
-      const storageRef = ref(storage, `uploads/${dateFolder}/${fileName}`);
-      const snapshot = await uploadBytes(storageRef, file);
-      const downloadUrl = await getDownloadURL(snapshot.ref);
-
-      setPendingImageUrl(downloadUrl);
-      processAndAddSticker(downloadUrl);
-    } catch (err: any) {
-      console.error(err);
-      setError("Wystąpił błąd podczas przesłania upuszczonego zdjęcia.");
-    } finally {
-      setIsPageUploading(false);
-    }
+    const file = e.dataTransfer.files[0];
+    if (file) handleMobileFileUpload(file);
   };
 
   // Automatically calculate contours for stickers that don't have them yet
@@ -622,27 +625,52 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
     return null;
   };
 
-  // Pre-process added image URL (measure aspect ratio and place it)
-  const processAndAddSticker = (url: string) => {
+  // Pre-process added image URLs (measure aspect ratio and place them).
+  // `widthCm` is set for PDF pages, which carry their real size.
+  const processAndAddStickers = async (
+    items: { url: string; widthCm?: number }[],
+  ) => {
     setIsPlacingSticker(true);
     setError(null);
     setVisualizerMode("2d");
 
-    const img = new Image();
-    img.onload = () => {
-      const aspect = img.width / img.height;
-      const defaultWidthCm = 5.25; // 1/4 of A4 width (21cm)
-      const defaultHeightCm = defaultWidthCm / aspect;
+    let measured: { url: string; widthCm?: number; aspect: number }[];
+    try {
+      measured = await Promise.all(
+        items.map(
+          (item) =>
+            new Promise<{ url: string; widthCm?: number; aspect: number }>(
+              (resolve, reject) => {
+                const img = new Image();
+                img.onload = () =>
+                  resolve({ ...item, aspect: img.width / img.height });
+                img.onerror = reject;
+                img.src = item.url;
+              },
+            ),
+        ),
+      );
+    } catch {
+      setError("Nie udało się pobrać wymiarów obrazu.");
+      setIsPlacingSticker(false);
+      return;
+    }
 
-      const wMm = defaultWidthCm * 10;
-      const hMm = defaultHeightCm * 10;
+    const nextStickers = [...stickersRef.current];
+    let lastAddedId: string | null = null;
 
-      let pos = findFreePosition(wMm, hMm, 0, stickers);
+    for (const { url, widthCm = 5.25, aspect } of measured) {
+      // Default width 5.25 cm = 1/4 of A4 width (21cm)
+      const heightCm = widthCm / aspect;
+      const wMm = widthCm * 10;
+      const hMm = heightCm * 10;
+
+      let pos = findFreePosition(wMm, hMm, 0, nextStickers);
 
       if (!pos) {
         const margins = getOuterMargins({
-          widthCm: defaultWidthCm,
-          heightCm: defaultHeightCm,
+          widthCm,
+          heightCm,
           cutLineType: "none",
         });
         pos = clampToUsableArea(105 - wMm / 2, 148.5 - hMm / 2, margins);
@@ -653,39 +681,34 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
         imageUrl: url,
         x: pos.x,
         y: pos.y,
-        widthCm: defaultWidthCm,
-        heightCm: defaultHeightCm,
+        widthCm,
+        heightCm,
         aspectRatio: aspect,
         cutLineType: "none",
       };
+      nextStickers.push(newSticker);
+      lastAddedId = newSticker.id;
+    }
 
-      setStickers([...stickers, newSticker]);
-      setSelectedStickerId(newSticker.id);
-      setAddingMethod("none");
-      setIsPlacingSticker(false);
+    setStickers(nextStickers);
+    setSelectedStickerId(lastAddedId);
+    setAddingMethod("none");
+    setIsPlacingSticker(false);
 
-      // Scroll to the visualizer sheet on mobile devices when adding a sticker
-      if (
-        typeof window !== "undefined" &&
-        window.matchMedia("(max-width: 639px)").matches
-      ) {
-        setTimeout(() => {
-          const target =
-            visualizerRef.current ||
-            document.getElementById("sheet-preview-section");
-          if (target) {
-            target.scrollIntoView({ behavior: "smooth", block: "start" });
-          }
-        }, 150);
-      }
-    };
-
-    img.onerror = () => {
-      setError("Nie udało się pobrać wymiarów obrazu.");
-      setIsPlacingSticker(false);
-    };
-
-    img.src = url;
+    // Scroll to the visualizer sheet on mobile devices when adding a sticker
+    if (
+      typeof window !== "undefined" &&
+      window.matchMedia("(max-width: 639px)").matches
+    ) {
+      setTimeout(() => {
+        const target =
+          visualizerRef.current ||
+          document.getElementById("sheet-preview-section");
+        if (target) {
+          target.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      }, 150);
+    }
   };
 
   const handleFillSheet = (targetSticker?: PlacedSticker) => {
@@ -2177,9 +2200,38 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
     }
   };
 
+  const uploadStickerImage = async (
+    data: Blob,
+    fileName: string,
+    contentType: string,
+  ) => {
+    const dateFolder = new Date().toISOString().split("T")[0];
+    const storageRef = ref(storage, `uploads/${dateFolder}/${fileName}`);
+    const snapshot = await uploadBytes(storageRef, data, { contentType });
+    return getDownloadURL(snapshot.ref);
+  };
+
   // Mobile upload file helper
   const handleMobileFileUpload = async (file: File, isPasted = false) => {
-    if (!file || !file.type.startsWith("image/")) return;
+    if (!file) return;
+
+    if (isPdfFile(file)) {
+      if (file.size > MAX_PDF_BYTES) {
+        setError("Plik PDF jest za duży (maksymalnie 50 MB).");
+        return;
+      }
+      setError(null);
+      setShowPasteModal(false);
+      setPdfToImport(file);
+      return;
+    }
+
+    if (!file.type.startsWith("image/")) {
+      setError(
+        "Ten format nie jest obsługiwany. Wgraj zdjęcie lub grafikę (JPG, PNG, WEBP) albo plik PDF.",
+      );
+      return;
+    }
 
     if (file.size > 10 * 1024 * 1024) {
       setError(
@@ -2192,23 +2244,37 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
     setError(null);
 
     try {
-      const fileName = `mobile-upload-${getUUID()}-${file.name}`;
-      const dateFolder = new Date().toISOString().split("T")[0];
-      const storageRef = ref(storage, `uploads/${dateFolder}/${fileName}`);
-      const snapshot = await uploadBytes(storageRef, file, {
-        contentType: file.type || "image/png",
-      });
-      const downloadUrl = await getDownloadURL(snapshot.ref);
+      const downloadUrl = await uploadStickerImage(
+        file,
+        `mobile-upload-${getUUID()}-${file.name}`,
+        file.type || "image/png",
+      );
 
       setPendingImageUrl(downloadUrl);
       setShowPasteModal(false); // Close paste modal if open
-      processAndAddSticker(downloadUrl);
+      processAndAddStickers([{ url: downloadUrl }]);
     } catch (err) {
       console.error(err);
       setError("Nie udało się przesłać pliku.");
     } finally {
       setIsPageUploading(false);
     }
+  };
+
+  // Każda strona PDF to osobna naklejka w fizycznym rozmiarze z projektu.
+  const handleAddPdfPages = async (fileName: string, pages: RenderedPdfPage[]) => {
+    const baseName = fileName.replace(/\.pdf$/i, "");
+    const items = await Promise.all(
+      pages.map(async (page) => ({
+        url: await uploadStickerImage(
+          page.blob,
+          `pdf-${getUUID()}-${baseName}-strona-${page.pageNumber}.png`,
+          "image/png",
+        ),
+        widthCm: getPdfStickerWidthCm(page.widthCm, page.heightCm),
+      })),
+    );
+    await processAndAddStickers(items);
   };
 
   useEffect(() => {
@@ -2423,7 +2489,7 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
                     <label className="flex flex-col items-center justify-center p-6 border-2 border-dashed border-foreground/20 dark:border-foreground/30 hover:border-primary/45 rounded-2xl bg-muted/10 hover:bg-muted/30 transition-all hover:scale-[1.01] active:scale-[0.99] cursor-pointer h-full group">
                       <input
                         type="file"
-                        accept="image/png, image/jpeg, image/jpg, image/webp, .png, .jpg, .jpeg, .webp"
+                        accept={STICKER_FILE_ACCEPT}
                         className="hidden"
                         onChange={(e) => {
                           const file = e.target.files?.[0];
@@ -2436,7 +2502,7 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
                         Dodaj Naklejkę
                       </span>
                       <span className="text-[10px] font-semibold text-muted-foreground mt-0.5 text-center">
-                        Zdjęcie JPG / PNG
+                        Zdjęcie, grafika lub PDF
                       </span>
                     </label>
                   </div>
@@ -2953,7 +3019,7 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
                   <label className="absolute inset-0 flex sm:hidden flex-col items-center justify-center bg-transparent cursor-pointer z-40 rounded-lg">
                     <input
                       type="file"
-                      accept="image/png, image/jpeg, image/jpg, image/webp, .png, .jpg, .jpeg, .webp"
+                      accept={STICKER_FILE_ACCEPT}
                       className="hidden"
                       onChange={(e) => {
                         const file = e.target.files?.[0];
@@ -2967,7 +3033,7 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
                         Dodaj naklejkę
                       </span>
                       <span className="text-xs font-semibold text-muted-foreground mt-1">
-                        Wgraj zdjęcie z galerii
+                        Zdjęcie, grafika lub PDF
                       </span>
                     </div>
                   </label>
@@ -2978,7 +3044,7 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
               <label className="sm:hidden w-10/12 mx-auto mt-3 flex flex-col items-center justify-center gap-1 py-2 px-1 rounded-3xl bg-primary hover:bg-primary/90 border border-primary/20 transition-all active:scale-[0.98] cursor-pointer shadow-sm">
                 <input
                   type="file"
-                  accept="image/png, image/jpeg, image/jpg, image/webp, .png, .jpg, .jpeg, .webp"
+                  accept={STICKER_FILE_ACCEPT}
                   className="hidden"
                   onChange={(e) => {
                     const file = e.target.files?.[0];
@@ -2990,7 +3056,7 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
                 <span className="text-[12px] font-extrabold text-white text-center leading-tight">
                   Dodaj Naklejkę
                   <br />
-                  (dowolna grafika/zdjęcie)
+                  (zdjęcie, grafika lub PDF)
                 </span>
               </label>
 
@@ -3558,7 +3624,7 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
           <AIGenerator
             onClose={() => setIsAIGeneratorOpen(false)}
             onStickerGenerated={(url) => {
-              processAndAddSticker(url);
+              processAndAddStickers([{ url }]);
               setIsAIGeneratorOpen(false);
             }}
           />
@@ -3575,7 +3641,7 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
                 activeEditSticker.id === "new-upload" ||
                 activeEditSticker.id === "new-ai"
               ) {
-                processAndAddSticker(url);
+                processAndAddStickers([{ url }]);
                 setShowEditModal(false);
                 setActiveEditSticker(null);
                 setPendingImageUrl(null);
@@ -3588,6 +3654,18 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
               setActiveEditSticker(null);
               setPendingImageUrl(null);
             }}
+          />
+        )}
+      </AnimatePresence>
+
+      {/* PDF import: page picker + rendering to PNG */}
+      <AnimatePresence>
+        {pdfToImport && (
+          <PdfImportModal
+            file={pdfToImport}
+            onAdd={(pages) => handleAddPdfPages(pdfToImport.name, pages)}
+            onError={setError}
+            onClose={() => setPdfToImport(null)}
           />
         )}
       </AnimatePresence>
