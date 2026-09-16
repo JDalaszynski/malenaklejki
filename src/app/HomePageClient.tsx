@@ -2974,6 +2974,26 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
                 )}
               </div>
 
+              {/* Mobile: przycisk dodania naklejki pod arkuszem */}
+              <label className="sm:hidden w-10/12 mx-auto mt-4 flex flex-col items-center justify-center gap-1 py-2 px-1 rounded-3xl bg-primary hover:bg-primary/90 border border-primary/20 transition-all active:scale-[0.98] cursor-pointer shadow-sm">
+                <input
+                  type="file"
+                  accept="image/png, image/jpeg, image/jpg, image/webp, .png, .jpg, .jpeg, .webp"
+                  className="hidden"
+                  onChange={(e) => {
+                    const file = e.target.files?.[0];
+                    if (file) handleMobileFileUpload(file);
+                    e.target.value = "";
+                  }}
+                />
+                <ImagePlus className="w-7 h-7 text-white" />
+                <span className="text-[12px] font-extrabold text-white text-center leading-tight">
+                  Dodaj Naklejkę
+                  <br />
+                  (dowolna grafika/zdjęcie)
+                </span>
+              </label>
+
               <p className="text-[11px] text-muted-foreground bg-muted/20 border border-border/40 p-3 rounded-2xl font-bold mt-2 sm:mt-4 text-center max-w-md mx-auto">
                 Uwaga: znaczne zmniejszenie naklejki może sprawić, że tekst i
                 małe elementy mogą stać się nieczytelne.
@@ -3122,56 +3142,6 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
               </div>
             </div>
           </div>
-
-          {/* Sticky Mobile Add/Generate buttons */}
-          <AnimatePresence>
-            {!selectedStickerId && isVisualizerVisible && (
-              <motion.div
-                initial={{ y: 150, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                exit={{ y: 150, opacity: 0 }}
-                className="fixed bottom-0 left-0 right-0 z-[100] sm:hidden pointer-events-none"
-              >
-                <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background/95 via-background/70 to-transparent pointer-events-none" />
-
-                <div className="relative px-4 pb-5 pt-2 pointer-events-auto">
-                  <div className="w-full liquid-glass border border-border/40 p-2 rounded-[28px] shadow-[0_-8px_30px_rgba(0,0,0,0.08)] dark:shadow-[0_-8px_30px_rgba(0,0,0,0.3)]">
-                    <div className="grid grid-cols-1 gap-2">
-                      <label className="w-10/12 mx-auto flex flex-col items-center justify-center gap-1 py-2 px-1 rounded-3xl bg-primary hover:bg-primary/90 border border-primary/20 transition-all active:scale-[0.98] cursor-pointer shadow-sm">
-                        <input
-                          type="file"
-                          accept="image/png, image/jpeg, image/jpg, image/webp, .png, .jpg, .jpeg, .webp"
-                          className="hidden"
-                          onChange={(e) => {
-                            const file = e.target.files?.[0];
-                            if (file) handleMobileFileUpload(file);
-                            e.target.value = "";
-                          }}
-                        />
-                        <ImagePlus className="w-7 h-7 text-white" />
-                        <span className="text-[12px] font-extrabold text-white text-center leading-tight">
-                          Dodaj Naklejkę
-                          <br />
-                          (dowolna grafika/zdjęcie)
-                        </span>
-                      </label>
-                      <button
-                        onClick={() => setShowPasteModal(true)}
-                        className="hidden"
-                      >
-                        <SmilePlus className="w-5 h-5 text-primary group-hover:text-primary-foreground" />
-                        <span className="text-[10px] font-extrabold text-primary group-hover:text-primary-foreground text-center leading-tight">
-                          Z klawiatury
-                          <br />
-                          (Naklejki i Emoji)
-                        </span>
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
-            )}
-          </AnimatePresence>
 
           {/* Sticky Mobile Panel for Selected Sticker */}
           <AnimatePresence>
