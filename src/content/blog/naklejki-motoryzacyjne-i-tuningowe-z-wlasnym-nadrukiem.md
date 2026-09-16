@@ -40,7 +40,6 @@ Naklejka na aucie pracuje w trudniejszych warunkach niż wlepka na laptopie: des
 
 - **Wodoodporność** - deszcz, mycie auta i mokra droga nie rozmywają nadruku ani nie podrywają krawędzi naklejki.
 - **Mocny klej** - wlepka trzyma się lakieru, plastiku zderzaka, szkła i metalu, a po odklejeniu nie zostawia trwałych śladów.
-- **Odporność na ścieranie** - folia znosi kontakt ze szczotką, gąbką i błotem bez blaknięcia wzoru.
 
 Kilka praktycznych zasad, które realnie przedłużają życie naklejki na aucie:
 
@@ -95,7 +94,7 @@ Jeździsz motocyklem, a nie samochodem? Kask, bak i owiewki mają inną specyfik
 
 ### Czy naklejka tuningowa wytrzyma mycie auta?
 
-Folia winylowa jest odporna na wodę, promieniowanie UV i zadrapania, więc zwykłe mycie samochodu jej nie szkodzi. Nie deklarujemy natomiast odporności na myjnię ciśnieniową - strumień pod dużym ciśnieniem potrafi podważyć krawędź każdej naklejki. Odczekaj dobę od naklejenia przed pierwszym myciem, a lancy nigdy nie kieruj prosto w krawędź z małej odległości.
+Folia winylowa jest odporna na wodę i promieniowanie UV, więc zwykłe mycie samochodu jej nie szkodzi. Nie deklarujemy natomiast odporności na myjnię ciśnieniową - strumień pod dużym ciśnieniem potrafi podważyć krawędź każdej naklejki. Odczekaj dobę od naklejenia przed pierwszym myciem, a lancy nigdy nie kieruj prosto w krawędź z małej odległości.
 
 ### Czy naklejka zostawia ślady na lakierze po odklejeniu?
 

@@ -26,7 +26,7 @@ W MałeNaklejki proces ten wygląda zupełnie inaczej. Możesz zamówić profesj
 Wybór odpowiedniego materiału to kluczowa sprawa. Szkło to wymagająca powierzchnia, zwłaszcza jeśli produkt jest narażony na wilgoć, zmiany temperatur lub zawiera tłuszcze (np. olejki do brody, woski, kremy).
 
 ### Wytrzymała folia winylowa i mocny klej
-W przeciwieństwie do taniego papieru, nasze wydruki powstają na najwyższej jakości winylu. Oznacza to, że każda **naklejka z własnym logo** zyskuje naturalną barierę ochronną. Są one wysoce odporne na ścieranie, wilgoć czy zatłuszczenia. Zastosowany mocny klej gwarantuje, że etykieta nie odklei się, nie zmarszczy i nie zsunie ze szkła podczas transportu i codziennego użytkowania przez klienta.
+W przeciwieństwie do taniego papieru, nasze wydruki powstają na najwyższej jakości winylu. Oznacza to, że każda **naklejka z własnym logo** zyskuje naturalną barierę ochronną. Są odporne na wilgoć. Zastosowany mocny klej gwarantuje, że etykieta nie odklei się, nie zmarszczy i nie zsunie ze szkła podczas transportu i codziennego użytkowania przez klienta.
 
 Poniższa tabela krótko podsumowuje, dlaczego stawiamy na folię winylową:
 

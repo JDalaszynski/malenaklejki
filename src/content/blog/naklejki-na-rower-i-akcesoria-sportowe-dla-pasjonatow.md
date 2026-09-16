@@ -34,7 +34,6 @@ Najlepsze jest to, że nie musisz zamawiać setek sztuk. Chcesz jedną dużą na
 Rower żyje na zewnątrz, więc naklejka na ramie musi znieść to, co pogoda ma do zaoferowania: ulewę, błoto i słońce. Drukujemy na trwałej, [wodoodpornej folii winylowej](/naklejki-foliowe) z mocnym klejem (szczegółowe zestawienie odporności znajdziesz we wpisie [ile wytrzymają naklejki wodoodporne](/blog/naklejki-wodoodporne-i-winylowe-jaka-folia-i-jak-dlugo-wytrzyma)), która radzi sobie z warunkami znacznie lepiej niż zwykły papier czy tania samoprzylepna etykieta:
 
 - **Wodoodporność** - jazda w deszczu, kałuże i mycie roweru nie rozmywają nadruku ani nie odklejają naklejki.
-- **Odporność na ścieranie** - folia znosi kontakt z nogawką, sakwą czy szczotką do mycia bez blaknięcia wzoru.
 - **Mocny klej** - naklejka trzyma się lakieru ramy, plastiku błotnika i metalu bidonu, a po zdjęciu nie zostawia trwałych śladów.
 
 Dla najlepszej trwałości naklej wzór na czystą, odtłuszczoną i suchą powierzchnię, a potem mocno dociśnij - zwłaszcza na zakrzywionych elementach ramy. Dzięki temu krawędzie naklejki nie zaczną odchodzić po pierwszym dłuższym wyjeździe.
@@ -97,7 +96,7 @@ Przy zamówieniu wybierasz też sposób wykończenia. **Pozostawione na arkuszu*
 
 ### Czy naklejka na rower wytrzyma jazdę w deszczu i mycie?
 
-Tak. Drukujemy na wodoodpornej folii winylowej z mocnym klejem, odpornej na wilgoć, błoto i ścieranie. Naklejka znosi jazdę w każdą pogodę oraz standardowe mycie roweru bez odklejania się i rozmywania nadruku.
+Tak. Drukujemy na wodoodpornej folii winylowej z mocnym klejem, odpornej na wodę i promieniowanie UV. Naklejka znosi jazdę w każdą pogodę oraz standardowe mycie roweru bez odklejania się i rozmywania nadruku.
 
 ### Czy mogę nakleić własny wzór na kask rowerowy?
 

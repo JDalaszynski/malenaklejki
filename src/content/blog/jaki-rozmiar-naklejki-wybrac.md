@@ -45,7 +45,7 @@ Wymiary naklejek to nie tylko kwestia estetyki, ale przede wszystkim czytelnośc
 2. **Uwaga na grafikę rastrową (JPEG, PNG):** Jeżeli zapiszesz obraz z bardzo niską rozdzielczością, to małe, szczegółowe napisy mogą się zlewać. Zawsze rekomendujemy pliki w rozdzielczości 300 DPI, szczególnie przy małych lepach (3-5 cm).
 3. **Zasada wielkości czcionki:** Przed wysłaniem zamówienia warto sprawdzić podgląd w skali 1:1. Jeśli nie jesteś w stanie odczytać najmniejszego wyrazu z odległości 30 cm - trzeba użyć większego rozmiaru lub zredukować ilość tekstu.
 
-Dzięki wysokiej jakości maszynom cyfrowym i drukowi w palecie CMYK na wytrzymałej folii winylowej, otrzymujesz doskonałą ostrość i żywe kolory, niezależnie od wybranych wymiarów naklejek. Używamy mocnego kleju, który nie pozostawia śladów po odklejeniu. Trwałość na zadrapania, promienie UV i wodę to u nas standard - pamiętaj tylko o zalecanym myciu ręcznym (produkt nie nadaje się do zmywarki).
+Dzięki wysokiej jakości maszynom cyfrowym i drukowi w palecie CMYK na wytrzymałej folii winylowej, otrzymujesz doskonałą ostrość i żywe kolory, niezależnie od wybranych wymiarów naklejek. Używamy mocnego kleju, który nie pozostawia śladów po odklejeniu. Odporność na promienie UV i wodę to u nas standard - pamiętaj tylko o zalecanym myciu ręcznym (produkt nie nadaje się do zmywarki).
 
 ### FAQ - Najczęściej zadawane pytania o rozmiary naklejek
 

@@ -69,7 +69,7 @@ const FAQS: { q: string; a: string }[] = [
   },
   {
     q: "Czy etykiety na słoiki są wodoodporne?",
-    a: "Tak. Napisy na słoiki drukujemy na trwałej folii winylowej odpornej na wodę, promieniowanie UV i zadrapania, a nie na papierze. Etykieta nie rozmięknie od wilgoci w spiżarni ani od zachlapania przy przekładaniu przetworów.",
+    a: "Tak. Napisy na słoiki drukujemy na trwałej folii winylowej odpornej na wodę i promieniowanie UV, a nie na papierze. Etykieta nie rozmięknie od wilgoci w spiżarni ani od zachlapania przy przekładaniu przetworów.",
   },
   {
     q: "Czy słoik z etykietą można myć w zmywarce?",
@@ -156,7 +156,7 @@ const ADVANTAGES: { icon: React.ElementType; title: string; text: string }[] = [
   {
     icon: Droplets,
     title: "Folia winylowa zamiast papieru",
-    text: "Etykiety drukujemy na trwałej folii odpornej na wodę, UV i zadrapania. Nie rozmiękną w wilgotnej spiżarni ani przy przecieraniu słoika wilgotną ściereczką.",
+    text: "Etykiety drukujemy na trwałej folii odpornej na wodę i UV. Nie rozmiękną w wilgotnej spiżarni ani przy przecieraniu słoika wilgotną ściereczką.",
   },
   {
     icon: Shapes,
@@ -196,7 +196,7 @@ const SPECS: { label: string; value: string }[] = [
   },
   { label: "Materiał", value: "Trwała folia winylowa z mocnym klejem" },
   { label: "Powierzchnia", value: "Subtelny połysk" },
-  { label: "Odporność", value: "Woda, promieniowanie UV, zadrapania" },
+  { label: "Odporność", value: "Woda, promieniowanie UV" },
   {
     label: "Mycie",
     value: "Ręczne - folia NIE nadaje się do zmywarki",
@@ -253,7 +253,7 @@ export default function EtykietyNaSloikiPage() {
           "@type": "Product",
           name: "Etykiety na słoiki z własnym nadrukiem",
           description:
-            "Personalizowane etykiety na słoiki, weki, butelki i świece drukowane na trwałej folii winylowej odpornej na wodę, UV i zadrapania. Dowolny kształt, druk 300 DPI, stała cena 49,00 zł brutto za arkusz A4 bez minimalnego nakładu, produkcja 2-3 dni robocze i odbiór w paczkomacie.",
+            "Personalizowane etykiety na słoiki, weki, butelki i świece drukowane na trwałej folii winylowej odpornej na wodę i UV. Dowolny kształt, druk 300 DPI, stała cena 49,00 zł brutto za arkusz A4 bez minimalnego nakładu, produkcja 2-3 dni robocze i odbiór w paczkomacie.",
           image: "https://www.malenaklejki.pl/images/logo/favicon.png",
           brand: { "@type": "Brand", name: "MałeNaklejki" },
           category: "Etykiety na słoiki i opakowania",
@@ -441,8 +441,8 @@ export default function EtykietyNaSloikiPage() {
             Etykieta na słoik to po prostu naklejka z opisem zawartości: nazwą,
             datą zaprawienia, składem albo logo manufaktury. Różnica między nią
             a karteczką przyklejoną taśmą leży w materiale. Drukujemy na
-            trwałej folii winylowej z mocnym klejem, odpornej na wodę,
-            promieniowanie UV i zadrapania, więc opis przetrwa całą zimę w
+            trwałej folii winylowej z mocnym klejem, odpornej na wodę
+            i promieniowanie UV, więc opis przetrwa całą zimę w
             wilgotnej spiżarni i nie zwinie się na krawędziach.
           </p>
           <p className="text-sm sm:text-base text-muted-foreground font-medium leading-relaxed">
@@ -702,7 +702,7 @@ export default function EtykietyNaSloikiPage() {
           <p className="text-sm sm:text-base text-muted-foreground font-medium leading-relaxed max-w-2xl mx-auto">
             Wgraj gotowy obraz do kreatora, ułóż etykiety na arkuszu A4 i
             wybierz kształt cięcia. Wydrukujemy je w 2-3 dni robocze na trwałej
-            folii winylowej odpornej na wodę, UV i zadrapania - za stałe 49,00
+            folii winylowej odpornej na wodę i UV - za stałe 49,00
             zł brutto od arkusza, bez minimalnego nakładu i bez opłat za
             przygotowanie pliku.
           </p>

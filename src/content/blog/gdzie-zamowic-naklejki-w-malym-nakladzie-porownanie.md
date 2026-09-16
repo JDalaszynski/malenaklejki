@@ -56,7 +56,7 @@ Wybór polskiego wykonawcy to nie kwestia sentymentu, tylko konkretnych różnic
 - **Faktura VAT na NIP.** Jesteśmy zarejestrowanym polskim płatnikiem VAT, więc zamówienie od razu rozliczysz jako koszt firmowy.
 - **Obsługa i reklamacje po polsku.** Piszesz i rozmawiasz w swoim języku, a zamówienie obejmują polskie przepisy konsumenckie.
 - **Brak minimalnego nakładu.** Jeden arkusz to pełnoprawne zamówienie - nie musisz dobierać sztuk "do progu", żeby w ogóle złożyć zlecenie.
-- **Trwała folia winylowa.** Drukujemy na winylu odpornym na wodę, promieniowanie UV i zadrapania, z mocnym klejem, który przy odklejaniu nie zostawia śladów. Naklejki myj ręcznie - nie nadają się do zmywarki.
+- **Trwała folia winylowa.** Drukujemy na winylu odpornym na wodę i promieniowanie UV, z mocnym klejem, który przy odklejaniu nie zostawia śladów. Naklejki myj ręcznie - nie nadają się do zmywarki.
 
 ## Jak zamówić naklejki online w trzech krokach
 

@@ -70,7 +70,7 @@ MałeNaklejki to w 100% polska [alternatywa dla zagranicznych serwisów naklejko
 - **Polska produkcja i szybka logistyka:** Produkcja trwa 2-3 dni robocze, a paczka trafia prosto do Twojego ulubionego Paczkomatu InPost.
 - **Brak progów ilościowych:** W tradycyjnych drukarniach zamówienie 10 naklejek kosztuje niemal tyle samo co 100 sztuk z uwagi na stały koszt rozruchu maszyny. U nas cyfrowy druk pozwala zamówić pojedynczy arkusz bez żadnej kary finansowej.
 - **Faktura VAT na NIP:** Jesteśmy zarejestrowanym polskim płatnikiem VAT - każda transakcja może zostać od razu rozliczona jako koszt firmowy.
-- **Najwyższa jakość winylu:** Drukujemy na odpornej folii winylowej z mocnym klejem, która nie boi się deszczu, promieniowania słonecznego UV ani zarysowań, a przy odklejaniu nie pozostawia uciążliwych śladów kleju na powierzchni.
+- **Najwyższa jakość winylu:** Drukujemy na odpornej folii winylowej z mocnym klejem, która nie boi się deszczu ani promieniowania słonecznego UV, a przy odklejaniu nie pozostawia uciążliwych śladów kleju na powierzchni.
 
 ### Kiedy lepsza jest drukarnia offsetowa?
 
@@ -106,7 +106,7 @@ Tak. Jesteśmy polską firmą i zarejestrowanym podatnikiem VAT. Podczas składa
 MałeNaklejki to w 100% polska alternatywa dla zagranicznych platform naklejkowych. Zapewniamy stałą cenę 49,00 zł brutto za arkusz A4, brak progów ilościowych, szybką produkcję w 2-3 dni robocze, wysyłkę do Paczkomatów InPost za 19,99 zł oraz pełną obsługę w języku polskim z fakturą VAT.
 
 ### Czy naklejki są odporne na wodę i warunki atmosferyczne?
-Tak, nasze naklejki produkujemy z wysokiej jakości folii winylowej, która charakteryzuje się odpornością na wodę, promieniowanie UV oraz drobne zarysowania. Świetnie sprawdzają się na laptopach, bidonach, rowerach, kaskach czy paczkach wysyłkowych. Naklejki należy myć ręcznie (nie nadają się do mycia w zmywarce).
+Tak, nasze naklejki produkujemy z wysokiej jakości folii winylowej, która charakteryzuje się odpornością na wodę i promieniowanie UV. Świetnie sprawdzają się na laptopach, bidonach, rowerach, kaskach czy paczkach wysyłkowych. Naklejki należy myć ręcznie (nie nadają się do mycia w zmywarce).
 
 ## Zamów własne naklejki z wyceną za arkusz A4
 

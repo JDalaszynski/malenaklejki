@@ -73,7 +73,7 @@ const FAQS: { q: string; a: string }[] = [
   },
   {
     q: "Czy fotonaklejki są wodoodporne?",
-    a: "Tak. Fotonaklejki drukujemy na folii winylowej odpornej na wodę, promieniowanie UV i zadrapania, a nie na papierze. Dzięki temu zdjęcie nie rozmięknie od zachlapania ani nie spłowieje tak szybko jak zwykła odbitka i sprawdzi się na bidonie, kubku, laptopie czy sprzęcie sportowym.",
+    a: "Tak. Fotonaklejki drukujemy na folii winylowej odpornej na wodę i promieniowanie UV, a nie na papierze. Dzięki temu zdjęcie nie rozmięknie od zachlapania ani nie spłowieje tak szybko jak zwykła odbitka i sprawdzi się na bidonie, kubku, laptopie czy sprzęcie sportowym.",
   },
   {
     q: "Czy zrobię fotonaklejkę ze zdjęcia w telefonie?",
@@ -101,7 +101,7 @@ const FAQS: { q: string; a: string }[] = [
   },
   {
     q: "Czym fotonaklejka różni się od odbitki zdjęcia z fotokiosku?",
-    a: "Odbitka to papierowy wydruk zdjęcia - nie klei się, nie jest wodoodporny i łatwo się niszczy. Fotonaklejka to samoprzylepna folia winylowa: wodoodporna, odporna na UV i zadrapania, wycięta po obrysie motywu i gotowa, by nakleić ją na dowolny przedmiot. To trwały nośnik zdjęcia, a nie zwykła fotografia na papierze.",
+    a: "Odbitka to papierowy wydruk zdjęcia - nie klei się, nie jest wodoodporny i łatwo się niszczy. Fotonaklejka to samoprzylepna folia winylowa: wodoodporna, odporna na UV, wycięta po obrysie motywu i gotowa, by nakleić ją na dowolny przedmiot. To trwały nośnik zdjęcia, a nie zwykła fotografia na papierze.",
   },
 ];
 
@@ -164,7 +164,7 @@ const ADVANTAGES: { icon: React.ElementType; title: string; text: string }[] = [
   {
     icon: Droplets,
     title: "Wodoodporna folia winylowa",
-    text: "Drukujemy na trwałej folii winylowej odpornej na wodę, UV i zadrapania - zdjęcie nie rozmięknie i nie spłowieje tak szybko jak papierowa odbitka.",
+    text: "Drukujemy na trwałej folii winylowej odpornej na wodę i UV - zdjęcie nie rozmięknie i nie spłowieje tak szybko jak papierowa odbitka.",
   },
   {
     icon: Printer,
@@ -188,7 +188,7 @@ const SPECS: { label: string; value: string }[] = [
   { label: "Usuwanie tła", value: "Automatyczne w kreatorze, bez Photoshopa" },
   { label: "Materiał", value: "Trwała folia winylowa z mocnym klejem" },
   { label: "Powierzchnia", value: "Subtelny połysk" },
-  { label: "Odporność", value: "Woda, promieniowanie UV, zadrapania" },
+  { label: "Odporność", value: "Woda, promieniowanie UV" },
   { label: "Druk", value: "300 DPI, pełny kolor" },
   { label: "Cięcie", value: "Po obrysie (die-cut), koło lub prostokąt" },
   {
@@ -405,7 +405,7 @@ export default function FotonaklejkiPage() {
             { value: "49 zł", label: "Brutto za arkusz A4" },
             { value: "od 1 szt.", label: "Bez min. nakładu" },
             { value: "300 DPI", label: "Druk pełny kolor" },
-            { value: "Woda·UV·rysy", label: "Odporność folii" },
+            { value: "Woda·UV", label: "Odporność folii" },
           ].map((stat) => (
             <div
               key={stat.label}
@@ -458,8 +458,8 @@ export default function FotonaklejkiPage() {
             tło - Twój pies znika z podłogi i zostaje na przezroczystym tle,
             gotowy do cięcia po obrysie. Nie potrzebujesz Photoshopa ani
             umiejętności graficznych. Każdą fotonaklejkę drukujemy w
-            rozdzielczości 300 DPI na folii winylowej odpornej na wodę,
-            promieniowanie UV i zadrapania.
+            rozdzielczości 300 DPI na folii winylowej odpornej na wodę
+            i promieniowanie UV.
           </p>
         </section>
 
@@ -725,7 +725,7 @@ export default function FotonaklejkiPage() {
             Wgraj zdjęcie do kreatora, pozwól mu usunąć tło i wybierz cięcie po
             obrysie. Fotonaklejki będą gotowe w 2-3 dni robocze za stałe 49,00
             zł brutto od arkusza A4 - na trwałej folii winylowej odpornej na
-            wodę, UV i zadrapania, bez minimalnego nakładu.
+            wodę i UV, bez minimalnego nakładu.
           </p>
           <div className="flex flex-wrap justify-center gap-2 pt-2 text-xs font-bold text-muted-foreground">
             <span className="inline-flex items-center gap-1.5">

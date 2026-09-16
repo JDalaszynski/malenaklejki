@@ -85,7 +85,6 @@ Brak minimalnego nakładu - możesz zamówić jeden arkusz z jedną naklejką. B
 Twój napis trafi na trwałą folię winylową z mocnym klejem, która jest:
 
 - **Wodoodporna** - idealna na słoiczki, bidony i butelki
-- **Odporna na ścieranie i zadrapania** - nie blaknie przy dotykaniu
 - **Bezpieczna dla powierzchni** - usuwa się bez pozostawiania kleju przy delikatnym odklejeniu
 
 Drukujemy w Polsce, na maszynach drukarskich wysokiej jakości z gamą kolorów CMYK. Kolory na wydruku mogą się minimalnie różnić od podglądu na ekranie monitora (szczególnie bardzo jaskrawe odcienie), dlatego jeśli zależy Ci na idealnym odwzorowaniu koloru marki (np. Pantone), skontaktuj się z nami przed zamówieniem.

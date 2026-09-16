@@ -71,7 +71,7 @@ Każdy arkusz A4 w cenie 49,00 zł mieści albo jedną dużą naklejkę (do 19 c
 Naklejka ze zdjęciem to nie tylko pamiątka. Doskonale sprawdza się w codziennym życiu:
 
 - **Laptop i tablet** - spersonalizuj sprzęt wlepką ze swoim ulubionym zdjęciem lub rysunkiem.
-- **Bidon, termos, kubek** - trwała folia odporna na wodę i ścieranie przeżyje setki zmywań.
+- **Bidon, termos, kubek** - trwała, wodoodporna folia znosi ręczne mycie.
 - **Kask, rower, hulajnoga** - naklejka wycięta po obrysie znakomicie wygląda na błyszczących powierzchniach.
 - **Pudełka i prezenty** - zamiast papierowej kartki wklej trwałą naklejkę ze wspólnym zdjęciem.
 
@@ -95,7 +95,7 @@ Tak, to jeden z naszych najpopularniejszych motywów. Kreator automatycznie wyiz
 
 ### Czy naklejka ze zdjęciem jest odporna na wodę?
 
-Tak. Drukujemy na trwałej folii winylowej z mocnym klejem, która jest wodoodporna i odporna na ścieranie. Nadaje się na bidony, termosy i kubki wielorazowego użytku.
+Tak. Drukujemy na trwałej folii winylowej z mocnym klejem, która jest odporna na wodę i promieniowanie UV. Nadaje się na bidony, termosy i kubki wielorazowego użytku.
 
 ### Czy mogę umieścić kilka różnych zdjęć na jednym arkuszu A4?
 

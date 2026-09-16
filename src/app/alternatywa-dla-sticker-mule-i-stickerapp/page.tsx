@@ -77,7 +77,7 @@ const FAQS: { q: string; a: string }[] = [
   },
   {
     q: "Czy jakość jest porównywalna z zagranicznymi drukarniami?",
-    a: "Tak. Drukujemy w rozdzielczości 300 DPI na grubej, wodoodpornej folii winylowej z mocnym klejem, odpornej na wodę, promieniowanie UV i zadrapania. Każdą naklejkę tniemy po obrysie (die-cut), więc przybiera kształt Twojej grafiki, a nie zwykłego kwadratu.",
+    a: "Tak. Drukujemy w rozdzielczości 300 DPI na grubej, wodoodpornej folii winylowej z mocnym klejem, odpornej na wodę i promieniowanie UV. Każdą naklejkę tniemy po obrysie (die-cut), więc przybiera kształt Twojej grafiki, a nie zwykłego kwadratu.",
   },
   {
     q: "Czy obsługa i kreator są po polsku?",
@@ -147,7 +147,7 @@ const ADVANTAGES: { icon: React.ElementType; title: string; text: string }[] = [
   {
     icon: ShieldCheck,
     title: "Trwała, wodoodporna folia",
-    text: "Druk 300 DPI na grubym winylu z mocnym klejem - odporny na wodę, UV i zadrapania. Po odklejeniu bez śladów na powierzchni.",
+    text: "Druk 300 DPI na grubym winylu z mocnym klejem - odporny na wodę i UV. Po odklejeniu bez śladów na powierzchni.",
   },
 ];
 

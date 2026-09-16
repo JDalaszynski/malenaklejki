@@ -11,7 +11,7 @@ role: "supporting"
 cta_text: "Zamów naklejki na folii"
 ---
 
-Naklejki wodoodporne zamówisz w MałeNaklejki od 1 sztuki za stałe 49,00 zł brutto za arkusz A4. Drukujemy wyłącznie na trwałej folii winylowej, która znosi kontakt z wodą, promieniowanie UV i zadrapania - dlatego ta sama naklejka sprawdzi się na bidonie w plecaku, na słoiku w lodówce i na kasku wystawionym na słońce. Zanim złożysz zamówienie, warto wiedzieć, co dokładnie oznacza "wodoodporna" w praktyce i gdzie leży granica tej odporności. Jeśli dopiero zaczynasz, zajrzyj też do naszego przewodnika o tym, na co zwrócić uwagę przy [drukowaniu naklejek online](/blog/drukowanie-naklejek-online-na-co-zwrocic-uwage-przed-wysylka-projektu) - znajdziesz tam komplet wymagań technicznych dla pliku.
+Naklejki wodoodporne zamówisz w MałeNaklejki od 1 sztuki za stałe 49,00 zł brutto za arkusz A4. Drukujemy wyłącznie na trwałej folii winylowej, która znosi kontakt z wodą i promieniowanie UV - dlatego ta sama naklejka sprawdzi się na bidonie w plecaku, na słoiku w lodówce i na kasku wystawionym na słońce. Zanim złożysz zamówienie, warto wiedzieć, co dokładnie oznacza "wodoodporna" w praktyce i gdzie leży granica tej odporności. Jeśli dopiero zaczynasz, zajrzyj też do naszego przewodnika o tym, na co zwrócić uwagę przy [drukowaniu naklejek online](/blog/drukowanie-naklejek-online-na-co-zwrocic-uwage-przed-wysylka-projektu) - znajdziesz tam komplet wymagań technicznych dla pliku.
 
 ## Czy naklejki wodoodporne wytrzymają deszcz, mycie i słońce?
 
@@ -22,7 +22,6 @@ Krótka odpowiedź: tak, w każdym z tych trzech przypadków. Folia winylowa nie
 | Deszcz, wilgoć, para wodna | Tak - woda nie narusza nadruku ani kleju |
 | Ręczne mycie, przecieranie ściereczką | Tak - również z użyciem łagodnego detergentu |
 | Słońce i promieniowanie UV | Tak - kolory nie blakną od ekspozycji na światło |
-| Zadrapania, tarcie w plecaku czy torbie | Tak - powierzchnia jest odporna na otarcia |
 | Zmywarka | **Nie** - wysoka temperatura i długi cykl niszczą klej |
 | Pranie, tkaniny, odzież | **Nie** - nie produkujemy naklejek na materiał |
 | Rozpuszczalniki, benzyna, tłuszcze techniczne | **Nie** - to poza zakresem odporności tej folii |
@@ -51,7 +50,6 @@ Nie każde zastosowanie wymaga folii. Poniżej te, w których materiał decyduje
 - **Rower, hulajnoga, kask, sprzęt turystyczny** - deszcz plus stała ekspozycja na słońce. Szczegóły dla tej grupy zebraliśmy we wpisie o [naklejkach na rower i akcesoria sportowe](/blog/naklejki-na-rower-i-akcesoria-sportowe-dla-pasjonatow).
 - **Naklejki serwisowe na urządzeniach klientów** - piec, klimatyzacja czy pompa ciepła bywają montowane w wilgotnych pomieszczeniach lub na zewnątrz budynku. Jak przygotować taką naklejkę, opisaliśmy w poradniku o [naklejkach serwisowych dla firm](/blog/naklejki-serwisowe-dla-firm-hydraulicy-elektrycy-i-instalatorzy).
 - **Paczki i przesyłki** - etykieta musi przetrwać transport w każdej pogodzie, zanim dotrze do odbiorcy.
-- **Laptop, obudowa telefonu, sprzęt noszony w plecaku** - tu decyduje głównie odporność na tarcie i zadrapania.
 
 ## Jak przygotować plik, żeby nadruk zachował kolory
 
@@ -71,7 +69,7 @@ Ta sekcja jest równie ważna jak lista zalet, bo najczęstsze rozczarowania bio
 - **Nie mamy folii hologramowej, brokatowej ani transparentnej.** Do wyboru jest folia winylowa z nadrukiem.
 - **Nie deklarujemy odporności na rozpuszczalniki, benzynę ani tłuszcze techniczne.** Naklejka na warsztatowym narzędziu regularnie polewanym chemią to zastosowanie poza zakresem tego materiału.
 - **Nie są to naklejki na tkaniny.** Folia z klejem trzyma na gładkich, twardych powierzchniach, nie na odzieży.
-- **Nie obiecujemy konkretnej liczby lat na zewnątrz.** Realna żywotność zależy od podłoża, nasłonecznienia i sposobu użytkowania - podajemy zakres odporności (woda, UV, zadrapania), a nie sztywną gwarancję czasową.
+- **Nie obiecujemy konkretnej liczby lat na zewnątrz.** Realna żywotność zależy od podłoża, nasłonecznienia i sposobu użytkowania - podajemy zakres odporności (woda, UV), a nie sztywną gwarancję czasową.
 
 Jeśli któryś z tych punktów dotyczy Twojego zastosowania, lepiej dowiedzieć się o tym teraz niż po zamówieniu.
 

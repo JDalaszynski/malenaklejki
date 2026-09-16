@@ -29,7 +29,7 @@ Wgraj Własne Wzory na Naklejki
 Oznacz Swoje Produkty - Etykiety dla Manufaktury
 
 **Opis Pinu:**
-Twoje ręcznie robione świece i kosmetyki zasługują na piękną oprawę. Stwórz okrągłe etykiety na świeczki i buteleczki. Nasze naklejki okrągłe z własnym nadrukiem są odporne na wodę i zadrapania.
+Twoje ręcznie robione świece i kosmetyki zasługują na piękną oprawę. Stwórz okrągłe etykiety na świeczki i buteleczki. Nasze naklejki okrągłe z własnym nadrukiem są odporne na wodę i promieniowanie UV.
 
 **Napis CTA na grafice:**
 Zamów Etykiety na Świece

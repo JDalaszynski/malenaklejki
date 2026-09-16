@@ -77,7 +77,7 @@ Jeden arkusz z kilkunastoma naklejkami serwisowymi starcza na miesiąc pracy w t
 
 ### Czy naklejka serwisowa wytrzyma na piecu gazowym lub klimatyzatorze?
 
-Tak. Drukujemy na wodoodpornej folii winylowej z mocnym klejem, odpornej na wilgoć, ścieranie i wahania temperatury typowe dla kotłowni oraz obudów urządzeń grzewczych i klimatyzacyjnych.
+Tak. Drukujemy na wodoodpornej folii winylowej z mocnym klejem, odpornej na wodę i promieniowanie UV, więc etykieta nie rozmięknie od wilgoci w kotłowni.
 
 ### Ile trwa realizacja zamówienia na naklejki serwisowe?
 

@@ -114,7 +114,7 @@ Tak. Na jednym arkuszu A4 umieścisz naklejki z imionami wszystkich dzieci - Two
 
 ### Czy naklejka z imieniem dziecka jest wodoodporna?
 
-Tak. Drukujemy na trwałej folii winylowej z mocnym klejem, odpornej na wodę, promieniowanie UV i zadrapania, dzięki czemu sprawdzi się na bidonie, kubku czy pudełku śniadaniowym. Naczynia z naklejką myj ręcznie - folia nie jest przystosowana do zmywarki.
+Tak. Drukujemy na trwałej folii winylowej z mocnym klejem, odpornej na wodę i promieniowanie UV, dzięki czemu sprawdzi się na bidonie, kubku czy pudełku śniadaniowym. Naczynia z naklejką myj ręcznie - folia nie jest przystosowana do zmywarki.
 
 ### Czy potrzebuję programu graficznego, aby przygotować imię dziecka na naklejce?
 

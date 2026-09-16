@@ -77,7 +77,7 @@ Tak. Wgraj do kreatora kolejne grafiki - wszystkie trafią na ten sam arkusz, a 
 
 ### Czy wlepki wytrzymują na zewnątrz, np. na rowerze czy desce?
 
-Tak. Drukujemy je na wodoodpornej folii winylowej z mocnym klejem, odpornej na ścieranie i zmienne warunki pogodowe.
+Tak. Drukujemy je na wodoodpornej folii winylowej z mocnym klejem, odpornej na wodę i promieniowanie UV.
 
 ### Jaka jest minimalna liczba wlepek do zamówienia?
 

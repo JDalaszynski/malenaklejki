@@ -19,7 +19,7 @@
 | Dostawa | **paczkomat, 19,99 zł** | brak darmowej dostawy - nie obiecuj jej | landing-agent 2026-07-24 |
 | Materiał | **folia winylowa** | "folia winylowa" / "trwały winyl" | landing-agent 2026-07-24 |
 | Powierzchnia naklejki | **subtelny połysk** - naklejki są delikatnie błyszczące; ta sama powierzchnia we wszystkich zamówieniach (w kreatorze nie ma wyboru mat/połysk) | "subtelny połysk", "delikatnie błyszcząca folia", "żywe kolory z subtelnym połyskiem". **NIE:** "matowe", "wysoki połysk", "lustrzany połysk", "glossy jak lakier", "laminowane / lakierowane" (warstwy ochronnej nie potwierdzono). Słowa **"wykończenie"** nie używaj dla połysku - w serwisie oznacza formę zestawu (arkusz / pojedyncze sztuki); w tabelach parametrów wiersz nazywa się **"Powierzchnia"** | właściciel 2026-09-16 |
-| Odporność | **woda, UV, zadrapania** | tylko te trzy | landing-agent 2026-07-24 |
+| Odporność | **woda, UV** | tylko te dwie; **NIE** "odporna na zadrapania", "na ścieranie", "na tarcie / otarcia" (właściciel 2026-09-16) | landing-agent 2026-07-24 |
 | Zmywarka | **NIE** | wprost: nie nadaje się do zmywarki, mycie ręczne | landing-agent 2026-07-24 |
 | Klej | **mocny klej, 0 śladów przy odklejaniu** | "nie zostawia śladów"; **NIE** "repozycjonowalny" / "wielokrotnego użytku" | rules/plan Faza 3 |
 | Rozdzielczość pliku | **300 DPI** (zalecane) | "300 DPI"; przy małych naklejkach więcej | używane na wszystkich landingach |
@@ -35,7 +35,7 @@
 
 * **Całkowity czas dostawy do klienta** (produkcja + kurier/paczkomat). Znamy koszt (19,99 zł) i czas produkcji - sumy **nie deklaruj**.
 * **Deadline zamówień przed świętami / konkretna data graniczna** - wymaga osobnej zgody (dotyczy huba B3, dawniej A5; rekomendacja do decyzji: `strategia-swieta-2026.md` §12). Po zgodzie wpisz datę do tabeli faktów potwierdzonych **z adnotacją "ważne do 24.12.2026"**, dopisz ją do `FACTS` w `scripts/generuj-llms-txt.mjs` i przebuduj `llms.txt`. Po sezonie usuń oba wpisy.
-* **Sufit trwałości zewnętrznej** ("na lata", "na karoserię", "odporna na myjnię ciśnieniową") - poza woda/UV/zadrapania.
+* **Sufit trwałości zewnętrznej** ("na lata", "na karoserię", "odporna na myjnię ciśnieniową") - poza woda/UV.
 * **Odporność na rozpuszczalniki, tłuszcze, benzynę, pranie, tkaninę.**
 * **Właściwości security / void / "nie da się zdjąć"** przy plombach na paczki.
 * **Dane konkurencji** (minimalne nakłady, ceny, czasy StickerApp / Sticker Mule / Redbubble) - pisz jakościowo, nigdy liczbowo.

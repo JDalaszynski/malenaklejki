@@ -28,14 +28,14 @@ const PAGE_URL = `https://www.malenaklejki.pl${PAGE_PATH}`;
 export const metadata: Metadata = {
   title: "Naklejki foliowe (winylowe) - wodoodporne, od 1 arkusza",
   description:
-    "Naklejki foliowe z własnym nadrukiem na trwałej folii winylowej - odporne na wodę, UV i zadrapania, druk 300 DPI. Stała cena 49 zł brutto za arkusz A4, od 1 sztuki.",
+    "Naklejki foliowe z własnym nadrukiem na trwałej folii winylowej - odporne na wodę i UV, druk 300 DPI. Stała cena 49 zł brutto za arkusz A4, od 1 sztuki.",
   alternates: {
     canonical: PAGE_PATH,
   },
   openGraph: {
     title: "Naklejki foliowe i winylowe z własnym nadrukiem - wodoodporne",
     description:
-      "Wodoodporne naklejki foliowe (winylowe) z własnym nadrukiem: trwała folia odporna na wodę, UV i zadrapania, druk 300 DPI, 49 zł brutto za arkusz A4, od 1 sztuki.",
+      "Wodoodporne naklejki foliowe (winylowe) z własnym nadrukiem: trwała folia odporna na wodę i UV, druk 300 DPI, 49 zł brutto za arkusz A4, od 1 sztuki.",
     url: PAGE_URL,
     type: "website",
     images: [
@@ -51,7 +51,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Naklejki foliowe i winylowe z własnym nadrukiem - wodoodporne",
     description:
-      "Trwała folia winylowa odporna na wodę, UV i zadrapania, druk 300 DPI. Stała cena 49 zł brutto za arkusz A4, od 1 sztuki.",
+      "Trwała folia winylowa odporna na wodę i UV, druk 300 DPI. Stała cena 49 zł brutto za arkusz A4, od 1 sztuki.",
     images: ["/landing/naklejki-foliowe/wodoodporne-naklejki-foliowe.png"],
   },
 };
@@ -68,15 +68,15 @@ const FAQS: { q: string; a: string }[] = [
   },
   {
     q: "Czym różnią się naklejki foliowe od winylowych?",
-    a: "To ta sama rzecz - naklejki foliowe i winylowe to dwie nazwy tego samego produktu. Folia, na której drukujemy, to właśnie winyl: trwały materiał z mocnym klejem, odporny na wodę, promieniowanie UV i zadrapania. Nie oferujemy innych wariantów materiału (na przykład holograficznego czy brokatowego) - stawiamy na jedną, sprawdzoną folię winylową.",
+    a: "To ta sama rzecz - naklejki foliowe i winylowe to dwie nazwy tego samego produktu. Folia, na której drukujemy, to właśnie winyl: trwały materiał z mocnym klejem, odporny na wodę i promieniowanie UV. Nie oferujemy innych wariantów materiału (na przykład holograficznego czy brokatowego) - stawiamy na jedną, sprawdzoną folię winylową.",
   },
   {
     q: "Na jakie warunki odporna jest folia winylowa?",
-    a: "Folia winylowa jest odporna na wodę, promieniowanie UV i zadrapania, więc znosi zachlapanie, słońce i codzienne ocieranie. Świetnie radzi sobie z przedmiotami narażonymi na wilgoć i intensywne użytkowanie - bidonem, kubkiem, laptopem czy sprzętem sportowym. Jeśli planujesz nietypowe, długotrwałe zastosowanie zewnętrzne, napisz do nas przed zamówieniem, a doradzimy.",
+    a: "Folia winylowa jest odporna na wodę i promieniowanie UV, więc znosi zachlapanie i słońce. Świetnie radzi sobie z przedmiotami narażonymi na wilgoć i intensywne użytkowanie - bidonem, kubkiem, laptopem czy sprzętem sportowym. Jeśli planujesz nietypowe, długotrwałe zastosowanie zewnętrzne, napisz do nas przed zamówieniem, a doradzimy.",
   },
   {
     q: "Jak trwała jest folia winylowa i czy mocno się trzyma?",
-    a: "Naklejki foliowe drukujemy w rozdzielczości 300 DPI na grubej folii winylowej z mocnym klejem, który dobrze trzyma się na gładkich powierzchniach. Materiał jest odporny na wodę, UV i zadrapania, a mimo mocnego kleju po odklejeniu nie zostawia śladów na powierzchni.",
+    a: "Naklejki foliowe drukujemy w rozdzielczości 300 DPI na grubej folii winylowej z mocnym klejem, który dobrze trzyma się na gładkich powierzchniach. Materiał jest odporny na wodę i UV, a mimo mocnego kleju po odklejeniu nie zostawia śladów na powierzchni.",
   },
   {
     q: "Czy naklejki foliowe można myć albo wkładać do zmywarki?",
@@ -121,7 +121,7 @@ const USE_CASES: {
   {
     icon: Laptop,
     title: "Laptop, telefon i sprzęt",
-    text: "Naklejki na laptopa, obudowę telefonu czy sprzęt elektroniczny - odporne na zadrapania i codzienne ocieranie, bez śladów po odklejeniu.",
+    text: "Naklejki na laptopa, obudowę telefonu czy sprzęt elektroniczny - wodoodporne i bez śladów po odklejeniu.",
     href: "/blog/male-naklejki-na-laptopa-jak-wyrazic-siebie-i-stworzyc-wlasny-styl",
     linkLabel: "Małe naklejki na laptopa",
   },
@@ -166,8 +166,8 @@ const ADVANTAGES: { icon: React.ElementType; title: string; text: string }[] = [
   },
   {
     icon: ShieldCheck,
-    title: "Odporne na zadrapania, bez śladów",
-    text: "Gruba folia znosi codzienne ocieranie i zadrapania, a mocny klej trzyma pewnie, ale po odklejeniu nie zostawia śladów na gładkiej powierzchni.",
+    title: "Mocny klej, bez śladów",
+    text: "Mocny klej pewnie trzyma się gładkich powierzchni, a po odklejeniu nie zostawia na nich śladów.",
   },
   {
     icon: Printer,
@@ -189,7 +189,7 @@ const ADVANTAGES: { icon: React.ElementType; title: string; text: string }[] = [
 const SPECS: { label: string; value: string }[] = [
   { label: "Materiał", value: "Trwała folia winylowa (winyl) z mocnym klejem" },
   { label: "Powierzchnia", value: "Subtelny połysk" },
-  { label: "Odporność", value: "Woda, promieniowanie UV, zadrapania" },
+  { label: "Odporność", value: "Woda, promieniowanie UV" },
   { label: "Druk", value: "300 DPI, pełny kolor" },
   { label: "Klej", value: "Mocny, nie zostawia śladów po odklejeniu" },
   { label: "Cięcie", value: "Po obrysie (die-cut), koło lub prostokąt" },
@@ -240,7 +240,7 @@ export default function NaklejkiFoliowePage() {
           "@type": "Product",
           name: "Naklejki foliowe (winylowe) z własnym nadrukiem",
           description:
-            "Wodoodporne naklejki foliowe drukowane na trwałej folii winylowej, odpornej na wodę, promieniowanie UV i zadrapania. Druk 300 DPI, stała cena 49,00 zł brutto za arkusz A4, bez minimalnego nakładu, z odbiorem w paczkomacie.",
+            "Wodoodporne naklejki foliowe drukowane na trwałej folii winylowej, odpornej na wodę i promieniowanie UV. Druk 300 DPI, stała cena 49,00 zł brutto za arkusz A4, bez minimalnego nakładu, z odbiorem w paczkomacie.",
           image: "https://www.malenaklejki.pl/images/logo/favicon.png",
           brand: { "@type": "Brand", name: "MałeNaklejki" },
           category: "Naklejki foliowe i winylowe z własnym nadrukiem",
@@ -359,7 +359,7 @@ export default function NaklejkiFoliowePage() {
           <p className="text-sm sm:text-lg text-foreground/90 font-semibold leading-relaxed">
             Zamów <strong>naklejki foliowe (winylowe)</strong> z własnym
             nadrukiem w polskiej drukarni: drukujemy na trwałej{" "}
-            <strong>folii winylowej odpornej na wodę, UV i zadrapania</strong> w
+            <strong>folii winylowej odpornej na wodę i UV</strong> w
             rozdzielczości <strong>300 DPI</strong>. Stała cena{" "}
             <strong>49,00 zł brutto za arkusz A4</strong>, już od 1 sztuki,
             produkcja w <strong>2-3 dni robocze</strong> i odbiór w paczkomacie.
@@ -407,7 +407,7 @@ export default function NaklejkiFoliowePage() {
             { value: "49 zł", label: "Brutto za arkusz A4" },
             { value: "od 1 szt.", label: "Bez min. nakładu" },
             { value: "300 DPI", label: "Druk pełny kolor" },
-            { value: "Woda·UV·rysy", label: "Odporność folii" },
+            { value: "Woda·UV", label: "Odporność folii" },
           ].map((stat) => (
             <div
               key={stat.label}
@@ -438,15 +438,15 @@ export default function NaklejkiFoliowePage() {
           <p className="text-sm sm:text-base text-muted-foreground font-medium leading-relaxed">
             Naklejki foliowe i winylowe to ten sam produkt - drukujemy je na
             trwałej folii winylowej, a nie na zwykłym papierze. To właśnie folia
-            decyduje o wodoodporności: nadruk nie rozmięknie od wody ani wilgoci
-            i znosi codzienne ocieranie. Dlatego naklejki foliowe wybiera się
+            decyduje o wodoodporności: nadruk nie rozmięknie od wody ani wilgoci.
+            Dlatego naklejki foliowe wybiera się
             wszędzie tam, gdzie zwykła papierowa naklejka szybko by się
             zniszczyła.
           </p>
           <p className="text-sm sm:text-base text-muted-foreground font-medium leading-relaxed">
             W MałeNaklejki stawiamy na jeden, sprawdzony materiał - folię
-            winylową z mocnym klejem, odporną na wodę, promieniowanie UV i
-            zadrapania. Nie oferujemy wariantów holograficznych, transparentnych
+            winylową z mocnym klejem, odporną na wodę i promieniowanie UV.
+            Nie oferujemy wariantów holograficznych, transparentnych
             czy brokatowych, dzięki czemu za każdym razem wiesz dokładnie, jaką
             jakość dostajesz. Każdą naklejkę drukujemy w rozdzielczości 300 DPI
             i tniemy po obrysie, w koło lub w prostokąt.
@@ -495,9 +495,9 @@ export default function NaklejkiFoliowePage() {
             Gdzie sprawdzają się wodoodporne naklejki foliowe
           </h2>
           <p className="text-sm sm:text-base text-muted-foreground font-medium leading-relaxed">
-            Odporność na wodę, UV i zadrapania sprawia, że naklejki foliowe
-            trafiają na przedmioty codziennego użytku narażone na wilgoć, słońce
-            i ocieranie - tam, gdzie papierowa naklejka nie przetrwałaby długo.
+            Odporność na wodę i UV sprawia, że naklejki foliowe
+            trafiają na przedmioty codziennego użytku narażone na wilgoć
+            i słońce - tam, gdzie papierowa naklejka nie przetrwałaby długo.
           </p>
           <div className="relative w-full aspect-square rounded-2xl shadow-sm border border-border/40 overflow-hidden flex items-start justify-center bg-black/5 dark:bg-[#003a3b]/40 my-6">
             <img
@@ -675,7 +675,7 @@ export default function NaklejkiFoliowePage() {
             Wgraj grafikę do kreatora, wybierz cięcie po obrysie i liczbę sztuk
             na arkuszu. Naklejki foliowe będą gotowe w 2-3 dni robocze za stałe
             49,00 zł brutto od arkusza A4 - na trwałej folii winylowej odpornej
-            na wodę, UV i zadrapania, bez minimalnego nakładu.
+            na wodę i UV, bez minimalnego nakładu.
           </p>
           <div className="flex flex-wrap justify-center gap-2 pt-2 text-xs font-bold text-muted-foreground">
             <span className="inline-flex items-center gap-1.5">

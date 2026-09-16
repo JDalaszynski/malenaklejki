@@ -66,7 +66,7 @@ const FAQS: { q: string; a: string }[] = [
   },
   {
     q: "Co to jest folia winylowa i czy jest wodoodporna?",
-    a: "Folia winylowa to trwałe tworzywo, na którym drukujemy naklejki zamiast papieru. Jest odporna na wodę, promieniowanie UV i zadrapania, dzięki czemu naklejka wytrzyma na laptopie, bidonie, kasku czy ramie roweru. Ma mocny klej i po odklejeniu nie zostawia śladów.",
+    a: "Folia winylowa to trwałe tworzywo, na którym drukujemy naklejki zamiast papieru. Jest odporna na wodę i promieniowanie UV, dzięki czemu naklejka wytrzyma na laptopie, bidonie, kasku czy ramie roweru. Ma mocny klej i po odklejeniu nie zostawia śladów.",
   },
   {
     q: "Czym różni się naklejka od etykiety?",
@@ -156,7 +156,7 @@ export default function SlownikNaklejekPage() {
           "@type": "Product",
           name: "Naklejki na zamówienie MałeNaklejki",
           description:
-            "Naklejki na zamówienie na trwałej folii winylowej: cięcie po obrysie (die-cut) lub kiss-cut, druk 300 DPI, odporność na wodę, UV i zadrapania. Stała cena 49,00 zł brutto za arkusz A4, bez minimalnego nakładu, z odbiorem w paczkomacie.",
+            "Naklejki na zamówienie na trwałej folii winylowej: cięcie po obrysie (die-cut) lub kiss-cut, druk 300 DPI, odporność na wodę i UV. Stała cena 49,00 zł brutto za arkusz A4, bez minimalnego nakładu, z odbiorem w paczkomacie.",
           image: "https://www.malenaklejki.pl/images/logo/favicon.png",
           brand: { "@type": "Brand", name: "MałeNaklejki" },
           category: "Naklejki na zamówienie",
@@ -603,8 +603,8 @@ export default function SlownikNaklejekPage() {
           </h2>
           <p className="text-sm sm:text-base text-muted-foreground font-medium leading-relaxed max-w-2xl mx-auto">
             Wgraj plik do kreatora, wybierz cięcie po obrysie lub kiss-cut i
-            ułóż arkusz. Naklejki na trwałej folii winylowej odpornej na wodę,
-            UV i zadrapania będą gotowe w 2-3 dni robocze za stałe 49,00 zł
+            ułóż arkusz. Naklejki na trwałej folii winylowej odpornej na wodę
+            i UV będą gotowe w 2-3 dni robocze za stałe 49,00 zł
             brutto od arkusza A4 - w dowolnym kształcie i bez minimalnego
             nakładu.
           </p>

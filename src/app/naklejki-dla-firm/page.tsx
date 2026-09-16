@@ -79,7 +79,7 @@ const FAQS: { q: string; a: string }[] = [
   },
   {
     q: "Na czym drukujecie naklejki firmowe i czy są trwałe?",
-    a: "Drukujemy w rozdzielczości 300 DPI na trwałej folii winylowej z mocnym klejem, odpornej na wodę, promieniowanie UV i zadrapania. Naklejki sprawdzają się na produktach, opakowaniach i sprzęcie, a po odklejeniu nie zostawiają śladów na powierzchni.",
+    a: "Drukujemy w rozdzielczości 300 DPI na trwałej folii winylowej z mocnym klejem, odpornej na wodę i promieniowanie UV. Naklejki sprawdzają się na produktach, opakowaniach i sprzęcie, a po odklejeniu nie zostawiają śladów na powierzchni.",
   },
   {
     q: "Jak szybko zrealizujecie zamówienie dla firmy?",
@@ -167,7 +167,7 @@ const ADVANTAGES: { icon: React.ElementType; title: string; text: string }[] = [
   {
     icon: ShieldCheck,
     title: "Trwała folia winylowa",
-    text: "Druk 300 DPI na grubym winylu z mocnym klejem - odporny na wodę, UV i zadrapania. Po odklejeniu bez śladów na powierzchni.",
+    text: "Druk 300 DPI na grubym winylu z mocnym klejem - odporny na wodę i UV. Po odklejeniu bez śladów na powierzchni.",
   },
   {
     icon: Sparkles,
@@ -185,7 +185,7 @@ const SPECS: { label: string; value: string }[] = [
   { label: "Materiał", value: "Trwała folia winylowa z mocnym klejem" },
   { label: "Powierzchnia", value: "Subtelny połysk" },
   { label: "Druk", value: "300 DPI, pełny kolor" },
-  { label: "Odporność", value: "Woda, promieniowanie UV, zadrapania" },
+  { label: "Odporność", value: "Woda, promieniowanie UV" },
   { label: "Cięcie", value: "Po obrysie (die-cut), koło lub prostokąt" },
   {
     label: "Rozmiar",

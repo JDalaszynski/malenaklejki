@@ -76,7 +76,7 @@ const FAQS: { q: string; a: string }[] = [
   },
   {
     q: "Na jakim materiale drukujecie naklejki?",
-    a: "Drukujemy w rozdzielczości 300 DPI na trwałej folii winylowej z mocnym klejem, który po odklejeniu nie zostawia śladów. Naklejki są odporne na wodę, promieniowanie UV i zadrapania. Nie nadają się natomiast do zmywarki - opakowania z takimi etykietami myj ręcznie.",
+    a: "Drukujemy w rozdzielczości 300 DPI na trwałej folii winylowej z mocnym klejem, który po odklejeniu nie zostawia śladów. Naklejki są odporne na wodę i promieniowanie UV. Nie nadają się natomiast do zmywarki - opakowania z takimi etykietami myj ręcznie.",
   },
   {
     q: "Czy muszę mieć gotowy projekt graficzny, żeby zamówić?",
@@ -101,7 +101,7 @@ const BENEFITS: { icon: React.ElementType; title: string; text: string }[] = [
   {
     icon: ShieldCheck,
     title: "Naklejki wytrzymują codzienne użycie",
-    text: "Drukujemy w 300 DPI na trwałej folii winylowej z mocnym klejem: odporne na wodę, promieniowanie UV i zadrapania, a po odklejeniu nie zostawiają śladów. Twoje logo nie schodzi po pierwszym przetarciu ściereczką.",
+    text: "Drukujemy w 300 DPI na trwałej folii winylowej z mocnym klejem: odporne na wodę i promieniowanie UV, a po odklejeniu nie zostawiają śladów. Twoje logo nie schodzi po pierwszym przetarciu ściereczką.",
   },
   {
     icon: Clock,
@@ -134,7 +134,7 @@ const SPEC: { feature: string; value: string }[] = [
   { feature: "Materiał", value: "Trwała folia winylowa z mocnym klejem" },
   { feature: "Powierzchnia", value: "Subtelny połysk" },
   { feature: "Rozdzielczość druku", value: "300 DPI (zalecana dla plików)" },
-  { feature: "Odporność", value: "Woda, promieniowanie UV, zadrapania" },
+  { feature: "Odporność", value: "Woda, promieniowanie UV" },
   {
     feature: "Cięcie",
     value: "Po obrysie (die-cut), kiss-cut, koło, prostokąt",

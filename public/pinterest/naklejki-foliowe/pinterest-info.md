@@ -41,7 +41,7 @@ Zrób Naklejkę Ze Zdjęcia
 Małe Naklejki z Własnym Napisem na Sprzęt
 
 **Opis Pinu:**
-Dodaj osobisty akcent do swojego sprzętu. Zamów małe naklejki z własnym napisem lub logo. Nasze trwałe wlepki idealnie przylegają do każdej powierzchni i są odporne na ścieranie.
+Dodaj osobisty akcent do swojego sprzętu. Zamów małe naklejki z własnym napisem lub logo. Nasze trwałe wlepki idealnie przylegają do każdej powierzchni.
 
 **Napis CTA na grafice:**
 Stwórz Naklejkę Z Napisem

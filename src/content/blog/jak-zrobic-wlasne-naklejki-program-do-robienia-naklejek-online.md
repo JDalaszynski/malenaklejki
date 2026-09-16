@@ -83,7 +83,7 @@ Nie ma minimalnego nakładu, więc zamówisz nawet jeden arkusz z jedną naklejk
 
 Robienie naklejek w narzędziu online to nie tylko wygoda, ale też konkretne przewagi, których nie da domowa drukarka ani zagraniczny serwis:
 
-- **Trwała folia z mocnym klejem** - naklejki są odporne na wodę, promieniowanie UV i zadrapania, a po odklejeniu schodzą czysto, **bez śladów kleju**. To nie jest jednak folia repozycjonowalna - kleisz raz, na dobre.
+- **Trwała folia z mocnym klejem** - naklejki są odporne na wodę i promieniowanie UV, a po odklejeniu schodzą czysto, **bez śladów kleju**. To nie jest jednak folia repozycjonowalna - kleisz raz, na dobre.
 - **Stała cena 49,00 zł za arkusz A4** - niezależnie od liczby naklejek i kształtu cięcia. Im więcej mniejszych wzorów na arkuszu, tym niższy koszt jednej sztuki.
 - **Brak minimalnego nakładu** - drukujemy już od pojedynczego arkusza, bez pakietów na setki sztuk.
 - **Polska produkcja i szybka wysyłka** - drukujemy w Polsce, więc nie przeliczasz ceny z euro, nie czekasz na przesyłkę zza granicy, a naklejki produkujemy w 2-3 dni robocze i wysyłamy do paczkomatu.
@@ -112,7 +112,7 @@ Stała cena to 49,00 zł za jeden arkusz A4, niezależnie od liczby naklejek, ic
 
 ### Czy naklejki zrobione online są wodoodporne i trwałe?
 
-Tak. Drukujemy na folii winylowej z mocnym klejem, odpornej na wodę, promieniowanie UV i zadrapania. Naklejka nie rozmięknie od wilgoci, a po odklejeniu nie zostawia śladów. Naczynia i słoiki z naklejką myj jednak ręcznie - folia nie jest przeznaczona do zmywarki.
+Tak. Drukujemy na folii winylowej z mocnym klejem, odpornej na wodę i promieniowanie UV. Naklejka nie rozmięknie od wilgoci, a po odklejeniu nie zostawia śladów. Naczynia i słoiki z naklejką myj jednak ręcznie - folia nie jest przeznaczona do zmywarki.
 
 ### Jaki plik przygotować, żeby zrobić naklejkę?
 

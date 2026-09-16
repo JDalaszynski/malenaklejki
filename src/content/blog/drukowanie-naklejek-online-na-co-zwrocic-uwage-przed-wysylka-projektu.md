@@ -89,7 +89,6 @@ Monitory wyświetlają kolory w przestrzeni RGB (czerwony, zielony, niebieski), 
 Wszystkie naklejki w MałeNaklejki drukujemy na **trwałej folii winylowej z mocnym klejem**. To nie jest papier - to profesjonalny materiał, który:
 
 - **Jest w pełni wodoodporny** - sprawdza się na słoiczkach, bidonach, butelkach i opakowaniach narażonych na wilgoć.
-- **Nie blaknie przy dotykaniu** - odporny na ścieranie i zadrapania.
 - **Można go usunąć bez śladów** - przy delikatnym odklejeniu nie pozostawia kleju na powierzchni.
 - **Jest bezpieczny dla większości powierzchni** - naklejamy go na szkło, plastik, metal i drewno.
 

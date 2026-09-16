@@ -29,7 +29,7 @@ Wgraj Logo Marki
 Naklejki Z Logo Firmy Na Szybę I Drzwi
 
 **Opis Pinu:**
-Oznacz witrynę, drzwi biura albo lokal naklejką z logo. Gruba folia winylowa z mocnym klejem trzyma się szkła, jest odporna na wodę, UV i zadrapania, a po odklejeniu nie zostawia śladów. Drukujemy w Polsce od 1 arkusza A4 za 49 zł - bez zagranicznej wysyłki i cła.
+Oznacz witrynę, drzwi biura albo lokal naklejką z logo. Gruba folia winylowa z mocnym klejem trzyma się szkła, jest odporna na wodę i UV, a po odklejeniu nie zostawia śladów. Drukujemy w Polsce od 1 arkusza A4 za 49 zł - bez zagranicznej wysyłki i cła.
 
 **Napis CTA na grafice:**
 Wgraj Własną Grafikę

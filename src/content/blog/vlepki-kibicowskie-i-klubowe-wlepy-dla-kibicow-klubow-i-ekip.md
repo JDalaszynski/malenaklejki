@@ -79,7 +79,7 @@ Tak. Możesz umieścić na jednym arkuszu A4 kilka różnych wersji tego samego 
 
 ### Czy wlepki wytrzymają na zewnątrz, na stadionie czy w plecaku?
 
-Tak. Drukujemy na trwałej folii winylowej z mocnym klejem, odpornej na wodę, promieniowanie UV i zadrapania, więc wlepka zniesie deszcz na trybunach i codzienne noszenie w plecaku.
+Tak. Drukujemy na trwałej folii winylowej z mocnym klejem, odpornej na wodę i promieniowanie UV, więc wlepka zniesie deszcz na trybunach i codzienne noszenie w plecaku.
 
 ### Jaka jest minimalna liczba wlepek do zamówienia?
 

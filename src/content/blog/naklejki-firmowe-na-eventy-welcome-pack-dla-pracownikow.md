@@ -97,7 +97,7 @@ Prostokąt lub kwadrat dla logotypów tekstowych i pełnych brandboardów, koło
 
 ### Czy naklejki na kubki i butelki wytrzymają częste mycie?
 
-Tak. Drukujemy na wodoodpornej folii winylowej z mocnym klejem, odpornej na wilgoć i ścieranie, więc logo nie blaknie po kilku tygodniach codziennego użytku.
+Tak. Drukujemy na wodoodpornej folii winylowej z mocnym klejem, odpornej na wodę i promieniowanie UV, więc logo nie blaknie od słońca ani nie rozmięknie od wilgoci.
 
 ### Czy mogę przygotować różne warianty naklejek na jeden event - np. dla gości i dla zespołu?
 

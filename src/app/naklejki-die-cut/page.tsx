@@ -87,7 +87,7 @@ const FAQS: { q: string; a: string }[] = [
   },
   {
     q: "Czy naklejki die-cut są wodoodporne?",
-    a: "Tak. Naklejki die-cut drukujemy na trwałej folii winylowej odpornej na wodę, promieniowanie UV i zadrapania, a nie na papierze. Dzięki temu sprawdzą się na laptopie, bidonie, kasku czy ramie roweru i nie rozmiękną od zachlapania.",
+    a: "Tak. Naklejki die-cut drukujemy na trwałej folii winylowej odpornej na wodę i promieniowanie UV, a nie na papierze. Dzięki temu sprawdzą się na laptopie, bidonie, kasku czy ramie roweru i nie rozmiękną od zachlapania.",
   },
   {
     q: "Ile różnych kształtów zmieszczę na jednym arkuszu A4?",
@@ -177,7 +177,7 @@ const ADVANTAGES: { icon: React.ElementType; title: string; text: string }[] = [
   {
     icon: Droplets,
     title: "Wodoodporna folia winylowa",
-    text: "Drukujemy na trwałej folii winylowej odpornej na wodę, UV i zadrapania. Naklejka die-cut wytrzyma na laptopie, bidonie czy ramie roweru.",
+    text: "Drukujemy na trwałej folii winylowej odpornej na wodę i UV. Naklejka die-cut wytrzyma na laptopie, bidonie czy ramie roweru.",
   },
   {
     icon: Printer,
@@ -201,7 +201,7 @@ const SPECS: { label: string; value: string }[] = [
   },
   { label: "Materiał", value: "Trwała folia winylowa z mocnym klejem" },
   { label: "Powierzchnia", value: "Subtelny połysk" },
-  { label: "Odporność", value: "Woda, promieniowanie UV, zadrapania" },
+  { label: "Odporność", value: "Woda, promieniowanie UV" },
   { label: "Druk", value: "300 DPI, pełny kolor" },
   {
     label: "Rozmiar",
@@ -472,8 +472,8 @@ export default function NaklejkiDieCutPage() {
             automatycznie wykrywa kontur grafiki lub usuwa tło ze zdjęcia i
             wyznacza precyzyjną ścieżkę cięcia. Nie potrzebujesz Photoshopa ani
             umiejętności graficznych. Każdą naklejkę drukujemy w rozdzielczości
-            300 DPI na folii winylowej odpornej na wodę, promieniowanie UV i
-            zadrapania.
+            300 DPI na folii winylowej odpornej na wodę i promieniowanie
+            UV.
           </p>
           <p className="text-sm sm:text-base text-muted-foreground font-medium leading-relaxed">
             Die-cut to nie to samo co kiss-cut. Przy die-cut naklejka i podkład
@@ -723,7 +723,7 @@ export default function NaklejkiDieCutPage() {
             Wgraj plik do kreatora, pozwól mu wyznaczyć kontur i wybierz cięcie
             po obrysie. Naklejki die-cut będą gotowe w 2-3 dni robocze za stałe
             49,00 zł brutto od arkusza A4 - na trwałej folii winylowej odpornej
-            na wodę, UV i zadrapania, w dowolnym kształcie i bez minimalnego
+            na wodę i UV, w dowolnym kształcie i bez minimalnego
             nakładu.
           </p>
           <div className="flex flex-wrap justify-center gap-2 pt-2 text-xs font-bold text-muted-foreground">

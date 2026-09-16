@@ -17,7 +17,7 @@ Zamów Etykiety Na Słoiki
 Naklejki Na Kubki I Opakowania Dla Gastronomii
 
 **Opis Pinu:**
-Prowadzisz kawiarnię, palarnię albo food truck? Oznacz kubki na wynos, torby i opakowania spójną naklejką z logo. Mocny klej i folia odporna na wodę oraz zadrapania trzymają się nawet na papierze i kartonie. Cena 49 zł brutto za arkusz A4, faktura VAT, wysyłka w 2-3 dni.
+Prowadzisz kawiarnię, palarnię albo food truck? Oznacz kubki na wynos, torby i opakowania spójną naklejką z logo. Mocny klej i folia odporna na wodę oraz UV trzymają się nawet na papierze i kartonie. Cena 49 zł brutto za arkusz A4, faktura VAT, wysyłka w 2-3 dni.
 
 **Napis CTA na grafice:**
 Zamów Naklejki Dla Kawiarni
@@ -29,7 +29,7 @@ Zamów Naklejki Dla Kawiarni
 Naklejki Serwisowe Z Datą Przeglądu I Kontaktem
 
 **Opis Pinu:**
-Hydraulik, elektryk, instalator? Zostaw na urządzeniu klienta naklejkę "serwisowane przez" z numerem telefonu i datą kolejnego przeglądu. Trwała folia winylowa znosi wilgoć, UV i zadrapania w kotłowni czy na maszynie. Drukujemy od 1 arkusza za 49 zł brutto, z fakturą VAT.
+Hydraulik, elektryk, instalator? Zostaw na urządzeniu klienta naklejkę "serwisowane przez" z numerem telefonu i datą kolejnego przeglądu. Trwała folia winylowa znosi wilgoć i UV w kotłowni czy na maszynie. Drukujemy od 1 arkusza za 49 zł brutto, z fakturą VAT.
 
 **Napis CTA na grafice:**
 Zamów Naklejki Dla Serwisu

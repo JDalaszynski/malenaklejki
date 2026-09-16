@@ -51,7 +51,7 @@ Koło to klasyka firmowej identyfikacji - dobrze znosi zmniejszenie do 3-4 cm, j
 
 ### Okrągłe etykiety na słoiki, miód i kosmetyki naturalne
 
-Producenci miodu, dżemów, świec sojowych i kosmetyków naturalnych najczęściej sięgają właśnie po koło - równe kółko na wieczku lub froncie słoika wygląda schludnie i profesjonalnie. Drukujemy na **trwałej folii winylowej z mocnym klejem**, odpornej na wodę, promieniowanie UV i zadrapania, dlatego etykieta nie rozmięknie od wilgoci w spiżarni. Ważna prawda o produkcie: słoik z taką naklejką **myj ręcznie - folia nie jest przeznaczona do zmywarki**. Więcej o znakowaniu opakowań znajdziesz w poradniku o [naklejkach z logo na słoiki i opakowania](/blog/naklejki-z-wlasnym-logo-na-sloiki-i-opakowania), a wymiary, kształty i cennik samego produktu - na stronie [etykiety na słoiki z własnym nadrukiem](/etykiety-na-sloiki).
+Producenci miodu, dżemów, świec sojowych i kosmetyków naturalnych najczęściej sięgają właśnie po koło - równe kółko na wieczku lub froncie słoika wygląda schludnie i profesjonalnie. Drukujemy na **trwałej folii winylowej z mocnym klejem**, odpornej na wodę i promieniowanie UV, dlatego etykieta nie rozmięknie od wilgoci w spiżarni. Ważna prawda o produkcie: słoik z taką naklejką **myj ręcznie - folia nie jest przeznaczona do zmywarki**. Więcej o znakowaniu opakowań znajdziesz w poradniku o [naklejkach z logo na słoiki i opakowania](/blog/naklejki-z-wlasnym-logo-na-sloiki-i-opakowania), a wymiary, kształty i cennik samego produktu - na stronie [etykiety na słoiki z własnym nadrukiem](/etykiety-na-sloiki).
 
 ![Rząd słoików z miodem na drewnianej półce, każdy z okrągłą etykietą manufaktury Pasieka Złocista z motywem pszczoły, w ciepłym świetle spiżarni.](/blog/naklejki-okragle-z-wlasnym-nadrukiem/okragle-etykiety-na-sloiki-z-miodem.jpg)
 
@@ -93,7 +93,7 @@ To zależy od zastosowania: etykiety na słoiki i plomby na paczki najczęściej
 
 ### Czy okrągłe naklejki na słoiki i butelki są wodoodporne?
 
-Tak. Drukujemy na folii winylowej z mocnym klejem, odpornej na wodę, promieniowanie UV i zadrapania, dlatego etykieta nie rozmięknie od wilgoci. Folia nie jest jednak przeznaczona do zmywarki - słoiki i butelki z naklejką **myj ręcznie**, a nadruk pozostanie czytelny na długo.
+Tak. Drukujemy na folii winylowej z mocnym klejem, odpornej na wodę i promieniowanie UV, dlatego etykieta nie rozmięknie od wilgoci. Folia nie jest jednak przeznaczona do zmywarki - słoiki i butelki z naklejką **myj ręcznie**, a nadruk pozostanie czytelny na długo.
 
 ### Czym różnią się naklejki okrągłe od naklejek die cut?
 

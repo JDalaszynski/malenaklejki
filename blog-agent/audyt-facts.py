@@ -20,6 +20,7 @@ RULES=[
  ('L. NASZ GENERATOR AI (HOLD)', r'(nasz\w*|wbudowan\w*|w kreatorze)[^.]{0,40}generator\w*\s+ai|generator ai\s+w cenie'),
  ('M. "ZAPROJEKTUJ" NAKLEJKĘ/GRAFIKĘ', r'(zaprojektuj|projektowani\w*|projektuj\w*)\s+(własn\w+\s+)?(naklejk|grafik|wzór|wzor)'),
  ('N. POWIERZCHNIA: MAT / WYSOKI POŁYSK / LAMINAT', r'(naklejk\w* matow\w*|matow\w* (naklejk|foli|wykończ)\w*|wysoki\w* połysk\w*|lustrzan\w* połysk\w*|(naklejk|foli)\w* (laminowan|lakierowan)\w*|(laminowan|lakierowan)\w* (naklejk|foli)\w*|mat(owe)? (lub|czy|albo) (błyszcz|połysk)\w*)'),
+ ('O. ODPORNOŚĆ NA ŚCIERANIE / ZADRAPANIA', r'(ściera\w*|zadrap\w*|zarysowa\w*|otarci\w*|ocierani\w*|tarci\w* (w plecaku|i zadrap)|Woda·UV·rysy)'),
 ]
 hits={}
 for f in FILES:

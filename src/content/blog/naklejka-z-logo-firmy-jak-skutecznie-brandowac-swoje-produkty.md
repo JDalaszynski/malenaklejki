@@ -67,7 +67,7 @@ Nie wymagamy zamawiania hurtowych ilości. Realizujemy wydruki już od jednego a
 Nie musisz być grafikiem. Wygeneruj grafikę w ChatGPT lub Midjourney, albo złóż logo samodzielnie w darmowym Canva, Word czy aplikacji mobilnej, zapisz plik (JPG, PNG, PDF) i wgraj go do naszego kreatora online. System automatycznie usunie tło i wygeneruje obrys dopasowany do kształtu Twojego znaku firmowego.
 
 ### Czy naklejki firmowe są wytrzymałe?
-Tak. Drukujemy wyłącznie na trwałej folii winylowej ze wzmocnionym klejem. Nasze naklejki są wodoodporne i odporne na ścieranie oraz zatłuszczenia - doskonale sprawdzają się na paczkach wysyłkowych, szkle, metalu i chropowatych powierzchniach.
+Tak. Drukujemy wyłącznie na trwałej folii winylowej ze wzmocnionym klejem. Nasze naklejki są odporne na wodę i promieniowanie UV - doskonale sprawdzają się na paczkach wysyłkowych, szkle, metalu i chropowatych powierzchniach.
 
 ### Czy mogę zamówić naklejki w kształcie mojego logo?
 Tak. Nasz kreator oferuje cięcie po obrysie grafiki (tzw. die-cut). Jeśli Twoje logo ma nieregularny kształt, system automatycznie wykryje jego krawędzie i poprowadzi linię cięcia tuż przy grafice.

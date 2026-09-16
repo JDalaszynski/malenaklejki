@@ -31,7 +31,7 @@ Zamień zdjęcie w naklejkę
 Fotonaklejka z pupila na laptopa
 
 **Opis Pinu:**
-Wgraj zdjęcie psa lub kota, a my wytniemy fotonaklejkę dokładnie po obrysie sylwetki (die-cut). Idealna na laptop, bidon czy kask - trwała folia winylowa nie boi się wody, słońca ani zadrapań. Naklejki ze zdjęcia już od 1 arkusza A4 za 49 zł.
+Wgraj zdjęcie psa lub kota, a my wytniemy fotonaklejkę dokładnie po obrysie sylwetki (die-cut). Idealna na laptop, bidon czy kask - trwała folia winylowa nie boi się wody ani słońca. Naklejki ze zdjęcia już od 1 arkusza A4 za 49 zł.
 
 **Napis CTA na grafice:**
 Zamów wlepkę z pupilem
@@ -91,7 +91,7 @@ Usuniemy tło ze zdjęcia
 Fotonaklejka ze zdjęcia hobby
 
 **Opis Pinu:**
-Kolej, motoryzacja, modelarstwo - przenieś swoją pasję na naklejkę. Zdjęcie z telefonu zamieniamy w fotonaklejkę wyciętą po obrysie na trwałej folii odpornej na wodę i zadrapania. Zamów online od 1 arkusza A4 za 49 zł brutto.
+Kolej, motoryzacja, modelarstwo - przenieś swoją pasję na naklejkę. Zdjęcie z telefonu zamieniamy w fotonaklejkę wyciętą po obrysie na trwałej folii odpornej na wodę i UV. Zamów online od 1 arkusza A4 za 49 zł brutto.
 
 **Napis CTA na grafice:**
 Zamów naklejkę z pasją

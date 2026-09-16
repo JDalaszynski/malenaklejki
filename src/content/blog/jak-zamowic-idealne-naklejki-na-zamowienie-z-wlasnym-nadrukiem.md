@@ -24,7 +24,7 @@ Cały nasz model rozliczeń mieści się w jednej liczbie, bo płacisz za **powi
 | Minimalny nakład | brak - zamówisz już 1 arkusz |
 | Rabaty ilościowe | nie ma - cena arkusza jest zawsze taka sama |
 | Materiał | trwała folia winylowa z mocnym klejem |
-| Odporność | woda, promieniowanie UV, zadrapania |
+| Odporność | woda, promieniowanie UV |
 | Kształty cięcia | die cut po obrysie, kiss-cut, koło, prostokąt |
 | Maksymalny wymiar jednej naklejki | 19 cm |
 | Przyjmowane pliki | JPG, PNG, PDF - zalecane 300 DPI |
@@ -95,7 +95,7 @@ Kształt wybierasz spośród czterech opcji, a linię cięcia wyznacza kreator:
 
 ## Na czym drukujemy? Trwałość folii winylowej i jej granice
 
-Wszystkie naklejki drukujemy na trwałej folii winylowej z mocnym klejem. Folia nie chłonie wody, więc nadruk nie rozmywa się ani nie faluje - odporność obejmuje wodę, promieniowanie UV i zadrapania. Klej trzyma pewnie na gładkich powierzchniach, a przy odklejaniu schodzi czysto i nie zostawia śladów.
+Wszystkie naklejki drukujemy na trwałej folii winylowej z mocnym klejem. Folia nie chłonie wody, więc nadruk nie rozmywa się ani nie faluje - odporność obejmuje wodę i promieniowanie UV. Klej trzyma pewnie na gładkich powierzchniach, a przy odklejaniu schodzi czysto i nie zostawia śladów.
 
 Warto znać też drugą stronę. Folia **nie nadaje się do zmywarki** - kubki i słoiki z naklejką myj ręcznie. Nie deklarujemy odporności na rozpuszczalniki, benzynę ani tłuszcze techniczne i nie oferujemy folii do oklejania całych pojazdów, hologramowej, brokatowej ani transparentnej. Pełne zestawienie warunków, z którymi folia sobie radzi i z którymi nie, znajdziesz we wpisie o tym, [ile wytrzymają naklejki wodoodporne](/blog/naklejki-wodoodporne-i-winylowe-jaka-folia-i-jak-dlugo-wytrzyma) oraz na stronie [naklejek foliowych](/naklejki-foliowe).
 
@@ -162,7 +162,7 @@ Wystarczy popularny format graficzny: JPG, PNG albo PDF - w tym zwykłe zdjęcie
 
 ### Czy naklejki na zamówienie są wodoodporne?
 
-Tak. Drukujemy na trwałej folii winylowej z mocnym klejem, odpornej na wodę, promieniowanie UV i zadrapania. Folia nie nadaje się natomiast do zmywarki - naczynia z naklejką myj ręcznie.
+Tak. Drukujemy na trwałej folii winylowej z mocnym klejem, odpornej na wodę i promieniowanie UV. Folia nie nadaje się natomiast do zmywarki - naczynia z naklejką myj ręcznie.
 
 ### Ile trwa realizacja zamówienia?
 

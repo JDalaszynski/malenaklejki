@@ -109,13 +109,13 @@ export const GLOSSARY: TermGroup[] = [
     id: "materialy",
     heading: "Materiał, folia i wykończenie naklejek",
     intro:
-      "Z czego zrobiona jest naklejka i co decyduje o jej trwałości. W MałeNaklejki rdzeniem oferty jest folia winylowa odporna na wodę, UV i zadrapania.",
+      "Z czego zrobiona jest naklejka i co decyduje o jej trwałości. W MałeNaklejki rdzeniem oferty jest folia winylowa odporna na wodę i UV.",
     terms: [
       {
         icon: Droplets,
         slug: "folia-winylowa",
         name: "Folia winylowa (winyl)",
-        def: "Folia winylowa to trwałe tworzywo, na którym drukujemy naklejki zamiast papieru. Jest odporna na wodę, promieniowanie UV i zadrapania, ma mocny klej i nie zostawia śladów po odklejeniu. To rdzeń oferty MałeNaklejki - wszystkie naklejki powstają na tej samej folii.",
+        def: "Folia winylowa to trwałe tworzywo, na którym drukujemy naklejki zamiast papieru. Jest odporna na wodę i promieniowanie UV, ma mocny klej i nie zostawia śladów po odklejeniu. To rdzeń oferty MałeNaklejki - wszystkie naklejki powstają na tej samej folii.",
         href: "/naklejki-foliowe",
         linkLabel: "Naklejki foliowe",
         matchTerms: ["folia winylowa", "folii winylowej", "folię winylową"],
@@ -124,7 +124,7 @@ export const GLOSSARY: TermGroup[] = [
         icon: Waves,
         slug: "naklejki-wodoodporne",
         name: "Naklejki wodoodporne",
-        def: "Naklejki wodoodporne to naklejki, których nadruk nie rozmywa się ani nie odchodzi od kontaktu z wodą - dzięki drukowi na folii winylowej, a nie na papierze. Odporność obejmuje wodę, promieniowanie UV i zadrapania. Wyjątkiem jest zmywarka - wysoka temperatura i długi cykl mogą podważyć krawędź kleju, dlatego naklejone naczynia myjemy ręcznie.",
+        def: "Naklejki wodoodporne to naklejki, których nadruk nie rozmywa się ani nie odchodzi od kontaktu z wodą - dzięki drukowi na folii winylowej, a nie na papierze. Odporność obejmuje wodę i promieniowanie UV. Wyjątkiem jest zmywarka - wysoka temperatura i długi cykl mogą podważyć krawędź kleju, dlatego naklejone naczynia myjemy ręcznie.",
         href: "/blog/naklejki-wodoodporne-i-winylowe-jaka-folia-i-jak-dlugo-wytrzyma",
         linkLabel: "Ile wytrzymują naklejki wodoodporne",
         matchTerms: ["naklejki wodoodporne", "naklejka wodoodporna", "wodoodporność"],
@@ -154,7 +154,7 @@ export const GLOSSARY: TermGroup[] = [
         icon: Layers,
         slug: "laminat",
         name: "Laminat",
-        def: "Laminat to dodatkowa przezroczysta warstwa ochronna, którą w niektórych technologiach nakłada się na wydruk dla większej odporności i połysku. W naklejkach MałeNaklejki odporność na wodę, promieniowanie UV i zadrapania zapewnia trwała folia winylowa, na której drukujemy. Gotowe naklejki mają subtelny połysk.",
+        def: "Laminat to dodatkowa przezroczysta warstwa ochronna, którą w niektórych technologiach nakłada się na wydruk dla większej odporności i połysku. W naklejkach MałeNaklejki odporność na wodę i promieniowanie UV zapewnia trwała folia winylowa, na której drukujemy. Gotowe naklejki mają subtelny połysk.",
         matchTerms: ["laminat"],
       },
     ],

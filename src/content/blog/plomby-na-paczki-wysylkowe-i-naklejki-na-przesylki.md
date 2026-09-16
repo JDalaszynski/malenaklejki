@@ -37,7 +37,7 @@ Plomba działa inaczej - jako **sygnał**:
 - Karton to podłoże chłonne, więc mocny klej wiąże się z jego włóknami. Próba odklejenia naklejki z tektury zwykle kończy się naderwaniem wierzchniej warstwy kartonu - i właśnie ten ślad jest informacją dla odbiorcy.
 - Przy reklamacji "paczka przyszła otwarta" masz konkretny punkt odniesienia w rozmowie z kurierem i klientem.
 
-Czego natomiast **nie deklarujemy** i czego nie warto obiecywać klientom: nasze naklejki nie mają właściwości typu security ani void (czyli nie zostawiają na opakowaniu wzoru "VOID" po zdjęciu), nie są też odporne na determinację kogoś, kto naprawdę chce paczkę otworzyć. Drukujemy na folii winylowej odpornej na wodę, promieniowanie UV i zadrapania - to świetnie sprawdza się w transporcie, ale nie zamienia naklejki w plombę celną.
+Czego natomiast **nie deklarujemy** i czego nie warto obiecywać klientom: nasze naklejki nie mają właściwości typu security ani void (czyli nie zostawiają na opakowaniu wzoru "VOID" po zdjęciu), nie są też odporne na determinację kogoś, kto naprawdę chce paczkę otworzyć. Drukujemy na folii winylowej odpornej na wodę i promieniowanie UV - to świetnie sprawdza się w transporcie, ale nie zamienia naklejki w plombę celną.
 
 > **Uwaga na trwałość:** deklarowana odporność dotyczy druku i folii. Na gładkiej powierzchni (folia bąbelkowa, plastik, szkło) naklejka schodzi czysto i nie zostawia śladów. Na tekturze - jak wyżej - odklejanie naderwie karton. To cecha, nie wada, ale nie planuj przenoszenia takiej naklejki na inne opakowanie: nasze naklejki mają mocny klej i nie są repozycjonowalne.
 
@@ -104,7 +104,7 @@ Do ceny arkusza dochodzi dostawa do Paczkomatu InPost za 19,99 zł. Produkcja za
 Plomba **sygnalizuje** naruszenie opakowania, ale nie jest zabezpieczeniem technicznym - nie blokuje dostępu do zawartości i nie zastępuje taśmy pakowej. Jej wartość polega na tym, że na tekturze mocny klej wiąże się z włóknami kartonu, więc odklejenie naklejki zostawia widoczny ślad. Odbiorca od razu widzi, że coś się z paczką działo.
 
 ### Czy Wasze naklejki mają właściwości security lub void?
-Nie. Nie oferujemy folii typu void, która po zdjęciu zostawia na opakowaniu wzór "VOID", ani żadnych rozwiązań o charakterze plomby celnej. Drukujemy na folii winylowej odpornej na wodę, UV i zadrapania - to standard sprawdzający się w transporcie, ale bez funkcji security.
+Nie. Nie oferujemy folii typu void, która po zdjęciu zostawia na opakowaniu wzór "VOID", ani żadnych rozwiązań o charakterze plomby celnej. Drukujemy na folii winylowej odpornej na wodę i UV - to standard sprawdzający się w transporcie, ale bez funkcji security.
 
 ### Ile kosztują naklejki na paczki przy małym sklepie?
 Arkusz A4 kosztuje stałe 49,00 zł brutto, bez minimalnego nakładu. Przy plombach o średnicy 3 cm to orientacyjnie ok. 40-50 sztuk z jednego arkusza, czyli mniej więcej 1,00-1,25 zł za naklejkę. Nie mamy progów ilościowych ani rabatów hurtowych - cena arkusza jest zawsze taka sama, także przy pierwszym, próbnym zamówieniu.

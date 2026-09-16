@@ -80,7 +80,7 @@ const FAQS: { q: string; a: string }[] = [
   },
   {
     q: "Czy wlepki są wodoodporne?",
-    a: "Tak. Drukujemy na trwałej folii winylowej, odpornej na wodę, promieniowanie UV i zadrapania. Folia nie nadaje się jednak do zmywarki - jeśli naklejasz wlepkę na naczynie, myj je ręcznie.",
+    a: "Tak. Drukujemy na trwałej folii winylowej, odpornej na wodę i promieniowanie UV. Folia nie nadaje się jednak do zmywarki - jeśli naklejasz wlepkę na naczynie, myj je ręcznie.",
   },
   {
     q: "Czy wlepkę można przekleić w inne miejsce?",
@@ -161,7 +161,7 @@ const ADVANTAGES: { icon: React.ElementType; title: string; text: string }[] = [
   {
     icon: Droplets,
     title: "Trwała folia winylowa",
-    text: "Druk na folii odpornej na wodę, promieniowanie UV i zadrapania - nie na papierze, który rozmięka od wilgoci czy potu.",
+    text: "Druk na folii odpornej na wodę i promieniowanie UV - nie na papierze, który rozmięka od wilgoci czy potu.",
   },
   {
     icon: Hand,
@@ -186,7 +186,7 @@ const SPECS: { label: string; value: string }[] = [
   { label: "Kształt cięcia", value: "Die-cut po obrysie grafiki, koło lub prostokąt" },
   { label: "Materiał", value: "Trwała folia winylowa z mocnym klejem" },
   { label: "Powierzchnia", value: "Subtelny połysk" },
-  { label: "Odporność", value: "Woda, promieniowanie UV, zadrapania" },
+  { label: "Odporność", value: "Woda, promieniowanie UV" },
   { label: "Mycie", value: "Ręczne - folia NIE nadaje się do zmywarki" },
   { label: "Druk", value: "300 DPI, pełny kolor" },
   { label: "Maks. wymiar jednej wlepki", value: "Do 19 cm" },
@@ -224,7 +224,7 @@ export default function WlepkiNaZamowieniePage() {
           "@type": "Product",
           name: "Wlepki (vlepki) na zamówienie z własnym nadrukiem",
           description:
-            "Produkcja wlepek i vlepek na zamówienie: pojedyncze sztuki cięte po obrysie grafiki lub arkusz A4, druk na trwałej folii winylowej odpornej na wodę, UV i zadrapania. Stała cena 49,00 zł brutto za arkusz A4 bez minimalnego nakładu, produkcja 2-3 dni robocze i odbiór w paczkomacie.",
+            "Produkcja wlepek i vlepek na zamówienie: pojedyncze sztuki cięte po obrysie grafiki lub arkusz A4, druk na trwałej folii winylowej odpornej na wodę i UV. Stała cena 49,00 zł brutto za arkusz A4 bez minimalnego nakładu, produkcja 2-3 dni robocze i odbiór w paczkomacie.",
           image: "https://www.malenaklejki.pl/images/logo/favicon.png",
           brand: { "@type": "Brand", name: "MałeNaklejki" },
           category: "Wlepki na zamówienie",
@@ -645,7 +645,7 @@ export default function WlepkiNaZamowieniePage() {
           <p className="text-sm sm:text-base text-muted-foreground font-medium leading-relaxed max-w-2xl mx-auto">
             Wgraj gotowy projekt do kreatora, wybierz pojedyncze sztuki lub
             arkusz A4 i zamów. Wlepki wyprodukujemy w 2-3 dni robocze na
-            trwałej folii winylowej odpornej na wodę, UV i zadrapania - za
+            trwałej folii winylowej odpornej na wodę i UV - za
             stałe 49,00 zł brutto od arkusza, bez minimalnego nakładu.
           </p>
           <div className="flex flex-wrap justify-center gap-2 pt-2 text-xs font-bold text-muted-foreground">
