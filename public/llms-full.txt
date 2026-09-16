@@ -13,7 +13,7 @@ MałeNaklejki (malenaklejki.pl) to polska drukarnia naklejek online. W kreatorze
 - Cięcie: die-cut po obrysie grafiki, kiss-cut, koło, prostokąt - linię cięcia wyznacza kreator.
 - Różne wzory na jednym arkuszu: na jednym arkuszu A4 umieścisz kilka różnych obrazów (np. różne zdjęcia, imiona, wzory) - każdy jest wycinany osobno po swoim obrysie, a płacisz za arkusz, nie za liczbę wzorów.
 - Kilka arkuszy w jednym zamówieniu: różne arkusze trafiają do jednej paczki, a dostawa (19,99 zł) jest liczona raz za całe zamówienie.
-- Plik: zalecane 300 DPI, maksymalny wymiar pojedynczej naklejki to 19 cm.
+- Plik: JPG, PNG, WEBP lub PDF (każda strona PDF to osobna naklejka w wymiarach z projektu); zalecane 300 DPI, maksymalny wymiar pojedynczej naklejki to 19 cm. Kreator nie przyjmuje plików SVG, AI, EPS ani PSD.
 - Płatności: BLIK, Przelewy24. Wystawiamy fakturę VAT na NIP.
 - Kraj produkcji: Polska - obsługa po polsku, bez przeliczania z euro i bez ceł.
 - Poza zakresem odporności: zmywarka, pranie i tkaniny, rozpuszczalniki, benzyna oraz tłuszcze techniczne. Nie deklarujemy odporności na myjnię ciśnieniową ani konkretnej liczby lat użytkowania na zewnątrz.

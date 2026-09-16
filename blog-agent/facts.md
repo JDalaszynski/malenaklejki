@@ -23,6 +23,7 @@
 | Zmywarka | **NIE** | wprost: nie nadaje się do zmywarki, mycie ręczne | landing-agent 2026-07-24 |
 | Klej | **mocny klej, 0 śladów przy odklejaniu** | "nie zostawia śladów"; **NIE** "repozycjonowalny" / "wielokrotnego użytku" | rules/plan Faza 3 |
 | Rozdzielczość pliku | **300 DPI** (zalecane) | "300 DPI"; przy małych naklejkach więcej | używane na wszystkich landingach |
+| Formaty plików | **JPG, PNG, WEBP, PDF** - PDF bez hasła, do 50 MB; każda strona PDF to osobna naklejka (naraz do 10 stron); puste marginesy strony kreator przycina, a naklejka trafia na arkusz w wymiarach z projektu (większy projekt zmniejsza do pola zadruku) | "wgraj JPG, PNG lub PDF - np. eksport z Canvy albo Worda"; **NIE:** SVG, AI, EPS, CDR, PSD - kreator ich nie przyjmuje, pisz o eksporcie do PNG lub PDF | kod: `src/lib/utils/pdf.ts`, `src/components/creator/PdfImportModal.tsx` - 2026-09-16 |
 | Maks. wymiar naklejki | **19 cm** | ⚠️ patrz sekcja "do potwierdzenia" niżej | funkcjonuje w treściach (15x), formalnie niezatwierdzony |
 | Cięcie | die-cut po obrysie, kiss-cut, koło, prostokąt | kreator sam wyznacza linię cięcia | - |
 | Różne wzory na jednym arkuszu | **TAK** - kolejne obrazy wgrywane do kreatora trafiają na ten sam arkusz, każdy z własną linią cięcia | "wgraj kolejne zdjęcia lub grafiki - każdą wytniemy osobno"; płacisz za arkusz, nie za liczbę wzorów. Złożenie wzorów w jeden plik (np. w Canvie) to **opcja, nie wymóg** | kod: `HomePageClient.tsx:661`, `types/creator.ts` (`PlacedSticker`) - 2026-09-10 |
