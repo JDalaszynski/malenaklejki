@@ -10,9 +10,14 @@ import { zonedBoundary } from "@/lib/admin/filters";
 import { deleteOrderLayouts } from "@/lib/orders/layout";
 import { sweepAbandonedOrders } from "@/lib/orders/sweep";
 import { sendPaidOrderNotifications } from "@/lib/orders/notifications";
+import {
+  STATUS_EMAIL_LABEL,
+  sendOrderStatusEmail,
+  type StatusEmailKind,
+} from "@/lib/orders/statusEmails";
 import { issueInvoiceForOrder, issueInvoiceForOrderSafely } from "@/lib/orders/invoicing";
 import { sendOrderToBaseLinker } from "@/lib/baselinker";
-import { FULFILLMENT_STATUSES, PAYMENT_STATUSES } from "@/lib/orders/status";
+import { FULFILLMENT_STATUSES, PAYMENT_STATUSES, normalizePaymentStatus } from "@/lib/orders/status";
 
 type Result<T = object> = ({ success: true } & T) | { success: false; error: string };
 
@@ -49,15 +54,34 @@ const statusSchema = z.object({
     .enum(Object.keys(FULFILLMENT_STATUSES) as [string, ...string[]])
     .optional(),
   trackingNumber: z.string().max(100).optional(),
+  // Tylko http(s) — link trafia do maila klienta jako przycisk, więc
+  // `javascript:` i podobne adresy nie mogą przejść.
+  trackingUrl: z
+    .string()
+    .trim()
+    .max(500)
+    .refine((value) => value === "" || /^https?:\/\/[^\s]+$/i.test(value), "Link musi zaczynać się od https://")
+    .optional(),
   notify: z.boolean().default(false),
+  /** Mail do klienta o nowym statusie realizacji („W produkcji" albo „Wysłane"). */
+  notifyCustomer: z.boolean().default(false),
 });
 
-export async function updateOrderStatus(raw: unknown): Promise<Result> {
+const STATUS_EMAIL_KINDS = ["IN_PRODUCTION", "SHIPPED"] as const;
+
+function isStatusEmailKind(value: unknown): value is StatusEmailKind {
+  return STATUS_EMAIL_KINDS.includes(value as StatusEmailKind);
+}
+
+export async function updateOrderStatus(raw: unknown): Promise<Result<{ notice?: string }>> {
   const actor = await requireAdminActor();
   if (!actor) return DENIED;
 
   const parsed = statusSchema.safeParse(raw);
-  if (!parsed.success) return { success: false, error: "Błędne dane." };
+  if (!parsed.success) {
+    const badLink = parsed.error.issues.find((issue) => issue.path[0] === "trackingUrl");
+    return { success: false, error: badLink?.message ?? "Błędne dane." };
+  }
   const input = parsed.data;
 
   const ref = db.collection("orders").doc(input.orderId);
@@ -89,9 +113,14 @@ export async function updateOrderStatus(raw: unknown): Promise<Result> {
     changes.push(`realizacja: ${before.fulfillmentStatus ?? "NEW"} → ${input.fulfillmentStatus}`);
   }
 
-  if (input.trackingNumber !== undefined && input.trackingNumber !== before.trackingNumber) {
+  if (input.trackingNumber !== undefined && input.trackingNumber !== (before.trackingNumber ?? "")) {
     update.trackingNumber = input.trackingNumber || null;
     changes.push(`przesyłka: ${before.trackingNumber ?? "—"} → ${input.trackingNumber || "—"}`);
+  }
+
+  if (input.trackingUrl !== undefined && input.trackingUrl !== (before.trackingUrl ?? "")) {
+    update.trackingUrl = input.trackingUrl || null;
+    changes.push(`link do śledzenia: ${input.trackingUrl || "usunięty"}`);
   }
 
   if (changes.length === 0) return { success: true };
@@ -116,16 +145,82 @@ export async function updateOrderStatus(raw: unknown): Promise<Result> {
     }
   }
 
+  // Mail o realizacji idzie tylko przy faktycznej zmianie statusu i tylko
+  // na wyraźne życzenie — zapis samego numeru przesyłki niczego nie wysyła.
+  let notice: string | undefined;
+  let customerEmailNote = "";
+  const newFulfillment = update.fulfillmentStatus;
+  if (input.notifyCustomer && isStatusEmailKind(newFulfillment)) {
+    if (normalizePaymentStatus((update.status as string | undefined) ?? before.status) !== "PAID") {
+      notice = "Status zapisany, ale mail do klienta nie poszedł — zamówienie nie jest opłacone.";
+    } else {
+      const sent = await sendOrderStatusEmail(newFulfillment, after, input.orderId);
+      if (sent.ok) {
+        customerEmailNote = ` (wysłano klientowi mail „${STATUS_EMAIL_LABEL[newFulfillment]}”)`;
+      } else {
+        notice = `Status zapisany, ale mail do klienta nie poszedł: ${sent.error}`;
+      }
+    }
+  }
+
   await recordAudit({
     actorEmail: actor.email,
     action: "Zmiana statusu",
     orderId: input.orderId,
     orderNumber: before.orderNumber,
-    details: changes.join("; ") + (input.notify ? " (wysłano powiadomienia)" : ""),
+    details:
+      changes.join("; ") + (input.notify ? " (wysłano powiadomienia)" : "") + customerEmailNote,
   });
 
   refreshAdminViews(input.orderId);
-  return { success: true };
+  return { success: true, notice };
+}
+
+const statusEmailSchema = z.object({
+  orderId: z.string().min(1).max(128),
+  kind: z.enum(STATUS_EMAIL_KINDS),
+});
+
+/**
+ * Wysyłka maila „W produkcji" albo „Wysłane" przyciskiem w panelu — także
+ * ponowna, np. po poprawieniu linku do śledzenia. Mail musi zgadzać się
+ * z zapisanym statusem, żeby klient nie dostał informacji, której panel nie potwierdza.
+ */
+export async function sendCustomerStatusEmail(raw: unknown): Promise<Result<{ sentAt: string }>> {
+  const actor = await requireAdminActor();
+  if (!actor) return DENIED;
+
+  const parsed = statusEmailSchema.safeParse(raw);
+  if (!parsed.success) return { success: false, error: "Błędne dane." };
+  const { orderId, kind } = parsed.data;
+
+  const snapshot = await db.collection("orders").doc(orderId).get();
+  if (!snapshot.exists) return { success: false, error: "Zamówienie nie istnieje." };
+  const order = snapshot.data()!;
+
+  if (normalizePaymentStatus(order.status) !== "PAID") {
+    return { success: false, error: "Zamówienie nie jest oznaczone jako opłacone." };
+  }
+  if ((order.fulfillmentStatus ?? "NEW") !== kind) {
+    return {
+      success: false,
+      error: `Najpierw zapisz status realizacji „${FULFILLMENT_STATUSES[kind].label}”.`,
+    };
+  }
+
+  const sent = await sendOrderStatusEmail(kind, order, orderId);
+  if (!sent.ok) return { success: false, error: sent.error };
+
+  await recordAudit({
+    actorEmail: actor.email,
+    action: `Mail do klienta: ${STATUS_EMAIL_LABEL[kind]}`,
+    orderId,
+    orderNumber: order.orderNumber,
+    details: order.customer?.email ?? "",
+  });
+
+  refreshAdminViews(orderId);
+  return { success: true, sentAt: sent.sentAt };
 }
 
 /**

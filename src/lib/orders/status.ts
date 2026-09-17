@@ -72,7 +72,12 @@ export function formatDate(iso: string | undefined | null): string {
   if (!iso) return "—";
   const date = new Date(iso);
   if (Number.isNaN(date.getTime())) return "—";
-  return date.toLocaleDateString("pl-PL", { day: "2-digit", month: "2-digit", year: "numeric" });
+  return date.toLocaleDateString("pl-PL", {
+    day: "2-digit",
+    month: "2-digit",
+    year: "numeric",
+    timeZone: "Europe/Warsaw",
+  });
 }
 
 export function formatDateTime(iso: string | undefined | null): string {
@@ -85,5 +90,7 @@ export function formatDateTime(iso: string | undefined | null): string {
     year: "numeric",
     hour: "2-digit",
     minute: "2-digit",
+    // Serwer na Vercelu liczy w UTC — bez strefy godziny w panelu byłyby przesunięte o 1–2 h.
+    timeZone: "Europe/Warsaw",
   });
 }

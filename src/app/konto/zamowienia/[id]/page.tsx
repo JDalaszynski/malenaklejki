@@ -77,11 +77,29 @@ export default async function OrderDetailPage({
           {order.status === "PAID" && (
             <StatusPill tone={fulfillment.tone}>{fulfillment.label}</StatusPill>
           )}
-          {order.trackingNumber && (
-            <span className="inline-flex items-center gap-2 text-sm font-bold text-foreground bg-muted/50 border border-border/60 rounded-full px-3 py-1">
-              <Truck className="w-4 h-4 text-primary" aria-hidden />
-              Przesyłka: <span className="font-mono">{order.trackingNumber}</span>
-            </span>
+          {order.trackingUrl ? (
+            <a
+              href={order.trackingUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 text-sm font-bold text-primary bg-primary/10 border border-primary/30 rounded-full px-3 py-1 hover:bg-primary/15 transition-colors"
+            >
+              <Truck className="w-4 h-4" aria-hidden />
+              {order.trackingNumber ? (
+                <>
+                  Śledź przesyłkę <span className="font-mono">{order.trackingNumber}</span>
+                </>
+              ) : (
+                "Śledź przesyłkę"
+              )}
+            </a>
+          ) : (
+            order.trackingNumber && (
+              <span className="inline-flex items-center gap-2 text-sm font-bold text-foreground bg-muted/50 border border-border/60 rounded-full px-3 py-1">
+                <Truck className="w-4 h-4 text-primary" aria-hidden />
+                Przesyłka: <span className="font-mono">{order.trackingNumber}</span>
+              </span>
+            )
           )}
           {order.invoiceUrl && (
             <a

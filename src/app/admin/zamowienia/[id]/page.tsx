@@ -94,6 +94,10 @@ export default async function AdminOrderPage({ params }: { params: Promise<{ id:
           status={order.status}
           fulfillmentStatus={order.fulfillmentStatus}
           trackingNumber={order.trackingNumber}
+          trackingUrl={order.trackingUrl}
+          customerEmail={order.customer.email}
+          inProductionEmailSentAt={order.inProductionEmailSentAt}
+          shippedEmailSentAt={order.shippedEmailSentAt}
         />
       </Card>
 

@@ -20,17 +20,11 @@ async function loadSharp() {
 }
 
 
-/** Build customer confirmation email HTML */
-export function buildCustomerEmailHtml(
-  data: any,
-  orderNumber: string,
-  /** Adres, pod którym gość może zamienić to zamówienie w konto. Pomijany dla zalogowanych. */
-  claimUrl?: string,
-  /** Gotowa ramka o przerwie urlopowej (`buildVacationEmailNotice`). Pusta, gdy przerwy nie ma. */
-  vacationNotice: string = ""
-): string {
-  const safeFirstName = escapeHtml(data.firstName || data.customer?.firstName || "");
-  const safeLastName = escapeHtml(data.lastName || data.customer?.lastName || "");
+/**
+ * Adres dostawy w mailach do klienta. Obsługuje oba kształty danych: płaski
+ * formularz z kasy i zamówienie zapisane w Firestore.
+ */
+function customerDeliveryLabel(data: any): string {
   const safeStreet = escapeHtml(data.street || data.delivery?.courierDetails?.street || "");
   const safeBuilding = escapeHtml(data.building || data.delivery?.courierDetails?.building || "");
   const safeCity = escapeHtml(data.city || data.delivery?.courierDetails?.city || "");
@@ -40,18 +34,16 @@ export function buildCustomerEmailHtml(
 
   const deliveryMethod = data.deliveryMethod || data.delivery?.method;
 
-  const subtotal = data.subtotal ?? data.totals?.subtotal ?? 0;
-  const shippingCost = data.shippingCost ?? data.totals?.shipping ?? 0;
-  const total = data.total ?? data.totals?.total ?? 0;
+  return deliveryMethod === "paczkomat"
+    ? `Paczkomat InPost: <strong>${safeLockerId}</strong><br/>${safeLockerAddress}`
+    : `Kurier pod drzwi: ${safeStreet} ${safeBuilding}, ${safePostalCode} ${safeCity}`;
+}
 
-  const deliveryLabel =
-    deliveryMethod === "paczkomat"
-      ? `Paczkomat InPost: <strong>${safeLockerId}</strong><br/>${safeLockerAddress}`
-      : `Kurier pod drzwi: ${safeStreet} ${safeBuilding}, ${safePostalCode} ${safeCity}`;
-
-  const itemRows = (data.items || [])
+/** Wiersze tabeli „Zamówione produkty" w mailach do klienta. */
+function customerItemRows(items: any[] = []): string {
+  return items
     .map(
-      (item: any, i: number) => `
+      (item: any) => `
     <tr>
       <td style="padding: 12px 0; border-bottom: 1px solid #f1f5f9; font-size: 14px; color: #334155; font-weight: 600;">
         Zestaw - ${item.stickersPerSheet} naklejek (${String(item.widthCm).replace('.', ',')}×${String(item.heightCm).replace('.', ',')} cm)<br/>
@@ -68,6 +60,26 @@ export function buildCustomerEmailHtml(
     </tr>`
     )
     .join("");
+}
+
+/** Build customer confirmation email HTML */
+export function buildCustomerEmailHtml(
+  data: any,
+  orderNumber: string,
+  /** Adres, pod którym gość może zamienić to zamówienie w konto. Pomijany dla zalogowanych. */
+  claimUrl?: string,
+  /** Gotowa ramka o przerwie urlopowej (`buildVacationEmailNotice`). Pusta, gdy przerwy nie ma. */
+  vacationNotice: string = ""
+): string {
+  const safeFirstName = escapeHtml(data.firstName || data.customer?.firstName || "");
+  const safeLastName = escapeHtml(data.lastName || data.customer?.lastName || "");
+
+  const subtotal = data.subtotal ?? data.totals?.subtotal ?? 0;
+  const shippingCost = data.shippingCost ?? data.totals?.shipping ?? 0;
+  const total = data.total ?? data.totals?.total ?? 0;
+
+  const deliveryLabel = customerDeliveryLabel(data);
+  const itemRows = customerItemRows(data.items);
 
   return `
 <!DOCTYPE html>
@@ -188,6 +200,250 @@ export function buildCustomerEmailHtml(
   </div>
 </body>
 </html>`;
+}
+
+/**
+ * Etap w pasku postępu maili o statusie zamówienia. Tabele zamiast flexa —
+ * pasek ma się ułożyć tak samo w Outlooku i w aplikacjach pocztowych.
+ */
+function progressStep(label: string, state: "done" | "current" | "upcoming", index: number): string {
+  const circle =
+    state === "done"
+      ? "background:#02af7a;color:#ffffff;border:2px solid #02af7a;"
+      : state === "current"
+        ? "background:#ffffff;color:#004749;border:2px solid #02af7a;box-shadow:0 0 0 4px #e8f5f0;"
+        : "background:#f8fafc;color:#94a3b8;border:2px solid #e2e8f0;";
+  const labelColor = state === "upcoming" ? "#94a3b8" : "#0f172a";
+
+  return `
+          <td style="width:72px;text-align:center;vertical-align:top;">
+            <div style="width:36px;height:36px;line-height:36px;border-radius:50%;margin:0 auto 8px;font-size:15px;font-weight:900;${circle}">
+              ${state === "done" ? "&#10003;" : index}
+            </div>
+            <div style="font-size:12px;font-weight:800;color:${labelColor};">${label}</div>
+          </td>`;
+}
+
+function progressConnector(filled: boolean): string {
+  return `
+          <td style="vertical-align:top;padding-top:19px;">
+            <div style="height:2px;background:${filled ? "#02af7a" : "#e2e8f0"};"></div>
+          </td>`;
+}
+
+/** Opłacone → W realizacji → Wysłane, z zaznaczonym etapem, na którym jest zamówienie. */
+function progressBar(stage: "production" | "shipped"): string {
+  const shipped = stage === "shipped";
+  return `
+      <h2 style="font-size:14px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:#94a3b8;margin-bottom:12px;margin-top:0;">
+        Status zamówienia
+      </h2>
+      <div style="background:#f8fafc;border-radius:12px;border:1px solid #e2e8f0;padding:20px 12px 18px;margin-bottom:28px;">
+        <table role="presentation" style="width:100%;border-collapse:collapse;">
+          <tr>${progressStep("Opłacone", "done", 1)}${progressConnector(true)}${progressStep("W realizacji", shipped ? "done" : "current", 2)}${progressConnector(shipped)}${progressStep("Wysłane", shipped ? "done" : "upcoming", 3)}
+          </tr>
+        </table>
+      </div>`;
+}
+
+/**
+ * Wspólny układ maili o postępie realizacji. Nagłówek, numer zamówienia,
+ * produkty i adres wyglądają tak samo jak w potwierdzeniu płatności —
+ * różni je tylko treść i etap na pasku postępu.
+ */
+function buildOrderStatusEmailHtml(opts: {
+  data: any;
+  orderNumber: string;
+  heading: string;
+  subheading: string;
+  intro: string;
+  stage: "production" | "shipped";
+  /** Blok wstawiany pod numerem zamówienia, np. dane przesyłki. */
+  highlight?: string;
+  orderUrl?: string;
+  /** Przycisk konta jako obrys — gdy w mailu jest już ważniejszy przycisk (śledzenie). */
+  orderUrlSecondary?: boolean;
+}): string {
+  const { data } = opts;
+  const safeFirstName = escapeHtml(data.firstName || data.customer?.firstName || "");
+  const safeLastName = escapeHtml(data.lastName || data.customer?.lastName || "");
+
+  const deliveryLabel = customerDeliveryLabel(data);
+  const itemRows = customerItemRows(data.items);
+  const orderLinkStyle = opts.orderUrlSecondary
+    ? "background:#ffffff;color:#02af7a;border:1.5px solid #02af7a;padding:13px 30px;"
+    : "background:#02af7a;color:#ffffff;padding:14px 30px;";
+
+  return `
+<!DOCTYPE html>
+<html lang="pl">
+<head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/></head>
+<body style="margin:0;padding:0;background-color:#f4faf7;font-family:'Inter',system-ui,-apple-system,sans-serif;">
+  <div style="max-width:620px;margin:0 auto;padding:32px 16px;">
+
+    <!-- Header -->
+    <div style="background:linear-gradient(135deg,#02af7a 0%,#004749 100%);border-radius:24px 24px 0 0;padding:36px 32px;text-align:center;">
+      <div style="font-size:32px;font-weight:900;color:#ffffff;letter-spacing:-1px;margin-bottom:4px;">
+        Małe<span style="color:#f4faf7;">Naklejki</span>
+      </div>
+      <div style="width:40px;height:3px;background:#ffffff;opacity:0.2;border-radius:2px;margin:8px auto 16px;"></div>
+      <h1 style="color:#ffffff;margin:0;font-size:22px;font-weight:800;">
+       ${opts.heading}
+      </h1>
+      <p style="color:#ffffff;opacity:0.85;margin:8px 0 0;font-size:14px;font-weight:500;">
+        ${opts.subheading}
+      </p>
+    </div>
+
+    <!-- Body -->
+    <div style="background:#ffffff;padding:32px;border-left:1px solid #e2e8f0;border-right:1px solid #e2e8f0;">
+
+      <p style="font-size:16px;color:#334155;font-weight:600;margin-top:0;">
+        Cześć <strong>${safeFirstName}</strong>! 👋
+      </p>
+      <p style="font-size:14px;color:#64748b;line-height:1.7;margin-bottom:24px;">
+        ${opts.intro}
+      </p>
+
+      <!-- Order number badge -->
+      <div style="background:linear-gradient(135deg,#f4faf7 0%,#e8f5f0 100%);border:1.5px solid #02af7a;border-radius:16px;padding:20px 24px;margin-bottom:28px;text-align:center;">
+        <p style="font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:2px;color:#64748b;margin:0 0 6px;">
+          Numer zamówienia
+        </p>
+        <p style="font-size:26px;font-weight:900;color:#0f172a;font-family:monospace;letter-spacing:2px;margin:0;">
+          ${escapeHtml(opts.orderNumber)}
+        </p>
+      </div>
+
+      ${opts.highlight ?? ""}
+
+      ${progressBar(opts.stage)}
+
+      <!-- Items table -->
+      <h2 style="font-size:14px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:#94a3b8;margin-bottom:12px;margin-top:0;">
+        Zamówione produkty
+      </h2>
+      <table style="width:100%;border-collapse:collapse;margin-bottom:24px;">
+        <thead>
+          <tr>
+            <th style="text-align:left;font-size:11px;font-weight:700;color:#94a3b8;text-transform:uppercase;letter-spacing:0.5px;padding-bottom:8px;">Produkt</th>
+            <th style="text-align:center;font-size:11px;font-weight:700;color:#94a3b8;text-transform:uppercase;letter-spacing:0.5px;padding-bottom:8px;">Ilość</th>
+            <th style="text-align:right;font-size:11px;font-weight:700;color:#94a3b8;text-transform:uppercase;letter-spacing:0.5px;padding-bottom:8px;">Cena</th>
+          </tr>
+        </thead>
+        <tbody>${itemRows}</tbody>
+      </table>
+
+      <!-- Delivery info -->
+      <h2 style="font-size:14px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:#94a3b8;margin-bottom:12px;">
+        Adres dostawy
+      </h2>
+      <div style="background:#f8fafc;border-radius:12px;border:1px solid #e2e8f0;padding:16px 20px;margin-bottom:24px;">
+        <p style="font-size:14px;color:#334155;font-weight:600;margin:0;line-height:1.7;">
+          ${safeFirstName} ${safeLastName}<br/>
+          ${deliveryLabel}
+        </p>
+      </div>
+
+      ${opts.orderUrl ? `
+      <div style="text-align:center;margin:28px 0 28px;">
+        <a href="${escapeHtml(opts.orderUrl)}" style="display:inline-block;${orderLinkStyle}text-decoration:none;font-size:15px;font-weight:800;border-radius:14px;">
+          Zobacz zamówienie w koncie
+        </a>
+      </div>
+      ` : ""}
+
+      <p style="font-size:13px;color:#94a3b8;line-height:1.7;margin-bottom:0;">
+        Masz pytania dotyczące zamówienia? Napisz do nas na
+        <a href="mailto:kontakt@malenaklejki.pl" style="color:#02af7a;font-weight:700;text-decoration:none;">kontakt@malenaklejki.pl</a>
+        podając numer zamówienia.
+      </p>
+    </div>
+
+    <!-- Footer -->
+    <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:0 0 24px 24px;padding:20px 32px;text-align:center;border-top:none;">
+      <p style="font-size:12px;color:#94a3b8;margin:0 0 4px;">
+        © ${new Date().getFullYear()} MałeNaklejki · <a href="https://www.malenaklejki.pl" style="color:#02af7a;text-decoration:none;">malenaklejki.pl</a>
+      </p>
+      <p style="font-size:11px;color:#cbd5e1;margin:0;">
+        To jest automatyczna informacja o statusie zamówienia. Nie odpowiadaj na ten email.
+      </p>
+    </div>
+  </div>
+</body>
+</html>`;
+}
+
+/**
+ * Informacja dla klienta, że opłacone zamówienie weszło w realizację.
+ * Celowo bez terminu wysyłki — ten zależy od kolejki i sprzedawca podaje go osobno.
+ */
+export function buildOrderInProgressEmailHtml(
+  data: any,
+  orderNumber: string,
+  /** Szczegóły zamówienia w koncie klienta. Pomijany dla gości — nie mają gdzie się zalogować. */
+  orderUrl?: string
+): string {
+  return buildOrderStatusEmailHtml({
+    data,
+    orderNumber,
+    heading: "Realizujemy Twoje zamówienie!",
+    subheading: "Płatność zaksięgowana, a Twoje naklejki są już w przygotowaniu.",
+    intro:
+      "Dobra wiadomość: Twoje zamówienie jest opłacone i przystąpiliśmy do jego realizacji. Nie musisz nic robić — resztą zajmujemy się my.",
+    stage: "production",
+    orderUrl,
+  });
+}
+
+/**
+ * Informacja o nadaniu paczki. Link do śledzenia sprzedawca wkleja ręcznie
+ * w panelu — bez niego mail idzie bez przycisku, z samym numerem przesyłki.
+ */
+export function buildOrderShippedEmailHtml(
+  data: any,
+  orderNumber: string,
+  shipment: { trackingUrl?: string | null; trackingNumber?: string | null; orderUrl?: string }
+): string {
+  const isLocker = (data.deliveryMethod || data.delivery?.method) === "paczkomat";
+  const trackingNumber = shipment.trackingNumber?.trim();
+  // Panel przepuszcza tylko http(s), ale adres ląduje w href — sprawdzamy jeszcze raz.
+  const trackingUrl = /^https?:\/\//i.test(shipment.trackingUrl?.trim() ?? "")
+    ? shipment.trackingUrl!.trim()
+    : undefined;
+
+  const highlight =
+    trackingUrl || trackingNumber
+      ? `
+      <!-- Tracking -->
+      <div style="background:#f8fafc;border-radius:16px;border:1px solid #e2e8f0;padding:22px 20px;margin-bottom:28px;text-align:center;">
+        ${trackingNumber ? `
+        <p style="font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:2px;color:#64748b;margin:0 0 6px;">
+          Numer przesyłki
+        </p>
+        <p style="font-size:17px;font-weight:800;color:#0f172a;font-family:monospace;letter-spacing:1px;margin:0 0 ${trackingUrl ? "16px" : "0"};word-break:break-all;">
+          ${escapeHtml(trackingNumber)}
+        </p>` : ""}
+        ${trackingUrl ? `
+        <a href="${escapeHtml(trackingUrl)}" style="display:inline-block;background:#02af7a;color:#ffffff;text-decoration:none;font-size:15px;font-weight:800;padding:14px 30px;border-radius:14px;">
+          Śledź przesyłkę
+        </a>` : ""}
+      </div>`
+      : "";
+
+  return buildOrderStatusEmailHtml({
+    data,
+    orderNumber,
+    heading: "Twoja paczka jest w drodze!",
+    subheading: "Naklejki są gotowe, spakowane i nadane.",
+    intro: isLocker
+      ? "Wysłaliśmy Twoje zamówienie do wybranego Paczkomatu. Gdy paczka będzie gotowa do odbioru, InPost prześle Ci kod odbioru."
+      : "Wysłaliśmy Twoje zamówienie. Kurier dostarczy paczkę pod adres podany w zamówieniu.",
+    stage: "shipped",
+    highlight,
+    orderUrl: shipment.orderUrl,
+    orderUrlSecondary: Boolean(trackingUrl),
+  });
 }
 
 /** Build seller notification email HTML */

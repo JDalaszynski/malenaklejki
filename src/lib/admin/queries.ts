@@ -29,6 +29,12 @@ export type AdminOrder = {
   /** Zamówienie pominięte w statystykach (ewidencja CSV bierze je normalnie). */
   excludedFromStats: boolean;
   trackingNumber: string | null;
+  /** Link do śledzenia wklejony ręcznie w panelu — trafia do maila „Wysłane”. */
+  trackingUrl: string | null;
+  /** Kiedy ostatnio poszedł do klienta mail „Realizujemy Twoje zamówienie”. */
+  inProductionEmailSentAt: string | null;
+  /** Kiedy ostatnio poszedł do klienta mail „Wysłane”. */
+  shippedEmailSentAt: string | null;
   internalNote: string | null;
   userId: string | null;
   customer: { firstName: string; lastName: string; email: string; phone: string };
@@ -87,6 +93,9 @@ export function toAdminOrder(id: string, data: FirebaseFirestore.DocumentData): 
     fulfillmentStatus: data.fulfillmentStatus ?? "NEW",
     excludedFromStats: Boolean(data.excludedFromStats),
     trackingNumber: data.trackingNumber ?? null,
+    trackingUrl: data.trackingUrl ?? null,
+    inProductionEmailSentAt: data.inProductionEmailSentAt ?? null,
+    shippedEmailSentAt: data.shippedEmailSentAt ?? null,
     internalNote: data.internalNote ?? null,
     userId: data.userId ?? null,
     customer: {

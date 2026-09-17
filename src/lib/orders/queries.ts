@@ -23,6 +23,7 @@ export type CustomerOrder = {
   status: string;
   fulfillmentStatus: string;
   trackingNumber: string | null;
+  trackingUrl: string | null;
   invoiceUrl: string | null;
   paymentMethod: string;
   deliveryMethod: string;
@@ -59,6 +60,7 @@ function toCustomerOrder(id: string, data: FirebaseFirestore.DocumentData): Cust
     status: data.status ?? "PENDING_PAYMENT",
     fulfillmentStatus: data.fulfillmentStatus ?? "NEW",
     trackingNumber: data.trackingNumber ?? null,
+    trackingUrl: data.trackingUrl ?? null,
     invoiceUrl: data.invoiceUrl ?? null,
     paymentMethod: data.payment?.method ?? data.paymentMethod ?? "",
     deliveryMethod: data.delivery?.method ?? "",
