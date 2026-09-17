@@ -17,6 +17,8 @@ const HEADINGS = [
   "Płatność",
   "Base",
   "Faktura",
+  "Mail realiz.",
+  "Mail wysł.",
   "Metoda",
   " ",
 ];

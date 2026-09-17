@@ -14,12 +14,22 @@ import {
 } from "@/lib/orders/status";
 
 /** Odhaczenie „tak/nie" — stan wynika z danych zamówienia, więc jest tylko do odczytu. */
-function CheckCell({ checked, label }: { checked: boolean; label: string }) {
+function CheckCell({
+  checked,
+  label,
+  detail,
+}: {
+  checked: boolean;
+  label: string;
+  /** Opis w dymku zamiast samego „tak/nie", np. data wysyłki maila. */
+  detail?: string;
+}) {
+  const text = detail ?? (checked ? "tak" : "nie");
   return (
     <span
       role="img"
-      aria-label={`${label}: ${checked ? "tak" : "nie"}`}
-      title={checked ? "tak" : "nie"}
+      aria-label={`${label}: ${text}`}
+      title={text}
       className={`inline-flex items-center justify-center w-5 h-5 rounded-md border ${
         checked
           ? "border-primary/60 bg-primary/10 text-primary"
@@ -53,7 +63,7 @@ export function OrdersTable({
       <table className="w-full text-sm border-collapse">
         <thead>
           <tr className="text-left">
-            {["Numer", "Data", "Klient", "Kwota", "Zysk", "Płatność", "Base", "Faktura", "Metoda", ""].map(
+            {["Numer", "Data", "Klient", "Kwota", "Zysk", "Płatność", "Base", "Faktura", "Mail realiz.", "Mail wysł.", "Metoda", ""].map(
               (heading) => (
                 <th
                   key={heading}
@@ -131,6 +141,28 @@ export function OrdersTable({
                 </td>
                 <td className="py-3 pr-4">
                   <CheckCell checked={hasInvoice} label="Faktura" />
+                </td>
+                <td className="py-3 pr-4">
+                  <CheckCell
+                    checked={Boolean(order.inProductionEmailSentAt)}
+                    label="Mail „Realizujemy Twoje zamówienie”"
+                    detail={
+                      order.inProductionEmailSentAt
+                        ? `Wysłano ${formatDateTime(order.inProductionEmailSentAt)}`
+                        : "Nie wysłano"
+                    }
+                  />
+                </td>
+                <td className="py-3 pr-4">
+                  <CheckCell
+                    checked={Boolean(order.shippedEmailSentAt)}
+                    label="Mail „Wysłane”"
+                    detail={
+                      order.shippedEmailSentAt
+                        ? `Wysłano ${formatDateTime(order.shippedEmailSentAt)}`
+                        : "Nie wysłano"
+                    }
+                  />
                 </td>
                 <td className="py-3 pr-4 whitespace-nowrap text-xs font-semibold text-muted-foreground">
                   {PAYMENT_METHOD_LABELS[order.payment.method] ?? (order.payment.method || "—")}
