@@ -29,7 +29,9 @@ function zoneOffsetMs(date: Date): number {
     Number(parts.second)
   );
 
-  return asUtc - date.getTime();
+  // Formatter ucina milisekundy, więc porównujemy z czasem uciętym tak samo —
+  // inaczej koniec dnia 23:59:59.999 przeskakiwał na 00:00:00.998 dnia następnego.
+  return asUtc - (date.getTime() - date.getUTCMilliseconds());
 }
 
 /**
