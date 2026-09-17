@@ -15,6 +15,7 @@ import { Footer } from "@/components/layout/Footer";
 import { MiniHero } from "@/components/home/MiniHero";
 import { LatestBlogPosts } from "@/components/blog/LatestBlogPosts";
 import { NewA4Visualizer } from "@/components/creator/NewA4Visualizer";
+import { SheetFinishInfo } from "@/components/creator/SheetFinishInfo";
 
 // Heavy components loaded on-demand to reduce initial bundle size (~110KB → ~60KB)
 const A4Visualizer3D = dynamic(
@@ -278,6 +279,18 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
   const totalPrice = getTotalPrice();
 
   const [shouldHighlightSheet, setShouldHighlightSheet] = useState(false);
+  const [shouldHighlightDeliveryForm, setShouldHighlightDeliveryForm] =
+    useState(false);
+
+  // "Zmień" w dymku "Wykończenie arkusza" pod podglądem arkusza. Na telefonie karta
+  // formy leży dopiero pod arkuszem, więc przewijamy do niej i podświetlamy.
+  const scrollToDeliveryForm = () => {
+    const el = document.getElementById("forma-zestawu");
+    if (!el) return;
+    el.scrollIntoView({ behavior: "smooth", block: "center" });
+    setShouldHighlightDeliveryForm(true);
+    setTimeout(() => setShouldHighlightDeliveryForm(false), 1500);
+  };
 
   const scrollToAndHighlightSheet = () => {
     const el = document.getElementById("sheet-preview-section");
@@ -2829,9 +2842,10 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
 
               {/* 3. Sticker Delivery Format Option */}
               <motion.div
+                id="forma-zestawu"
                 initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="liquid-glass border border-border/40 rounded-3xl p-4 sm:p-6 shadow-sm space-y-4"
+                className={`liquid-glass border border-border/40 rounded-3xl p-4 sm:p-6 shadow-sm space-y-4 ${shouldHighlightDeliveryForm ? "highlight-flash" : ""}`}
               >
                 <h3 className="text-base font-black text-foreground flex items-center gap-2">
                   <Scissors className="w-4.5 h-4.5 text-primary" />
@@ -3060,10 +3074,20 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
                 </span>
               </label>
 
-              <p className="text-[10px] leading-snug text-muted-foreground/70 font-medium mt-2 sm:mt-3 px-4 text-center max-w-sm mx-auto">
-                Uwaga: znaczne zmniejszenie naklejki może sprawić, że tekst i
-                małe elementy mogą stać się nieczytelne.
-              </p>
+              <div className="flex flex-wrap items-center justify-center gap-x-2.5 gap-y-2 sm:gap-x-3 mt-2 sm:mt-3 px-1 sm:px-3 w-full">
+                <p className="basis-[10.5rem] grow max-w-[17.5rem] text-[10px] leading-snug text-muted-foreground/70 font-medium text-left">
+                  Uwaga: znaczne zmniejszenie naklejki może sprawić, że tekst i
+                  małe elementy mogą stać się nieczytelne.
+                </p>
+                <span
+                  aria-hidden
+                  className="hidden sm:block shrink-0 w-px h-7 bg-[#004749]/10 dark:bg-white/10"
+                />
+                <SheetFinishInfo
+                  deliveryForm={deliveryForm}
+                  onChangeForm={scrollToDeliveryForm}
+                />
+              </div>
 
               {stickers.length > 0 && (
                 <div className="flex justify-center mt-1.5 mb-0">
