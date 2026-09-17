@@ -75,6 +75,9 @@ const nextConfig: NextConfig = {
     "/api": SHARP_NATIVE_FILES,
     "/checkout": SHARP_NATIVE_FILES,
     "/admin": SHARP_NATIVE_FILES,
+    // Fonty z polskimi znakami osadzane w ewidencji PDF — czytane z dysku,
+    // więc śledzenie importów ich nie widzi.
+    "/admin/raporty/pobierz": ["./src/lib/admin/fonts/*.ttf"],
   },
 
   async headers() {

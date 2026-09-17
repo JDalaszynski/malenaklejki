@@ -5,6 +5,7 @@ import { SkeletonBar } from "@/components/layout/Skeleton";
 const HEADINGS = [
   "Lp",
   "Nr zamówienia",
+  "Nr faktury",
   "Data sprzedaży",
   "Data zapłaty",
   "Nabywca",
@@ -21,7 +22,7 @@ export default function Loading() {
   return (
     <AdminPageSkeleton
       title="Ewidencja sprzedaży"
-      subtitle="Podgląd jest tym samym, co trafi do pliku CSV — sprawdź, zanim wyślesz księgowej."
+      subtitle="Podgląd jest tym samym, co trafi do plików CSV i PDF — sprawdź, zanim wyślesz księgowej."
       label="Wczytywanie ewidencji sprzedaży…"
     >
       <Card>
@@ -31,13 +32,17 @@ export default function Loading() {
             <SkeletonBar className="h-12 w-48 rounded-xl" />
           </div>
           <SkeletonBar className="h-5 w-64 sm:mb-3" />
-          <SkeletonBar className="h-12 w-44 rounded-xl sm:ml-auto" />
+          <div className="flex gap-2 sm:ml-auto">
+            <SkeletonBar className="h-12 w-40 rounded-xl" />
+            <SkeletonBar className="h-12 w-40 rounded-xl" />
+          </div>
         </div>
       </Card>
 
       <Card>
         <div className="border-b border-border/60 pb-4 mb-4">
           <SkeletonBar className="h-5 w-96 max-w-full" />
+          <SkeletonBar className="h-4 w-80 max-w-full mt-2" />
           <SkeletonBar className="h-4 w-72 max-w-full mt-2" />
         </div>
 

@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter, useSearchParams } from "next/navigation";
-import { Download } from "lucide-react";
+import { FileSpreadsheet, FileText } from "lucide-react";
 
 const selectClass =
   "h-11 w-full rounded-xl border border-slate-300 dark:border-white/20 bg-background px-3 text-sm font-semibold focus-visible:outline-none focus-visible:border-primary focus-visible:ring-2 focus-visible:ring-primary/20";
@@ -32,9 +32,10 @@ export function ReportControls({ month, includeInvoiced }: { month: string; incl
     router.push(`/admin/raporty?${next.toString()}`);
   };
 
-  const downloadUrl = `/admin/raporty/pobierz?miesiac=${encodeURIComponent(month)}${
-    includeInvoiced ? "&zFakturami=1" : ""
-  }`;
+  const downloadUrl = (format: "csv" | "pdf") =>
+    `/admin/raporty/pobierz?miesiac=${encodeURIComponent(month)}${
+      includeInvoiced ? "&zFakturami=1" : ""
+    }${format === "pdf" ? "&format=pdf" : ""}`;
 
   return (
     <div className="flex flex-col sm:flex-row sm:items-end gap-4">
@@ -61,17 +62,26 @@ export function ReportControls({ month, includeInvoiced }: { month: string; incl
           className="mt-0.5 w-5 h-5 rounded border-gray-300 text-foreground focus:ring-foreground shrink-0"
         />
         <span className="text-sm font-semibold text-muted-foreground leading-relaxed max-w-xs">
-          Pokaż także zamówienia z fakturą (domyślnie pomijane — są udokumentowane osobno)
+          Pokaż także zamówienia z fakturą na firmę (domyślnie pomijane — są udokumentowane osobno)
         </span>
       </label>
 
-      <a
-        href={downloadUrl}
-        className="sm:ml-auto inline-flex items-center justify-center gap-2 rounded-xl text-sm font-bold bg-primary text-primary-foreground hover:bg-primary/95 active:scale-[0.98] h-11 px-6 shadow-sm transition-all"
-      >
-        <Download className="w-4 h-4" aria-hidden />
-        Pobierz CSV
-      </a>
+      <div className="flex gap-2 sm:ml-auto">
+        <a
+          href={downloadUrl("csv")}
+          className="flex-1 sm:flex-none inline-flex items-center justify-center gap-2 rounded-xl text-sm font-bold bg-primary text-primary-foreground hover:bg-primary/95 active:scale-[0.98] h-11 px-6 shadow-sm transition-all"
+        >
+          <FileSpreadsheet className="w-4 h-4" aria-hidden />
+          Pobierz CSV
+        </a>
+        <a
+          href={downloadUrl("pdf")}
+          className="flex-1 sm:flex-none inline-flex items-center justify-center gap-2 rounded-xl text-sm font-bold bg-card border border-border/70 text-foreground hover:bg-muted/50 hover:text-primary active:scale-[0.98] h-11 px-6 transition-all"
+        >
+          <FileText className="w-4 h-4" aria-hidden />
+          Pobierz PDF
+        </a>
+      </div>
     </div>
   );
 }

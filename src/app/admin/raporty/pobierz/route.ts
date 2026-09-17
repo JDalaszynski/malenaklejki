@@ -1,14 +1,14 @@
 import { NextRequest, NextResponse } from "next/server";
 
 import { readSession } from "@/lib/auth/session";
-import { listOrders } from "@/lib/admin/queries";
-import { buildReport, reportToCsv, reportFileName } from "@/lib/admin/report";
+import { loadReport, reportToCsv, reportFileName } from "@/lib/admin/report";
+import { reportToPdf } from "@/lib/admin/reportPdf";
 import { monthRange } from "@/lib/admin/filters";
 
 export const dynamic = "force-dynamic";
 
 /**
- * Pobranie ewidencji jako plik CSV.
+ * Pobranie ewidencji jako plik CSV (domyślnie) albo PDF (`format=pdf`).
  *
  * Uprawnienia sprawdzamy tu, a nie tylko na stronie panelu — adres da się
  * wywołać bezpośrednio. Odpowiadamy 404 zamiast 403, żeby nie potwierdzać,
@@ -28,29 +28,28 @@ export async function GET(request: NextRequest) {
     return new NextResponse("Podaj miesiąc w formacie RRRR-MM", { status: 400 });
   }
 
-  const includeInvoiced = params.get("zFakturami") === "1";
-
-  const orders = await listOrders({
+  const format = params.get("format") === "pdf" ? "pdf" : "csv";
+  const options = {
     from: range.from,
     to: range.to,
-    dateField: "paidAt",
-    status: "PAID",
-  });
+    includeInvoiced: params.get("zFakturami") === "1",
+  };
 
-  const summary = buildReport(orders, {
-    from: range.from,
-    to: range.to,
-    includeInvoiced,
-  });
+  const { summary, excluded } = await loadReport(options, session.email ?? "");
+  const fileName = reportFileName(range.from, format);
+  const headers = {
+    "Content-Disposition": `attachment; filename="${fileName}"`,
+    "Cache-Control": "no-store, private",
+  };
 
-  const csv = reportToCsv(summary, { from: range.from, to: range.to, includeInvoiced });
-  const fileName = reportFileName(range.from);
+  if (format === "pdf") {
+    const pdf = await reportToPdf(summary, { ...options, excluded });
+    return new NextResponse(new Uint8Array(pdf), {
+      headers: { ...headers, "Content-Type": "application/pdf" },
+    });
+  }
 
-  return new NextResponse(csv, {
-    headers: {
-      "Content-Type": "text/csv; charset=utf-8",
-      "Content-Disposition": `attachment; filename="${fileName}"`,
-      "Cache-Control": "no-store, private",
-    },
+  return new NextResponse(reportToCsv(summary, options), {
+    headers: { ...headers, "Content-Type": "text/csv; charset=utf-8" },
   });
 }

@@ -4,8 +4,7 @@ import type { Metadata } from "next";
 import { AdminLayout, Card } from "@/components/admin/AdminLayout";
 import { ReportControls } from "@/components/admin/ReportControls";
 import { requireAdmin } from "@/lib/auth/dal";
-import { listOrders } from "@/lib/admin/queries";
-import { buildReport, SELLER } from "@/lib/admin/report";
+import { loadReport, REPORT_SCOPE, SELLER } from "@/lib/admin/report";
 import { currentMonthValue, monthRange, type AdminSearchParams } from "@/lib/admin/filters";
 import { formatPln } from "@/lib/orders/status";
 
@@ -37,21 +36,18 @@ export default async function ReportsPage({
   const includeInvoiced = params.zFakturami === "1";
   const range = monthRange(month) ?? monthRange(currentMonthValue())!;
 
-  const orders = await listOrders({
-    from: range.from,
-    to: range.to,
-    dateField: "paidAt",
-    status: "PAID",
-  });
-
-  const report = buildReport(orders, { ...range, includeInvoiced });
-  const excluded = orders.filter((order) => order.billing.wantsInvoice).length;
+  const {
+    summary: report,
+    excluded,
+    invoicesVerified,
+  } = await loadReport({ ...range, includeInvoiced }, admin.email ?? "");
+  const withoutInvoice = report.rows.filter((row) => !row.invoiceNumber);
 
   return (
     <AdminLayout
       adminEmail={admin.email ?? ""}
       title="Ewidencja sprzedaży"
-      subtitle="Podgląd jest tym samym, co trafi do pliku CSV — sprawdź, zanim wyślesz księgowej."
+      subtitle="Podgląd jest tym samym, co trafi do plików CSV i PDF — sprawdź, zanim wyślesz księgowej."
     >
       <Card>
         <Suspense fallback={<div className="h-24 animate-pulse rounded-xl bg-muted/40" />}>
@@ -65,7 +61,8 @@ export default async function ReportsPage({
             Ewidencja sprzedaży bezrachunkowej za okres {polishDate(range.from)} –{" "}
             {polishDate(range.to)}
           </p>
-          <p className="text-sm font-medium text-muted-foreground mt-1">
+          <p className="text-sm font-semibold text-foreground mt-1">{REPORT_SCOPE}</p>
+          <p className="text-sm font-medium text-muted-foreground mt-0.5">
             Sprzedawca: {SELLER.name}, NIP {SELLER.nip}, {SELLER.address}
           </p>
         </div>
@@ -91,8 +88,24 @@ export default async function ReportsPage({
         {!includeInvoiced && excluded > 0 && (
           <p className="text-sm font-semibold text-muted-foreground bg-muted/30 border border-border/60 rounded-xl px-4 py-3 mb-5">
             Pominięto {excluded}{" "}
-            {excluded === 1 ? "zamówienie z fakturą" : "zamówień z fakturą"} — te są udokumentowane
-            fakturą, więc do ewidencji bezrachunkowej nie wchodzą.
+            {excluded === 1 ? "zamówienie z fakturą na firmę" : "zamówień z fakturą na firmę"} — te
+            są udokumentowane fakturą, więc do ewidencji bezrachunkowej nie wchodzą.
+          </p>
+        )}
+
+        {!invoicesVerified && report.rows.length > 0 && (
+          <p className="text-sm font-semibold text-amber-800 dark:text-amber-300 bg-amber-500/10 border border-amber-500/30 rounded-xl px-4 py-3 mb-5">
+            Nie udało się połączyć z inFaktem — numery faktur pochodzą z bazy sklepu i mogą być
+            nieaktualne. Odśwież stronę za chwilę, zanim wyślesz raport.
+          </p>
+        )}
+
+        {invoicesVerified && withoutInvoice.length > 0 && (
+          <p className="text-sm font-semibold text-muted-foreground bg-muted/30 border border-border/60 rounded-xl px-4 py-3 mb-5">
+            Bez faktury w inFakcie:{" "}
+            <span className="font-mono font-bold text-foreground">
+              {withoutInvoice.map((row) => row.orderNumber).join(", ")}
+            </span>
           </p>
         )}
 
@@ -108,6 +121,7 @@ export default async function ReportsPage({
                   {[
                     "Lp",
                     "Nr zamówienia",
+                    "Nr faktury",
                     "Data sprzedaży",
                     "Data zapłaty",
                     "Nabywca",
@@ -134,6 +148,9 @@ export default async function ReportsPage({
                     <td className="py-2.5 pr-4 tabular-nums text-muted-foreground">{row.lp}</td>
                     <td className="py-2.5 pr-4 font-mono font-bold whitespace-nowrap">
                       {row.orderNumber}
+                    </td>
+                    <td className="py-2.5 pr-4 whitespace-nowrap tabular-nums font-semibold">
+                      {row.invoiceNumber || <span className="text-muted-foreground">—</span>}
                     </td>
                     <td className="py-2.5 pr-4 whitespace-nowrap tabular-nums">{row.saleDate}</td>
                     <td className="py-2.5 pr-4 whitespace-nowrap tabular-nums">{row.paymentDate}</td>
@@ -162,7 +179,7 @@ export default async function ReportsPage({
                 <tr className="font-extrabold">
                   <td className="py-3 pr-4" />
                   <td className="py-3 pr-4">SUMA</td>
-                  <td className="py-3 pr-4" colSpan={4} />
+                  <td className="py-3 pr-4" colSpan={5} />
                   <td className="py-3 pr-4 tabular-nums">{formatPln(report.net)}</td>
                   <td className="py-3 pr-4" />
                   <td className="py-3 pr-4 tabular-nums">{formatPln(report.vat)}</td>

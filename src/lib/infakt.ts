@@ -44,12 +44,18 @@ export class InfaktError extends Error {
   /** Numer referencyjny zlecenia — zapisujemy go, gdy nie doczekaliśmy się wyniku. */
   readonly taskReference?: string;
   readonly details?: unknown;
+  /** Kod HTTP odpowiedzi, jeśli błąd przyszedł z API. */
+  readonly status?: number;
 
-  constructor(message: string, options: { taskReference?: string; details?: unknown } = {}) {
+  constructor(
+    message: string,
+    options: { taskReference?: string; details?: unknown; status?: number } = {}
+  ) {
     super(message);
     this.name = "InfaktError";
     this.taskReference = options.taskReference;
     this.details = options.details;
+    this.status = options.status;
   }
 }
 
@@ -436,7 +442,10 @@ async function callInfakt<T>(path: string, init: RequestInit = {}): Promise<T> {
 
   if (!response.ok) {
     const detail = describeErrors(data) || text.slice(0, 300);
-    throw new InfaktError(`inFakt API ${response.status}: ${detail}`, { details: data });
+    throw new InfaktError(`inFakt API ${response.status}: ${detail}`, {
+      details: data,
+      status: response.status,
+    });
   }
 
   return data as T;
@@ -460,6 +469,79 @@ export async function getInvoiceTaskStatus(taskReference: string): Promise<Infak
 /** Szczegóły wystawionej faktury — potrzebujemy z nich numeru. */
 export async function getInvoice(uuid: string): Promise<{ uuid: string; number?: string }> {
   return callInfakt(`/invoices/${encodeURIComponent(uuid)}.json`);
+}
+
+/** Faktura z listy w inFakcie — tylko pola potrzebne do powiązania z zamówieniem. */
+export interface InfaktInvoiceListItem {
+  uuid: string;
+  number: string;
+  /** `vat`, `proforma`, `internal`… — zamówieniom odpowiadają tylko zwykłe faktury VAT. */
+  kind: string;
+  /** Brutto w groszach. */
+  gross_price: number;
+  sale_date: string;
+  invoice_date: string;
+  created_at?: string | null;
+  notes?: string | null;
+  client_first_name?: string | null;
+  client_last_name?: string | null;
+  client_company_name?: string | null;
+  client_tax_code?: string | null;
+}
+
+const LIST_PAGE_SIZE = 100;
+
+/** Twardy limit stron — zabezpieczenie przed pętlą, gdyby API źle liczyło wyniki. */
+const LIST_MAX_PAGES = 20;
+
+/**
+ * Faktury z datą sprzedaży w podanym zakresie (RRRR-MM-DD, obie granice włącznie).
+ *
+ * `offset` podajemy zawsze jawnie: bez niego API przy filtrach `q[...]`
+ * potrafi zignorować `limit` i oddać tylko 10 pozycji.
+ */
+export async function listInvoicesBySaleDate(
+  from: string,
+  to: string
+): Promise<InfaktInvoiceListItem[]> {
+  const invoices: InfaktInvoiceListItem[] = [];
+
+  for (let page = 0; page < LIST_MAX_PAGES; page++) {
+    const query = new URLSearchParams({
+      offset: String(page * LIST_PAGE_SIZE),
+      limit: String(LIST_PAGE_SIZE),
+      "q[sale_date_gteq]": from,
+      "q[sale_date_lteq]": to,
+    });
+    const data = await callInfakt<{
+      entities?: InfaktInvoiceListItem[];
+      metainfo?: { total_count?: number };
+    }>(`/invoices.json?${query}`, { signal: AbortSignal.timeout(10_000) });
+
+    const entities = data?.entities ?? [];
+    invoices.push(...entities);
+
+    const total = data?.metainfo?.total_count ?? 0;
+    if (entities.length < LIST_PAGE_SIZE || invoices.length >= total) break;
+  }
+
+  return invoices;
+}
+
+/**
+ * Pojedyncza faktura po UUID albo `null`, gdy w inFakcie już jej nie ma
+ * (usunięta ręcznie). Inne błędy API lecą dalej — brak odpowiedzi to nie to
+ * samo co brak faktury.
+ */
+export async function findInvoiceByUuid(uuid: string): Promise<InfaktInvoiceListItem | null> {
+  try {
+    return await callInfakt<InfaktInvoiceListItem>(`/invoices/${encodeURIComponent(uuid)}.json`, {
+      signal: AbortSignal.timeout(10_000),
+    });
+  } catch (error) {
+    if (error instanceof InfaktError && error.status === 404) return null;
+    throw error;
+  }
 }
 
 async function waitForInvoiceUuid(taskReference: string): Promise<string> {

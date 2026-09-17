@@ -1,6 +1,7 @@
 import "server-only";
 
-import type { AdminOrder } from "./queries";
+import { listOrders, type AdminOrder } from "./queries";
+import { syncInvoiceNumbers } from "./invoiceNumbers";
 import { PAYMENT_METHOD_LABELS } from "@/lib/orders/status";
 
 export const SELLER = {
@@ -8,6 +9,9 @@ export const SELLER = {
   nip: "6972414844",
   address: "ul. Geodetów 41, 64-100 Trzebiny",
 };
+
+/** Ewidencja obejmuje wyłącznie sprzedaż sklepu internetowego, nie resztę działalności. */
+export const REPORT_SCOPE = "Ewidencja dotyczy sprzedaży prowadzonej w serwisie internetowym malenaklejki.pl.";
 
 export const DEFAULT_VAT_RATE = 23;
 
@@ -26,7 +30,7 @@ function money(amount: number): string {
   return amount.toFixed(2).replace(".", ",");
 }
 
-function polishDate(iso: string | null | undefined): string {
+export function polishDate(iso: string | null | undefined): string {
   if (!iso) return "";
   const date = new Date(iso);
   if (Number.isNaN(date.getTime())) return "";
@@ -41,6 +45,8 @@ function polishDate(iso: string | null | undefined): string {
 export type ReportRow = {
   lp: number;
   orderNumber: string;
+  /** Pusty, gdy do zamówienia nie ma faktury w inFakcie. */
+  invoiceNumber: string;
   saleDate: string;
   paymentDate: string;
   buyer: string;
@@ -114,6 +120,7 @@ export function buildReport(orders: AdminOrder[], options: ReportOptions): Repor
     return {
       lp: index + 1,
       orderNumber: order.orderNumber,
+      invoiceNumber: order.invoiceNumber ?? "",
       saleDate: polishDate(order.createdAt),
       paymentDate: polishDate(order.paidAt),
       buyer: `${order.customer.firstName} ${order.customer.lastName}`.trim(),
@@ -135,6 +142,7 @@ export function buildReport(orders: AdminOrder[], options: ReportOptions): Repor
 const HEADERS = [
   "Lp",
   "Nr zamówienia",
+  "Nr faktury",
   "Data sprzedaży",
   "Data zapłaty",
   "Nabywca",
@@ -157,6 +165,7 @@ export function reportToCsv(summary: ReportSummary, options: ReportOptions): str
       `Ewidencja sprzedaży bezrachunkowej za okres ${polishDate(options.from)} - ${polishDate(options.to)}`
     )
   );
+  lines.push(escapeCell(REPORT_SCOPE));
   lines.push(escapeCell(`Sprzedawca: ${SELLER.name}, NIP ${SELLER.nip}, ${SELLER.address}`));
   lines.push("");
 
@@ -167,6 +176,7 @@ export function reportToCsv(summary: ReportSummary, options: ReportOptions): str
       [
         String(row.lp),
         row.orderNumber,
+        row.invoiceNumber,
         row.saleDate,
         row.paymentDate,
         row.buyer,
@@ -193,6 +203,7 @@ export function reportToCsv(summary: ReportSummary, options: ReportOptions): str
       "",
       "",
       "",
+      "",
       String(summary.rows.reduce((sum, row) => sum + row.quantity, 0)),
       money(summary.net),
       "",
@@ -211,10 +222,42 @@ export function reportToCsv(summary: ReportSummary, options: ReportOptions): str
   return `﻿${lines.join("\r\n")}\r\n`;
 }
 
-export function reportFileName(from: string): string {
+export function reportFileName(from: string, extension: "csv" | "pdf" = "csv"): string {
   const date = new Date(from);
-  if (Number.isNaN(date.getTime())) return "ewidencja.csv";
+  if (Number.isNaN(date.getTime())) return `ewidencja.${extension}`;
   const year = date.getFullYear();
   const month = String(date.getMonth() + 1).padStart(2, "0");
-  return `ewidencja-${year}-${month}.csv`;
+  return `ewidencja-${year}-${month}.${extension}`;
+}
+
+export type LoadedReport = {
+  summary: ReportSummary;
+  /** Zamówienia z fakturą na firmę, pominięte w ewidencji. */
+  excluded: number;
+  /** `false`, gdy inFakt nie odpowiedział i numery faktur pochodzą z bazy. */
+  invoicesVerified: boolean;
+};
+
+/**
+ * Wspólne źródło podglądu w panelu, pliku CSV i PDF — wszystkie trzy mają
+ * pokazywać dokładnie to samo, łącznie z numerami faktur uzgodnionymi z inFaktem.
+ */
+export async function loadReport(
+  options: ReportOptions,
+  actorEmail: string
+): Promise<LoadedReport> {
+  const orders = await listOrders({
+    from: options.from,
+    to: options.to,
+    dateField: "paidAt",
+    status: "PAID",
+  });
+
+  const invoices = await syncInvoiceNumbers(orders, actorEmail);
+
+  return {
+    summary: buildReport(invoices.orders, options),
+    excluded: orders.filter((order) => order.billing.wantsInvoice).length,
+    invoicesVerified: invoices.verified,
+  };
 }

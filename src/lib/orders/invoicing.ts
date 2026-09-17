@@ -32,6 +32,12 @@ export type OrderInvoiceState = {
   failedAt?: string | null;
   error?: string | null;
   warnings?: string[];
+  /**
+   * Faktura wystawiona poza automatem i przypięta później przez raport
+   * (`lib/admin/invoiceNumbers`): po numerze zamówienia w uwagach albo po
+   * kwocie, dacie i nabywcy.
+   */
+  linkedBy?: "notes" | "match";
 };
 
 export type IssueInvoiceResult = {
