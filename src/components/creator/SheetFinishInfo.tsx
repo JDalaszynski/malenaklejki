@@ -2,10 +2,10 @@
 
 import { Popover } from "@base-ui/react/popover";
 import {
-  CloudSunRain,
   Info,
   Layers,
   Scissors,
+  ShieldCheck,
   Sparkles,
   Sticker,
   type LucideIcon,
@@ -52,8 +52,7 @@ function SpecRow({
  * najechaniu, kliknięciu (dotyk) i z klawiatury; wiersz "Forma" podąża za
  * wyborem w karcie "Forma zestawu naklejek".
  *
- * Treść trzyma się blog-agent/facts.md: połysk opisujemy jako "Powierzchnia",
- * odporność tylko na wodę i UV.
+ * Treść trzyma się blog-agent/facts.md: połysk opisujemy jako "Powierzchnia".
  */
 export function SheetFinishInfo({
   deliveryForm,
@@ -153,9 +152,9 @@ export function SheetFinishInfo({
                 hint="Mocny klej, który nie zostawia śladów po odklejeniu."
               />
               <SpecRow
-                icon={CloudSunRain}
+                icon={ShieldCheck}
                 label="Odporność"
-                value="Woda i promieniowanie UV"
+                value="Do standardowego użytku"
                 hint="Nie nadaje się do zmywarki - myj ręcznie."
               />
             </dl>
