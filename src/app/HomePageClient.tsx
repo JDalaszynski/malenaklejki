@@ -73,6 +73,8 @@ import {
   checkStickersCollision,
   clampToUsableArea,
   isStickerOutsideUsableArea,
+  getMaxGraphicWidthCm,
+  getMaxDisplayedWidthCm,
   getDisplayedWidthCm,
   getGraphicWidthFromDisplayed,
   getCutLineOffsetMm,
@@ -548,11 +550,17 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
     }
   }, [selectedSticker]);
 
+  // Największa szerokość, jaką naklejka może mieć na arkuszu przy obecnym
+  // obrocie — po obróceniu o 90° to wysokość arkusza, nie jego szerokość.
+  const selectedStickerMaxWidthCm = selectedSticker
+    ? getMaxDisplayedWidthCm(selectedSticker)
+    : 19;
+
   const handleManualWidthCommit = (valStr: string) => {
     const sanitized = valStr.replace(",", ".");
     const num = parseFloat(sanitized);
     if (!isNaN(num)) {
-      const clamped = Math.max(1, Math.min(19, num));
+      const clamped = Math.max(1, Math.min(selectedStickerMaxWidthCm, num));
       const rounded = Math.round(clamped * 10) / 10;
       handleWidthChange(rounded);
       // Force sync widthInputValue in case handleWidthChange did not update the value
@@ -968,17 +976,22 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
   const handleWidthChange = (val: number) => {
     if (!selectedSticker) return;
 
-    const clampedDisplayedVal = Math.max(1, Math.min(19, val));
-    const targetGraphicWidth = getGraphicWidthFromDisplayed(
-      selectedSticker,
-      clampedDisplayedVal,
+    const clampedDisplayedVal = Math.max(
+      1,
+      Math.min(getMaxDisplayedWidthCm(selectedSticker), val),
+    );
+    const targetGraphicWidth = Math.min(
+      getGraphicWidthFromDisplayed(selectedSticker, clampedDisplayedVal),
+      getMaxGraphicWidthCm(selectedSticker),
     );
     const aspect = selectedSticker.aspectRatio;
 
-    const otherStickers = stickers.filter((s) => s.id !== selectedSticker.id);
-
-    const testFits = (w: number) => {
-      const h = w / aspect;
+    const testFits = (rawWidthCm: number) => {
+      // Sprawdzamy wymiary już zaokrąglone do 0.1 cm, bo takie zapisujemy —
+      // zaokrąglenie w górę przy maksymalnym rozmiarze wypychało naklejkę
+      // za margines.
+      const w = Math.round(rawWidthCm * 10) / 10;
+      const h = Math.round((w / aspect) * 10) / 10;
       const margins = getOuterMargins(selectedSticker, {
         widthCm: w,
         heightCm: h,
@@ -2721,7 +2734,7 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
                       <input
                         type="range"
                         min={1}
-                        max={19}
+                        max={selectedStickerMaxWidthCm}
                         step={0.1}
                         value={getDisplayedWidthCm(selectedSticker)}
                         onChange={(e) =>
@@ -2731,7 +2744,9 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
                       />
                       <p className="text-[10px] text-muted-foreground font-semibold">
                         Wysokość jest wyliczana automatycznie proporcjonalnie do
-                        grafiki (maksymalnie 19 cm).
+                        grafiki. Przy tym obrocie maksymalnie{" "}
+                        {String(selectedStickerMaxWidthCm).replace(".", ",")} cm
+                        szerokości.
                       </p>
                     </div>
 
@@ -3363,7 +3378,7 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
                           <input
                             type="range"
                             min={1}
-                            max={19}
+                            max={selectedStickerMaxWidthCm}
                             step={0.1}
                             value={getDisplayedWidthCm(selectedSticker)}
                             onChange={(e) =>

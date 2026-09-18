@@ -164,13 +164,28 @@ export function getCutLineMargins(
   const wMm = widthCm * 10;
   const hMm = heightCm * 10;
 
-  if (
-    cutLineType === "rounded" ||
-    cutLineType === "circle" ||
-    cutLineType === "rounded_inside" ||
-    cutLineType === "circle_inside"
-  ) {
-    const isInside = cutLineType === "rounded_inside" || cutLineType === "circle_inside";
+  if (cutLineType === "circle" || cutLineType === "circle_inside") {
+    // Obrócona elipsa ma węższy obrys niż obrócony prostokąt, w który jest
+    // wpisana (koło pod 45° liczone jak kwadrat było o ~40% za szerokie), więc
+    // liczymy dokładny obrys elipsy.
+    const offsetMm = cutLineType === "circle_inside" ? -0.5 : getCutLineOffsetMm(cutLineType, widthCm);
+    const radX = (wMm + 2 * offsetMm) / 2;
+    const radY = (hMm + 2 * offsetMm) / 2;
+    const rad = (rotation * Math.PI) / 180;
+    const cos = Math.cos(rad);
+    const sin = Math.sin(rad);
+    const halfW = Math.sqrt((radX * cos) ** 2 + (radY * sin) ** 2);
+    const halfH = Math.sqrt((radX * sin) ** 2 + (radY * cos) ** 2);
+    return {
+      left: halfW - wMm / 2,
+      right: wMm / 2 + halfW,
+      top: halfH - hMm / 2,
+      bottom: hMm / 2 + halfH,
+    };
+  }
+
+  if (cutLineType === "rounded" || cutLineType === "rounded_inside") {
+    const isInside = cutLineType === "rounded_inside";
     const offsetMm = isInside ? -0.5 : getCutLineOffsetMm(cutLineType, widthCm);
     const cutW = wMm + 2 * offsetMm;
     const cutH = hMm + 2 * offsetMm;
@@ -204,7 +219,10 @@ export function getCutLineMargins(
     };
   }
 
-  return { left: 0, right: wMm, top: 0, bottom: hMm };
+  // Bez linii cięcia liczy się sama grafika — z obrotem. Nieobrócony prostokąt
+  // był dla podłużnej naklejki po obrocie szerszy niż ona sama i stawiał
+  // niewidzialną ścianę przed lewym i prawym marginesem.
+  return getContourMargins(wMm, hMm, rotation, undefined);
 }
 
 /**
@@ -728,6 +746,90 @@ export function isStickerOutsideUsableArea(
   if (rightBound > 193 + EPS && bottomBound > 280 + EPS) return true;
 
   return false;
+}
+
+/**
+ * Checks whether an envelope with these margins fits anywhere on the sheet:
+ * inside the 188 x 275 mm usable area without touching the 6 x 6 mm corner indents.
+ */
+export function envelopeFitsSheet(
+  margins: { left: number; right: number; top: number; bottom: number }
+): boolean {
+  const USABLE_WIDTH_MM = 188;
+  const USABLE_HEIGHT_MM = 275;
+  const CORNER_INDENT_MM = 6;
+  const EPS = 1e-6;
+
+  const w = margins.left + margins.right;
+  const h = margins.top + margins.bottom;
+  if (w > USABLE_WIDTH_MM + EPS || h > USABLE_HEIGHT_MM + EPS) return false;
+
+  // Obrys, który sięga w poziomie obu bocznych wcięć, musi zmieścić się
+  // w pionie między górnymi i dolnymi — albo odwrotnie.
+  return (
+    w <= USABLE_WIDTH_MM - 2 * CORNER_INDENT_MM + EPS ||
+    h <= USABLE_HEIGHT_MM - 2 * CORNER_INDENT_MM + EPS
+  );
+}
+
+/**
+ * Calculates the largest graphic width (cm) at which the sticker, with its current
+ * rotation, proportions and cut line, still fits on the sheet. A sticker turned by
+ * 90° can therefore span the sheet's height, not just its width.
+ */
+export function getMaxGraphicWidthCm(
+  st: {
+    widthCm: number;
+    heightCm: number;
+    aspectRatio?: number;
+    rotation?: number;
+    cutLineType: "none" | "contour" | "rounded" | "circle" | "contour_inside" | "rounded_inside" | "circle_inside";
+    contourPolygons?: { x: number; y: number }[][];
+  }
+): number {
+  const aspect = st.aspectRatio || st.widthCm / st.heightCm;
+  let low = 0;
+  let high = 40; // więcej niż przekątna pola arkusza (33 cm)
+
+  for (let i = 0; i < 30; i++) {
+    const mid = (low + high) / 2;
+    const margins = getOuterMargins(st, { widthCm: mid, heightCm: mid / aspect });
+    if (envelopeFitsSheet(margins)) {
+      low = mid;
+    } else {
+      high = mid;
+    }
+  }
+
+  return low;
+}
+
+/**
+ * The largest displayed width (cut line width, cm, rounded down to 0.1) the sticker
+ * can take on the sheet — the upper end of the width slider.
+ */
+export function getMaxDisplayedWidthCm(
+  st: {
+    widthCm: number;
+    heightCm: number;
+    aspectRatio?: number;
+    rotation?: number;
+    cutLineType: "none" | "contour" | "rounded" | "circle" | "contour_inside" | "rounded_inside" | "circle_inside";
+    contourPolygons?: { x: number; y: number }[][];
+  }
+): number {
+  const maxWidthCm = getMaxGraphicWidthCm(st);
+  if (st.cutLineType === "none") {
+    return Math.floor(maxWidthCm * 10 + 1e-6) / 10;
+  }
+
+  const aspect = st.aspectRatio || st.widthCm / st.heightCm;
+  const margins = getCutLineMargins(st, {
+    widthCm: maxWidthCm,
+    heightCm: maxWidthCm / aspect,
+    rotation: 0,
+  });
+  return Math.floor(margins.left + margins.right + 1e-6) / 10;
 }
 
 /**

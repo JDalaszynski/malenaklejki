@@ -3,7 +3,7 @@
 import React, { useRef, useState, useEffect } from "react";
 import { createPortal } from "react-dom";
 import { PlacedSticker } from "@/types/creator";
-import { checkOverlap, getRotatedSize, getCutLineMargins, getOuterMargins, getCutLineBoundingBox, checkStickersCollision, clampToUsableArea, getContourMargins, getDisplayedWidthCm, getCutLineOffsetMm } from "@/lib/utils/collision";
+import { checkOverlap, getRotatedSize, getCutLineMargins, getOuterMargins, getCutLineBoundingBox, checkStickersCollision, clampToUsableArea, getContourMargins, getDisplayedWidthCm, getCutLineOffsetMm, getMaxGraphicWidthCm } from "@/lib/utils/collision";
 import { useRenderImageUrls } from "@/lib/utils/transparentBackground";
 import { MoreVertical, Scissors, RotateCw, Crop, Copy, Trash2, Ban, Sparkles, Square, Circle, LayoutGrid, Loader2, MousePointerClick } from "lucide-react";
 
@@ -471,19 +471,18 @@ export function NewA4Visualizer({
       const dxMm = dxPx * pxToMm;
       const dxCm = dxMm / 10;
 
+      // Górną granicą jest arkusz, nie stała 19 cm: obrócona naklejka może
+      // sięgać wysokości arkusza.
+      const maxWidthCm = getMaxGraphicWidthCm(resizeSticker);
       let targetWidthCm = activeResize.initWidthCm + dxCm;
-      targetWidthCm = Math.max(0.5, Math.min(19, targetWidthCm)); // limit max width to 19cm
-      const targetHeightCm = targetWidthCm / activeResize.aspectRatio;
+      targetWidthCm = Math.max(0.5, Math.min(maxWidthCm, targetWidthCm));
 
-      const otherStickers = stickers.filter((s) => s.id !== resizeSticker.id);
-
-      const testFits = (w: number) => {
-        const h = w / activeResize.aspectRatio;
-        const wMm = w * 10;
-        const hMm = h * 10;
-        const size = getRotatedSize(wMm, hMm, resizeSticker.rotation || 0);
-        const offsetX = (size.w - wMm) / 2;
-        const offsetY = (size.h - hMm) / 2;
+      const testFits = (rawWidthCm: number) => {
+        // Sprawdzamy wymiary już zaokrąglone do 0.1 cm, bo takie zapisujemy —
+        // zaokrąglenie w górę przy maksymalnym rozmiarze wypychało naklejkę
+        // za margines.
+        const w = Math.round(rawWidthCm * 10) / 10;
+        const h = Math.round((w / activeResize.aspectRatio) * 10) / 10;
         const margins = getOuterMargins(resizeSticker, { widthCm: w, heightCm: h });
 
         let tx = resizeSticker.x;
@@ -992,28 +991,44 @@ export function NewA4Visualizer({
               </div>
             </div>
 
-            {/* No Cut Line Minimalist Warning Label (Centered under unrotated sticker boundaries) */}
+            {/* No Cut Line Minimalist Warning Label.
+                Rendered as a sibling (so it stays above neighbouring stickers and
+                does not start a drag), inside a frame that copies the sticker's box
+                and rotation, so it sits under the sticker's own bottom edge. */}
             {st.cutLineType === "none" && (
               <div
-                onClick={(e) => {
-                  e.stopPropagation();
-                  if (selectedStickerId !== st.id) {
-                    onSelectSticker(st.id);
-                    setTimeout(() => setShowCutMenu(true), 50);
-                  } else {
-                    setShowCutMenu(true);
-                  }
-                }}
-                className="absolute font-black text-red-400/90 dark:text-red-400/85 whitespace-nowrap z-25 pointer-events-auto cursor-pointer uppercase tracking-wider flex items-center justify-center gap-1.5 hover:text-red-500 transition-colors active:scale-95"
+                className="absolute pointer-events-none z-25"
                 style={{
-                  left: `${((st.x + wMm / 2) / SHEET_WIDTH_MM) * 100}%`,
-                  top: `${((st.y + hMm + 2) / SHEET_HEIGHT_MM) * 100}%`,
-                  transform: "translateX(-50%)",
-                  fontSize: `${Math.max(6, st.widthCm * 1.6)}px`,
+                  left: `${(st.x / SHEET_WIDTH_MM) * 100}%`,
+                  top: `${(st.y / SHEET_HEIGHT_MM) * 100}%`,
+                  width: `${(wMm / SHEET_WIDTH_MM) * 100}%`,
+                  height: `${(hMm / SHEET_HEIGHT_MM) * 100}%`,
+                  transform: `rotate(${st.rotation || 0}deg)`,
                 }}
               >
-                <Scissors className="w-[1.2em] h-[1.2em]" />
-                Ustaw linię cięcia
+                <div
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    if (selectedStickerId !== st.id) {
+                      onSelectSticker(st.id);
+                      setTimeout(() => setShowCutMenu(true), 50);
+                    } else {
+                      setShowCutMenu(true);
+                    }
+                  }}
+                  className="absolute left-1/2 font-black text-red-400/90 dark:text-red-400/85 whitespace-nowrap pointer-events-auto cursor-pointer uppercase tracking-wider flex items-center justify-center gap-1.5 hover:text-red-500 transition-colors active:scale-95"
+                  style={{
+                    // 2 mm pod krawędzią naklejki (1cqw = 1% szerokości arkusza).
+                    top: `calc(100% + ${(2 / SHEET_WIDTH_MM) * 100}cqw)`,
+                    transform: "translateX(-50%)",
+                    // Rośnie z pierwiastkiem szerokości i zatrzymuje się na 13px:
+                    // przy dużej naklejce liniowy wzrost dawał ~30px kulfony.
+                    fontSize: `${Math.min(13, Math.max(6, 3.6 * Math.sqrt(st.widthCm)))}px`,
+                  }}
+                >
+                  <Scissors className="w-[1.2em] h-[1.2em]" />
+                  Ustaw linię cięcia
+                </div>
               </div>
             )}
           </React.Fragment>
