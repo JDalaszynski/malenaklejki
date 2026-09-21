@@ -35,9 +35,9 @@ export function SeoContentSection() {
             </section>
 
             <section className="space-y-3">
-              <h3 className={`text-xl font-extrabold text-foreground ${displayFont}`}>Kreator naklejek online - prosty program do robienia naklejek</h3>
+              <h3 className={`text-xl font-extrabold text-foreground ${displayFont}`}>Automatyczne usuwanie tła i linia cięcia bez grafika</h3>
               <p>
-                Nasz <strong>kreator naklejek online</strong> to banalnie prosty program do robienia naklejek, który działa wprost w przeglądarce - bez instalacji i bez Photoshopa. Tworzenie naklejek sprowadza się do trzech ruchów: wgrywasz gotowy obraz (PNG, JPG lub PDF), a narzędzie samo usunie tło i wyznaczy <Link href="/naklejki-die-cut" className={inlineLink}>linię cięcia po obrysie</Link>. Na końcu układasz dowolną liczbę wlepek na arkuszu A4 w podglądzie 3D i zamawiasz - całe robienie naklejek zajmuje kilka minut, a druk na trwałej folii i cięcie bierzemy na siebie.
+                Wgrywasz gotowy obraz (PNG, JPG lub PDF), a narzędzie samo odcina tło i wyznacza <Link href="/naklejki-die-cut" className={inlineLink}>linię cięcia po obrysie</Link> - bez Photoshopa i bez znajomości programów graficznych. Potem układasz dowolną liczbę wlepek na arkuszu A4 w podglądzie 3D i zamawiasz. Druk na trwałej folii, cięcie i pakowanie bierzemy na siebie, a Ty widzisz efekt jeszcze przed płatnością.
               </p>
             </section>
           </div>
@@ -74,6 +74,60 @@ export function SeoContentSection() {
           </div>
         </Reveal>
       </div>
+
+      {/* Klaster kreatorowy (keywords.md §9a) - strona główna JEST tym narzędziem,
+          więc frazy narzędziowe (kreator naklejek, program do robienia naklejek,
+          tworzenie naklejek, naklejki online kreator) pozycjonujemy tutaj, zamiast
+          budować osobny landing /kreator-naklejek (kanibalizacja "/").
+          Granice brandowe (rules.md §3): kreator układa arkusz, nie tworzy grafiki,
+          więc w copy nie pada czasownik z rodziny "projekt-", a wbudowanej funkcji AI
+          nie eksponujemy - wymieniamy wyłącznie zewnętrzne narzędzia. */}
+      <Reveal delay={0.25}>
+        <div className="max-w-5xl mx-auto px-4 space-y-8">
+          <SectionHeading
+            eyebrow="Narzędzie online"
+            title={
+              <>
+                Kreator naklejek online - <HighlightWord>tworzenie naklejek</HighlightWord> w przeglądarce
+              </>
+            }
+            sub="Wgraj gotowy obraz, a kreator usunie tło, wyznaczy linię cięcia i ułoży arkusz A4. Bez instalacji, bez grafika, już od 1 arkusza za 49,00 zł brutto."
+          />
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-muted-foreground leading-relaxed text-[15px] sm:text-base">
+            <section className="space-y-3">
+              <h3 className={`text-lg font-extrabold text-foreground ${displayFont}`}>Program do robienia naklejek, którego nie musisz instalować</h3>
+              <p>
+                Nasz <strong>kreator naklejek</strong> to program do robienia naklejek działający wprost w przeglądarce telefonu i komputera - niczego nie pobierasz i nie potrzebujesz konta w edytorze graficznym. Wgrywasz plik PNG, JPG lub PDF (choćby eksport z Canvy albo Worda), a resztą zajmuje się narzędzie. Podgląd jest bezpłatny, płacisz dopiero przy zamówieniu, więc całe robienie naklejek zamyka się w kilku minutach.
+              </p>
+            </section>
+
+            <section className="space-y-3">
+              <h3 className={`text-lg font-extrabold text-foreground ${displayFont}`}>Naklejki online - kreator układa arkusz A4 za Ciebie</h3>
+              <p>
+                Tworzenie naklejek zaczynasz od jednego obrazu, ale na arkuszu zmieścisz ich tyle, ile chcesz - i mogą być zupełnie różne. Każdy kolejny wgrany plik trafia na ten sam arkusz i dostaje własną linię cięcia, a rozmiary i rozmieszczenie ustawiasz w podglądzie 3D. Stała cena 49,00 zł brutto dotyczy arkusza, nie liczby wzorów -{" "}
+                <Link href="/blog/ile-kosztuja-naklejki-na-zamowienie-cena-za-arkusz-a4" className={inlineLink}>
+                  zobacz, jak liczy się cena za arkusz A4
+                </Link>.
+              </p>
+            </section>
+
+            <section className="space-y-3">
+              <h3 className={`text-lg font-extrabold text-foreground ${displayFont}`}>Skąd wziąć grafikę do kreatora naklejek?</h3>
+              <p>
+                Kreator układa arkusz, a gotowy obraz przygotowujesz poza nim - i jest to prostsze, niż brzmi. Najszybciej opisać pomysł słowami w zewnętrznym generatorze obrazów (ChatGPT, Gemini, Midjourney) i pobrać gotową grafikę. Druga droga to darmowa Canva, Word czy PowerPoint z eksportem do PNG lub PDF. Trzecia to zwykłe zdjęcie -{" "}
+                <Link href="/blog/jak-zrobic-wlasne-naklejki-w-telefonie-proste-aplikacje-i-triki" className={inlineLink}>
+                  zrób naklejki ze zdjęcia z telefonu
+                </Link>{" "}
+                albo porównaj wszystkie metody w poradniku{" "}
+                <Link href="/blog/jak-zrobic-wlasne-naklejki-program-do-robienia-naklejek-online" className={inlineLink}>
+                  jak zrobić własne naklejki
+                </Link>.
+              </p>
+            </section>
+          </div>
+        </div>
+      </Reveal>
 
       {/* Proof/Trust elements for GEO */}
       <Reveal delay={0.3}>
