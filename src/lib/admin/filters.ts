@@ -110,6 +110,15 @@ export function parseFilters(params: AdminSearchParams, trash = false): OrderFil
   };
 }
 
+/**
+ * Numer strony listy z adresu. Wszystko, co nie jest dodatnią liczbą, to
+ * pierwsza strona — adres panelu bywa edytowany ręcznie.
+ */
+export function parsePage(params: AdminSearchParams): number {
+  const value = Number(single(params, "strona"));
+  return Number.isFinite(value) && value >= 1 ? Math.floor(value) : 1;
+}
+
 /** Bieżący miesiąc w formacie `RRRR-MM` — domyślny zakres raportu. */
 export function currentMonthValue(): string {
   const formatter = new Intl.DateTimeFormat("pl-PL", {

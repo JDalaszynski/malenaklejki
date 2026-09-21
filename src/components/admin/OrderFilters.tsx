@@ -34,6 +34,9 @@ export function OrderFilters({ basePath = "/admin" }: { basePath?: string }) {
       if (value) next.set(key, value);
       else next.delete(key);
     }
+    // Zmiana filtra układa wyniki od nowa, więc strona 7 poprzedniego zestawu
+    // zwykle już nie istnieje — wracamy na początek.
+    next.delete("strona");
     router.push(`${basePath}?${next.toString()}`);
   };
 

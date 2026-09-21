@@ -33,7 +33,16 @@ export async function sweepAbandonedOrders(options: {
 
   // Jedno zapytanie o wszystkie zamówienia zamiast trzech po statusie:
   // kolekcja jest mała, a `in` z trzema wartościami i tak wymagałby indeksu.
-  const snapshot = await db.collection("orders").get();
+  //
+  // Projekcja jest za to konieczna: podgląd tej reguły chodzi przy każdym
+  // wejściu na listę zamówień, a pełne dokumenty ciągną za sobą kilka
+  // megabajtów pola `pdfAttachments` (szczegóły przy `LIST_FIELDS`
+  // w `lib/admin/queries`). Do decyzji wystarczą trzy pola, `orderNumber`
+  // jest do wypisania numerów, a referencje do zapisu mamy tak czy inaczej.
+  const snapshot = await db
+    .collection("orders")
+    .select("deletedAt", "status", "createdAt", "orderNumber")
+    .get();
 
   const candidates = snapshot.docs.filter((doc) => isSweepable(doc.data(), cutoff));
 

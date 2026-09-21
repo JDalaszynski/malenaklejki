@@ -6,10 +6,11 @@ import { PackagePlus } from "lucide-react";
 import { AdminLayout, Card } from "@/components/admin/AdminLayout";
 import { OrderFilters } from "@/components/admin/OrderFilters";
 import { OrdersTable } from "@/components/admin/OrdersTable";
+import { Pagination } from "@/components/admin/Pagination";
 import { SweepCard } from "@/components/admin/SweepCard";
 import { requireAdmin } from "@/lib/auth/dal";
-import { listOrders } from "@/lib/admin/queries";
-import { parseFilters, type AdminSearchParams } from "@/lib/admin/filters";
+import { listOrdersPage, ORDERS_PAGE_SIZE } from "@/lib/admin/queries";
+import { parseFilters, parsePage, type AdminSearchParams } from "@/lib/admin/filters";
 import { sweepAbandonedOrders, ABANDONED_AFTER_DAYS } from "@/lib/orders/sweep";
 
 export const metadata: Metadata = {
@@ -27,10 +28,14 @@ export default async function AdminOrdersPage({
   const admin = await requireAdmin();
   const params = await searchParams;
   const filters = parseFilters(params);
-  const orders = await listOrders(filters);
 
-  // Tylko podgląd — samo wejście na listę niczego nie kasuje.
-  const sweep = await sweepAbandonedOrders({ dryRun: true });
+  // Oba zapytania idą równolegle — jedno drugiego nie potrzebuje, a przy
+  // sekwencji panel czekał na sumę obu czasów.
+  // Sprzątanie jest tylko podglądem: samo wejście na listę niczego nie kasuje.
+  const [page, sweep] = await Promise.all([
+    listOrdersPage(filters, parsePage(params)),
+    sweepAbandonedOrders({ dryRun: true }),
+  ]);
 
   return (
     <AdminLayout
@@ -56,14 +61,22 @@ export default async function AdminOrdersPage({
       </Card>
 
       <Card
-        title={`Wyniki (${orders.length})`}
+        title={`Wyniki (${page.total})`}
         description={
-          orders.length >= 500
+          page.capped
             ? "Pokazujemy 500 najnowszych zamówień z tego zakresu — zawęź filtr, żeby zobaczyć resztę."
             : undefined
         }
       >
-        <OrdersTable orders={orders} />
+        <OrdersTable orders={page.orders} />
+        <Pagination
+          page={page.page}
+          pageCount={page.pageCount}
+          total={page.total}
+          pageSize={ORDERS_PAGE_SIZE}
+          basePath="/admin"
+          params={params}
+        />
       </Card>
     </AdminLayout>
   );
