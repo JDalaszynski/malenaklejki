@@ -163,11 +163,13 @@ export function toAdminOrder(id: string, data: FirebaseFirestore.DocumentData): 
  * Pola, które czyta `toAdminOrder` — i tylko one.
  *
  * Projekcja jest tu najważniejszą optymalizacją listy, nie mikrooptymalizacją.
- * Zamówienia noszą pole `pdfAttachments` z czasów, gdy załączniki do maili
- * leżały w dokumencie: ~52 kB na zamówienie, czyli 98% całej kolekcji, i nic
- * w aplikacji tego nie czyta. Bez `select()` panel ściągał kilka megabajtów
- * martwych danych przy każdym wejściu — z projekcją to samo zapytanie schodzi
- * z ~2,6 s do ~0,14 s.
+ * Zamówienia nosiły kiedyś pole `pdfAttachments` — arkusze do druku wklejone
+ * w base64 wprost do dokumentu. Ważyło 5,2 MB, czyli 98% całej kolekcji,
+ * i nic w aplikacji go nie czytało; panel ściągał te megabajty przy każdym
+ * wejściu. Samo pole zostało skasowane z bazy
+ * (`scripts/usun-pdfattachments.ts`), ale projekcja zostaje: lista ma brać
+ * tylko to, co pokazuje, i nie tyć z powrotem, kiedy do zamówienia dojdzie
+ * kolejne obszerne pole.
  */
 const LIST_FIELDS = [
   "orderNumber",

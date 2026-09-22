@@ -46,3 +46,6 @@ next-env.d.ts
 
 # zasoby pdf.js kopiowane z node_modules (scripts/kopiuj-zasoby-pdfjs.mjs)
 /public/pdfjs/
+
+# kopie zapasowe wyciągnięte z bazy (dane klientów — nigdy do repo)
+/kopie-zapasowe/
