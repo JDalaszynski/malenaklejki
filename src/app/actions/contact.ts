@@ -1,8 +1,42 @@
 "use server";
 
+import { z } from "zod";
+import { headers } from "next/headers";
+
+import { markFormMessageMail, recordFormMessage } from "@/lib/admin/messages";
 import { checkRateLimit } from "@/lib/utils/rateLimit";
 import { escapeHtml } from "@/lib/utils/sanitize";
-import { headers } from "next/headers";
+
+/**
+ * Walidacja po stronie serwera.
+ *
+ * Formularze sprawdzają te same reguły w przeglądarce, ale akcje serwerowe
+ * mają własne adresy i da się je wywołać z pominięciem interfejsu. Odkąd
+ * wiadomość ląduje w bazie, limity długości decydują też o tym, co wpada
+ * do Firestore.
+ */
+const contactSchema = z.object({
+  name: z.string().trim().min(3).max(120),
+  email: z.string().trim().email().max(200),
+  subject: z.string().trim().min(5).max(200),
+  message: z.string().trim().min(10).max(5000),
+});
+
+const designSchema = z.object({
+  email: z.string().trim().email().max(200),
+  message: z.string().trim().min(10).max(5000),
+});
+
+const NIEPOPRAWNE_DANE = {
+  success: false,
+  error: "Uzupełnij poprawnie wszystkie pola formularza.",
+} as const;
+
+/** Treść błędu do adnotacji w panelu — bez zaśmiecania jej całym stosem. */
+function opisBledu(error: unknown): string {
+  if (error instanceof Error) return error.message;
+  return String(error);
+}
 
 /**
  * Odbiorcy wiadomości z formularzy.
@@ -11,9 +45,9 @@ import { headers } from "next/headers";
  * bywa nieosiągalny: serwer pocztowy domeny (cyberfolks) odpytuje listę
  * hostkarma.junkemailfilter.com i odrzuca pocztę ze współdzielonych adresów IP
  * Brevo błędem `550 Email blocked`. 22.09.2026 blokada zabrała komplet
- * powiadomień z całego przedpołudnia. Wiadomości z formularza nie da się
- * odtworzyć z bazy — w przeciwieństwie do zamówień nie ma po nich śladu
- * w panelu, więc odbity mail znaczy wiadomość przepadłą bezpowrotnie.
+ * powiadomień z całego przedpołudnia. Treść wiadomości jest od tamtej pory
+ * zapisywana w bazie i widoczna w panelu, ale kopia na drugą skrzynkę wciąż
+ * ma sens — daje powiadomienie wtedy, gdy nikt nie patrzy w panel.
  *
  * Adres nadawcy celowo zostaje przy domenie sklepu — to od niego zależy
  * zgodność SPF/DKIM, więc zmieniamy wyłącznie listę odbiorców.
@@ -27,7 +61,7 @@ function odbiorcyFormularza(adminEmail: string) {
   return odbiorcy;
 }
 
-export async function sendContactMessage(formData: {
+export async function sendContactMessage(raw: {
   name: string;
   email: string;
   subject: string;
@@ -41,8 +75,23 @@ export async function sendContactMessage(formData: {
     return { success: false, error: "Wysłano zbyt wiele wiadomości. Spróbuj ponownie później." };
   }
 
+  const parsed = contactSchema.safeParse(raw);
+  if (!parsed.success) return NIEPOPRAWNE_DANE;
+  const formData = parsed.data;
+
+  // Zapis idzie przed wysyłką celowo: mail bywa odbijany, a wtedy panel jest
+  // jedynym śladem po wiadomości (patrz `lib/admin/messages`).
+  const messageId = await recordFormMessage({
+    kind: "contact",
+    name: formData.name,
+    email: formData.email,
+    subject: formData.subject,
+    message: formData.message,
+  });
+
   if (!process.env.BREVO_API_KEY) {
     console.error("BREVO_API_KEY is missing");
+    await markFormMessageMail(messageId, { ok: false, error: "Brak BREVO_API_KEY" });
     return { success: false, error: "Serwer pocztowy nie jest skonfigurowany. Spróbuj skontaktować się bezpośrednio przez e-mail." };
   }
 
@@ -136,14 +185,16 @@ export async function sendContactMessage(formData: {
       throw new Error(`Brevo API error: ${response.status} ${response.statusText} - ${errorText}`);
     }
 
+    await markFormMessageMail(messageId, { ok: true });
     return { success: true };
-  } catch (error: any) {
+  } catch (error) {
     console.error("sendContactMessage error:", error);
+    await markFormMessageMail(messageId, { ok: false, error: opisBledu(error) });
     return { success: false, error: "Nie udało się przesłać wiadomości. Spróbuj ponownie później." };
   }
 }
 
-export async function sendDesignInquiry(formData: {
+export async function sendDesignInquiry(raw: {
   email: string;
   message: string;
 }) {
@@ -155,8 +206,20 @@ export async function sendDesignInquiry(formData: {
     return { success: false, error: "Wysłano zbyt wiele zapytań. Spróbuj ponownie później." };
   }
 
+  const parsed = designSchema.safeParse(raw);
+  if (!parsed.success) return NIEPOPRAWNE_DANE;
+  const formData = parsed.data;
+
+  const messageId = await recordFormMessage({
+    kind: "design",
+    email: formData.email,
+    subject: "Zapytanie o projekt naklejki",
+    message: formData.message,
+  });
+
   if (!process.env.BREVO_API_KEY) {
     console.error("BREVO_API_KEY is missing");
+    await markFormMessageMail(messageId, { ok: false, error: "Brak BREVO_API_KEY" });
     return { success: false, error: "Serwer pocztowy nie jest skonfigurowany. Spróbuj skontaktować się bezpośrednio przez e-mail." };
   }
 
@@ -241,9 +304,11 @@ export async function sendDesignInquiry(formData: {
       throw new Error(`Brevo API error: ${response.status} ${response.statusText} - ${errorText}`);
     }
 
+    await markFormMessageMail(messageId, { ok: true });
     return { success: true };
-  } catch (error: any) {
+  } catch (error) {
     console.error("sendDesignInquiry error:", error);
+    await markFormMessageMail(messageId, { ok: false, error: opisBledu(error) });
     return { success: false, error: "Nie udało się przesłać zapytania. Spróbuj ponownie później." };
   }
 }
