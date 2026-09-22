@@ -2,9 +2,8 @@
  * Przenosi do kosza zamówienia, które od ponad tygodnia czekają na płatność
  * albo mają płatność nieudaną.
  *
- * Ta sama reguła działa automatycznie w zadaniu cyklicznym i pod przyciskiem
- * w panelu — wszystkie trzy korzystają z jednego warunku (src/lib/orders/sweepRules.ts),
- * więc nie mogą się rozjechać.
+ * Ta sama reguła działa pod przyciskiem w panelu — oba wejścia korzystają
+ * z jednego warunku (src/lib/orders/sweepRules.ts), więc nie mogą się rozjechać.
  *
  *   npx tsx scripts/sprzataj-nieoplacone.ts --na-sucho
  *   npx tsx scripts/sprzataj-nieoplacone.ts

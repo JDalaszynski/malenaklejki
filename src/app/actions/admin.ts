@@ -16,7 +16,7 @@ import {
   type StatusEmailKind,
 } from "@/lib/orders/statusEmails";
 import { issueInvoiceForOrder, issueInvoiceForOrderSafely } from "@/lib/orders/invoicing";
-import { sendOrderToBaseLinker } from "@/lib/baselinker";
+import { pushOrderToBaseLinker as pushToBaseLinker, pushOrderToBaseLinkerSafely } from "@/lib/orders/baselinkerSync";
 import { FULFILLMENT_STATUSES, PAYMENT_STATUSES, normalizePaymentStatus } from "@/lib/orders/status";
 
 type Result<T = object> = ({ success: true } & T) | { success: false; error: string };
@@ -129,9 +129,14 @@ export async function updateOrderStatus(raw: unknown): Promise<Result<{ notice?:
   const after = { ...before, ...update, id: input.orderId };
 
   // Oznaczenie zapłaty musi dojść tam, gdzie dochodzi po płatności online:
-  // do klienta i do sprzedawcy z plikami. BaseLinker celowo zostaje z płatnością
-  // nieustawioną — tam wpłatę księguje sprzedawca ręcznie.
+  // do BaseLinkera, do klienta i do sprzedawcy z plikami.
   if (update.status === "PAID") {
+    // Zamówienie do realizacji — tą samą ścieżką co po webhooku P24. Wcześniej
+    // trafiało tam już przy składaniu, więc przelew tradycyjny leżał
+    // w BaseLinkerze, zanim ktokolwiek zobaczył wpłatę. Sam fakt zapłaty nadal
+    // zostaje nieprzeniesiony — wpłatę księguje tam sprzedawca ręcznie.
+    await pushOrderToBaseLinkerSafely(input.orderId);
+
     // Faktura w inFakcie powstaje niezależnie od powiadomień — przelew tradycyjny
     // i sprzedaż dopisana ręcznie mają trafić do księgowości tak samo jak płatność online.
     await issueInvoiceForOrderSafely(input.orderId);
@@ -625,7 +630,14 @@ export async function createManualOrder(raw: unknown): Promise<Result<{ orderId:
 /* Integracje                                                          */
 /* ------------------------------------------------------------------ */
 
-/** Wysyła zamówienie do BaseLinkera na żądanie — np. dodane ręcznie w panelu. */
+/**
+ * Wysyła zamówienie do BaseLinkera na żądanie — dodane ręcznie w panelu albo
+ * takie, przy którym automatyczna wysyłka po zaksięgowaniu wpłaty nie doszła.
+ *
+ * Kliknięcie omija wymóg opłacenia (`force`): to świadoma decyzja sprzedawcy,
+ * a nie automat. Sama ścieżka jest wspólna z webhookiem P24, więc zamówienie
+ * w BaseLinkerze wygląda tak samo niezależnie od tego, co je tam wysłało.
+ */
 export async function pushOrderToBaseLinker(orderId: string): Promise<Result> {
   const actor = await requireAdminActor();
   if (!actor) return DENIED;
@@ -639,18 +651,21 @@ export async function pushOrderToBaseLinker(orderId: string): Promise<Result> {
     return { success: false, error: "To zamówienie jest już w BaseLinkerze." };
   }
 
-  const result = await sendOrderToBaseLinker(order);
-  if (result?.status !== "SUCCESS") {
-    return { success: false, error: result?.error_message || "BaseLinker odrzucił zamówienie." };
+  const result = await pushToBaseLinker(String(orderId), { force: true });
+  if (!result.ok) {
+    return { success: false, error: result.error || "BaseLinker odrzucił zamówienie." };
+  }
+  // Wysyłka właśnie trwa gdzie indziej (webhook P24 trafił w to samo zamówienie).
+  if (!result.baselinkerOrderId) {
+    return { success: false, error: "Wysyłka tego zamówienia właśnie trwa — odśwież za chwilę." };
   }
 
-  await ref.update({ baselinkerOrderId: result.order_id });
   await recordAudit({
     actorEmail: actor.email,
     action: "Wysyłka do BaseLinkera",
     orderId: String(orderId),
     orderNumber: order.orderNumber,
-    details: `ID w BaseLinkerze: ${result.order_id}`,
+    details: `ID w BaseLinkerze: ${result.baselinkerOrderId}`,
   });
 
   refreshAdminViews(String(orderId));
@@ -771,8 +786,7 @@ export async function deleteManualSale(saleId: string): Promise<Result> {
  * Przenosi do kosza zamówienia, które czekają na płatność dłużej niż tydzień
  * i nie mają wybranej formy płatności (próg: ABANDONED_AFTER_DAYS).
  *
- * Docelowo robi to zadanie cykliczne (`/api/cron/check-unpaid-orders`), ale
- * dopóki nie ma harmonogramu, ten przycisk pozwala uruchomić sprzątanie ręcznie.
+ * Sprzątanie jest wyłącznie ręczne — uruchamia je ten przycisk w panelu.
  */
 export async function runAbandonedSweep(): Promise<Result<{ moved: number }>> {
   const actor = await requireAdminActor();

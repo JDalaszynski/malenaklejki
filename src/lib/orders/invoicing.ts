@@ -16,9 +16,9 @@ import { normalizePaymentStatus } from "@/lib/orders/status";
 /**
  * Wystawianie faktury w inFakcie po zaksięgowaniu płatności.
  *
- * Wejście jest jedno dla wszystkich ścieżek: webhooka Przelewy24, awaryjnego
- * crona i ręcznego oznaczenia zapłaty w panelu. Dzięki temu każde
- * przejście zamówienia w PAID kończy się dokładnie tą samą fakturą.
+ * Wejście jest jedno dla wszystkich ścieżek: webhooka Przelewy24 i ręcznego
+ * oznaczenia zapłaty w panelu. Dzięki temu każde przejście zamówienia w PAID
+ * kończy się dokładnie tą samą fakturą.
  */
 
 /** Stan wystawiania zapisywany przy zamówieniu w polu `infakt`. */
@@ -179,7 +179,8 @@ export async function issueInvoiceForOrder(
     }
   }
 
-  // Blokada na dokumencie — webhook i cron potrafią trafić w to samo zamówienie.
+  // Blokada na dokumencie — ponowiony webhook i przycisk w panelu potrafią
+  // trafić w to samo zamówienie.
   const claimedAt = new Date().toISOString();
   const claimed = await db.runTransaction(async (tx) => {
     const fresh = await tx.get(ref);
@@ -244,7 +245,7 @@ export async function issueInvoiceForOrder(
 }
 
 /**
- * Wersja do wołania z webhooków i crona — nigdy nie rzuca, bo problem
+ * Wersja do wołania z webhooka — nigdy nie rzuca, bo problem
  * z fakturą nie może zablokować potwierdzenia płatności ani maili do klienta.
  */
 export async function issueInvoiceForOrderSafely(orderId: string): Promise<void> {

@@ -200,8 +200,10 @@ try {
   no(`Nie udało się odczytać magazynu: ${e.message.slice(0, 160)}`);
 }
 
+// Stan integracji płatniczych, mailowych i księgowych sprawdza osobny skrypt:
+// node scripts/sprawdz-integracje.mjs
 console.log("\n=== 7. ZMIENNE ŚRODOWISKOWE (lokalnie) ===");
-for (const v of ["NEXT_PUBLIC_APP_URL", "BREVO_API_KEY", "ADMIN_EMAIL", "CRON_SECRET"]) {
+for (const v of ["NEXT_PUBLIC_APP_URL", "BREVO_API_KEY", "ADMIN_EMAIL"]) {
   env[v] ? ok(`${v} ustawione${v === "NEXT_PUBLIC_APP_URL" ? ` = ${env[v]}` : ""}`) : no(`${v} — brak`);
 }
 if (env.NEXT_PUBLIC_GA_ID) {

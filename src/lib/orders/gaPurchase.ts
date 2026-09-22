@@ -13,8 +13,7 @@ export { toAnalyticsSheets } from "@/lib/orders/gaMeasurement";
 
 /**
  * Zdarzenie `purchase` w GA4 wysyłane z serwera (Measurement Protocol), gdy
- * Przelewy24 potwierdzą płatność — w webhooku albo w cronie, który odnajduje
- * płatność po czasie.
+ * Przelewy24 potwierdzą płatność — w webhooku.
  *
  * W przeglądarce zakup ginął, gdy klient nie wrócił z P24 na stronę sukcesu
  * albo potwierdzenie przyszło po jej ostatnim odpytaniu. Webhook przychodzi
@@ -53,7 +52,7 @@ export async function readGaIdentifiers(): Promise<GaIdentifiers | null> {
 /**
  * Wysyła `purchase` dla opłaconego zamówienia. Nigdy nie rzuca — analityka nie
  * może przerwać obsługi płatności. Zamówienie oznaczamy w transakcji przed
- * wysyłką, więc ponowiony webhook P24 ani cron nie wyślą zakupu drugi raz.
+ * wysyłką, więc ponowiony webhook P24 nie wyśle zakupu drugi raz.
  */
 export async function sendPurchaseToGa(orderId: string): Promise<void> {
   if (!isServerPurchaseTrackingEnabled()) return;

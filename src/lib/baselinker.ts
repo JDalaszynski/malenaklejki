@@ -1,7 +1,7 @@
 export interface BLProduct {
-  /** Magazyn, z którego pochodzi produkt ("db" = katalog wewnętrzny BaseLinkera). */
+  /** Rodzaj magazynu: "db" (katalog BaseLinkera), "shop" (sklep), "warehouse" (hurtownia). */
   storage?: string;
-  /** ID magazynu; dla katalogu wewnętrznego BaseLinker oczekuje 0. */
+  /** ID magazynu w obrębie jego rodzaju — dla `shop_28234` jest to 28234. */
   storage_id?: number;
   product_id?: string;
   name: string;
@@ -61,24 +61,23 @@ export const BL_NEW_ORDER_STATUS_ID = 65507;
 /** Sposób płatności przekazywany do BaseLinkera — zawsze taki sam. */
 export const BL_PAYMENT_METHOD = "przelew 14 dni";
 
-/** Jedyny produkt, jaki trafia do BaseLinkera — pozycje różnią się ceną i ilością. */
+/**
+ * Jedyny produkt, jaki trafia do BaseLinkera — pozycje różnią się ceną i ilością.
+ *
+ * Produkt nie leży w katalogu BaseLinkera, tylko w magazynie podpiętego sklepu
+ * Letica.pl (`shop_28234`) — stąd `storage: "shop"` i `storageId: 28234`.
+ * Wcześniej wysyłaliśmy go jako `storage: "db", storage_id: 0`, czyli wskazywali
+ * katalog wewnętrzny; BaseLinker przyjmował zamówienie i podstawiał katalog
+ * domyślny, w którym tego ID nie ma. Pozycja zostawała więc bez powiązania
+ * z kartą produktu, a przez to bez miniatury. Tę samą parę wartości noszą
+ * zamówienia, które BaseLinker sam pobiera z Letica.pl.
+ */
 export const BL_PRODUCT = {
   id: "17059",
   name: "Naklejki na Arkuszu A4 - MałeNaklejki",
+  storage: "shop",
+  storageId: 28234,
 } as const;
-
-/**
- * Zdjęcie pozycji w BaseLinkerze. Zamówienia mają tylko jeden produkt z katalogu,
- * więc miniaturą jest po prostu logo sklepu. BaseLinker nie przyjmuje zdjęcia
- * w `addOrder` — miniatura w zamówieniu bierze się ze zdjęcia produktu w katalogu,
- * dlatego ustawiamy je na produkcie (`ensureProductImage`).
- */
-export function getProductImageUrl(): string {
-  const fromEnv = process.env.BASELINKER_PRODUCT_IMAGE_URL;
-  if (fromEnv) return fromEnv;
-  const appUrl = (process.env.NEXT_PUBLIC_APP_URL || "https://malenaklejki.pl").replace(/\/+$/, "");
-  return `${appUrl}/images/logo/malenaklejki-logo-light.png`;
-}
 
 /**
  * Cena brutto pozycji przekazywana do BaseLinkera. Stała — w BaseLinkerze
@@ -257,10 +256,10 @@ export function buildBaseLinkerOrderParams(order: BLOrderSource): BLOrderParamet
     want_invoice: 1,
     user_comments: buildOrderComments(items, delivery.method),
     products: items.map((item) => ({
-      // Wskazanie katalogu wewnętrznego wiąże pozycję z produktem w BaseLinkerze —
-      // bez tego zamówienie pokazuje pozycję bez miniatury.
-      storage: "db",
-      storage_id: 0,
+      // Magazyn musi być ten, w którym produkt faktycznie leży — dopiero wtedy
+      // BaseLinker wiąże pozycję z kartą produktu i pokazuje jej zdjęcie.
+      storage: BL_PRODUCT.storage,
+      storage_id: BL_PRODUCT.storageId,
       product_id: BL_PRODUCT.id,
       name: order.orderNumber ? `${BL_PRODUCT.name} - ${order.orderNumber}` : BL_PRODUCT.name,
       price_brutto: BL_UNIT_PRICE_BRUTTO,
@@ -373,84 +372,6 @@ function resolveNotesFieldId(): Promise<string | null> {
 }
 
 /**
- * Zdjęcie produktu w katalogu BaseLinkera.
- *
- * `addOrder` nie przyjmuje żadnego pola ze zdjęciem — miniatura widoczna przy
- * pozycji zamówienia pochodzi ze zdjęcia produktu w katalogu. Dlatego raz na
- * proces sprawdzamy, czy produkt `BL_PRODUCT.id` ma zdjęcie, i jeśli nie —
- * podstawiamy logo sklepu. `addInventoryProduct` z podanym `product_id`
- * aktualizuje wyłącznie przekazane pola, więc reszta karty produktu zostaje.
- */
-let productImagePromise: Promise<void> | null = null;
-
-/** Katalogi (inventories) na koncie BaseLinkera. */
-async function getInventories(): Promise<{ inventory_id: number }[]> {
-  const data = await callBaseLinkerAPI("getInventories", {});
-  return data?.status === "SUCCESS" ? data.inventories ?? [] : [];
-}
-
-/** Katalog, w którym leży nasz produkt, razem z jego aktualnymi zdjęciami. */
-async function findProductInInventories(): Promise<{
-  inventoryId: number;
-  hasImage: boolean;
-} | null> {
-  const fromEnv = process.env.BASELINKER_INVENTORY_ID;
-  const inventories = fromEnv
-    ? [{ inventory_id: Number(fromEnv) }]
-    : await getInventories();
-
-  for (const inventory of inventories) {
-    const data = await callBaseLinkerAPI("getInventoryProductsData", {
-      inventory_id: inventory.inventory_id,
-      products: [BL_PRODUCT.id],
-    });
-    const product = data?.status === "SUCCESS" ? data.products?.[BL_PRODUCT.id] : null;
-    if (!product) continue;
-
-    const images = product.images ?? {};
-    return {
-      inventoryId: inventory.inventory_id,
-      hasImage: Object.values(images).some((image) => Boolean(image)),
-    };
-  }
-
-  return null;
-}
-
-async function setProductImage(): Promise<void> {
-  const found = await findProductInInventories();
-  if (!found) {
-    console.warn(`BaseLinker: nie znaleziono produktu ${BL_PRODUCT.id} w żadnym katalogu.`);
-    return;
-  }
-  if (found.hasImage) return;
-
-  const result = await callBaseLinkerAPI("addInventoryProduct", {
-    inventory_id: found.inventoryId,
-    product_id: BL_PRODUCT.id,
-    images: { 0: `url:${getProductImageUrl()}` },
-  });
-
-  if (result?.status === "SUCCESS") {
-    console.log(`BaseLinker: ustawiono logo jako zdjęcie produktu ${BL_PRODUCT.id}.`);
-  } else {
-    console.error("BaseLinker: nie udało się ustawić zdjęcia produktu:", result);
-  }
-}
-
-/**
- * Dba o to, żeby produkt w katalogu miał zdjęcie. Wywoływane przy wysyłce
- * zamówienia; nigdy nie rzuca i nie blokuje zapisu zamówienia.
- */
-export function ensureProductImage(): Promise<void> {
-  productImagePromise ??= setProductImage().catch((error) => {
-    console.error("BaseLinker: błąd przy ustawianiu zdjęcia produktu:", error);
-    productImagePromise = null; // spróbujemy jeszcze raz przy kolejnym zamówieniu
-  });
-  return productImagePromise;
-}
-
-/**
  * Buduje parametry z zamówienia, dopina uwagi do customowego pola "Uwagi"
  * i wysyła zamówienie do BaseLinkera.
  */
@@ -465,10 +386,6 @@ export async function sendOrderToBaseLinker(order: BLOrderSource) {
     else if (fieldId === "2") params.extra_field_2 = notes;
     else params.custom_extra_fields = { [Number(fieldId)]: notes };
   }
-
-  // Miniatura pozycji bierze się ze zdjęcia produktu w katalogu — pilnujemy,
-  // żeby było ustawione, zanim zamówienie pojawi się w BaseLinkerze.
-  await ensureProductImage();
 
   return await addOrderToBaseLinker(params);
 }

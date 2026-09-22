@@ -58,7 +58,6 @@ const CreateOrderSchema = z.object({
 
 import { registerTransaction } from "@/lib/p24";
 import { buildManualTransferEmailHtml, buildNewOrderSellerEmailHtml, buildOrderAttachments } from "@/lib/emails";
-import { sendOrderToBaseLinker } from "@/lib/baselinker";
 import { sendTransactionalEmail } from "@/lib/email/auth";
 
 /**
@@ -266,19 +265,8 @@ async function doCreateOrder(rawData: any) {
       }
     }
 
-    // Wysyłamy zamówienie do BaseLinkera — mapowanie pól siedzi w lib/baselinker,
-    // wspólne z ręczną wysyłką z panelu.
-    try {
-      const blResult = await sendOrderToBaseLinker(cleanOrderData);
-      if (blResult && blResult.status === "SUCCESS") {
-        await orderRef.update({ baselinkerOrderId: blResult.order_id });
-        console.log(`Zapisano zamówienie w BaseLinkerze (ID: ${blResult.order_id})`);
-      } else {
-        console.error("Błąd zapisu w BaseLinkerze:", blResult);
-      }
-    } catch (e) {
-      console.error("Błąd połączenia z BaseLinkerem:", e);
-    }
+    // Do BaseLinkera zamówienie pójdzie dopiero po zaksięgowaniu wpłaty —
+    // patrz `pushOrderToBaseLinker` w lib/orders/baselinkerSync.
 
     // Send email to seller immediately with files
     try {
@@ -437,8 +425,8 @@ export async function retryOrderPayment(orderId: string) {
       orderData.items || []
     );
 
-    // Nowa sesja P24 zapisana przy zamówieniu — awaryjne sprawdzanie płatności
-    // w cronie pyta o każdą sesję, nie tylko o tę z pierwszego podejścia.
+    // Nowa sesja P24 zapisana przy zamówieniu — zostaje przy nim na potrzeby
+    // reklamacji i wyszukiwania płatności w panelu Przelewy24.
     const retrySessionId = `${orderId}_retry${Date.now()}`;
     await orderRef.update({
       p24SessionIds: FieldValue.arrayUnion(retrySessionId),

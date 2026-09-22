@@ -77,8 +77,9 @@ export async function sendPaidOrderNotifications(
 }
 
 /**
- * Znacznik wysłanego powiadomienia o płatności. Po nim cron poznaje zamówienia,
- * przy których webhook zdążył ustawić PAID, ale przerwał się przed mailami.
+ * Znacznik wysłanego powiadomienia o płatności. Po nim ponowiony webhook P24
+ * poznaje zamówienia, przy których poprzednie wywołanie zdążyło ustawić PAID,
+ * ale przerwało się przed mailami.
  */
 async function markPaidNotificationsSent(orderId: string): Promise<void> {
   try {

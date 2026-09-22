@@ -4,6 +4,7 @@ import { db } from "@/lib/firebase/admin";
 import { sendPaidOrderNotifications } from "@/lib/orders/notifications";
 import { issueInvoiceForOrderSafely } from "@/lib/orders/invoicing";
 import { sendPurchaseToGa } from "@/lib/orders/gaPurchase";
+import { pushOrderToBaseLinkerSafely } from "@/lib/orders/baselinkerSync";
 
 export const dynamic = "force-dynamic";
 // Wystawienie faktury w inFakcie to kilka sekund odpytywania o status zlecenia,
@@ -52,15 +53,6 @@ export async function POST(req: NextRequest) {
     }
 
     const orderData = orderSnap.data()!;
-    // Duplikat od P24 pomijamy tylko, jeśli mail o płatności faktycznie poszedł.
-    // Sam `status === "PAID"` to za mało: poprzednie wywołanie mogło ustawić
-    // status i zostać ubite (limit czasu, zawieszony fetch) tuż przed wysyłką
-    // maila — wtedy każdy kolejny retry P24 trafiałby w tę gałąź i mail nigdy
-    // by nie poszedł, mimo ponawianych webhooków.
-    if (orderData.status === "PAID" && orderData.paidNotificationsSentAt) {
-      console.log(`P24: Zamówienie ${sessionId} jest już opłacone i powiadomione.`);
-      return NextResponse.json({ status: "ok" }, { status: 200 }); // Ignorujemy duplikaty
-    }
 
     if (orderData.status !== "PAID") {
       await orderRef.update({
@@ -77,6 +69,23 @@ export async function POST(req: NextRequest) {
       console.log(`P24: Zamówienie ${sessionId} już PAID, ale bez potwierdzenia wysyłki — ponawiam powiadomienia.`);
     }
 
+    // Zamówienie idzie do BaseLinkera dopiero teraz — sklep celowo nie wysyła
+    // tam koszyków czekających na płatność. Krok stoi przed blokadą duplikatów
+    // niżej, bo ma własną (`baselinkerOrderId` plus blokada na czas próby):
+    // ponowiony webhook dośle zamówienie, którego poprzednie wywołanie nie
+    // zdążyło przekazać, a maila drugi raz nie wyśle.
+    await pushOrderToBaseLinkerSafely(orderIdFromSession);
+
+    // Duplikat od P24 pomijamy tylko, jeśli mail o płatności faktycznie poszedł.
+    // Sam `status === "PAID"` to za mało: poprzednie wywołanie mogło ustawić
+    // status i zostać ubite (limit czasu, zawieszony fetch) tuż przed wysyłką
+    // maila — wtedy każdy kolejny retry P24 trafiałby w tę gałąź i mail nigdy
+    // by nie poszedł, mimo ponawianych webhooków.
+    if (orderData.status === "PAID" && orderData.paidNotificationsSentAt) {
+      console.log(`P24: Zamówienie ${sessionId} jest już opłacone i powiadomione.`);
+      return NextResponse.json({ status: "ok" }, { status: 200 }); // Ignorujemy duplikaty
+    }
+
     // Zakup do GA4 idzie po wysłaniu odpowiedzi — nie może opóźnić maili ani
     // faktury, a `after` wykona się nawet wtedy, gdy któryś krok niżej rzuci.
     after(() => sendPurchaseToGa(orderIdFromSession));
@@ -89,7 +98,7 @@ export async function POST(req: NextRequest) {
     // mail o zamówieniu oczekującym na płatność.
     await sendPaidOrderNotifications({ ...orderData, status: "PAID" }, { orderId: orderIdFromSession });
 
-    // Płatności celowo nie przenosimy do BaseLinkera — zamówienie ma tam
+    // Samej wpłaty celowo nie przenosimy do BaseLinkera — zamówienie ma tam
     // zostać nieopłacone, sprzedawca księguje wpłatę ręcznie.
 
     // Faktura w inFakcie — wystawiana automatycznie za każde opłacone zamówienie.
