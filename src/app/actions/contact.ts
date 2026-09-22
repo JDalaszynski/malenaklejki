@@ -4,6 +4,29 @@ import { checkRateLimit } from "@/lib/utils/rateLimit";
 import { escapeHtml } from "@/lib/utils/sanitize";
 import { headers } from "next/headers";
 
+/**
+ * Odbiorcy wiadomości z formularzy.
+ *
+ * Poza skrzynką sklepu leci kopia na adres zapasowy, bo `kontakt@malenaklejki.pl`
+ * bywa nieosiągalny: serwer pocztowy domeny (cyberfolks) odpytuje listę
+ * hostkarma.junkemailfilter.com i odrzuca pocztę ze współdzielonych adresów IP
+ * Brevo błędem `550 Email blocked`. 22.09.2026 blokada zabrała komplet
+ * powiadomień z całego przedpołudnia. Wiadomości z formularza nie da się
+ * odtworzyć z bazy — w przeciwieństwie do zamówień nie ma po nich śladu
+ * w panelu, więc odbity mail znaczy wiadomość przepadłą bezpowrotnie.
+ *
+ * Adres nadawcy celowo zostaje przy domenie sklepu — to od niego zależy
+ * zgodność SPF/DKIM, więc zmieniamy wyłącznie listę odbiorców.
+ */
+function odbiorcyFormularza(adminEmail: string) {
+  const zapasowy = process.env.CONTACT_BACKUP_EMAIL || "jakub.dalaszynski@gmail.com";
+  const odbiorcy = [{ email: adminEmail, name: "Kontakt MałeNaklejki" }];
+  if (zapasowy && zapasowy.toLowerCase() !== adminEmail.toLowerCase()) {
+    odbiorcy.push({ email: zapasowy, name: "Kontakt MałeNaklejki (kopia)" });
+  }
+  return odbiorcy;
+}
+
 export async function sendContactMessage(formData: {
   name: string;
   email: string;
@@ -92,7 +115,7 @@ export async function sendContactMessage(formData: {
 
     const payload = {
       sender: { name: "MałeNaklejki - Formularz Kontaktowy", email: adminEmail },
-      to: [{ email: adminEmail, name: "Kontakt MałeNaklejki" }],
+      to: odbiorcyFormularza(adminEmail),
       replyTo: { email: formData.email, name: formData.name },
       subject: `[Kontakt] ${formData.subject} — od ${formData.name}`,
       htmlContent,
@@ -197,7 +220,7 @@ export async function sendDesignInquiry(formData: {
 
     const payload = {
       sender: { name: "MałeNaklejki - Zamówienie Projektu", email: adminEmail },
-      to: [{ email: adminEmail, name: "Kontakt MałeNaklejki" }],
+      to: odbiorcyFormularza(adminEmail),
       replyTo: { email: formData.email, name: formData.email },
       subject: `[Projekt Naklejki] Nowe zapytanie od ${formData.email}`,
       htmlContent,
