@@ -25,16 +25,16 @@ const PAGE_PATH = "/naklejki-dla-firm";
 const PAGE_URL = `https://www.malenaklejki.pl${PAGE_PATH}`;
 
 export const metadata: Metadata = {
-  title: "Naklejki dla firm z logo - faktura VAT, od 1 arkusza",
+  title: "Naklejki dla małych firm - od 1 arkusza, 49 zł, faktura VAT",
   description:
-    "Naklejki dla firm z własnym logo w polskiej drukarni: stała cena 49 zł brutto za arkusz A4, faktura VAT, bez minimalnego nakładu, produkcja 2-3 dni robocze.",
+    "Naklejki dla małych firm z własnym logo: od 1 arkusza A4 za stałe 49,00 zł brutto, bez minimalnego nakładu, faktura VAT, produkcja w Polsce 2-3 dni robocze.",
   alternates: {
     canonical: PAGE_PATH,
   },
   openGraph: {
-    title: "Naklejki dla firm z własnym logo - druk od 1 arkusza A4",
+    title: "Naklejki dla małych firm z własnym logo - druk od 1 arkusza A4",
     description:
-      "Naklejki firmowe z logo: stała cena 49 zł brutto za arkusz A4, faktura VAT, bez minimalnego nakładu, trwała folia winylowa i odbiór w paczkomacie.",
+      "Naklejki dla małych firm z logo: stała cena 49 zł brutto za arkusz A4, faktura VAT, bez minimalnego nakładu, trwała folia winylowa i odbiór w paczkomacie.",
     url: PAGE_URL,
     type: "website",
     images: [
@@ -48,9 +48,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Naklejki dla firm z własnym logo - druk od 1 arkusza A4",
+    title: "Naklejki dla małych firm z własnym logo - druk od 1 arkusza A4",
     description:
-      "Naklejki firmowe z logo: 49 zł brutto za arkusz A4, faktura VAT, bez minimalnego nakładu, produkcja 2-3 dni robocze.",
+      "Naklejki dla małych firm z logo: 49 zł brutto za arkusz A4, faktura VAT, bez minimalnego nakładu, produkcja 2-3 dni robocze.",
     images: ["/landing/naklejki-dla-firm/naklejki-dla-firm-na-paczki.png"],
   },
 };
@@ -61,6 +61,18 @@ export const metadata: Metadata = {
  * sam string zasila render i schemat, więc nie da się ich rozjechać.
  */
 const FAQS: { q: string; a: string }[] = [
+  {
+    q: "Ile kosztuje pierwsze zamówienie naklejek dla małej firmy?",
+    a: "Na start wystarczy jeden arkusz A4: 49,00 zł brutto plus dostawa do paczkomatu za 19,99 zł. Nie ma minimalnego nakładu ani opłat za przygotowanie pliku, więc możesz sprawdzić, jak logo wygląda na folii, zanim zamówisz kolejne arkusze. Każdy następny arkusz kosztuje tyle samo - stawka jest stała.",
+  },
+  {
+    q: "Czy mała firma może zamówić kilka różnych naklejek na jednym arkuszu?",
+    a: "Tak. Na jednym arkuszu A4 za 49,00 zł brutto umieścisz kilka różnych wzorów, na przykład logo, naklejkę z podziękowaniem dla klienta i hasło reklamowe. Wgrywasz do kreatora kolejne grafiki, a każdą wycinamy osobno po jej obrysie. Płacisz za arkusz, nie za liczbę wzorów.",
+  },
+  {
+    q: "Czy mogę zamówić w jednym zamówieniu kilka różnych arkuszy naklejek?",
+    a: "Tak. W jednym zamówieniu możesz zamówić kilka arkuszy, na przykład etykiety na produkty i naklejki na paczki. Trafią do jednej paczki, a dostawa do paczkomatu (19,99 zł) jest liczona raz za całe zamówienie.",
+  },
   {
     q: "Czy wystawiacie fakturę VAT za naklejki dla firmy?",
     a: "Tak. Do każdego zamówienia firmowego wystawiamy fakturę VAT na dane z numerem NIP. Cena 49,00 zł za arkusz A4 to kwota brutto, więc od razu widzisz pełny koszt zakupu do rozliczenia w firmie.",
@@ -98,6 +110,25 @@ const FAQS: { q: string; a: string }[] = [
     a: "Zapłacisz BLIK-iem, przez Przelewy24 lub zwykłym przelewem. W trakcie zamówienia podajesz dane firmy z numerem NIP, a my wystawiamy fakturę VAT na pełną kwotę zakupu.",
   },
 ];
+
+const SMALL_BUSINESS: { icon: React.ElementType; title: string; text: string }[] =
+  [
+    {
+      icon: Layers,
+      title: "Kilka wzorów na jednym arkuszu",
+      text: "Wgraj logo, naklejkę z podziękowaniem i hasło reklamowe - każdy obraz wytniemy osobno po jego obrysie. Płacisz za arkusz A4, nie za liczbę wzorów.",
+    },
+    {
+      icon: Boxes,
+      title: "Kilka arkuszy, jedna dostawa",
+      text: "Etykiety na produkty i naklejki na paczki mogą jechać razem. Dostawa do paczkomatu (19,99 zł) jest liczona raz za całe zamówienie.",
+    },
+    {
+      icon: Wallet,
+      title: "Najpierw arkusz próbny",
+      text: "Zamów jeden arkusz, sprawdź, jak logo wygląda na folii, i dopiero wtedy powtórz zamówienie. Każdy kolejny arkusz kosztuje tyle samo: 49,00 zł brutto.",
+    },
+  ];
 
 const USE_CASES: {
   icon: React.ElementType;
@@ -292,10 +323,10 @@ export default function NaklejkiDlaFirmPage() {
         data={{
           "@context": "https://schema.org",
           "@type": "WebPage",
-          name: "Naklejki dla firm z własnym logo",
+          name: "Naklejki dla małych firm z własnym logo",
           url: PAGE_URL,
           isPartOf: { "@id": "https://www.malenaklejki.pl/#website" },
-          dateModified: "2026-07-24T00:00:00+02:00",
+          dateModified: "2026-09-24T00:00:00+02:00",
         }}
       />
       <JsonLd
@@ -347,7 +378,7 @@ export default function NaklejkiDlaFirmPage() {
           </span>
 
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-black leading-tight tracking-tight text-foreground font-heading">
-            Naklejki dla firm z własnym logo
+            Naklejki dla małych firm z własnym logo
           </h1>
 
           <p className="text-sm sm:text-lg text-foreground/90 font-semibold leading-relaxed">
@@ -393,6 +424,13 @@ export default function NaklejkiDlaFirmPage() {
               Naklejki na opakowania
             </Link>
           </div>
+
+          <div className="flex flex-wrap items-center gap-x-4 gap-y-1.5 pt-1">
+            <span className="text-xs font-bold text-muted-foreground/60 flex items-center gap-1.5">
+              <Clock className="w-3.5 h-3.5" /> Ostatnia aktualizacja: 24
+              września 2026
+            </span>
+          </div>
         </section>
 
         {/* Trust stats */}
@@ -415,6 +453,52 @@ export default function NaklejkiDlaFirmPage() {
               </span>
             </div>
           ))}
+        </section>
+
+        {/* Małe firmy - kwalifikowany długi ogon */}
+        <section className="mt-12 space-y-6">
+          <h2 className="text-2xl sm:text-3xl font-black text-foreground font-heading">
+            Naklejki dla małej firmy - jak zacząć od jednego arkusza
+          </h2>
+          <p className="text-sm sm:text-base text-muted-foreground font-medium leading-relaxed">
+            Mała firma rzadko potrzebuje tysiąca identycznych naklejek. Częściej
+            potrzebuje kilku wzorów - logo, podziękowania dla klienta,
+            oznaczenia produktu - i możliwości sprawdzenia ich w praktyce, zanim
+            zamówi więcej. Dlatego zamówienie zaczyna się od jednego arkusza A4
+            za 49,00 zł brutto, bez minimalnego nakładu i bez opłat za
+            przygotowanie pliku. O tym, jak zamawiać niewielkie ilości bez
+            przepłacania, piszemy w poradniku o{" "}
+            <Link
+              href="/blog/naklejki-maly-naklad-jak-zamowic-pojedyncze-sztuki-bez-przeplacania"
+              className="text-primary font-bold underline underline-offset-4 hover:text-primary/80 transition-colors"
+            >
+              naklejkach w małym nakładzie
+            </Link>
+            .
+          </p>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            {SMALL_BUSINESS.map((item) => {
+              const Icon = item.icon;
+              return (
+                <div
+                  key={item.title}
+                  className="bg-white dark:bg-[#003a3b] rounded-2xl border border-border/40 p-5 shadow-sm space-y-2"
+                >
+                  <div className="flex items-center gap-3">
+                    <span className="shrink-0 w-10 h-10 rounded-xl bg-primary/10 text-primary flex items-center justify-center">
+                      <Icon className="w-5 h-5" />
+                    </span>
+                    <h3 className="text-base font-black text-foreground leading-snug">
+                      {item.title}
+                    </h3>
+                  </div>
+                  <p className="text-sm text-muted-foreground font-medium leading-relaxed">
+                    {item.text}
+                  </p>
+                </div>
+              );
+            })}
+          </div>
         </section>
 
         {/* Use cases */}

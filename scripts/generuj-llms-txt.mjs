@@ -26,7 +26,7 @@ const PAGES = [
   { url: "/naklejki-die-cut", title: "Naklejki die-cut", desc: "Główny produkt: naklejki wycinane po dowolnym kształcie grafiki." },
   { url: "/fotonaklejki", title: "Fotonaklejki", desc: "Naklejki prosto ze zdjęcia z telefonu lub aparatu." },
   { url: "/naklejki-foliowe", title: "Naklejki foliowe (winylowe)", desc: "Folia winylowa odporna na wodę i UV." },
-  { url: "/naklejki-dla-firm", title: "Naklejki dla firm", desc: "Oferta B2B: branding produktów, opakowań i gadżetów, faktura VAT." },
+  { url: "/naklejki-dla-firm", title: "Naklejki dla małych firm", desc: "Oferta B2B dla małych firm: logo, opakowania i gadżety od 1 arkusza A4, faktura VAT." },
   { url: "/etykiety-na-sloiki", title: "Etykiety na słoiki", desc: "Własne etykiety i napisy na słoiki, weki, butelki, świece i kosmetyki." },
   { url: "/wlepki-na-zamowienie", title: "Wlepki na zamówienie", desc: "Produkcja wlepek i vlepek: pojedyncze sztuki cięte po obrysie lub arkusz A4, od 1 sztuki." },
   { url: "/alternatywa-dla-sticker-mule-i-stickerapp", title: "Polska alternatywa dla Sticker Mule i StickerApp", desc: "Porównanie z serwisami zagranicznymi: cena, nakład, czas, język obsługi." },

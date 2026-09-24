@@ -1,9 +1,9 @@
 ---
-title: "Wlepki z własnym nadrukiem dla artystów i fanklubów"
+title: "Wlepki z własnym nadrukiem dla artystów i fanów, 49 zł/A4"
 slug: "wklepki-i-wlepy-z-wlasnym-nadrukiem-dla-artystow-i-spolecznosci"
 date: "2026-07-19"
 updated: "2026-09-10"
-description: "Wlepki z własnym nadrukiem bez minimalnego zamówienia - stała cena 49,00 zł za arkusz A4, cięcie po obrysie i pojedyncze sztuki gotowe dla fanów."
+description: "Wlepki z własnym nadrukiem dla artystów i fanklubów: 49,00 zł za arkusz A4, bez minimalnego nakładu, cięcie po obrysie i pojedyncze sztuki do rozdania."
 image: "/blog/wklepki-i-wlepy-z-wlasnym-nadrukiem-dla-artystow-i-spolecznosci/wlepki-z-wlasnym-nadrukiem-kibicowski-kolaz-wzorow.jpeg"
 imageAlt: "Kolaż kolorowych wlepek z własnym nadrukiem w stylistyce kibicowskiej i stadionowej - hasła klubowe, czaszki i motywy ultras wycięte po obrysie."
 tags: ["wlepki", "naklejki", "artyści", "merch"]
