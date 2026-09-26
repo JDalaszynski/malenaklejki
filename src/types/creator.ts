@@ -9,4 +9,6 @@ export interface PlacedSticker {
   cutLineType: "none" | "contour" | "rounded" | "circle" | "contour_inside" | "rounded_inside" | "circle_inside";
   rotation?: number; // in degrees (0 - 360)
   contourPolygons?: { x: number; y: number }[][];
+  /** Naklejka z bazy naklejek (gotowe arkusze w panelu). Kreator na stronie głównej jej nie ustawia. */
+  libraryId?: string;
 }

@@ -10,6 +10,7 @@ export function AdminLayout({
   actions,
   adminEmail,
   userBar,
+  stickyHeader = true,
   children,
 }: {
   /** Węzeł, a nie tekst — ekran wczytywania podstawia tu pasek zastępczy. */
@@ -19,11 +20,13 @@ export function AdminLayout({
   adminEmail?: string;
   /** Zastępuje pasek konta, gdy adresu admina jeszcze nie znamy. */
   userBar?: React.ReactNode;
+  /** Edytor arkusza przykleja własną kolumnę — nagłówek sklepu zabierałby jej miejsce. */
+  stickyHeader?: boolean;
   children: React.ReactNode;
 }) {
   return (
     <div className="flex flex-col min-h-screen text-foreground bg-[#edf6f2] dark:bg-[#002c2e]">
-      <Header zen />
+      <Header zen sticky={stickyHeader} />
 
       <main className="flex-1 flex flex-col py-6 px-4 sm:px-6 lg:px-8 max-w-[1400px] mx-auto w-full">
         <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-6">
@@ -44,9 +47,15 @@ export function AdminLayout({
           {actions && <div className="flex flex-wrap gap-2">{actions}</div>}
         </div>
 
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
-          <AdminNav />
-          {userBar ?? (adminEmail ? <AdminUserBar email={adminEmail} /> : null)}
+        {/* Obok siebie dopiero na bardzo szerokim ekranie — dziewięć zakładek
+            i pasek konta nie mieszczą się w jednym rzędzie przy 1440 px. */}
+        <div className="flex flex-col 2xl:flex-row 2xl:items-center 2xl:justify-between gap-3">
+          <div className="min-w-0">
+            <AdminNav />
+          </div>
+          <div className="shrink-0 self-start 2xl:self-auto">
+            {userBar ?? (adminEmail ? <AdminUserBar email={adminEmail} /> : null)}
+          </div>
         </div>
 
         <div className="mt-6 flex flex-col gap-6">{children}</div>

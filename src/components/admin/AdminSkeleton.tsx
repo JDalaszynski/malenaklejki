@@ -24,12 +24,14 @@ export function AdminPageSkeleton({
   subtitle,
   actions,
   label,
+  stickyHeader,
   children,
 }: {
   title?: React.ReactNode;
   subtitle?: React.ReactNode;
   actions?: React.ReactNode;
   label: string;
+  stickyHeader?: boolean;
   children: React.ReactNode;
 }) {
   return (
@@ -38,6 +40,7 @@ export function AdminPageSkeleton({
       subtitle={subtitle ?? <SkeletonSubtitle />}
       actions={actions}
       userBar={<AdminUserBarSkeleton />}
+      stickyHeader={stickyHeader}
     >
       <SkeletonScreen label={label}>{children}</SkeletonScreen>
     </AdminLayout>
