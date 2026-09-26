@@ -6,9 +6,22 @@ export default function Loading() {
   return (
     <AdminPageSkeleton
       title="Ustawienia sklepu"
-      subtitle="Przerwa urlopowa: baner nad nagłówkiem, termin wysyłki w koszyku i — jeśli chcesz — wstrzymanie zamówień."
+      subtitle="Gotowe arkusze na stronie głównej i przerwa urlopowa: baner, termin wysyłki w koszyku, wstrzymanie zamówień."
       label="Wczytywanie ustawień sklepu…"
     >
+      <Card
+        title="Gotowe arkusze w sklepie"
+        description="Czy klienci widzą opublikowane gotowe arkusze w kreatorze na stronie głównej."
+        actions={<SkeletonBar className="h-7 w-24 rounded-full" />}
+      >
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+          {[0, 1, 2].map((index) => (
+            <SkeletonBar key={index} className="h-24 w-full rounded-2xl" />
+          ))}
+        </div>
+        <SkeletonBar className="h-11 w-36 rounded-xl mt-4" />
+      </Card>
+
       <Card
         title="Przerwa urlopowa"
         description="Jeden włącznik dla baneru na stronie, terminu wysyłki w koszyku i informacji w mailach."
