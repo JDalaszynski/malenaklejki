@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { motion, AnimatePresence } from "framer-motion";
-import { Mail, Phone, Building2, Send, CheckCircle2, Loader2, AlertCircle, MapPin } from "lucide-react";
+import { Mail, Phone, Building2, Send, CheckCircle2, Loader2, AlertCircle, MapPin, Clock } from "lucide-react";
 import { sendContactMessage } from "@/app/actions/contact";
 
 const contactSchema = z.object({
@@ -102,6 +102,19 @@ export function ContactForm() {
                 <p className="text-sm font-extrabold text-foreground leading-snug">
                   ul. Geodetów 41<br />
                   64-100 Trzebiny
+                </p>
+              </div>
+            </div>
+
+            {/* Office Hours Card */}
+            <div className="flex items-start gap-4 bg-muted/20 border border-border/40 p-4 rounded-2xl">
+              <div className="w-12 h-12 bg-secondary/10 rounded-xl flex items-center justify-center text-secondary flex-shrink-0">
+                <Clock className="w-6 h-6" />
+              </div>
+              <div className="space-y-1">
+                <p className="text-xs font-black text-muted-foreground uppercase tracking-wide">Godziny pracy biura</p>
+                <p className="text-sm font-extrabold text-foreground leading-snug">
+                  pn–pt: 9:00–16:00
                 </p>
               </div>
             </div>

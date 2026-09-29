@@ -109,7 +109,7 @@ export const BL_INVOICE_DATA = {
   postcode: "64-100",
   city: "Trzebiny",
   countryCode: "PL",
-  nip: "695527166",
+  nip: "6972414844",
 } as const;
 
 /** Kształt zamówienia zapisanego w Firestore, w zakresie potrzebnym BaseLinkerowi. */
