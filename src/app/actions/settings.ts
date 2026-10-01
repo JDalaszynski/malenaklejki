@@ -14,6 +14,17 @@ import {
 } from "@/lib/settings/vacation";
 import { getVacationSettingsFresh, saveVacationSettings } from "@/lib/settings/vacationStore";
 import {
+  SHIPPING_ESTIMATE_TAG,
+  SHIPPING_LIMITS,
+  businessDaysLabel,
+  normalizeShippingEstimateSettings,
+  type ShippingEstimateSettings,
+} from "@/lib/settings/shippingEstimate";
+import {
+  getShippingEstimateSettingsFresh,
+  saveShippingEstimateSettings,
+} from "@/lib/settings/shippingEstimateStore";
+import {
   READY_SHEETS_MODES,
   READY_SHEETS_MODE_LABELS,
   READY_SHEETS_MODE_TAG,
@@ -158,6 +169,76 @@ export async function updateReadySheetsMode(raw: unknown): Promise<Result> {
   updateTag(READY_SHEETS_MODE_TAG);
   revalidatePath("/admin/ustawienia");
   revalidatePath("/admin/arkusze");
+
+  return { success: true };
+}
+
+/* ------------------------------------------------------------------ */
+/* Termin wysyłki w koszyku                                            */
+/* ------------------------------------------------------------------ */
+
+const daysField = z.coerce
+  .number({ message: "Podaj liczbę dni." })
+  .int({ message: "Podaj pełną liczbę dni." })
+  .min(SHIPPING_LIMITS.days.min, { message: "Liczba dni nie może być ujemna." })
+  .max(SHIPPING_LIMITS.days.max, { message: `Maksymalnie ${SHIPPING_LIMITS.days.max} dni.` });
+
+const shippingEstimateSchema = z
+  .object({
+    cutoffHour: z.coerce
+      .number({ message: "Podaj godzinę." })
+      .int({ message: "Podaj pełną godzinę." })
+      .min(SHIPPING_LIMITS.cutoffHour.min, { message: "Godzina od 1 do 23." })
+      .max(SHIPPING_LIMITS.cutoffHour.max, { message: "Godzina od 1 do 23." }),
+    beforeMin: daysField,
+    beforeMax: daysField,
+    afterMin: daysField,
+    afterMax: daysField,
+  })
+  .refine((value) => value.beforeMin <= value.beforeMax, {
+    message: "Dolna granica nie może być wyższa od górnej (zamówienia przed godziną graniczną).",
+    path: ["beforeMin"],
+  })
+  .refine((value) => value.afterMin <= value.afterMax, {
+    message: "Dolna granica nie może być wyższa od górnej (zamówienia po godzinie granicznej).",
+    path: ["afterMin"],
+  });
+
+function describeShippingEstimate(settings: ShippingEstimateSettings): string {
+  const range = (min: number, max: number) =>
+    min === max ? businessDaysLabel(max) : `${min}–${businessDaysLabel(max)}`;
+  return `przed ${settings.cutoffHour}:00 — ${range(settings.beforeMin, settings.beforeMax)}; po ${settings.cutoffHour}:00 i w weekend — ${range(settings.afterMin, settings.afterMax)}`;
+}
+
+export async function updateShippingEstimate(raw: unknown): Promise<Result> {
+  const actor = await requireAdminActor();
+  if (!actor) return DENIED;
+
+  const parsed = shippingEstimateSchema.safeParse(raw);
+  if (!parsed.success) {
+    return { success: false, error: parsed.error.issues[0]?.message || "Błędne dane." };
+  }
+
+  const before = await getShippingEstimateSettingsFresh();
+  const settings = normalizeShippingEstimateSettings(parsed.data);
+
+  try {
+    await saveShippingEstimateSettings(settings, actor.email);
+  } catch (error) {
+    console.error("updateShippingEstimate error:", error);
+    return { success: false, error: "Nie udało się zapisać ustawień. Spróbuj ponownie." };
+  }
+
+  await recordAudit({
+    actorEmail: actor.email,
+    action: "Termin wysyłki w koszyku",
+    details: `${describeShippingEstimate(before)} → ${describeShippingEstimate(settings)}`,
+  });
+
+  // Termin jest w układzie głównym (jak baner przerwy), więc unieważniamy
+  // i dane, i wyrenderowane strony sklepu.
+  updateTag(SHIPPING_ESTIMATE_TAG);
+  revalidatePath("/", "layout");
 
   return { success: true };
 }

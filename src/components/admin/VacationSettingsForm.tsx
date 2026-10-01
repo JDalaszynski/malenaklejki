@@ -8,7 +8,6 @@ import * as z from "zod";
 import { Eye, Palmtree } from "lucide-react";
 
 import { updateVacationSettings } from "@/app/actions/settings";
-import { FormAlert, SubmitButton } from "@/components/auth/fields";
 import { VacationBannerView } from "@/components/layout/VacationBanner";
 import {
   normalizeVacationSettings,
@@ -16,13 +15,15 @@ import {
   warsawToday,
   type VacationSettings,
 } from "@/lib/settings/vacation";
-import { Card } from "./AdminLayout";
-
-const inputClass =
-  "h-11 w-full rounded-xl border border-slate-300 dark:border-white/20 bg-background px-3 text-sm font-semibold focus-visible:outline-none focus-visible:border-primary focus-visible:ring-2 focus-visible:ring-primary/20";
-
-const textareaClass =
-  "w-full rounded-xl border border-slate-300 dark:border-white/20 bg-background px-3 py-2.5 text-sm font-semibold leading-relaxed focus-visible:outline-none focus-visible:border-primary focus-visible:ring-2 focus-visible:ring-primary/20";
+import { formatDateTime } from "@/lib/orders/status";
+import { Card, CollapsibleCard } from "./AdminLayout";
+import {
+  SettingsField as Field,
+  SettingsSaveBar,
+  SettingsToggle as Toggle,
+  settingsInputClass as inputClass,
+  settingsTextareaClass as textareaClass,
+} from "./SettingsFields";
 
 const schema = z
   .object({
@@ -43,62 +44,18 @@ const schema = z
 
 type FormValues = z.input<typeof schema>;
 
-function Field({
-  label,
-  hint,
-  error,
-  children,
-  className = "",
-}: {
-  label: string;
-  hint?: string;
-  error?: string;
-  children: React.ReactNode;
-  className?: string;
-}) {
-  return (
-    <div className={className}>
-      <label className="text-sm font-bold mb-1.5 block">{label}</label>
-      {children}
-      {hint && !error && (
-        <p className="text-xs font-medium text-muted-foreground mt-1.5">{hint}</p>
-      )}
-      {error && (
-        <p className="inline-block bg-destructive/20 text-destructive text-xs font-bold px-2.5 py-1 rounded-lg mt-1.5">
-          {error}
-        </p>
-      )}
-    </div>
-  );
-}
-
-function Toggle({
-  label,
-  description,
-  checked,
-  onChange,
-}: {
-  label: string;
-  description: string;
-  checked: boolean;
-  onChange: (value: boolean) => void;
-}) {
-  return (
-    <label className="flex items-start gap-3 rounded-2xl border border-border/60 bg-muted/30 hover:bg-muted/50 p-4 cursor-pointer transition-colors select-none">
-      <input
-        type="checkbox"
-        checked={checked}
-        onChange={(event) => onChange(event.target.checked)}
-        className="mt-0.5 w-4 h-4 rounded border-border text-primary focus:ring-primary cursor-pointer"
-      />
-      <span className="min-w-0">
-        <span className="block text-sm font-extrabold text-foreground">{label}</span>
-        <span className="block text-xs font-medium text-muted-foreground leading-relaxed mt-0.5">
-          {description}
-        </span>
-      </span>
-    </label>
-  );
+function toValues(settings: VacationSettings): FormValues {
+  return {
+    enabled: settings.enabled,
+    startsAt: settings.startsAt ?? "",
+    endsAt: settings.endsAt ?? "",
+    announceDaysBefore: settings.announceDaysBefore,
+    title: settings.title,
+    message: settings.message,
+    shippingNote: settings.shippingNote,
+    pauseOrders: settings.pauseOrders,
+    tone: settings.tone,
+  };
 }
 
 /**
@@ -112,27 +69,17 @@ function Toggle({
 export function VacationSettingsForm({ settings }: { settings: VacationSettings }) {
   const router = useRouter();
   const [formError, setFormError] = useState<string | null>(null);
-  const [saved, setSaved] = useState(false);
 
   const {
     register,
     handleSubmit,
     watch,
     setValue,
-    formState: { errors, isSubmitting },
+    reset,
+    formState: { errors, isSubmitting, isDirty },
   } = useForm<FormValues>({
     resolver: zodResolver(schema),
-    defaultValues: {
-      enabled: settings.enabled,
-      startsAt: settings.startsAt ?? "",
-      endsAt: settings.endsAt ?? "",
-      announceDaysBefore: settings.announceDaysBefore,
-      title: settings.title,
-      message: settings.message,
-      shippingNote: settings.shippingNote,
-      pauseOrders: settings.pauseOrders,
-      tone: settings.tone,
-    },
+    defaultValues: toValues(settings),
   });
 
   const values = watch();
@@ -152,7 +99,6 @@ export function VacationSettingsForm({ settings }: { settings: VacationSettings 
 
   const onSubmit = async (formValues: FormValues) => {
     setFormError(null);
-    setSaved(false);
 
     const result = await updateVacationSettings(formValues);
     if (!result.success) {
@@ -160,18 +106,21 @@ export function VacationSettingsForm({ settings }: { settings: VacationSettings 
       return;
     }
 
-    setSaved(true);
+    // Zapisane wartości stają się nowym punktem odniesienia dla „niezapisanych zmian".
+    reset(formValues);
     router.refresh();
   };
 
-  return (
-    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-6" noValidate>
-      {formError && <FormAlert>{formError}</FormAlert>}
-      {saved && <FormAlert tone="success">Zapisano ustawienia przerwy urlopowej.</FormAlert>}
+  const hasCustomTexts = Boolean(
+    values.title || values.message || values.shippingNote || values.tone === "warning"
+  );
 
+  return (
+    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4" noValidate>
       <Card
-        title="Przerwa urlopowa"
-        description="Jeden włącznik dla baneru na stronie, terminu wysyłki w koszyku i informacji w mailach."
+        headingLevel={3}
+        title="Termin przerwy"
+        description="Włącznik i daty. Decydują o tym, kiedy baner, koszyk i maile mówią o przerwie."
         actions={
           <span
             className={`inline-flex items-center gap-2 rounded-xl border px-3 py-1.5 text-xs font-black uppercase tracking-wide ${
@@ -204,25 +153,30 @@ export function VacationSettingsForm({ settings }: { settings: VacationSettings 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             <Field
               label="Pierwszy dzień przerwy"
+              htmlFor="przerwa-start"
               hint="Puste = przerwa trwa od zaraz."
               error={errors.startsAt?.message}
             >
-              <input type="date" className={inputClass} {...register("startsAt")} />
+              <input id="przerwa-start" type="date" className={inputClass} {...register("startsAt")} />
             </Field>
             <Field
               label="Ostatni dzień przerwy"
+              htmlFor="przerwa-koniec"
               hint="Puste = bezterminowo, do ręcznego wyłączenia."
               error={errors.endsAt?.message}
             >
-              <input type="date" className={inputClass} {...register("endsAt")} />
+              <input id="przerwa-koniec" type="date" className={inputClass} {...register("endsAt")} />
             </Field>
             <Field
               label="Zapowiedź (dni przed)"
+              htmlFor="przerwa-zapowiedz"
               hint="0 = bez zapowiedzi. Baner pojawi się tyle dni przed startem."
               error={errors.announceDaysBefore?.message}
             >
               <input
+                id="przerwa-zapowiedz"
                 type="number"
+                inputMode="numeric"
                 min={0}
                 max={90}
                 className={inputClass}
@@ -237,29 +191,41 @@ export function VacationSettingsForm({ settings }: { settings: VacationSettings 
               w banerze, w koszyku i w mailu z potwierdzeniem.
             </p>
           )}
+
+          <Toggle
+            label="Wstrzymaj przyjmowanie nowych zamówień"
+            description="Kasa zostaje zablokowana na czas trwania przerwy — także wtedy, gdy ktoś ominie interfejs i wywoła zapis zamówienia bezpośrednio. Zapowiedź przerwy niczego nie blokuje. Domyślnie sklep sprzedaje dalej, a paczki czekają na powrót."
+            checked={Boolean(values.pauseOrders)}
+            onChange={(value) => setValue("pauseOrders", value, { shouldDirty: true })}
+          />
         </div>
       </Card>
 
-      <Card
-        title="Treść komunikatu"
-        description="Zostaw pola puste, a teksty ułożą się same z ustawionych dat."
+      <CollapsibleCard
+        headingLevel={3}
+        title="Własne teksty komunikatu"
+        description="Opcjonalne — zostaw puste, a teksty ułożą się same z ustawionych dat."
+        defaultOpen={hasCustomTexts}
       >
         <div className="flex flex-col gap-4">
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             <Field
               label="Nagłówek"
+              htmlFor="przerwa-naglowek"
               className="sm:col-span-2"
               error={errors.title?.message}
               hint={`Domyślnie: „${preview.title}"`}
             >
               <input
+                id="przerwa-naglowek"
+                maxLength={120}
                 className={inputClass}
                 placeholder={preview.title}
                 {...register("title")}
               />
             </Field>
-            <Field label="Wygląd" error={errors.tone?.message}>
-              <select className={inputClass} {...register("tone")}>
+            <Field label="Wygląd" htmlFor="przerwa-wyglad" error={errors.tone?.message}>
+              <select id="przerwa-wyglad" className={inputClass} {...register("tone")}>
                 <option value="info">Spokojny (zielony)</option>
                 <option value="warning">Ostrzegawczy (czerwony)</option>
               </select>
@@ -268,11 +234,14 @@ export function VacationSettingsForm({ settings }: { settings: VacationSettings 
 
           <Field
             label="Treść banera"
+            htmlFor="przerwa-tresc"
             error={errors.message?.message}
             hint={`Domyślnie: „${preview.message}"`}
           >
             <textarea
+              id="przerwa-tresc"
               rows={3}
+              maxLength={600}
               className={textareaClass}
               placeholder={preview.message}
               {...register("message")}
@@ -280,34 +249,26 @@ export function VacationSettingsForm({ settings }: { settings: VacationSettings 
           </Field>
 
           <Field
-            label="Termin wysyłki w koszyku i kreatorze"
+            label="Termin wysyłki w koszyku"
+            htmlFor="przerwa-wysylka"
             error={errors.shippingNote?.message}
-            hint={`Zastępuje „Szacowana wysyłka: …". Domyślnie: „${preview.shippingNote}"`}
+            hint={`Zastępuje „Szacowana wysyłka: …" na czas przerwy. Domyślnie: „${preview.shippingNote}"`}
           >
             <input
+              id="przerwa-wysylka"
+              maxLength={160}
               className={inputClass}
               placeholder={preview.shippingNote}
               {...register("shippingNote")}
             />
           </Field>
         </div>
-      </Card>
+      </CollapsibleCard>
 
       <Card
-        title="Zamówienia w czasie przerwy"
-        description="Domyślnie sklep sprzedaje dalej, a paczki czekają na powrót."
-      >
-        <Toggle
-          label="Wstrzymaj przyjmowanie nowych zamówień"
-          description="Kasa zostaje zablokowana na czas trwania przerwy — także wtedy, gdy ktoś ominie interfejs i wywoła zapis zamówienia bezpośrednio. Zapowiedź przerwy niczego nie blokuje."
-          checked={Boolean(values.pauseOrders)}
-          onChange={(value) => setValue("pauseOrders", value, { shouldDirty: true })}
-        />
-      </Card>
-
-      <Card
-        title="Podgląd"
-        description="Tak wygląda pasek nad nagłówkiem sklepu. Podgląd pokazujemy niezależnie od włącznika i dat."
+        headingLevel={3}
+        title="Podgląd baneru"
+        description="Tak wygląda pasek nad nagłówkiem sklepu. Pokazujemy go niezależnie od włącznika i dat."
         actions={
           <span className="inline-flex items-center gap-2 text-xs font-black uppercase tracking-wide text-muted-foreground">
             <Eye className="w-3.5 h-3.5" aria-hidden />
@@ -326,18 +287,20 @@ export function VacationSettingsForm({ settings }: { settings: VacationSettings 
         )}
       </Card>
 
-      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
-        <p className="text-xs font-medium text-muted-foreground">
-          {settings.updatedAt
-            ? `Ostatnia zmiana: ${new Date(settings.updatedAt).toLocaleString("pl-PL")}${
-                settings.updatedBy ? ` — ${settings.updatedBy}` : ""
-              }`
-            : "Ustawienia nie były jeszcze zapisywane."}
-        </p>
-        <SubmitButton loading={isSubmitting} className="sm:w-auto sm:px-10">
-          Zapisz ustawienia
-        </SubmitButton>
-      </div>
+      <SettingsSaveBar
+        dirty={isDirty}
+        error={formError}
+        saving={isSubmitting}
+        onReset={() => {
+          reset(toValues(settings));
+          setFormError(null);
+        }}
+        lastChange={
+          settings.updatedAt
+            ? `${formatDateTime(settings.updatedAt)}${settings.updatedBy ? ` — ${settings.updatedBy}` : ""}`
+            : null
+        }
+      />
     </form>
   );
 }

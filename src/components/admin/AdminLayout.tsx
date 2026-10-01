@@ -70,13 +70,17 @@ export function Card({
   actions,
   children,
   className = "",
+  headingLevel = 2,
 }: {
   title?: React.ReactNode;
   description?: React.ReactNode;
   actions?: React.ReactNode;
   children?: React.ReactNode;
   className?: string;
+  /** Strony z własnymi nagłówkami sekcji (ustawienia) schodzą z kartami na `h3`. */
+  headingLevel?: 2 | 3;
 }) {
+  const Heading = headingLevel === 3 ? "h3" : "h2";
   return (
     <section
       className={`bg-card border border-border/70 rounded-2xl p-5 sm:p-6 shadow-[0_8px_30px_rgba(0,0,0,0.02)] ${className}`}
@@ -84,7 +88,7 @@ export function Card({
       {(title || actions) && (
         <div className="flex flex-wrap items-start justify-between gap-3 mb-4">
           <div>
-            {title && <h2 className="text-lg font-extrabold text-foreground">{title}</h2>}
+            {title && <Heading className="text-lg font-extrabold text-foreground">{title}</Heading>}
             {description && (
               <p className="text-sm font-medium text-muted-foreground mt-0.5">{description}</p>
             )}
@@ -109,12 +113,15 @@ export function CollapsibleCard({
   description,
   defaultOpen = false,
   children,
+  headingLevel = 2,
 }: {
   title: string;
   description?: string;
   defaultOpen?: boolean;
   children: React.ReactNode;
+  headingLevel?: 2 | 3;
 }) {
+  const Heading = headingLevel === 3 ? "h3" : "h2";
   return (
     <details
       open={defaultOpen}
@@ -122,7 +129,7 @@ export function CollapsibleCard({
     >
       <summary className="flex items-start justify-between gap-3 p-5 sm:p-6 cursor-pointer list-none [&::-webkit-details-marker]:hidden rounded-2xl hover:bg-muted/20 transition-colors">
         <div>
-          <h2 className="text-lg font-extrabold text-foreground">{title}</h2>
+          <Heading className="text-lg font-extrabold text-foreground">{title}</Heading>
           {description && (
             <p className="text-sm font-medium text-muted-foreground mt-0.5">{description}</p>
           )}

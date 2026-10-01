@@ -6,68 +6,36 @@ export default function Loading() {
   return (
     <AdminPageSkeleton
       title="Ustawienia sklepu"
-      subtitle="Gotowe arkusze na stronie głównej i przerwa urlopowa: baner, termin wysyłki w koszyku, wstrzymanie zamówień."
+      subtitle="Terminy i komunikaty dla klientów oraz widoczność gotowych arkuszy. Każdą sekcję zapisujesz osobno."
       label="Wczytywanie ustawień sklepu…"
     >
-      <Card
-        title="Gotowe arkusze w sklepie"
-        description="Czy klienci widzą opublikowane gotowe arkusze w kreatorze na stronie głównej."
-        actions={<SkeletonBar className="h-7 w-24 rounded-full" />}
-      >
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+      <div className="grid grid-cols-1 lg:grid-cols-[17rem_minmax(0,1fr)] gap-6 lg:gap-10 items-start">
+        <div className="flex flex-col gap-2">
           {[0, 1, 2].map((index) => (
-            <SkeletonBar key={index} className="h-24 w-full rounded-2xl" />
+            <SkeletonBar key={index} className="h-[4.25rem] w-full rounded-xl" />
           ))}
         </div>
-        <SkeletonBar className="h-11 w-36 rounded-xl mt-4" />
-      </Card>
 
-      <Card
-        title="Przerwa urlopowa"
-        description="Jeden włącznik dla baneru na stronie, terminu wysyłki w koszyku i informacji w mailach."
-        actions={<SkeletonBar className="h-7 w-28 rounded-full" />}
-      >
-        <div className="flex flex-col gap-4">
-          <SkeletonBar className="h-20 w-full rounded-2xl" />
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-            {[0, 1, 2].map((index) => (
-              <SkeletonField key={index} />
-            ))}
-          </div>
+        <div className="flex flex-col gap-12 max-w-3xl min-w-0">
+          {[0, 1, 2].map((section) => (
+            <div key={section} className="flex flex-col gap-4">
+              <div className="flex items-start gap-3">
+                <SkeletonBar className="h-10 w-10 rounded-xl shrink-0" />
+                <div className="flex flex-col gap-2 flex-1">
+                  <SkeletonBar className="h-7 w-64 max-w-full" />
+                  <SkeletonBar className="h-4 w-full max-w-lg" />
+                </div>
+              </div>
+              <Card>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <SkeletonField />
+                  <SkeletonField />
+                </div>
+                <SkeletonBar className="h-20 w-full rounded-2xl mt-4" />
+              </Card>
+            </div>
+          ))}
         </div>
-      </Card>
-
-      <Card
-        title="Treść komunikatu"
-        description="Zostaw pola puste, a teksty ułożą się same z ustawionych dat."
-      >
-        <div className="flex flex-col gap-4">
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-            {[0, 1, 2].map((index) => (
-              <SkeletonField key={index} />
-            ))}
-          </div>
-          <SkeletonField />
-          <SkeletonField />
-        </div>
-      </Card>
-
-      <Card
-        title="Zamówienia w czasie przerwy"
-        description="Domyślnie sklep sprzedaje dalej, a paczki czekają na powrót."
-      >
-        <SkeletonBar className="h-20 w-full rounded-2xl" />
-      </Card>
-
-      <Card
-        title="Podgląd"
-        description="Tak wygląda pasek nad nagłówkiem sklepu. Podgląd pokazujemy niezależnie od włącznika i dat."
-      >
-        <SkeletonBar className="h-14 w-full rounded-2xl" />
-      </Card>
-
-      <div className="sm:max-w-xs">
-        <SkeletonBar className="h-12 w-full rounded-xl" />
       </div>
     </AdminPageSkeleton>
   );

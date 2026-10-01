@@ -66,7 +66,8 @@ export function ReadySheetsModeForm({
 
   return (
     <Card
-      title="Gotowe arkusze w sklepie"
+      headingLevel={3}
+      title="Widoczność w sklepie"
       description="Czy klienci widzą opublikowane gotowe arkusze w kreatorze na stronie głównej."
       actions={
         <StatusPill tone={TONES[settings.mode]}>{READY_SHEETS_MODE_LABELS[settings.mode]}</StatusPill>
