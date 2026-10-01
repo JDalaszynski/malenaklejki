@@ -102,6 +102,13 @@ export type PublicSheetLayout = {
 /** Domyślna szerokość naklejki: 1/4 szerokości A4, jak w kreatorze. */
 export const DEFAULT_STICKER_WIDTH_CM = 5.25;
 
+/** Linia cięcia nowej naklejki na arkuszu — „Brak" w bazie to „jeszcze nieustawiona". */
+export const DEFAULT_CUT_LINE_TYPE: CutLineType = "contour";
+
+export function cutLineForPlacement(type: CutLineType): CutLineType {
+  return type === "none" ? DEFAULT_CUT_LINE_TYPE : type;
+}
+
 export const MAX_SHEET_NAME = 120;
 export const MAX_CATEGORY_NAME = 60;
 export const MAX_STICKER_NAME = 120;

@@ -34,10 +34,12 @@ import { describePublishBlockers, getSheetIssues } from "@/lib/creator/sheetOps"
 import { renderRealisticSheet, renderSheetCanvas } from "@/lib/creator/renderSheet";
 import { compactSticker } from "@/lib/orders/layoutFormat";
 import {
+  DEFAULT_CUT_LINE_TYPE,
   DEFAULT_STICKER_WIDTH_CM,
   MAX_CATEGORY_NAME,
   MAX_SHEET_NAME,
   SHEET_STATUS_LABELS,
+  cutLineForPlacement,
   stickerNameFromFile,
   type LibrarySticker,
   type SheetStatus,
@@ -284,7 +286,7 @@ export function SheetEditor({ sheet, initialStickers, library: initialLibrary, c
         imageUrl: item.imageUrl,
         aspectRatio: item.aspectRatio,
         widthCm: item.widthCm,
-        cutLineType: item.cutLineType,
+        cutLineType: cutLineForPlacement(item.cutLineType),
         libraryId: item.id,
       },
     ]);
@@ -319,7 +321,7 @@ export function SheetEditor({ sheet, initialStickers, library: initialLibrary, c
             blob: file,
             fileName: file.name || "naklejka.png",
             name: stickerNameFromFile(file.name || "Naklejka"),
-            cutLineType: "none",
+            cutLineType: DEFAULT_CUT_LINE_TYPE,
             widthCm: DEFAULT_STICKER_WIDTH_CM,
           });
           if (result.ok) {
@@ -329,7 +331,7 @@ export function SheetEditor({ sheet, initialStickers, library: initialLibrary, c
               imageUrl: result.sticker.imageUrl,
               aspectRatio: result.sticker.aspectRatio,
               widthCm: result.sticker.widthCm,
-              cutLineType: result.sticker.cutLineType,
+              cutLineType: cutLineForPlacement(result.sticker.cutLineType),
               libraryId: result.sticker.id,
             });
           } else {
@@ -369,7 +371,7 @@ export function SheetEditor({ sheet, initialStickers, library: initialLibrary, c
           pages.length > 1 || page.pageNumber > 1
             ? `${stickerNameFromFile(baseName)} – str. ${page.pageNumber}`
             : stickerNameFromFile(baseName),
-        cutLineType: "none",
+        cutLineType: DEFAULT_CUT_LINE_TYPE,
         widthCm,
       });
       if (result.ok) {
@@ -378,7 +380,7 @@ export function SheetEditor({ sheet, initialStickers, library: initialLibrary, c
           imageUrl: result.sticker.imageUrl,
           aspectRatio: result.sticker.aspectRatio,
           widthCm,
-          cutLineType: result.sticker.cutLineType,
+          cutLineType: cutLineForPlacement(result.sticker.cutLineType),
           libraryId: result.sticker.id,
         });
       } else {
@@ -890,6 +892,31 @@ export function SheetEditor({ sheet, initialStickers, library: initialLibrary, c
             )}
           </Card>
 
+          {selectedSticker && (
+            <SelectedStickerPanel
+              key={selectedSticker.id}
+              sticker={selectedSticker}
+              libraryItem={selectedLibraryItem}
+              countOnSheet={selectedSticker.libraryId ? countsOnSheet[selectedSticker.libraryId] ?? 1 : 1}
+              calculating={editor.isCalculatingContour}
+              isFilling={editor.isFillingSheet}
+              libraryBusy={libraryBusy}
+              onEdit={() => setEditingStickerId(selectedSticker.id)}
+              onDuplicate={editor.duplicateSelected}
+              onFill={() => editor.fillWith()}
+              onDownload={downloadSelected}
+              onDelete={editor.deleteSelected}
+              onWidthChange={editor.changeWidth}
+              onRotationChange={editor.changeRotation}
+              onCutLineChange={(type) => void editor.changeCutLine(type)}
+              onRename={(newName) => selectedLibraryItem && renameLibraryItem(selectedLibraryItem, newName)}
+              onSaveDefaults={() =>
+                selectedLibraryItem && saveDefaultsToLibrary(selectedSticker, selectedLibraryItem)
+              }
+              onAddToLibrary={() => linkToLibrary(selectedSticker, "Naklejka z arkusza")}
+            />
+          )}
+
           <Card title="Dodaj naklejki">
             <div className="flex bg-[#004749]/5 dark:bg-[#002224] p-1 rounded-2xl border border-[#004749]/10 dark:border-white/10 gap-1 mb-4">
               {(
@@ -953,30 +980,7 @@ export function SheetEditor({ sheet, initialStickers, library: initialLibrary, c
             )}
           </Card>
 
-          {selectedSticker ? (
-            <SelectedStickerPanel
-              key={selectedSticker.id}
-              sticker={selectedSticker}
-              libraryItem={selectedLibraryItem}
-              countOnSheet={selectedSticker.libraryId ? countsOnSheet[selectedSticker.libraryId] ?? 1 : 1}
-              calculating={editor.isCalculatingContour}
-              isFilling={editor.isFillingSheet}
-              libraryBusy={libraryBusy}
-              onEdit={() => setEditingStickerId(selectedSticker.id)}
-              onDuplicate={editor.duplicateSelected}
-              onFill={() => editor.fillWith()}
-              onDownload={downloadSelected}
-              onDelete={editor.deleteSelected}
-              onWidthChange={editor.changeWidth}
-              onRotationChange={editor.changeRotation}
-              onCutLineChange={(type) => void editor.changeCutLine(type)}
-              onRename={(newName) => selectedLibraryItem && renameLibraryItem(selectedLibraryItem, newName)}
-              onSaveDefaults={() =>
-                selectedLibraryItem && saveDefaultsToLibrary(selectedSticker, selectedLibraryItem)
-              }
-              onAddToLibrary={() => linkToLibrary(selectedSticker, "Naklejka z arkusza")}
-            />
-          ) : (
+          {!selectedSticker && (
             <div className="bg-card border border-border/70 rounded-2xl p-6 text-center text-sm font-semibold text-muted-foreground flex flex-col items-center gap-2">
               <MousePointerClick className="w-5 h-5 text-primary" aria-hidden />
               {stickers.length === 0
