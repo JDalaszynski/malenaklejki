@@ -39,9 +39,9 @@ function estimateWindow(): { text: string; lastDayKey: string } {
   const hour = warsawNow.getHours();
   const isWeekend = warsawNow.getDay() === 0 || warsawNow.getDay() === 6;
 
-  // Jeśli przed 12:00 (i dzień roboczy), wysyłka to 0-1 dni roboczych.
-  // Jeśli po 12:00 (lub weekend), wysyłka to 1-2 dni roboczych.
-  const maxDaysToAdd = (hour < 12 && !isWeekend) ? 1 : 2;
+  // Jeśli przed 12:00 (i dzień roboczy), wysyłka to 1-2 dni robocze.
+  // Jeśli po 12:00 (lub weekend), wysyłka to 2-3 dni robocze.
+  const maxDaysToAdd = (hour < 12 && !isWeekend) ? 2 : 3;
   const minDaysToAdd = maxDaysToAdd - 1;
 
   const minDate = addBusinessDays(warsawNow, minDaysToAdd);
