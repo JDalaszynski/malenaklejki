@@ -130,6 +130,10 @@ Etykiety, które porządkują przestrzeń: [naklejki na słoiki z przyprawami](/
 
 Spójna papeteria i personalizowane dodatki: [naklejki na koperty ślubne i podziękowania dla gości](/blog/naklejki-na-koperty-slubne-i-podziekowania-dla-gosci) oraz [personalizowane naklejki na alkohol](/blog/personalizowane-naklejki-na-alkohol-wyjatkowy-dodatek-na-wesela-i-imprezy) na wesela i imprezy.
 
+### Prezenty i święta
+
+Imienne etykiety na prezenty, numery do kalendarza adwentowego i świąteczne naklejki z logo na paczki zebraliśmy w jednym przewodniku: [naklejki świąteczne i etykiety na prezenty](/blog/naklejki-swiateczne-i-etykiety-na-prezenty). Znajdziesz tam też koszt kompletu z 1, 2 i 3 arkuszy wysłanych w jednej paczce.
+
 ### Hobby, pojazdy i sprzęt
 
 Personalizacja rzeczy, których używasz codziennie: [naklejki na rower i akcesoria sportowe](/blog/naklejki-na-rower-i-akcesoria-sportowe-dla-pasjonatow), [naklejki motoryzacyjne i tuningowe](/blog/naklejki-motoryzacyjne-i-tuningowe-z-wlasnym-nadrukiem), [naklejki na motory i motocyklowe](/blog/naklejki-na-motory-i-motocyklowe) na kask oraz bak, a także [małe naklejki na laptopa](/blog/male-naklejki-na-laptopa-jak-wyrazic-siebie-i-stworzyc-wlasny-styl).

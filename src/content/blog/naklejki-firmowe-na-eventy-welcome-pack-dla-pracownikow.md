@@ -77,6 +77,8 @@ Forma wykończenia zależy od tego, kto i kiedy naklejki wykorzysta:
 
 ![Arkusz naklejek firmowych z logo w wersji owalnej, okrągłej, kwadratowej i prostokątnej, gotowych do wycięcia i rozdania na evencie.](/blog/naklejki-firmowe-na-eventy-welcome-pack-dla-pracownikow/naklejki-firmowe-na-arkuszu-rozne-warianty-logo.png)
 
+Ten sam układ sprawdzi się przed świętami na upominkach dla pracowników i klientów - zobacz [świąteczne naklejki z logo na paczki](/blog/naklejki-swiateczne-i-etykiety-na-prezenty) i koszt kompletu z kilku arkuszy w jednej przesyłce.
+
 ## Naklejki firmowe na eventy - najczęściej zadawane pytania (FAQ)
 
 ### Ile kosztują naklejki firmowe na eventy i welcome pack?

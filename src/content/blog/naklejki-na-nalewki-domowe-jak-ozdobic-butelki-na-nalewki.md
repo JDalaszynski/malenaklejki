@@ -20,7 +20,7 @@ Wydrukuj **naklejki na nalewki domowe** z własnym projektem na wodoodpornej fol
 Domowa nalewka wiśniowa, orzechowa czy pigwowa po kilku miesiącach leżakowania w piwnicy łatwo traci swoją "tożsamość" - bez opisu trudno odróżnić rocznik 2024 od świeższej partii. Własna etykieta rozwiązuje ten problem i dodatkowo:
 
 - **Nadaje wyrobowi profesjonalny wygląd** - butelka z estetyczną naklejką wygląda jak produkt rzemieślniczy, a nie domowy eksperyment.
-- **Ułatwia rozdawanie w prezencie** - podpisana nalewka z nazwą, rocznikiem i składem to gotowy upominek świąteczny lub imieninowy.
+- **Ułatwia rozdawanie w prezencie** - podpisana nalewka z nazwą, rocznikiem i składem to gotowy upominek świąteczny lub imieninowy (więcej w przewodniku o [naklejkach świątecznych i etykietach na prezenty](/blog/naklejki-swiateczne-i-etykiety-na-prezenty)).
 - **Pomaga w organizacji piwniczki** - przy kilkunastu butelkach różnych smaków etykieta z nazwą i datą oszczędza czas przy szukaniu właściwej butelki.
 - **Sprawdza się też przy miodach i nalewkach pszczelarskich** - pasieki i małe manufaktury miodowe etykietują nimi słoiki z miodem pitnym i nalewkami na własnym miodzie.
 

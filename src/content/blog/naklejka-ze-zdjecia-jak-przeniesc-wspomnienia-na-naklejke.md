@@ -64,7 +64,7 @@ Spersonalizowane naklejki ze zdjęciem to prezent, który trudno przeoczyć. Zam
 - **Pamięć o zwierzętach** - klienci, którzy stracili pupila, często zamawiają naklejkę ze zdjęcia jako trwałą pamiątkę.
 - **Prezent dla dziecka** - rysunek wykonany przez maluszka zamieniony w naklejkę to coś, co rodzic zachowa na lata.
 
-Każdy arkusz A4 w cenie 49,00 zł mieści albo jedną dużą naklejkę (do 19 cm), albo kilkanaście mniejszych wlepek z różnymi zdjęciami.
+Każdy arkusz A4 w cenie 49,00 zł mieści albo jedną dużą naklejkę (do 19 cm), albo kilkanaście mniejszych wlepek z różnymi zdjęciami. Na święta taki zestaw sprawdza się jako [naklejki świąteczne ze zdjęciem](/blog/naklejki-swiateczne-i-etykiety-na-prezenty) - pomysły i koszt kompletu z kilku arkuszy opisaliśmy w osobnym przewodniku.
 
 ## Naklejki ze zdjęciem na co dzień - praktyczne zastosowania
 

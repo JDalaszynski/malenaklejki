@@ -44,7 +44,7 @@ Pamiętaj, że nasze narzędzie to prosty kreator służący układaniu arkusza 
 
 ## Zastosowania etykiet: od przetworów do prezentów
 
-Własne etykiety na słoiki do przetworów i weków sprawdzają się nie tylko na półkach domowej piwnicy. Pięknie zapakowany dżem własnej roboty to rewelacyjny pomysł na prezent na święta lub podziękowanie dla gości. Jeśli prowadzisz małą produkcję i potrzebujesz etykiet z prawdziwym logo czy numerem partii, zajrzyj do artykułu [naklejki z własnym logo na słoiki i opakowania](/blog/naklejka-z-logo-firmy-jak-skutecznie-brandowac-swoje-produkty). 
+Własne etykiety na słoiki do przetworów i weków sprawdzają się nie tylko na półkach domowej piwnicy. Pięknie zapakowany dżem własnej roboty to rewelacyjny pomysł na prezent na święta lub podziękowanie dla gości - etykiety na prezenty z imieniem obdarowanego i cały komplet w jednej paczce opisaliśmy w przewodniku o [naklejkach świątecznych](/blog/naklejki-swiateczne-i-etykiety-na-prezenty). Jeśli prowadzisz małą produkcję i potrzebujesz etykiet z prawdziwym logo czy numerem partii, zajrzyj do artykułu [naklejki z własnym logo na słoiki i opakowania](/blog/naklejka-z-logo-firmy-jak-skutecznie-brandowac-swoje-produkty). 
 
 Naklejki z powodzeniem nakleisz też na butelki (przeczytaj o [naklejkach na domowe nalewki](/blog/naklejki-na-nalewki-domowe-jak-ozdobic-butelki-na-nalewki)), a jeśli zależy Ci na mniejszych formatach wewnątrz kuchni, koniecznie zobacz wpis o [naklejkach własnego projektu na słoiki z przyprawami](/blog/naklejki-wlasnego-projektu-na-sloiki-z-przyprawami-zorganizuj-swoja-kuchnie).
 
