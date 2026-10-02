@@ -11,16 +11,16 @@ const PAGE_PATH = "/slownik-naklejek";
 const PAGE_URL = `https://www.malenaklejki.pl${PAGE_PATH}`;
 
 export const metadata: Metadata = {
-  title: "Słownik pojęć o naklejkach - die-cut, kiss-cut, DPI",
+  title: "Słownik naklejek: die-cut, kiss-cut, DPI - druk za 49 zł/A4",
   description:
-    "Słownik naklejek: die-cut, kiss-cut, folia winylowa, DPI, CMYK, kanał alfa i wlepki wyjaśnione prosto. Sprawdź terminy i zamów naklejki od 1 arkusza A4.",
+    "Słownik naklejek: die-cut, kiss-cut, folia winylowa, 300 DPI, CMYK i kanał alfa wyjaśnione prosto. Druk od 1 arkusza A4 za stałe 49,00 zł brutto.",
   alternates: {
     canonical: PAGE_PATH,
   },
   openGraph: {
-    title: "Słownik pojęć o naklejkach - die-cut, kiss-cut, DPI",
+    title: "Słownik naklejek: die-cut, kiss-cut, DPI - druk za 49 zł/A4",
     description:
-      "Die-cut, kiss-cut, folia winylowa, DPI, CMYK, kanał alfa, wlepki - słownik pojęć o naklejkach wyjaśniony prostym językiem. Zamów naklejki od 1 arkusza A4.",
+      "Die-cut, kiss-cut, folia winylowa, 300 DPI, CMYK, kanał alfa i wlepki - słownik naklejek prostym językiem. Druk od 1 arkusza A4 za 49,00 zł brutto.",
     url: PAGE_URL,
     type: "website",
     images: [
@@ -34,9 +34,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Słownik pojęć o naklejkach - die-cut, kiss-cut, DPI",
+    title: "Słownik naklejek: die-cut, kiss-cut, DPI - druk za 49 zł/A4",
     description:
-      "Die-cut, kiss-cut, folia winylowa, DPI, CMYK, kanał alfa i wlepki wyjaśnione prosto. Słownik naklejek od MałeNaklejki - zamów od 1 arkusza A4.",
+      "Słownik naklejek: die-cut, kiss-cut, folia winylowa, 300 DPI i CMYK wyjaśnione prosto. Druk od 1 arkusza A4 za 49,00 zł brutto, produkcja 2-3 dni robocze.",
     images: [
       "/landing/slownik-naklejek/die-cut-naklejka-ciecie-po-obrysie-kontur.jpg",
     ],

@@ -1,9 +1,9 @@
 ---
-title: "Die cut i kiss-cut - różnice w cięciu naklejek reklamowych"
+title: "Wykroje die-cut i kiss-cut - różnice, oba za 49 zł/A4"
 slug: "co-to-jest-die-cut-i-kiss-cut-roznice-w-wyleciach-naklejek-reklamowych"
 date: "2026-07-14"
 updated: "2026-08-31"
-description: "Die cut sticker to naklejka wycięta po obrysie grafiki, kiss-cut zostaje na całym arkuszu. Poznaj różnice, koszty i podpowiedzi, które cięcie wybrać."
+description: "Wykroje die-cut i kiss-cut: naklejka wycięta po obrysie albo zostawiona na arkuszu. Poznaj różnice - oba cięcia od 1 arkusza A4 za stałe 49,00 zł brutto."
 image: "/blog/co-to-jest-die-cut-i-kiss-cut-roznice-w-wyleciach-naklejek-reklamowych/naklejka-die-cut-pies-corgi-wycieta-po-obrysie.png"
 imageAlt: "Dłoń trzymająca naklejkę die-cut przedstawiającą uśmiechniętego psa rasy corgi, wyciętą dokładnie po obrysie sylwetki, na tle zielonych liści"
 tags: ["die cut", "kiss-cut", "cięcie po obrysie", "naklejki reklamowe"]
