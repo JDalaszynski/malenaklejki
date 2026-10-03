@@ -6,8 +6,16 @@ export const dynamic = "force-dynamic";
 
 const NO_STORE = { "Cache-Control": "no-store, private" };
 
+/**
+ * Układ pod adresem z aktualnym znacznikiem wersji się nie zmienia — zapis
+ * arkusza w panelu daje nowy znacznik, a więc i nowy adres. Dlatego może
+ * leżeć w pamięci przeglądarki i na brzegu sieci zamiast za każdym razem
+ * budzić funkcję.
+ */
+const VERSIONED = { "Cache-Control": "public, max-age=86400, s-maxage=604800, immutable" };
+
 /** Układ opublikowanego arkusza do wczytania w kreatorze. Szkic i nieznany adres to 404. */
-export async function GET(_request: Request, { params }: { params: Promise<{ id: string }> }) {
+export async function GET(request: Request, { params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
   const notFound = NextResponse.json({ error: "Nie ma takiego arkusza." }, { status: 404, headers: NO_STORE });
 
@@ -20,7 +28,11 @@ export async function GET(_request: Request, { params }: { params: Promise<{ id:
     const layout = await getPublishedSheetLayout(id);
     if (!layout) return notFound;
 
-    return NextResponse.json(layout, { headers: NO_STORE });
+    // Podgląd administratora zależy od sesji, więc nie może trafić do wspólnej pamięci.
+    const version = new URL(request.url).searchParams.get("v");
+    const cacheable = !access.preview && version === layout.version;
+
+    return NextResponse.json(layout, { headers: cacheable ? VERSIONED : NO_STORE });
   } catch (error) {
     console.error("GET /api/gotowe-arkusze/[id] error:", error);
     return NextResponse.json(

@@ -24,7 +24,7 @@ export const READY_SHEETS_MODE_DESCRIPTIONS: Record<ReadySheetsMode, string> = {
   off: "Strona główna wygląda tak jak dotąd — gotowych arkuszy nie widzi nikt.",
   preview:
     "Gotowe arkusze widzisz tylko Ty, zalogowany jako administrator — dokładnie tak, jak zobaczą je klienci.",
-  on: "Klienci widzą opublikowane arkusze w kreatorze na stronie głównej i mogą je zamawiać.",
+  on: "Przy kreatorze na stronie głównej pojawia się wejście do galerii — klienci wybierają wzór, edytują go i zamawiają.",
 };
 
 export type ReadySheetsSettings = {

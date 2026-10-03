@@ -12,6 +12,7 @@ import {
 } from "framer-motion";
 import { PlacedSticker } from "@/types/creator";
 import { getCutLineOffsetMm } from "@/lib/utils/collision";
+import { getDisplaySource } from "@/lib/utils/transparentBackground";
 
 interface A4Visualizer3DProps {
   stickers: PlacedSticker[];
@@ -530,10 +531,16 @@ export function A4Visualizer3D({ stickers, deliveryForm = "sheet" }: A4Visualize
               >
                 {/* Sticker Image */}
                 <img
-                  src={st.imageUrl}
+                  src={getDisplaySource(st)}
                   alt="Naklejka"
                   className="absolute select-none object-contain"
                   draggable={false}
+                  onError={(e) => {
+                    // Lekka wersja ekranowa nie doszła — pokazujemy oryginał.
+                    if (e.currentTarget.getAttribute("src") !== st.imageUrl) {
+                      e.currentTarget.src = st.imageUrl;
+                    }
+                  }}
                   style={{
                     left: "50%",
                     top: "50%",

@@ -68,6 +68,20 @@ const SHARP_NATIVE_FILES = [
 ];
 
 const nextConfig: NextConfig = {
+  images: {
+    // Podglądy gotowych arkuszy (panel → Arkusze) leżą w magazynie pod
+    // `sheets/` i tylko one przechodzą przez optymalizator obrazów. Grafik
+    // klientów z `uploads/` celowo tu nie ma — inaczej każdy mógłby wyczerpać
+    // limit przekształceń własnymi plikami.
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "firebasestorage.googleapis.com",
+        pathname: `/v0/b/${process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET ?? "*"}/o/sheets%2F**`,
+      },
+    ],
+  },
+
   // Trasy, które kompresują obrazy: webhooki i cron (załączniki do maili),
   // checkout (akcja `createOrder`), panel (ponowna wysyłka powiadomień)
   // oraz `/api/compress-png` wołane z kreatora.

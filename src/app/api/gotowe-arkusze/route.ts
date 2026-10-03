@@ -8,12 +8,12 @@ export const dynamic = "force-dynamic";
 const NO_STORE = { "Cache-Control": "no-store, private" };
 
 /**
- * Gotowe arkusze do kreatora na stronie głównej.
+ * Lista gotowych arkuszy do galerii w kreatorze.
  *
- * Osobny adres, a nie dane wliczone w render strony: strona główna jest
- * statyczna, a w trybie podglądu lista zależy od tego, czy patrzy
- * administrator. Przy wyłączonym trybie odpowiedź jest pusta i kreator
- * wygląda dokładnie tak jak wcześniej.
+ * Osobny adres, a nie dane wliczone w render strony: listę dociąga dopiero
+ * otwarta galeria, więc strona główna nie płaci za nią ani bajtem, a w trybie
+ * podglądu odpowiedź zależy od tego, czy patrzy administrator. Przy
+ * wyłączonym trybie odpowiedź jest pusta.
  */
 export async function GET() {
   const empty: PublicSheetsResponse = { sheets: [], categories: [], preview: false };

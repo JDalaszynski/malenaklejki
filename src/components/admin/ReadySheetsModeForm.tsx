@@ -146,8 +146,8 @@ export function ReadySheetsModeForm({
             {settings.mode !== "off" && (
               <>
                 {" · "}
-                <a href="/#sheet" target="_blank" rel="noreferrer" className="font-bold text-primary hover:underline">
-                  zobacz stronę główną
+                <a href="/#gotowe-arkusze" target="_blank" rel="noreferrer" className="font-bold text-primary hover:underline">
+                  zobacz galerię w sklepie
                 </a>
               </>
             )}

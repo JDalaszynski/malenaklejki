@@ -164,9 +164,10 @@ export async function updateReadySheetsMode(raw: unknown): Promise<Result> {
     details: `${READY_SHEETS_MODE_LABELS[before.mode]} → ${READY_SHEETS_MODE_LABELS[parsed.data]}`,
   });
 
-  // Kreator dopytuje o arkusze z przeglądarki, więc wystarczy unieważnić
-  // zapamiętany tryb — strony sklepu nie trzeba przebudowywać.
+  // Tryb decyduje o tym, czy strona główna niesie wejście do galerii, więc
+  // razem z zapamiętanym ustawieniem przebudowujemy i ją.
   updateTag(READY_SHEETS_MODE_TAG);
+  revalidatePath("/");
   revalidatePath("/admin/ustawienia");
   revalidatePath("/admin/arkusze");
 

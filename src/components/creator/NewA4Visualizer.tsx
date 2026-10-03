@@ -4,7 +4,7 @@ import React, { useRef, useState, useEffect } from "react";
 import { createPortal } from "react-dom";
 import { PlacedSticker } from "@/types/creator";
 import { checkOverlap, getRotatedSize, getCutLineMargins, getOuterMargins, getCutLineBoundingBox, checkStickersCollision, clampToUsableArea, getContourMargins, getDisplayedWidthCm, getCutLineOffsetMm, getMaxGraphicWidthCm } from "@/lib/utils/collision";
-import { useRenderImageUrls } from "@/lib/utils/transparentBackground";
+import { getDisplaySource, useRenderImageUrls } from "@/lib/utils/transparentBackground";
 import { MoreVertical, Scissors, RotateCw, Crop, Copy, Trash2, Ban, Sparkles, Square, Circle, LayoutGrid, Loader2, MousePointerClick } from "lucide-react";
 
 interface NewA4VisualizerProps {
@@ -708,6 +708,9 @@ export function NewA4Visualizer({
         const localY = -unrotatedMargins.top;
         const localW = unrotatedMargins.left + unrotatedMargins.right;
         const localH = unrotatedMargins.top + unrotatedMargins.bottom;
+        const resolvedSrc = renderImageUrls[st.imageUrl];
+        const displaySrc = resolvedSrc || getDisplaySource(st);
+        const isBackgroundStripped = !!resolvedSrc && resolvedSrc !== st.imageUrl;
         const uiFrameStyle = {
           left: `${(localX / wMm) * 100}%`,
           top: `${(localY / hMm) * 100}%`,
@@ -738,9 +741,19 @@ export function NewA4Visualizer({
               }}
             >
               <img
-                src={renderImageUrls[st.imageUrl] || st.imageUrl}
+                src={displaySrc}
+                // Lekką wersję (nasz adres) pobiera też kod wybijający tło —
+                // ten sam tryb żądania sprawia, że idzie po sieci tylko raz.
+                crossOrigin={displaySrc.startsWith("/api/") ? "anonymous" : undefined}
                 alt="Naklejka"
                 draggable={false}
+                onError={(e) => {
+                  // Lekka wersja ekranowa nie doszła — pokazujemy oryginał.
+                  if (e.currentTarget.getAttribute("src") !== st.imageUrl) {
+                    e.currentTarget.removeAttribute("crossorigin");
+                    e.currentTarget.src = st.imageUrl;
+                  }
+                }}
                 className={`absolute inset-0 w-full h-full pointer-events-none select-none ${
                   st.cutLineType === "contour" || st.cutLineType === "contour_inside"
                     ? ""
@@ -752,7 +765,7 @@ export function NewA4Visualizer({
                   // przyciemniałby miejsca, w których obrysy sąsiadują ze sobą.
                   // Dopóki wersja z przezroczystością się liczy, `multiply`
                   // zostaje jako zabezpieczenie na białym arkuszu.
-                  mixBlendMode: renderImageUrls[st.imageUrl] ? "normal" : "multiply",
+                  mixBlendMode: isBackgroundStripped ? "normal" : "multiply",
                 }}
               />
 

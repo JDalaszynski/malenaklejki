@@ -167,6 +167,9 @@ export function getRenderImageUrl(
       return await canvasToObjectUrl(canvas);
     } catch (err) {
       console.error("Nie udało się wybić białego tła:", err);
+      // Nieudana próba (np. chwilowy błąd sieci) nie zostaje w pamięci — przy
+      // następnym użyciu, najpóźniej przy pliku do druku, liczymy od nowa.
+      transparentUrls.delete(imageUrl);
       return imageUrl;
     }
   })();
@@ -176,28 +179,130 @@ export function getRenderImageUrl(
 }
 
 /**
- * Mapa `imageUrl źródłowy -> URL do wyświetlenia` dla naklejek z konturem.
- * Klucz to oryginalny URL, więc duplikaty tej samej grafiki dzielą jedną wersję.
+ * Lekkie wersje ekranowe grafik (gotowe arkusze): adres oryginału -> adres
+ * wersji do pokazania. Zarejestrowaną grafikę kreator rysuje na ekranie z lekkiej
+ * wersji; `getRenderImageUrl`, z którego powstaje plik do druku, tej mapy nie
+ * widzi i zawsze sięga po oryginał.
+ */
+const displaySources = new Map<string, string>();
+/** imageUrl źródłowy -> URL lekkiej wersji z wybitym tłem. */
+const displayUrls = new Map<string, Promise<string>>();
+
+export function registerDisplaySources(sources: Record<string, string>): void {
+  for (const [imageUrl, displayUrl] of Object.entries(sources)) {
+    if (imageUrl && displayUrl) displaySources.set(imageUrl, displayUrl);
+  }
+}
+
+/**
+ * Lekka wersja ma kilkaset pikseli — w sam raz dla naklejek do tej wielkości.
+ * Większe pokazujemy z oryginału, żeby powiększona naklejka nie wyglądała
+ * na ekranie na rozmytą.
+ */
+const DISPLAY_SOURCE_MAX_CM = 7.5;
+
+type SizedSticker = Pick<PlacedSticker, "imageUrl" | "widthCm" | "heightCm">;
+
+function needsOriginal(st: SizedSticker): boolean {
+  return Math.max(st.widthCm, st.heightCm) > DISPLAY_SOURCE_MAX_CM;
+}
+
+/** Adres, spod którego naklejkę pokazujemy na ekranie: lekka wersja, a bez niej oryginał. */
+export function getDisplaySource(st: SizedSticker): string {
+  if (needsOriginal(st)) return st.imageUrl;
+  return displaySources.get(st.imageUrl) ?? st.imageUrl;
+}
+
+/**
+ * URL grafiki do wyświetlenia. Dla grafik z lekką wersją tło wybijamy na niej
+ * (ułamek pikseli oryginału); pozostałe idą dotychczasową drogą.
+ */
+function getDisplayImageUrl(
+  imageUrl: string,
+  cutLineType: PlacedSticker["cutLineType"]
+): Promise<string> {
+  const source = displaySources.get(imageUrl);
+  if (typeof window === "undefined" || !source) return getRenderImageUrl(imageUrl, cutLineType);
+  if (!usesContourCut(cutLineType)) return Promise.resolve(source);
+
+  const cached = displayUrls.get(imageUrl);
+  if (cached) return cached;
+
+  const promise = (async () => {
+    try {
+      const img = await loadImage(source);
+      const canvas = stripWhiteBackground(img);
+      if (!canvas) return source;
+      return await canvasToObjectUrl(canvas);
+    } catch (err) {
+      // Lekka wersja zawiodła — ta grafika wraca do oryginału, jak każda inna.
+      console.error("Nie udało się wczytać lekkiej wersji grafiki:", err);
+      displaySources.delete(imageUrl);
+      displayUrls.delete(imageUrl);
+      return getRenderImageUrl(imageUrl, cutLineType);
+    }
+  })();
+
+  displayUrls.set(imageUrl, promise);
+  return promise;
+}
+
+/**
+ * Przygotowuje grafikę do pliku do druku, zanim klient kliknie „Dodaj do
+ * koszyka": pobiera oryginał i — dla konturu — wybija mu tło. Wynik zostaje
+ * w tych samych pamięciach, z których korzysta render arkusza.
+ */
+export function preloadPrintImage(
+  imageUrl: string,
+  cutLineType: PlacedSticker["cutLineType"]
+): Promise<void> {
+  const work = usesContourCut(cutLineType)
+    ? getRenderImageUrl(imageUrl, cutLineType)
+    : loadImage(imageUrl);
+  return work.then(
+    () => undefined,
+    () => undefined
+  );
+}
+
+/**
+ * Mapa `imageUrl źródłowy -> URL do wyświetlenia` dla naklejek z konturem
+ * i dla grafik z lekką wersją ekranową. Klucz to oryginalny URL, więc duplikaty
+ * tej samej grafiki dzielą jedną wersję.
  */
 export function useRenderImageUrls(
-  stickers: Pick<PlacedSticker, "imageUrl" | "cutLineType">[]
+  stickers: (SizedSticker & Pick<PlacedSticker, "cutLineType">)[]
 ): Record<string, string> {
   const [urls, setUrls] = useState<Record<string, string>>({});
 
-  const pending = Array.from(
-    new Set(
-      stickers
-        .filter((st) => usesContourCut(st.cutLineType) && st.imageUrl)
-        .map((st) => st.imageUrl)
-    )
+  const contour = new Set(
+    stickers.filter((st) => usesContourCut(st.cutLineType) && st.imageUrl).map((st) => st.imageUrl)
   );
-  const key = pending.join("|");
+  const registered = new Set(
+    stickers.filter((st) => displaySources.has(st.imageUrl)).map((st) => st.imageUrl)
+  );
+  // Wystarczy jedna duża naklejka z daną grafiką, żeby cała grafika szła z oryginału.
+  const light = new Set(registered);
+  for (const st of stickers) {
+    if (needsOriginal(st)) light.delete(st.imageUrl);
+  }
+
+  const pending = Array.from(new Set([...contour, ...registered]));
+  // Ta sama grafika bywa raz z konturem, raz bez, raz mała, raz duża — to,
+  // jak ją liczymy, wchodzi do klucza.
+  const key = pending
+    .map((url) => `${contour.has(url) ? "k" : "p"}${light.has(url) ? "l" : "o"}${url}`)
+    .join("|");
 
   useEffect(() => {
     let cancelled = false;
     pending.forEach((imageUrl) => {
-      getRenderImageUrl(imageUrl, "contour").then((resolved) => {
-        if (cancelled || resolved === imageUrl) return;
+      const cutLineType = contour.has(imageUrl) ? "contour" : "none";
+      const resolving = light.has(imageUrl)
+        ? getDisplayImageUrl(imageUrl, cutLineType)
+        : getRenderImageUrl(imageUrl, cutLineType);
+      resolving.then((resolved) => {
+        if (cancelled) return;
         setUrls((prev) => (prev[imageUrl] === resolved ? prev : { ...prev, [imageUrl]: resolved }));
       });
     });

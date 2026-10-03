@@ -82,6 +82,8 @@ export type PublicSheetSummary = {
   category: string;
   previewUrl: string | null;
   stickerCount: number;
+  /** Znacznik wersji arkusza — adres układu z nim może leżeć w pamięci podręcznej. */
+  version: string;
 };
 
 /** Odpowiedź `/api/gotowe-arkusze`. */
@@ -96,8 +98,55 @@ export type PublicSheetsResponse = {
 export type PublicSheetLayout = {
   id: string;
   name: string;
+  version: string;
   stickers: PlacedSticker[];
+  /**
+   * Lekkie wersje grafik do pokazania na ekranie: adres oryginału → adres
+   * wersji ekranowej. Plik do druku zawsze powstaje z oryginałów.
+   */
+  display: Record<string, string>;
 };
+
+/**
+ * Zapowiedź gotowych arkuszy przy kreatorze: tyle, ile trzeba do narysowania
+ * wejścia do galerii. Samą listę galeria dociąga dopiero po otwarciu.
+ */
+export type ReadySheetsTeaser = {
+  count: number;
+  categories: string[];
+  /** Podglądy kilku najnowszych arkuszy — miniaturki przy wejściu. */
+  thumbs: string[];
+  preview: boolean;
+};
+
+/**
+ * Stan gotowych arkuszy wliczony w stronę główną. W trybie podglądu strona
+ * nie niesie nic — administrator dociąga zapowiedź z przeglądarki, żeby
+ * statyczna strona nie zależała od sesji.
+ */
+export type HomeReadySheets =
+  | { state: "off" }
+  | { state: "preview" }
+  | { state: "on"; teaser: ReadySheetsTeaser };
+
+/** Ile podglądów mieści wejście do galerii. */
+export const TEASER_THUMBS = 3;
+
+export function toReadySheetsTeaser(
+  sheets: PublicSheetSummary[],
+  categories: string[],
+  preview: boolean
+): ReadySheetsTeaser {
+  return {
+    count: sheets.length,
+    categories,
+    thumbs: sheets
+      .map((sheet) => sheet.previewUrl)
+      .filter((url): url is string => !!url)
+      .slice(0, TEASER_THUMBS),
+    preview,
+  };
+}
 
 /** Domyślna szerokość naklejki: 1/4 szerokości A4, jak w kreatorze. */
 export const DEFAULT_STICKER_WIDTH_CM = 5.25;

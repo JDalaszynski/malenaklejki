@@ -19,6 +19,16 @@
       "autoPort": true
     },
     {
+      "name": "dev-arkusze",
+      "runtimeExecutable": "sh",
+      "runtimeArgs": [
+        "-c",
+        "READY_SHEETS_MODE=on exec npx next dev -p $PORT"
+      ],
+      "port": 3300,
+      "autoPort": true
+    },
+    {
       "name": "dev-ga-test",
       "runtimeExecutable": "sh",
       "runtimeArgs": [

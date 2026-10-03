@@ -57,6 +57,8 @@ function refreshSheetViews(sheetId?: string) {
   // Lista i układy w kreatorze na stronie głównej są zapamiętane — po każdej
   // zmianie arkusza sklep ma pokazać stan świeży, a nie ten sprzed zapisu.
   updateTag(READY_SHEETS_TAG);
+  // Strona główna niesie zapowiedź galerii (liczbę arkuszy i miniaturki).
+  revalidatePath("/");
   revalidatePath("/admin/arkusze");
   revalidatePath("/admin/arkusze/baza-naklejek");
   if (sheetId) revalidatePath(`/admin/arkusze/${sheetId}`);

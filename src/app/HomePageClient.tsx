@@ -17,10 +17,27 @@ import { LatestBlogPosts } from "@/components/blog/LatestBlogPosts";
 import { NewA4Visualizer } from "@/components/creator/NewA4Visualizer";
 import { SheetFinishInfo } from "@/components/creator/SheetFinishInfo";
 import {
-  ReadySheetsGallery,
-  useReadySheets,
-} from "@/components/creator/ReadySheetsGallery";
-import type { PublicSheetLayout, PublicSheetSummary } from "@/lib/sheets/types";
+  ReadySheetsEntry,
+  useReadySheetsTeaser,
+} from "@/components/creator/ReadySheetsEntry";
+import { loadReadySheetLayout, loadReadySheets } from "@/lib/sheets/client";
+import type {
+  HomeReadySheets,
+  PublicSheetLayout,
+  PublicSheetSummary,
+} from "@/lib/sheets/types";
+
+// Galeria gotowych arkuszy to dodatek — jej kod pobieramy dopiero, gdy klient
+// po nią sięgnie (albo najedzie na wejście).
+const loadReadySheetsDialog = () => import("@/components/creator/ReadySheetsDialog");
+const ReadySheetsDialog = dynamic(loadReadySheetsDialog, {
+  ssr: false,
+  loading: () => (
+    <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-background/80 backdrop-blur-sm">
+      <Loader2 className="w-8 h-8 text-primary animate-spin" />
+    </div>
+  ),
+});
 
 // Heavy components loaded on-demand to reduce initial bundle size (~110KB → ~60KB)
 const A4Visualizer3D = dynamic(
@@ -85,7 +102,12 @@ import {
   getCutLineOffsetMm,
 } from "@/lib/utils/collision";
 import { getContourPoints } from "@/lib/utils/contour";
-import { getRenderImageUrl } from "@/lib/utils/transparentBackground";
+import {
+  getDisplaySource,
+  getRenderImageUrl,
+  preloadPrintImage,
+  registerDisplaySources,
+} from "@/lib/utils/transparentBackground";
 import {
   getPdfStickerWidthCm,
   isPdfFile,
@@ -185,7 +207,13 @@ const compressPNGOnServer = async (dataUrl: string): Promise<Blob> => {
   return response.blob();
 };
 
-export function HomePageClient({ children }: { children: React.ReactNode }) {
+export function HomePageClient({
+  children,
+  readySheets,
+}: {
+  children: React.ReactNode;
+  readySheets: HomeReadySheets;
+}) {
   const router = useRouter();
   const addItem = useCartStore((state) => state.addItem);
   const updateItem = useCartStore((state) => state.updateItem);
@@ -221,20 +249,25 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
   const [isPasteFocused, setIsPasteFocused] = useState(false);
   const [isFillingSheet, setIsFillingSheet] = useState(false);
 
-  // Gotowe arkusze (panel → „Gotowe arkusze"). Wczytany arkusz trzymamy
-  // w pierwotnym układzie, żeby dało się do niego wrócić po zmianach.
-  const readySheets = useReadySheets();
+  // Gotowe arkusze (panel → „Gotowe arkusze"). Przy kreatorze stoi tylko
+  // skromne wejście; galerię i układy pobieramy dopiero na życzenie klienta.
+  // Wczytany arkusz trzymamy w pierwotnym układzie, żeby dało się do niego
+  // wrócić po zmianach.
+  const readySheetsTeaser = useReadySheetsTeaser(readySheets);
+  const [isReadySheetsOpen, setIsReadySheetsOpen] = useState(false);
   const [readySheet, setReadySheet] = useState<PublicSheetLayout | null>(null);
-  const [loadingReadySheetId, setLoadingReadySheetId] = useState<string | null>(
-    null,
-  );
-  const hasReadySheets = !!readySheets && readySheets.sheets.length > 0;
   const isReadySheetModified = useMemo(
     () =>
       !!readySheet &&
       layoutSignature(stickers) !== layoutSignature(readySheet.stickers),
     [readySheet, stickers],
   );
+  // Naklejki, które zniknęłyby po wczytaniu wzoru. Nietknięty gotowy arkusz
+  // nie jest niczyją pracą — można go podmienić bez pytania.
+  const readySheetReplaceCount =
+    stickers.length > 0 && !(readySheet && !isReadySheetModified)
+      ? stickers.length
+      : 0;
 
   // Mount state for hydration check
   const [mounted, setMounted] = useState(false);
@@ -408,22 +441,24 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
     Record<string, { width: number; height: number }>
   >({});
 
+  // Wymiary pliku służą tylko ostrzeżeniu o rozdzielczości zaznaczonej
+  // naklejki, więc oryginał mierzymy dopiero po zaznaczeniu — gotowy arkusz
+  // z kilkudziesięcioma grafikami nie pobiera ich wszystkich na zapas.
   useEffect(() => {
-    stickers.forEach((st) => {
-      if (stickerDimensions[st.id]) return;
-      const img = new Image();
-      img.onload = () => {
-        setStickerDimensions((prev) => ({
-          ...prev,
-          [st.id]: {
-            width: img.naturalWidth || img.width,
-            height: img.naturalHeight || img.height,
-          },
-        }));
-      };
-      img.src = st.imageUrl;
-    });
-  }, [stickers, stickerDimensions]);
+    const st = stickers.find((s) => s.id === selectedStickerId);
+    if (!st || stickerDimensions[st.id]) return;
+    const img = new Image();
+    img.onload = () => {
+      setStickerDimensions((prev) => ({
+        ...prev,
+        [st.id]: {
+          width: img.naturalWidth || img.width,
+          height: img.naturalHeight || img.height,
+        },
+      }));
+    };
+    img.src = st.imageUrl;
+  }, [stickers, selectedStickerId, stickerDimensions]);
 
   // Modals & Panels
   const [showEditModal, setShowEditModal] = useState(false);
@@ -1317,48 +1352,60 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
     setError(null);
   };
 
+  // Najechanie na wejście do galerii: jej kod i lista zaczynają się pobierać,
+  // zanim padnie kliknięcie.
+  const prefetchReadySheets = () => {
+    void loadReadySheetsDialog();
+    loadReadySheets().catch(() => {});
+  };
+
+  const openReadySheets = () => {
+    prefetchReadySheets();
+    setIsReadySheetsOpen(true);
+  };
+
+  const closeReadySheets = () => {
+    setIsReadySheetsOpen(false);
+    // Bez kotwicy w adresie ten sam link „Gotowe arkusze" zadziała ponownie.
+    if (window.location.hash === "#gotowe-arkusze") {
+      window.history.replaceState(
+        {},
+        "",
+        window.location.pathname + window.location.search,
+      );
+    }
+  };
+
   // Gotowy arkusz trafia do kreatora jak każdy inny układ — dalej klient
   // edytuje go tymi samymi narzędziami, a koszyk nie widzi różnicy.
-  const handleSelectReadySheet = async (sheet: PublicSheetSummary) => {
-    if (loadingReadySheetId) return;
-
-    if (readySheet?.id === sheet.id && !isReadySheetModified) {
-      scrollToAndHighlightSheet();
-      return;
-    }
-
-    const hasOwnWork =
-      stickers.length > 0 && !(readySheet && !isReadySheetModified);
-    if (
-      hasOwnWork &&
-      !window.confirm(
-        `Zastąpić naklejki na arkuszu gotowym arkuszem „${sheet.name}”?`,
-      )
-    ) {
-      return;
-    }
-
-    setLoadingReadySheetId(sheet.id);
+  const applyReadySheet = (layout: PublicSheetLayout) => {
+    // Lekkie wersje grafik muszą być znane, zanim arkusz się narysuje.
+    registerDisplaySources(layout.display ?? {});
+    setReadySheet(layout);
+    setStickers(layout.stickers.map((s) => ({ ...s })));
+    setSelectedStickerId(null);
+    setVisualizerMode("2d");
     setError(null);
-    try {
-      const response = await fetch(`/api/gotowe-arkusze/${sheet.id}`, {
-        cache: "no-store",
-      });
-      if (!response.ok) throw new Error(`HTTP ${response.status}`);
-      const layout = (await response.json()) as PublicSheetLayout;
-      if (!Array.isArray(layout.stickers)) throw new Error("Brak układu");
+  };
 
-      setReadySheet(layout);
-      setStickers(layout.stickers.map((s) => ({ ...s })));
-      setSelectedStickerId(null);
-      setVisualizerMode("2d");
-      scrollToAndHighlightSheet();
-    } catch (err) {
-      console.error(err);
-      setError("Nie udało się wczytać gotowego arkusza. Spróbuj ponownie.");
-    } finally {
-      setLoadingReadySheetId(null);
+  // Wybór wzoru w galerii. `false` zostawia galerię otwartą z komunikatem.
+  // O zastąpieniu własnych naklejek galeria uprzedza przed kliknięciem.
+  const handleUseReadySheet = async (
+    sheet: PublicSheetSummary,
+  ): Promise<boolean> => {
+    // Ten sam, nietknięty arkusz już leży w kreatorze — wystarczy do niego wrócić.
+    if (!(readySheet?.id === sheet.id && !isReadySheetModified)) {
+      try {
+        applyReadySheet(await loadReadySheetLayout(sheet.id, sheet.version));
+      } catch (err) {
+        console.error(err);
+        return false;
+      }
     }
+    closeReadySheets();
+    // Chwila na zamknięcie galerii, żeby podświetlenie arkusza było widać.
+    setTimeout(scrollToAndHighlightSheet, 250);
+    return true;
   };
 
   const handleResetReadySheet = () => {
@@ -1375,6 +1422,73 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
     setSelectedStickerId(null);
     setError(null);
   };
+
+  // Wejście z linku: `/#gotowe-arkusze` otwiera galerię, a `/?arkusz=<id>`
+  // od razu wczytuje wzór. Oba działają tylko wtedy, gdy gotowe arkusze są
+  // dla tej osoby widoczne.
+  const readySheetsAvailable = !!readySheetsTeaser;
+  useEffect(() => {
+    if (!mounted || !readySheetsAvailable) return;
+
+    const openFromHash = () => {
+      if (window.location.hash === "#gotowe-arkusze") openReadySheets();
+    };
+    openFromHash();
+    window.addEventListener("hashchange", openFromHash);
+
+    const url = new URL(window.location.href);
+    const sheetId = url.searchParams.get("arkusz");
+    if (sheetId) {
+      url.searchParams.delete("arkusz");
+      window.history.replaceState({}, "", url.toString());
+    }
+    if (sheetId && /^[A-Za-z0-9_-]{1,128}$/.test(sheetId)) {
+      loadReadySheetLayout(sheetId)
+        .then((layout) => {
+          // Klient zdążył już coś ułożyć — jego pracy nie nadpisujemy z linku.
+          if (stickersRef.current.length > 0) return;
+          applyReadySheet(layout);
+          setTimeout(scrollToAndHighlightSheet, 250);
+        })
+        .catch(() => {});
+    }
+
+    return () => window.removeEventListener("hashchange", openFromHash);
+    // Handlery powyżej korzystają wyłącznie z setterów stanu i refów.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [mounted, readySheetsAvailable]);
+
+  // Na ekranie gotowy arkusz stoi na lekkich wersjach grafik, ale plik do
+  // druku powstaje z oryginałów. Gdy klient zostaje przy wzorze, dociągamy je
+  // w tle po dwa naraz — „Dodaj do koszyka" nie czeka wtedy na wszystkie.
+  useEffect(() => {
+    if (!readySheet) return;
+    const connection = (
+      navigator as Navigator & { connection?: { saveData?: boolean } }
+    ).connection;
+    if (connection?.saveData) return;
+
+    let cancelled = false;
+    const queue = [
+      ...new Map(readySheet.stickers.map((s) => [s.imageUrl, s])).values(),
+    ];
+    const worker = async () => {
+      while (!cancelled) {
+        const next = queue.shift();
+        if (!next) return;
+        await preloadPrintImage(next.imageUrl, next.cutLineType);
+      }
+    };
+    const timer = window.setTimeout(() => {
+      void worker();
+      void worker();
+    }, 4000);
+
+    return () => {
+      cancelled = true;
+      window.clearTimeout(timer);
+    };
+  }, [readySheet]);
 
   // Helper to load image via proxy
   const loadProxiedImage = (url: string): Promise<HTMLImageElement> =>
@@ -2504,6 +2618,10 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
                 <div className="hidden sm:block liquid-glass border border-border/40 rounded-3xl p-4 sm:p-6 shadow-sm space-y-3 sm:space-y-4">
                   <div className="h-6 bg-primary/10 dark:bg-primary/20 rounded-md w-1/2 mb-4"></div>
                   <div className="h-32 bg-muted/10 dark:bg-muted/5 border-2 border-dashed border-foreground/10 rounded-2xl"></div>
+                  {/* Miejsce na wejście do gotowych arkuszy — żeby po hydracji nic nie skakało */}
+                  {readySheets.state === "on" && (
+                    <div className="h-[6.25rem] bg-muted/10 dark:bg-muted/5 rounded-2xl"></div>
+                  )}
                 </div>
 
                 {/* Additional Controls Skeleton */}
@@ -2593,20 +2711,25 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
               Kreator Arkusza z Naklejkami
             </h2>
             <p className="text-muted-foreground text-sm font-semibold mt-1 theme-subtitle">
-              {hasReadySheets
-                ? "Dodaj własne grafiki albo zacznij od gotowego arkusza — ułóż naklejki i wybierz kształt cięcia."
-                : "Dodaj własne grafiki, ułóż je na arkuszu i wybierz kształt cięcia."}
+              {readySheetsTeaser ? (
+                <>
+                  Dodaj własne grafiki albo zacznij od{" "}
+                  <button
+                    type="button"
+                    onClick={openReadySheets}
+                    onPointerEnter={prefetchReadySheets}
+                    aria-haspopup="dialog"
+                    className="font-extrabold text-primary underline decoration-primary/40 underline-offset-4 hover:decoration-primary transition-colors cursor-pointer"
+                  >
+                    gotowego arkusza
+                  </button>{" "}
+                  — ułóż naklejki i wybierz kształt cięcia.
+                </>
+              ) : (
+                "Dodaj własne grafiki, ułóż je na arkuszu i wybierz kształt cięcia."
+              )}
             </p>
           </div>
-
-          {readySheets && hasReadySheets && (
-            <ReadySheetsGallery
-              data={readySheets}
-              activeSheetId={readySheet?.id ?? null}
-              loadingSheetId={loadingReadySheetId}
-              onSelect={(sheet) => void handleSelectReadySheet(sheet)}
-            />
-          )}
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-8 items-start">
             {/* Left Column: Controls & Sidebar */}
@@ -2641,6 +2764,26 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
                       </span>
                     </label>
                   </div>
+
+                  {readySheetsTeaser && (
+                    <>
+                      <div
+                        aria-hidden
+                        className="flex items-center gap-3 text-[10px] font-extrabold uppercase tracking-wider text-muted-foreground/70"
+                      >
+                        <span className="h-px flex-1 bg-border/70" />
+                        albo
+                        <span className="h-px flex-1 bg-border/70" />
+                      </div>
+                      <ReadySheetsEntry
+                        teaser={readySheetsTeaser}
+                        activeName={readySheet?.name ?? null}
+                        onOpen={openReadySheets}
+                        onIntent={prefetchReadySheets}
+                        className="w-full"
+                      />
+                    </>
+                  )}
                 </div>
               )}
 
@@ -2681,7 +2824,7 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
                   >
                     <div className="w-16 h-16 bg-white rounded-xl border border-border/40 p-1 flex items-center justify-center flex-shrink-0 overflow-hidden">
                       <img
-                        src={selectedSticker.imageUrl}
+                        src={getDisplaySource(selectedSticker)}
                         alt="Miniatura"
                         className="max-w-full max-h-full object-contain rounded-lg"
                       />
@@ -3138,16 +3281,30 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
                       </span>
                     )}
                   </p>
-                  <button
-                    type="button"
-                    onClick={handleResetReadySheet}
-                    disabled={!isReadySheetModified}
-                    title="Przywraca wszystkie naklejki tego arkusza do pierwotnego układu"
-                    className="inline-flex items-center gap-1.5 rounded-xl px-2.5 py-1 text-xs font-black text-primary hover:bg-primary/10 transition-colors cursor-pointer disabled:opacity-40 disabled:cursor-default disabled:hover:bg-transparent"
-                  >
-                    <RotateCcw className="w-3.5 h-3.5" />
-                    Przywróć układ
-                  </button>
+                  <div className="flex items-center gap-1 -mr-1">
+                    {readySheetsTeaser && (
+                      <button
+                        type="button"
+                        onClick={openReadySheets}
+                        onPointerEnter={prefetchReadySheets}
+                        aria-haspopup="dialog"
+                        className="inline-flex items-center gap-1.5 rounded-xl px-2.5 py-1 text-xs font-black text-primary hover:bg-primary/10 transition-colors cursor-pointer"
+                      >
+                        <LayoutGrid className="w-3.5 h-3.5" />
+                        Zmień wzór
+                      </button>
+                    )}
+                    <button
+                      type="button"
+                      onClick={handleResetReadySheet}
+                      disabled={!isReadySheetModified}
+                      title="Przywraca wszystkie naklejki tego arkusza do pierwotnego układu"
+                      className="inline-flex items-center gap-1.5 rounded-xl px-2.5 py-1 text-xs font-black text-primary hover:bg-primary/10 transition-colors cursor-pointer disabled:opacity-40 disabled:cursor-default disabled:hover:bg-transparent"
+                    >
+                      <RotateCcw className="w-3.5 h-3.5" />
+                      Przywróć układ
+                    </button>
+                  </div>
                 </div>
               )}
 
@@ -3199,6 +3356,23 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
                         Zdjęcie, grafika lub PDF
                       </span>
                     </div>
+                    {readySheetsTeaser && (
+                      <button
+                        type="button"
+                        onClick={(e) => {
+                          // Przycisk siedzi w etykiecie pola pliku — bez tego
+                          // kliknięcie otworzyłoby też wybór pliku.
+                          e.preventDefault();
+                          openReadySheets();
+                        }}
+                        onPointerDown={prefetchReadySheets}
+                        aria-haspopup="dialog"
+                        className="mt-1 inline-flex items-center gap-1.5 rounded-full bg-background/95 border border-border/70 px-4 py-2 text-xs font-extrabold text-primary shadow-sm active:scale-[0.98] transition-transform cursor-pointer"
+                      >
+                        <LayoutGrid className="w-3.5 h-3.5" />
+                        albo wybierz gotowy arkusz
+                      </button>
+                    )}
                   </label>
                 )}
               </div>
@@ -3222,6 +3396,17 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
                   (zdjęcie, grafika lub PDF)
                 </span>
               </label>
+
+              {/* Mobile: wejście do galerii gotowych arkuszy */}
+              {readySheetsTeaser && (
+                <ReadySheetsEntry
+                  teaser={readySheetsTeaser}
+                  activeName={readySheet?.name ?? null}
+                  onOpen={openReadySheets}
+                  onIntent={prefetchReadySheets}
+                  className="sm:hidden w-10/12 mx-auto mt-2.5"
+                />
+              )}
 
               <div className="flex flex-wrap items-center justify-center gap-x-2.5 gap-y-2 sm:gap-x-3 mt-2 sm:mt-3 px-1 sm:px-3 w-full">
                 <p className="basis-[10.5rem] grow max-w-[17.5rem] text-[10px] leading-snug text-muted-foreground/70 font-medium text-left">
@@ -3789,6 +3974,21 @@ export function HomePageClient({ children }: { children: React.ReactNode }) {
           >
             <ArrowUp className="w-5 h-5" />
           </motion.button>
+        )}
+      </AnimatePresence>
+
+      {/* Galeria gotowych arkuszy */}
+      <AnimatePresence>
+        {isReadySheetsOpen && (
+          <ReadySheetsDialog
+            activeSheetId={readySheet?.id ?? null}
+            replaceCount={readySheetReplaceCount}
+            onUse={handleUseReadySheet}
+            onPreview={(sheet) => {
+              loadReadySheetLayout(sheet.id, sheet.version).catch(() => {});
+            }}
+            onClose={closeReadySheets}
+          />
         )}
       </AnimatePresence>
 

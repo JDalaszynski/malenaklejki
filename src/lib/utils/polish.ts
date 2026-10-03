@@ -36,3 +36,16 @@ export function getPagesNoun(count: number): string {
   }
   return "stron";
 }
+
+/**
+ * Zwraca poprawną odmianę słowa "wzór" w języku polskim w zależności od liczby.
+ */
+export function getDesignsNoun(count: number): string {
+  if (count === 1) return "wzór";
+  const mod10 = count % 10;
+  const mod100 = count % 100;
+  if (mod10 >= 2 && mod10 <= 4 && (mod100 < 10 || mod100 >= 20)) {
+    return "wzory";
+  }
+  return "wzorów";
+}

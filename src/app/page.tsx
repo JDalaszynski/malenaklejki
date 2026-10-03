@@ -1,4 +1,5 @@
 import { getFeaturedPosts } from "@/lib/blog";
+import { getHomeReadySheets } from "@/lib/sheets/public";
 import { HomePageClient } from "./HomePageClient";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { TrustBar } from "@/components/home/TrustBar";
@@ -15,6 +16,10 @@ import { SeoContentSection } from "@/components/home/SeoContentSection";
 import { HOME_FAQS } from "@/components/home/homeFaqData";
 
 export default async function Home() {
+  // Odczyt jest zapamiętywany i nie sięga po sesję, więc strona zostaje
+  // statyczna; zmiana arkuszy albo trybu w panelu przebudowuje ją od razu.
+  const readySheets = await getHomeReadySheets();
+
   const featuredPosts = (await getFeaturedPosts(6)).map((post) => ({
     slug: post.slug,
     title: post.title,
@@ -141,7 +146,7 @@ export default async function Home() {
           ],
         }}
       />
-      <HomePageClient>
+      <HomePageClient readySheets={readySheets}>
         <section
           id="seo-marketing-section"
           className="max-w-6xl mx-auto w-full px-4 sm:px-6 lg:px-8 space-y-16 sm:space-y-24 pt-10 sm:pt-14 pb-16 sm:pb-20"

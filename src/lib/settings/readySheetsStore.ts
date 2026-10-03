@@ -5,6 +5,7 @@ import { unstable_cache } from "next/cache";
 import { db } from "@/lib/firebase/admin";
 import {
   DEFAULT_READY_SHEETS_SETTINGS,
+  READY_SHEETS_MODES,
   READY_SHEETS_MODE_TAG,
   normalizeReadySheetsSettings,
   type ReadySheetsMode,
@@ -28,16 +29,36 @@ async function readReadySheetsSettings(): Promise<ReadySheetsSettings> {
   }
 }
 
-/**
- * Tryb dla strony głównej — z pamięci podręcznej, bo pyta o niego każde
- * wejście na kreator. Zapis w panelu unieważnia tag, więc zmiana działa
- * od razu; godzinne `revalidate` to tylko siatka bezpieczeństwa.
- */
-export const getReadySheetsSettings = unstable_cache(
+const getCachedReadySheetsSettings = unstable_cache(
   readReadySheetsSettings,
   ["ustawienia-gotowych-arkuszy"],
   { tags: [READY_SHEETS_MODE_TAG], revalidate: 3600 }
 );
+
+/**
+ * Tryb na czas pracy lokalnej, np. `READY_SHEETS_MODE=on npm run dev`.
+ *
+ * `.env.local` wskazuje na produkcyjną bazę, więc przełączenie trybu w panelu
+ * od razu pokazałoby arkusze klientom. Zmienna działa wyłącznie poza
+ * produkcyjnym buildem i niczego nie zapisuje.
+ */
+function localModeOverride(): ReadySheetsMode | null {
+  if (process.env.NODE_ENV === "production") return null;
+  const value = process.env.READY_SHEETS_MODE as ReadySheetsMode | undefined;
+  return value && READY_SHEETS_MODES.includes(value) ? value : null;
+}
+
+/**
+ * Tryb dla sklepu — z pamięci podręcznej, bo pyta o niego strona główna
+ * i każde żądanie do `/api/gotowe-arkusze`. Zapis w panelu unieważnia tag,
+ * więc zmiana działa od razu; godzinne `revalidate` to tylko siatka
+ * bezpieczeństwa.
+ */
+export async function getReadySheetsSettings(): Promise<ReadySheetsSettings> {
+  const override = localModeOverride();
+  if (override) return { ...DEFAULT_READY_SHEETS_SETTINGS, mode: override };
+  return getCachedReadySheetsSettings();
+}
 
 /** Odczyt bez pamięci podręcznej — panel musi widzieć stan faktyczny. */
 export async function getReadySheetsSettingsFresh(): Promise<ReadySheetsSettings> {
