@@ -16,10 +16,13 @@ import {
   X,
 } from "lucide-react";
 
+import Link from "next/link";
+
+import { trackSelectReadySheet, trackViewReadySheets } from "@/lib/analytics";
 import { loadReadySheets } from "@/lib/sheets/client";
-import type { PublicSheetSummary, PublicSheetsResponse } from "@/lib/sheets/types";
+import { SHEET_PRICE, type PublicSheetSummary, type PublicSheetsResponse } from "@/lib/sheets/types";
 import { getStickersNoun } from "@/lib/utils/polish";
-import { SheetPreviewImage } from "./ReadySheetsEntry";
+import { SheetImage } from "@/components/catalog/SheetImage";
 
 const ALL = "";
 
@@ -65,7 +68,10 @@ export default function ReadySheetsDialog({
     let cancelled = false;
     loadReadySheets()
       .then((response) => {
-        if (!cancelled) setData(response);
+        if (cancelled) return;
+        setData(response);
+        // Podgląd administratora nie jest ruchem klientów.
+        if (!response.preview) trackViewReadySheets(response.sheets, "galeria w kreatorze", SHEET_PRICE);
       })
       .catch(() => {
         if (!cancelled) setLoadFailed(true);
@@ -84,7 +90,7 @@ export default function ReadySheetsDialog({
   const categories = data?.categories ?? [];
 
   const visible = useMemo(() => {
-    const filtered = category ? sheets.filter((sheet) => sheet.category === category) : sheets;
+    const filtered = category ? sheets.filter((sheet) => sheet.categories.includes(category)) : sheets;
     // Kategoria bez arkuszy (np. po zmianie w panelu) nie może zostawić pustej galerii.
     return filtered.length > 0 ? filtered : sheets;
   }, [sheets, category]);
@@ -98,9 +104,10 @@ export default function ReadySheetsDialog({
       setDetailId(sheet.id);
       setUseFailed(false);
       onPreview(sheet);
+      if (!data?.preview) trackSelectReadySheet(sheet, "galeria w kreatorze", SHEET_PRICE);
       bodyRef.current?.scrollTo({ top: 0 });
     },
-    [onPreview]
+    [onPreview, data?.preview]
   );
 
   const step = useCallback(
@@ -213,7 +220,7 @@ export default function ReadySheetsDialog({
               {data?.preview && (
                 <span className="inline-flex items-center gap-1.5 rounded-full border border-[#FFCD08]/50 bg-[#FFCD08]/15 px-2.5 py-0.5 text-[11px] font-extrabold text-[#8a6d00] dark:text-[#FFCD08]">
                   <Eye className="w-3.5 h-3.5" aria-hidden />
-                  Podgląd — widzisz to tylko Ty
+                  Podgląd - widzisz to tylko Ty
                 </span>
               )}
             </div>
@@ -229,7 +236,7 @@ export default function ReadySheetsDialog({
               </button>
             ) : (
               <p className="text-sm font-medium text-muted-foreground mt-1">
-                Wybierz wzór i dopasuj go po swojemu — każdą naklejkę zmienisz, usuniesz albo
+                Wybierz wzór i dopasuj go po swojemu - każdą naklejkę zmienisz, usuniesz albo
                 zastąpisz własną.
               </p>
             )}
@@ -255,7 +262,7 @@ export default function ReadySheetsDialog({
             {[ALL, ...categories].map((item) => {
               const active = activeCategory === item;
               const count = item
-                ? sheets.filter((sheet) => sheet.category === item).length
+                ? sheets.filter((sheet) => sheet.categories.includes(item)).length
                 : sheets.length;
               return (
                 <button
@@ -291,7 +298,7 @@ export default function ReadySheetsDialog({
                 Nie udało się wczytać gotowych arkuszy
               </p>
               <p className="text-sm font-medium text-muted-foreground max-w-sm">
-                Sprawdź połączenie i spróbuj jeszcze raz. Kreator działa normalnie — możesz dodać
+                Sprawdź połączenie i spróbuj jeszcze raz. Kreator działa normalnie - możesz dodać
                 własne grafiki.
               </p>
               <button
@@ -324,7 +331,7 @@ export default function ReadySheetsDialog({
                 Na razie nie ma tu gotowych arkuszy
               </p>
               <p className="text-sm font-medium text-muted-foreground">
-                Dodaj własne grafiki — kreator ułoży je na arkuszu.
+                Dodaj własne grafiki - kreator ułoży je na arkuszu.
               </p>
             </div>
           ) : detail ? (
@@ -332,7 +339,7 @@ export default function ReadySheetsDialog({
               <div className="sm:min-h-0 rounded-2xl bg-[#edf6f2] dark:bg-[#002c2e] p-4 sm:p-6 flex items-center justify-center">
                 <div className="relative w-full max-w-[26rem] sm:w-auto sm:max-w-full sm:h-full sm:max-h-[38rem] aspect-[210/297] rounded-lg bg-white overflow-hidden shadow-[0_14px_40px_rgba(0,71,73,0.16)]">
                   {detail.previewUrl && (
-                    <SheetPreviewImage
+                    <SheetImage
                       key={detail.id}
                       src={detail.previewUrl}
                       sizes="(max-width: 640px) 88vw, 430px"
@@ -360,7 +367,7 @@ export default function ReadySheetsDialog({
                 <ul className="space-y-2.5 text-sm font-semibold text-foreground/90">
                   {[
                     "Po wczytaniu edytujesz go jak własny projekt: zmienisz rozmiary, usuniesz naklejki, dodasz swoje.",
-                    "Druk na folii winylowej i cięcie — tak samo jak przy Twoich grafikach.",
+                    "Druk na folii winylowej i cięcie - tak samo jak przy Twoich grafikach.",
                     "49 zł za arkusz A4, jak każdy zestaw z kreatora.",
                   ].map((line) => (
                     <li key={line} className="flex items-start gap-2.5">
@@ -383,6 +390,15 @@ export default function ReadySheetsDialog({
                   </p>
                 )}
 
+                {detail.slug && !data?.preview && (
+                  <Link
+                    href={`/gotowe-arkusze/${detail.slug}`}
+                    className="self-start text-sm font-extrabold text-primary underline decoration-primary/40 underline-offset-4 hover:decoration-primary"
+                  >
+                    Opis i szczegóły arkusza
+                  </Link>
+                )}
+
                 {useFailed && (
                   <p role="alert" className="text-sm font-bold text-destructive">
                     Nie udało się wczytać tego arkusza. Spróbuj ponownie.
@@ -399,7 +415,7 @@ export default function ReadySheetsDialog({
                     <button
                       type="button"
                       onClick={() => openDetail(sheet)}
-                      aria-label={`${sheet.name}, ${sheet.stickerCount} ${getStickersNoun(sheet.stickerCount)} — zobacz wzór`}
+                      aria-label={`${sheet.name}, ${sheet.stickerCount} ${getStickersNoun(sheet.stickerCount)} - zobacz wzór`}
                       className="group w-full text-left cursor-pointer rounded-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50"
                     >
                       <span
@@ -411,7 +427,7 @@ export default function ReadySheetsDialog({
                       >
                         <span className="relative block w-full aspect-[210/297] rounded-md bg-white overflow-hidden shadow-[0_6px_18px_rgba(0,71,73,0.12)] transition-transform duration-200 group-hover:-translate-y-0.5">
                           {sheet.previewUrl && (
-                            <SheetPreviewImage
+                            <SheetImage
                               src={sheet.previewUrl}
                               sizes="(max-width: 640px) 30vw, 190px"
                             />

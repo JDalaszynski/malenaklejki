@@ -99,8 +99,8 @@ export default function RegulaminPage() {
           <p>
             2. Niniejszy Regulamin określa zasady korzystania ze Sklepu,
             składania zamówień na produkty personalizowane (naklejki na
-            arkuszach A4), sposoby płatności, dostawy, a także procedury
-            reklamacyjne.
+            arkuszach A4) oraz na Gotowe arkusze, sposoby płatności, dostawy,
+            zasady odstąpienia od umowy, a także procedury reklamacyjne.
           </p>
           <p>
             3. Wszystkie ceny podane w Sklepie są cenami brutto (zawierają
@@ -113,7 +113,7 @@ export default function RegulaminPage() {
     {
       id: "definicje",
       title: "§ 2. Definicje",
-      searchText: `Klient osoba fizyczna prawna jednostka organizacyjna składająca zamówienie. Konsument osoba fizyczna dokonująca czynności prawnej niezwiązanej z działalnością gospodarczą. Produkt Naklejka nieprefabrykowany towar personalizowany arkusz A4 z naklejkami o określonej szerokości wysokości kącie obrotu linii cięcia. Kreator narzędzie internetowe wgranie własnej grafiki edycja usuwanie tła sztuczna inteligencja kadrowanie wybór konturu cięcia. Generator AI funkcja sklepu generowanie grafik na podstawie opisów tekstowych promptów.`,
+      searchText: `Klient osoba fizyczna prawna jednostka organizacyjna składająca zamówienie. Konsument osoba fizyczna dokonująca czynności prawnej niezwiązanej z działalnością gospodarczą. Produkt Naklejka nieprefabrykowany towar personalizowany arkusz A4 z naklejkami o określonej szerokości wysokości kącie obrotu linii cięcia. Kreator narzędzie internetowe wgranie własnej grafiki edycja usuwanie tła sztuczna inteligencja kadrowanie wybór konturu cięcia. Generator AI funkcja sklepu generowanie grafik na podstawie opisów tekstowych promptów. Gotowy arkusz arkusz A4 z naklejkami przygotowany przez Sprzedawcę gotowy wzór zamówiony bez zmian albo zmieniony w Kreatorze.`,
       content: (
         <ul className="space-y-4">
           <li>
@@ -143,6 +143,15 @@ export default function RegulaminPage() {
             umożliwiająca generowanie grafik na podstawie opisów tekstowych
             (promptów) przy użyciu sztucznej inteligencji, z możliwością ich
             późniejszego umieszczenia na arkuszu jako Naklejki.
+          </li>
+          <li>
+            <strong>Gotowy arkusz</strong> - arkusz A4 z naklejkami
+            przygotowany przez Sprzedawcę i oferowany w Sklepie jako gotowy
+            wzór. Klient może zamówić go bez zmian albo otworzyć w Kreatorze
+            i zmienić (usunąć naklejki, zmienić ich rozmiar lub położenie,
+            dodać własne grafiki). Gotowy arkusz zmieniony przez Klienta
+            w Kreatorze staje się Produktem wyprodukowanym według
+            specyfikacji Klienta.
           </li>
         </ul>
       ),
@@ -263,17 +272,24 @@ export default function RegulaminPage() {
       ),
     },
     {
-      id: "brak-zwrotow",
-      title: "§ 7. Brak prawa odstąpienia od umowy (Brak zwrotów)",
-      searchText: `brak prawa odstąpienia od umowy brak zwrotów ustawa o prawach konsumenta rzecz nieprefabrykowana wyprodukowana według specyfikacji zaspokojenie zindywidualizowanych potrzeb. indywidualne zamówienie grafika wymiary zwroty bez podania przyczyny nie są przyjmowane.`,
+      id: "zwroty",
+      title: "§ 7. Prawo odstąpienia od umowy (zwroty)",
+      searchText: `prawo odstąpienia od umowy zwroty zwrot 14 dni gotowy arkusz zamówiony bez zmian oświadczenie o odstąpieniu odesłanie towaru koszt zwrotu zwrot płatności. brak prawa odstąpienia ustawa o prawach konsumenta rzecz nieprefabrykowana wyprodukowana według specyfikacji zaspokojenie zindywidualizowanych potrzeb. indywidualne zamówienie własna grafika gotowy arkusz zmieniony w kreatorze zwroty bez podania przyczyny nie są przyjmowane.`,
       content: (
         <div className="space-y-4">
+          <p>
+            1. Zasady zwrotu zależą od tego, co zostało zamówione: Naklejki
+            wykonane według specyfikacji Klienta nie podlegają zwrotowi
+            (ust. 2-3), a Gotowy arkusz zamówiony bez zmian można zwrócić
+            w ciągu 14 dni (ust. 4-9).
+          </p>
+
           <div className="bg-destructive/10 border border-destructive/20 p-5 rounded-2xl my-4 text-sm font-semibold">
             <p className="text-destructive font-black uppercase tracking-wider mb-2">
-              Ważna Informacja
+              Naklejki z własnych grafik i arkusze zmienione w Kreatorze
             </p>
             <p className="text-foreground leading-relaxed">
-              Zgodnie z art. 38 pkt 3 Ustawy z dnia 30 maja 2014 r. o prawach
+              2. Zgodnie z art. 38 pkt 3 Ustawy z dnia 30 maja 2014 r. o prawach
               konsumenta, prawo odstąpienia od umowy zawartej na odległość
               (zwrot towaru w ciągu 14 dni){" "}
               <strong>nie przysługuje konsumentowi</strong> w odniesieniu do
@@ -283,12 +299,63 @@ export default function RegulaminPage() {
             </p>
           </div>
           <p>
-            Ponieważ wszystkie Naklejki oferowane w Sklepie są wykonywane na
-            indywidualne zamówienie Klienta według przesłanych grafik i
-            określonych wymiarów,{" "}
+            3. Dotyczy to Naklejek wykonywanych na indywidualne zamówienie
+            Klienta według przesłanych grafik i określonych wymiarów, a także
+            Gotowych arkuszy, w których Klient przed złożeniem zamówienia
+            wprowadził zmiany w Kreatorze. W tych przypadkach{" "}
             <strong>zwroty bez podania przyczyny nie są przyjmowane</strong>.
             Prosimy o przemyślane zakupy oraz uważne sprawdzanie kadru i
             wymiarów w Kreatorze przed opłaceniem koszyka.
+          </p>
+
+          <div className="bg-primary/10 border border-primary/20 p-5 rounded-2xl my-4 text-sm font-semibold">
+            <p className="text-primary font-black uppercase tracking-wider mb-2">
+              Gotowe arkusze zamówione bez zmian
+            </p>
+            <p className="text-foreground leading-relaxed">
+              4. Konsument, który zamówił Gotowy arkusz bez wprowadzania
+              w nim zmian, może{" "}
+              <strong>
+                odstąpić od umowy bez podania przyczyny w terminie 14 dni
+              </strong>{" "}
+              od dnia odebrania przesyłki. To samo prawo przysługuje osobie
+              fizycznej zawierającej umowę bezpośrednio związaną z jej
+              działalnością gospodarczą, gdy umowa ta nie ma dla niej
+              charakteru zawodowego.
+            </p>
+          </div>
+          <p>
+            5. Aby odstąpić od umowy, należy przed upływem terminu wysłać
+            oświadczenie o odstąpieniu na adres e-mail podany w § 1 ust. 1,
+            podając numer zamówienia i wskazując, którego Gotowego arkusza
+            dotyczy odstąpienie. Do zachowania terminu wystarczy wysłanie
+            oświadczenia przed jego upływem.
+          </p>
+          <p>
+            6. Towar należy odesłać na adres Sprzedawcy podany w § 1 ust. 1
+            niezwłocznie, nie później niż w terminie 14 dni od dnia
+            odstąpienia od umowy. Bezpośredni koszt odesłania towaru ponosi
+            Klient.
+          </p>
+          <p>
+            7. Sprzedawca zwraca otrzymaną płatność za zwracany Gotowy arkusz
+            niezwłocznie, nie później niż w terminie 14 dni od dnia otrzymania
+            oświadczenia, tym samym sposobem płatności, jakiego użył Klient.
+            Sprzedawca może wstrzymać się ze zwrotem płatności do chwili
+            otrzymania towaru lub dowodu jego odesłania. Jeżeli odstąpienie
+            dotyczy całego zamówienia, zwrot obejmuje także koszt
+            najtańszego sposobu dostawy oferowanego w Sklepie.
+          </p>
+          <p>
+            8. Jeżeli zamówienie obejmowało również Naklejki, o których mowa
+            w ust. 3, odstąpienie dotyczy wyłącznie Gotowych arkuszy
+            zamówionych bez zmian.
+          </p>
+          <p>
+            9. Klient odpowiada za zmniejszenie wartości towaru będące
+            wynikiem korzystania z niego w sposób wykraczający poza konieczny
+            do stwierdzenia charakteru, cech i funkcjonowania towaru - w
+            szczególności za odklejenie naklejek z arkusza.
           </p>
         </div>
       ),
@@ -300,7 +367,7 @@ export default function RegulaminPage() {
       content: (
         <div className="space-y-4">
           <p>
-            1. Mimo braku prawa zwrotu towaru bez podania przyczyny, Klient
+            1. Niezależnie od zasad zwrotu opisanych w § 7, Klient
             zachowuje pełne prawo do zgłoszenia reklamacji w przypadku
             otrzymania produktu wadliwego pod względem technicznym (np.
             uszkodzenia mechaniczne powstałe w transporcie, błędy w cięciu z
@@ -422,7 +489,7 @@ export default function RegulaminPage() {
     <DocLayout
       title="Regulamin Sklepu Internetowego MałeNaklejki"
       description="Regulamin określający warunki korzystania ze sklepu internetowego oraz zasady składania zamówień na spersonalizowane naklejki na arkuszach A4."
-      lastUpdated="22 sierpnia 2026 r."
+      lastUpdated="3 października 2026 r."
       activeTab="regulamin"
       sections={sections}
     />

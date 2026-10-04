@@ -6,16 +6,18 @@ import { unstable_cache } from "next/cache";
 
 import { getSession } from "@/lib/auth/dal";
 import { db, getBucket } from "@/lib/firebase/admin";
-import { READY_SHEETS_TAG } from "@/lib/settings/readySheets";
+import { CATALOG_VISIBILITY_TAG, READY_SHEETS_TAG } from "@/lib/settings/readySheets";
 import { getReadySheetsSettings } from "@/lib/settings/readySheetsStore";
 import type { PlacedSticker } from "@/types/creator";
-import { SHEETS_COLLECTION, getSheet, listCategories, readSheetLayout } from "./store";
+import { SHEETS_COLLECTION, getSheet, listCategories, ownStoragePath, readSheetLayout } from "./store";
 import {
+  isCatalogReady,
+  normalizeForSearch,
   toReadySheetsTeaser,
+  type CatalogSheet,
   type HomeReadySheets,
   type PublicSheetLayout,
   type PublicSheetSummary,
-  type StickerSheet,
 } from "./types";
 
 /**
@@ -48,14 +50,43 @@ function versionOf(updatedAt: unknown): string {
   return Number.isFinite(time) ? time.toString(36) : "0";
 }
 
+/** Opublikowany arkusz ze wszystkim, co o nim wie sklep. */
+type PublishedSheet = PublicSheetSummary & {
+  subtitle: string;
+  description: string;
+  motifs: string[];
+  productImageUrl: string | null;
+  printUrl: string | null;
+  cutLinesUrl: string | null;
+  publishedAt: string | null;
+  updatedAt: string;
+};
+
 async function readPublishedSheets(): Promise<{
-  sheets: PublicSheetSummary[];
+  sheets: PublishedSheet[];
   categories: string[];
 }> {
   const snapshot = await db
     .collection(SHEETS_COLLECTION)
     .where("status", "==", "published")
-    .select("name", "category", "previewUrl", "stickerCount", "publishedAt", "createdAt", "updatedAt")
+    .select(
+      "name",
+      "category",
+      "category2",
+      "previewUrl",
+      "stickerCount",
+      "publishedAt",
+      "createdAt",
+      "updatedAt",
+      "slug",
+      "subtitle",
+      "description",
+      "motifs",
+      "productImageUrl",
+      "printUrl",
+      "cutLinesUrl",
+      "assetsStale"
+    )
     .get();
 
   const docs = snapshot.docs
@@ -63,17 +94,37 @@ async function readPublishedSheets(): Promise<{
     // Najświeżej opublikowane na początku listy.
     .sort((a, b) => String(b.data.publishedAt ?? "").localeCompare(String(a.data.publishedAt ?? "")));
 
-  const sheets: PublicSheetSummary[] = docs.map(({ id, data }) => ({
-    id,
-    name: data.name ?? "",
-    category: data.category ?? "",
-    previewUrl: data.previewUrl ?? null,
-    stickerCount: typeof data.stickerCount === "number" ? data.stickerCount : 0,
-    version: versionOf(data.updatedAt),
-  }));
+  const sheets: PublishedSheet[] = docs.map(({ id, data }) => {
+    const category: string = data.category ?? "";
+    const category2: string = data.category2 ?? "";
+    return {
+      id,
+      name: data.name ?? "",
+      category,
+      categories: [category, category2].filter(Boolean),
+      previewUrl: data.previewUrl ?? null,
+      stickerCount: typeof data.stickerCount === "number" ? data.stickerCount : 0,
+      version: versionOf(data.updatedAt),
+      // Adres dostaje tylko arkusz z kompletem do katalogu — inaczej link
+      // z galerii prowadziłby na stronę, której nie ma.
+      slug: isCatalogReady(data) ? data.slug : null,
+      subtitle: data.subtitle ?? "",
+      description: data.description ?? "",
+      motifs: Array.isArray(data.motifs) ? data.motifs : [],
+      productImageUrl: data.productImageUrl ?? null,
+      printUrl: data.printUrl ?? null,
+      cutLinesUrl: data.cutLinesUrl ?? null,
+      publishedAt: data.publishedAt ?? null,
+      updatedAt: data.updatedAt ?? "",
+    };
+  });
 
   const categories = listCategories(
-    docs.map(({ data }) => ({ category: data.category ?? "", createdAt: data.createdAt ?? "" })) as StickerSheet[]
+    docs.map(({ data }) => ({
+      category: data.category ?? "",
+      category2: data.category2 ?? "",
+      createdAt: data.createdAt ?? "",
+    }))
   );
 
   return { sheets, categories };
@@ -81,10 +132,113 @@ async function readPublishedSheets(): Promise<{
 
 // Numer w kluczu rośnie razem z kształtem danych — wpis zapamiętany przez
 // starszą wersję kodu nie może wrócić bez nowych pól.
-export const getPublishedSheets = unstable_cache(readPublishedSheets, ["gotowe-arkusze-lista-2"], {
+const getPublishedSheets = unstable_cache(readPublishedSheets, ["gotowe-arkusze-lista-3"], {
   tags: [READY_SHEETS_TAG],
   revalidate: 3600,
 });
+
+/** Lista do galerii w kreatorze — bez opisów i plików, których galeria nie pokazuje. */
+export async function getGallerySheets(): Promise<{
+  sheets: PublicSheetSummary[];
+  categories: string[];
+}> {
+  const { sheets, categories } = await getPublishedSheets();
+  return {
+    sheets: sheets.map(({ id, name, category, categories, previewUrl, stickerCount, version, slug }) => ({
+      id,
+      name,
+      category,
+      categories,
+      previewUrl,
+      stickerCount,
+      version,
+      slug,
+    })),
+    categories,
+  };
+}
+
+/**
+ * Katalog `/gotowe-arkusze` i strony arkuszy istnieją wyłącznie przy trybie
+ * „Włączony". Tryb podglądu ich nie odsłania: są statyczne, więc nie mogą
+ * zależeć od tego, kto patrzy — administrator ogląda je w panelu.
+ */
+export async function isCatalogPublic(): Promise<boolean> {
+  try {
+    return (await getReadySheetsSettings()).mode === "on";
+  } catch (error) {
+    console.error("isCatalogPublic error:", error);
+    return false;
+  }
+}
+
+/** Arkusze z własną stroną w sklepie; pusta lista, gdy katalog nie jest publiczny. */
+export async function getCatalogSheets(): Promise<CatalogSheet[]> {
+  if (!(await isCatalogPublic())) return [];
+  try {
+    const { sheets } = await getPublishedSheets();
+    return sheets.filter((sheet): sheet is CatalogSheet => !!sheet.slug && isCatalogReady(sheet));
+  } catch (error) {
+    console.error("getCatalogSheets error:", error);
+    return [];
+  }
+}
+
+/** Świeży odczyt: czy jest choć jeden opublikowany arkusz z kompletem do katalogu. */
+export async function readCatalogHasSheets(): Promise<boolean> {
+  const snapshot = await db
+    .collection(SHEETS_COLLECTION)
+    .where("status", "==", "published")
+    .select("slug", "description", "productImageUrl", "printUrl", "cutLinesUrl", "assetsStale")
+    .get();
+  return snapshot.docs.some((doc) => isCatalogReady(doc.data()));
+}
+
+const getCatalogHasSheets = unstable_cache(readCatalogHasSheets, ["katalog-ma-arkusze"], {
+  tags: [CATALOG_VISIBILITY_TAG],
+  revalidate: 3600,
+});
+
+/**
+ * Czy linkować do katalogu: tryb „Włączony" i co najmniej jeden arkusz
+ * z własną stroną. Pyta o to układ główny (stopka na każdej stronie), dlatego
+ * odpowiedź ma własny, rzadko unieważniany wpis w pamięci podręcznej.
+ */
+export async function isCatalogVisible(): Promise<boolean> {
+  try {
+    return (await isCatalogPublic()) && (await getCatalogHasSheets());
+  } catch (error) {
+    console.error("isCatalogVisible error:", error);
+    return false;
+  }
+}
+
+/**
+ * Po zmianie arkusza: jeśli katalog właśnie zyskał pierwszy arkusz albo
+ * stracił ostatni, zwraca `true` — wtedy trzeba unieważnić
+ * `CATALOG_VISIBILITY_TAG` i przebudować strony z linkiem do katalogu.
+ */
+export async function catalogVisibilityChanged(): Promise<boolean> {
+  try {
+    const [fresh, cached] = await Promise.all([readCatalogHasSheets(), getCatalogHasSheets()]);
+    return fresh !== cached;
+  } catch (error) {
+    console.error("catalogVisibilityChanged error:", error);
+    return false;
+  }
+}
+
+export async function getCatalogSheetBySlug(slug: string): Promise<CatalogSheet | null> {
+  return (await getCatalogSheets()).find((sheet) => sheet.slug === slug) ?? null;
+}
+
+/** Arkusze danego tematu — strona tematyczna pokazuje je w kolejności publikacji. */
+export async function getCatalogSheetsByCategory(category: string): Promise<CatalogSheet[]> {
+  const key = normalizeForSearch(category);
+  return (await getCatalogSheets()).filter((sheet) =>
+    sheet.categories.some((item) => normalizeForSearch(item) === key)
+  );
+}
 
 /**
  * Gotowe arkusze dla strony głównej — bez sesji, żeby strona została
@@ -97,7 +251,7 @@ export async function getHomeReadySheets(): Promise<HomeReadySheets> {
     if (mode === "off") return { state: "off" };
     if (mode === "preview") return { state: "preview" };
 
-    const { sheets, categories } = await getPublishedSheets();
+    const { sheets, categories } = await getGallerySheets();
     if (sheets.length === 0) return { state: "off" };
     return { state: "on", teaser: toReadySheetsTeaser(sheets, categories, false) };
   } catch (error) {
@@ -111,27 +265,12 @@ export async function getHomeReadySheets(): Promise<HomeReadySheets> {
 /* Układ i lekkie grafiki                                              */
 /* ------------------------------------------------------------------ */
 
-const STORAGE_BUCKET = process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET;
-
 /**
  * Dłuższy bok wersji ekranowej. Wystarcza z zapasem dla naklejek do 7,5 cm
  * na ekranach o podwójnej gęstości — większe kreator pokazuje z oryginału
  * (`DISPLAY_SOURCE_MAX_CM` w `transparentBackground.ts`).
  */
 const DISPLAY_GRAPHIC_PX = 384;
-
-/** Ścieżka pliku w naszym magazynie albo `null`, gdy adres prowadzi gdzie indziej. */
-function ownStoragePath(value: string): string | null {
-  try {
-    const url = new URL(value);
-    if (url.protocol !== "https:" || url.hostname !== "firebasestorage.googleapis.com") return null;
-    const match = /^\/v0\/b\/([^/]+)\/o\/(.+)$/.exec(url.pathname);
-    if (!match || (STORAGE_BUCKET && match[1] !== STORAGE_BUCKET)) return null;
-    return decodeURIComponent(match[2]);
-  } catch {
-    return null;
-  }
-}
 
 /** Klucz grafiki w adresie wersji ekranowej — skrót adresu oryginału. */
 function displayGraphicKey(imageUrl: string): string {
@@ -155,6 +294,8 @@ async function readPublishedSheetLayout(id: string): Promise<PublicSheetLayout |
   return {
     id: sheet.id,
     name: sheet.name,
+    slug: isCatalogReady(sheet) ? sheet.slug : null,
+    category: sheet.category,
     version: versionOf(sheet.updatedAt),
     // Powiązanie z bazą naklejek to sprawa panelu — w kreatorze arkusz ma
     // być nie do odróżnienia od ułożonego przez klienta.
@@ -168,7 +309,7 @@ async function readPublishedSheetLayout(id: string): Promise<PublicSheetLayout |
 
 export const getPublishedSheetLayout = unstable_cache(
   readPublishedSheetLayout,
-  ["gotowy-arkusz-uklad-2"],
+  ["gotowy-arkusz-uklad-3"],
   { tags: [READY_SHEETS_TAG], revalidate: 3600 }
 );
 

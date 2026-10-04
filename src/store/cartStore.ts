@@ -1,6 +1,7 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 
+import type { ReadySheetOrigin } from "@/lib/sheets/types";
 import { getUUID } from "@/lib/uuid";
 
 export interface CartItem {
@@ -16,6 +17,8 @@ export interface CartItem {
   /** Ścieżka do układu arkusza w Storage — pozwala wrócić do niego z historii zamówień. */
   layoutPath?: string;
   deliveryForm?: "sheet" | "individual";
+  /** Gotowy arkusz, z którego powstała pozycja, i to, czy klient go zmienił. */
+  readySheet?: ReadySheetOrigin;
 }
 
 interface CartState {

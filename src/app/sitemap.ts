@@ -1,5 +1,7 @@
 import { MetadataRoute } from "next";
 import { getBlogPosts } from "@/lib/blog";
+import { getCatalogSheets } from "@/lib/sheets/public";
+import { THEME_PAGES } from "@/lib/sheets/themes";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = "https://www.malenaklejki.pl";
@@ -46,5 +48,34 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.6,
   }));
 
-  return [...staticEntries, ...blogEntries];
+  // Katalog gotowych arkuszy istnieje tylko przy trybie „Włączony" — poza nim
+  // lista jest pusta i żaden z tych adresów nie trafia do mapy.
+  const sheets = await getCatalogSheets();
+  const latestSheetChange = sheets.reduce((latest, sheet) => (sheet.updatedAt > latest ? sheet.updatedAt : latest), "");
+  const catalogEntries: MetadataRoute.Sitemap =
+    sheets.length === 0
+      ? []
+      : [
+          {
+            url: `${baseUrl}/gotowe-arkusze`,
+            lastModified: new Date(latestSheetChange),
+            changeFrequency: "weekly",
+            priority: 0.8,
+          },
+          ...THEME_PAGES.map((theme) => ({
+            url: `${baseUrl}${theme.path}`,
+            lastModified: new Date(theme.lastModified),
+            changeFrequency: "weekly" as const,
+            priority: 0.8,
+          })),
+          ...sheets.map((sheet) => ({
+            url: `${baseUrl}/gotowe-arkusze/${sheet.slug}`,
+            lastModified: new Date(sheet.updatedAt),
+            changeFrequency: "monthly" as const,
+            priority: 0.7,
+            images: [sheet.productImageUrl],
+          })),
+        ];
+
+  return [...staticEntries, ...catalogEntries, ...blogEntries];
 }

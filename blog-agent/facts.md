@@ -4,7 +4,7 @@
 >
 > Modele LLM cytują liczby. Sprzeczne liczby na jednej domenie osłabiają nas jako źródło i realnie ryzykują reklamacją.
 
-**Ostatnia aktualizacja:** 2026-09-16
+**Ostatnia aktualizacja:** 2026-10-03
 
 ---
 
@@ -29,6 +29,10 @@
 | Różne wzory na jednym arkuszu | **TAK** - kolejne obrazy wgrywane do kreatora trafiają na ten sam arkusz, każdy z własną linią cięcia | "wgraj kolejne zdjęcia lub grafiki - każdą wytniemy osobno"; płacisz za arkusz, nie za liczbę wzorów. Złożenie wzorów w jeden plik (np. w Canvie) to **opcja, nie wymóg** | kod: `HomePageClient.tsx:661`, `types/creator.ts` (`PlacedSticker`) - 2026-09-10 |
 | Kilka arkuszy w jednym zamówieniu | **TAK**, dostawa 19,99 zł liczona **raz za całe zamówienie** | "różne arkusze (np. etykiety na prezenty, na słoiki, na paczki) w jednej paczce, z jedną dostawą" | kod: `createOrder.ts:150` - 2026-09-10 |
 | Płatności | BLIK, Przelewy24 | - | `src/app/page.tsx` |
+| Gotowe arkusze | **TAK** - arkusze A4 z gotowymi wzorami (katalog `/gotowe-arkusze`), ta sama folia winylowa i ta sama cena **49,00 zł brutto za arkusz** | "gotowy arkusz do zamówienia", "wybierz wzór"; **NIE:** "zaprojektowaliśmy", "projekt", "edytor grafiki". O pochodzeniu grafik nie piszemy (HOLD na generator AI). Pisz o nich tylko wtedy, gdy katalog jest publiczny (tryb "Włączony" w panelu) | właściciel 2026-10-03, `landing-agent/strategia-gotowe-arkusze.md` |
+| Liczba naklejek na gotowym arkuszu | **dokładna**, podana przy każdym arkuszu | wolno podać konkretną liczbę (np. "54 naklejki") - to wyjątek od zasady "orientacyjnie ok. X szt.", która dalej obowiązuje dla arkuszy układanych przez klienta | kod: `stickerCount` arkusza, 2026-10-03 |
+| Edycja gotowego arkusza | **TAK** - przed zamówieniem w kreatorze: zmiana rozmiaru, usuwanie naklejek, dokładanie własnych grafik; cena bez zmian | "dopasuj arkusz", "zmień po swojemu"; **NIE:** "zaprojektuj" | kod: `/?arkusz=<id>`, 2026-10-03 |
+| Zwrot | **14 dni** dla gotowego arkusza zamówionego **bez zmian**; naklejki z własnych grafik i gotowy arkusz zmieniony w kreatorze - **bez zwrotu** (rzecz wg specyfikacji klienta) | zawsze oba człony razem; odesłanie na koszt klienta. **NIE:** "zwrot w 14 dni" bez zastrzeżenia, **NIE:** "brak zwrotów" o całej ofercie | regulamin §7, decyzja właściciela 2026-10-03 (wariant A) |
 
 ---
 

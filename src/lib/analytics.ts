@@ -18,7 +18,29 @@ export type AnalyticsSheet = {
   sheetQuantity: number;
   pricePerSheet: number;
   deliveryForm?: "sheet" | "individual";
+  /** Pozycja powstała z gotowego arkusza — w raportach ma własny produkt. */
+  readySheet?: AnalyticsReadySheet | null;
 };
+
+/** Gotowy arkusz w zdarzeniach: produkt nazywa się jak arkusz, a temat to kategoria. */
+export type AnalyticsReadySheet = {
+  id: string;
+  slug?: string | null;
+  name: string;
+  category?: string;
+  modified?: boolean;
+};
+
+const READY_SHEETS_CATEGORY = "Gotowe arkusze";
+
+function readySheetFields(ready: AnalyticsReadySheet) {
+  return {
+    item_id: `gotowy-${ready.slug || ready.id}`,
+    item_name: ready.name,
+    item_category: READY_SHEETS_CATEGORY,
+    ...(ready.category ? { item_category2: ready.category } : {}),
+  };
+}
 
 type Gtag = (command: "event", eventName: string, params: Record<string, unknown>) => void;
 
@@ -38,6 +60,12 @@ export function toItems(sheets: AnalyticsSheet[], listName?: string) {
   return sheets.map((sheet, index) => ({
     item_id: "arkusz-a4",
     item_name: "Arkusz naklejek A4",
+    ...(sheet.readySheet
+      ? {
+          ...readySheetFields(sheet.readySheet),
+          item_category3: sheet.readySheet.modified ? "zmieniony w kreatorze" : "bez zmian",
+        }
+      : {}),
     item_variant: sheet.deliveryForm === "individual" ? "pojedyncze sztuki" : "na arkuszu",
     price: sheet.pricePerSheet,
     quantity: sheet.sheetQuantity,
@@ -51,7 +79,49 @@ export function sheetsValue(sheets: AnalyticsSheet[]) {
   return Math.round(sum * 100) / 100;
 }
 
-export function trackAddToCart(sheet: AnalyticsSheet, listName: "kreator" | "historia zamówień") {
+/** Skąd klient ogląda gotowe arkusze — nazwa listy w raportach GA4. */
+export type ReadySheetsList = "galeria w kreatorze" | "katalog" | `temat: ${string}` | "strona arkusza";
+
+function readySheetItems(sheets: AnalyticsReadySheet[], listName: ReadySheetsList, price: number) {
+  return sheets.map((sheet, index) => ({
+    ...readySheetFields(sheet),
+    price,
+    quantity: 1,
+    index,
+    item_list_name: listName,
+  }));
+}
+
+/** Klient zobaczył listę gotowych arkuszy (galeria, katalog albo strona tematu). */
+export function trackViewReadySheets(sheets: AnalyticsReadySheet[], listName: ReadySheetsList, price: number) {
+  if (sheets.length === 0) return;
+  send("view_item_list", {
+    item_list_name: listName,
+    items: readySheetItems(sheets, listName, price),
+  });
+}
+
+/** Klient wybrał arkusz z listy, żeby obejrzeć go z bliska. */
+export function trackSelectReadySheet(sheet: AnalyticsReadySheet, listName: ReadySheetsList, price: number) {
+  send("select_item", {
+    item_list_name: listName,
+    items: readySheetItems([sheet], listName, price),
+  });
+}
+
+/** Klient otworzył stronę arkusza. */
+export function trackViewReadySheet(sheet: AnalyticsReadySheet, price: number) {
+  send("view_item", {
+    currency: CURRENCY,
+    value: price,
+    items: readySheetItems([sheet], "strona arkusza", price),
+  });
+}
+
+export function trackAddToCart(
+  sheet: AnalyticsSheet,
+  listName: "kreator" | "historia zamówień" | "strona arkusza"
+) {
   send("add_to_cart", {
     currency: CURRENCY,
     value: sheetsValue([sheet]),

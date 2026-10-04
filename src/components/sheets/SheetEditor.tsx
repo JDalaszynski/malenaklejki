@@ -37,14 +37,27 @@ import {
   DEFAULT_CUT_LINE_TYPE,
   DEFAULT_STICKER_WIDTH_CM,
   MAX_CATEGORY_NAME,
+  MAX_SHEET_DESCRIPTION,
   MAX_SHEET_NAME,
+  MAX_SHEET_SLUG,
+  MAX_SHEET_SUBTITLE,
+  MIN_DESCRIPTION_WORDS,
   SHEET_STATUS_LABELS,
+  countWords,
   cutLineForPlacement,
+  parseMotifs,
+  slugify,
   stickerNameFromFile,
   type LibrarySticker,
   type SheetStatus,
 } from "@/lib/sheets/types";
-import { MAX_IMAGE_BYTES, addBlobToLibrary, addUrlToLibrary } from "@/lib/sheets/upload";
+import {
+  MAX_IMAGE_BYTES,
+  addBlobToLibrary,
+  addUrlToLibrary,
+  uploadSheetAssets,
+  type SheetAssets,
+} from "@/lib/sheets/upload";
 import { getPdfStickerWidthCm, isPdfFile, MAX_PDF_BYTES, type RenderedPdfPage } from "@/lib/utils/pdf";
 import { getStickersNoun } from "@/lib/utils/polish";
 import { getRenderImageUrl } from "@/lib/utils/transparentBackground";
@@ -72,8 +85,10 @@ const PdfImportModal = dynamic(
 const STICKER_FILE_ACCEPT =
   "image/png, image/jpeg, image/jpg, image/webp, application/pdf, .png, .jpg, .jpeg, .webp, .pdf";
 
-/** Szerokość podglądu zapisywanego z arkuszem — lista w panelu, docelowo karta w sklepie. */
+/** Szerokość podglądu zapisywanego z arkuszem — lista w panelu i galeria w kreatorze. */
 const PREVIEW_WIDTH_PX = 720;
+/** Szerokość obrazu produktu — strona arkusza w sklepie i plik produktowy Google. */
+const PRODUCT_IMAGE_WIDTH_PX = 1600;
 
 /**
  * Szerokość arkusza w widoku „Cały arkusz": tyle, żeby A4 w pionie zmieściło
@@ -81,6 +96,9 @@ const PREVIEW_WIDTH_PX = 720;
  * `--toolbar-h` ustawia pomiar paska — zawija się na węższych ekranach.
  */
 const FIT_SHEET_MAX_WIDTH = "max(22rem, calc((100dvh - var(--toolbar-h, 3.75rem) - 2.25rem) * 0.7071))";
+
+const fieldClass =
+  "mt-1.5 h-11 w-full rounded-xl border border-slate-300 dark:border-white/20 bg-background px-3.5 text-sm font-semibold focus-visible:outline-none focus-visible:border-primary focus-visible:ring-2 focus-visible:ring-primary/20";
 
 type SheetZoom = "fit" | "wide";
 const ZOOM_STORAGE_KEY = "mn-arkusz-powiekszenie";
@@ -126,6 +144,11 @@ export type SheetEditorProps = {
     id: string | null;
     name: string;
     category: string;
+    category2: string;
+    slug: string;
+    subtitle: string;
+    description: string;
+    motifs: string[];
     status: SheetStatus;
     updatedAt: string | null;
   };
@@ -134,11 +157,21 @@ export type SheetEditorProps = {
   categories: string[];
 };
 
+/** Dane strony arkusza w sklepie — to, co poza nazwą, tematem i układem wchodzi do zapisu. */
+type SheetPage = {
+  category2: string;
+  slug: string;
+  subtitle: string;
+  description: string;
+  motifs: string[];
+};
+
 /** Odcisk stanu do wykrywania niezapisanych zmian — bez wielokątów, które liczą się w tle. */
-function signatureOf(name: string, category: string, stickers: PlacedSticker[]): string {
+function signatureOf(name: string, category: string, page: SheetPage, stickers: PlacedSticker[]): string {
   return JSON.stringify([
     name.trim(),
     category.trim(),
+    [page.category2, page.slug, page.subtitle, page.description, page.motifs],
     stickers.map((s) => [
       s.id,
       s.imageUrl,
@@ -201,14 +234,47 @@ export function SheetEditor({ sheet, initialStickers, library: initialLibrary, c
   const [sheetId, setSheetId] = useState(sheet.id);
   const [name, setName] = useState(sheet.name);
   const [category, setCategory] = useState(sheet.category);
+  const [category2, setCategory2] = useState(sheet.category2);
+  // Adres idzie za nazwą, dopóki nikt go nie ustawił — potem jest stały,
+  // bo zmiana adresu opublikowanej strony gubi jej pozycję w wyszukiwarce.
+  const [customSlug, setCustomSlug] = useState<string | null>(sheet.slug || null);
+  const [subtitle, setSubtitle] = useState(sheet.subtitle);
+  const [description, setDescription] = useState(sheet.description);
+  const [motifsText, setMotifsText] = useState(sheet.motifs.join(", "));
   const [status, setStatus] = useState<SheetStatus>(sheet.status);
   const [updatedAt, setUpdatedAt] = useState(sheet.updatedAt);
   const [library, setLibrary] = useState(initialLibrary);
 
+  const slug = slugify(customSlug ?? name);
+  const page: SheetPage = useMemo(
+    () => ({
+      category2: category2.trim(),
+      slug,
+      subtitle: subtitle.trim(),
+      description: description.trim(),
+      motifs: parseMotifs(motifsText),
+    }),
+    [category2, slug, subtitle, description, motifsText]
+  );
+  const descriptionWords = countWords(description);
+
   const [savedSignature, setSavedSignature] = useState(() =>
-    signatureOf(sheet.name, sheet.category, initialStickers)
+    signatureOf(
+      sheet.name,
+      sheet.category,
+      {
+        category2: sheet.category2,
+        slug: sheet.slug || slugify(sheet.name),
+        subtitle: sheet.subtitle,
+        description: sheet.description,
+        motifs: sheet.motifs,
+      },
+      initialStickers
+    )
   );
   const [saving, setSaving] = useState<SheetStatus | null>(null);
+  /** Co właśnie trwa przy publikacji — przygotowanie plików potrafi zająć kilkanaście sekund. */
+  const [savingStep, setSavingStep] = useState<string | null>(null);
   const [notice, setNotice] = useState<string | null>(null);
   // Powody blokady publikacji pokazujemy tylko dla stanu, którego dotyczą —
   // każda poprawka arkusza albo kategorii je chowa.
@@ -254,7 +320,10 @@ export function SheetEditor({ sheet, initialStickers, library: initialLibrary, c
     return counts;
   }, [stickers]);
 
-  const signature = useMemo(() => signatureOf(name, category, stickers), [name, category, stickers]);
+  const signature = useMemo(
+    () => signatureOf(name, category, page, stickers),
+    [name, category, page, stickers]
+  );
   const hasChanges = signature !== savedSignature;
   const blockers = blockersFor?.signature === signature ? blockersFor.reasons : [];
   const setBlockers = (reasons: string[]) =>
@@ -536,13 +605,20 @@ export function SheetEditor({ sheet, initialStickers, library: initialLibrary, c
     }
 
     if (target === "published") {
-      const reasons = describePublishBlockers(stickers);
-      if (!category.trim()) reasons.unshift("Wybierz kategorię arkusza.");
+      const stickerReasons = describePublishBlockers(stickers);
+      const reasons = [...stickerReasons];
+      if (!page.description) reasons.unshift("Dodaj opis arkusza — bez niego strona w sklepie nie ma treści.");
+      if (!page.slug) reasons.unshift("Podaj adres strony arkusza.");
+      if (!category.trim()) reasons.unshift("Wybierz temat arkusza.");
       if (reasons.length > 0) {
         setBlockers(reasons);
         const found = getSheetIssues(stickers);
         editor.flagStickers([...found.noCutLine, ...found.outside, ...found.overlapping]);
-        setError("Arkusza nie da się jeszcze opublikować — popraw zaznaczone naklejki.");
+        setError(
+          stickerReasons.length > 0
+            ? "Arkusza nie da się jeszcze opublikować — popraw zaznaczone naklejki."
+            : "Arkusza nie da się jeszcze opublikować — uzupełnij dane strony w sklepie."
+        );
         return;
       }
     }
@@ -561,13 +637,36 @@ export function SheetEditor({ sheet, initialStickers, library: initialLibrary, c
         console.warn("Podgląd arkusza:", err);
       }
 
+      // Opublikowany arkusz ma własną stronę z „Dodaj do koszyka", więc pliki
+      // do druku muszą powstać teraz, z dokładnie tego układu, który zapisujemy.
+      let assets: SheetAssets | null = null;
+      if (target === "published") {
+        setSavingStep("Przygotowuję pliki do druku…");
+        try {
+          assets = await uploadSheetAssets({
+            product: await renderRealisticSheet(ready, PRODUCT_IMAGE_WIDTH_PX),
+            print: await renderSheetCanvas(ready, "print"),
+            cutLines: await renderSheetCanvas(ready, "cut-lines"),
+          });
+        } catch (err) {
+          console.error(err);
+          setError(
+            "Nie udało się przygotować plików do druku, więc arkusz nie został opublikowany. Spróbuj ponownie."
+          );
+          return;
+        }
+        setSavingStep("Zapisuję arkusz…");
+      }
+
       const result = await saveSheet({
         id: sheetId,
         name: trimmedName,
         category: category.trim(),
+        ...page,
         status: target,
         stickers: ready.map(compactSticker),
         preview,
+        assets,
         expectedUpdatedAt: updatedAt,
         force,
       });
@@ -596,7 +695,9 @@ export function SheetEditor({ sheet, initialStickers, library: initialLibrary, c
       setUpdatedAt(result.updatedAt);
       setStatus(result.status);
       setName(trimmedName);
-      setSavedSignature(signatureOf(trimmedName, category, ready));
+      // Od pierwszego zapisu adres jest ustalony i nie zmienia się razem z nazwą.
+      if (page.slug) setCustomSlug(page.slug);
+      setSavedSignature(signatureOf(trimmedName, category, page, ready));
 
       // Serwer uzupełnia bazę o linie cięcia wybrane dopiero na arkuszu.
       const cutByLibraryId = new Map<string, PlacedSticker>();
@@ -630,6 +731,7 @@ export function SheetEditor({ sheet, initialStickers, library: initialLibrary, c
       setError("Nie udało się zapisać arkusza. Spróbuj ponownie.");
     } finally {
       setSaving(null);
+      setSavingStep(null);
     }
   };
 
@@ -817,7 +919,7 @@ export function SheetEditor({ sheet, initialStickers, library: initialLibrary, c
               </div>
               <div>
                 <label htmlFor="sheet-category" className="text-sm font-bold text-foreground">
-                  Kategoria
+                  Temat
                 </label>
                 <input
                   id="sheet-category"
@@ -851,6 +953,116 @@ export function SheetEditor({ sheet, initialStickers, library: initialLibrary, c
                     ))}
                   </div>
                 )}
+              </div>
+              <div>
+                <label htmlFor="sheet-category2" className="text-sm font-bold text-foreground">
+                  Drugi temat <span className="font-semibold text-muted-foreground">(opcjonalnie)</span>
+                </label>
+                <input
+                  id="sheet-category2"
+                  value={category2}
+                  maxLength={MAX_CATEGORY_NAME}
+                  onChange={(event) => setCategory2(event.target.value)}
+                  list="sheet-categories"
+                  placeholder="np. Halloween"
+                  className={fieldClass}
+                />
+                <p className="mt-1 text-[11px] font-medium text-muted-foreground">
+                  Arkusz pokaże się w galerii i na stronach obu tematów.
+                </p>
+              </div>
+            </div>
+
+            <div className="mt-5 pt-4 border-t border-border/50 flex flex-col gap-4">
+              <div>
+                <p className="text-sm font-extrabold text-foreground">Strona arkusza w sklepie</p>
+                <p className="mt-0.5 text-[11px] font-medium text-muted-foreground">
+                  Z tych pól powstaje strona produktu z ceną i przyciskiem „Dodaj do koszyka”.
+                  Adres i opis są wymagane do publikacji.
+                </p>
+              </div>
+              <div>
+                <label htmlFor="sheet-slug" className="text-sm font-bold text-foreground">
+                  Adres
+                </label>
+                <div className="mt-1.5 flex items-center rounded-xl border border-slate-300 dark:border-white/20 bg-background focus-within:border-primary focus-within:ring-2 focus-within:ring-primary/20">
+                  <span className="pl-3 text-xs font-semibold text-muted-foreground whitespace-nowrap">
+                    /gotowe-arkusze/
+                  </span>
+                  <input
+                    id="sheet-slug"
+                    value={customSlug ?? slug}
+                    maxLength={MAX_SHEET_SLUG}
+                    onChange={(event) => setCustomSlug(event.target.value)}
+                    onBlur={() => customSlug !== null && setCustomSlug(slugify(customSlug))}
+                    placeholder="jesienna-kawka"
+                    spellCheck={false}
+                    className="h-11 min-w-0 flex-1 rounded-r-xl bg-transparent pl-0.5 pr-3 text-sm font-semibold focus-visible:outline-none"
+                  />
+                </div>
+                {wasPublished && sheet.slug && slug !== sheet.slug && (
+                  <p className="mt-1 text-[11px] font-bold text-[#8a6d00] dark:text-[#FFCD08]">
+                    Zmiana adresu opublikowanej strony: stary adres przestanie działać.
+                  </p>
+                )}
+              </div>
+              <div>
+                <label htmlFor="sheet-subtitle" className="text-sm font-bold text-foreground">
+                  Podtytuł z motywem
+                </label>
+                <input
+                  id="sheet-subtitle"
+                  value={subtitle}
+                  maxLength={MAX_SHEET_SUBTITLE}
+                  onChange={(event) => setSubtitle(event.target.value)}
+                  placeholder="np. naklejki jesienne z kawą i dyniami"
+                  className={fieldClass}
+                />
+                <p className="mt-1 text-[11px] font-medium text-muted-foreground">
+                  Trafia do tytułu strony obok nazwy — tak, jak klient wpisałby to w wyszukiwarkę.
+                </p>
+              </div>
+              <div>
+                <label htmlFor="sheet-description" className="text-sm font-bold text-foreground">
+                  Opis
+                </label>
+                <textarea
+                  id="sheet-description"
+                  value={description}
+                  maxLength={MAX_SHEET_DESCRIPTION}
+                  onChange={(event) => setDescription(event.target.value)}
+                  rows={6}
+                  placeholder="Co jest na arkuszu, do czego pasuje, dla kogo. Własnymi słowami — bez kopiowania opisu z innego arkusza."
+                  className="mt-1.5 w-full rounded-xl border border-slate-300 dark:border-white/20 bg-background px-3.5 py-2.5 text-sm font-medium leading-relaxed focus-visible:outline-none focus-visible:border-primary focus-visible:ring-2 focus-visible:ring-primary/20"
+                />
+                <p
+                  className={`mt-1 text-[11px] font-semibold ${
+                    descriptionWords > 0 && descriptionWords < MIN_DESCRIPTION_WORDS
+                      ? "text-[#8a6d00] dark:text-[#FFCD08]"
+                      : "text-muted-foreground"
+                  }`}
+                >
+                  {descriptionWords} {descriptionWords === 1 ? "słowo" : "słów"}
+                  {descriptionWords < MIN_DESCRIPTION_WORDS
+                    ? ` — celuj w co najmniej ${MIN_DESCRIPTION_WORDS}, krótszy opis słabo rankuje`
+                    : ""}
+                </p>
+              </div>
+              <div>
+                <label htmlFor="sheet-motifs" className="text-sm font-bold text-foreground">
+                  Motywy
+                </label>
+                <textarea
+                  id="sheet-motifs"
+                  value={motifsText}
+                  onChange={(event) => setMotifsText(event.target.value)}
+                  rows={2}
+                  placeholder="dynie, liście klonu, kubek kawy, cynamon"
+                  className="mt-1.5 w-full rounded-xl border border-slate-300 dark:border-white/20 bg-background px-3.5 py-2.5 text-sm font-medium leading-relaxed focus-visible:outline-none focus-visible:border-primary focus-visible:ring-2 focus-visible:ring-primary/20"
+                />
+                <p className="mt-1 text-[11px] font-medium text-muted-foreground">
+                  Po przecinku. {page.motifs.length > 0 ? `Rozpoznane: ${page.motifs.length}.` : "Pokazują się na stronie arkusza jako lista."}
+                </p>
               </div>
             </div>
 
@@ -1134,6 +1346,12 @@ export function SheetEditor({ sheet, initialStickers, library: initialLibrary, c
                   </button>
                 </div>
               </div>
+
+              {savingStep && (
+                <p role="status" className="text-[11px] font-bold text-primary">
+                  {savingStep}
+                </p>
+              )}
 
               {wasPublished && hasChanges && (
                 <p className="text-[11px] font-semibold text-muted-foreground">

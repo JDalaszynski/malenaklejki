@@ -81,7 +81,10 @@ export async function renderSheetCanvas(
   widthPx: number = A4_PRINT_WIDTH_PX
 ): Promise<HTMLCanvasElement> {
   const A4_W = Math.round(widthPx);
-  const A4_H = Math.round(widthPx * A4_RATIO);
+  // W górę, nie do najbliższej: A4 w 300 dpi to 2480 × 3508 px, tak jak w
+  // kreatorze. Te pliki idą do druku gotowych arkuszy, więc muszą mieć
+  // dokładnie ten sam wymiar co pliki z zamówień klientów.
+  const A4_H = Math.ceil(widthPx * A4_RATIO);
   const MM_TO_PX = A4_W / 210;
   // Grubości i promienie kreatora są w pikselach płótna 2480 px.
   const px = A4_W / A4_PRINT_WIDTH_PX;

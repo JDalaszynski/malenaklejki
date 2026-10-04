@@ -164,10 +164,12 @@ export async function updateReadySheetsMode(raw: unknown): Promise<Result> {
     details: `${READY_SHEETS_MODE_LABELS[before.mode]} → ${READY_SHEETS_MODE_LABELS[parsed.data]}`,
   });
 
-  // Tryb decyduje o tym, czy strona główna niesie wejście do galerii, więc
-  // razem z zapamiętanym ustawieniem przebudowujemy i ją.
+  // Od trybu zależy wejście do galerii na stronie głównej, istnienie katalogu
+  // i stron arkuszy, mapa strony oraz link do katalogu w stopce każdej strony
+  // — dlatego razem z zapamiętanym ustawieniem przebudowujemy cały sklep.
   updateTag(READY_SHEETS_MODE_TAG);
-  revalidatePath("/");
+  revalidatePath("/", "layout");
+  revalidatePath("/sitemap.xml");
   revalidatePath("/admin/ustawienia");
   revalidatePath("/admin/arkusze");
 

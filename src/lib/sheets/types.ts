@@ -42,7 +42,25 @@ export const SHEET_STATUS_LABELS: Record<SheetStatus, string> = {
 export type StickerSheet = {
   id: string;
   name: string;
+  /** Temat główny — pod nim arkusz stoi w galerii i na stronie tematycznej. */
   category: string;
+  /** Drugi temat (opcjonalny), np. arkusz jesienny z motywem Halloween. */
+  category2: string;
+  /** Adres strony arkusza w sklepie: `/gotowe-arkusze/<slug>`. */
+  slug: string;
+  /** Opisowy podtytuł z motywem, np. „naklejki jesienne z kawą i dyniami". */
+  subtitle: string;
+  /** Opis na stronę arkusza i do pliku produktowego. */
+  description: string;
+  /** Co jest na arkuszu: „dynie", „liście klonu", „kubek kawy"… */
+  motifs: string[];
+  /** Obraz produktu w wysokiej rozdzielczości — strona arkusza i Merchant Center. */
+  productImageUrl: string | null;
+  /** Plik do druku i plik linii cięcia przygotowane przy publikacji. */
+  printUrl: string | null;
+  cutLinesUrl: string | null;
+  /** Układ zmienił się po przygotowaniu plików — trzeba opublikować ponownie z edytora. */
+  assetsStale: boolean;
   status: SheetStatus;
   stickerCount: number;
   /** Naklejki z bazy użyte na arkuszu (bez powtórzeń) — do licznika użyć w bazie. */
@@ -80,11 +98,65 @@ export type PublicSheetSummary = {
   id: string;
   name: string;
   category: string;
+  /** Wszystkie tematy arkusza (główny pierwszy) — po nich filtruje galeria. */
+  categories: string[];
   previewUrl: string | null;
   stickerCount: number;
   /** Znacznik wersji arkusza — adres układu z nim może leżeć w pamięci podręcznej. */
   version: string;
+  /** Adres strony arkusza; `null`, dopóki arkusz nie ma kompletu do katalogu. */
+  slug: string | null;
 };
+
+/**
+ * Arkusz z kompletem do katalogu: własna strona, opis i pliki do druku, dzięki
+ * którym da się go dodać do koszyka bez przechodzenia przez kreator.
+ */
+export type CatalogSheet = PublicSheetSummary & {
+  slug: string;
+  subtitle: string;
+  description: string;
+  motifs: string[];
+  productImageUrl: string;
+  printUrl: string;
+  cutLinesUrl: string;
+  publishedAt: string | null;
+  updatedAt: string;
+};
+
+/** Czy arkusz ma wszystko, czego potrzebuje strona produktu. */
+export function isCatalogReady(sheet: {
+  slug?: string | null;
+  description?: string | null;
+  productImageUrl?: string | null;
+  printUrl?: string | null;
+  cutLinesUrl?: string | null;
+  assetsStale?: boolean;
+}): boolean {
+  return (
+    !!sheet.slug &&
+    !!sheet.description &&
+    !!sheet.productImageUrl &&
+    !!sheet.printUrl &&
+    !!sheet.cutLinesUrl &&
+    !sheet.assetsStale
+  );
+}
+
+/** Skąd pozycja koszyka: gotowy arkusz i to, czy klient go zmienił. */
+export type ReadySheetOrigin = {
+  id: string;
+  slug: string | null;
+  name: string;
+  category: string;
+  /** Niezmieniony gotowy arkusz można zwrócić w 14 dni (regulamin §7). */
+  modified: boolean;
+};
+
+/** Cena arkusza A4 brutto — jedna stała dla stron, danych strukturalnych i koszyka. */
+export const SHEET_PRICE = 49;
+/** Koszt dostawy do paczkomatu, liczony raz na zamówienie. */
+export const SHIPPING_PRICE = 19.99;
 
 /** Odpowiedź `/api/gotowe-arkusze`. */
 export type PublicSheetsResponse = {
@@ -98,6 +170,8 @@ export type PublicSheetsResponse = {
 export type PublicSheetLayout = {
   id: string;
   name: string;
+  slug: string | null;
+  category: string;
   version: string;
   stickers: PlacedSticker[];
   /**
@@ -161,6 +235,41 @@ export function cutLineForPlacement(type: CutLineType): CutLineType {
 export const MAX_SHEET_NAME = 120;
 export const MAX_CATEGORY_NAME = 60;
 export const MAX_STICKER_NAME = 120;
+export const MAX_SHEET_SLUG = 80;
+export const MAX_SHEET_SUBTITLE = 140;
+export const MAX_SHEET_DESCRIPTION = 1500;
+export const MAX_MOTIFS = 24;
+export const MAX_MOTIF_LENGTH = 40;
+/** Poniżej tylu słów opis jest za krótki, żeby strona arkusza miała własną treść. */
+export const MIN_DESCRIPTION_WORDS = 80;
+
+/** Adres z nazwy: małe litery, bez polskich znaków, słowa łączone dywizem. */
+export function slugify(value: string): string {
+  return normalizeForSearch(value)
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "")
+    .slice(0, MAX_SHEET_SLUG)
+    .replace(/-+$/g, "");
+}
+
+export function countWords(value: string): number {
+  return value.trim().split(/\s+/).filter(Boolean).length;
+}
+
+/** Lista motywów z pola tekstowego: po przecinku albo w osobnych liniach, bez powtórzeń. */
+export function parseMotifs(value: string): string[] {
+  const seen = new Set<string>();
+  const motifs: string[] = [];
+  for (const part of value.split(/[,\n;]+/)) {
+    const motif = part.trim().replace(/\s+/g, " ").slice(0, MAX_MOTIF_LENGTH);
+    const key = normalizeForSearch(motif);
+    if (!motif || seen.has(key)) continue;
+    seen.add(key);
+    motifs.push(motif);
+    if (motifs.length === MAX_MOTIFS) break;
+  }
+  return motifs;
+}
 
 /** Porównywanie bez wielkości liter i polskich znaków — wyszukiwarka i kategorie. */
 export function normalizeForSearch(value: string): string {

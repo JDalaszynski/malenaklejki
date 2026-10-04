@@ -17,11 +17,25 @@ export type PurchaseOrder = {
 /** Pozycje zamówienia z bazy w formacie zdarzeń GA4 — bez danych klienta. */
 export function toAnalyticsSheets(items: unknown): AnalyticsSheet[] {
   if (!Array.isArray(items)) return [];
-  return items.map((item: Record<string, unknown>): AnalyticsSheet => ({
-    sheetQuantity: Number(item.sheetQuantity) || 0,
-    pricePerSheet: Number(item.pricePerSheet) || 0,
-    deliveryForm: item.deliveryForm === "individual" ? "individual" : "sheet",
-  }));
+  return items.map((item: Record<string, unknown>): AnalyticsSheet => {
+    const ready = item.readySheet as Record<string, unknown> | null | undefined;
+    return {
+      sheetQuantity: Number(item.sheetQuantity) || 0,
+      pricePerSheet: Number(item.pricePerSheet) || 0,
+      deliveryForm: item.deliveryForm === "individual" ? "individual" : "sheet",
+      ...(ready && typeof ready.id === "string" && typeof ready.name === "string"
+        ? {
+            readySheet: {
+              id: ready.id,
+              slug: typeof ready.slug === "string" ? ready.slug : null,
+              name: ready.name,
+              category: typeof ready.category === "string" ? ready.category : "",
+              modified: ready.modified === true,
+            },
+          }
+        : {}),
+    };
+  });
 }
 
 /** `_ga` ma postać "GA1.1.<losowa>.<znacznik czasu>" — client_id to dwa ostatnie człony. */

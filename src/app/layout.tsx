@@ -5,11 +5,13 @@ import { CookieBanner } from "@/components/layout/CookieBanner";
 import { Analytics } from "@vercel/analytics/react";
 import { InteractiveBackground } from "@/components/layout/InteractiveBackground";
 import { VacationBanner } from "@/components/layout/VacationBanner";
+import { CatalogProvider } from "@/components/layout/CatalogProvider";
 import { ShippingEstimateProvider } from "@/components/layout/ShippingEstimateProvider";
 import { VacationProvider } from "@/components/layout/VacationProvider";
 import { warsawToday } from "@/lib/settings/vacation";
 import { getShippingEstimateSettings } from "@/lib/settings/shippingEstimateStore";
 import { getVacationSettings } from "@/lib/settings/vacationStore";
+import { isCatalogVisible } from "@/lib/sheets/public";
 import Script from "next/script";
 import { JsonLd } from "@/components/seo/JsonLd";
 
@@ -70,9 +72,10 @@ export default async function RootLayout({
 }>) {
   // Odczyt jest zapamiętywany (patrz `getVacationSettings`), więc strony
   // sklepu nadal generują się statycznie mimo zapytania do bazy w układzie.
-  const [vacation, shippingEstimate] = await Promise.all([
+  const [vacation, shippingEstimate, catalogVisible] = await Promise.all([
     getVacationSettings(),
     getShippingEstimateSettings(),
+    isCatalogVisible(),
   ]);
 
   return (
@@ -202,8 +205,10 @@ export default async function RootLayout({
         <InteractiveBackground />
         <VacationProvider settings={vacation} serverToday={warsawToday()}>
           <ShippingEstimateProvider settings={shippingEstimate}>
-            <VacationBanner />
-            {children}
+            <CatalogProvider visible={catalogVisible}>
+              <VacationBanner />
+              {children}
+            </CatalogProvider>
           </ShippingEstimateProvider>
         </VacationProvider>
         <CookieBanner />

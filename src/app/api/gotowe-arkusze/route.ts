@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 
-import { getPublishedSheets, readySheetsAccess } from "@/lib/sheets/public";
+import { getGallerySheets, readySheetsAccess } from "@/lib/sheets/public";
 import type { PublicSheetsResponse } from "@/lib/sheets/types";
 
 export const dynamic = "force-dynamic";
@@ -22,7 +22,7 @@ export async function GET() {
     const access = await readySheetsAccess();
     if (!access.visible) return NextResponse.json(empty, { headers: NO_STORE });
 
-    const { sheets, categories } = await getPublishedSheets();
+    const { sheets, categories } = await getGallerySheets();
     const body: PublicSheetsResponse = { sheets, categories, preview: access.preview };
     return NextResponse.json(body, { headers: NO_STORE });
   } catch (error) {

@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Eye, LayoutGrid, Plus } from "lucide-react";
 
 import { StatusPill } from "@/components/account/StatusPill";
-import { SHEET_STATUS_LABELS, type StickerSheet } from "@/lib/sheets/types";
+import { SHEET_STATUS_LABELS, isCatalogReady, type StickerSheet } from "@/lib/sheets/types";
 import { formatDateTime } from "@/lib/orders/status";
 import { getStickersNoun } from "@/lib/utils/polish";
 import { SheetCardActions } from "./SheetCardActions";
@@ -84,8 +84,27 @@ export function SheetGrid({
             <div className="min-w-0 flex-1">
               <p className="font-extrabold text-foreground leading-snug break-words">{sheet.name}</p>
               <p className="text-xs font-bold text-primary mt-0.5">
-                {sheet.category || <span className="text-muted-foreground">bez kategorii</span>}
+                {sheet.category ? (
+                  [sheet.category, sheet.category2].filter(Boolean).join(" · ")
+                ) : (
+                  <span className="text-muted-foreground">bez tematu</span>
+                )}
               </p>
+              {sheet.status === "published" &&
+                (isCatalogReady(sheet) ? (
+                  <a
+                    href={`/gotowe-arkusze/${sheet.slug}`}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="mt-1 inline-block text-[11px] font-bold text-muted-foreground hover:text-primary hover:underline break-all"
+                  >
+                    /gotowe-arkusze/{sheet.slug}
+                  </a>
+                ) : (
+                  <p className="mt-1 text-[11px] font-bold text-[#8a6d00] dark:text-[#FFCD08]">
+                    Bez strony w sklepie - uzupełnij adres i opis, a potem opublikuj z edytora.
+                  </p>
+                ))}
               <p className="text-xs font-semibold text-muted-foreground mt-1.5">
                 {sheet.stickerCount} {getStickersNoun(sheet.stickerCount)} · zmiana{" "}
                 {formatDateTime(sheet.updatedAt)}

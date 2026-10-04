@@ -27,7 +27,18 @@ export default async function NewSheetPage({
     <SheetEditorPage
       adminEmail={admin.email ?? ""}
       title="Nowy arkusz"
-      sheet={{ id: null, name: "", category: presetCategory, status: "draft", updatedAt: null }}
+      sheet={{
+        id: null,
+        name: "",
+        category: presetCategory,
+        category2: "",
+        slug: "",
+        subtitle: "",
+        description: "",
+        motifs: [],
+        status: "draft",
+        updatedAt: null,
+      }}
       initialStickers={[]}
       library={library}
       categories={categories}

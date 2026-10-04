@@ -57,6 +57,15 @@ function toSheet(id: string, data: FirebaseFirestore.DocumentData): StickerSheet
     id,
     name: data.name ?? "",
     category: data.category ?? "",
+    category2: data.category2 ?? "",
+    slug: data.slug ?? "",
+    subtitle: data.subtitle ?? "",
+    description: data.description ?? "",
+    motifs: Array.isArray(data.motifs) ? data.motifs.filter((m: unknown) => typeof m === "string") : [],
+    productImageUrl: data.productImageUrl ?? null,
+    printUrl: data.printUrl ?? null,
+    cutLinesUrl: data.cutLinesUrl ?? null,
+    assetsStale: data.assetsStale === true,
     status: data.status === "published" ? "published" : "draft",
     stickerCount: typeof data.stickerCount === "number" ? data.stickerCount : 0,
     libraryIds: Array.isArray(data.libraryIds) ? data.libraryIds : [],
@@ -158,6 +167,46 @@ export async function writeSheetPreview(sheetId: string, jpeg: Buffer): Promise<
   )}?alt=media&token=${token}`;
 }
 
+const STORAGE_BUCKET = process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET;
+
+/** Ścieżka pliku w naszym magazynie albo `null`, gdy adres prowadzi gdzie indziej. */
+export function ownStoragePath(value: string): string | null {
+  try {
+    const url = new URL(value);
+    if (url.protocol !== "https:" || url.hostname !== "firebasestorage.googleapis.com") return null;
+    const match = /^\/v0\/b\/([^/]+)\/o\/(.+)$/.exec(url.pathname);
+    if (!match || (STORAGE_BUCKET && match[1] !== STORAGE_BUCKET)) return null;
+    return decodeURIComponent(match[2]);
+  } catch {
+    return null;
+  }
+}
+
+/**
+ * Obraz produktu wgrany przez edytor do `uploads/` przenosimy pod arkusz.
+ *
+ * Optymalizator obrazów przepuszcza wyłącznie pliki z `sheets/` (patrz
+ * `next.config.ts`), więc tylko stamtąd strona arkusza dostanie lekką wersję
+ * w rozmiarze ekranu. Plik do druku i linie cięcia zostają w `uploads/` —
+ * odwołują się do nich zamówienia, a te muszą przetrwać usunięcie arkusza.
+ */
+export async function adoptProductImage(sheetId: string, uploadedUrl: string): Promise<string> {
+  const source = ownStoragePath(uploadedUrl);
+  if (!source || !source.startsWith("uploads/")) return uploadedUrl;
+
+  const bucket = getBucket();
+  const path = `${SHEETS_PREFIX}/${sheetId}/product.jpg`;
+  const token = randomUUID();
+  await bucket.file(source).copy(bucket.file(path));
+  await bucket.file(path).setMetadata({
+    cacheControl: "public, max-age=31536000",
+    metadata: { firebaseStorageDownloadTokens: token },
+  });
+  return `https://firebasestorage.googleapis.com/v0/b/${bucket.name}/o/${encodeURIComponent(
+    path
+  )}?alt=media&token=${token}`;
+}
+
 /** Kopia plików arkusza pod nowy identyfikator. Zwraca adres podglądu kopii. */
 export async function copySheetFiles(fromId: string, toId: string): Promise<string | null> {
   const bucket = getBucket();
@@ -191,15 +240,27 @@ export async function deleteSheetFiles(sheetId: string): Promise<void> {
  * Kategorie w pisowni, która pierwsza trafiła do bazy — „zwierzęta" wpisane
  * po „Zwierzęta" dołącza do istniejącej zamiast zakładać drugą.
  */
-export function listCategories(sheets: StickerSheet[]): string[] {
+export function listCategories(
+  sheets: Pick<StickerSheet, "category" | "category2" | "createdAt">[]
+): string[] {
   const byKey = new Map<string, string>();
   for (const sheet of [...sheets].sort((a, b) => a.createdAt.localeCompare(b.createdAt))) {
-    const category = sheet.category.trim();
-    if (!category) continue;
-    const key = normalizeForSearch(category);
-    if (!byKey.has(key)) byKey.set(key, category);
+    for (const raw of [sheet.category, sheet.category2]) {
+      const category = (raw ?? "").trim();
+      if (!category) continue;
+      const key = normalizeForSearch(category);
+      if (!byKey.has(key)) byKey.set(key, category);
+    }
   }
   return [...byKey.values()].sort((a, b) => a.localeCompare(b, "pl"));
+}
+
+/** Arkusz o danym adresie — do sprawdzenia, czy adres jest wolny. */
+export async function findSheetBySlug(slug: string): Promise<StickerSheet | null> {
+  if (!slug) return null;
+  const snapshot = await db.collection(SHEETS_COLLECTION).where("slug", "==", slug).limit(2).get();
+  const doc = snapshot.docs[0];
+  return doc ? toSheet(doc.id, doc.data()) : null;
 }
 
 /** Liczba opublikowanych arkuszy — `count()` po stronie Firestore. */
@@ -221,7 +282,7 @@ export async function countPublishedSheets(): Promise<number> {
 export async function listCategoryNames(): Promise<string[]> {
   const snapshot = await db
     .collection(SHEETS_COLLECTION)
-    .select("category", "createdAt")
+    .select("category", "category2", "createdAt")
     .limit(SHEETS_FETCH_LIMIT)
     .get();
   return listCategories(snapshot.docs.map((doc) => toSheet(doc.id, doc.data())));
@@ -255,9 +316,15 @@ export function filterSheets(sheets: StickerSheet[], filters: SheetFilters): Sti
 
   return sheets.filter((sheet) => {
     if (filters.status && sheet.status !== filters.status) return false;
-    if (category && normalizeForSearch(sheet.category) !== category) return false;
+    if (
+      category &&
+      normalizeForSearch(sheet.category) !== category &&
+      normalizeForSearch(sheet.category2) !== category
+    ) {
+      return false;
+    }
     if (search) {
-      const haystack = normalizeForSearch(`${sheet.name} ${sheet.category}`);
+      const haystack = normalizeForSearch(`${sheet.name} ${sheet.category} ${sheet.category2}`);
       if (!search.split(" ").every((word) => haystack.includes(word))) return false;
     }
     return true;

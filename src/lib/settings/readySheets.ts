@@ -45,6 +45,13 @@ export const READY_SHEETS_MODE_TAG = "ustawienia-gotowe-arkusze";
 /** Tag pamięci podręcznej opublikowanych arkuszy — unieważniany przy każdej zmianie arkusza. */
 export const READY_SHEETS_TAG = "gotowe-arkusze";
 
+/**
+ * Tag odpowiedzi na pytanie „czy katalog ma co pokazać". Od niej zależy link
+ * do katalogu w stopce każdej strony, więc unieważniamy ją tylko wtedy, gdy
+ * odpowiedź faktycznie się zmienia — nie przy każdym zapisie arkusza.
+ */
+export const CATALOG_VISIBILITY_TAG = "katalog-gotowych-arkuszy";
+
 export function normalizeReadySheetsSettings(raw: unknown): ReadySheetsSettings {
   const data = (raw ?? {}) as Record<string, unknown>;
   return {

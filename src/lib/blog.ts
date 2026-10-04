@@ -27,6 +27,12 @@ export interface BlogPost {
   pillar?: boolean;
   /** Kolejność wyświetlania filarów (rosnąco). Bez wartości = po dacie. */
   pillarOrder?: number;
+  /**
+   * Wpis pokazuje pod wstępem gotowe arkusze z cenami (frontmatter
+   * `catalog: true`). Blok rysuje się tylko przy publicznym katalogu —
+   * przy wyłączonych gotowych arkuszach wpis wygląda jak dotąd.
+   */
+  catalog?: boolean;
 }
 
 const postsDirectory = path.join(process.cwd(), "src/content/blog");
@@ -155,6 +161,7 @@ export async function getBlogPostBySlug(slug: string): Promise<BlogPost | null> 
       role: data.role === "pillar" ? ("pillar" as const) : ("supporting" as const),
       pillar: data.pillar === true,
       pillarOrder: typeof data.pillarOrder === "number" ? data.pillarOrder : undefined,
+      catalog: data.catalog === true,
     };
   } catch (error) {
     console.error(`Error reading blog post ${slug}:`, error);

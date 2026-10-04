@@ -24,6 +24,20 @@ const OrderItemSchema = z.object({
   deliveryForm: z.enum(["sheet", "individual"]).default("sheet"),
   /** Ścieżka do układu arkusza wgranego przez kreator (`layouts/carts/...`). */
   layoutPath: z.string().max(300).optional().nullable(),
+  /**
+   * Gotowy arkusz, z którego powstała pozycja. `modified: false` oznacza
+   * arkusz zamówiony bez zmian — taki podlega zwrotowi w 14 dni (regulamin §7).
+   */
+  readySheet: z
+    .object({
+      id: z.string().min(1).max(128),
+      slug: z.string().max(120).nullable().optional(),
+      name: z.string().min(1).max(160),
+      category: z.string().max(80).optional().default(""),
+      modified: z.boolean(),
+    })
+    .optional()
+    .nullable(),
 }).passthrough();
 
 const CreateOrderSchema = z.object({

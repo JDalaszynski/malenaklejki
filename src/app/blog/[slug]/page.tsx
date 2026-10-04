@@ -1,4 +1,5 @@
 import { Header } from "@/components/layout/Header";
+import { ReadySheetsShowcase } from "@/components/catalog/ReadySheetsShowcase";
 import { Footer } from "@/components/layout/Footer";
 import { getBlogPostBySlug, getBlogPosts } from "@/lib/blog";
 import { notFound } from "next/navigation";
@@ -345,6 +346,8 @@ export default async function BlogPostPage({ params }: PageProps) {
             className={contentClassName}
             dangerouslySetInnerHTML={{ __html: beforeContent }}
           />
+
+          {post.catalog && <ReadySheetsShowcase />}
 
           {/* First Banner & CTA */}
           <ArticleBannerAndCTA id="first-article-banner" />

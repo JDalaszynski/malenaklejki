@@ -5,6 +5,8 @@ import { useEffect, useState } from "react";
 import { Sun, Moon, Contrast } from "lucide-react";
 import { motion } from "framer-motion";
 
+import { useCatalogVisible } from "./CatalogProvider";
+
 interface FooterProps {
   children?: React.ReactNode;
 }
@@ -12,6 +14,7 @@ interface FooterProps {
 export function Footer({ children }: FooterProps = {}) {
   const [mounted, setMounted] = useState(false);
   const [theme, setTheme] = useState<"light" | "dark" | "system">("light");
+  const catalogVisible = useCatalogVisible();
 
   useEffect(() => {
     setMounted(true);
@@ -82,6 +85,10 @@ export function Footer({ children }: FooterProps = {}) {
               </p>
               <ul className="flex flex-col gap-1.5">
                 {[
+                  // Katalog istnieje tylko przy włączonych gotowych arkuszach.
+                  ...(catalogVisible
+                    ? [{ href: "/gotowe-arkusze", label: "Gotowe arkusze naklejek" }]
+                    : []),
                   { href: "/naklejki-die-cut", label: "Naklejki die cut" },
                   { href: "/naklejki-foliowe", label: "Naklejki foliowe i wodoodporne" },
                   { href: "/fotonaklejki", label: "Fotonaklejki ze zdjęcia" },

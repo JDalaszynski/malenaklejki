@@ -2354,6 +2354,24 @@ export function HomePageClient({
         console.warn("Nie udało się zapisać układu arkusza:", err);
       }
 
+      // Pozycja pamięta, z którego gotowego arkusza powstała i czy klient go
+      // zmienił — od tego zależy prawo zwrotu i raport sprzedaży. Arkusz
+      // otwarty do edycji z koszyka liczy się już jako zmieniony.
+      const editedItem = editCartItemId
+        ? cartItems.find((item) => item.id === editCartItemId)
+        : undefined;
+      const readySheetOrigin = readySheet
+        ? {
+            id: readySheet.id,
+            slug: readySheet.slug,
+            name: readySheet.name,
+            category: readySheet.category,
+            modified: isReadySheetModified,
+          }
+        : editedItem?.readySheet
+          ? { ...editedItem.readySheet, modified: true }
+          : undefined;
+
       const cartItemData = {
         imageUrl: printUrl,
         cutLinesImageUrl: cutLinesUrl,
@@ -2365,6 +2383,7 @@ export function HomePageClient({
         pricePerSheet: 49.0,
         stickers: stickers,
         deliveryForm: deliveryForm,
+        ...(readySheetOrigin ? { readySheet: readySheetOrigin } : {}),
       };
 
       if (editCartItemId) {
@@ -2723,7 +2742,7 @@ export function HomePageClient({
                   >
                     gotowego arkusza
                   </button>{" "}
-                  — ułóż naklejki i wybierz kształt cięcia.
+                  - ułóż naklejki i wybierz kształt cięcia.
                 </>
               ) : (
                 "Dodaj własne grafiki, ułóż je na arkuszu i wybierz kształt cięcia."

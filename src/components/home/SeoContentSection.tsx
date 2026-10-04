@@ -1,9 +1,11 @@
 "use client";
 
 import Link from "next/link";
+import { useCatalogVisible } from "@/components/layout/CatalogProvider";
 import { Reveal, SectionHeading, HighlightWord, displayFont, inlineLink } from "./primitives";
 
 export function SeoContentSection() {
+  const catalogVisible = useCatalogVisible();
   return (
     <div className="space-y-8 sm:space-y-12 py-10">
       <Reveal>
@@ -123,6 +125,15 @@ export function SeoContentSection() {
                 <Link href="/blog/jak-zrobic-wlasne-naklejki-program-do-robienia-naklejek-online" className={inlineLink}>
                   jak zrobić własne naklejki
                 </Link>.
+                {catalogVisible && (
+                  <>
+                    {" "}A jeśli nie chcesz szukać grafiki, wybierz jeden z{" "}
+                    <Link href="/gotowe-arkusze" className={inlineLink}>
+                      gotowych arkuszy naklejek
+                    </Link>{" "}
+                    - zamówisz go od razu albo zmienisz po swojemu.
+                  </>
+                )}
               </p>
             </section>
           </div>

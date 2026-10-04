@@ -1,9 +1,9 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Image from "next/image";
 import { ChevronRight, Eye, LayoutGrid } from "lucide-react";
 
+import { SheetImage } from "@/components/catalog/SheetImage";
 import { useSessionUser } from "@/hooks/useSessionUser";
 import { loadReadySheets } from "@/lib/sheets/client";
 import {
@@ -44,36 +44,6 @@ export function useReadySheetsTeaser(home: HomeReadySheets): ReadySheetsTeaser |
   return isAdmin ? previewTeaser : null;
 }
 
-/**
- * Podgląd arkusza przez optymalizator obrazów: zamiast JPEG-a 720 px z panelu
- * przeglądarka dostaje WebP w rozmiarze, w jakim go rysuje. Gdyby
- * optymalizator odmówił, pokazujemy plik źródłowy.
- */
-export function SheetPreviewImage({
-  src,
-  sizes,
-  eager = false,
-}: {
-  src: string;
-  sizes: string;
-  eager?: boolean;
-}) {
-  const [raw, setRaw] = useState(false);
-  return (
-    <Image
-      src={src}
-      alt=""
-      fill
-      sizes={sizes}
-      unoptimized={raw}
-      loading={eager ? "eager" : "lazy"}
-      draggable={false}
-      onError={() => setRaw(true)}
-      className="object-cover select-none"
-    />
-  );
-}
-
 const FAN_SLOTS = [
   "left-0 top-1 -rotate-[9deg]",
   "left-[0.8rem] top-0 z-10",
@@ -103,7 +73,7 @@ function SheetFan({ thumbs }: { thumbs: string[] }) {
           key={thumbs[index]}
           className={`absolute ${slot} block w-8 aspect-[210/297] rounded-[3px] bg-white border border-[#004749]/15 shadow-[0_2px_6px_rgba(0,71,73,0.16)] overflow-hidden transition-transform duration-200 group-hover:-translate-y-0.5`}
         >
-          <SheetPreviewImage src={thumbs[index]} sizes="32px" />
+          <SheetImage src={thumbs[index]} sizes="32px" />
         </span>
       ))}
     </span>

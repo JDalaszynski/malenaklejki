@@ -7,14 +7,17 @@ import { recordAudit } from "@/lib/admin/audit";
 import { getSession } from "@/lib/auth/dal";
 import { db } from "@/lib/firebase/admin";
 import { describePublishBlockers } from "@/lib/creator/sheetOps";
-import { READY_SHEETS_TAG } from "@/lib/settings/readySheets";
+import { CATALOG_VISIBILITY_TAG, READY_SHEETS_TAG } from "@/lib/settings/readySheets";
+import { catalogVisibilityChanged } from "@/lib/sheets/public";
 import { MAX_LAYOUT_BYTES, serializeLayout } from "@/lib/orders/layoutFormat";
 import {
   LIBRARY_COLLECTION,
   SHEETS_COLLECTION,
+  adoptProductImage,
   copySheetFiles,
   deleteSheetFiles,
   findLibraryStickerByHash,
+  findSheetBySlug,
   getLibrarySticker,
   getSheet,
   listCategories,
@@ -22,13 +25,20 @@ import {
   writeSheetLayout,
   writeSheetPreview,
 } from "@/lib/sheets/store";
+import { CATALOG_BLOG_POSTS, THEME_PAGES } from "@/lib/sheets/themes";
 import {
   CUT_LINE_TYPES,
   MAX_CATEGORY_NAME,
+  MAX_MOTIFS,
+  MAX_MOTIF_LENGTH,
+  MAX_SHEET_DESCRIPTION,
   MAX_SHEET_NAME,
+  MAX_SHEET_SLUG,
+  MAX_SHEET_SUBTITLE,
   MAX_STICKER_NAME,
   SHEET_STATUS_LABELS,
   normalizeForSearch,
+  slugify,
   type CutLineType,
   type LibrarySticker,
   type SheetStatus,
@@ -53,15 +63,28 @@ async function requireAdminActor(): Promise<{ email: string } | null> {
   return { email: session.email ?? "administrator" };
 }
 
-function refreshSheetViews(sheetId?: string) {
+async function refreshSheetViews(sheetId?: string) {
   // Lista i układy w kreatorze na stronie głównej są zapamiętane — po każdej
   // zmianie arkusza sklep ma pokazać stan świeży, a nie ten sprzed zapisu.
   updateTag(READY_SHEETS_TAG);
-  // Strona główna niesie zapowiedź galerii (liczbę arkuszy i miniaturki).
+  // Strona główna niesie zapowiedź galerii (liczbę arkuszy i miniaturki),
+  // a katalog, strony arkuszy, strony tematyczne i mapa strony — ich listę.
   revalidatePath("/");
+  revalidatePath("/gotowe-arkusze");
+  revalidatePath("/gotowe-arkusze/[slug]", "page");
+  for (const theme of THEME_PAGES) revalidatePath(theme.path);
+  for (const slug of CATALOG_BLOG_POSTS) revalidatePath(`/blog/${slug}`);
+  revalidatePath("/sitemap.xml");
   revalidatePath("/admin/arkusze");
   revalidatePath("/admin/arkusze/baza-naklejek");
   if (sheetId) revalidatePath(`/admin/arkusze/${sheetId}`);
+
+  // Link do katalogu stoi w stopce każdej strony — całość przebudowujemy tylko
+  // wtedy, gdy katalog zyskał pierwszy arkusz albo stracił ostatni.
+  if (await catalogVisibilityChanged()) {
+    updateTag(CATALOG_VISIBILITY_TAG);
+    revalidatePath("/", "layout");
+  }
 }
 
 const idSchema = z
@@ -136,19 +159,47 @@ function decodePreview(dataUrl: string | null | undefined): Buffer | null {
  * Pisownia kategorii z bazy: „zwierzęta" dołącza do istniejących „Zwierzęta"
  * zamiast zakładać drugą kategorię różniącą się wielką literą.
  */
-async function canonicalCategory(category: string): Promise<string> {
-  const trimmed = category.trim().replace(/\s+/g, " ");
-  if (!trimmed) return "";
+async function canonicalCategories(categories: string[]): Promise<string[]> {
+  const trimmed = categories.map((category) => category.trim().replace(/\s+/g, " "));
+  if (trimmed.every((category) => !category)) return trimmed;
 
-  const snapshot = await db.collection(SHEETS_COLLECTION).select("category", "createdAt").get();
+  const snapshot = await db
+    .collection(SHEETS_COLLECTION)
+    .select("category", "category2", "createdAt")
+    .get();
   const existing = listCategories(
     snapshot.docs.map((doc) => ({
       category: doc.get("category") ?? "",
+      category2: doc.get("category2") ?? "",
       createdAt: doc.get("createdAt") ?? "",
-    })) as StickerSheet[]
+    }))
   );
-  const key = normalizeForSearch(trimmed);
-  return existing.find((item) => normalizeForSearch(item) === key) ?? trimmed;
+  return trimmed.map((category) => {
+    if (!category) return "";
+    const key = normalizeForSearch(category);
+    return existing.find((item) => normalizeForSearch(item) === key) ?? category;
+  });
+}
+
+/**
+ * Czego brakuje, żeby arkusz mógł mieć własną stronę w sklepie. Pliki do druku
+ * powstają w edytorze, więc publikacja prosto z listy wymaga, żeby już były
+ * i pasowały do zapisanego układu.
+ */
+function describeCatalogBlockers(sheet: {
+  category: string;
+  slug: string;
+  description: string;
+  hasFreshAssets: boolean;
+}): string[] {
+  const blockers: string[] = [];
+  if (!sheet.category) blockers.push("Wybierz temat arkusza.");
+  if (!sheet.slug) blockers.push("Podaj adres strony arkusza.");
+  if (!sheet.description) blockers.push("Dodaj opis arkusza — bez niego strona w sklepie nie ma treści.");
+  if (!sheet.hasFreshAssets) {
+    blockers.push("Opublikuj arkusz z edytora — tam powstają pliki do druku i obraz produktu.");
+  }
+  return blockers;
 }
 
 /**
@@ -192,10 +243,36 @@ async function fillMissingLibrarySettings(stickers: PlacedSticker[]): Promise<vo
 const saveSchema = z.object({
   id: idSchema.nullable().optional(),
   name: z.string().trim().min(1, "Podaj nazwę arkusza.").max(MAX_SHEET_NAME, "Nazwa jest za długa."),
-  category: z.string().trim().max(MAX_CATEGORY_NAME, "Nazwa kategorii jest za długa."),
+  category: z.string().trim().max(MAX_CATEGORY_NAME, "Nazwa tematu jest za długa."),
+  category2: z.string().trim().max(MAX_CATEGORY_NAME, "Nazwa tematu jest za długa.").optional().default(""),
+  slug: z.string().trim().max(MAX_SHEET_SLUG, "Adres jest za długi.").optional().default(""),
+  subtitle: z.string().trim().max(MAX_SHEET_SUBTITLE, "Podtytuł jest za długi.").optional().default(""),
+  description: z
+    .string()
+    .trim()
+    .max(MAX_SHEET_DESCRIPTION, "Opis jest za długi.")
+    .optional()
+    .default(""),
+  motifs: z
+    .array(z.string().trim().min(1).max(MAX_MOTIF_LENGTH))
+    .max(MAX_MOTIFS)
+    .optional()
+    .default([]),
   status: z.enum(["draft", "published"]),
   stickers: stickersSchema,
   preview: z.string().max(5_000_000).nullable().optional(),
+  /**
+   * Pliki przygotowane przez edytor przy publikacji i wgrane do `uploads/`:
+   * obraz produktu, plik do druku i plik linii cięcia tego samego układu.
+   */
+  assets: z
+    .object({
+      productImageUrl: storageUrlSchema,
+      printUrl: storageUrlSchema,
+      cutLinesUrl: storageUrlSchema,
+    })
+    .nullable()
+    .optional(),
   /** Znacznik wersji, którą edytor wczytał — wykrywa zapis z innej karty. */
   expectedUpdatedAt: z.string().max(40).nullable().optional(),
   force: z.boolean().optional(),
@@ -216,9 +293,18 @@ export async function saveSheet(
   const input = parsed.data;
   const stickers = input.stickers as PlacedSticker[];
 
+  const slug = slugify(input.slug);
+
   if (input.status === "published") {
-    const blockers = describePublishBlockers(stickers);
-    if (!input.category) blockers.unshift("Wybierz kategorię arkusza.");
+    const blockers = [
+      ...describeCatalogBlockers({
+        category: input.category,
+        slug,
+        description: input.description,
+        hasFreshAssets: !!input.assets,
+      }),
+      ...describePublishBlockers(stickers),
+    ];
     if (blockers.length > 0) {
       return { success: false, error: "Arkusza nie da się jeszcze opublikować.", blockers };
     }
@@ -227,6 +313,16 @@ export async function saveSheet(
   const collection = db.collection(SHEETS_COLLECTION);
   const ref = input.id ? collection.doc(input.id) : collection.doc();
   const now = new Date().toISOString();
+
+  if (slug) {
+    const taken = await findSheetBySlug(slug);
+    if (taken && taken.id !== ref.id) {
+      return {
+        success: false,
+        error: `Adres „${slug}" ma już arkusz „${taken.name}". Wybierz inny.`,
+      };
+    }
+  }
 
   let previous: StickerSheet | null = null;
   if (input.id) {
@@ -251,7 +347,10 @@ export async function saveSheet(
     return { success: false, error: "Układ arkusza jest za duży, żeby go zapisać." };
   }
 
-  const category = await canonicalCategory(input.category);
+  const [category, secondCategory] = await canonicalCategories([input.category, input.category2]);
+  // Ten sam temat wpisany dwa razy to jeden temat.
+  const category2 =
+    normalizeForSearch(secondCategory) === normalizeForSearch(category) ? "" : secondCategory;
 
   try {
     await writeSheetLayout(ref.id, layoutJson);
@@ -271,6 +370,17 @@ export async function saveSheet(
     }
   }
 
+  // Obraz produktu trafia pod arkusz, żeby strona w sklepie mogła go podać
+  // przez optymalizator; gdyby kopia się nie udała, zostaje adres z `uploads/`.
+  let assets = input.status === "published" ? input.assets ?? null : null;
+  if (assets) {
+    try {
+      assets = { ...assets, productImageUrl: await adoptProductImage(ref.id, assets.productImageUrl) };
+    } catch (error) {
+      console.error("saveSheet product image error:", error);
+    }
+  }
+
   const libraryIds = [
     ...new Set(stickers.map((sticker) => sticker.libraryId).filter((id): id is string => !!id)),
   ];
@@ -286,6 +396,14 @@ export async function saveSheet(
     {
       name: input.name,
       category,
+      category2,
+      slug,
+      subtitle: input.subtitle,
+      description: input.description,
+      motifs: input.motifs,
+      // Pliki pasują do układu tylko w chwili publikacji z edytora; zapis
+      // szkicu mógł układ zmienić, więc stare przestają się liczyć.
+      ...(assets ? { ...assets, assetsStale: false } : { assetsStale: true }),
       status: input.status,
       stickerCount: stickers.length,
       libraryIds,
@@ -318,7 +436,7 @@ export async function saveSheet(
     ].toLowerCase()}, naklejek: ${stickers.length}${statusChange}`,
   });
 
-  refreshSheetViews(ref.id);
+  await refreshSheetViews(ref.id);
   return { success: true, id: ref.id, updatedAt: now, previewUrl, status: input.status };
 }
 
@@ -341,8 +459,15 @@ export async function setSheetStatus(raw: {
   if (status.data === "published") {
     // Serwer sprawdza zapisany układ, a nie to, co twierdzi przeglądarka.
     const stickers = (await readSheetLayout(sheet.id)) ?? [];
-    const blockers = describePublishBlockers(stickers);
-    if (!sheet.category) blockers.unshift("Wybierz kategorię arkusza.");
+    const blockers = [
+      ...describeCatalogBlockers({
+        category: sheet.category,
+        slug: sheet.slug,
+        description: sheet.description,
+        hasFreshAssets: !!sheet.printUrl && !!sheet.cutLinesUrl && !!sheet.productImageUrl && !sheet.assetsStale,
+      }),
+      ...describePublishBlockers(stickers),
+    ];
     if (blockers.length > 0) {
       return { success: false, error: "Arkusza nie da się jeszcze opublikować.", blockers };
     }
@@ -365,7 +490,7 @@ export async function setSheetStatus(raw: {
     details: `„${sheet.name}"${sheet.category ? ` (${sheet.category})` : ""}`,
   });
 
-  refreshSheetViews(sheet.id);
+  await refreshSheetViews(sheet.id);
   return { success: true };
 }
 
@@ -394,6 +519,17 @@ export async function duplicateSheet(rawId: string): Promise<Result<{ id: string
   await ref.set({
     name: `${source.name.slice(0, MAX_SHEET_NAME - suffix.length)}${suffix}`,
     category: source.category,
+    category2: source.category2,
+    // Adres musi być niepowtarzalny, a pliki do druku należą do oryginału —
+    // kopia dostaje jedno i drugie przy własnej publikacji.
+    slug: "",
+    subtitle: source.subtitle,
+    description: source.description,
+    motifs: source.motifs,
+    productImageUrl: null,
+    printUrl: null,
+    cutLinesUrl: null,
+    assetsStale: true,
     status: "draft",
     stickerCount: source.stickerCount,
     libraryIds: source.libraryIds,
@@ -412,7 +548,7 @@ export async function duplicateSheet(rawId: string): Promise<Result<{ id: string
     details: `„${source.name}" → nowy szkic`,
   });
 
-  refreshSheetViews();
+  await refreshSheetViews();
   return { success: true, id: ref.id };
 }
 
@@ -443,7 +579,7 @@ export async function deleteSheet(rawId: string): Promise<Result> {
     ].toLowerCase()}, naklejek: ${sheet.stickerCount}`,
   });
 
-  refreshSheetViews();
+  await refreshSheetViews();
   return { success: true };
 }
 

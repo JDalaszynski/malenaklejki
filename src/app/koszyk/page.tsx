@@ -137,8 +137,16 @@ export default function CartPage() {
 
                       <div className="space-y-1">
                         <h3 className="font-extrabold text-base sm:text-lg text-foreground leading-snug">
-                          Zestaw Naklejek
+                          {item.readySheet ? item.readySheet.name : "Zestaw Naklejek"}
                         </h3>
+                        {item.readySheet && (
+                          <p className="font-bold text-[11px] text-primary">
+                            Gotowy arkusz
+                            {item.readySheet.modified
+                              ? " zmieniony w kreatorze"
+                              : " bez zmian - zwrot w 14 dni"}
+                          </p>
+                        )}
                         <p className="font-semibold text-xs sm:text-sm text-muted-foreground">
                           Wymiary: {String(item.widthCm).replace(".", ",")} ×{" "}
                           {item.heightCm.toFixed(1).replace(".", ",")} cm

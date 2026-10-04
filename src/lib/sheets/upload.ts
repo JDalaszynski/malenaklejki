@@ -186,3 +186,68 @@ export async function addUrlToLibrary(options: {
   if (!created.success) return { ok: false, error: created.error };
   return { ok: true, sticker: created.sticker, existing: created.existing };
 }
+
+/* ------------------------------------------------------------------ */
+/* Pliki arkusza przygotowywane przy publikacji                        */
+/* ------------------------------------------------------------------ */
+
+function canvasBlob(canvas: HTMLCanvasElement, type: string, quality?: number): Promise<Blob> {
+  return new Promise((resolve, reject) =>
+    canvas.toBlob(
+      (blob) => (blob ? resolve(blob) : reject(new Error("Nie udało się wyeksportować arkusza."))),
+      type,
+      quality
+    )
+  );
+}
+
+/**
+ * PNG arkusza tak samo, jak robi to kreator przy „Dodaj do koszyka": najpierw
+ * kompresja na serwerze, a gdy ta zawiedzie (np. za duże żądanie) — plik
+ * prosto z płótna.
+ */
+async function sheetPngBlob(canvas: HTMLCanvasElement): Promise<Blob> {
+  try {
+    const response = await fetch("/api/compress-png", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ image: canvas.toDataURL("image/png") }),
+    });
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+    return await response.blob();
+  } catch (error) {
+    console.warn("Kompresja PNG na serwerze nie powiodła się, wgrywam plik z płótna:", error);
+    return canvasBlob(canvas, "image/png");
+  }
+}
+
+export type SheetAssets = {
+  productImageUrl: string;
+  printUrl: string;
+  cutLinesUrl: string;
+};
+
+/**
+ * Komplet plików opublikowanego arkusza: obraz produktu na stronę w sklepie
+ * oraz plik do druku i plik linii cięcia — te same, które powstają w kreatorze
+ * przy dodawaniu do koszyka. Dzięki nim gotowy arkusz trafia do koszyka prosto
+ * ze strony produktu, bez składania go w przeglądarce klienta.
+ */
+export async function uploadSheetAssets(canvases: {
+  product: HTMLCanvasElement;
+  print: HTMLCanvasElement;
+  cutLines: HTMLCanvasElement;
+}): Promise<SheetAssets> {
+  const [product, print, cutLines] = await Promise.all([
+    canvasBlob(canvases.product, "image/jpeg", 0.9),
+    sheetPngBlob(canvases.print),
+    sheetPngBlob(canvases.cutLines),
+  ]);
+
+  const [productImageUrl, printUrl, cutLinesUrl] = await Promise.all([
+    uploadBlob(product, `gotowy-arkusz-produkt-${getUUID()}.jpg`),
+    uploadBlob(print, `gotowy-arkusz-druk-${getUUID()}.png`),
+    uploadBlob(cutLines, `gotowy-arkusz-linie-${getUUID()}.png`),
+  ]);
+  return { productImageUrl, printUrl, cutLinesUrl };
+}
