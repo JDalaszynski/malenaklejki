@@ -1,8 +1,8 @@
 ---
-title: "Naklejki na nalewki domowe - jak ozdobić butelki z nalewką?"
+title: "Naklejki na nalewki domowe - od 1 szt., 49 zł za arkusz A4"
 slug: "naklejki-na-nalewki-domowe-jak-ozdobic-butelki-na-nalewki"
 date: "2026-07-16"
-updated: "2026-09-10"
+updated: "2026-10-02"
 description: "Estetyczne naklejki na nalewki domowe z własnym projektem - wodoodporne, na okrągłe i prostokątne butelki. Zamów od 1 arkusza A4, gotowe w 2-3 dni robocze."
 image: "/blog/naklejki-na-nalewki-domowe-jak-ozdobic-butelki-na-nalewki/naklejki-na-nalewki-domowe-komplet-butelek-z-owocowymi-etykietami.png"
 imageAlt: "Komplet butelek z domowymi nalewkami owocowymi (wiśniowa, jagodowa, malinowa, morelowa) z estetycznymi naklejkami na nalewki domowe stojący na drewnianym stole."
@@ -88,6 +88,26 @@ Obowiązuje jedna zasada cenowa: **49,00 zł za arkusz A4**, niezależnie od teg
 
 Jeśli w jednym sezonie robisz kilka różnych smaków nalewek, możesz umieścić wszystkie warianty etykiet na jednym arkuszu i zapłacić tylko raz - za sam arkusz, nie za liczbę wzorów.
 
+## Nalewka na prezent świąteczny - etykieta z imieniem i rocznikiem
+
+Nalewka z własną etykietą to prezent świąteczny, który przygotujesz w jeden wieczór: arkusz A4 za 49,00 zł brutto pomieści orientacyjnie ok. 12 etykiet 7 x 5 cm, każdą z innym imieniem. Butelka z piwnicy wygląda wtedy jak gotowy upominek dla dziadków, teściów czy współpracowników, a nie jak coś przelanego w ostatniej chwili. Etykiety na nalewki na prezent mają trzy elementy:
+
+- **Nazwa smaku i rocznik** - np. "Nalewka Pigwowa 2026". Rocznik pokazuje, że to konkretna, własna partia.
+- **Imię obdarowanego i dedykacja** - np. "Dla Dziadka Janka" albo "Od Ani i Marka". Każda butelka może mieć inną etykietę, a wszystkie zmieszczą się na jednym arkuszu: kolejne wzory wgrywasz do kreatora jeden po drugim, a my wycinamy je osobno.
+- **Świąteczny akcent** - gałązka, gwiazdka albo wzór w stylu retro lub botanicznym z poprzedniej sekcji.
+
+Plik z napisem przygotuj według kroków z początku wpisu - kreator nie ma edytora tekstu, więc imię i rocznik ułóż wcześniej w Canvie lub Wordzie. Folia winylowa znosi wilgoć z lodówki i skroploną wodę, a gdy obdarowany zechce użyć butelki ponownie, naklejkę zdejmie bez śladów kleju. Samą butelkę z etykietą myj ręcznie, nie w zmywarce. Klej jest mocny, więc naklejki nie przykleisz drugi raz - przyklej ją od razu na właściwą, suchą butelkę.
+
+Prezenty z kuchni rzadko kończą się na nalewkach, dlatego przy większym zamówieniu liczy się cena kompletu. Każdy arkusz może mieć inny układ, a dostawa do paczkomatu (19,99 zł) jest liczona raz za całe zamówienie:
+
+| Zamówienie | Arkusze (brutto) | Razem z dostawą |
+| :--- | :--- | :--- |
+| 1 arkusz, np. etykiety na nalewki | 49,00 zł | **68,99 zł** |
+| 2 arkusze, np. nalewki i słoiki z konfiturami | 98,00 zł | **117,99 zł** |
+| 3 arkusze, np. nalewki, słoiki i etykiety "Dla / Od" | 147,00 zł | **166,99 zł** |
+
+Nie ma rabatów ani progów ilościowych - płacisz 49,00 zł za każdy arkusz. Produkcja trwa 2-3 dni robocze od zaksięgowania wpłaty, a potem wysyłamy paczkę do paczkomatu. Grudzień to szczyt pracy przewoźników, dlatego etykiety zamów z zapasem, a nie w ostatnim tygodniu przed świętami. Etykiety "Dla / Od", słoiki z przetworami i naklejki do kalendarza adwentowego zebraliśmy w przewodniku [etykiety na prezenty z imieniem i inne naklejki świąteczne](/blog/naklejki-swiateczne-i-etykiety-na-prezenty).
+
 ## Jak zamówić naklejki na nalewki w kreatorze online?
 
 1. **Wgraj gotowy plik** z projektem etykiety wprost z telefonu lub komputera (PNG, JPG lub PDF).
@@ -118,6 +138,10 @@ Tak. Wgraj do kreatora etykiety kolejnych smaków jedną po drugiej (albo przygo
 ### Jaki kształt naklejki najlepiej sprawdzi się na butelce po winie lub wódce?
 
 Do smukłych butelek po winie najlepiej pasuje prostokątna etykieta pionowa lub owal, a do niższych butelek po wódce - prostokąt poziomy lub cięcie po obrysie własnego projektu.
+
+### Jak podpisać nalewkę na prezent?
+
+Na etykiecie prezentowej wystarczą trzy rzeczy: nazwa smaku, rocznik i krótka dedykacja z imieniem obdarowanego, np. "Nalewka Pigwowa 2026 - Dla Dziadka Janka". Gdy rozdajesz kilka butelek, przygotuj osobną etykietę z imieniem każdego odbiorcy i wgraj je do kreatora po kolei - trafią na ten sam arkusz A4 za 49,00 zł brutto i zostaną wycięte osobno. Napis ułóż wcześniej w Canvie lub Wordzie i zapisz jako PNG lub PDF.
 
 ## Zamów naklejki na nalewki domowe już dziś
 
