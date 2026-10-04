@@ -406,3 +406,16 @@ Wpis z 3.10 („kod gotowy lokalnie, czeka na wdrożenie") jest nieaktualny - st
 * **Pomiar testu P1:** zgłosić ponowną indeksację `fajne-wzory` w GSC (krok właściciela); kontrola CTR ok. 18-25.10.2026 (cel: min. 2% i min. 2 `add_to_cart` z gotowych arkuszy w 14 dni; punkt startowy 170 wyśw. / 0 klik. / poz. 8,99).
 * **Zależność od trybu:** meta `fajne-wzory`, zdanie w filarze i hasło w słowniku zakładają publiczny katalog. Przy powrocie trybu na „Wyłączony" lub „Podgląd" wycofać te trzy zmiany (link prowadziłby w 404); blok i stopka znikają same.
 * Merchant Center i feed (etap 3) oraz strony tematyczne (etap 2) - bez zmian.
+
+### 2026-10-04 (wieczór) - ósmy arkusz: „Ciepła Zima" (pierwszy w pełni świąteczny)
+* **Arkusz** dodany przez właściciela w panelu: *Ciepła Zima*, temat Zima, 46 naklejek, opublikowany z edytora (obraz produktu i pliki do druku gotowe, adres `/gotowe-arkusze/ciepla-zima`). Katalog liczy teraz **8 arkuszy**.
+* **Stan po publikacji z edytora:** opis zawierał jeden znak `"`, podtytuł i motywy były puste - strona w sklepie pokazywała pusty akapit „Co jest na arkuszu". Serwer wymaga tylko niepustego opisu, więc `"` przeszedł; ostrzeżenie o 80 słowach działa wyłącznie w edytorze.
+* **Uzupełnione** (Admin SDK, transakcja tylko do pustych pól, wpis w `auditLog`, `updatedAt` podbity, żeby otwarty w innej karcie edytor zapytał o nadpisanie zamiast po cichu zgubić tekst):
+  * podtytuł: `naklejki świąteczne z kominkiem i piernikami` (nagłówek strony: „Ciepła Zima - naklejki świąteczne z kominkiem i piernikami");
+  * opis: 96 słów, bez liczby naklejek, bez słów o pochodzeniu grafik; opisane tylko to, co widać na obrazie produktu (kominek ze skarpetami, dziadek do orzechów, piernikowy domek, kula śnieżna, sanki, łyżwy, choinki, wieniec z pomarańczami, bombki, latarenki, pierniki, filiżanki, kosz jabłek, rękawiczki, wstęga z zimowym napisem po angielsku); zastosowania: kalendarz adwentowy, kartki, opakowania prezentów, planer na grudzień;
+  * 16 motywów;
+  * **cytatu z napisu na wstędze w tekstach nie powtarzamy** (opis, motywy, `llms.txt`): to rozpoznawalna fraza z serialu, a §14 mówi „zero nazw marek i treści licencjonowanych w tekstach". Sama naklejka z tym napisem jest na arkuszu - to decyzja właściciela, odnotowana do oceny;
+  * **drugi temat „Święta"** (`category2`) - arkusz jest wprost świąteczny, a temat „Święta" to filtr w galerii i przyszła podstawa strony `/naklejki-swiateczne`.
+* **`llms.txt` / `llms-full.txt`** przebudowane (8 arkuszy).
+* **Do etapu 2 (strona `/naklejki-swiateczne`, termin 17.10):** w panelu są dwa arkusze o motywie świątecznym (*Zimna Zima* z banerami „Merry Christmas" / „Wesołych Świąt" i *Ciepła Zima*) wobec 6 zakładanych w §12. Tylko *Ciepła Zima* ma temat „Święta" - *Zimna Zima* zostaje przy samej „Zimie" (jej temat ustawił właściciel; dopisanie „Święta" to jedno pole w edytorze).
+* **Uwaga o pamięci podręcznej:** zapis skryptem nie unieważnia stron statycznych. API katalogu pokazało nowe dane od razu, ale statyczna strona produktu odświeża się dopiero po następnym wdrożeniu albo po zapisie arkusza w edytorze.

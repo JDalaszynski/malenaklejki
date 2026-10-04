@@ -3,6 +3,20 @@ import { getBlogPosts } from "@/lib/blog";
 import { getCatalogSheets } from "@/lib/sheets/public";
 import { THEME_PAGES } from "@/lib/sheets/themes";
 
+/**
+ * Next 16 wstawia adresy obrazów do XML bez zamiany znaków specjalnych, a adresy
+ * z Firebase Storage mają `?alt=media&token=...` - surowy `&` unieważnia całą mapę
+ * (Search Console: błąd analizowania XML). Zamieniamy sami; po aktualizacji Next
+ * sprawdzić, czy `<image:loc>` nie jest już zamieniany, żeby nie zrobić tego podwójnie.
+ */
+const escapeXml = (value: string) =>
+  value
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&apos;");
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = "https://www.malenaklejki.pl";
   const posts = await getBlogPosts();
@@ -73,7 +87,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
             lastModified: new Date(sheet.updatedAt),
             changeFrequency: "monthly" as const,
             priority: 0.7,
-            images: [sheet.productImageUrl],
+            images: [escapeXml(sheet.productImageUrl)],
           })),
         ];
 
