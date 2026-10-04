@@ -388,3 +388,21 @@ Zrobione i sprawdzone (tsc, lint, build, akcje panelu na danych testowych, stron
 
 Po stronie właściciela (etap 0): przeczytać §7, przemianować kategorie na tematy, uzupełnić opisy i opublikować arkusze z edytora, przełączyć tryb na „Włączony".
 
+### 2026-10-04 - etap 0 i 1 na produkcji, dane stron arkuszy, tryb „Włączony", podlinkowanie katalogu w treściach
+Wpis z 3.10 („kod gotowy lokalnie, czeka na wdrożenie") jest nieaktualny - stan na koniec dnia:
+* **Etap 0 i 1 wdrożony** (commit `19c63c2`, `main`). Sprawdzone na produkcji: `/api/gotowe-arkusze/katalog` i 404 na katalogu przy wyłączonym trybie, nowy §7 regulaminu, mapa strony bez katalogu do czasu włączenia trybu.
+* **Dane stron arkuszy:** 7 opublikowanych arkuszy ma adres, podtytuł z motywem, opis (90-103 słowa) i motywy (10-15), zapisane w Firestore wyłącznie w puste pola (status, tematy i `updatedAt` nietknięte). **Nazwy własne arkuszy zostają** (decyzja właściciela: wyróżnik i ciekawość przy przeglądaniu) - słowa kluczowe niesie podtytuł, np. „Jesienna Kawka - naklejki jesienne z kawą i dyniami". Opisy bez liczby naklejek (strona pokazuje ją sama z `stickerCount`) i bez słów o pochodzeniu grafik.
+* **Publikacja i tryb (właściciel):** arkusze opublikowane w edytorze (powstały pliki do druku), tryb „Włączony". Katalog jest publiczny i zwraca 7 arkuszy.
+* **Treści z §9 (to polecenie):**
+  * `fajne-wzory...` - nowy title (`Fajne wzory na naklejki - gotowe arkusze A4 za 49 zł`) i description (145 zn.) z obietnicą produktu i ceną, `updated: 2026-10-04`; blok z arkuszami i jego jedyny link do katalogu już się renderują; z kroku 1 listy usunięta pogrubiona fraza `wzory na naklejki do druku` (fraza zakupowa należy do katalogu);
+  * filar `jak-zamowic-idealne...` - zdanie „Nie masz grafiki - wybierz gotowy arkusz..." z linkiem w sekcji „według zastosowania" (bez bumpa `updated`, jak w P4.3.1);
+  * `/slownik-naklejek` - hasło „Gotowy arkusz naklejek" (`DefinedTerm`, 21 pojęć) z linkiem „Katalog gotowych wzorów"; `dateModified` i `lastModified` -> 2026-10-04;
+  * `llms.txt` / `llms-full.txt` - katalog, trzy fakty, sekcja „Gotowe arkusze" (7 pozycji z motywami i liczbą naklejek), reguła dla agentów; w generatorze poprawiona odmiana liczebnika („62 naklejki", „61 naklejek");
+  * zasada „najwyżej jeden link do katalogu na stronę" zachowana, anchory różne na każdej stronie. Szczegóły i weryfikacja: `blog-agent/plan.md` → P4.2.14, `landing-agent/plan.md` → „Zrealizowane".
+* **Sprawdzone:** `tsc` (bez cache), lint zmienionych plików (0 -> 0), `next build`, `audyt-facts.py` (bez nowych trafień), podgląd lokalny z `READY_SHEETS_MODE=on`.
+
+Świadomie odłożone / otwarte:
+* **Hub świąteczny** (akapit i tabela 1/2/3 arkusze) oraz **`male-naklejki-na-laptopa`, `personalizowane-naklejki-na-zeszyty...`** - dopiero przy publikacji odpowiednich stron tematycznych (etap 2); `THEME_PAGES` nadal pusty.
+* **Pomiar testu P1:** zgłosić ponowną indeksację `fajne-wzory` w GSC (krok właściciela); kontrola CTR ok. 18-25.10.2026 (cel: min. 2% i min. 2 `add_to_cart` z gotowych arkuszy w 14 dni; punkt startowy 170 wyśw. / 0 klik. / poz. 8,99).
+* **Zależność od trybu:** meta `fajne-wzory`, zdanie w filarze i hasło w słowniku zakładają publiczny katalog. Przy powrocie trybu na „Wyłączony" lub „Podgląd" wycofać te trzy zmiany (link prowadziłby w 404); blok i stopka znikają same.
+* Merchant Center i feed (etap 3) oraz strony tematyczne (etap 2) - bez zmian.

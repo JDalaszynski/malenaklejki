@@ -17,6 +17,7 @@ import {
   Camera,
   Tag,
   ShieldCheck,
+  LayoutGrid,
 } from "lucide-react";
 
 /**
@@ -214,6 +215,15 @@ export const GLOSSARY: TermGroup[] = [
         name: "Arkusz A4",
         def: "Arkusz A4 (21 x 29,7 cm) to jednostka rozliczeniowa w MałeNaklejki. Płacisz stałe 49,00 zł brutto za cały arkusz, niezależnie od tego, czy umieścisz na nim jedną dużą naklejkę do 19 cm, czy kilkadziesiąt małych. Nie ma minimalnego nakładu - zamówisz nawet jeden arkusz.",
         matchTerms: ["arkusz a4", "arkusza a4"],
+      },
+      {
+        icon: LayoutGrid,
+        slug: "gotowy-arkusz-naklejek",
+        name: "Gotowy arkusz naklejek",
+        def: "Gotowy arkusz naklejek to arkusz A4 z kilkudziesięcioma naklejkami ułożonymi wokół jednego tematu, na przykład jesieni, zimy albo kawy. Zamawiasz go bez wgrywania własnych plików, na tej samej folii winylowej i za tę samą cenę 49,00 zł brutto co arkusz ułożony samodzielnie. Liczba naklejek jest podana przy każdym arkuszu. Przed zamówieniem możesz otworzyć go w kreatorze i zmienić: usunąć naklejki, zmienić ich rozmiar albo dodać własne grafiki.",
+        href: "/gotowe-arkusze",
+        linkLabel: "Katalog gotowych wzorów",
+        matchTerms: ["gotowy arkusz", "gotowe arkusze", "gotowych arkuszy"],
       },
       {
         icon: Eraser,

@@ -116,10 +116,18 @@ async function readCatalog() {
   }
 }
 
+/** Odmiana jak `getStickersNoun` w sklepie: 1 naklejka, 54 naklejki, 61 naklejek. */
+const stickersNoun = (count) => {
+  if (count === 1) return "naklejka";
+  const mod10 = count % 10;
+  const mod100 = count % 100;
+  return mod10 >= 2 && mod10 <= 4 && (mod100 < 10 || mod100 >= 20) ? "naklejki" : "naklejek";
+};
+
 const sheetLine = (sheet) => {
   const title = sheet.subtitle ? `${sheet.name} - ${sheet.subtitle}` : sheet.name;
   const motifs = sheet.motifs?.length ? `; motywy: ${sheet.motifs.join(", ")}` : "";
-  return `- [${title}](${BASE_URL}${sheet.path}) - ${sheet.stickerCount} naklejek na arkuszu A4${motifs}`;
+  return `- [${title}](${BASE_URL}${sheet.path}) - ${sheet.stickerCount} ${stickersNoun(sheet.stickerCount)} na arkuszu A4${motifs}`;
 };
 
 const catalogSection = (catalog) =>

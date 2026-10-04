@@ -28,7 +28,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { path: "/naklejki-foliowe", lastModified: "2026-07-25" },
     { path: "/fotonaklejki", lastModified: "2026-07-27" },
     { path: "/naklejki-die-cut", lastModified: "2026-07-29" },
-    { path: "/slownik-naklejek", lastModified: "2026-07-29" },
+    { path: "/slownik-naklejek", lastModified: "2026-10-04" },
     { path: "/etykiety-na-sloiki", lastModified: "2026-08-25" },
     { path: "/wlepki-na-zamowienie", lastModified: "2026-08-31" },
   ];
