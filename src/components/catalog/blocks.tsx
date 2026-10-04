@@ -1,8 +1,8 @@
 import Link from "next/link";
 import { ArrowRight, Check } from "lucide-react";
 
-import { formatPrice, orderTotals, sheetCreatorPath, sheetHeading, sheetPath, type Faq } from "@/lib/sheets/schema";
-import { SHEET_PRICE, SHIPPING_PRICE, type CatalogSheet } from "@/lib/sheets/types";
+import { formatPrice, sheetCreatorPath, sheetHeading, sheetPath, type Faq } from "@/lib/sheets/schema";
+import { SHEET_PRICE, type CatalogSheet } from "@/lib/sheets/types";
 import { getStickersNoun } from "@/lib/utils/polish";
 import { SheetImage } from "./SheetImage";
 
@@ -164,36 +164,6 @@ export function SheetsTable({ sheets }: { sheets: CatalogSheet[] }) {
               </th>
               <td className={cellClass}>{sheet.motifs.length > 0 ? sheet.motifs.join(", ") : sheet.subtitle}</td>
               <td className={`${cellClass} tabular-nums`}>{sheet.stickerCount}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
-  );
-}
-
-/** Rachunek zamówienia: arkusze + jedna dostawa. */
-export function OrderTotalsTable() {
-  return (
-    <div className={tableWrapClass}>
-      <table className={tableClass}>
-        <thead>
-          <tr>
-            <th scope="col" className={headCellClass}>Zamówienie</th>
-            <th scope="col" className={headCellClass}>Arkusze</th>
-            <th scope="col" className={headCellClass}>Dostawa</th>
-            <th scope="col" className={headCellClass}>Razem</th>
-          </tr>
-        </thead>
-        <tbody>
-          {orderTotals().map((row, index) => (
-            <tr key={row.sheets} className={zebra(index)}>
-              <th scope="row" className="p-3 sm:p-4 border-b border-border/60 text-left font-black text-foreground">
-                {row.sheets} {row.sheets === 1 ? "arkusz" : "arkusze"}
-              </th>
-              <td className={`${cellClass} tabular-nums`}>{formatPrice(row.subtotal)}</td>
-              <td className={`${cellClass} tabular-nums`}>{formatPrice(SHIPPING_PRICE)}</td>
-              <td className={`${cellClass} tabular-nums font-black text-foreground`}>{formatPrice(row.total)}</td>
             </tr>
           ))}
         </tbody>

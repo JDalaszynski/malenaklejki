@@ -8,7 +8,6 @@ import {
   Breadcrumbs,
   EditSteps,
   FaqSection,
-  OrderTotalsTable,
   SheetGrid,
   SheetsTable,
   TrustStats,
@@ -233,7 +232,6 @@ export default async function CatalogPage() {
             </Link>{" "}
             - jedzie w tej samej paczce bez dopłaty za wysyłkę.
           </p>
-          <OrderTotalsTable />
         </section>
 
         <FaqSection title="Gotowe arkusze naklejek - najczęstsze pytania" faqs={faqs} />

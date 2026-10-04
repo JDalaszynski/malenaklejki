@@ -21,7 +21,6 @@ import {
   Breadcrumbs,
   EditSteps,
   FaqSection,
-  OrderTotalsTable,
   SheetGrid,
   SheetsTable,
   TrustStats,
@@ -175,7 +174,6 @@ export function ThemeLanding({ content, sheets }: { content: ThemeContent; sheet
             </Link>{" "}
             - dokładasz bez dopłaty za wysyłkę.
           </p>
-          <OrderTotalsTable />
         </section>
 
         <section className="mt-12 space-y-6">

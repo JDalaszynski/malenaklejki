@@ -141,12 +141,3 @@ export function faqSchema(faqs: Faq[]) {
     })),
   };
 }
-
-/** Rachunek „1 / 2 / 3 arkusze z jedną dostawą" — najbardziej cytowalna tabela katalogu. */
-export function orderTotals(maxSheets = 3): { sheets: number; subtotal: number; total: number }[] {
-  return Array.from({ length: maxSheets }, (_, index) => {
-    const sheets = index + 1;
-    const subtotal = sheets * SHEET_PRICE;
-    return { sheets, subtotal, total: Math.round((subtotal + SHIPPING_PRICE) * 100) / 100 };
-  });
-}

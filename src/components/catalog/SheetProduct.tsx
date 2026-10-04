@@ -9,7 +9,6 @@ import { AddReadySheetToCart } from "./AddReadySheetToCart";
 import {
   Breadcrumbs,
   EditSteps,
-  OrderTotalsTable,
   SheetGrid,
   SpecTable,
   headingClass,
@@ -198,7 +197,6 @@ export function SheetProduct({ sheet, related }: { sheet: CatalogSheet; related:
           </Link>{" "}
           - wszystko przyjedzie w jednej paczce.
         </p>
-        <OrderTotalsTable />
       </section>
 
       {/* Zwroty */}
