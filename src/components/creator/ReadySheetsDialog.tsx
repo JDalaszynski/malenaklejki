@@ -20,6 +20,7 @@ import Link from "next/link";
 
 import { trackSelectReadySheet, trackViewReadySheets } from "@/lib/analytics";
 import { loadReadySheets } from "@/lib/sheets/client";
+import { reportReadySheetsEvent } from "@/lib/sheets/trackUsage";
 import { SHEET_PRICE, type PublicSheetSummary, type PublicSheetsResponse } from "@/lib/sheets/types";
 import { getStickersNoun } from "@/lib/utils/polish";
 import { SheetImage } from "@/components/catalog/SheetImage";
@@ -104,7 +105,10 @@ export default function ReadySheetsDialog({
       setDetailId(sheet.id);
       setUseFailed(false);
       onPreview(sheet);
-      if (!data?.preview) trackSelectReadySheet(sheet, "galeria w kreatorze", SHEET_PRICE);
+      if (!data?.preview) {
+        trackSelectReadySheet(sheet, "galeria w kreatorze", SHEET_PRICE);
+        reportReadySheetsEvent({ event: "select", sheetId: sheet.id });
+      }
       bodyRef.current?.scrollTo({ top: 0 });
     },
     [onPreview, data?.preview]

@@ -21,10 +21,13 @@ import {
   useReadySheetsTeaser,
 } from "@/components/creator/ReadySheetsEntry";
 import { loadReadySheetLayout, loadReadySheets } from "@/lib/sheets/client";
-import type {
-  HomeReadySheets,
-  PublicSheetLayout,
-  PublicSheetSummary,
+import { reportReadySheetsEvent } from "@/lib/sheets/trackUsage";
+import type { UsageSource } from "@/lib/sheets/usageEvents";
+import {
+  SHEET_PRICE,
+  type HomeReadySheets,
+  type PublicSheetLayout,
+  type PublicSheetSummary,
 } from "@/lib/sheets/types";
 
 // Galeria gotowych arkuszy to dodatek — jej kod pobieramy dopiero, gdy klient
@@ -85,7 +88,11 @@ import { FAQSection } from "@/components/home/FAQSection";
 import { FinalCTASection } from "@/components/home/FinalCTASection";
 import { PlacedSticker } from "@/types/creator";
 import { useCartStore } from "@/store/cartStore";
-import { trackAddToCart } from "@/lib/analytics";
+import {
+  trackAddToCart,
+  trackOpenReadySheets,
+  trackUseReadySheet,
+} from "@/lib/analytics";
 import {
   checkOverlap,
   getRotatedSize,
@@ -1359,9 +1366,15 @@ export function HomePageClient({
     loadReadySheets().catch(() => {});
   };
 
-  const openReadySheets = () => {
+  // `source` mówi, które wejście kliknięto. W trybie podglądu galerię widzi
+  // tylko administrator, więc jego kliknięcia nie są ruchem klientów.
+  const openReadySheets = (source: UsageSource) => {
     prefetchReadySheets();
     setIsReadySheetsOpen(true);
+    if (readySheets.state === "on") {
+      reportReadySheetsEvent({ event: "open", source });
+      trackOpenReadySheets(source);
+    }
   };
 
   const closeReadySheets = () => {
@@ -1402,6 +1415,19 @@ export function HomePageClient({
         return false;
       }
     }
+    if (readySheets.state === "on") {
+      reportReadySheetsEvent({ event: "use", sheetId: sheet.id });
+      trackUseReadySheet(
+        {
+          id: sheet.id,
+          slug: sheet.slug,
+          name: sheet.name,
+          category: sheet.category,
+        },
+        "galeria w kreatorze",
+        SHEET_PRICE,
+      );
+    }
     closeReadySheets();
     // Chwila na zamknięcie galerii, żeby podświetlenie arkusza było widać.
     setTimeout(scrollToAndHighlightSheet, 250);
@@ -1431,7 +1457,7 @@ export function HomePageClient({
     if (!mounted || !readySheetsAvailable) return;
 
     const openFromHash = () => {
-      if (window.location.hash === "#gotowe-arkusze") openReadySheets();
+      if (window.location.hash === "#gotowe-arkusze") openReadySheets("link");
     };
     openFromHash();
     window.addEventListener("hashchange", openFromHash);
@@ -2392,6 +2418,9 @@ export function HomePageClient({
       } else {
         addItem(cartItemData);
         trackAddToCart(cartItemData, "kreator");
+        if (readySheetOrigin && readySheets.state === "on") {
+          reportReadySheetsEvent({ event: "cart", sheetId: readySheetOrigin.id });
+        }
       }
 
       router.push("/koszyk");
@@ -2735,7 +2764,7 @@ export function HomePageClient({
                   Dodaj własne grafiki albo zacznij od{" "}
                   <button
                     type="button"
-                    onClick={openReadySheets}
+                    onClick={() => openReadySheets("podtytul")}
                     onPointerEnter={prefetchReadySheets}
                     aria-haspopup="dialog"
                     className="font-extrabold text-primary underline decoration-primary/40 underline-offset-4 hover:decoration-primary transition-colors cursor-pointer"
@@ -2797,7 +2826,7 @@ export function HomePageClient({
                       <ReadySheetsEntry
                         teaser={readySheetsTeaser}
                         activeName={readySheet?.name ?? null}
-                        onOpen={openReadySheets}
+                        onOpen={() => openReadySheets("panel")}
                         onIntent={prefetchReadySheets}
                         className="w-full"
                       />
@@ -3304,7 +3333,7 @@ export function HomePageClient({
                     {readySheetsTeaser && (
                       <button
                         type="button"
-                        onClick={openReadySheets}
+                        onClick={() => openReadySheets("zmien-wzor")}
                         onPointerEnter={prefetchReadySheets}
                         aria-haspopup="dialog"
                         className="inline-flex items-center gap-1.5 rounded-xl px-2.5 py-1 text-xs font-black text-primary hover:bg-primary/10 transition-colors cursor-pointer"
@@ -3382,7 +3411,7 @@ export function HomePageClient({
                           // Przycisk siedzi w etykiecie pola pliku — bez tego
                           // kliknięcie otworzyłoby też wybór pliku.
                           e.preventDefault();
-                          openReadySheets();
+                          openReadySheets("pusty-arkusz");
                         }}
                         onPointerDown={prefetchReadySheets}
                         aria-haspopup="dialog"
@@ -3421,7 +3450,7 @@ export function HomePageClient({
                 <ReadySheetsEntry
                   teaser={readySheetsTeaser}
                   activeName={readySheet?.name ?? null}
-                  onOpen={openReadySheets}
+                  onOpen={() => openReadySheets("pod-arkuszem")}
                   onIntent={prefetchReadySheets}
                   className="sm:hidden w-10/12 mx-auto mt-2.5"
                 />

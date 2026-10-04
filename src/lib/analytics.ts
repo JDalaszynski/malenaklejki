@@ -12,6 +12,8 @@
  * osobno w `shipping`, bo w rachunku zysku jest neutralna.
  */
 
+import type { UsageSource } from "@/lib/sheets/usageEvents";
+
 const CURRENCY = "PLN";
 
 export type AnalyticsSheet = {
@@ -98,6 +100,19 @@ export function trackViewReadySheets(sheets: AnalyticsReadySheet[], listName: Re
   send("view_item_list", {
     item_list_name: listName,
     items: readySheetItems(sheets, listName, price),
+  });
+}
+
+/** Klient kliknął wejście do galerii; `entryPoint` mówi, które z wejść w kreatorze. */
+export function trackOpenReadySheets(entryPoint: UsageSource) {
+  send("ready_sheets_open", { entry_point: entryPoint });
+}
+
+/** Klient wczytał gotowy arkusz do kreatora. */
+export function trackUseReadySheet(sheet: AnalyticsReadySheet, listName: ReadySheetsList, price: number) {
+  send("ready_sheet_use", {
+    item_list_name: listName,
+    items: readySheetItems([sheet], listName, price),
   });
 }
 

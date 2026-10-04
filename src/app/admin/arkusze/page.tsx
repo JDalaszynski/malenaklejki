@@ -8,6 +8,7 @@ import { Pagination } from "@/components/admin/Pagination";
 import { StatTile } from "@/components/admin/ProfitStats";
 import { StatusPill } from "@/components/account/StatusPill";
 import { SheetGrid } from "@/components/sheets/SheetGrid";
+import { ReadySheetsUsage, parseUsagePeriod } from "@/components/sheets/ReadySheetsUsage";
 import { SheetsFilters } from "@/components/sheets/SheetsFilters";
 import { requireAdmin } from "@/lib/auth/dal";
 import { parsePage, type AdminSearchParams } from "@/lib/admin/filters";
@@ -22,6 +23,7 @@ import {
   paginateSheets,
   parseSheetFilters,
 } from "@/lib/sheets/store";
+import { loadUsage } from "@/lib/sheets/usage";
 
 export const metadata: Metadata = {
   title: "Panel — gotowe arkusze",
@@ -39,10 +41,17 @@ export default async function AdminSheetsPage({
   const params = await searchParams;
   const filters = parseSheetFilters(params);
 
-  const [all, libraryCount, readySheets] = await Promise.all([
+  const period = parseUsagePeriod(params.okres);
+
+  const [all, libraryCount, readySheets, usage] = await Promise.all([
     listSheets(),
     countLibraryStickers(),
     getReadySheetsSettingsFresh(),
+    // Liczniki są dodatkiem — ich awaria nie może zabrać panelu arkuszy.
+    loadUsage(period).catch((error) => {
+      console.error("loadUsage error:", error);
+      return null;
+    }),
   ]);
   const categories = listCategories(all);
   const page = paginateSheets(filterSheets(all, filters), parsePage(params));
@@ -115,6 +124,15 @@ export default async function AdminSheetsPage({
         />
         <StatTile label="Naklejek w bazie" value={String(libraryCount)} hint="do układania arkuszy" />
       </div>
+
+      {usage && (
+        <ReadySheetsUsage
+          usage={usage}
+          period={period}
+          names={Object.fromEntries(all.map((sheet) => [sheet.id, sheet.name]))}
+          isOn={readySheets.mode === "on"}
+        />
+      )}
 
       {all.length > 0 && (
         <Card>
