@@ -898,9 +898,34 @@ export function SheetEditor({ sheet, initialStickers, library: initialLibrary, c
       </AnimatePresence>
 
       <div className="flex flex-col lg:flex-row gap-6">
-        {/* Lewa kolumna: dane arkusza, dodawanie naklejek, wybrana naklejka.
+        {/* Lewa kolumna: wybrana naklejka, dane arkusza, dodawanie naklejek.
             Stała szerokość — resztę ekranu dostaje arkusz. */}
         <div className="lg:w-[22rem] xl:w-[24rem] shrink-0 flex flex-col gap-6 order-2 lg:order-1">
+          {selectedSticker && (
+            <SelectedStickerPanel
+              key={selectedSticker.id}
+              sticker={selectedSticker}
+              libraryItem={selectedLibraryItem}
+              countOnSheet={selectedSticker.libraryId ? countsOnSheet[selectedSticker.libraryId] ?? 1 : 1}
+              calculating={editor.isCalculatingContour}
+              isFilling={editor.isFillingSheet}
+              libraryBusy={libraryBusy}
+              onEdit={() => setEditingStickerId(selectedSticker.id)}
+              onDuplicate={editor.duplicateSelected}
+              onFill={() => editor.fillWith()}
+              onDownload={downloadSelected}
+              onDelete={editor.deleteSelected}
+              onWidthChange={editor.changeWidth}
+              onRotationChange={editor.changeRotation}
+              onCutLineChange={(type) => void editor.changeCutLine(type)}
+              onRename={(newName) => selectedLibraryItem && renameLibraryItem(selectedLibraryItem, newName)}
+              onSaveDefaults={() =>
+                selectedLibraryItem && saveDefaultsToLibrary(selectedSticker, selectedLibraryItem)
+              }
+              onAddToLibrary={() => linkToLibrary(selectedSticker, "Naklejka z arkusza")}
+            />
+          )}
+
           <Card title="Arkusz">
             <div className="flex flex-col gap-4">
               <div>
@@ -1103,31 +1128,6 @@ export function SheetEditor({ sheet, initialStickers, library: initialLibrary, c
               </div>
             )}
           </Card>
-
-          {selectedSticker && (
-            <SelectedStickerPanel
-              key={selectedSticker.id}
-              sticker={selectedSticker}
-              libraryItem={selectedLibraryItem}
-              countOnSheet={selectedSticker.libraryId ? countsOnSheet[selectedSticker.libraryId] ?? 1 : 1}
-              calculating={editor.isCalculatingContour}
-              isFilling={editor.isFillingSheet}
-              libraryBusy={libraryBusy}
-              onEdit={() => setEditingStickerId(selectedSticker.id)}
-              onDuplicate={editor.duplicateSelected}
-              onFill={() => editor.fillWith()}
-              onDownload={downloadSelected}
-              onDelete={editor.deleteSelected}
-              onWidthChange={editor.changeWidth}
-              onRotationChange={editor.changeRotation}
-              onCutLineChange={(type) => void editor.changeCutLine(type)}
-              onRename={(newName) => selectedLibraryItem && renameLibraryItem(selectedLibraryItem, newName)}
-              onSaveDefaults={() =>
-                selectedLibraryItem && saveDefaultsToLibrary(selectedSticker, selectedLibraryItem)
-              }
-              onAddToLibrary={() => linkToLibrary(selectedSticker, "Naklejka z arkusza")}
-            />
-          )}
 
           <Card title="Dodaj naklejki">
             <div className="flex bg-[#004749]/5 dark:bg-[#002224] p-1 rounded-2xl border border-[#004749]/10 dark:border-white/10 gap-1 mb-4">
