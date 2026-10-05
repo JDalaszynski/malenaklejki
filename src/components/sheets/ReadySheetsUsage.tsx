@@ -51,7 +51,7 @@ const TH = "py-2 pr-3 text-left text-[11px] font-black uppercase tracking-wider 
 const TD = "py-2 pr-3 text-sm font-semibold text-foreground tabular-nums";
 
 /**
- * Zainteresowanie gotowymi arkuszami w kreatorze: od otwarcia galerii do
+ * Zainteresowanie gotowymi zestawami w kreatorze: od otwarcia galerii do
  * koszyka. Liczby pochodzą z własnych liczników sklepu (`lib/sheets/usage.ts`),
  * więc obejmują też klientów, którzy odrzucili cookies analityczne.
  */
@@ -63,7 +63,7 @@ export function ReadySheetsUsage({
 }: {
   usage: UsageSummary;
   period: UsagePeriod;
-  /** Nazwy arkuszy po identyfikatorze — usunięty arkusz zostaje tylko w licznikach. */
+  /** Nazwy zestawów po identyfikatorze — usunięty zestaw zostaje tylko w licznikach. */
   names: Record<string, string>;
   isOn: boolean;
 }) {
@@ -72,14 +72,14 @@ export function ReadySheetsUsage({
 
   return (
     <Card
-      title="Czy klienci klikają w gotowe arkusze?"
-      description="Liczy kliknięcia w kreatorze: otwarcie galerii, obejrzenie wzoru, wczytanie go do kreatora i dodanie arkusza do koszyka."
+      title="Czy klienci klikają w gotowe zestawy?"
+      description="Liczy kliknięcia w kreatorze: otwarcie galerii, obejrzenie wzoru, wczytanie go do kreatora i dodanie zestawu do koszyka."
       actions={
         <nav aria-label="Okres" className="flex items-center gap-1">
           {USAGE_PERIODS.map((days) => (
             <Link
               key={days}
-              href={days === 30 ? "/admin/arkusze" : `/admin/arkusze?okres=${days}`}
+              href={days === 30 ? "/admin/zestawy" : `/admin/zestawy?okres=${days}`}
               aria-current={days === period ? "true" : undefined}
               className={`rounded-xl px-3 py-1.5 text-xs font-black transition-colors ${
                 days === period
@@ -167,7 +167,7 @@ export function ReadySheetsUsage({
                 <table className="w-full">
                   <thead>
                     <tr>
-                      <th className={TH}>Arkusz</th>
+                      <th className={TH}>Zestaw</th>
                       <th className={`${TH} text-right`}>Obejrzany</th>
                       <th className={`${TH} text-right`}>Wczytany</th>
                       <th className={`${TH} text-right`}>W koszyku</th>
@@ -177,7 +177,7 @@ export function ReadySheetsUsage({
                     {usage.sheets.slice(0, 15).map((sheet) => (
                       <tr key={sheet.id} className="border-t border-border/60">
                         <td className={`${TD} font-medium`}>
-                          {names[sheet.id] ?? <span className="text-muted-foreground">usunięty arkusz</span>}
+                          {names[sheet.id] ?? <span className="text-muted-foreground">usunięty zestaw</span>}
                         </td>
                         <td className={`${TD} text-right`}>{sheet.select}</td>
                         <td className={`${TD} text-right`}>{sheet.use}</td>

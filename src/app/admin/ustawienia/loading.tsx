@@ -6,7 +6,7 @@ export default function Loading() {
   return (
     <AdminPageSkeleton
       title="Ustawienia sklepu"
-      subtitle="Terminy i komunikaty dla klientów oraz widoczność gotowych arkuszy. Każdą sekcję zapisujesz osobno."
+      subtitle="Terminy i komunikaty dla klientów oraz widoczność gotowych zestawów. Każdą sekcję zapisujesz osobno."
       label="Wczytywanie ustawień sklepu…"
     >
       <div className="grid grid-cols-1 lg:grid-cols-[17rem_minmax(0,1fr)] gap-6 lg:gap-10 items-start">

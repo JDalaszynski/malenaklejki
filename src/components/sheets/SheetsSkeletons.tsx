@@ -1,7 +1,7 @@
 import { Card } from "@/components/admin/AdminLayout";
 import { SkeletonBar } from "@/components/layout/Skeleton";
 
-/** Kafelki arkuszy: podgląd A4 i dwie linijki opisu. */
+/** Kafelki zestawów: podgląd A4 i dwie linijki opisu. */
 export function SheetGridSkeleton({ count = 8 }: { count?: number }) {
   return (
     <div className="grid grid-cols-1 min-[440px]:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4">
@@ -27,7 +27,7 @@ export function SheetEditorSkeleton() {
   return (
     <div className="flex flex-col lg:flex-row gap-6">
       <div className="lg:w-[22rem] xl:w-[24rem] shrink-0 flex flex-col gap-6 order-2 lg:order-1">
-        <Card title="Arkusz">
+        <Card title="Zestaw">
           <SkeletonBar className="h-4 w-28" />
           <SkeletonBar className="h-11 w-full rounded-xl mt-2" />
           <SkeletonBar className="h-4 w-24 mt-4" />

@@ -179,7 +179,7 @@ export function getRenderImageUrl(
 }
 
 /**
- * Lekkie wersje ekranowe grafik (gotowe arkusze): adres oryginału -> adres
+ * Lekkie wersje ekranowe grafik (gotowe zestawy): adres oryginału -> adres
  * wersji do pokazania. Zarejestrowaną grafikę kreator rysuje na ekranie z lekkiej
  * wersji; `getRenderImageUrl`, z którego powstaje plik do druku, tej mapy nie
  * widzi i zawsze sięga po oryginał.

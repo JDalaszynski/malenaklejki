@@ -1,13 +1,13 @@
 import type { PlacedSticker } from "@/types/creator";
 
 /**
- * Gotowe arkusze tematyczne i baza naklejek — typy wspólne dla serwera
+ * Gotowe zestawy tematyczne i baza naklejek — typy wspólne dla serwera
  * i przeglądarki.
  *
- * Arkusz to układ naklejek zapisany tak samo jak arkusz z kreatora
+ * Zestaw to układ naklejek na arkuszu A4, zapisany tak samo jak arkusz z kreatora
  * (`PlacedSticker[]`), tylko przygotowany przez sprzedawcę. Baza naklejek
- * to katalog grafik, z których te arkusze się składa — każda naklejka
- * dodana na arkusz trafia do niej automatycznie.
+ * to katalog grafik, z których składają się te zestawy — każda naklejka
+ * dodana do zestawu trafia do niej automatycznie.
  */
 
 export type CutLineType = PlacedSticker["cutLineType"];
@@ -42,19 +42,19 @@ export const SHEET_STATUS_LABELS: Record<SheetStatus, string> = {
 export type StickerSheet = {
   id: string;
   name: string;
-  /** Temat główny — pod nim arkusz stoi w galerii i na stronie tematycznej. */
+  /** Temat główny — pod nim zestaw stoi w galerii i na stronie tematycznej. */
   category: string;
-  /** Drugi temat (opcjonalny), np. arkusz jesienny z motywem Halloween. */
+  /** Drugi temat (opcjonalny), np. zestaw jesienny z motywem Halloween. */
   category2: string;
-  /** Adres strony arkusza w sklepie: `/gotowe-arkusze/<slug>`. */
+  /** Adres strony zestawu w sklepie: `/gotowe-zestawy/<slug>`. */
   slug: string;
   /** Opisowy podtytuł z motywem, np. „naklejki jesienne z kawą i dyniami". */
   subtitle: string;
-  /** Opis na stronę arkusza i do pliku produktowego. */
+  /** Opis na stronę zestawu i do pliku produktowego. */
   description: string;
-  /** Co jest na arkuszu: „dynie", „liście klonu", „kubek kawy"… */
+  /** Co jest w zestawie: „dynie", „liście klonu", „kubek kawy"… */
   motifs: string[];
-  /** Obraz produktu w wysokiej rozdzielczości — strona arkusza i Merchant Center. */
+  /** Obraz produktu w wysokiej rozdzielczości — strona zestawu i Merchant Center. */
   productImageUrl: string | null;
   /** Plik do druku i plik linii cięcia przygotowane przy publikacji. */
   printUrl: string | null;
@@ -63,9 +63,9 @@ export type StickerSheet = {
   assetsStale: boolean;
   status: SheetStatus;
   stickerCount: number;
-  /** Naklejki z bazy użyte na arkuszu (bez powtórzeń) — do licznika użyć w bazie. */
+  /** Naklejki z bazy użyte w zestawie (bez powtórzeń) — do licznika użyć w bazie. */
   libraryIds: string[];
-  /** Podgląd arkusza (JPEG z tokenem pobierania) — lista w panelu, a docelowo sklep. */
+  /** Podgląd zestawu (JPEG z tokenem pobierania) — lista w panelu, a docelowo sklep. */
   previewUrl: string | null;
   createdAt: string;
   updatedAt: string;
@@ -89,27 +89,27 @@ export type LibrarySticker = {
   cutLineType: CutLineType;
   createdAt: string;
   updatedAt: string;
-  /** Ostatnie użycie na arkuszu — po tym sortujemy listę. */
+  /** Ostatnie użycie w zestawie — po tym sortujemy listę. */
   lastUsedAt: string;
 };
 
-/** Gotowy arkusz na liście w kreatorze — tylko to, co widzi klient. */
+/** Gotowy zestaw na liście w kreatorze — tylko to, co widzi klient. */
 export type PublicSheetSummary = {
   id: string;
   name: string;
   category: string;
-  /** Wszystkie tematy arkusza (główny pierwszy) — po nich filtruje galeria. */
+  /** Wszystkie tematy zestawu (główny pierwszy) — po nich filtruje galeria. */
   categories: string[];
   previewUrl: string | null;
   stickerCount: number;
-  /** Znacznik wersji arkusza — adres układu z nim może leżeć w pamięci podręcznej. */
+  /** Znacznik wersji zestawu — adres układu z nim może leżeć w pamięci podręcznej. */
   version: string;
-  /** Adres strony arkusza; `null`, dopóki arkusz nie ma kompletu do katalogu. */
+  /** Adres strony zestawu; `null`, dopóki zestaw nie ma kompletu do katalogu. */
   slug: string | null;
 };
 
 /**
- * Arkusz z kompletem do katalogu: własna strona, opis i pliki do druku, dzięki
+ * Zestaw z kompletem do katalogu: własna strona, opis i pliki do druku, dzięki
  * którym da się go dodać do koszyka bez przechodzenia przez kreator.
  */
 export type CatalogSheet = PublicSheetSummary & {
@@ -124,7 +124,7 @@ export type CatalogSheet = PublicSheetSummary & {
   updatedAt: string;
 };
 
-/** Czy arkusz ma wszystko, czego potrzebuje strona produktu. */
+/** Czy zestaw ma wszystko, czego potrzebuje strona produktu. */
 export function isCatalogReady(sheet: {
   slug?: string | null;
   description?: string | null;
@@ -143,13 +143,13 @@ export function isCatalogReady(sheet: {
   );
 }
 
-/** Skąd pozycja koszyka: gotowy arkusz i to, czy klient go zmienił. */
+/** Skąd pozycja koszyka: gotowy zestaw i to, czy klient go zmienił. */
 export type ReadySheetOrigin = {
   id: string;
   slug: string | null;
   name: string;
   category: string;
-  /** Niezmieniony gotowy arkusz można zwrócić w 14 dni (regulamin §7). */
+  /** Niezmieniony gotowy zestaw można zwrócić w 14 dni (regulamin §7). */
   modified: boolean;
 };
 
@@ -158,7 +158,7 @@ export const SHEET_PRICE = 49;
 /** Koszt dostawy do paczkomatu, liczony raz na zamówienie. */
 export const SHIPPING_PRICE = 19.99;
 
-/** Odpowiedź `/api/gotowe-arkusze`. */
+/** Odpowiedź `/api/gotowe-zestawy`. */
 export type PublicSheetsResponse = {
   sheets: PublicSheetSummary[];
   categories: string[];
@@ -166,7 +166,7 @@ export type PublicSheetsResponse = {
   preview: boolean;
 };
 
-/** Odpowiedź `/api/gotowe-arkusze/[id]` — układ do wczytania w kreatorze. */
+/** Odpowiedź `/api/gotowe-zestawy/[id]` — układ do wczytania w kreatorze. */
 export type PublicSheetLayout = {
   id: string;
   name: string;
@@ -182,19 +182,19 @@ export type PublicSheetLayout = {
 };
 
 /**
- * Zapowiedź gotowych arkuszy przy kreatorze: tyle, ile trzeba do narysowania
+ * Zapowiedź gotowych zestawów przy kreatorze: tyle, ile trzeba do narysowania
  * wejścia do galerii. Samą listę galeria dociąga dopiero po otwarciu.
  */
 export type ReadySheetsTeaser = {
   count: number;
   categories: string[];
-  /** Podglądy kilku najnowszych arkuszy — miniaturki przy wejściu. */
+  /** Podglądy kilku najnowszych zestawów — miniaturki przy wejściu. */
   thumbs: string[];
   preview: boolean;
 };
 
 /**
- * Stan gotowych arkuszy wliczony w stronę główną. W trybie podglądu strona
+ * Stan gotowych zestawów wliczony w stronę główną. W trybie podglądu strona
  * nie niesie nic — administrator dociąga zapowiedź z przeglądarki, żeby
  * statyczna strona nie zależała od sesji.
  */
@@ -240,7 +240,7 @@ export const MAX_SHEET_SUBTITLE = 140;
 export const MAX_SHEET_DESCRIPTION = 1500;
 export const MAX_MOTIFS = 24;
 export const MAX_MOTIF_LENGTH = 40;
-/** Poniżej tylu słów opis jest za krótki, żeby strona arkusza miała własną treść. */
+/** Poniżej tylu słów opis jest za krótki, żeby strona zestawu miała własną treść. */
 export const MIN_DESCRIPTION_WORDS = 80;
 
 /** Adres z nazwy: małe litery, bez polskich znaków, słowa łączone dywizem. */

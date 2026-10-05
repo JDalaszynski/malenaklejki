@@ -99,7 +99,7 @@ export default function RegulaminPage() {
           <p>
             2. Niniejszy Regulamin określa zasady korzystania ze Sklepu,
             składania zamówień na produkty personalizowane (naklejki na
-            arkuszach A4) oraz na Gotowe arkusze, sposoby płatności, dostawy,
+            arkuszach A4) oraz na Gotowe zestawy, sposoby płatności, dostawy,
             zasady odstąpienia od umowy, a także procedury reklamacyjne.
           </p>
           <p>
@@ -113,7 +113,7 @@ export default function RegulaminPage() {
     {
       id: "definicje",
       title: "§ 2. Definicje",
-      searchText: `Klient osoba fizyczna prawna jednostka organizacyjna składająca zamówienie. Konsument osoba fizyczna dokonująca czynności prawnej niezwiązanej z działalnością gospodarczą. Produkt Naklejka nieprefabrykowany towar personalizowany arkusz A4 z naklejkami o określonej szerokości wysokości kącie obrotu linii cięcia. Kreator narzędzie internetowe wgranie własnej grafiki edycja usuwanie tła sztuczna inteligencja kadrowanie wybór konturu cięcia. Generator AI funkcja sklepu generowanie grafik na podstawie opisów tekstowych promptów. Gotowy arkusz arkusz A4 z naklejkami przygotowany przez Sprzedawcę gotowy wzór zamówiony bez zmian albo zmieniony w Kreatorze.`,
+      searchText: `Klient osoba fizyczna prawna jednostka organizacyjna składająca zamówienie. Konsument osoba fizyczna dokonująca czynności prawnej niezwiązanej z działalnością gospodarczą. Produkt Naklejka nieprefabrykowany towar personalizowany arkusz A4 z naklejkami o określonej szerokości wysokości kącie obrotu linii cięcia. Kreator narzędzie internetowe wgranie własnej grafiki edycja usuwanie tła sztuczna inteligencja kadrowanie wybór konturu cięcia. Generator AI funkcja sklepu generowanie grafik na podstawie opisów tekstowych promptów. Gotowy zestaw arkusz A4 z naklejkami przygotowany przez Sprzedawcę gotowy wzór zamówiony bez zmian albo zmieniony w Kreatorze.`,
       content: (
         <ul className="space-y-4">
           <li>
@@ -145,11 +145,11 @@ export default function RegulaminPage() {
             późniejszego umieszczenia na arkuszu jako Naklejki.
           </li>
           <li>
-            <strong>Gotowy arkusz</strong> - arkusz A4 z naklejkami
+            <strong>Gotowy zestaw</strong> - zestaw naklejek na arkuszu A4
             przygotowany przez Sprzedawcę i oferowany w Sklepie jako gotowy
             wzór. Klient może zamówić go bez zmian albo otworzyć w Kreatorze
             i zmienić (usunąć naklejki, zmienić ich rozmiar lub położenie,
-            dodać własne grafiki). Gotowy arkusz zmieniony przez Klienta
+            dodać własne grafiki). Gotowy zestaw zmieniony przez Klienta
             w Kreatorze staje się Produktem wyprodukowanym według
             specyfikacji Klienta.
           </li>
@@ -274,19 +274,19 @@ export default function RegulaminPage() {
     {
       id: "zwroty",
       title: "§ 7. Prawo odstąpienia od umowy (zwroty)",
-      searchText: `prawo odstąpienia od umowy zwroty zwrot 14 dni gotowy arkusz zamówiony bez zmian oświadczenie o odstąpieniu odesłanie towaru koszt zwrotu zwrot płatności. brak prawa odstąpienia ustawa o prawach konsumenta rzecz nieprefabrykowana wyprodukowana według specyfikacji zaspokojenie zindywidualizowanych potrzeb. indywidualne zamówienie własna grafika gotowy arkusz zmieniony w kreatorze zwroty bez podania przyczyny nie są przyjmowane.`,
+      searchText: `prawo odstąpienia od umowy zwroty zwrot 14 dni gotowy zestaw zamówiony bez zmian oświadczenie o odstąpieniu odesłanie towaru koszt zwrotu zwrot płatności. brak prawa odstąpienia ustawa o prawach konsumenta rzecz nieprefabrykowana wyprodukowana według specyfikacji zaspokojenie zindywidualizowanych potrzeb. indywidualne zamówienie własna grafika gotowy zestaw zmieniony w kreatorze zwroty bez podania przyczyny nie są przyjmowane.`,
       content: (
         <div className="space-y-4">
           <p>
             1. Zasady zwrotu zależą od tego, co zostało zamówione: Naklejki
             wykonane według specyfikacji Klienta nie podlegają zwrotowi
-            (ust. 2-3), a Gotowy arkusz zamówiony bez zmian można zwrócić
+            (ust. 2-3), a Gotowy zestaw zamówiony bez zmian można zwrócić
             w ciągu 14 dni (ust. 4-9).
           </p>
 
           <div className="bg-destructive/10 border border-destructive/20 p-5 rounded-2xl my-4 text-sm font-semibold">
             <p className="text-destructive font-black uppercase tracking-wider mb-2">
-              Naklejki z własnych grafik i arkusze zmienione w Kreatorze
+              Naklejki z własnych grafik i zestawy zmienione w Kreatorze
             </p>
             <p className="text-foreground leading-relaxed">
               2. Zgodnie z art. 38 pkt 3 Ustawy z dnia 30 maja 2014 r. o prawach
@@ -301,7 +301,7 @@ export default function RegulaminPage() {
           <p>
             3. Dotyczy to Naklejek wykonywanych na indywidualne zamówienie
             Klienta według przesłanych grafik i określonych wymiarów, a także
-            Gotowych arkuszy, w których Klient przed złożeniem zamówienia
+            Gotowych zestawów, w których Klient przed złożeniem zamówienia
             wprowadził zmiany w Kreatorze. W tych przypadkach{" "}
             <strong>zwroty bez podania przyczyny nie są przyjmowane</strong>.
             Prosimy o przemyślane zakupy oraz uważne sprawdzanie kadru i
@@ -310,10 +310,10 @@ export default function RegulaminPage() {
 
           <div className="bg-primary/10 border border-primary/20 p-5 rounded-2xl my-4 text-sm font-semibold">
             <p className="text-primary font-black uppercase tracking-wider mb-2">
-              Gotowe arkusze zamówione bez zmian
+              Gotowe zestawy zamówione bez zmian
             </p>
             <p className="text-foreground leading-relaxed">
-              4. Konsument, który zamówił Gotowy arkusz bez wprowadzania
+              4. Konsument, który zamówił Gotowy zestaw bez wprowadzania
               w nim zmian, może{" "}
               <strong>
                 odstąpić od umowy bez podania przyczyny w terminie 14 dni
@@ -327,7 +327,7 @@ export default function RegulaminPage() {
           <p>
             5. Aby odstąpić od umowy, należy przed upływem terminu wysłać
             oświadczenie o odstąpieniu na adres e-mail podany w § 1 ust. 1,
-            podając numer zamówienia i wskazując, którego Gotowego arkusza
+            podając numer zamówienia i wskazując, którego Gotowego zestawu
             dotyczy odstąpienie. Do zachowania terminu wystarczy wysłanie
             oświadczenia przed jego upływem.
           </p>
@@ -338,7 +338,7 @@ export default function RegulaminPage() {
             Klient.
           </p>
           <p>
-            7. Sprzedawca zwraca otrzymaną płatność za zwracany Gotowy arkusz
+            7. Sprzedawca zwraca otrzymaną płatność za zwracany Gotowy zestaw
             niezwłocznie, nie później niż w terminie 14 dni od dnia otrzymania
             oświadczenia, tym samym sposobem płatności, jakiego użył Klient.
             Sprzedawca może wstrzymać się ze zwrotem płatności do chwili
@@ -348,7 +348,7 @@ export default function RegulaminPage() {
           </p>
           <p>
             8. Jeżeli zamówienie obejmowało również Naklejki, o których mowa
-            w ust. 3, odstąpienie dotyczy wyłącznie Gotowych arkuszy
+            w ust. 3, odstąpienie dotyczy wyłącznie Gotowych zestawów
             zamówionych bez zmian.
           </p>
           <p>
@@ -489,7 +489,7 @@ export default function RegulaminPage() {
     <DocLayout
       title="Regulamin Sklepu Internetowego MałeNaklejki"
       description="Regulamin określający warunki korzystania ze sklepu internetowego oraz zasady składania zamówień na spersonalizowane naklejki na arkuszach A4."
-      lastUpdated="3 października 2026 r."
+      lastUpdated="5 października 2026 r."
       activeTab="regulamin"
       sections={sections}
     />

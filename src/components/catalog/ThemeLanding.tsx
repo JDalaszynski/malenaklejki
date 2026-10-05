@@ -33,8 +33,8 @@ import {
 } from "./blocks";
 
 /**
- * Treść strony tematycznej — wszystko, co jest pisane ręcznie. Listę arkuszy
- * strona bierze z panelu (temat arkusza), więc nowy wzór pojawia się na niej
+ * Treść strony tematycznej — wszystko, co jest pisane ręcznie. Listę zestawów
+ * strona bierze z panelu (temat zestawu), więc nowy wzór pojawia się na niej
  * bez ruszania kodu.
  */
 export type ThemeContent = {
@@ -44,15 +44,15 @@ export type ThemeContent = {
   name: string;
   /** Etykieta nad nagłówkiem. */
   badge: string;
-  /** H1 z frazą główną, np. „Naklejki świąteczne - gotowe arkusze A4". */
+  /** H1 z frazą główną, np. „Naklejki świąteczne - gotowe zestawy". */
   h1: string;
   /** Pierwszy akapit (BLUF): bezpośrednia odpowiedź i twarde fakty. */
   intro: ReactNode;
-  /** Nagłówek nad siatką arkuszy. */
+  /** Nagłówek nad siatką zestawów. */
   gridHeading: string;
   /** Zastosowania tematu — 3-5 akapitów z linkami do wpisów. */
   uses: { heading: string; items: { title: string; text: ReactNode }[] };
-  /** Dodatkowe sekcje, np. podtemat z własną listą arkuszy. */
+  /** Dodatkowe sekcje, np. podtemat z własną listą zestawów. */
   sections?: { id?: string; heading: string; body: ReactNode; sheets?: CatalogSheet[] }[];
   /** Jedna tablica dla widocznego FAQ i schematu. */
   faqs: Faq[];
@@ -62,9 +62,9 @@ export type ThemeContent = {
 };
 
 /**
- * Strona tematyczna gotowych arkuszy (strona kategorii sklepu): siatka
- * arkuszy stoi nad treścią, pod nią tabela, edycja, rachunek zamówienia,
- * zastosowania i FAQ. Anatomia wg `landing-agent/strategia-gotowe-arkusze.md` §6.
+ * Strona tematyczna gotowych zestawów (strona kategorii sklepu): siatka
+ * zestawów stoi nad treścią, pod nią tabela, edycja, rachunek zamówienia,
+ * zastosowania i FAQ. Anatomia wg `landing-agent/strategia-gotowe-zestawy.md` §6.
  */
 export function ThemeLanding({ content, sheets }: { content: ThemeContent; sheets: CatalogSheet[] }) {
   const list = `temat: ${content.name}` as const;
@@ -74,7 +74,7 @@ export function ThemeLanding({ content, sheets }: { content: ThemeContent; sheet
       <JsonLd
         data={breadcrumbSchema([
           { name: "Strona główna", path: "" },
-          { name: "Gotowe arkusze", path: CATALOG_PATH },
+          { name: "Gotowe zestawy", path: CATALOG_PATH },
           { name: content.name },
         ])}
       />
@@ -98,7 +98,7 @@ export function ThemeLanding({ content, sheets }: { content: ThemeContent; sheet
         <Breadcrumbs
           items={[
             { name: "Kreator Zestawu Naklejek", path: "/" },
-            { name: "Gotowe arkusze", path: CATALOG_PATH },
+            { name: "Gotowe zestawy", path: CATALOG_PATH },
             { name: content.name },
           ]}
         />
@@ -119,7 +119,7 @@ export function ThemeLanding({ content, sheets }: { content: ThemeContent; sheet
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" aria-hidden />
             </a>
             <Link href={CATALOG_PATH} className={secondaryCtaClass}>
-              Wszystkie gotowe arkusze
+              Wszystkie gotowe zestawy
             </Link>
           </div>
           <div className="flex flex-wrap items-center gap-x-4 gap-y-1.5 pt-1">
@@ -134,7 +134,7 @@ export function ThemeLanding({ content, sheets }: { content: ThemeContent; sheet
 
         <TrustStats
           stats={[
-            { value: "49 zł", label: "Brutto za arkusz A4" },
+            { value: "49 zł", label: "Brutto za zestaw" },
             { value: `${sheets.length}`, label: "Wzorów w temacie" },
             { value: "Woda i UV", label: "Folia winylowa" },
             { value: "2-3 dni", label: "Produkcja robocze" },
@@ -147,7 +147,7 @@ export function ThemeLanding({ content, sheets }: { content: ThemeContent; sheet
         </section>
 
         <section className="mt-12 space-y-5">
-          <h2 className={headingClass}>Co jest na którym arkuszu</h2>
+          <h2 className={headingClass}>Co jest w którym zestawie</h2>
           <SheetsTable sheets={sheets} />
         </section>
 
@@ -160,15 +160,15 @@ export function ThemeLanding({ content, sheets }: { content: ThemeContent; sheet
         ))}
 
         <section className="mt-12 space-y-5">
-          <h2 className={headingClass}>Każdy arkusz możesz zmienić przed zamówieniem</h2>
+          <h2 className={headingClass}>Każdy zestaw możesz zmienić przed zamówieniem</h2>
           <EditSteps />
         </section>
 
         <section className="mt-12 space-y-5">
           <h2 className={headingClass}>Ile kosztuje zamówienie</h2>
           <p className={paragraphClass}>
-            Arkusz A4 to {formatPrice(SHEET_PRICE)} brutto. Dostawa do paczkomatu kosztuje{" "}
-            {formatPrice(SHIPPING_PRICE)} za całe zamówienie, więc kolejny arkusz - gotowy albo{" "}
+            Zestaw na arkuszu A4 to {formatPrice(SHEET_PRICE)} brutto. Dostawa do paczkomatu kosztuje{" "}
+            {formatPrice(SHIPPING_PRICE)} za całe zamówienie, więc kolejny zestaw - gotowy albo{" "}
             <Link href="/" className={inlineLinkClass}>
               ułożony z własnych grafik
             </Link>{" "}
@@ -201,7 +201,7 @@ export function ThemeLanding({ content, sheets }: { content: ThemeContent; sheet
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" aria-hidden />
             </Link>
             <Link href={CATALOG_PATH} className={secondaryCtaClass}>
-              Wszystkie gotowe arkusze
+              Wszystkie gotowe zestawy
             </Link>
           </div>
         </section>

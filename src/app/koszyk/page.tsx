@@ -141,7 +141,7 @@ export default function CartPage() {
                         </h3>
                         {item.readySheet && (
                           <p className="font-bold text-[11px] text-primary">
-                            Gotowy arkusz
+                            Gotowy zestaw
                             {item.readySheet.modified
                               ? " zmieniony w kreatorze"
                               : " bez zmian - zwrot w 14 dni"}

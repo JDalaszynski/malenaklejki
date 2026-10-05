@@ -10,7 +10,7 @@ export default function Loading() {
   return (
     <AdminPageSkeleton
       title="Baza naklejek"
-      subtitle="Wszystkie naklejki z gotowych arkuszy — z nazwą do wyszukiwania i ustawieniami, z jakimi trafiają na arkusz."
+      subtitle="Wszystkie naklejki z gotowych zestawów — z nazwą do wyszukiwania i ustawieniami, z jakimi trafiają na zestaw."
       label="Wczytywanie bazy naklejek…"
     >
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">

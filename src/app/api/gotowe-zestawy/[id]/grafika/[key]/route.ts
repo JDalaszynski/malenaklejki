@@ -11,7 +11,7 @@ const NO_STORE = { "Cache-Control": "no-store, private" };
  */
 const IMMUTABLE = { "Cache-Control": "public, max-age=31536000, s-maxage=31536000, immutable" };
 
-/** Lekka wersja grafiki naklejki z opublikowanego arkusza — do pokazania w kreatorze. */
+/** Lekka wersja grafiki naklejki z opublikowanego zestawu — do pokazania w kreatorze. */
 export async function GET(
   _request: Request,
   { params }: { params: Promise<{ id: string; key: string }> }
@@ -38,7 +38,7 @@ export async function GET(
     });
   } catch (error) {
     // Kreator sam wraca wtedy do oryginału grafiki.
-    console.error("GET /api/gotowe-arkusze/[id]/grafika/[key] error:", error);
+    console.error("GET /api/gotowe-zestawy/[id]/grafika/[key] error:", error);
     return new Response(null, { status: 500, headers: NO_STORE });
   }
 }

@@ -17,7 +17,7 @@ export interface CartItem {
   /** Ścieżka do układu arkusza w Storage — pozwala wrócić do niego z historii zamówień. */
   layoutPath?: string;
   deliveryForm?: "sheet" | "individual";
-  /** Gotowy arkusz, z którego powstała pozycja, i to, czy klient go zmienił. */
+  /** Gotowy zestaw, z którego powstała pozycja, i to, czy klient go zmienił. */
   readySheet?: ReadySheetOrigin;
 }
 

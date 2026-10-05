@@ -14,11 +14,11 @@ const linkClass =
 export function SheetEditorActions() {
   return (
     <>
-      <Link href="/admin/arkusze" className={linkClass}>
+      <Link href="/admin/zestawy" className={linkClass}>
         <ArrowLeft className="w-4 h-4" aria-hidden />
-        Wszystkie arkusze
+        Wszystkie zestawy
       </Link>
-      <Link href="/admin/arkusze/baza-naklejek" className={linkClass}>
+      <Link href="/admin/zestawy/baza-naklejek" className={linkClass}>
         <Library className="w-4 h-4" aria-hidden />
         Baza naklejek
       </Link>

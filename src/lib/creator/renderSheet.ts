@@ -10,7 +10,7 @@ import { getRenderImageUrl } from "@/lib/utils/transparentBackground";
  *
  * Wymiary podajemy w pikselach szerokości; przy domyślnych 2480 px (A4 w 300 dpi)
  * wynik jest piksel w piksel taki sam jak z kreatora. Mniejsze płótno służy
- * do miniatur gotowych arkuszy w panelu.
+ * do miniatur gotowych zestawów w panelu.
  */
 
 export const A4_PRINT_WIDTH_PX = 2480;
@@ -82,7 +82,7 @@ export async function renderSheetCanvas(
 ): Promise<HTMLCanvasElement> {
   const A4_W = Math.round(widthPx);
   // W górę, nie do najbliższej: A4 w 300 dpi to 2480 × 3508 px, tak jak w
-  // kreatorze. Te pliki idą do druku gotowych arkuszy, więc muszą mieć
+  // kreatorze. Te pliki idą do druku gotowych zestawów, więc muszą mieć
   // dokładnie ten sam wymiar co pliki z zamówień klientów.
   const A4_H = Math.ceil(widthPx * A4_RATIO);
   const MM_TO_PX = A4_W / 210;
@@ -235,7 +235,7 @@ export async function renderSheetCanvas(
 /**
  * Arkusz „jak na zdjęciu": białe podłoże winylu pod każdą naklejką, delikatny
  * cień i szara linia cięcia — płaski etap wizualizacji 3D z kreatora.
- * Z niego powstają miniatury gotowych arkuszy.
+ * Z niego powstają miniatury gotowych zestawów.
  */
 export async function renderRealisticSheet(
   stickers: PlacedSticker[],

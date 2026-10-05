@@ -30,7 +30,7 @@ const ALL = "";
 const FOCUSABLE = 'button:not([disabled]), [href], [tabindex]:not([tabindex="-1"])';
 
 /**
- * Galeria gotowych arkuszy: siatka wzorów z kategoriami, a po wybraniu wzoru
+ * Galeria gotowych zestawów: siatka wzorów z kategoriami, a po wybraniu wzoru
  * duży podgląd z przyciskiem wczytania do kreatora.
  *
  * Ładowana dopiero po pierwszym otwarciu (osobny fragment kodu) i sama
@@ -44,7 +44,7 @@ export default function ReadySheetsDialog({
   onPreview,
   onClose,
 }: {
-  /** Gotowy arkusz leżący teraz w kreatorze. */
+  /** Gotowy zestaw leżący teraz w kreatorze. */
   activeSheetId: string | null;
   /** Ile naklejek zniknie z arkusza po wczytaniu wzoru; 0, gdy nie ma czego stracić. */
   replaceCount: number;
@@ -92,7 +92,7 @@ export default function ReadySheetsDialog({
 
   const visible = useMemo(() => {
     const filtered = category ? sheets.filter((sheet) => sheet.categories.includes(category)) : sheets;
-    // Kategoria bez arkuszy (np. po zmianie w panelu) nie może zostawić pustej galerii.
+    // Kategoria bez zestawów (np. po zmianie w panelu) nie może zostawić pustej galerii.
     return filtered.length > 0 ? filtered : sheets;
   }, [sheets, category]);
   const activeCategory = visible === sheets ? ALL : category;
@@ -197,7 +197,7 @@ export default function ReadySheetsDialog({
         ref={panelRef}
         role="dialog"
         aria-modal="true"
-        aria-labelledby="gotowe-arkusze-tytul"
+        aria-labelledby="gotowe-zestawy-tytul"
         tabIndex={-1}
         initial={{ opacity: 0, y: 24 }}
         animate={{ opacity: 1, y: 0 }}
@@ -215,11 +215,11 @@ export default function ReadySheetsDialog({
           <div className="min-w-0">
             <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
               <h2
-                id="gotowe-arkusze-tytul"
+                id="gotowe-zestawy-tytul"
                 className="text-xl sm:text-2xl font-extrabold text-foreground flex items-center gap-2"
               >
                 <LayoutGrid className="w-5 h-5 text-primary" aria-hidden />
-                Gotowe arkusze
+                Gotowe zestawy
               </h2>
               {data?.preview && (
                 <span className="inline-flex items-center gap-1.5 rounded-full border border-[#FFCD08]/50 bg-[#FFCD08]/15 px-2.5 py-0.5 text-[11px] font-extrabold text-[#8a6d00] dark:text-[#FFCD08]">
@@ -261,7 +261,7 @@ export default function ReadySheetsDialog({
           <div
             className="flex gap-1.5 overflow-x-auto px-4 sm:px-7 pb-3 [scrollbar-width:none]"
             role="group"
-            aria-label="Kategorie gotowych arkuszy"
+            aria-label="Kategorie gotowych zestawów"
           >
             {[ALL, ...categories].map((item) => {
               const active = activeCategory === item;
@@ -299,7 +299,7 @@ export default function ReadySheetsDialog({
           {loadFailed ? (
             <div className="h-full flex flex-col items-center justify-center text-center gap-3 py-10">
               <p className="text-base font-extrabold text-foreground">
-                Nie udało się wczytać gotowych arkuszy
+                Nie udało się wczytać gotowych zestawów
               </p>
               <p className="text-sm font-medium text-muted-foreground max-w-sm">
                 Sprawdź połączenie i spróbuj jeszcze raz. Kreator działa normalnie - możesz dodać
@@ -317,7 +317,7 @@ export default function ReadySheetsDialog({
           ) : !data ? (
             <ul
               className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4"
-              aria-label="Wczytywanie gotowych arkuszy"
+              aria-label="Wczytywanie gotowych zestawów"
             >
               {Array.from({ length: 8 }, (_, index) => (
                 <li key={index} className="animate-pulse">
@@ -332,7 +332,7 @@ export default function ReadySheetsDialog({
           ) : sheets.length === 0 ? (
             <div className="h-full flex flex-col items-center justify-center text-center gap-2 py-10">
               <p className="text-base font-extrabold text-foreground">
-                Na razie nie ma tu gotowych arkuszy
+                Na razie nie ma tu gotowych zestawów
               </p>
               <p className="text-sm font-medium text-muted-foreground">
                 Dodaj własne grafiki - kreator ułoży je na arkuszu.
@@ -372,7 +372,7 @@ export default function ReadySheetsDialog({
                   {[
                     "Po wczytaniu edytujesz go jak własny projekt: zmienisz rozmiary, usuniesz naklejki, dodasz swoje.",
                     "Druk na folii winylowej i cięcie - tak samo jak przy Twoich grafikach.",
-                    "49 zł za arkusz A4, jak każdy zestaw z kreatora.",
+                    "49 zł za zestaw na arkuszu A4, tak samo jak za każdy zestaw z kreatora.",
                   ].map((line) => (
                     <li key={line} className="flex items-start gap-2.5">
                       <span className="mt-0.5 shrink-0 w-4.5 h-4.5 rounded-full bg-primary/15 text-primary flex items-center justify-center">
@@ -396,16 +396,16 @@ export default function ReadySheetsDialog({
 
                 {detail.slug && !data?.preview && (
                   <Link
-                    href={`/gotowe-arkusze/${detail.slug}`}
+                    href={`/gotowe-zestawy/${detail.slug}`}
                     className="self-start text-sm font-extrabold text-primary underline decoration-primary/40 underline-offset-4 hover:decoration-primary"
                   >
-                    Opis i szczegóły arkusza
+                    Opis i szczegóły zestawu
                   </Link>
                 )}
 
                 {useFailed && (
                   <p role="alert" className="text-sm font-bold text-destructive">
-                    Nie udało się wczytać tego arkusza. Spróbuj ponownie.
+                    Nie udało się wczytać tego zestawu. Spróbuj ponownie.
                   </p>
                 )}
               </div>
@@ -503,9 +503,9 @@ export default function ReadySheetsDialog({
               ) : isActiveDetail && !willReplace ? (
                 "Wróć do kreatora"
               ) : willReplace ? (
-                "Zastąp arkusz tym wzorem"
+                "Zastąp arkusz tym zestawem"
               ) : (
-                "Użyj tego arkusza"
+                "Użyj tego zestawu"
               )}
             </button>
           </div>

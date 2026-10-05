@@ -1,7 +1,7 @@
 import { USAGE_ENDPOINT, type UsagePayload } from "./usageEvents";
 
 /**
- * Zgłasza serwerowi, że klient zrobił krok w gotowych arkuszach.
+ * Zgłasza serwerowi, że klient zrobił krok w gotowych zestawach.
  *
  * Nic nie zapisuje w przeglądarce i niczego o kliencie nie wysyła — serwer
  * dostaje samo zdarzenie, dzięki czemu liczy się także wtedy, gdy klient

@@ -6,7 +6,7 @@ import { requireAdmin } from "@/lib/auth/dal";
 import { getSheet, listCategoryNames, listLibrary, readSheetLayout } from "@/lib/sheets/store";
 
 export const metadata: Metadata = {
-  title: "Panel — edycja arkusza",
+  title: "Panel — edycja zestawu",
   robots: { index: false, follow: false },
 };
 
@@ -28,7 +28,7 @@ export default async function EditSheetPage({ params }: { params: Promise<{ id: 
   return (
     <SheetEditorPage
       adminEmail={admin.email ?? ""}
-      title="Edycja arkusza"
+      title="Edycja zestawu"
       sheet={{
         id: sheet.id,
         name: sheet.name,

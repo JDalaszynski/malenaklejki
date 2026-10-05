@@ -14,7 +14,7 @@ import {
 import { getDesignsNoun } from "@/lib/utils/polish";
 
 /**
- * Zapowiedź gotowych arkuszy dla kreatora.
+ * Zapowiedź gotowych zestawów dla kreatora.
  *
  * Przy włączonym trybie przychodzi razem ze stroną, więc wejście do galerii
  * rysuje się od razu, bez dopytywania serwera i bez przesuwania układu.
@@ -50,7 +50,7 @@ const FAN_SLOTS = [
   "left-[1.6rem] top-1 rotate-[9deg]",
 ];
 
-/** Wachlarz miniaturowych arkuszy — znak rozpoznawczy wejścia do galerii. */
+/** Wachlarz miniatur zestawów — znak rozpoznawczy wejścia do galerii. */
 function SheetFan({ thumbs }: { thumbs: string[] }) {
   if (thumbs.length === 0) {
     return (
@@ -63,7 +63,7 @@ function SheetFan({ thumbs }: { thumbs: string[] }) {
     );
   }
 
-  // Jeden arkusz stoi prosto na środku; dwa i trzy rozkładają się w wachlarz.
+  // Jedna miniatura stoi prosto na środku; dwa i trzy rozkładają się w wachlarz.
   const slots = thumbs.length === 1 ? [FAN_SLOTS[1]] : FAN_SLOTS.slice(0, thumbs.length);
 
   return (
@@ -81,7 +81,7 @@ function SheetFan({ thumbs }: { thumbs: string[] }) {
 }
 
 /**
- * Wejście do galerii gotowych arkuszy. Celowo skromne: gotowe arkusze są
+ * Wejście do galerii gotowych zestawów. Celowo skromne: gotowe zestawy są
  * dodatkiem do kreatora, więc stoją obok „Dodaj naklejkę", a nie przed nią.
  */
 export function ReadySheetsEntry({
@@ -92,7 +92,7 @@ export function ReadySheetsEntry({
   className = "",
 }: {
   teaser: ReadySheetsTeaser;
-  /** Nazwa gotowego arkusza leżącego teraz w kreatorze. */
+  /** Nazwa gotowego zestawu leżącego teraz w kreatorze. */
   activeName: string | null;
   onOpen: () => void;
   /** Najechanie albo dotknięcie — dobry moment, żeby zacząć pobierać galerię. */
@@ -113,7 +113,7 @@ export function ReadySheetsEntry({
       <SheetFan thumbs={teaser.thumbs} />
       <span className="min-w-0 flex-1">
         <span className="flex items-center gap-2 text-sm font-extrabold text-foreground">
-          Gotowe arkusze
+          Gotowe zestawy
           {teaser.preview && (
             <span className="inline-flex items-center gap-1 rounded-full border border-[#FFCD08]/50 bg-[#FFCD08]/15 px-1.5 py-0.5 text-[10px] font-extrabold text-[#8a6d00] dark:text-[#FFCD08]">
               <Eye className="w-3 h-3" aria-hidden />
@@ -123,7 +123,7 @@ export function ReadySheetsEntry({
         </span>
         <span className="block text-[11px] font-semibold text-muted-foreground truncate mt-0.5">
           {activeName
-            ? `Na arkuszu: ${activeName}`
+            ? `Wczytany zestaw: ${activeName}`
             : `${teaser.count} ${getDesignsNoun(teaser.count)} do edycji${categories ? ` · ${categories}` : ""}`}
         </span>
       </span>

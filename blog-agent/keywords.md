@@ -240,7 +240,7 @@ Klaster obsłużony wpisami **A1** (`ile-kosztuja-naklejki-na-zamowienie-cena-za
     | Paczki firmowe i e-commerce | `naklejki na paczki świąteczne`, `świąteczne naklejki z logo`, `naklejki na upominki firmowe`, `plomby na paczki świąteczne` | hub B3 + plomby + eventy (P4.3.4) | ✅ |
     | Kalendarz adwentowy | `naklejki z numerami do kalendarza adwentowego`, `cyferki do kalendarza adwentowego` | **sekcja w hubie, nie osobna strona** (klaster mocno DIY) | 🟡 |
     | Mikołajki (6.12) | `naklejki na mikołajki`, `drobny prezent na mikołajki` | akapit w hubie | 🟡 |
-    | Gotowe wzory bez personalizacji | `naklejki świąteczne dla dzieci`, `naklejki świąteczne` jako produkt gotowy | **nie celuj**, dopóki nie ma katalogu gotowych arkuszy (P1 z `analiza-nisz-2026-09-09.md`) | ⛔ |
+    | Gotowe wzory bez personalizacji | `naklejki świąteczne dla dzieci`, `naklejki świąteczne` jako produkt gotowy | **nie celuj**, dopóki nie ma katalogu gotowych zestawów (P1 z `analiza-nisz-2026-09-09.md`) | ⛔ |
     | DIY / do druku | `naklejki świąteczne do druku`, `etykiety na prezenty do wydruku`, `... pdf` | **nie celuj** (decyzja odmowna `strategy.md` §7) | ⛔ |
 
     * ⚠️ Granice: bez daty granicznej dostawy bez zgody właściciela, bez kontaktu z żywnością (pierniki: naklejka na opakowanie), bez tkanin, "nie do zmywarki" przy słoikach i butelkach, bez postaci licencjonowanych i znaków towarowych, bez ekspozycji naszego generatora AI.

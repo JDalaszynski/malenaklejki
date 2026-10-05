@@ -30,8 +30,10 @@ import {
   type PublicSheetSummary,
 } from "@/lib/sheets/types";
 
-// Galeria gotowych arkuszy to dodatek — jej kod pobieramy dopiero, gdy klient
+// Galeria gotowych zestawów to dodatek — jej kod pobieramy dopiero, gdy klient
 // po nią sięgnie (albo najedzie na wejście).
+// Kotwice linków do galerii: bieżąca i dawna (sprzed zmiany nazwy na „zestawy").
+const READY_SHEETS_HASHES = ["#gotowe-zestawy", "#gotowe-arkusze"];
 const loadReadySheetsDialog = () => import("@/components/creator/ReadySheetsDialog");
 const ReadySheetsDialog = dynamic(loadReadySheetsDialog, {
   ssr: false,
@@ -183,7 +185,7 @@ const STICKER_FILE_ACCEPT =
   "image/png, image/jpeg, image/jpg, image/webp, application/pdf, .png, .jpg, .jpeg, .webp, .pdf";
 
 /**
- * Odcisk układu do sprawdzenia, czy gotowy arkusz został zmieniony — bez
+ * Odcisk układu do sprawdzenia, czy gotowy zestaw został zmieniony — bez
  * wielokątów obrysu, które przeliczają się same przy zmianie rozmiaru.
  */
 const layoutSignature = (list: PlacedSticker[]) =>
@@ -256,9 +258,9 @@ export function HomePageClient({
   const [isPasteFocused, setIsPasteFocused] = useState(false);
   const [isFillingSheet, setIsFillingSheet] = useState(false);
 
-  // Gotowe arkusze (panel → „Gotowe arkusze"). Przy kreatorze stoi tylko
+  // Gotowe zestawy (panel → „Gotowe zestawy"). Przy kreatorze stoi tylko
   // skromne wejście; galerię i układy pobieramy dopiero na życzenie klienta.
-  // Wczytany arkusz trzymamy w pierwotnym układzie, żeby dało się do niego
+  // Wczytany zestaw trzymamy w pierwotnym układzie, żeby dało się do niego
   // wrócić po zmianach.
   const readySheetsTeaser = useReadySheetsTeaser(readySheets);
   const [isReadySheetsOpen, setIsReadySheetsOpen] = useState(false);
@@ -269,7 +271,7 @@ export function HomePageClient({
       layoutSignature(stickers) !== layoutSignature(readySheet.stickers),
     [readySheet, stickers],
   );
-  // Naklejki, które zniknęłyby po wczytaniu wzoru. Nietknięty gotowy arkusz
+  // Naklejki, które zniknęłyby po wczytaniu wzoru. Nietknięty gotowy zestaw
   // nie jest niczyją pracą — można go podmienić bez pytania.
   const readySheetReplaceCount =
     stickers.length > 0 && !(readySheet && !isReadySheetModified)
@@ -449,7 +451,7 @@ export function HomePageClient({
   >({});
 
   // Wymiary pliku służą tylko ostrzeżeniu o rozdzielczości zaznaczonej
-  // naklejki, więc oryginał mierzymy dopiero po zaznaczeniu — gotowy arkusz
+  // naklejki, więc oryginał mierzymy dopiero po zaznaczeniu — gotowy zestaw
   // z kilkudziesięcioma grafikami nie pobiera ich wszystkich na zapas.
   useEffect(() => {
     const st = stickers.find((s) => s.id === selectedStickerId);
@@ -1379,8 +1381,8 @@ export function HomePageClient({
 
   const closeReadySheets = () => {
     setIsReadySheetsOpen(false);
-    // Bez kotwicy w adresie ten sam link „Gotowe arkusze" zadziała ponownie.
-    if (window.location.hash === "#gotowe-arkusze") {
+    // Bez kotwicy w adresie ten sam link „Gotowe zestawy" zadziała ponownie.
+    if (READY_SHEETS_HASHES.includes(window.location.hash)) {
       window.history.replaceState(
         {},
         "",
@@ -1389,7 +1391,7 @@ export function HomePageClient({
     }
   };
 
-  // Gotowy arkusz trafia do kreatora jak każdy inny układ — dalej klient
+  // Gotowy zestaw trafia do kreatora jak każdy inny układ — dalej klient
   // edytuje go tymi samymi narzędziami, a koszyk nie widzi różnicy.
   const applyReadySheet = (layout: PublicSheetLayout) => {
     // Lekkie wersje grafik muszą być znane, zanim arkusz się narysuje.
@@ -1406,7 +1408,7 @@ export function HomePageClient({
   const handleUseReadySheet = async (
     sheet: PublicSheetSummary,
   ): Promise<boolean> => {
-    // Ten sam, nietknięty arkusz już leży w kreatorze — wystarczy do niego wrócić.
+    // Ten sam, nietknięty zestaw już leży w kreatorze — wystarczy do niego wrócić.
     if (!(readySheet?.id === sheet.id && !isReadySheetModified)) {
       try {
         applyReadySheet(await loadReadySheetLayout(sheet.id, sheet.version));
@@ -1439,7 +1441,7 @@ export function HomePageClient({
     if (
       isReadySheetModified &&
       !window.confirm(
-        "Przywrócić pierwotny układ gotowego arkusza? Twoje zmiany na nim przepadną.",
+        "Przywrócić pierwotny układ gotowego zestawu? Twoje zmiany przepadną.",
       )
     ) {
       return;
@@ -1449,22 +1451,24 @@ export function HomePageClient({
     setError(null);
   };
 
-  // Wejście z linku: `/#gotowe-arkusze` otwiera galerię, a `/?arkusz=<id>`
-  // od razu wczytuje wzór. Oba działają tylko wtedy, gdy gotowe arkusze są
-  // dla tej osoby widoczne.
+  // Wejście z linku: `/#gotowe-zestawy` otwiera galerię, a `/?zestaw=<id>`
+  // od razu wczytuje wzór. Oba działają tylko wtedy, gdy gotowe zestawy są
+  // dla tej osoby widoczne. Stare adresy (`#gotowe-arkusze`, `?arkusz=`) też
+  // działają — mogły już trafić do cudzych zakładek i wpisów.
   const readySheetsAvailable = !!readySheetsTeaser;
   useEffect(() => {
     if (!mounted || !readySheetsAvailable) return;
 
     const openFromHash = () => {
-      if (window.location.hash === "#gotowe-arkusze") openReadySheets("link");
+      if (READY_SHEETS_HASHES.includes(window.location.hash)) openReadySheets("link");
     };
     openFromHash();
     window.addEventListener("hashchange", openFromHash);
 
     const url = new URL(window.location.href);
-    const sheetId = url.searchParams.get("arkusz");
+    const sheetId = url.searchParams.get("zestaw") ?? url.searchParams.get("arkusz");
     if (sheetId) {
+      url.searchParams.delete("zestaw");
       url.searchParams.delete("arkusz");
       window.history.replaceState({}, "", url.toString());
     }
@@ -1484,7 +1488,7 @@ export function HomePageClient({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [mounted, readySheetsAvailable]);
 
-  // Na ekranie gotowy arkusz stoi na lekkich wersjach grafik, ale plik do
+  // Na ekranie gotowy zestaw stoi na lekkich wersjach grafik, ale plik do
   // druku powstaje z oryginałów. Gdy klient zostaje przy wzorze, dociągamy je
   // w tle po dwa naraz — „Dodaj do koszyka" nie czeka wtedy na wszystkie.
   useEffect(() => {
@@ -2380,8 +2384,8 @@ export function HomePageClient({
         console.warn("Nie udało się zapisać układu arkusza:", err);
       }
 
-      // Pozycja pamięta, z którego gotowego arkusza powstała i czy klient go
-      // zmienił — od tego zależy prawo zwrotu i raport sprzedaży. Arkusz
+      // Pozycja pamięta, z którego gotowego zestawu powstała i czy klient go
+      // zmienił — od tego zależy prawo zwrotu i raport sprzedaży. Zestaw
       // otwarty do edycji z koszyka liczy się już jako zmieniony.
       const editedItem = editCartItemId
         ? cartItems.find((item) => item.id === editCartItemId)
@@ -2666,7 +2670,7 @@ export function HomePageClient({
                 <div className="hidden sm:block liquid-glass border border-border/40 rounded-3xl p-4 sm:p-6 shadow-sm space-y-3 sm:space-y-4">
                   <div className="h-6 bg-primary/10 dark:bg-primary/20 rounded-md w-1/2 mb-4"></div>
                   <div className="h-32 bg-muted/10 dark:bg-muted/5 border-2 border-dashed border-foreground/10 rounded-2xl"></div>
-                  {/* Miejsce na wejście do gotowych arkuszy — żeby po hydracji nic nie skakało */}
+                  {/* Miejsce na wejście do gotowych zestawów — żeby po hydracji nic nie skakało */}
                   {readySheets.state === "on" && (
                     <div className="h-[6.25rem] bg-muted/10 dark:bg-muted/5 rounded-2xl"></div>
                   )}
@@ -2769,7 +2773,7 @@ export function HomePageClient({
                     aria-haspopup="dialog"
                     className="font-extrabold text-primary underline decoration-primary/40 underline-offset-4 hover:decoration-primary transition-colors cursor-pointer"
                   >
-                    gotowego arkusza
+                    gotowego zestawu
                   </button>{" "}
                   - ułóż naklejki i wybierz kształt cięcia.
                 </>
@@ -3320,7 +3324,7 @@ export function HomePageClient({
               {readySheet && (
                 <div className="w-full mb-3 flex flex-wrap items-center justify-between gap-x-3 gap-y-1.5 rounded-2xl border border-primary/25 bg-primary/5 px-3 py-2">
                   <p className="text-xs font-bold text-foreground min-w-0">
-                    Gotowy arkusz:{" "}
+                    Gotowy zestaw:{" "}
                     <span className="font-black">{readySheet.name}</span>
                     {isReadySheetModified && (
                       <span className="font-semibold text-muted-foreground">
@@ -3346,7 +3350,7 @@ export function HomePageClient({
                       type="button"
                       onClick={handleResetReadySheet}
                       disabled={!isReadySheetModified}
-                      title="Przywraca wszystkie naklejki tego arkusza do pierwotnego układu"
+                      title="Przywraca wszystkie naklejki tego zestawu do pierwotnego układu"
                       className="inline-flex items-center gap-1.5 rounded-xl px-2.5 py-1 text-xs font-black text-primary hover:bg-primary/10 transition-colors cursor-pointer disabled:opacity-40 disabled:cursor-default disabled:hover:bg-transparent"
                     >
                       <RotateCcw className="w-3.5 h-3.5" />
@@ -3418,7 +3422,7 @@ export function HomePageClient({
                         className="mt-1 inline-flex items-center gap-1.5 rounded-full bg-background/95 border border-border/70 px-4 py-2 text-xs font-extrabold text-primary shadow-sm active:scale-[0.98] transition-transform cursor-pointer"
                       >
                         <LayoutGrid className="w-3.5 h-3.5" />
-                        albo wybierz gotowy arkusz
+                        albo wybierz gotowy zestaw
                       </button>
                     )}
                   </label>
@@ -3445,7 +3449,7 @@ export function HomePageClient({
                 </span>
               </label>
 
-              {/* Mobile: wejście do galerii gotowych arkuszy */}
+              {/* Mobile: wejście do galerii gotowych zestawów */}
               {readySheetsTeaser && (
                 <ReadySheetsEntry
                   teaser={readySheetsTeaser}
@@ -4025,7 +4029,7 @@ export function HomePageClient({
         )}
       </AnimatePresence>
 
-      {/* Galeria gotowych arkuszy */}
+      {/* Galeria gotowych zestawów */}
       <AnimatePresence>
         {isReadySheetsOpen && (
           <ReadySheetsDialog

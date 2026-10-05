@@ -23,7 +23,7 @@ export function SheetsFilters({ categories }: { categories: string[] }) {
     // Inny filtr to inny zestaw wyników — numer strony z poprzedniego nie ma sensu.
     next.delete("strona");
     const query = next.toString();
-    router.push(query ? `/admin/arkusze?${query}` : "/admin/arkusze");
+    router.push(query ? `/admin/zestawy?${query}` : "/admin/zestawy");
   };
 
   const activeCount = KEYS.filter((key) => params.get(key)).length;
@@ -46,8 +46,8 @@ export function SheetsFilters({ categories }: { categories: string[] }) {
             <input
               value={search}
               onChange={(event) => setSearch(event.target.value)}
-              placeholder="Nazwa arkusza albo kategoria…"
-              aria-label="Szukaj arkusza"
+              placeholder="Nazwa zestawu albo kategoria…"
+              aria-label="Szukaj zestawu"
               className="h-11 w-full rounded-xl border border-slate-300 dark:border-white/20 bg-background pl-10 pr-4 text-sm font-semibold focus-visible:outline-none focus-visible:border-primary focus-visible:ring-2 focus-visible:ring-primary/20"
             />
           </div>
@@ -88,7 +88,7 @@ export function SheetsFilters({ categories }: { categories: string[] }) {
       {activeCount > 0 && (
         <button
           type="button"
-          onClick={() => router.push("/admin/arkusze")}
+          onClick={() => router.push("/admin/zestawy")}
           className="self-start inline-flex items-center gap-1.5 text-sm font-bold text-muted-foreground hover:text-destructive transition-colors cursor-pointer"
         >
           <X className="w-4 h-4" aria-hidden />

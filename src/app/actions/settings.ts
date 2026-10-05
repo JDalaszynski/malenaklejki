@@ -136,7 +136,7 @@ function describeVacationChange(before: VacationSettings, after: VacationSetting
 }
 
 /* ------------------------------------------------------------------ */
-/* Gotowe arkusze w sklepie                                            */
+/* Gotowe zestawy w sklepie                                            */
 /* ------------------------------------------------------------------ */
 
 const readySheetsModeSchema = z.enum(READY_SHEETS_MODES as [ReadySheetsMode, ...ReadySheetsMode[]]);
@@ -160,18 +160,18 @@ export async function updateReadySheetsMode(raw: unknown): Promise<Result> {
 
   await recordAudit({
     actorEmail: actor.email,
-    action: "Gotowe arkusze w sklepie",
+    action: "Gotowe zestawy w sklepie",
     details: `${READY_SHEETS_MODE_LABELS[before.mode]} → ${READY_SHEETS_MODE_LABELS[parsed.data]}`,
   });
 
   // Od trybu zależy wejście do galerii na stronie głównej, istnienie katalogu
-  // i stron arkuszy, mapa strony oraz link do katalogu w stopce każdej strony
+  // i stron zestawów, mapa strony oraz link do katalogu w stopce każdej strony
   // — dlatego razem z zapamiętanym ustawieniem przebudowujemy cały sklep.
   updateTag(READY_SHEETS_MODE_TAG);
   revalidatePath("/", "layout");
   revalidatePath("/sitemap.xml");
   revalidatePath("/admin/ustawienia");
-  revalidatePath("/admin/arkusze");
+  revalidatePath("/admin/zestawy");
 
   return { success: true };
 }

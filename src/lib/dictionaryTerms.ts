@@ -218,12 +218,12 @@ export const GLOSSARY: TermGroup[] = [
       },
       {
         icon: LayoutGrid,
-        slug: "gotowy-arkusz-naklejek",
-        name: "Gotowy arkusz naklejek",
-        def: "Gotowy arkusz naklejek to arkusz A4 z kilkudziesięcioma naklejkami ułożonymi wokół jednego tematu, na przykład jesieni, zimy albo kawy. Zamawiasz go bez wgrywania własnych plików, na tej samej folii winylowej i za tę samą cenę 49,00 zł brutto co arkusz ułożony samodzielnie. Liczba naklejek jest podana przy każdym arkuszu. Przed zamówieniem możesz otworzyć go w kreatorze i zmienić: usunąć naklejki, zmienić ich rozmiar albo dodać własne grafiki.",
-        href: "/gotowe-arkusze",
+        slug: "gotowy-zestaw-naklejek",
+        name: "Gotowy zestaw naklejek",
+        def: "Gotowy zestaw naklejek to jeden arkusz A4 z kilkudziesięcioma naklejkami ułożonymi wokół jednego tematu, na przykład jesieni, zimy albo kawy. Zamawiasz go bez wgrywania własnych plików, na tej samej folii winylowej i za tę samą cenę 49,00 zł brutto co zestaw ułożony samodzielnie. Liczba naklejek jest podana przy każdym zestawie. Przed zamówieniem możesz otworzyć go w kreatorze i zmienić: usunąć naklejki, zmienić ich rozmiar albo dodać własne grafiki.",
+        href: "/gotowe-zestawy",
         linkLabel: "Katalog gotowych wzorów",
-        matchTerms: ["gotowy arkusz", "gotowe arkusze", "gotowych arkuszy"],
+        matchTerms: ["gotowy zestaw", "gotowe zestawy", "gotowych zestawów"],
       },
       {
         icon: Eraser,

@@ -2,7 +2,7 @@ import { AdminLayout } from "@/components/admin/AdminLayout";
 import { SheetEditor, type SheetEditorProps } from "./SheetEditor";
 import { EDITOR_SUBTITLE, SheetEditorActions } from "./SheetEditorChrome";
 
-/** Wspólna oprawa edytora dla nowego i istniejącego arkusza. */
+/** Wspólna oprawa edytora dla nowego i istniejącego zestawu. */
 export function SheetEditorPage({
   adminEmail,
   title,

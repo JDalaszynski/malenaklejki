@@ -16,7 +16,7 @@ import {
  * dopasowanie rozmiaru i obrotu do pola arkusza.
  *
  * Czyste funkcje bez Reacta i bez DOM-u, więc serwer może nimi sprawdzić
- * arkusz przed publikacją — przeglądarka jest tu tylko pierwszą linią.
+ * zestaw przed publikacją — przeglądarka jest tu tylko pierwszą linią.
  */
 
 type Margins = { left: number; right: number; top: number; bottom: number };
@@ -344,9 +344,9 @@ function stickersCount(count: number): string {
   return isPaucal(count) ? `${count} naklejki` : `${count} naklejek`;
 }
 
-/** Powody, dla których arkusza nie da się opublikować. Pusta lista — można. */
+/** Powody, dla których zestawu nie da się opublikować. Pusta lista — można. */
 export function describePublishBlockers(stickers: PlacedSticker[]): string[] {
-  if (stickers.length === 0) return ["Arkusz jest pusty — dodaj przynajmniej jedną naklejkę."];
+  if (stickers.length === 0) return ["Zestaw jest pusty — dodaj przynajmniej jedną naklejkę."];
 
   const issues = getSheetIssues(stickers);
   const messages: string[] = [];

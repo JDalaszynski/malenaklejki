@@ -14,7 +14,7 @@ const iconButton =
 const textButton =
   "inline-flex items-center gap-1.5 text-xs font-bold text-muted-foreground hover:text-foreground transition-colors cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed";
 
-/** Szybkie akcje pod kafelkiem arkusza. */
+/** Szybkie akcje pod kafelkiem zestawu. */
 export function SheetCardActions({
   id,
   name,
@@ -46,7 +46,7 @@ export function SheetCardActions({
       const next: SheetStatus = status === "published" ? "draft" : "published";
       if (
         next === "draft" &&
-        !window.confirm(`Zdjąć „${name}” ze sklepu? Arkusz zostanie w szkicach.`)
+        !window.confirm(`Zdjąć „${name}” ze sklepu? Zestaw zostanie w szkicach.`)
       ) {
         return;
       }
@@ -66,15 +66,15 @@ export function SheetCardActions({
         setError(result.error);
         return;
       }
-      router.push(`/admin/arkusze/${result.id}`);
+      router.push(`/admin/zestawy/${result.id}`);
     });
 
   const remove = () =>
     run("delete", async () => {
       const warning =
         status === "published"
-          ? `Arkusz „${name}” jest opublikowany — zniknie ze sklepu. Usunąć go na stałe?`
-          : `Usunąć arkusz „${name}” na stałe? Tej operacji nie da się cofnąć.`;
+          ? `Zestaw „${name}” jest opublikowany — zniknie ze sklepu. Usunąć go na stałe?`
+          : `Usunąć zestaw „${name}” na stałe? Tej operacji nie da się cofnąć.`;
       if (!window.confirm(warning)) return;
       const result = await deleteSheet(id);
       if (!result.success) {
@@ -88,7 +88,7 @@ export function SheetCardActions({
     <div className="flex flex-col gap-2">
       <div className="grid grid-cols-2 gap-1.5">
         <Link
-          href={`/admin/arkusze/${id}`}
+          href={`/admin/zestawy/${id}`}
           className={`${iconButton} bg-primary text-primary-foreground border-primary hover:bg-primary/95`}
         >
           <Pencil className="w-3.5 h-3.5" aria-hidden />
@@ -117,7 +117,7 @@ export function SheetCardActions({
           type="button"
           onClick={duplicate}
           disabled={pending !== null}
-          title="Kopia arkusza jako nowy szkic"
+          title="Kopia zestawu jako nowy szkic"
           className={textButton}
         >
           {pending === "duplicate" ? (

@@ -40,9 +40,9 @@ type Usage = "" | "used" | "unused";
 const selectClass =
   "h-11 w-full rounded-xl border border-slate-300 dark:border-white/20 bg-background px-3 text-sm font-semibold focus-visible:outline-none focus-visible:border-primary focus-visible:ring-2 focus-visible:ring-primary/20";
 
-/** „na 1 arkuszu", „na 3 arkuszach" — miejscownik ma dwie formy. */
+/** „w 1 zestawie", „w 3 zestawach" — miejscownik ma dwie formy. */
 function sheetsNoun(count: number): string {
-  return count === 1 ? "arkuszu" : "arkuszach";
+  return count === 1 ? "zestawie" : "zestawach";
 }
 
 function measure(url: string): Promise<number> {
@@ -64,7 +64,7 @@ export function StickerLibraryManager({
   usedIn,
 }: {
   initialItems: LibrarySticker[];
-  /** Arkusze, na których leży każda naklejka z bazy. */
+  /** Zestawy, w których leży każda naklejka z bazy. */
   usedIn: Record<string, SheetRef[]>;
 }) {
   const [items, setItems] = useState(initialItems);
@@ -243,8 +243,8 @@ export function StickerLibraryManager({
 
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
         <StatTile label="W bazie" value={String(items.length)} hint="naklejek do układania" hero />
-        <StatTile label="Na arkuszach" value={String(usedCount)} hint="leży na co najmniej jednym" />
-        <StatTile label="Nieużywane" value={String(items.length - usedCount)} hint="czekają na arkusz" />
+        <StatTile label="W zestawach" value={String(usedCount)} hint="jest w co najmniej jednym" />
+        <StatTile label="Nieużywane" value={String(items.length - usedCount)} hint="czekają na zestaw" />
         <StatTile
           label="Bez linii cięcia"
           value={String(withoutCut)}
@@ -310,7 +310,7 @@ export function StickerLibraryManager({
               aria-label="Użycie"
             >
               <option value="">Użycie: wszystkie</option>
-              <option value="used">Na arkuszach</option>
+              <option value="used">W zestawach</option>
               <option value="unused">Nieużywane</option>
             </select>
             <select
@@ -395,7 +395,7 @@ export function StickerLibraryManager({
                         </p>
                         <p className="text-[11px] font-semibold text-muted-foreground mt-0.5">
                           {sheets.length > 0
-                            ? `na ${sheets.length} ${sheetsNoun(sheets.length)}`
+                            ? `w ${sheets.length} ${sheetsNoun(sheets.length)}`
                             : "nieużywana"}{" "}
                           · {formatDateTime(item.lastUsedAt).split(",")[0]}
                         </p>

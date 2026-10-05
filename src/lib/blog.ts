@@ -28,9 +28,9 @@ export interface BlogPost {
   /** Kolejność wyświetlania filarów (rosnąco). Bez wartości = po dacie. */
   pillarOrder?: number;
   /**
-   * Wpis pokazuje pod wstępem gotowe arkusze z cenami (frontmatter
+   * Wpis pokazuje pod wstępem gotowe zestawy z cenami (frontmatter
    * `catalog: true`). Blok rysuje się tylko przy publicznym katalogu —
-   * przy wyłączonych gotowych arkuszach wpis wygląda jak dotąd.
+   * przy wyłączonych gotowych zestawach wpis wygląda jak dotąd.
    */
   catalog?: boolean;
 }

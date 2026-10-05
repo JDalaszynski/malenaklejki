@@ -53,7 +53,7 @@ type Result<T = object> =
 const DENIED = { success: false, error: "Brak uprawnień." } as const;
 
 /**
- * Akcje gotowych arkuszy sprawdzają uprawnienia samodzielnie — jak reszta
+ * Akcje gotowych zestawów sprawdzają uprawnienia samodzielnie — jak reszta
  * panelu, bo akcje serwerowe mają własne adresy i ukrycie przycisku niczego
  * nie zabezpiecza.
  */
@@ -65,22 +65,22 @@ async function requireAdminActor(): Promise<{ email: string } | null> {
 
 async function refreshSheetViews(sheetId?: string) {
   // Lista i układy w kreatorze na stronie głównej są zapamiętane — po każdej
-  // zmianie arkusza sklep ma pokazać stan świeży, a nie ten sprzed zapisu.
+  // zmianie zestawu sklep ma pokazać stan świeży, a nie ten sprzed zapisu.
   updateTag(READY_SHEETS_TAG);
-  // Strona główna niesie zapowiedź galerii (liczbę arkuszy i miniaturki),
-  // a katalog, strony arkuszy, strony tematyczne i mapa strony — ich listę.
+  // Strona główna niesie zapowiedź galerii (liczbę zestawów i miniaturki),
+  // a katalog, strony zestawów, strony tematyczne i mapa strony — ich listę.
   revalidatePath("/");
-  revalidatePath("/gotowe-arkusze");
-  revalidatePath("/gotowe-arkusze/[slug]", "page");
+  revalidatePath("/gotowe-zestawy");
+  revalidatePath("/gotowe-zestawy/[slug]", "page");
   for (const theme of THEME_PAGES) revalidatePath(theme.path);
   for (const slug of CATALOG_BLOG_POSTS) revalidatePath(`/blog/${slug}`);
   revalidatePath("/sitemap.xml");
-  revalidatePath("/admin/arkusze");
-  revalidatePath("/admin/arkusze/baza-naklejek");
-  if (sheetId) revalidatePath(`/admin/arkusze/${sheetId}`);
+  revalidatePath("/admin/zestawy");
+  revalidatePath("/admin/zestawy/baza-naklejek");
+  if (sheetId) revalidatePath(`/admin/zestawy/${sheetId}`);
 
   // Link do katalogu stoi w stopce każdej strony — całość przebudowujemy tylko
-  // wtedy, gdy katalog zyskał pierwszy arkusz albo stracił ostatni.
+  // wtedy, gdy katalog zyskał pierwszy zestaw albo stracił ostatni.
   if (await catalogVisibilityChanged()) {
     updateTag(CATALOG_VISIBILITY_TAG);
     revalidatePath("/", "layout");
@@ -101,7 +101,7 @@ const idSchema = z
 const STORAGE_BUCKET = process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET;
 
 /**
- * Grafiki naklejek muszą leżeć w naszym Storage. Arkusz trafi kiedyś do
+ * Grafiki naklejek muszą leżeć w naszym Storage. Zestaw trafi kiedyś do
  * klientów, więc adres spoza bucketa (albo `javascript:`) nie może się tam
  * znaleźć nawet przez podmienione żądanie.
  */
@@ -182,7 +182,7 @@ async function canonicalCategories(categories: string[]): Promise<string[]> {
 }
 
 /**
- * Czego brakuje, żeby arkusz mógł mieć własną stronę w sklepie. Pliki do druku
+ * Czego brakuje, żeby zestaw mógł mieć własną stronę w sklepie. Pliki do druku
  * powstają w edytorze, więc publikacja prosto z listy wymaga, żeby już były
  * i pasowały do zapisanego układu.
  */
@@ -193,18 +193,18 @@ function describeCatalogBlockers(sheet: {
   hasFreshAssets: boolean;
 }): string[] {
   const blockers: string[] = [];
-  if (!sheet.category) blockers.push("Wybierz temat arkusza.");
-  if (!sheet.slug) blockers.push("Podaj adres strony arkusza.");
-  if (!sheet.description) blockers.push("Dodaj opis arkusza — bez niego strona w sklepie nie ma treści.");
+  if (!sheet.category) blockers.push("Wybierz temat zestawu.");
+  if (!sheet.slug) blockers.push("Podaj adres strony zestawu.");
+  if (!sheet.description) blockers.push("Dodaj opis zestawu — bez niego strona w sklepie nie ma treści.");
   if (!sheet.hasFreshAssets) {
-    blockers.push("Opublikuj arkusz z edytora — tam powstają pliki do druku i obraz produktu.");
+    blockers.push("Opublikuj zestaw z edytora — tam powstają pliki do druku i obraz produktu.");
   }
   return blockers;
 }
 
 /**
  * Nowa naklejka ląduje w bazie z linią cięcia „brak" — wybiera się ją dopiero
- * na arkuszu. Przy zapisie arkusza przepisujemy ustawienia z arkusza do tych
+ * na arkuszu. Przy zapisie zestawu przepisujemy ustawienia z arkusza do tych
  * pozycji bazy, które wciąż ich nie mają, żeby następnym razem naklejka
  * przychodziła z bazy gotowa. Ustawionych wcześniej nie ruszamy — od tego
  * jest przycisk „Zapisz ustawienia w bazie" w edytorze.
@@ -237,12 +237,12 @@ async function fillMissingLibrarySettings(stickers: PlacedSticker[]): Promise<vo
 }
 
 /* ------------------------------------------------------------------ */
-/* Arkusze                                                             */
+/* Zestawy                                                             */
 /* ------------------------------------------------------------------ */
 
 const saveSchema = z.object({
   id: idSchema.nullable().optional(),
-  name: z.string().trim().min(1, "Podaj nazwę arkusza.").max(MAX_SHEET_NAME, "Nazwa jest za długa."),
+  name: z.string().trim().min(1, "Podaj nazwę zestawu.").max(MAX_SHEET_NAME, "Nazwa jest za długa."),
   category: z.string().trim().max(MAX_CATEGORY_NAME, "Nazwa tematu jest za długa."),
   category2: z.string().trim().max(MAX_CATEGORY_NAME, "Nazwa tematu jest za długa.").optional().default(""),
   slug: z.string().trim().max(MAX_SHEET_SLUG, "Adres jest za długi.").optional().default(""),
@@ -288,7 +288,7 @@ export async function saveSheet(
 
   const parsed = saveSchema.safeParse(raw);
   if (!parsed.success) {
-    return { success: false, error: parsed.error.issues[0]?.message ?? "Nieprawidłowe dane arkusza." };
+    return { success: false, error: parsed.error.issues[0]?.message ?? "Nieprawidłowe dane zestawu." };
   }
   const input = parsed.data;
   const stickers = input.stickers as PlacedSticker[];
@@ -306,7 +306,7 @@ export async function saveSheet(
       ...describePublishBlockers(stickers),
     ];
     if (blockers.length > 0) {
-      return { success: false, error: "Arkusza nie da się jeszcze opublikować.", blockers };
+      return { success: false, error: "Zestawu nie da się jeszcze opublikować.", blockers };
     }
   }
 
@@ -319,7 +319,7 @@ export async function saveSheet(
     if (taken && taken.id !== ref.id) {
       return {
         success: false,
-        error: `Adres „${slug}" ma już arkusz „${taken.name}". Wybierz inny.`,
+        error: `Adres „${slug}" ma już zestaw „${taken.name}". Wybierz inny.`,
       };
     }
   }
@@ -327,7 +327,7 @@ export async function saveSheet(
   let previous: StickerSheet | null = null;
   if (input.id) {
     previous = await getSheet(input.id);
-    if (!previous) return { success: false, error: "Ten arkusz został usunięty." };
+    if (!previous) return { success: false, error: "Ten zestaw został usunięty." };
     if (
       !input.force &&
       input.expectedUpdatedAt &&
@@ -337,14 +337,14 @@ export async function saveSheet(
       return {
         success: false,
         conflict: true,
-        error: `Arkusz zmienił się w międzyczasie (zapis ${previous.updatedBy ?? "z innej karty"}).`,
+        error: `Zestaw zmienił się w międzyczasie (zapis ${previous.updatedBy ?? "z innej karty"}).`,
       };
     }
   }
 
   const layoutJson = serializeLayout(stickers);
   if (Buffer.byteLength(layoutJson, "utf8") > MAX_LAYOUT_BYTES) {
-    return { success: false, error: "Układ arkusza jest za duży, żeby go zapisać." };
+    return { success: false, error: "Układ zestawu jest za duży, żeby go zapisać." };
   }
 
   const [category, secondCategory] = await canonicalCategories([input.category, input.category2]);
@@ -356,7 +356,7 @@ export async function saveSheet(
     await writeSheetLayout(ref.id, layoutJson);
   } catch (error) {
     console.error("saveSheet layout error:", error);
-    return { success: false, error: "Nie udało się zapisać układu arkusza." };
+    return { success: false, error: "Nie udało się zapisać układu zestawu." };
   }
 
   let previewUrl = previous?.previewUrl ?? null;
@@ -365,12 +365,12 @@ export async function saveSheet(
     try {
       previewUrl = await writeSheetPreview(ref.id, preview);
     } catch (error) {
-      // Brak nowego podglądu nie może zatrzymać zapisu pracy nad arkuszem.
+      // Brak nowego podglądu nie może zatrzymać zapisu pracy nad zestawem.
       console.error("saveSheet preview error:", error);
     }
   }
 
-  // Obraz produktu trafia pod arkusz, żeby strona w sklepie mogła go podać
+  // Obraz produktu trafia pod zestaw, żeby strona w sklepie mogła go podać
   // przez optymalizator; gdyby kopia się nie udała, zostaje adres z `uploads/`.
   let assets = input.status === "published" ? input.assets ?? null : null;
   if (assets) {
@@ -430,7 +430,7 @@ export async function saveSheet(
       : "";
   await recordAudit({
     actorEmail: actor.email,
-    action: previous ? "Zapis gotowego arkusza" : "Nowy gotowy arkusz",
+    action: previous ? "Zapis gotowego zestawu" : "Nowy gotowy zestaw",
     details: `„${input.name}"${category ? ` (${category})` : ""}: ${SHEET_STATUS_LABELS[
       input.status
     ].toLowerCase()}, naklejek: ${stickers.length}${statusChange}`,
@@ -453,7 +453,7 @@ export async function setSheetStatus(raw: {
   if (!id.success || !status.success) return { success: false, error: "Nieprawidłowe dane." };
 
   const sheet = await getSheet(id.data);
-  if (!sheet) return { success: false, error: "Ten arkusz został usunięty." };
+  if (!sheet) return { success: false, error: "Ten zestaw został usunięty." };
   if (sheet.status === status.data) return { success: true };
 
   if (status.data === "published") {
@@ -469,7 +469,7 @@ export async function setSheetStatus(raw: {
       ...describePublishBlockers(stickers),
     ];
     if (blockers.length > 0) {
-      return { success: false, error: "Arkusza nie da się jeszcze opublikować.", blockers };
+      return { success: false, error: "Zestawu nie da się jeszcze opublikować.", blockers };
     }
   }
 
@@ -486,7 +486,7 @@ export async function setSheetStatus(raw: {
 
   await recordAudit({
     actorEmail: actor.email,
-    action: status.data === "published" ? "Publikacja gotowego arkusza" : "Arkusz cofnięty do szkicu",
+    action: status.data === "published" ? "Publikacja gotowego zestawu" : "Zestaw cofnięty do szkicu",
     details: `„${sheet.name}"${sheet.category ? ` (${sheet.category})` : ""}`,
   });
 
@@ -494,16 +494,16 @@ export async function setSheetStatus(raw: {
   return { success: true };
 }
 
-/** Kopia arkusza jako nowy szkic — do przerobienia bez ruszania oryginału. */
+/** Kopia zestawu jako nowy szkic — do przerobienia bez ruszania oryginału. */
 export async function duplicateSheet(rawId: string): Promise<Result<{ id: string }>> {
   const actor = await requireAdminActor();
   if (!actor) return DENIED;
 
   const id = idSchema.safeParse(rawId);
-  if (!id.success) return { success: false, error: "Brak arkusza." };
+  if (!id.success) return { success: false, error: "Brak zestawu." };
 
   const source = await getSheet(id.data);
-  if (!source) return { success: false, error: "Ten arkusz został usunięty." };
+  if (!source) return { success: false, error: "Ten zestaw został usunięty." };
 
   const ref = db.collection(SHEETS_COLLECTION).doc();
   let previewUrl: string | null = null;
@@ -511,7 +511,7 @@ export async function duplicateSheet(rawId: string): Promise<Result<{ id: string
     previewUrl = await copySheetFiles(source.id, ref.id);
   } catch (error) {
     console.error("duplicateSheet copy error:", error);
-    return { success: false, error: "Nie udało się skopiować układu arkusza." };
+    return { success: false, error: "Nie udało się skopiować układu zestawu." };
   }
 
   const now = new Date().toISOString();
@@ -544,7 +544,7 @@ export async function duplicateSheet(rawId: string): Promise<Result<{ id: string
 
   await recordAudit({
     actorEmail: actor.email,
-    action: "Duplikat gotowego arkusza",
+    action: "Duplikat gotowego zestawu",
     details: `„${source.name}" → nowy szkic`,
   });
 
@@ -553,9 +553,9 @@ export async function duplicateSheet(rawId: string): Promise<Result<{ id: string
 }
 
 /**
- * Trwałe usunięcie arkusza razem z układem i podglądem.
+ * Trwałe usunięcie zestawu razem z układem i podglądem.
  *
- * Naklejki zostają w bazie — mogą należeć do innych arkuszy, a grafiki
+ * Naklejki zostają w bazie — mogą należeć do innych zestawów, a grafiki
  * w `uploads/` i tak są współdzielone.
  */
 export async function deleteSheet(rawId: string): Promise<Result> {
@@ -563,17 +563,17 @@ export async function deleteSheet(rawId: string): Promise<Result> {
   if (!actor) return DENIED;
 
   const id = idSchema.safeParse(rawId);
-  if (!id.success) return { success: false, error: "Brak arkusza." };
+  if (!id.success) return { success: false, error: "Brak zestawu." };
 
   const sheet = await getSheet(id.data);
-  if (!sheet) return { success: false, error: "Ten arkusz został już usunięty." };
+  if (!sheet) return { success: false, error: "Ten zestaw został już usunięty." };
 
   await db.collection(SHEETS_COLLECTION).doc(sheet.id).delete();
   await deleteSheetFiles(sheet.id);
 
   await recordAudit({
     actorEmail: actor.email,
-    action: "Usunięcie gotowego arkusza",
+    action: "Usunięcie gotowego zestawu",
     details: `„${sheet.name}"${sheet.category ? ` (${sheet.category})` : ""}, ${SHEET_STATUS_LABELS[
       sheet.status
     ].toLowerCase()}, naklejek: ${sheet.stickerCount}`,
@@ -670,7 +670,7 @@ export async function createLibrarySticker(
     details: `„${sticker.name}"`,
   });
 
-  revalidatePath("/admin/arkusze/baza-naklejek");
+  revalidatePath("/admin/zestawy/baza-naklejek");
   return { success: true, sticker, existing: false };
 }
 
@@ -712,14 +712,14 @@ export async function updateLibrarySticker(
     });
   }
 
-  revalidatePath("/admin/arkusze/baza-naklejek");
+  revalidatePath("/admin/zestawy/baza-naklejek");
   return { success: true, sticker: { ...current, ...(update as Partial<LibrarySticker>) } };
 }
 
 /**
  * Znacznik „ostatnio użyte" — wołany przy wstawieniu naklejki z bazy na
- * arkusz. Przy zapisie arkusza go nie ruszamy: ponowne zapisanie starego
- * arkusza nie jest użyciem jego naklejek.
+ * zestaw. Przy zapisie zestawu go nie ruszamy: ponowne zapisanie starego
+ * zestawu nie jest użyciem jego naklejek.
  */
 export async function markLibraryStickersUsed(rawIds: string[]): Promise<Result> {
   const actor = await requireAdminActor();
@@ -744,8 +744,8 @@ export async function markLibraryStickersUsed(rawIds: string[]): Promise<Result>
 }
 
 /**
- * Usuwa naklejkę z bazy. Arkusze, na których leży, zachowują swoją kopię —
- * układ arkusza przechowuje adres grafiki, a nie odwołanie do bazy.
+ * Usuwa naklejkę z bazy. Zestawy, na których leży, zachowują swoją kopię —
+ * układ zestawu przechowuje adres grafiki, a nie odwołanie do bazy.
  */
 export async function deleteLibrarySticker(rawId: string): Promise<Result> {
   const actor = await requireAdminActor();
@@ -765,6 +765,6 @@ export async function deleteLibrarySticker(rawId: string): Promise<Result> {
     details: `„${sticker.name}"`,
   });
 
-  revalidatePath("/admin/arkusze/baza-naklejek");
+  revalidatePath("/admin/zestawy/baza-naklejek");
   return { success: true };
 }

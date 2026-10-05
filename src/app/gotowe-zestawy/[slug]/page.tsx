@@ -11,11 +11,11 @@ import { SHEET_PRICE, normalizeForSearch } from "@/lib/sheets/types";
 import { getStickersNoun } from "@/lib/utils/polish";
 
 /**
- * Strona gotowego arkusza — produkt z ceną i „Dodaj do koszyka".
+ * Strona gotowego zestawu — produkt z ceną i „Dodaj do koszyka".
  *
- * Statyczna, generowana z arkuszy opublikowanych w panelu; zapis arkusza
+ * Statyczna, generowana z zestawów opublikowanych w panelu; zapis zestawu
  * i zmiana trybu widoczności odświeżają ją od razu (`refreshSheetViews`).
- * Poza trybem „Włączony" żadna strona arkusza nie istnieje.
+ * Poza trybem „Włączony" żadna strona zestawu nie istnieje.
  */
 export async function generateStaticParams() {
   return (await getCatalogSheets()).map((sheet) => ({ slug: sheet.slug }));
@@ -32,7 +32,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const count = `${sheet.stickerCount} ${getStickersNoun(sheet.stickerCount)}`;
   const description = `${sheet.name}: ${count} na arkuszu A4 z folii winylowej odpornej na wodę i UV. ${formatPrice(
     SHEET_PRICE
-  )} brutto, zamów od razu albo dopasuj arkusz w kreatorze.`;
+  )} brutto, zamów od razu albo dopasuj zestaw w kreatorze.`;
 
   return {
     title,
@@ -55,7 +55,7 @@ export default async function SheetPage({ params }: Props) {
   const sheet = sheets.find((item) => item.slug === slug);
   if (!sheet) notFound();
 
-  // Najpierw arkusze z tego samego tematu, potem najnowsze z pozostałych.
+  // Najpierw zestawy z tego samego tematu, potem najnowsze z pozostałych.
   const themes = sheet.categories.map(normalizeForSearch);
   const others = sheets.filter((item) => item.id !== sheet.id);
   const sameTheme = others.filter((item) => item.categories.some((c) => themes.includes(normalizeForSearch(c))));
@@ -67,7 +67,7 @@ export default async function SheetPage({ params }: Props) {
       <JsonLd
         data={breadcrumbSchema([
           { name: "Strona główna", path: "" },
-          { name: "Gotowe arkusze", path: CATALOG_PATH },
+          { name: "Gotowe zestawy", path: CATALOG_PATH },
           { name: sheet.name },
         ])}
       />

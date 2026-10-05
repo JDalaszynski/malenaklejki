@@ -4,7 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 
 /**
- * Obraz arkusza przez optymalizator obrazów: zamiast JPEG-a z panelu
+ * Obraz zestawu przez optymalizator obrazów: zamiast JPEG-a z panelu
  * przeglądarka dostaje WebP w rozmiarze, w jakim go rysuje. Gdyby
  * optymalizator odmówił, pokazujemy plik źródłowy.
  */

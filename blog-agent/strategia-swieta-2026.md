@@ -71,7 +71,7 @@ Liczby z `analiza-nisz-2026-09-09.md` §3.2 (algorytm `financeOf()`):
 
 1. **Każdy tekst sprzedaje komplet, nie pojedynczą naklejkę.** Obowiązkowa tabela "1 / 2 / 3 arkusze → cena z jedną dostawą". To także najbardziej cytowalny element dla modeli LLM ("ile kosztują personalizowane naklejki na prezenty").
 2. **Argument "jedna paczka" zamiast rabatu.** Rabatu nie mamy i mieć nie będziemy, więc realną oszczędnością, o której możemy uczciwie mówić, jest jedna dostawa na wszystkie arkusze.
-3. **Gramy o personalizację, nie o głowę.** Kto szuka `naklejki świąteczne` bez modyfikatora, zwykle chce gotowy arkusz z bałwankami za kilka złotych. Tego klienta dziś nie obsłużymy, dopóki nie powstanie katalog gotowych arkuszy (P1 z analizy nisz, patrz §12 pkt 4). Tytuł i H1 huba filtrują intencję przez dopisek "z własnym nadrukiem" albo "etykiety na prezenty".
+3. **Gramy o personalizację, nie o głowę.** Kto szuka `naklejki świąteczne` bez modyfikatora, zwykle chce gotowy zestaw z bałwankami za kilka złotych. Tego klienta dziś nie obsłużymy, dopóki nie powstanie katalog gotowych zestawów (P1 z analizy nisz, patrz §12 pkt 4). Tytuł i H1 huba filtrują intencję przez dopisek "z własnym nadrukiem" albo "etykiety na prezenty".
 
 ---
 
@@ -88,7 +88,7 @@ Wolumeny to hipotezy, bo w danych nie ma jeszcze sezonu.
 | 5 | **Paczki firmowe i e-commerce** | `naklejki na paczki świąteczne`, `świąteczne naklejki z logo`, `naklejki na upominki firmowe`, `plomby na paczki świąteczne` | zakupowa B2B | logo + faktura VAT; szczyt wysyłek przed Black Friday (27.11) | **B3** (H2) + odświeżenie plomb i eventów | 🟠 |
 | 6 | **Kalendarz adwentowy** | `naklejki z numerami do kalendarza adwentowego`, `cyferki do kalendarza adwentowego` | mieszana, dużo DIY | 24 numery na jednym arkuszu | **B3** (H2), bez osobnej strony | 🟡 |
 | 7 | **Mikołajki (6.12)** | `naklejki na mikołajki`, `drobny prezent na mikołajki dla dzieci` | zakupowa, niski koszyk | naklejki z imionami na paczki klasowe | **B3** (akapit w H2 o etykietach) | 🟡 |
-| 8 | Głowa "gotowe wzory" | `naklejki świąteczne` (bez modyfikatora), `naklejki świąteczne dla dzieci` | zakupowa, produkt gotowy | **nie gramy** bez katalogu gotowych arkuszy (P1) | - | ⛔ |
+| 8 | Głowa "gotowe wzory" | `naklejki świąteczne` (bez modyfikatora), `naklejki świąteczne dla dzieci` | zakupowa, produkt gotowy | **nie gramy** bez katalogu gotowych zestawów (P1) | - | ⛔ |
 | 9 | DIY / do druku | `naklejki świąteczne do druku`, `etykiety na prezenty do wydruku pdf` | darmowy szablon | **nie gramy** (`strategy.md` §7: 0 kliknięć w klastrze DIY) | - | ⛔ |
 | 10 | Ogon sezonu | `naklejki walentynkowe`, `naklejki na walentynki z imieniem` | zakupowa | nowy wpis w styczniu | B7 (brief w grudniu) | 🗓️ |
 
@@ -249,7 +249,7 @@ To są cele, nie prognozy. Bazy nie ma, bo to pierwszy sezon domeny.
 | **Brak treści "promocja świąteczna / Black Friday"** | `facts.md`: brak rabatów. Rabat 20% to 9,80 zł brutto, czyli 7,97 zł netto, **35% zysku** z zamówienia jednoarkuszowego (22,84 zł). Stała cena to nasz wyróżnik, nie słabość | brak |
 | **Brak osobnych stron na mikrookazje** (Mikołajki, adwent, Wigilia firmowa, Sylwester) | Zasada 1 Fazy 4; każda z nich to jedna sekcja w hubie. Pięć cienkich stron na pozycji 30 nie da nic | dane z sezonu 2026 (§10) |
 | **Brak darmowych szablonów świątecznych do druku** | Klaster DIY: 0 kliknięć (`strategy.md` §7) | warunek ze `strategy.md` §7 |
-| **Brak walki o głowę `naklejki świąteczne` bez modyfikatora** | Intencja "gotowy arkusz", którego nie sprzedajemy | katalog gotowych arkuszy (P1) |
+| **Brak walki o głowę `naklejki świąteczne` bez modyfikatora** | Intencja "gotowy zestaw", którego nie sprzedajemy | katalog gotowych zestawów (P1) |
 | **Brak landingu świątecznego w 2026** | Kanibalizacja z hubem w pierwszym sezonie; decyzja po danych | punkt kontrolny 15.11 |
 | **Brak daty granicznej w treści bez zgody** | `facts.md` | decyzja właściciela (§12 pkt 1) |
 | **Brak postaci licencjonowanych i znaków towarowych** | Ryzyko prawne i ryzyko dla marki | brak |
@@ -264,7 +264,7 @@ Tylko rzeczy, których agent nie może rozstrzygnąć sam. Przy każdej jest rek
 1. **Ostatni bezpieczny dzień zamówienia przed Wigilią (czw 24.12).** Rekomendacja: **pon 14.12.2026**. Rachunek: regulamin mówi o produkcji maksymalnie 3 dni roboczych od wpłaty, więc zamówienie opłacone w poniedziałek 14.12 wychodzi z produkcji najpóźniej w czwartek 17.12. Na doręczenie w szczycie przewoźników zostają wtedy 4 dni robocze (18-23.12). Termin trzeba potwierdzić u dostawcy. Bez tej decyzji hub mówi tylko "zamawiaj z zapasem".
 2. **Czy sklep robi przerwę świąteczną, a jeśli tak, to w jakich datach?** Mechanizm już jest (`VacationBanner`, `/admin/ustawienia`). Daty trafią do sekcji "kiedy zamówić" i do FAQ, żeby treść nie zapraszała do zamówień, których sklep nie przyjmie.
 3. **Arkusz próbny do zdjęć.** Jeden arkusz z trzema świątecznymi zastosowaniami (etykiety "Dla / Od", etykieta na nalewkę, plomba na paczkę), sfotografowany do ~25.10. Koszt 68,99 zł. Realne zdjęcie własnego produktu to najmocniejszy sygnał E-E-A-T i warunek pinów. Bez niego hub i piny zostają na zdjęciach z innych wpisów.
-4. **(opcjonalnie, dźwignia produktowa) Katalog gotowych arkuszy (P1 z analizy nisz) w wersji świątecznej.** Arkusz "Dla / Od" i arkusz z numerami 1-24 to jedyny sposób, żeby obsłużyć głowę `naklejki świąteczne`. Ma sens tylko wtedy, gdy ruszy do ~15.11, więc decyzja jest potrzebna do 1.10. Jeśli nie, strategia działa bez tego.
+4. **(opcjonalnie, dźwignia produktowa) Katalog gotowych zestawów (P1 z analizy nisz) w wersji świątecznej.** Arkusz "Dla / Od" i arkusz z numerami 1-24 to jedyny sposób, żeby obsłużyć głowę `naklejki świąteczne`. Ma sens tylko wtedy, gdy ruszy do ~15.11, więc decyzja jest potrzebna do 1.10. Jeśli nie, strategia działa bez tego.
 
 ---
 

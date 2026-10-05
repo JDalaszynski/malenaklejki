@@ -26,7 +26,7 @@ import {
 import { loadUsage } from "@/lib/sheets/usage";
 
 export const metadata: Metadata = {
-  title: "Panel — gotowe arkusze",
+  title: "Panel — gotowe zestawy",
   robots: { index: false, follow: false },
 };
 
@@ -47,7 +47,7 @@ export default async function AdminSheetsPage({
     listSheets(),
     countLibraryStickers(),
     getReadySheetsSettingsFresh(),
-    // Liczniki są dodatkiem — ich awaria nie może zabrać panelu arkuszy.
+    // Liczniki są dodatkiem — ich awaria nie może zabrać panelu zestawów.
     loadUsage(period).catch((error) => {
       console.error("loadUsage error:", error);
       return null;
@@ -61,10 +61,10 @@ export default async function AdminSheetsPage({
   return (
     <AdminLayout
       adminEmail={admin.email ?? ""}
-      title="Gotowe arkusze"
+      title="Gotowe zestawy"
       subtitle={
         <span className="inline-flex flex-wrap items-center gap-x-2 gap-y-1">
-          Arkusze tematyczne układane z naklejek z bazy. Opublikowane widać w kreatorze na stronie
+          Zestawy tematyczne układane z naklejek z bazy. Opublikowane widać w kreatorze na stronie
           głównej, szkice tylko tutaj.
           <Link href="/admin/ustawienia" className="inline-flex" title="Zmień w ustawieniach sklepu">
             <StatusPill
@@ -81,7 +81,7 @@ export default async function AdminSheetsPage({
       actions={
         <>
           <Link
-            href="/admin/arkusze/baza-naklejek"
+            href="/admin/zestawy/baza-naklejek"
             className="inline-flex items-center gap-2 rounded-xl text-sm font-bold h-11 px-5 border border-slate-300 dark:border-white/20 bg-background hover:bg-slate-50 dark:hover:bg-white/5 transition-all active:scale-[0.98]"
           >
             <Library className="w-4 h-4" aria-hidden />
@@ -90,13 +90,13 @@ export default async function AdminSheetsPage({
           <Link
             href={
               filters.category
-                ? `/admin/arkusze/nowy?kategoria=${encodeURIComponent(filters.category)}`
-                : "/admin/arkusze/nowy"
+                ? `/admin/zestawy/nowy?kategoria=${encodeURIComponent(filters.category)}`
+                : "/admin/zestawy/nowy"
             }
             className="inline-flex items-center gap-2 rounded-xl text-sm font-bold bg-primary text-primary-foreground hover:bg-primary/95 active:scale-[0.98] h-11 px-5 shadow-sm transition-all"
           >
             <Plus className="w-4 h-4" aria-hidden />
-            Nowy arkusz
+            Nowy zestaw
           </Link>
         </>
       }
@@ -109,10 +109,10 @@ export default async function AdminSheetsPage({
             readySheets.mode === "on"
               ? published
                 ? "widoczne w sklepie"
-                : "żaden arkusz nie jest w sklepie"
+                : "żaden zestaw nie jest w sklepie"
               : readySheets.mode === "preview"
                 ? "widzisz je tylko Ty (podgląd)"
-                : "sklep ma gotowe arkusze wyłączone"
+                : "sklep ma gotowe zestawy wyłączone"
           }
           hero
         />
@@ -122,7 +122,7 @@ export default async function AdminSheetsPage({
           value={String(categories.length)}
           hint={categories.slice(0, 3).join(", ") || "jeszcze żadnej"}
         />
-        <StatTile label="Naklejek w bazie" value={String(libraryCount)} hint="do układania arkuszy" />
+        <StatTile label="Naklejek w bazie" value={String(libraryCount)} hint="do układania zestawów" />
       </div>
 
       {usage && (
@@ -142,18 +142,18 @@ export default async function AdminSheetsPage({
         </Card>
       )}
 
-      <Card title={all.length > 0 ? `Arkusze (${page.total})` : undefined}>
+      <Card title={all.length > 0 ? `Zestawy (${page.total})` : undefined}>
         <SheetGrid
           sheets={page.items}
           showCreate={all.length === 0}
-          emptyMessage="Brak arkuszy dla wybranych filtrów."
+          emptyMessage="Brak zestawów dla wybranych filtrów."
         />
         <Pagination
           page={page.page}
           pageCount={page.pageCount}
           total={page.total}
           pageSize={SHEETS_PAGE_SIZE}
-          basePath="/admin/arkusze"
+          basePath="/admin/zestawy"
           params={params}
         />
       </Card>

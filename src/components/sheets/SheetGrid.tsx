@@ -8,8 +8,8 @@ import { getStickersNoun } from "@/lib/utils/polish";
 import { SheetCardActions } from "./SheetCardActions";
 
 /**
- * Kafelki gotowych arkuszy. Podgląd to miniatura zapisywana przy każdym
- * zapisie arkusza — ta sama, którą docelowo zobaczy klient w sklepie.
+ * Kafelki gotowych zestawów. Podgląd to miniatura zapisywana przy każdym
+ * zapisie zestawu — ta sama, którą docelowo zobaczy klient w sklepie.
  */
 export function SheetGrid({
   sheets,
@@ -18,7 +18,7 @@ export function SheetGrid({
 }: {
   sheets: StickerSheet[];
   emptyMessage: string;
-  /** Pusta baza — zamiast komunikatu zachęta do pierwszego arkusza. */
+  /** Pusta baza — zamiast komunikatu zachęta do pierwszego zestawu. */
   showCreate: boolean;
 }) {
   if (sheets.length === 0) {
@@ -27,17 +27,17 @@ export function SheetGrid({
         <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center">
           <LayoutGrid className="w-7 h-7 text-primary" aria-hidden />
         </div>
-        <p className="text-lg font-extrabold text-foreground">Nie ma jeszcze żadnego arkusza</p>
+        <p className="text-lg font-extrabold text-foreground">Nie ma jeszcze żadnego zestawu</p>
         <p className="text-sm font-medium text-muted-foreground max-w-md">
-          Ułóż pierwszy gotowy arkusz tematyczny. Naklejki, które na nim położysz, trafią do bazy
+          Ułóż pierwszy gotowy zestaw tematyczny. Naklejki, które położysz na arkuszu, trafią do bazy
           i przydadzą się przy kolejnych.
         </p>
         <Link
-          href="/admin/arkusze/nowy"
+          href="/admin/zestawy/nowy"
           className="mt-2 inline-flex items-center gap-2 rounded-xl text-sm font-bold bg-primary text-primary-foreground hover:bg-primary/95 active:scale-[0.98] h-11 px-5 shadow-sm transition-all"
         >
           <Plus className="w-4 h-4" aria-hidden />
-          Nowy arkusz
+          Nowy zestaw
         </Link>
       </div>
     ) : (
@@ -53,9 +53,9 @@ export function SheetGrid({
           className="flex flex-col rounded-2xl border border-border/60 bg-card overflow-hidden shadow-[0_8px_30px_rgba(0,0,0,0.02)]"
         >
           <Link
-            href={`/admin/arkusze/${sheet.id}`}
+            href={`/admin/zestawy/${sheet.id}`}
             className="group relative block bg-[#edf6f2] dark:bg-[#002c2e] p-4"
-            aria-label={`Edytuj arkusz ${sheet.name}`}
+            aria-label={`Edytuj zestaw ${sheet.name}`}
           >
             <div className="relative mx-auto w-full max-w-[15rem] aspect-[210/297] rounded-md bg-white shadow-[0_10px_30px_rgba(0,71,73,0.10)] overflow-hidden transition-transform group-hover:-translate-y-0.5">
               {sheet.previewUrl ? (
@@ -93,12 +93,12 @@ export function SheetGrid({
               {sheet.status === "published" &&
                 (isCatalogReady(sheet) ? (
                   <a
-                    href={`/gotowe-arkusze/${sheet.slug}`}
+                    href={`/gotowe-zestawy/${sheet.slug}`}
                     target="_blank"
                     rel="noreferrer"
                     className="mt-1 inline-block text-[11px] font-bold text-muted-foreground hover:text-primary hover:underline break-all"
                   >
-                    /gotowe-arkusze/{sheet.slug}
+                    /gotowe-zestawy/{sheet.slug}
                   </a>
                 ) : (
                   <p className="mt-1 text-[11px] font-bold text-[#8a6d00] dark:text-[#FFCD08]">

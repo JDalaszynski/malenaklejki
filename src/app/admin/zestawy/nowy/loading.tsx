@@ -5,11 +5,11 @@ import { SheetEditorSkeleton } from "@/components/sheets/SheetsSkeletons";
 export default function Loading() {
   return (
     <AdminPageSkeleton
-      title="Edycja arkusza"
+      title="Nowy zestaw"
       subtitle={EDITOR_SUBTITLE}
       actions={<SheetEditorActions />}
       stickyHeader={false}
-      label="Wczytywanie arkusza…"
+      label="Wczytywanie edytora zestawu…"
     >
       <SheetEditorSkeleton />
     </AdminPageSkeleton>

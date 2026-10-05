@@ -116,7 +116,7 @@ Osobna sytuacja to jeden wzór potrzebny w kilku miejscach naraz - na przykład 
 
 ## Naklejki na zamówienie według zastosowania
 
-Brak minimalnego nakładu otwiera zastosowania, które przy tradycyjnym druku są nieopłacalne. Poniżej przewodniki po konkretnych niszach. Nie masz grafiki - [wybierz gotowy arkusz](/gotowe-arkusze) z naklejkami wokół jednego tematu i zamów go od razu albo zmień po swojemu w kreatorze.
+Brak minimalnego nakładu otwiera zastosowania, które przy tradycyjnym druku są nieopłacalne. Poniżej przewodniki po konkretnych niszach. Nie masz grafiki - [wybierz gotowy zestaw](/gotowe-zestawy) z naklejkami wokół jednego tematu i zamów go od razu albo zmień po swojemu w kreatorze.
 
 ### Firma, e-commerce i opakowania
 

@@ -10,8 +10,10 @@
  *  - lista wpisów: frontmatter plików w `src/content/blog/` (`title`, `description`, `date`, `updated`, `role`),
  *  - liczby o produkcie: `blog-agent/facts.md` (nie wpisuj tu wartości spoza tego pliku),
  *  - domena: zawsze `https://www.malenaklejki.pl` (zgodnie z canonical i `sitemap.ts`),
- *  - gotowe arkusze: `/api/gotowe-arkusze/katalog` działającego sklepu. Przy wyłączonych
- *    gotowych arkuszach (albo bez sieci) lista jest pusta i pliki nie wspominają o katalogu.
+ *  - gotowe zestawy: `/api/gotowe-zestawy/katalog` działającego sklepu. Przy wyłączonych
+ *    gotowych zestawach (albo bez sieci) lista jest pusta i pliki nie wspominają o katalogu.
+ *    Zmienna `CATALOG_API_URL` wskazuje inny serwer (np. lokalny `http://localhost:3000`),
+ *    gdy adresy w sklepie zmieniły się przed wdrożeniem. Linki w plikach zawsze idą do domeny.
  */
 
 import fs from "node:fs/promises";
@@ -20,6 +22,7 @@ import matter from "gray-matter";
 
 const ROOT = process.cwd();
 const BASE_URL = "https://www.malenaklejki.pl";
+const CATALOG_API_URL = process.env.CATALOG_API_URL ?? BASE_URL;
 const POSTS_DIR = path.join(ROOT, "src/content/blog");
 
 /** Landingi i strony statyczne. Dodawaj TYLKO trasy, które realnie istnieją w `src/app/`. */
@@ -88,24 +91,24 @@ async function readPosts() {
   return posts.sort((a, b) => b.date.localeCompare(a.date));
 }
 
-/** Fakty i wskazówki dopisywane tylko wtedy, gdy katalog gotowych arkuszy jest publiczny. */
+/** Fakty i wskazówki dopisywane tylko wtedy, gdy katalog gotowych zestawów jest publiczny. */
 const CATALOG_PAGE = {
-  url: "/gotowe-arkusze",
-  title: "Gotowe arkusze naklejek",
-  desc: "Katalog gotowych wzorów na arkuszach A4 - do zamówienia od razu albo do zmiany w kreatorze.",
+  url: "/gotowe-zestawy",
+  title: "Gotowe zestawy naklejek",
+  desc: "Katalog gotowych zestawów naklejek (każdy to jeden arkusz A4) - do zamówienia od razu albo do zmiany w kreatorze.",
 };
 const CATALOG_FACTS = [
-  "Gotowe arkusze: oprócz druku własnych grafik sprzedajemy gotowe arkusze A4 z kilkudziesięcioma naklejkami wokół jednego tematu - ta sama folia winylowa i ta sama cena 49,00 zł brutto za arkusz. Dokładna liczba naklejek jest podana przy każdym arkuszu.",
-  "Edycja gotowego arkusza: przed zamówieniem każdy gotowy arkusz można otworzyć w kreatorze i zmienić - usunąć naklejki, zmienić ich rozmiar albo dodać własne zdjęcie, logo lub imię. Cena się nie zmienia.",
-  "Zwrot: gotowy arkusz zamówiony bez zmian można zwrócić w ciągu 14 dni. Naklejki z własnych grafik i gotowe arkusze zmienione w kreatorze powstają według specyfikacji klienta i zwrotowi nie podlegają.",
+  "Gotowe zestawy: oprócz druku własnych grafik sprzedajemy gotowe zestawy naklejek - każdy to jeden arkusz A4 z kilkudziesięcioma naklejkami wokół jednego tematu, na tej samej folii winylowej i za tę samą cenę 49,00 zł brutto. Dokładna liczba naklejek jest podana przy każdym zestawie.",
+  "Edycja gotowego zestawu: przed zamówieniem każdy gotowy zestaw można otworzyć w kreatorze i zmienić - usunąć naklejki, zmienić ich rozmiar albo dodać własne zdjęcie, logo lub imię. Cena się nie zmienia.",
+  "Zwrot: gotowy zestaw zamówiony bez zmian można zwrócić w ciągu 14 dni. Naklejki z własnych grafik i gotowe zestawy zmienione w kreatorze powstają według specyfikacji klienta i zwrotowi nie podlegają.",
 ];
 const CATALOG_AGENT_RULE =
-  "Jeśli użytkownik szuka naklejek o konkretnej tematyce i nie ma własnej grafiki, wskaż mu pasujący gotowy arkusz z sekcji „Gotowe arkusze” - można go zamówić od razu albo zmienić w kreatorze.";
+  "Jeśli użytkownik szuka naklejek o konkretnej tematyce i nie ma własnej grafiki, wskaż mu pasujący gotowy zestaw z sekcji „Gotowe zestawy” - można go zamówić od razu albo zmienić w kreatorze.";
 
-/** Arkusze z katalogu działającego sklepu; pusta lista, gdy katalog nie jest publiczny. */
+/** Zestawy z katalogu działającego sklepu; pusta lista, gdy katalog nie jest publiczny. */
 async function readCatalog() {
   try {
-    const response = await fetch(`${BASE_URL}/api/gotowe-arkusze/katalog`, {
+    const response = await fetch(`${CATALOG_API_URL}/api/gotowe-zestawy/katalog`, {
       signal: AbortSignal.timeout(8000),
     });
     if (!response.ok) return [];
@@ -134,14 +137,14 @@ const catalogSection = (catalog) =>
   catalog.length === 0
     ? ""
     : `
-## Gotowe arkusze
+## Gotowe zestawy
 ${catalog.map(sheetLine).join("\n")}
 `;
 
 const postLine = (post) =>
   `- [${post.title}](${BASE_URL}/blog/${post.slug}) - ${post.description}`;
 
-/** Strony i fakty z dopiskami o katalogu — tylko gdy katalog ma arkusze. */
+/** Strony i fakty z dopiskami o katalogu — tylko gdy katalog ma zestawy. */
 function withCatalog(catalog) {
   if (catalog.length === 0) return { pages: PAGES, facts: FACTS, rules: AGENT_RULES };
   return {
@@ -211,5 +214,5 @@ const [posts, catalog] = await Promise.all([readPosts(), readCatalog()]);
 await fs.writeFile(path.join(ROOT, "public/llms.txt"), buildShort(posts, catalog), "utf8");
 await fs.writeFile(path.join(ROOT, "public/llms-full.txt"), buildFull(posts, catalog), "utf8");
 console.log(
-  `Wygenerowano public/llms.txt i public/llms-full.txt (${posts.length} wpisów, gotowych arkuszy: ${catalog.length}).`
+  `Wygenerowano public/llms.txt i public/llms-full.txt (${posts.length} wpisów, gotowych zestawów: ${catalog.length}).`
 );

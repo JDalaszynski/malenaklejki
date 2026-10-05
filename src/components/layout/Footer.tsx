@@ -85,9 +85,9 @@ export function Footer({ children }: FooterProps = {}) {
               </p>
               <ul className="flex flex-col gap-1.5">
                 {[
-                  // Katalog istnieje tylko przy włączonych gotowych arkuszach.
+                  // Katalog istnieje tylko przy włączonych gotowych zestawach.
                   ...(catalogVisible
-                    ? [{ href: "/gotowe-arkusze", label: "Gotowe arkusze naklejek" }]
+                    ? [{ href: "/gotowe-zestawy", label: "Gotowe zestawy naklejek" }]
                     : []),
                   { href: "/naklejki-die-cut", label: "Naklejki die cut" },
                   { href: "/naklejki-foliowe", label: "Naklejki foliowe i wodoodporne" },

@@ -19,10 +19,10 @@ const FORMS: { value: DeliveryForm; icon: typeof Layers; label: string; hint: st
 ];
 
 /**
- * Zakup gotowego arkusza prosto ze strony produktu.
+ * Zakup gotowego zestawu prosto ze strony produktu.
  *
  * Pliki do druku powstały przy publikacji w panelu, więc pozycja trafia do
- * koszyka od razu — bez kreatora i bez składania arkusza w przeglądarce.
+ * koszyka od razu — bez kreatora i bez składania zestawu w przeglądarce.
  * Taka pozycja jest „niezmieniona", czyli podlega zwrotowi w 14 dni.
  */
 export function AddReadySheetToCart({
@@ -42,7 +42,7 @@ export function AddReadySheetToCart({
 
   useEffect(() => {
     trackViewReadySheet(sheet, SHEET_PRICE);
-    // Jedno zdarzenie na otwarcie strony arkusza.
+    // Jedno zdarzenie na otwarcie strony zestawu.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [sheet.id]);
 
@@ -51,12 +51,12 @@ export function AddReadySheetToCart({
     setBusy(true);
     setError(null);
     try {
-      // Układ nie jest potrzebny do druku — pozwala tylko wrócić do arkusza
+      // Układ nie jest potrzebny do druku — pozwala tylko wrócić do zestawu
       // w kreatorze (z koszyka albo z historii zamówień), więc jego brak
       // nie zatrzymuje zakupu.
       const [layout, cart] = await Promise.all([
         loadReadySheetLayout(sheet.id, sheet.version).catch(() => null),
-        fetch(`/api/gotowe-arkusze/${sheet.id}/koszyk`, { method: "POST" })
+        fetch(`/api/gotowe-zestawy/${sheet.id}/koszyk`, { method: "POST" })
           .then((response) => (response.ok ? (response.json() as Promise<{ layoutPath?: string }>) : null))
           .catch(() => null),
       ]);
@@ -81,11 +81,11 @@ export function AddReadySheetToCart({
         },
       };
       addItem(item);
-      trackAddToCart(item, "strona arkusza");
+      trackAddToCart(item, "strona zestawu");
       router.push("/koszyk");
     } catch (err) {
       console.error(err);
-      setError("Nie udało się dodać arkusza do koszyka. Spróbuj ponownie.");
+      setError("Nie udało się dodać zestawu do koszyka. Spróbuj ponownie.");
       setBusy(false);
     }
   };
@@ -127,14 +127,14 @@ export function AddReadySheetToCart({
 
       <div className="flex items-center justify-between gap-3">
         <span className="text-xs font-black uppercase tracking-wider text-muted-foreground">
-          Liczba arkuszy
+          Liczba zestawów
         </span>
         <div className="flex items-center gap-1 rounded-2xl border border-border/60 bg-background/60 p-1">
           <button
             type="button"
             onClick={() => setQuantity((value) => Math.max(1, value - 1))}
             disabled={quantity <= 1}
-            aria-label="Mniej arkuszy"
+            aria-label="Mniej zestawów"
             className="w-9 h-9 rounded-xl flex items-center justify-center hover:bg-muted/60 transition-colors cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed"
           >
             <Minus className="w-4 h-4" />
@@ -145,7 +145,7 @@ export function AddReadySheetToCart({
           <button
             type="button"
             onClick={() => setQuantity((value) => Math.min(99, value + 1))}
-            aria-label="Więcej arkuszy"
+            aria-label="Więcej zestawów"
             className="w-9 h-9 rounded-xl flex items-center justify-center hover:bg-muted/60 transition-colors cursor-pointer"
           >
             <Plus className="w-4 h-4" />
@@ -179,7 +179,7 @@ export function AddReadySheetToCart({
 
       <p className="text-[11px] font-medium text-muted-foreground leading-relaxed">
         Dostawa do paczkomatu {formatPrice(SHIPPING_PRICE)}, liczona raz za całe zamówienie.
-        Arkusz zamówiony bez zmian możesz zwrócić w 14 dni.
+        Zestaw zamówiony bez zmian możesz zwrócić w 14 dni.
       </p>
     </div>
   );

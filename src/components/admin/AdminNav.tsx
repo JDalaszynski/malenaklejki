@@ -20,7 +20,7 @@ const MESSAGES_HREF = "/admin/formularz";
 const ITEMS = [
   { href: "/admin", label: "Zamówienia", icon: Receipt, exact: true },
   { href: "/admin/zamowienia/nowe", label: "Nowe zamówienie", icon: PackagePlus, exact: true },
-  { href: "/admin/arkusze", label: "Arkusze", icon: Layers, exact: false },
+  { href: "/admin/zestawy", label: "Zestawy", icon: Layers, exact: false },
   { href: MESSAGES_HREF, label: "Formularz", icon: Inbox, exact: false },
   { href: "/admin/uzytkownicy", label: "Użytkownicy", icon: Users, exact: false },
   { href: "/admin/statystyki", label: "Statystyki", icon: BarChart3, exact: false },

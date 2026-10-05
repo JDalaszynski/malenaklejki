@@ -69,7 +69,7 @@ const SHARP_NATIVE_FILES = [
 
 const nextConfig: NextConfig = {
   images: {
-    // Podglądy gotowych arkuszy (panel → Arkusze) leżą w magazynie pod
+    // Podglądy gotowych zestawów (panel → Zestawy) leżą w magazynie pod
     // `sheets/` i tylko one przechodzą przez optymalizator obrazów. Grafik
     // klientów z `uploads/` celowo tu nie ma — inaczej każdy mógłby wyczerpać
     // limit przekształceń własnymi plikami.
@@ -92,6 +92,17 @@ const nextConfig: NextConfig = {
     // Fonty z polskimi znakami osadzane w ewidencji PDF — czytane z dysku,
     // więc śledzenie importów ich nie widzi.
     "/admin/raporty/pobierz": ["./src/lib/admin/fonts/*.ttf"],
+  },
+
+  // Nazwa „gotowe arkusze" zmieniła się na „gotowe zestawy" (2026-10-05).
+  // Stare adresy żyły w wyszukiwarce, zakładkach i cudzych linkach, więc
+  // przekierowujemy je na stałe — razem z ogonem ścieżki i parametrami.
+  async redirects() {
+    return [
+      { source: "/gotowe-arkusze/:path*", destination: "/gotowe-zestawy/:path*", permanent: true },
+      { source: "/api/gotowe-arkusze/:path*", destination: "/api/gotowe-zestawy/:path*", permanent: true },
+      { source: "/admin/arkusze/:path*", destination: "/admin/zestawy/:path*", permanent: true },
+    ];
   },
 
   async headers() {

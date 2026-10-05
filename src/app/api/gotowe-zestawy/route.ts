@@ -8,7 +8,7 @@ export const dynamic = "force-dynamic";
 const NO_STORE = { "Cache-Control": "no-store, private" };
 
 /**
- * Lista gotowych arkuszy do galerii w kreatorze.
+ * Lista gotowych zestawów do galerii w kreatorze.
  *
  * Osobny adres, a nie dane wliczone w render strony: listę dociąga dopiero
  * otwarta galeria, więc strona główna nie płaci za nią ani bajtem, a w trybie
@@ -26,8 +26,8 @@ export async function GET() {
     const body: PublicSheetsResponse = { sheets, categories, preview: access.preview };
     return NextResponse.json(body, { headers: NO_STORE });
   } catch (error) {
-    // Kreator ma działać dalej — najwyżej bez gotowych arkuszy.
-    console.error("GET /api/gotowe-arkusze error:", error);
+    // Kreator ma działać dalej — najwyżej bez gotowych zestawów.
+    console.error("GET /api/gotowe-zestawy error:", error);
     return NextResponse.json(empty, { headers: NO_STORE });
   }
 }

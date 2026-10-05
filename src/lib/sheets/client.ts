@@ -1,7 +1,7 @@
 import type { PublicSheetLayout, PublicSheetsResponse } from "./types";
 
 /**
- * Gotowe arkusze od strony przeglądarki: lista do galerii i układy do
+ * Gotowe zestawy od strony przeglądarki: lista do galerii i układy do
  * kreatora. Obie rzeczy pobieramy dopiero wtedy, gdy klient po nie sięgnie —
  * strona główna ładuje się bez nich.
  */
@@ -15,10 +15,10 @@ const layouts = new Map<string, Promise<PublicSheetLayout>>();
 export function loadReadySheets(): Promise<PublicSheetsResponse> {
   if (list && Date.now() - list.at < LIST_TTL_MS) return list.promise;
 
-  const promise = fetch("/api/gotowe-arkusze", { cache: "no-store" }).then(async (response) => {
+  const promise = fetch("/api/gotowe-zestawy", { cache: "no-store" }).then(async (response) => {
     if (!response.ok) throw new Error(`HTTP ${response.status}`);
     const body = (await response.json()) as PublicSheetsResponse;
-    if (!Array.isArray(body?.sheets)) throw new Error("Brak listy arkuszy");
+    if (!Array.isArray(body?.sheets)) throw new Error("Brak listy zestawów");
     return body;
   });
 
@@ -32,8 +32,8 @@ export function loadReadySheets(): Promise<PublicSheetsResponse> {
 }
 
 /**
- * Układ arkusza. Ze znacznikiem wersji adres jest stały dla danej wersji
- * arkusza, więc odpowiada pamięć przeglądarki albo brzeg sieci; bez niego
+ * Układ zestawu. Ze znacznikiem wersji adres jest stały dla danej wersji
+ * zestawu, więc odpowiada pamięć przeglądarki albo brzeg sieci; bez niego
  * (wejście z linku) serwer zawsze oddaje stan bieżący.
  */
 export function loadReadySheetLayout(id: string, version?: string): Promise<PublicSheetLayout> {
@@ -42,8 +42,8 @@ export function loadReadySheetLayout(id: string, version?: string): Promise<Publ
   if (cached) return cached;
 
   const url = version
-    ? `/api/gotowe-arkusze/${id}?v=${encodeURIComponent(version)}`
-    : `/api/gotowe-arkusze/${id}`;
+    ? `/api/gotowe-zestawy/${id}?v=${encodeURIComponent(version)}`
+    : `/api/gotowe-zestawy/${id}`;
 
   const promise = fetch(url, version ? undefined : { cache: "no-store" }).then(async (response) => {
     if (!response.ok) throw new Error(`HTTP ${response.status}`);

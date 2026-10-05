@@ -19,7 +19,7 @@ import { getUUID } from "@/lib/uuid";
 import type { PlacedSticker } from "@/types/creator";
 
 /**
- * Stan i operacje edytora gotowego arkusza.
+ * Stan i operacje edytora gotowego zestawu.
  *
  * Każda operacja idzie tą samą drogą co w kreatorze na stronie głównej
  * (`HomePageClient`) — reguły dopasowania siedzą we wspólnym

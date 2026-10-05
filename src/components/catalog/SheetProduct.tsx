@@ -20,15 +20,15 @@ import {
 } from "./blocks";
 import { SheetImage } from "./SheetImage";
 
-/** Strona tematyczna arkusza, jeśli taka już istnieje. */
+/** Strona tematyczna zestawu, jeśli taka już istnieje. */
 function themeOf(sheet: CatalogSheet) {
   const keys = sheet.categories.map(normalizeForSearch);
   return THEME_PAGES.find((theme) => keys.includes(normalizeForSearch(theme.category)));
 }
 
 /**
- * Treść strony gotowego arkusza: produkt z ceną, zakupem i opisem.
- * Ten sam widok pokazuje publiczna strona `/gotowe-arkusze/<slug>`
+ * Treść strony gotowego zestawu: produkt z ceną, zakupem i opisem.
+ * Ten sam widok pokazuje publiczna strona `/gotowe-zestawy/<slug>`
  * i podgląd w panelu.
  */
 export function SheetProduct({ sheet, related }: { sheet: CatalogSheet; related: CatalogSheet[] }) {
@@ -41,7 +41,7 @@ export function SheetProduct({ sheet, related }: { sheet: CatalogSheet; related:
       <Breadcrumbs
         items={[
           { name: "Kreator Zestawu Naklejek", path: "/" },
-          { name: "Gotowe arkusze", path: CATALOG_PATH },
+          { name: "Gotowe zestawy", path: CATALOG_PATH },
           ...(theme ? [{ name: theme.label, path: theme.path }] : []),
           { name: sheet.name },
         ]}
@@ -87,7 +87,7 @@ export function SheetProduct({ sheet, related }: { sheet: CatalogSheet; related:
 
           <p className="flex items-baseline gap-2">
             <span className="text-4xl font-black text-foreground tracking-tight">{formatPrice(SHEET_PRICE)}</span>
-            <span className="text-sm font-bold text-muted-foreground">brutto za arkusz</span>
+            <span className="text-sm font-bold text-muted-foreground">brutto za zestaw</span>
           </p>
 
           <AddReadySheetToCart
@@ -125,7 +125,7 @@ export function SheetProduct({ sheet, related }: { sheet: CatalogSheet; related:
 
       {/* Opis */}
       <section className="mt-12 space-y-4">
-        <h2 className={headingClass}>Co jest na arkuszu {sheet.name}</h2>
+        <h2 className={headingClass}>Co jest w zestawie {sheet.name}</h2>
         {paragraphs.map((text) => (
           <p key={text.slice(0, 40)} className={paragraphClass}>
             {text}
@@ -133,7 +133,7 @@ export function SheetProduct({ sheet, related }: { sheet: CatalogSheet; related:
         ))}
         {sheet.motifs.length > 0 && (
           <div>
-            <p className="text-xs font-black uppercase tracking-wider text-muted-foreground">Motywy na arkuszu</p>
+            <p className="text-xs font-black uppercase tracking-wider text-muted-foreground">Motywy w zestawie</p>
             <ul className="mt-2 flex flex-wrap gap-1.5">
               {sheet.motifs.map((motif) => (
                 <li
@@ -150,7 +150,7 @@ export function SheetProduct({ sheet, related }: { sheet: CatalogSheet; related:
 
       {/* Parametry */}
       <section className="mt-12 space-y-5">
-        <h2 className={headingClass}>Parametry arkusza</h2>
+        <h2 className={headingClass}>Parametry zestawu</h2>
         <SpecTable
           rows={[
             { label: "Format", value: "Arkusz A4 (21 × 29,7 cm)" },
@@ -158,7 +158,7 @@ export function SheetProduct({ sheet, related }: { sheet: CatalogSheet; related:
             { label: "Materiał", value: "Folia winylowa o subtelnym połysku, mocny klej, który nie zostawia śladów" },
             { label: "Odporność", value: "Woda i promieniowanie UV. Mycie ręczne - folia nie nadaje się do zmywarki" },
             { label: "Forma zestawu", value: "Naklejki na arkuszu albo pojedyncze sztuki docięte osobno" },
-            { label: "Cena", value: `${formatPrice(SHEET_PRICE)} brutto za arkusz` },
+            { label: "Cena", value: `${formatPrice(SHEET_PRICE)} brutto za zestaw` },
             { label: "Realizacja", value: `Produkcja 2-3 dni robocze, odbiór w paczkomacie (${formatPrice(SHIPPING_PRICE)})` },
           ]}
         />
@@ -173,27 +173,27 @@ export function SheetProduct({ sheet, related }: { sheet: CatalogSheet; related:
 
       {/* Edycja */}
       <section className="mt-12 space-y-5">
-        <h2 className={headingClass}>Chcesz coś zmienić? Dopasuj arkusz przed zamówieniem</h2>
+        <h2 className={headingClass}>Chcesz coś zmienić? Dopasuj zestaw przed zamówieniem</h2>
         <p className={paragraphClass}>
-          Gotowy arkusz to punkt wyjścia, nie zamknięty zestaw. Otwórz go w kreatorze, a każdą naklejkę
+          Gotowy zestaw to punkt wyjścia, a nie gotowiec bez prawa zmian. Otwórz go w kreatorze, a każdą naklejkę
           powiększysz, zmniejszysz albo usuniesz - w zwolnione miejsce dołożysz własne zdjęcie, logo albo
-          imię. Cena arkusza się nie zmienia.
+          imię. Cena zestawu się nie zmienia.
         </p>
         <EditSteps />
       </section>
 
-      {/* Drugi arkusz */}
+      {/* Drugi zestaw */}
       <section className="mt-12 space-y-5">
-        <h2 className={headingClass}>Dołóż drugi arkusz - dostawa liczona raz</h2>
+        <h2 className={headingClass}>Dołóż drugi zestaw - dostawa liczona raz</h2>
         <p className={paragraphClass}>
           Dostawa do paczkomatu kosztuje {formatPrice(SHIPPING_PRICE)} za całe zamówienie, niezależnie od
-          liczby arkuszy. Do tego wzoru możesz dołożyć inny{" "}
+          liczby zestawów. Do tego wzoru możesz dołożyć inny{" "}
           <Link href={CATALOG_PATH} className={inlineLinkClass}>
-            gotowy arkusz
+            gotowy zestaw
           </Link>{" "}
           albo{" "}
           <Link href="/" className={inlineLinkClass}>
-            arkusz z własnymi naklejkami
+            zestaw z własnymi naklejkami
           </Link>{" "}
           - wszystko przyjedzie w jednej paczce.
         </p>
@@ -203,8 +203,8 @@ export function SheetProduct({ sheet, related }: { sheet: CatalogSheet; related:
       <section className="mt-12 space-y-3">
         <h2 className={headingClass}>Zwrot</h2>
         <p className={paragraphClass}>
-          Arkusz {sheet.name} zamówiony bez zmian możesz zwrócić w ciągu 14 dni od odbioru, bez podawania
-          przyczyny. Arkusz zmieniony w kreatorze powstaje według Twojej specyfikacji i zwrotowi nie podlega.
+          Zestaw {sheet.name} zamówiony bez zmian możesz zwrócić w ciągu 14 dni od odbioru, bez podawania
+          przyczyny. Zestaw zmieniony w kreatorze powstaje według Twojej specyfikacji i zwrotowi nie podlega.
           Szczegóły opisuje{" "}
           <Link href="/regulamin#zwroty" className={inlineLinkClass}>
             regulamin sklepu
@@ -215,7 +215,7 @@ export function SheetProduct({ sheet, related }: { sheet: CatalogSheet; related:
 
       {related.length > 0 && (
         <section className="mt-12 space-y-6">
-          <h2 className={headingClass}>Pasuje do tego arkusza</h2>
+          <h2 className={headingClass}>Pasuje do tego zestawu</h2>
           <SheetGrid sheets={related} />
         </section>
       )}
@@ -223,14 +223,14 @@ export function SheetProduct({ sheet, related }: { sheet: CatalogSheet; related:
       <section className={`mt-12 ${panelClass} p-6 sm:p-10 text-center space-y-4`}>
         <h2 className={headingClass}>Szukasz innego motywu?</h2>
         <p className={`${paragraphClass} max-w-2xl mx-auto`}>
-          Przejrzyj pozostałe gotowe arkusze albo ułóż własny z dowolnych zdjęć i grafik.
+          Przejrzyj pozostałe gotowe zestawy albo ułóż własny z dowolnych zdjęć i grafik.
         </p>
         <div className="flex flex-col sm:flex-row justify-center gap-3">
           <Link href={CATALOG_PATH} className={secondaryCtaClass}>
-            Wszystkie gotowe arkusze
+            Wszystkie gotowe zestawy
           </Link>
           <Link href="/" className={secondaryCtaClass}>
-            Ułóż własny arkusz
+            Ułóż własny zestaw
             <ArrowRight className="w-4 h-4" aria-hidden />
           </Link>
         </div>
@@ -239,7 +239,7 @@ export function SheetProduct({ sheet, related }: { sheet: CatalogSheet; related:
   );
 }
 
-/** Tytuł strony arkusza: nazwa, motyw i twarde parametry. */
+/** Tytuł strony zestawu: nazwa, motyw i twarde parametry. */
 export function sheetPageTitle(sheet: CatalogSheet): string {
   return `${sheetHeading(sheet)}, arkusz A4`;
 }

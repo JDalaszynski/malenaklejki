@@ -25,8 +25,8 @@ const OrderItemSchema = z.object({
   /** Ścieżka do układu arkusza wgranego przez kreator (`layouts/carts/...`). */
   layoutPath: z.string().max(300).optional().nullable(),
   /**
-   * Gotowy arkusz, z którego powstała pozycja. `modified: false` oznacza
-   * arkusz zamówiony bez zmian — taki podlega zwrotowi w 14 dni (regulamin §7).
+   * Gotowy zestaw, z którego powstała pozycja. `modified: false` oznacza
+   * zestaw zamówiony bez zmian — taki podlega zwrotowi w 14 dni (regulamin §7).
    */
   readySheet: z
     .object({

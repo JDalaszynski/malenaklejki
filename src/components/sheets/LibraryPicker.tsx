@@ -15,7 +15,7 @@ import { StickerThumb } from "./StickerThumb";
 const PAGE = 48;
 
 /**
- * Baza naklejek w edytorze arkusza: wyszukiwarka po nazwie i siatka
+ * Baza naklejek w edytorze zestawu: wyszukiwarka po nazwie i siatka
  * miniatur, ostatnio użyte na górze. Kliknięcie kładzie naklejkę na arkuszu
  * z ustawieniami zapisanymi w bazie.
  */
@@ -131,7 +131,7 @@ export function LibraryPicker({
       )}
 
       <Link
-        href="/admin/arkusze/baza-naklejek"
+        href="/admin/zestawy/baza-naklejek"
         className="self-start text-xs font-bold text-muted-foreground hover:text-primary transition-colors"
       >
         Zarządzaj bazą naklejek →

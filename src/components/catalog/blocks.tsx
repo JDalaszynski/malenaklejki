@@ -7,8 +7,8 @@ import { getStickersNoun } from "@/lib/utils/polish";
 import { SheetImage } from "./SheetImage";
 
 /**
- * Klocki stron gotowych arkuszy: katalogu, stron tematycznych i strony
- * arkusza. Wygląd trzyma się landingów (`/etykiety-na-sloiki` jako wzorzec),
+ * Klocki stron gotowych zestawów: katalogu, stron tematycznych i strony
+ * zestawu. Wygląd trzyma się landingów (`/etykiety-na-sloiki` jako wzorzec),
  * żeby nowe strony nie wprowadzały własnego designu.
  */
 
@@ -65,9 +65,9 @@ export function TrustStats({ stats }: { stats: { value: string; label: string }[
   );
 }
 
-/** Tekst alternatywny obrazu arkusza — z nazwą, motywem i twardymi parametrami. */
+/** Tekst alternatywny obrazu zestawu — z nazwą, motywem i twardymi parametrami. */
 export function sheetImageAlt(sheet: Pick<CatalogSheet, "name" | "subtitle" | "stickerCount">): string {
-  return `Arkusz naklejek ${sheetHeading(sheet)}, ${sheet.stickerCount} ${getStickersNoun(
+  return `Zestaw naklejek ${sheetHeading(sheet)}, ${sheet.stickerCount} ${getStickersNoun(
     sheet.stickerCount
   )} na folii winylowej, format A4`;
 }
@@ -78,7 +78,7 @@ export function SheetCard({ sheet }: { sheet: CatalogSheet }) {
       <Link
         href={sheetPath(sheet.slug)}
         className="group block bg-[#edf6f2] dark:bg-[#002c2e] p-4 sm:p-5"
-        aria-label={`${sheetHeading(sheet)} - zobacz arkusz`}
+        aria-label={`${sheetHeading(sheet)} - zobacz zestaw`}
       >
         <span className="relative block mx-auto w-full max-w-[15rem] aspect-[210/297] rounded-md bg-white overflow-hidden shadow-[0_10px_30px_rgba(0,71,73,0.12)] transition-transform duration-300 group-hover:-translate-y-1">
           {sheet.previewUrl && (
@@ -110,7 +110,7 @@ export function SheetCard({ sheet }: { sheet: CatalogSheet }) {
             href={sheetPath(sheet.slug)}
             className="inline-flex flex-1 items-center justify-center gap-1.5 rounded-xl bg-primary px-4 h-11 text-sm font-extrabold text-primary-foreground hover:bg-primary/95 shadow-sm transition-all active:scale-[0.98]"
           >
-            Zobacz arkusz
+            Zobacz zestaw
             <ArrowRight className="w-4 h-4" aria-hidden />
           </Link>
           <Link
@@ -142,14 +142,14 @@ const headCellClass =
 const cellClass = "p-3 sm:p-4 border-b border-border/60 text-foreground/80 dark:text-[#a0d4c8] font-semibold align-top";
 const zebra = (index: number) => (index % 2 === 1 ? "bg-[#edf6f2]/30 dark:bg-[#002c2e]/20" : "");
 
-/** „Arkusz | Motywy | Liczba naklejek" — tabela, którą łatwo zacytować. */
+/** „Zestaw | Motywy | Liczba naklejek" — tabela, którą łatwo zacytować. */
 export function SheetsTable({ sheets }: { sheets: CatalogSheet[] }) {
   return (
     <div className={tableWrapClass}>
       <table className={tableClass}>
         <thead>
           <tr>
-            <th scope="col" className={headCellClass}>Arkusz</th>
+            <th scope="col" className={headCellClass}>Zestaw</th>
             <th scope="col" className={headCellClass}>Motywy</th>
             <th scope="col" className={`${headCellClass} whitespace-nowrap`}>Liczba naklejek</th>
           </tr>
@@ -196,7 +196,7 @@ export function SpecTable({ rows }: { rows: { label: string; value: string }[] }
 
 const EDIT_STEPS = [
   {
-    title: "Wybierz arkusz",
+    title: "Wybierz zestaw",
     text: "Każdy wzór to gotowy układ A4 - możesz go zamówić od razu, bez wgrywania czegokolwiek.",
   },
   {

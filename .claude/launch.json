@@ -19,7 +19,7 @@
       "autoPort": true
     },
     {
-      "name": "dev-arkusze",
+      "name": "dev-zestawy",
       "runtimeExecutable": "sh",
       "runtimeArgs": [
         "-c",

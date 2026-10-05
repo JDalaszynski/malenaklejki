@@ -21,7 +21,7 @@ const done = () => new NextResponse(null, { status: 204, headers: NO_STORE });
  * (`lib/sheets/usage.ts`).
  *
  * Adres jest publiczny, więc przyjmuje wyłącznie znane zdarzenia i znane
- * miejsca wejścia, a identyfikator arkusza tylko taki, który naprawdę jest
+ * miejsca wejścia, a identyfikator zestawu tylko taki, który naprawdę jest
  * w galerii — inaczej każdy mógłby rozdymać dokument dowolnymi kluczami.
  * Odpowiedź jest zawsze pusta: klient nie dowiaduje się, czy zdarzenie
  * policzono. Nie liczymy administratora (jego klikanie w panelu i testy to
@@ -29,7 +29,7 @@ const done = () => new NextResponse(null, { status: 204, headers: NO_STORE });
  */
 export async function POST(request: Request) {
   const ip = (await headers()).get("x-forwarded-for") || "unknown";
-  if (!checkRateLimit(`gotowe-arkusze-zdarzenie-${ip}`, 60, 60_000)) {
+  if (!checkRateLimit(`gotowe-zestawy-zdarzenie-${ip}`, 60, 60_000)) {
     return NextResponse.json({ error: "Zbyt wiele zdarzeń." }, { status: 429, headers: NO_STORE });
   }
 
@@ -68,7 +68,7 @@ export async function POST(request: Request) {
     return done();
   } catch (error) {
     // Liczniki nie mogą niczego psuć klientowi — błąd zostaje w logach.
-    console.error("POST /api/gotowe-arkusze/zdarzenie error:", error);
+    console.error("POST /api/gotowe-zestawy/zdarzenie error:", error);
     return done();
   }
 }

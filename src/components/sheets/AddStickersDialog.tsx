@@ -26,7 +26,7 @@ function formatCm(value: number): string {
 }
 
 /**
- * Dodawanie grafik do bazy poza edytorem arkusza: nazwy dla każdej z osobna,
+ * Dodawanie grafik do bazy poza edytorem zestawu: nazwy dla każdej z osobna,
  * wspólna linia cięcia i rozmiar dla całej paczki.
  */
 export function AddStickersDialog({

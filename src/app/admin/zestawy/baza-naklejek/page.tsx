@@ -30,22 +30,22 @@ export default async function StickerLibraryPage() {
     <AdminLayout
       adminEmail={admin.email ?? ""}
       title="Baza naklejek"
-      subtitle="Wszystkie naklejki z gotowych arkuszy — z nazwą do wyszukiwania i ustawieniami, z jakimi trafiają na arkusz."
+      subtitle="Wszystkie naklejki z gotowych zestawów — z nazwą do wyszukiwania i ustawieniami, z jakimi trafiają na zestaw."
       actions={
         <>
           <Link
-            href="/admin/arkusze"
+            href="/admin/zestawy"
             className="inline-flex items-center gap-2 rounded-xl text-sm font-bold h-11 px-4 border border-slate-300 dark:border-white/20 bg-background hover:bg-slate-50 dark:hover:bg-white/5 transition-all active:scale-[0.98]"
           >
             <ArrowLeft className="w-4 h-4" aria-hidden />
-            Wszystkie arkusze
+            Wszystkie zestawy
           </Link>
           <Link
-            href="/admin/arkusze/nowy"
+            href="/admin/zestawy/nowy"
             className="inline-flex items-center gap-2 rounded-xl text-sm font-bold bg-primary text-primary-foreground hover:bg-primary/95 active:scale-[0.98] h-11 px-5 shadow-sm transition-all"
           >
             <Plus className="w-4 h-4" aria-hidden />
-            Nowy arkusz
+            Nowy zestaw
           </Link>
         </>
       }

@@ -6,9 +6,9 @@ import { sheetPath } from "@/lib/sheets/schema";
 export const dynamic = "force-dynamic";
 
 /**
- * Katalog gotowych arkuszy jako dane: nazwa, adres, motywy i liczba naklejek.
+ * Katalog gotowych zestawów jako dane: nazwa, adres, motywy i liczba naklejek.
  * Korzysta z niego `scripts/generuj-llms-txt.mjs`, żeby `llms.txt` opisywał
- * te same arkusze co sklep. Przy niepublicznym katalogu lista jest pusta.
+ * te same zestawy co sklep. Przy niepublicznym katalogu lista jest pusta.
  */
 export async function GET() {
   const sheets = await getCatalogSheets();

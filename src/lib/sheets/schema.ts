@@ -1,7 +1,7 @@
 import { SHEET_PRICE, SHIPPING_PRICE, type CatalogSheet } from "./types";
 
 /**
- * Adresy i dane strukturalne katalogu gotowych arkuszy.
+ * Adresy i dane strukturalne katalogu gotowych zestawów.
  *
  * Jedno miejsce na cenę, dostawę i politykę zwrotów: te same wartości idą na
  * stronę, do JSON-LD i (docelowo) do pliku produktowego Google — rozjazd
@@ -10,7 +10,7 @@ import { SHEET_PRICE, SHIPPING_PRICE, type CatalogSheet } from "./types";
  */
 
 export const SITE_URL = "https://www.malenaklejki.pl";
-export const CATALOG_PATH = "/gotowe-arkusze";
+export const CATALOG_PATH = "/gotowe-zestawy";
 
 export function sheetPath(slug: string): string {
   return `${CATALOG_PATH}/${slug}`;
@@ -18,7 +18,7 @@ export function sheetPath(slug: string): string {
 
 /** Adres kreatora z wczytanym wzorem. */
 export function sheetCreatorPath(id: string): string {
-  return `/?arkusz=${id}`;
+  return `/?zestaw=${id}`;
 }
 
 export function formatPrice(value: number): string {
@@ -49,7 +49,7 @@ const SHIPPING_DETAILS = {
 };
 
 /**
- * Gotowy arkusz zamówiony bez zmian nie jest rzeczą wykonaną według
+ * Gotowy zestaw zamówiony bez zmian nie jest rzeczą wykonaną według
  * specyfikacji klienta, więc podlega zwrotowi w 14 dni (regulamin §7).
  */
 const RETURN_POLICY = {
@@ -74,7 +74,7 @@ export function productSchema(sheet: CatalogSheet) {
     sku: sheet.id,
     mpn: sheet.id,
     brand: { "@type": "Brand", name: "MałeNaklejki" },
-    category: sheet.categories.length > 0 ? `Gotowe arkusze naklejek > ${sheet.categories[0]}` : "Gotowe arkusze naklejek",
+    category: sheet.categories.length > 0 ? `Gotowe zestawy naklejek > ${sheet.categories[0]}` : "Gotowe zestawy naklejek",
     material: "Folia winylowa",
     size: "A4 (21 × 29,7 cm)",
     offers: {
@@ -92,7 +92,7 @@ export function productSchema(sheet: CatalogSheet) {
   };
 }
 
-/** Lista arkuszy na katalogu i stronie tematycznej. */
+/** Lista zestawów na katalogu i stronie tematycznej. */
 export function itemListSchema(sheets: CatalogSheet[], page: { name: string; path: string }) {
   return {
     "@context": "https://schema.org",

@@ -231,7 +231,7 @@ export default function SlownikNaklejekPage() {
           name: "Słownik pojęć o naklejkach",
           url: PAGE_URL,
           isPartOf: { "@id": "https://www.malenaklejki.pl/#website" },
-          dateModified: "2026-10-04T00:00:00+02:00",
+          dateModified: "2026-10-05T00:00:00+02:00",
         }}
       />
 

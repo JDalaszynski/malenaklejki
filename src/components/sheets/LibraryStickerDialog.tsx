@@ -88,9 +88,9 @@ export function LibraryStickerDialog({
   const remove = async () => {
     const warning =
       usedIn.length > 0
-        ? `„${sticker.name}” leży na ${usedIn.length} ${
-            usedIn.length === 1 ? "arkuszu" : "arkuszach"
-          }. Arkusze zachowają swoją kopię, ale naklejki nie będzie już w bazie. Usunąć?`
+        ? `„${sticker.name}” jest w ${usedIn.length} ${
+            usedIn.length === 1 ? "zestawie" : "zestawach"
+          }. Zestawy zachowają swoją kopię, ale naklejki nie będzie już w bazie. Usunąć?`
         : `Usunąć „${sticker.name}” z bazy naklejek?`;
     if (!window.confirm(warning)) return;
 
@@ -213,20 +213,20 @@ export function LibraryStickerDialog({
         </p>
         {usedIn.length > 0 ? (
           <p>
-            Na arkuszach:{" "}
+            W zestawach:{" "}
             {usedIn.map((sheet, index) => (
               <span key={sheet.id}>
                 {index > 0 && ", "}
-                <Link href={`/admin/arkusze/${sheet.id}`} className="font-bold text-primary hover:underline">
+                <Link href={`/admin/zestawy/${sheet.id}`} className="font-bold text-primary hover:underline">
                   {sheet.name}
                 </Link>
               </span>
             ))}
           </p>
         ) : (
-          <p>Nie leży jeszcze na żadnym zapisanym arkuszu.</p>
+          <p>Nie ma jej jeszcze w żadnym zapisanym zestawie.</p>
         )}
-        <p>Zmiana ustawień nie przestawia naklejek na istniejących arkuszach.</p>
+        <p>Zmiana ustawień nie przestawia naklejek w istniejących zestawach.</p>
       </div>
 
       {error && (

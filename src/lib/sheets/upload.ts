@@ -188,13 +188,13 @@ export async function addUrlToLibrary(options: {
 }
 
 /* ------------------------------------------------------------------ */
-/* Pliki arkusza przygotowywane przy publikacji                        */
+/* Pliki zestawu przygotowywane przy publikacji                        */
 /* ------------------------------------------------------------------ */
 
 function canvasBlob(canvas: HTMLCanvasElement, type: string, quality?: number): Promise<Blob> {
   return new Promise((resolve, reject) =>
     canvas.toBlob(
-      (blob) => (blob ? resolve(blob) : reject(new Error("Nie udało się wyeksportować arkusza."))),
+      (blob) => (blob ? resolve(blob) : reject(new Error("Nie udało się wyeksportować zestawu."))),
       type,
       quality
     )
@@ -202,7 +202,7 @@ function canvasBlob(canvas: HTMLCanvasElement, type: string, quality?: number): 
 }
 
 /**
- * PNG arkusza tak samo, jak robi to kreator przy „Dodaj do koszyka": najpierw
+ * PNG zestawu tak samo, jak robi to kreator przy „Dodaj do koszyka": najpierw
  * kompresja na serwerze, a gdy ta zawiedzie (np. za duże żądanie) — plik
  * prosto z płótna.
  */
@@ -228,9 +228,9 @@ export type SheetAssets = {
 };
 
 /**
- * Komplet plików opublikowanego arkusza: obraz produktu na stronę w sklepie
+ * Komplet plików opublikowanego zestawu: obraz produktu na stronę w sklepie
  * oraz plik do druku i plik linii cięcia — te same, które powstają w kreatorze
- * przy dodawaniu do koszyka. Dzięki nim gotowy arkusz trafia do koszyka prosto
+ * przy dodawaniu do koszyka. Dzięki nim gotowy zestaw trafia do koszyka prosto
  * ze strony produktu, bez składania go w przeglądarce klienta.
  */
 export async function uploadSheetAssets(canvases: {
@@ -245,9 +245,9 @@ export async function uploadSheetAssets(canvases: {
   ]);
 
   const [productImageUrl, printUrl, cutLinesUrl] = await Promise.all([
-    uploadBlob(product, `gotowy-arkusz-produkt-${getUUID()}.jpg`),
-    uploadBlob(print, `gotowy-arkusz-druk-${getUUID()}.png`),
-    uploadBlob(cutLines, `gotowy-arkusz-linie-${getUUID()}.png`),
+    uploadBlob(product, `gotowy-zestaw-produkt-${getUUID()}.jpg`),
+    uploadBlob(print, `gotowy-zestaw-druk-${getUUID()}.png`),
+    uploadBlob(cutLines, `gotowy-zestaw-linie-${getUUID()}.png`),
   ]);
   return { productImageUrl, printUrl, cutLinesUrl };
 }

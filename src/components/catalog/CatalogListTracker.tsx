@@ -5,7 +5,7 @@ import { useEffect } from "react";
 import { trackViewReadySheets, type AnalyticsReadySheet, type ReadySheetsList } from "@/lib/analytics";
 import { SHEET_PRICE } from "@/lib/sheets/types";
 
-/** Zdarzenie „klient zobaczył listę arkuszy" dla stron renderowanych na serwerze. */
+/** Zdarzenie „klient zobaczył listę zestawów" dla stron renderowanych na serwerze. */
 export function CatalogListTracker({
   sheets,
   list,

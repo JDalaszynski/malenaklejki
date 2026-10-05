@@ -15,9 +15,9 @@ import {
 } from "./types";
 
 /**
- * Gotowe arkusze i baza naklejek w Firestore i Storage.
+ * Gotowe zestawy i baza naklejek w Firestore i Storage.
  *
- * Dokument arkusza trzyma same metadane. Układ (pozycje i wielokąty linii
+ * Dokument zestawu trzyma same metadane. Układ (pozycje i wielokąty linii
  * cięcia) leży w Storage jako JSON — z tych samych powodów co układy zamówień
  * (src/lib/orders/layout.ts): Firestore nie przyjmuje tablic w tablicach,
  * a gęsty arkusz z konturami przekracza limit 1 MB dokumentu.
@@ -33,7 +33,7 @@ export const SHEETS_COLLECTION = "stickerSheets";
 export const LIBRARY_COLLECTION = "stickerLibrary";
 export const SHEETS_PREFIX = "sheets";
 
-/** Ile arkuszy ściągamy pod filtry — więcej nie zmieści się sensownie w panelu. */
+/** Ile zestawów ściągamy pod filtry — więcej nie zmieści się sensownie w panelu. */
 const SHEETS_FETCH_LIMIT = 500;
 /** Cała baza trafia do przeglądarki, bo wyszukiwarka filtruje na bieżąco. */
 const LIBRARY_FETCH_LIMIT = 3000;
@@ -97,7 +97,7 @@ function toLibrarySticker(id: string, data: FirebaseFirestore.DocumentData): Lib
 }
 
 /* ------------------------------------------------------------------ */
-/* Arkusze                                                             */
+/* Zestawy                                                             */
 /* ------------------------------------------------------------------ */
 
 /** Najnowsze zmiany na górze. Sortowanie po jednym polu — bez indeksu złożonego. */
@@ -116,14 +116,14 @@ export async function getSheet(id: string): Promise<StickerSheet | null> {
   return snapshot.exists ? toSheet(snapshot.id, snapshot.data()!) : null;
 }
 
-/** Układ arkusza. `null`, gdy pliku nie ma albo jest nieczytelny. */
+/** Układ zestawu. `null`, gdy pliku nie ma albo jest nieczytelny. */
 export async function readSheetLayout(sheetId: string): Promise<PlacedSticker[] | null> {
   try {
     const [buffer] = await getBucket().file(layoutPathFor(sheetId)).download();
     const parsed = JSON.parse(buffer.toString("utf8"));
     return Array.isArray(parsed?.stickers) ? (parsed.stickers as PlacedSticker[]) : null;
   } catch (error) {
-    // Świeży arkusz zapisany bez naklejek nie ma czego czytać — to nie awaria.
+    // Świeży zestaw zapisany bez naklejek nie ma czego czytać — to nie awaria.
     if ((error as { code?: number })?.code !== 404) {
       console.error("readSheetLayout error:", error);
     }
@@ -146,7 +146,7 @@ export async function writeSheetLayout(sheetId: string, json: string): Promise<v
  *
  * Token pobierania jest nowy przy każdym zapisie — stary adres przestaje
  * działać, więc przeglądarka nie pokaże z pamięci podręcznej poprzedniej
- * wersji arkusza.
+ * wersji zestawu.
  */
 export async function writeSheetPreview(sheetId: string, jpeg: Buffer): Promise<string> {
   const bucket = getBucket();
@@ -183,12 +183,12 @@ export function ownStoragePath(value: string): string | null {
 }
 
 /**
- * Obraz produktu wgrany przez edytor do `uploads/` przenosimy pod arkusz.
+ * Obraz produktu wgrany przez edytor do `uploads/` przenosimy pod zestaw.
  *
  * Optymalizator obrazów przepuszcza wyłącznie pliki z `sheets/` (patrz
- * `next.config.ts`), więc tylko stamtąd strona arkusza dostanie lekką wersję
+ * `next.config.ts`), więc tylko stamtąd strona zestawu dostanie lekką wersję
  * w rozmiarze ekranu. Plik do druku i linie cięcia zostają w `uploads/` —
- * odwołują się do nich zamówienia, a te muszą przetrwać usunięcie arkusza.
+ * odwołują się do nich zamówienia, a te muszą przetrwać usunięcie zestawu.
  */
 export async function adoptProductImage(sheetId: string, uploadedUrl: string): Promise<string> {
   const source = ownStoragePath(uploadedUrl);
@@ -207,7 +207,7 @@ export async function adoptProductImage(sheetId: string, uploadedUrl: string): P
   )}?alt=media&token=${token}`;
 }
 
-/** Kopia plików arkusza pod nowy identyfikator. Zwraca adres podglądu kopii. */
+/** Kopia plików zestawu pod nowy identyfikator. Zwraca adres podglądu kopii. */
 export async function copySheetFiles(fromId: string, toId: string): Promise<string | null> {
   const bucket = getBucket();
 
@@ -255,7 +255,7 @@ export function listCategories(
   return [...byKey.values()].sort((a, b) => a.localeCompare(b, "pl"));
 }
 
-/** Arkusz o danym adresie — do sprawdzenia, czy adres jest wolny. */
+/** Zestaw o danym adresie — do sprawdzenia, czy adres jest wolny. */
 export async function findSheetBySlug(slug: string): Promise<StickerSheet | null> {
   if (!slug) return null;
   const snapshot = await db.collection(SHEETS_COLLECTION).where("slug", "==", slug).limit(2).get();
@@ -263,7 +263,7 @@ export async function findSheetBySlug(slug: string): Promise<StickerSheet | null
   return doc ? toSheet(doc.id, doc.data()) : null;
 }
 
-/** Liczba opublikowanych arkuszy — `count()` po stronie Firestore. */
+/** Liczba opublikowanych zestawów — `count()` po stronie Firestore. */
 export async function countPublishedSheets(): Promise<number> {
   try {
     const snapshot = await db
@@ -389,7 +389,7 @@ export async function findLibraryStickerByHash(hash: string): Promise<LibrarySti
   return doc ? toLibrarySticker(doc.id, doc.data()) : null;
 }
 
-/** W ilu arkuszach występuje każda naklejka z bazy. */
+/** W ilu zestawach występuje każda naklejka z bazy. */
 export function countLibraryUsage(sheets: StickerSheet[]): Record<string, number> {
   const usage: Record<string, number> = {};
   for (const sheet of sheets) {
@@ -401,8 +401,8 @@ export function countLibraryUsage(sheets: StickerSheet[]): Record<string, number
 }
 
 /**
- * Same identyfikatory bazy z każdego arkusza — do liczników użyć.
- * Projekcja, bo lista arkuszy nie potrzebuje reszty pól.
+ * Same identyfikatory bazy z każdego zestawu — do liczników użyć.
+ * Projekcja, bo lista zestawów nie potrzebuje reszty pól.
  */
 export async function listSheetLibraryIds(): Promise<StickerSheet[]> {
   const snapshot = await db

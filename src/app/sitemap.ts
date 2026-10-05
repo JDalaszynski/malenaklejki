@@ -42,7 +42,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { path: "/naklejki-foliowe", lastModified: "2026-07-25" },
     { path: "/fotonaklejki", lastModified: "2026-07-27" },
     { path: "/naklejki-die-cut", lastModified: "2026-07-29" },
-    { path: "/slownik-naklejek", lastModified: "2026-10-04" },
+    { path: "/slownik-naklejek", lastModified: "2026-10-05" },
     { path: "/etykiety-na-sloiki", lastModified: "2026-08-25" },
     { path: "/wlepki-na-zamowienie", lastModified: "2026-08-31" },
   ];
@@ -62,7 +62,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.6,
   }));
 
-  // Katalog gotowych arkuszy istnieje tylko przy trybie „Włączony" — poza nim
+  // Katalog gotowych zestawów istnieje tylko przy trybie „Włączony" — poza nim
   // lista jest pusta i żaden z tych adresów nie trafia do mapy.
   const sheets = await getCatalogSheets();
   const latestSheetChange = sheets.reduce((latest, sheet) => (sheet.updatedAt > latest ? sheet.updatedAt : latest), "");
@@ -71,7 +71,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       ? []
       : [
           {
-            url: `${baseUrl}/gotowe-arkusze`,
+            url: `${baseUrl}/gotowe-zestawy`,
             lastModified: new Date(latestSheetChange),
             changeFrequency: "weekly",
             priority: 0.8,
@@ -83,7 +83,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
             priority: 0.8,
           })),
           ...sheets.map((sheet) => ({
-            url: `${baseUrl}/gotowe-arkusze/${sheet.slug}`,
+            url: `${baseUrl}/gotowe-zestawy/${sheet.slug}`,
             lastModified: new Date(sheet.updatedAt),
             changeFrequency: "monthly" as const,
             priority: 0.7,

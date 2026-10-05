@@ -20,11 +20,11 @@ export type AnalyticsSheet = {
   sheetQuantity: number;
   pricePerSheet: number;
   deliveryForm?: "sheet" | "individual";
-  /** Pozycja powstała z gotowego arkusza — w raportach ma własny produkt. */
+  /** Pozycja powstała z gotowego zestawu — w raportach ma własny produkt. */
   readySheet?: AnalyticsReadySheet | null;
 };
 
-/** Gotowy arkusz w zdarzeniach: produkt nazywa się jak arkusz, a temat to kategoria. */
+/** Gotowy zestaw w zdarzeniach: produkt nazywa się jak zestaw, a temat to kategoria. */
 export type AnalyticsReadySheet = {
   id: string;
   slug?: string | null;
@@ -33,7 +33,7 @@ export type AnalyticsReadySheet = {
   modified?: boolean;
 };
 
-const READY_SHEETS_CATEGORY = "Gotowe arkusze";
+const READY_SHEETS_CATEGORY = "Gotowe zestawy";
 
 function readySheetFields(ready: AnalyticsReadySheet) {
   return {
@@ -81,8 +81,8 @@ export function sheetsValue(sheets: AnalyticsSheet[]) {
   return Math.round(sum * 100) / 100;
 }
 
-/** Skąd klient ogląda gotowe arkusze — nazwa listy w raportach GA4. */
-export type ReadySheetsList = "galeria w kreatorze" | "katalog" | `temat: ${string}` | "strona arkusza";
+/** Skąd klient ogląda gotowe zestawy — nazwa listy w raportach GA4. */
+export type ReadySheetsList = "galeria w kreatorze" | "katalog" | `temat: ${string}` | "strona zestawu";
 
 function readySheetItems(sheets: AnalyticsReadySheet[], listName: ReadySheetsList, price: number) {
   return sheets.map((sheet, index) => ({
@@ -94,7 +94,7 @@ function readySheetItems(sheets: AnalyticsReadySheet[], listName: ReadySheetsLis
   }));
 }
 
-/** Klient zobaczył listę gotowych arkuszy (galeria, katalog albo strona tematu). */
+/** Klient zobaczył listę gotowych zestawów (galeria, katalog albo strona tematu). */
 export function trackViewReadySheets(sheets: AnalyticsReadySheet[], listName: ReadySheetsList, price: number) {
   if (sheets.length === 0) return;
   send("view_item_list", {
@@ -108,7 +108,7 @@ export function trackOpenReadySheets(entryPoint: UsageSource) {
   send("ready_sheets_open", { entry_point: entryPoint });
 }
 
-/** Klient wczytał gotowy arkusz do kreatora. */
+/** Klient wczytał gotowy zestaw do kreatora. */
 export function trackUseReadySheet(sheet: AnalyticsReadySheet, listName: ReadySheetsList, price: number) {
   send("ready_sheet_use", {
     item_list_name: listName,
@@ -116,7 +116,7 @@ export function trackUseReadySheet(sheet: AnalyticsReadySheet, listName: ReadySh
   });
 }
 
-/** Klient wybrał arkusz z listy, żeby obejrzeć go z bliska. */
+/** Klient wybrał zestaw z listy, żeby obejrzeć go z bliska. */
 export function trackSelectReadySheet(sheet: AnalyticsReadySheet, listName: ReadySheetsList, price: number) {
   send("select_item", {
     item_list_name: listName,
@@ -124,18 +124,18 @@ export function trackSelectReadySheet(sheet: AnalyticsReadySheet, listName: Read
   });
 }
 
-/** Klient otworzył stronę arkusza. */
+/** Klient otworzył stronę zestawu. */
 export function trackViewReadySheet(sheet: AnalyticsReadySheet, price: number) {
   send("view_item", {
     currency: CURRENCY,
     value: price,
-    items: readySheetItems([sheet], "strona arkusza", price),
+    items: readySheetItems([sheet], "strona zestawu", price),
   });
 }
 
 export function trackAddToCart(
   sheet: AnalyticsSheet,
-  listName: "kreator" | "historia zamówień" | "strona arkusza"
+  listName: "kreator" | "historia zamówień" | "strona zestawu"
 ) {
   send("add_to_cart", {
     currency: CURRENCY,

@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 import { X } from "lucide-react";
 
 /**
- * Okno dialogowe panelu arkuszy — wzór z kreatora (tło z rozmyciem, karta
+ * Okno dialogowe panelu zestawów — wzór z kreatora (tło z rozmyciem, karta
  * z zaokrągleniem 3xl), zamykane klawiszem Esc i kliknięciem w tło.
  * Rodzic trzyma je w `AnimatePresence`.
  */

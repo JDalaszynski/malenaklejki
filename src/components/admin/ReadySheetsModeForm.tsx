@@ -30,10 +30,10 @@ const TONES: Record<ReadySheetsMode, "neutral" | "warning" | "success"> = {
 };
 
 /**
- * Włącznik gotowych arkuszy na stronie głównej.
+ * Włącznik gotowych zestawów na stronie głównej.
  *
  * Zmiana idzie przyciskiem, nie samym kliknięciem w opcję — „Włączony"
- * pokazuje arkusze wszystkim klientom, więc pomyłka nie może zadziałać od razu.
+ * pokazuje zestawy wszystkim klientom, więc pomyłka nie może zadziałać od razu.
  */
 export function ReadySheetsModeForm({
   settings,
@@ -68,13 +68,13 @@ export function ReadySheetsModeForm({
     <Card
       headingLevel={3}
       title="Widoczność w sklepie"
-      description="Czy klienci widzą opublikowane gotowe arkusze w kreatorze na stronie głównej."
+      description="Czy klienci widzą opublikowane gotowe zestawy w kreatorze na stronie głównej."
       actions={
         <StatusPill tone={TONES[settings.mode]}>{READY_SHEETS_MODE_LABELS[settings.mode]}</StatusPill>
       }
     >
       <div className="flex flex-col gap-4">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-3" role="radiogroup" aria-label="Tryb gotowych arkuszy">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-3" role="radiogroup" aria-label="Tryb gotowych zestawów">
           {READY_SHEETS_MODES.map((mode) => {
             const Icon = ICONS[mode];
             const active = selected === mode;
@@ -118,7 +118,7 @@ export function ReadySheetsModeForm({
         {selected !== "off" && publishedCount === 0 && (
           <p className="flex items-start gap-2 text-xs font-bold text-[#8a6d00] dark:text-[#FFCD08] bg-[#FFCD08]/10 border border-[#FFCD08]/40 rounded-xl px-3 py-2.5">
             <AlertTriangle className="w-4 h-4 shrink-0" aria-hidden />
-            Nie ma jeszcze żadnego opublikowanego arkusza — na stronie głównej nic się nie pokaże,
+            Nie ma jeszcze żadnego opublikowanego zestawu — na stronie głównej nic się nie pokaże,
             dopóki nie opublikujesz pierwszego.
           </p>
         )}
@@ -139,14 +139,14 @@ export function ReadySheetsModeForm({
             </span>
           )}
           <span className="text-xs font-semibold text-muted-foreground">
-            Opublikowanych arkuszy: {publishedCount} ·{" "}
-            <Link href="/admin/arkusze" className="font-bold text-primary hover:underline">
-              zarządzaj arkuszami
+            Opublikowanych zestawów: {publishedCount} ·{" "}
+            <Link href="/admin/zestawy" className="font-bold text-primary hover:underline">
+              zarządzaj zestawami
             </Link>
             {settings.mode !== "off" && (
               <>
                 {" · "}
-                <a href="/#gotowe-arkusze" target="_blank" rel="noreferrer" className="font-bold text-primary hover:underline">
+                <a href="/#gotowe-zestawy" target="_blank" rel="noreferrer" className="font-bold text-primary hover:underline">
                   zobacz galerię w sklepie
                 </a>
               </>

@@ -36,20 +36,20 @@ import { SHEET_PRICE, SHIPPING_PRICE, type CatalogSheet } from "@/lib/sheets/typ
 import { getDesignsNoun } from "@/lib/utils/polish";
 
 /**
- * Katalog gotowych arkuszy.
+ * Katalog gotowych zestawów.
  *
- * Leksyk tej strony to „gotowe / wzory / arkusz / zestaw" — fraza „naklejki na
+ * Leksyk tej strony to „gotowe / wzory / zestaw / arkusz" — fraza „naklejki na
  * zamówienie z własnym nadrukiem" należy do strony głównej i tu jej nie ma
  * w tytule ani w H1 (zero kanibalizacji, `landing-agent/strategy.md`).
  * Liczby wyłącznie z `blog-agent/facts.md`.
  */
 
-const PAGE_NAME = "Gotowe arkusze naklejek";
-const TITLE = "Gotowe arkusze naklejek - wzory na folii winylowej, 49 zł";
+const PAGE_NAME = "Gotowe zestawy naklejek";
+const TITLE = "Gotowe zestawy naklejek - wzory na folii winylowej, 49 zł";
 const DESCRIPTION =
-  "Gotowe arkusze naklejek A4: kilkadziesiąt naklejek na jednym arkuszu z folii winylowej odpornej na wodę i UV. 49,00 zł brutto, każdy wzór zmienisz w kreatorze.";
-/** Data ostatniej realnej zmiany treści strony (nie listy arkuszy). */
-const UPDATED = { label: "3 października 2026", iso: "2026-10-03T00:00:00+02:00" };
+  "Gotowe zestawy naklejek: kilkadziesiąt naklejek na jednym arkuszu A4 z folii winylowej odpornej na wodę i UV. 49,00 zł brutto, każdy wzór zmienisz w kreatorze.";
+/** Data ostatniej realnej zmiany treści strony (nie listy zestawów). */
+const UPDATED = { label: "5 października 2026", iso: "2026-10-05T00:00:00+02:00" };
 
 export const metadata: Metadata = {
   title: TITLE,
@@ -68,31 +68,31 @@ function buildFaqs(sheets: CatalogSheet[]): Faq[] {
   return [
     {
       q: "Czy można kupić gotowe naklejki bez własnej grafiki?",
-      a: `Tak. Gotowy arkusz zamawiasz bez wgrywania czegokolwiek: wybierasz wzór, dodajesz go do koszyka i płacisz ${formatPrice(
+      a: `Tak. Gotowy zestaw zamawiasz bez wgrywania czegokolwiek: wybierasz wzór, dodajesz go do koszyka i płacisz ${formatPrice(
         SHEET_PRICE
-      )} brutto za arkusz A4. Własne zdjęcia i grafiki są potrzebne tylko wtedy, gdy chcesz ułożyć arkusz od zera w kreatorze.`,
+      )} brutto za zestaw, czyli jeden arkusz A4. Własne zdjęcia i grafiki są potrzebne tylko wtedy, gdy chcesz ułożyć własny zestaw od zera w kreatorze.`,
     },
     {
-      q: "Ile naklejek jest na gotowym arkuszu A4?",
-      a: `W obecnych wzorach jest ${range} naklejek na arkuszu A4. Dokładną liczbę i listę motywów podajemy przy każdym arkuszu. Cena nie zależy od liczby naklejek - płacisz za arkusz.`,
+      q: "Ile naklejek jest w gotowym zestawie?",
+      a: `W obecnych wzorach jest ${range} naklejek na jednym arkuszu A4. Dokładną liczbę i listę motywów podajemy przy każdym zestawie. Cena nie zależy od liczby naklejek - płacisz za zestaw.`,
     },
     {
-      q: "Czy mogę zmienić gotowy arkusz przed zamówieniem?",
-      a: "Tak. Przycisk „Dopasuj w kreatorze” otwiera arkusz w kreatorze, gdzie zmienisz rozmiar każdej naklejki, usuniesz te, których nie chcesz, i dołożysz własne zdjęcie, logo albo imię. Cena arkusza zostaje taka sama.",
+      q: "Czy mogę zmienić gotowy zestaw przed zamówieniem?",
+      a: "Tak. Przycisk „Dopasuj w kreatorze” otwiera zestaw w kreatorze, gdzie zmienisz rozmiar każdej naklejki, usuniesz te, których nie chcesz, i dołożysz własne zdjęcie, logo albo imię. Cena zestawu zostaje taka sama.",
     },
     {
-      q: "Czy mogę zamówić gotowy arkusz i arkusz z własnymi naklejkami w jednej paczce?",
-      a: `Tak. W jednym zamówieniu łączysz dowolne arkusze, gotowe i własne. Dostawa do paczkomatu kosztuje ${formatPrice(
+      q: "Czy mogę zamówić gotowy zestaw i własny zestaw naklejek w jednej paczce?",
+      a: `Tak. W jednym zamówieniu łączysz dowolne zestawy, gotowe i własne. Dostawa do paczkomatu kosztuje ${formatPrice(
         SHIPPING_PRICE
       )} i jest liczona raz za całe zamówienie.`,
     },
     {
       q: "Czy gotowe naklejki są wodoodporne?",
-      a: "Tak. Wszystkie arkusze drukujemy na folii winylowej odpornej na wodę i promieniowanie UV, z mocnym klejem, który nie zostawia śladów. Folia nie nadaje się do zmywarki - oklejone przedmioty myj ręcznie.",
+      a: "Tak. Wszystkie zestawy drukujemy na folii winylowej odpornej na wodę i promieniowanie UV, z mocnym klejem, który nie zostawia śladów. Folia nie nadaje się do zmywarki - oklejone przedmioty myj ręcznie.",
     },
     {
-      q: "Czy gotowy arkusz można zwrócić?",
-      a: "Tak. Gotowy arkusz zamówiony bez zmian możesz zwrócić w ciągu 14 dni od odbioru. Arkusz zmieniony w kreatorze powstaje według Twojej specyfikacji, więc zwrotowi nie podlega.",
+      q: "Czy gotowy zestaw można zwrócić?",
+      a: "Tak. Gotowy zestaw zamówiony bez zmian możesz zwrócić w ciągu 14 dni od odbioru. Zestaw zmieniony w kreatorze powstaje według Twojej specyfikacji, więc zwrotowi nie podlega.",
     },
     {
       q: "Ile trwa realizacja zamówienia?",
@@ -103,7 +103,7 @@ function buildFaqs(sheets: CatalogSheet[]): Faq[] {
 
 export default async function CatalogPage() {
   const sheets = await getCatalogSheets();
-  // Katalog istnieje tylko przy trybie „Włączony" i tylko z arkuszami do pokazania.
+  // Katalog istnieje tylko przy trybie „Włączony" i tylko z zestawami do pokazania.
   if (sheets.length === 0) notFound();
 
   const faqs = buildFaqs(sheets);
@@ -129,7 +129,7 @@ export default async function CatalogPage() {
       <Header />
 
       <main className="flex-1 pt-6 pb-16 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto w-full">
-        <Breadcrumbs items={[{ name: "Kreator Zestawu Naklejek", path: "/" }, { name: "Gotowe arkusze" }]} />
+        <Breadcrumbs items={[{ name: "Kreator Zestawu Naklejek", path: "/" }, { name: "Gotowe zestawy" }]} />
 
         {/* Hero */}
         <section className={`${panelClass} p-6 sm:p-10 md:p-12 space-y-5`}>
@@ -139,15 +139,15 @@ export default async function CatalogPage() {
           </span>
 
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-black leading-tight tracking-tight text-foreground font-heading">
-            Gotowe arkusze naklejek
+            Gotowe zestawy naklejek
           </h1>
 
           <p className="text-sm sm:text-lg text-foreground/90 font-semibold leading-relaxed">
-            Wybierz <strong>gotowy arkusz naklejek</strong> zamiast szukać grafik. Każdy to format A4
+            Wybierz <strong>gotowy zestaw naklejek</strong> zamiast szukać grafik. Każdy to jeden arkusz A4
             z kilkudziesięcioma naklejkami wokół jednego tematu, drukowany na{" "}
             <strong>folii winylowej odpornej na wodę i UV</strong>. Stała cena{" "}
-            <strong>{formatPrice(SHEET_PRICE)} brutto za arkusz</strong>, produkcja w{" "}
-            <strong>2-3 dni robocze</strong> i odbiór w paczkomacie. Arkusz zamawiasz od razu albo
+            <strong>{formatPrice(SHEET_PRICE)} brutto za zestaw</strong>, produkcja w{" "}
+            <strong>2-3 dni robocze</strong> i odbiór w paczkomacie. Zestaw zamawiasz od razu albo
             otwierasz w kreatorze i zmieniasz po swojemu: usuwasz naklejki, zmieniasz ich rozmiar,
             dokładasz własne zdjęcie albo imię.
           </p>
@@ -158,7 +158,7 @@ export default async function CatalogPage() {
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" aria-hidden />
             </a>
             <Link href="/" className={secondaryCtaClass}>
-              Ułóż arkusz z własnych grafik
+              Ułóż zestaw z własnych grafik
             </Link>
           </div>
 
@@ -174,14 +174,14 @@ export default async function CatalogPage() {
 
         <TrustStats
           stats={[
-            { value: "49 zł", label: "Brutto za arkusz A4" },
+            { value: "49 zł", label: "Brutto za zestaw" },
             { value: `${sheets.length}`, label: "Wzorów do wyboru" },
             { value: "Woda i UV", label: "Folia winylowa" },
             { value: "2-3 dni", label: "Produkcja robocze" },
           ]}
         />
 
-        {/* Siatka arkuszy */}
+        {/* Siatka zestawów */}
         <section id="wzory" className="mt-12 space-y-6 scroll-mt-24">
           <h2 className={headingClass}>Wzory naklejek do wyboru</h2>
           {themes.length > 0 && (
@@ -203,18 +203,18 @@ export default async function CatalogPage() {
 
         {/* Tabela wzorów */}
         <section className="mt-12 space-y-5">
-          <h2 className={headingClass}>Co jest na którym arkuszu</h2>
+          <h2 className={headingClass}>Co jest w którym zestawie</h2>
           <p className={paragraphClass}>
-            Zestawienie wszystkich wzorów: motywy i dokładna liczba naklejek na arkuszu A4.
+            Zestawienie wszystkich wzorów: motywy i dokładna liczba naklejek w każdym zestawie.
           </p>
           <SheetsTable sheets={sheets} />
         </section>
 
         {/* Edycja */}
         <section className="mt-12 space-y-5">
-          <h2 className={headingClass}>Gotowy arkusz możesz zmienić po swojemu</h2>
+          <h2 className={headingClass}>Gotowy zestaw możesz zmienić po swojemu</h2>
           <p className={paragraphClass}>
-            To nie jest zamknięty zestaw z półki. Każdy arkusz otworzysz w tym samym kreatorze, w którym
+            To nie jest gotowiec z półki. Każdy zestaw otworzysz w tym samym kreatorze, w którym
             układa się własne naklejki - i zamówisz dopiero wtedy, gdy będzie taki, jak chcesz.
           </p>
           <EditSteps />
@@ -224,9 +224,9 @@ export default async function CatalogPage() {
         <section className="mt-12 space-y-5">
           <h2 className={headingClass}>Ile kosztują gotowe naklejki</h2>
           <p className={paragraphClass}>
-            Arkusz A4 kosztuje {formatPrice(SHEET_PRICE)} brutto, bez względu na wzór i liczbę naklejek.
+            Zestaw na arkuszu A4 kosztuje {formatPrice(SHEET_PRICE)} brutto, bez względu na wzór i liczbę naklejek.
             Dostawa do paczkomatu to {formatPrice(SHIPPING_PRICE)} za całe zamówienie, więc drugi i trzeci
-            arkusz - gotowy albo{" "}
+            zestaw - gotowy albo{" "}
             <Link href="/" className={inlineLinkClass}>
               z własnymi naklejkami
             </Link>{" "}
@@ -234,7 +234,7 @@ export default async function CatalogPage() {
           </p>
         </section>
 
-        <FaqSection title="Gotowe arkusze naklejek - najczęstsze pytania" faqs={faqs} />
+        <FaqSection title="Gotowe zestawy naklejek - najczęstsze pytania" faqs={faqs} />
 
         {/* Final CTA */}
         <section className={`mt-12 ${panelClass} p-6 sm:p-10 text-center space-y-4`}>

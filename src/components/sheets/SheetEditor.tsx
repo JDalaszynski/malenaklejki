@@ -85,9 +85,9 @@ const PdfImportModal = dynamic(
 const STICKER_FILE_ACCEPT =
   "image/png, image/jpeg, image/jpg, image/webp, application/pdf, .png, .jpg, .jpeg, .webp, .pdf";
 
-/** Szerokość podglądu zapisywanego z arkuszem — lista w panelu i galeria w kreatorze. */
+/** Szerokość podglądu zapisywanego z zestawem — lista w panelu i galeria w kreatorze. */
 const PREVIEW_WIDTH_PX = 720;
-/** Szerokość obrazu produktu — strona arkusza w sklepie i plik produktowy Google. */
+/** Szerokość obrazu produktu — strona zestawu w sklepie i plik produktowy Google. */
 const PRODUCT_IMAGE_WIDTH_PX = 1600;
 
 /**
@@ -157,7 +157,7 @@ export type SheetEditorProps = {
   categories: string[];
 };
 
-/** Dane strony arkusza w sklepie — to, co poza nazwą, tematem i układem wchodzi do zapisu. */
+/** Dane strony zestawu w sklepie — to, co poza nazwą, tematem i układem wchodzi do zapisu. */
 type SheetPage = {
   category2: string;
   slug: string;
@@ -216,7 +216,7 @@ function fileSlug(name: string): string {
       .replace(/ł/g, "l")
       .replace(/[^a-z0-9]+/g, "-")
       .replace(/^-|-$/g, "")
-      .slice(0, 60) || "arkusz"
+      .slice(0, 60) || "zestaw"
   );
 }
 
@@ -277,7 +277,7 @@ export function SheetEditor({ sheet, initialStickers, library: initialLibrary, c
   const [savingStep, setSavingStep] = useState<string | null>(null);
   const [notice, setNotice] = useState<string | null>(null);
   // Powody blokady publikacji pokazujemy tylko dla stanu, którego dotyczą —
-  // każda poprawka arkusza albo kategorii je chowa.
+  // każda poprawka zestawu albo kategorii je chowa.
   const [blockersFor, setBlockersFor] = useState<{ signature: string; reasons: string[] } | null>(
     null
   );
@@ -535,7 +535,7 @@ export function SheetEditor({ sheet, initialStickers, library: initialLibrary, c
     await editor.replaceImage(sticker.id, newUrl);
 
     // Przerobiona grafika to nowa naklejka — oryginał zostaje w bazie
-    // nietknięty, bo może leżeć na innych arkuszach.
+    // nietknięty, bo może leżeć w innych zestawach.
     const result = await addUrlToLibrary({
       imageUrl: newUrl,
       name: `${previousName ?? "Naklejka"} (edycja)`.slice(0, 120),
@@ -599,7 +599,7 @@ export function SheetEditor({ sheet, initialStickers, library: initialLibrary, c
 
     const trimmedName = name.trim();
     if (!trimmedName) {
-      setError("Podaj nazwę arkusza.");
+      setError("Podaj nazwę zestawu.");
       nameInputRef.current?.focus();
       return;
     }
@@ -607,17 +607,17 @@ export function SheetEditor({ sheet, initialStickers, library: initialLibrary, c
     if (target === "published") {
       const stickerReasons = describePublishBlockers(stickers);
       const reasons = [...stickerReasons];
-      if (!page.description) reasons.unshift("Dodaj opis arkusza — bez niego strona w sklepie nie ma treści.");
-      if (!page.slug) reasons.unshift("Podaj adres strony arkusza.");
-      if (!category.trim()) reasons.unshift("Wybierz temat arkusza.");
+      if (!page.description) reasons.unshift("Dodaj opis zestawu — bez niego strona w sklepie nie ma treści.");
+      if (!page.slug) reasons.unshift("Podaj adres strony zestawu.");
+      if (!category.trim()) reasons.unshift("Wybierz temat zestawu.");
       if (reasons.length > 0) {
         setBlockers(reasons);
         const found = getSheetIssues(stickers);
         editor.flagStickers([...found.noCutLine, ...found.outside, ...found.overlapping]);
         setError(
           stickerReasons.length > 0
-            ? "Arkusza nie da się jeszcze opublikować — popraw zaznaczone naklejki."
-            : "Arkusza nie da się jeszcze opublikować — uzupełnij dane strony w sklepie."
+            ? "Zestawu nie da się jeszcze opublikować — popraw zaznaczone naklejki."
+            : "Zestawu nie da się jeszcze opublikować — uzupełnij dane strony w sklepie."
         );
         return;
       }
@@ -633,11 +633,11 @@ export function SheetEditor({ sheet, initialStickers, library: initialLibrary, c
         const canvas = await renderRealisticSheet(ready, PREVIEW_WIDTH_PX);
         preview = canvas.toDataURL("image/jpeg", 0.86);
       } catch (err) {
-        // Arkusz zapisze się i bez odświeżonej miniatury.
-        console.warn("Podgląd arkusza:", err);
+        // Zestaw zapisze się i bez odświeżonej miniatury.
+        console.warn("Podgląd zestawu:", err);
       }
 
-      // Opublikowany arkusz ma własną stronę z „Dodaj do koszyka", więc pliki
+      // Opublikowany zestaw ma własną stronę z „Dodaj do koszyka", więc pliki
       // do druku muszą powstać teraz, z dokładnie tego układu, który zapisujemy.
       let assets: SheetAssets | null = null;
       if (target === "published") {
@@ -651,11 +651,11 @@ export function SheetEditor({ sheet, initialStickers, library: initialLibrary, c
         } catch (err) {
           console.error(err);
           setError(
-            "Nie udało się przygotować plików do druku, więc arkusz nie został opublikowany. Spróbuj ponownie."
+            "Nie udało się przygotować plików do druku, więc zestaw nie został opublikowany. Spróbuj ponownie."
           );
           return;
         }
-        setSavingStep("Zapisuję arkusz…");
+        setSavingStep("Zapisuję zestaw…");
       }
 
       const result = await saveSheet({
@@ -715,20 +715,20 @@ export function SheetEditor({ sheet, initialStickers, library: initialLibrary, c
 
       if (isNew) {
         // Bez przeładowania: edytor zostaje z całym stanem, zmienia się tylko adres.
-        window.history.replaceState(null, "", `/admin/arkusze/${result.id}`);
+        window.history.replaceState(null, "", `/admin/zestawy/${result.id}`);
       }
       setNotice(
         target === "published"
           ? publishedBefore
             ? "Zmiany opublikowane."
-            : "Arkusz opublikowany."
+            : "Zestaw opublikowany."
           : publishedBefore
-            ? "Arkusz zdjęty ze sklepu i zapisany jako szkic."
+            ? "Zestaw zdjęty ze sklepu i zapisany jako szkic."
             : "Szkic zapisany."
       );
     } catch (err) {
       console.error(err);
-      setError("Nie udało się zapisać arkusza. Spróbuj ponownie.");
+      setError("Nie udało się zapisać zestawu. Spróbuj ponownie.");
     } finally {
       setSaving(null);
       setSavingStep(null);
@@ -764,7 +764,7 @@ export function SheetEditor({ sheet, initialStickers, library: initialLibrary, c
       const anchor = (event.target as HTMLElement | null)?.closest?.("a[href]");
       if (!(anchor instanceof HTMLAnchorElement) || anchor.target === "_blank") return;
       if (anchor.origin !== window.location.origin) return;
-      if (!window.confirm("Masz niezapisane zmiany w arkuszu. Wyjść bez zapisywania?")) {
+      if (!window.confirm("Masz niezapisane zmiany w zestawie. Wyjść bez zapisywania?")) {
         event.preventDefault();
         event.stopPropagation();
       }
@@ -898,7 +898,7 @@ export function SheetEditor({ sheet, initialStickers, library: initialLibrary, c
       </AnimatePresence>
 
       <div className="flex flex-col lg:flex-row gap-6">
-        {/* Lewa kolumna: wybrana naklejka, dane arkusza, dodawanie naklejek.
+        {/* Lewa kolumna: wybrana naklejka, dane zestawu, dodawanie naklejek.
             Stała szerokość — resztę ekranu dostaje arkusz. */}
         <div className="lg:w-[22rem] xl:w-[24rem] shrink-0 flex flex-col gap-6 order-2 lg:order-1">
           {selectedSticker && (
@@ -926,11 +926,11 @@ export function SheetEditor({ sheet, initialStickers, library: initialLibrary, c
             />
           )}
 
-          <Card title="Arkusz">
+          <Card title="Zestaw">
             <div className="flex flex-col gap-4">
               <div>
                 <label htmlFor="sheet-name" className="text-sm font-bold text-foreground">
-                  Nazwa arkusza
+                  Nazwa zestawu
                 </label>
                 <input
                   id="sheet-name"
@@ -993,14 +993,14 @@ export function SheetEditor({ sheet, initialStickers, library: initialLibrary, c
                   className={fieldClass}
                 />
                 <p className="mt-1 text-[11px] font-medium text-muted-foreground">
-                  Arkusz pokaże się w galerii i na stronach obu tematów.
+                  Zestaw pokaże się w galerii i na stronach obu tematów.
                 </p>
               </div>
             </div>
 
             <div className="mt-5 pt-4 border-t border-border/50 flex flex-col gap-4">
               <div>
-                <p className="text-sm font-extrabold text-foreground">Strona arkusza w sklepie</p>
+                <p className="text-sm font-extrabold text-foreground">Strona zestawu w sklepie</p>
                 <p className="mt-0.5 text-[11px] font-medium text-muted-foreground">
                   Z tych pól powstaje strona produktu z ceną i przyciskiem „Dodaj do koszyka”.
                   Adres i opis są wymagane do publikacji.
@@ -1012,7 +1012,7 @@ export function SheetEditor({ sheet, initialStickers, library: initialLibrary, c
                 </label>
                 <div className="mt-1.5 flex items-center rounded-xl border border-slate-300 dark:border-white/20 bg-background focus-within:border-primary focus-within:ring-2 focus-within:ring-primary/20">
                   <span className="pl-3 text-xs font-semibold text-muted-foreground whitespace-nowrap">
-                    /gotowe-arkusze/
+                    /gotowe-zestawy/
                   </span>
                   <input
                     id="sheet-slug"
@@ -1057,7 +1057,7 @@ export function SheetEditor({ sheet, initialStickers, library: initialLibrary, c
                   maxLength={MAX_SHEET_DESCRIPTION}
                   onChange={(event) => setDescription(event.target.value)}
                   rows={6}
-                  placeholder="Co jest na arkuszu, do czego pasuje, dla kogo. Własnymi słowami — bez kopiowania opisu z innego arkusza."
+                  placeholder="Co jest w zestawie, do czego pasuje, dla kogo. Własnymi słowami — bez kopiowania opisu z innego zestawu."
                   className="mt-1.5 w-full rounded-xl border border-slate-300 dark:border-white/20 bg-background px-3.5 py-2.5 text-sm font-medium leading-relaxed focus-visible:outline-none focus-visible:border-primary focus-visible:ring-2 focus-visible:ring-primary/20"
                 />
                 <p
@@ -1086,7 +1086,7 @@ export function SheetEditor({ sheet, initialStickers, library: initialLibrary, c
                   className="mt-1.5 w-full rounded-xl border border-slate-300 dark:border-white/20 bg-background px-3.5 py-2.5 text-sm font-medium leading-relaxed focus-visible:outline-none focus-visible:border-primary focus-visible:ring-2 focus-visible:ring-primary/20"
                 />
                 <p className="mt-1 text-[11px] font-medium text-muted-foreground">
-                  Po przecinku. {page.motifs.length > 0 ? `Rozpoznane: ${page.motifs.length}.` : "Pokazują się na stronie arkusza jako lista."}
+                  Po przecinku. {page.motifs.length > 0 ? `Rozpoznane: ${page.motifs.length}.` : "Pokazują się na stronie zestawu jako lista."}
                 </p>
               </div>
             </div>
@@ -1318,8 +1318,8 @@ export function SheetEditor({ sheet, initialStickers, library: initialLibrary, c
                     disabled={saving !== null || busy}
                     title={
                       wasPublished
-                        ? "Zapisuje zmiany i zdejmuje arkusz ze sklepu"
-                        : "Zapisuje arkusz bez publikowania (Ctrl+S)"
+                        ? "Zapisuje zmiany i zdejmuje zestaw ze sklepu"
+                        : "Zapisuje zestaw bez publikowania (Ctrl+S)"
                     }
                     className="inline-flex items-center justify-center gap-2 rounded-xl text-sm font-bold h-10 px-4 border border-slate-300 dark:border-white/20 bg-background hover:bg-slate-50 dark:hover:bg-white/5 transition-all active:scale-[0.98] cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
                   >
@@ -1334,7 +1334,7 @@ export function SheetEditor({ sheet, initialStickers, library: initialLibrary, c
                     type="button"
                     onClick={() => void save("published")}
                     disabled={saving !== null || busy}
-                    title={wasPublished ? "Zapisuje zmiany w opublikowanym arkuszu (Ctrl+S)" : undefined}
+                    title={wasPublished ? "Zapisuje zmiany w opublikowanym zestawie (Ctrl+S)" : undefined}
                     className="inline-flex items-center justify-center gap-2 rounded-xl text-sm font-bold h-10 px-4 bg-primary text-primary-foreground hover:bg-primary/95 shadow-sm transition-all active:scale-[0.98] cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     {saving === "published" ? (
@@ -1355,7 +1355,7 @@ export function SheetEditor({ sheet, initialStickers, library: initialLibrary, c
 
               {wasPublished && hasChanges && (
                 <p className="text-[11px] font-semibold text-muted-foreground">
-                  Arkusz jest w sklepie. „Zapisz jako szkic” zdejmie go ze sklepu — zmiany w sklepie
+                  Zestaw jest w sklepie. „Zapisz jako szkic” zdejmie go ze sklepu — zmiany w sklepie
                   zapisuje „Opublikuj zmiany”.
                 </p>
               )}
@@ -1409,7 +1409,7 @@ export function SheetEditor({ sheet, initialStickers, library: initialLibrary, c
                     <Loader2 className="w-10 h-10 text-primary animate-spin mb-3" aria-hidden />
                     <span className="text-[13px] font-black text-foreground uppercase tracking-wider">
                       {saving
-                        ? "Zapisywanie arkusza…"
+                        ? "Zapisywanie zestawu…"
                         : uploadProgress
                           ? `Wgrywanie ${uploadProgress.done}/${uploadProgress.total}…`
                           : "Dodawanie na arkusz…"}

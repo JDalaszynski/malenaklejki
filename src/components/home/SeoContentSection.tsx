@@ -128,8 +128,8 @@ export function SeoContentSection() {
                 {catalogVisible && (
                   <>
                     {" "}A jeśli nie chcesz szukać grafiki, wybierz jeden z{" "}
-                    <Link href="/gotowe-arkusze" className={inlineLink}>
-                      gotowych arkuszy naklejek
+                    <Link href="/gotowe-zestawy" className={inlineLink}>
+                      gotowych zestawów naklejek
                     </Link>{" "}
                     - zamówisz go od razu albo zmienisz po swojemu.
                   </>

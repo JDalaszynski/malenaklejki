@@ -76,8 +76,8 @@ export default async function AdminSettingsPage() {
       label: "Sklep",
       items: [
         {
-          id: "gotowe-arkusze",
-          label: "Gotowe arkusze",
+          id: "gotowe-zestawy",
+          label: "Gotowe zestawy",
           status: READY_SHEETS_MODE_LABELS[readySheets.mode],
           tone:
             readySheets.mode === "on" ? "success" : readySheets.mode === "preview" ? "warning" : "neutral",
@@ -90,7 +90,7 @@ export default async function AdminSettingsPage() {
     <AdminLayout
       adminEmail={admin.email ?? ""}
       title="Ustawienia sklepu"
-      subtitle="Terminy i komunikaty dla klientów oraz widoczność gotowych arkuszy. Każdą sekcję zapisujesz osobno."
+      subtitle="Terminy i komunikaty dla klientów oraz widoczność gotowych zestawów. Każdą sekcję zapisujesz osobno."
     >
       <div className="grid grid-cols-1 lg:grid-cols-[17rem_minmax(0,1fr)] gap-6 lg:gap-10 items-start">
         <SettingsNav groups={groups} />
@@ -115,10 +115,10 @@ export default async function AdminSettingsPage() {
           </SettingsSection>
 
           <SettingsSection
-            id="gotowe-arkusze"
+            id="gotowe-zestawy"
             icon={Layers}
-            title="Gotowe arkusze"
-            description="Czy klienci widzą opublikowane gotowe arkusze w kreatorze na stronie głównej."
+            title="Gotowe zestawy"
+            description="Czy klienci widzą opublikowane gotowe zestawy w kreatorze na stronie głównej."
           >
             <ReadySheetsModeForm settings={readySheets} publishedCount={publishedCount} />
           </SettingsSection>

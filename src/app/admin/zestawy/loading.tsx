@@ -9,9 +9,9 @@ import { SheetGridSkeleton } from "@/components/sheets/SheetsSkeletons";
 export default function Loading() {
   return (
     <AdminPageSkeleton
-      title="Gotowe arkusze"
-      subtitle="Arkusze tematyczne układane z naklejek z bazy. Opublikowane widać w kreatorze na stronie głównej, szkice tylko tutaj."
-      label="Wczytywanie arkuszy…"
+      title="Gotowe zestawy"
+      subtitle="Zestawy tematyczne układane z naklejek z bazy. Opublikowane widać w kreatorze na stronie głównej, szkice tylko tutaj."
+      label="Wczytywanie zestawów…"
     >
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
         <StatTileSkeleton hero />
@@ -22,7 +22,7 @@ export default function Loading() {
 
       <FiltersCardSkeleton selects={0} />
 
-      <Card title="Arkusze">
+      <Card title="Zestawy">
         <SheetGridSkeleton />
       </Card>
     </AdminPageSkeleton>

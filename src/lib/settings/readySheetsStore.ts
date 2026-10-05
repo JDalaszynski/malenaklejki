@@ -22,7 +22,7 @@ async function readReadySheetsSettings(): Promise<ReadySheetsSettings> {
     if (!snapshot.exists) return DEFAULT_READY_SHEETS_SETTINGS;
     return normalizeReadySheetsSettings(snapshot.data());
   } catch (error) {
-    // Awaria bazy ma chować gotowe arkusze, a nie wywracać kreatora —
+    // Awaria bazy ma chować gotowe zestawy, a nie wywracać kreatora —
     // „wyłączony" to stan, w jakim sklep działał od zawsze.
     console.error("readReadySheetsSettings error:", error);
     return DEFAULT_READY_SHEETS_SETTINGS;
@@ -31,7 +31,7 @@ async function readReadySheetsSettings(): Promise<ReadySheetsSettings> {
 
 const getCachedReadySheetsSettings = unstable_cache(
   readReadySheetsSettings,
-  ["ustawienia-gotowych-arkuszy"],
+  ["ustawienia-gotowych-zestawow"],
   { tags: [READY_SHEETS_MODE_TAG], revalidate: 3600 }
 );
 
@@ -39,7 +39,7 @@ const getCachedReadySheetsSettings = unstable_cache(
  * Tryb na czas pracy lokalnej, np. `READY_SHEETS_MODE=on npm run dev`.
  *
  * `.env.local` wskazuje na produkcyjną bazę, więc przełączenie trybu w panelu
- * od razu pokazałoby arkusze klientom. Zmienna działa wyłącznie poza
+ * od razu pokazałoby zestawy klientom. Zmienna działa wyłącznie poza
  * produkcyjnym buildem i niczego nie zapisuje.
  */
 function localModeOverride(): ReadySheetsMode | null {
@@ -50,7 +50,7 @@ function localModeOverride(): ReadySheetsMode | null {
 
 /**
  * Tryb dla sklepu — z pamięci podręcznej, bo pyta o niego strona główna
- * i każde żądanie do `/api/gotowe-arkusze`. Zapis w panelu unieważnia tag,
+ * i każde żądanie do `/api/gotowe-zestawy`. Zapis w panelu unieważnia tag,
  * więc zmiana działa od razu; godzinne `revalidate` to tylko siatka
  * bezpieczeństwa.
  */

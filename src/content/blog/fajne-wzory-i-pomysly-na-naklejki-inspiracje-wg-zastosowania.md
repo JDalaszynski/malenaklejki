@@ -1,6 +1,6 @@
 ---
-title: "Fajne wzory na naklejki - gotowe arkusze A4 za 49 zł"
-description: "Fajne wzory na naklejki: wybierz gotowy arkusz A4 za 49,00 zł brutto i zamów go od razu albo znajdź pomysły wg zastosowania - od laptopa po ślub."
+title: "Fajne wzory na naklejki - gotowe zestawy za 49 zł"
+description: "Fajne wzory na naklejki: wybierz gotowy zestaw na arkuszu A4 za 49,00 zł brutto i zamów go od razu albo znajdź pomysły wg zastosowania - od laptopa po ślub."
 image: "/blog/fajne-wzory-i-pomysly-na-naklejki-inspiracje-wg-zastosowania/fajne-wzory-na-naklejki-inspiracja.jpg"
 imageAlt: "Kolaż różnorodnych wlepek z własnym nadrukiem - inspiracja na fajne wzory naklejek do wycięcia po obrysie."
 date: "2026-08-16"

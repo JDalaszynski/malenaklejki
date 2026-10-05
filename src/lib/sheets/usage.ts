@@ -10,13 +10,13 @@ import {
 } from "./usageEvents";
 
 /**
- * Własne liczniki zainteresowania gotowymi arkuszami.
+ * Własne liczniki zainteresowania gotowymi zestawami.
  *
  * Jeden dokument na dzień (`readySheetUsage/2026-10-04`), a w nim same sumy:
  *
  *   totals:  { open, select, use, cart }
  *   sources: { <miejsce wejścia>: { open } }
- *   sheets:  { <id arkusza>: { select, use, cart } }
+ *   sheets:  { <id zestawu>: { select, use, cart } }
  *
  * Nie ma tu żadnego identyfikatora klienta, adresu IP ani czasu pojedynczego
  * kliknięcia — tylko licznik zwiększany o 1. Dlatego nie da się z tego
@@ -63,7 +63,7 @@ export type UsageSummary = {
   daily: UsageDay[];
   /** Miejsca wejścia do galerii, od najczęściej używanego. */
   sources: Array<{ source: UsageSource; open: number }>;
-  /** Arkusze, od najczęściej wczytywanych do kreatora. */
+  /** Zestawy, od najczęściej wczytywanych do kreatora. */
   sheets: Array<{ id: string } & Record<Exclude<UsageEvent, "open">, number>>;
 };
 
