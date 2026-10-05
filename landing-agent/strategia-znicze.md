@@ -63,7 +63,7 @@
 
 **Przychodzące do landingu (min. 3 wymagane, jest 6):** strona główna (`SeoContentSection.tsx`, zdanie przed Wszystkimi Świętymi), `/fotonaklejki` (karta „Zdjęcia rodzinne i z wakacji"), `/naklejki-dla-firm` (akapit o akcjach pamięci), wpis `naklejka-ze-zdjecia-...` (punkt „Pamięć o bliskich", `updated` 2026-10-05), wpis `jaki-rozmiar-naklejki-wybrac` (wiersz tabeli, `updated` 2026-10-05), oba nowe wpisy (kilka linków każdy).
 **Wychodzące z landingu:** kreator `/` (2× CTA), oba wpisy, `/fotonaklejki`, `/naklejki-dla-firm`, `/naklejki-foliowe`, `/naklejki-die-cut`, `jaki-rozmiar-naklejki-wybrac`, `/zamow-projekt`.
-**Świadomie NIE ruszone:** nagłówek i stopka (guardrail: tylko za zgodą właściciela) - patrz punkt 4 w §8.
+**Stopka:** od 2026-10-05 sezonowy link „Naklejki na znicze ze zdjęciem" w module „Rodzaje naklejek" (`Footer.tsx`, zgoda właściciela, **do 3.11 włącznie**). Po 4.11 chowa się sam po stronie przeglądarki (`ZNICZE_LINK_HIDDEN_FROM`); wpis i stałą usuń z kodu po sezonie. Nagłówek nietknięty.
 
 ---
 
@@ -103,7 +103,7 @@ Landing i oba wpisy **działają bez zdjęć** (zgodnie z `rules.md` §11: nie b
 1. **Test ciepła - rekomendacja: zrób go w tym tygodniu.** Jeden znicz szklany z naklejką, palony pod nadzorem 4-6 godzin; sprawdzić brzegi, falowanie i klej po ostygnięciu. Wynik zmienia najważniejszą obiekcję tej niszy („czy się nie stopi") z „nie deklarujemy" na konkret. Wpisz wynik do `facts.md` i odeślij mi - zmienię hero, ramkę, tabelę i FAQ.
 2. **Data graniczna zamówienia przed 1.11.** Przy 1.11 w niedzielę i produkcji 2-3 dni roboczych plus dostawie bezpieczna data to około **środy 21.10** (rekomendacja do potwierdzenia u przewoźnika). `facts.md` wymaga Twojej zgody na datę; po zgodzie dopiszę ją na landingu, w FAQ i w `llms.txt` z adnotacją „ważne do 2.11.2026".
 3. **Gotowy zestaw „Pamięć" w panelu** (dedykacje „Kochanej Mamie", „Kochanemu Tacie", „Pamiętamy" + symbole: anioł, gołąb, świeca, róża), na które klient bez zdjęcia mógłby kliknąć. To najlepsza droga dla osób bez własnej grafiki. Własne grafiki bez treści licencjonowanych; strona tematyczna jest w etapie 2 `strategia-gotowe-zestawy.md`. Rekomendacja: **tak, ale na 2027** (zbyt mało czasu do szczytu na zamówienie grafik i publikację).
-4. **Link w nagłówku/stopce (guardrail wymaga zgody).** Rekomendacja: **sezonowy link „Naklejki na znicze" w module „Rodzaje naklejek" stopki do 3.11**, potem zdjąć. To jedyny sposób na link z każdej podstrony.
+4. ✅ **Link sezonowy w stopce - ZROBIONE 2026-10-05** (zgoda właściciela, do 3.11). Do zrobienia po sezonie: usunąć wpis i stałą `ZNICZE_LINK_HIDDEN_FROM` z `src/components/layout/Footer.tsx`.
 5. **Search Console:** ręczne „Poproś o zindeksowanie" dla trzech adresów (landing + dwa wpisy). Zrobię ping IndexNow (Bing), ale Google tego nie obsługuje.
 6. **Odświeżenie starych wpisów z sufitem ciepła:** `naklejki-z-wlasnym-logo-na-sloiki-i-opakowania` („nie odklejają się pod wpływem ciepła") i `...sloiki-z-przyprawami...` („nie blaknie pod wpływem ciepła z kuchenki") wykraczają poza tabelę faktów (woda, UV) - do złagodzenia przy okazji.
 

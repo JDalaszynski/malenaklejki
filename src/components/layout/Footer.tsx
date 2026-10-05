@@ -11,13 +11,23 @@ interface FooterProps {
   children?: React.ReactNode;
 }
 
+/**
+ * Sezonowy link do `/naklejki-na-znicze` (zgoda właściciela 2026-10-05, do 3.11 włącznie).
+ * Strony są statyczne, więc sam kod nie "wie", że sezon minął - po tej dacie link chowa
+ * się po stronie przeglądarki. Wpis i stałą usuń przy najbliższej okazji po 3.11
+ * (plan: landing-agent/strategia-znicze.md §8).
+ */
+const ZNICZE_LINK_HIDDEN_FROM = new Date("2026-11-04T00:00:00+01:00").getTime();
+
 export function Footer({ children }: FooterProps = {}) {
   const [mounted, setMounted] = useState(false);
+  const [zniczeSeason, setZniczeSeason] = useState(true);
   const [theme, setTheme] = useState<"light" | "dark" | "system">("light");
   const catalogVisible = useCatalogVisible();
 
   useEffect(() => {
     setMounted(true);
+    if (Date.now() >= ZNICZE_LINK_HIDDEN_FROM) setZniczeSeason(false);
     if (typeof window !== "undefined") {
       if ("theme" in localStorage) {
         setTheme(localStorage.theme as "light" | "dark" | "system");
@@ -92,6 +102,10 @@ export function Footer({ children }: FooterProps = {}) {
                   { href: "/naklejki-die-cut", label: "Naklejki die cut" },
                   { href: "/naklejki-foliowe", label: "Naklejki foliowe i wodoodporne" },
                   { href: "/fotonaklejki", label: "Fotonaklejki ze zdjęcia" },
+                  // Sezonowo, do 3.11 (patrz ZNICZE_LINK_HIDDEN_FROM).
+                  ...(zniczeSeason
+                    ? [{ href: "/naklejki-na-znicze", label: "Naklejki na znicze ze zdjęciem" }]
+                    : []),
                   { href: "/wlepki-na-zamowienie", label: "Wlepki na zamówienie" },
                   { href: "/etykiety-na-sloiki", label: "Etykiety na słoiki" },
                   { href: "/naklejki-dla-firm", label: "Naklejki dla firm" },
