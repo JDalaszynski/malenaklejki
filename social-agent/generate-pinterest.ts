@@ -9,7 +9,7 @@ import { fileURLToPath } from 'url';
 // Piny generuj z SUROWYCH zdjęć artykułu - PRZED uruchomieniem add_logo_bar.mjs
 // (skrypt dokłada własny pasek z logo i CTA; obrandowane zdjęcie dałoby dwa logotypy).
 // UWAGA: zaraz po zapisaniu pinterest-info.md skrypt ZAWSZE tworzy też tiktok-info.txt
-// w tym samym folderze /public/pinterest/{slug}/ (opis pod karuzelę zdjęć na TikToka).
+// w tym samym folderze social-agent/outputs/pinterest/{slug}/ (opis pod karuzelę zdjęć na TikToka).
 // Użycie: npx tsx social-agent/generate-pinterest.ts <nazwa-pliku-bloga.md>
 
 const __filename = fileURLToPath(import.meta.url);
@@ -162,7 +162,7 @@ Zwróć wynik jako sformatowany Markdown (używając nagłówków H2 dla każdeg
     console.log(`🖼️  Rozpoczynam przetwarzanie grafik 4:5 (JPG)...`);
 
     const articleSlug = blogFilename.replace('.md', '');
-    const pinterestDir = path.join(__dirname, '..', 'public', 'pinterest', articleSlug);
+    const pinterestDir = path.join(__dirname, 'outputs', 'pinterest', articleSlug);
     if (!fs.existsSync(pinterestDir)) {
       fs.mkdirSync(pinterestDir, { recursive: true });
     }

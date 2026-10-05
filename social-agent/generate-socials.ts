@@ -174,8 +174,8 @@ Wypisz je punktując w formacie (**CTA X:**, gdzie X to kolejny numer od 1):
     console.log(`🖼️  Rozpoczynam przetwarzanie folderów i grafik...`);
 
     const articleSlug = blogFilename.replace('.md', '');
-    const fbIgDir = path.join(__dirname, '..', 'public', 'socials', 'Facebook-Instagram', articleSlug);
-    const tiktokDir = path.join(__dirname, '..', 'public', 'socials', 'Tik-Tok', articleSlug);
+    const fbIgDir = path.join(__dirname, 'outputs', 'socials', 'Facebook-Instagram', articleSlug);
+    const tiktokDir = path.join(__dirname, 'outputs', 'socials', 'Tik-Tok', articleSlug);
     
     if (!fs.existsSync(fbIgDir)) fs.mkdirSync(fbIgDir, { recursive: true });
     if (!fs.existsSync(tiktokDir)) fs.mkdirSync(tiktokDir, { recursive: true });
@@ -278,7 +278,7 @@ Wypisz je punktując w formacie (**CTA X:**, gdzie X to kolejny numer od 1):
         console.warn(`Pominięto ${imgUrl} - plik obrazu lub logo nie istnieje.`);
       }
     }
-    console.log('✅ Zakończono proces. Foldery zostały zapisane w public/socials/');
+    console.log('✅ Zakończono proces. Foldery zostały zapisane w social-agent/outputs/socials/');
     
   } catch(e: any) {
     console.error("Błąd podczas generowania:", e.message || e);

@@ -64,19 +64,20 @@ Jeśli wykryjesz jakiekolwiek braki, wprowadź niezbędne poprawki.
 1.1. **Optymalizacja i nazwy zdjęć (ZAWSZE, przed wszystkim innym):** Zdjęcia wgrane przez użytkownika bywają ciężkie - nierzadko są to pliki PNG zapisane z rozszerzeniem `.jpg`, po ~2 MB każdy. Zanim cokolwiek z nimi zrobisz: (a) nadaj im czytelne, SEO-friendly nazwy powiązane z treścią zdjęcia i frazami kluczowymi; (b) przekonwertuj je na realny JPEG i skompresuj bez widocznej utraty jakości (sharp: `.jpeg({ quality: 88, mozjpeg: true })`; rozdzielczość ~1024 px w zupełności wystarcza na bloga). Cel: z ~2 MB zejść do ~100-250 KB na plik. Dopiero na tak przygotowanych zdjęciach osadzaj je w treści, generuj Piny i na końcu dodawaj pasek z logo. **Rób to automatycznie przy każdym artykule - użytkownik nie musi o tym przypominać.**
 
 1.2. **Generuj Social Media i Piny (NAJPIERW - z surowych, zoptymalizowanych zdjęć):** Po nadaniu nazw i optymalizacji zdjęć w folderze `public/blog/{slug}/` oraz osadzeniu ich w treści wpisu, a **przed** dodaniem paska z logo, uruchom skrypty generujące materiały:
-   - `npx tsx social-agent/generate-socials.ts {slug}.md` - materiały na Facebook/Instagram (4:5) i TikTok (9:16) w `/public/socials/`.
-   - `npx tsx social-agent/generate-pinterest.ts {slug}.md` - Piny Pinterest (4:5) w dedykowanym folderze `/public/pinterest/{slug}/` **w formacie JPG** (`pin-N.jpg`) wraz z plikiem opisów `pinterest-info.md`.
+   - `npx tsx social-agent/generate-socials.ts {slug}.md` - materiały na Facebook/Instagram (4:5) i TikTok (9:16) w `social-agent/outputs/socials/`.
+   - `npx tsx social-agent/generate-pinterest.ts {slug}.md` - Piny Pinterest (4:5) w dedykowanym folderze `social-agent/outputs/pinterest/{slug}/` **w formacie JPG** (`pin-N.jpg`) wraz z plikiem opisów `pinterest-info.md`.
    Oba skrypty czytają cover + zdjęcia z treści wpisu i dokładają własny pasek z logo oraz przycisk CTA, dlatego muszą działać na zdjęciach BEZ wypalonego paska (patrz uwaga o kolejności powyżej).
 1.5. **Branding Zdjęć (DOPIERO TERAZ):** Gdy Piny są już gotowe, dodaj do zdjęć artykułu pasek z logo:
    `node add_logo_bar.mjs public/blog/{slug}`
    Uruchom ten skrypt **dokładnie raz** - każde kolejne wywołanie dokłada kolejny pasek. Jeśli przez pomyłkę pasek trafił na zdjęcia przed wygenerowaniem Pinów, oryginał da się odzyskać bezstratnie: pasek ma wysokość `floor(szerokość * 0.15)` i jest doklejany **pod** obrazem, więc wystarczy przyciąć plik do górnych `wysokość - floor(szerokość * 0.15)` pikseli, ponownie wygenerować Piny i dopiero potem uruchomić branding.
+1.6. **Siatka bezpieczeństwa dla wagi zdjęć (po pasku z logo):** `node scripts/optymalizuj-obrazy.mjs public/blog/{slug}`. Skrypt jest idempotentny i ruszy tylko pliki, które da się odchudzić o ≥15% (np. PNG, które przemknęły mimo kroku 1.1). Waga `public/` wprost przekłada się na limit Deployment Storage na Vercelu (10 GB, Hobby) - każde wdrożenie niesie całą zawartość `public/`. Do `public/` wkładamy wyłącznie to, co serwuje strona; materiały robocze (social, Pinterest) zostają w `social-agent/outputs/`.
 2. **Aktualizacja planu:** W pliku `blog-agent/plan.md`:
    - Przenieś napisany artykuł (wraz z jego wciętymi metadanymi) do sekcji `## 📈 Zrealizowane Artykuły`.
    - Zmień jego status na ukończony: `- [x] **Tytuł** (opublikowano YYYY-MM-DD)`.
 2.5. **Regeneracja `llms.txt` (GEO, obowiązkowo):** uruchom `node scripts/generuj-llms-txt.mjs`. Skrypt przebudowuje `public/llms.txt` i `public/llms-full.txt` z frontmatterów wpisów, więc nowy artykuł od razu trafia do plików, którymi karmimy modele LLM. **Nie edytuj tych plików ręcznie** - zmiany w opisie oferty i faktach wprowadzaj w tablicach `PAGES` / `FACTS` w skrypcie (zgodnie z `blog-agent/facts.md`).
 3. **Synchronizacja Git:**
    - Wykonaj polecenia w terminalu:
-     `git add src/content/blog/{slug}.md blog-agent/plan.md public/llms.txt public/llms-full.txt public/pinterest/{slug}/ social-agent/outputs/{slug}-socials.md`
+     `git add src/content/blog/{slug}.md blog-agent/plan.md public/llms.txt public/llms-full.txt social-agent/outputs/pinterest/{slug}/ social-agent/outputs/{slug}-socials.md`
      `git commit -m "auto(blog): opublikowano wpis o '{tytuł}'"`
      `git push origin main`
 4. **Ping (IndexNow API):**

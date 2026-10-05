@@ -103,11 +103,12 @@ malenaklejki/
 │   ├── generate-socials.ts  # Generator postów FB/IG/TikTok (4:5, 9:16)
 │   ├── generate-pinterest.ts# Generator Pinów Pinterest (4:5 JPG)
 │   ├── social-plan.md       # Harmonogram publikacji w social media
-│   └── social-rules.md      # Reguły formatowania i CTA dla social media
-├── public/                  # Zasoby statyczne (ikony, logo, czcionki)
-│   ├── blog/                # Zdjęcia przypisane do artykułów (/blog/{slug}/)
-│   ├── pinterest/           # Wygenerowane grafiki na Pinterest (/pinterest/{slug}/)
-│   └── socials/             # Grafiki i materiały na social media
+│   ├── social-rules.md      # Reguły formatowania i CTA dla social media
+│   └── outputs/             # Wyniki generatorów — poza public/, więc nie trafiają do wdrożeń Vercela
+│       ├── pinterest/       # Grafiki i opisy Pinterest/TikTok ({slug}/)
+│       └── socials/         # Grafiki FB/IG (4:5) i TikTok (9:16) ({platforma}/{slug}/)
+├── public/                  # Zasoby serwowane przez stronę (ikony, logo, czcionki, zdjęcia)
+│   └── blog/                # Zdjęcia przypisane do artykułów (/blog/{slug}/)
 ├── src/
 │   ├── app/                 # Next.js App Router (strony, routing, Server Actions, API)
 │   │   ├── actions/         # Server Actions (createOrder, generateImage, contact)
@@ -292,6 +293,14 @@ Projekt jest w pełni zoptymalizowany pod kątem wdrożenia na platformie **Verc
 1. Połącz repozytorium GitHub z projektem w panelu [Vercel](https://vercel.com).
 2. W ustawieniach projektu (*Project Settings -> Environment Variables*) uzupełnij wszystkie zmienne z pliku `.env.local`.
 3. Zbuduj i opublikuj projekt – Vercel automatycznie wykryje konfigurację Next.js i skonfiguruje optymalizację brzegową (Edge/Serverless).
+
+### Limit Deployment Storage (Vercel Hobby: 10 GB)
+
+Każde wdrożenie przechowuje całą zawartość `public/` plus funkcje serwerowe, a po przekroczeniu limitu Vercel **blokuje nowe wdrożenia**. Dlatego:
+
+- do `public/` trafia tylko to, co serwuje strona; materiały robocze (grafiki social, Pinterest) żyją w `social-agent/outputs/`,
+- zdjęcia odchudza `node scripts/optymalizuj-obrazy.mjs` (`--dry` pokazuje raport bez zapisu); adresy plików się nie zmieniają,
+- kontrola rozmiaru: `du -sh public` (stan po odchudzeniu 5.10.2026: ~67 MB, wcześniej ~279 MB).
 
 ---
 

@@ -31,7 +31,7 @@ async function run() {
 
   for (const filename of files) {
     const slug = filename.replace('.md', '');
-    const pinterestDir = path.join(__dirname, '..', 'public', 'pinterest', slug);
+    const pinterestDir = path.join(__dirname, 'outputs', 'pinterest', slug);
     
     // Check if pinterest info exists, which means this article was processed for socials
     if (!fs.existsSync(path.join(pinterestDir, 'pinterest-info.md'))) {

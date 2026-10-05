@@ -27,7 +27,7 @@ Wywołania agenta dla projektu `malenaklejki`. Wszystkie komendy działają w j�
 | Tylko treści tekstowe, bez grafik | `"Napisz posty social media dla [slug] bez uruchamiania skryptu"` |
 
 > Skrypt automatyczny: `npx tsx social-agent/generate-socials.ts {slug}.md`
-> Wynik: grafiki PNG 4:5 w `/public/pinterest/{slug}/` + opisy w `pinterest-info.md`
+> Wynik: grafiki PNG 4:5 w `social-agent/outputs/pinterest/{slug}/` + opisy w `pinterest-info.md`
 
 **Referencje:** `social-agent/social-rules.md`, `social-agent/social-plan.md`
 
@@ -66,7 +66,7 @@ Wykonuje automatycznie w kolejności:
 3. Tworzenie folderu `/public/blog/{slug}/`
 4. Pisanie artykułu + weryfikacja SEO (self-correction)
 5. Zapis do `src/content/blog/{slug}.md`
-6. Skrypt social+Pinterest → `/public/pinterest/{slug}/`
+6. Skrypt social+Pinterest → `social-agent/outputs/pinterest/{slug}/`
 7. Aktualizacja `plan.md` (oznaczenie jako zrealizowany)
 8. Regeneracja `public/llms.txt` i `public/llms-full.txt` (`node scripts/generuj-llms-txt.mjs`)
 9. `git add` → `git commit` → `git push origin main`
@@ -93,5 +93,5 @@ Wykonuje automatycznie w kolejności:
 | `.agents/AGENTS.md` | Zasady SEO bloga (linkowanie, zdjęcia, kreator) |
 | `src/content/blog/` | Gotowe artykuły w Markdown |
 | `public/blog/{slug}/` | Zdjęcia do artykułu |
-| `public/pinterest/{slug}/` | Gotowe grafiki Pinterest (4:5 PNG) |
+| `social-agent/outputs/pinterest/{slug}/` | Gotowe grafiki Pinterest (4:5 PNG) |
 | `social-agent/outputs/` | Teksty social media do wklejenia |

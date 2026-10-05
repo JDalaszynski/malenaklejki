@@ -18,7 +18,7 @@ Zawsze generuj zestaw składający się z poniższych formatów z jednego źród
 
 ### A. Opis TikTok (Tekst pod Karuzelę) — plik `tiktok-info.txt`
 * Cel: Przyciągnięcie uwagi algorytmu poprzez słowa kluczowe i skłonienie do interakcji.
-* **Plik i lokalizacja:** Zapisywany jako `tiktok-info.txt` w folderze pinów `/public/pinterest/{slug}/` (obok `pinterest-info.md` i grafik `pin-N.jpg`).
+* **Plik i lokalizacja:** Zapisywany jako `tiktok-info.txt` w folderze pinów `social-agent/outputs/pinterest/{slug}/` (obok `pinterest-info.md` i grafik `pin-N.jpg`).
 * **Automatyzacja:** Powstaje ZAWSZE automatycznie zaraz po `pinterest-info.md` — generuje go skrypt `social-agent/generate-pinterest.ts` przy tym samym uruchomieniu. Nie wymaga osobnej komendy ani polecenia.
 * Struktura: Surowy tekst bez dodawania prefiksów takich jak "Tytuł:" czy "Treść:" (gotowy do skopiowania). Bloki oddzielone jedną pustą linią. Składa się z:
   * Tytuł: Krótki, chwytliwy (Haczyk) z emotikoną. **Musi być oddzielony od reszty tekstu pustą linią.**
@@ -36,7 +36,7 @@ Zawsze generuj zestaw składający się z poniższych formatów z jednego źród
 
 ### D. Pinterest Pin
 * Cel: Inspiracja wizualna. Bezpośrednie przekierowanie ruchu ze zdjęcia prosto do malenaklejki.pl.
-* **Format pliku:** Piny zapisujemy w formacie **JPG** (`pin-N.jpg`) - generuje je skrypt `social-agent/generate-pinterest.ts` do folderu `/public/pinterest/{slug}/`.
+* **Format pliku:** Piny zapisujemy w formacie **JPG** (`pin-N.jpg`) - generuje je skrypt `social-agent/generate-pinterest.ts` do folderu `social-agent/outputs/pinterest/{slug}/`.
 * Struktura: 
   * **Tytuł Pinu:** Estetyczny tytuł zachęcający do kliknięcia.
   * **Opis Pinu:** Krótki, inspirujący opis zawierający 3-4 mocne słowa kluczowe z bloga. Kategorycznie ZAKAZUJE się używania znaków odwrotnego apostrofu/backticków (`) do wyróżniania słów kluczowych - pisz normalnym tekstem.
