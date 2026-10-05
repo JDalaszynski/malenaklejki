@@ -82,3 +82,12 @@ Searcher pisze **"etykiety"/"napisy"**, nie "naklejki" - mamy spoke'y o "naklejk
 
 ### 6c. Laptop - kandydat Tier 3 (pending GSC)
 `naklejki na laptop` / `naklejki na laptopa własny projekt` - komercyjna głowa użytkowa. **Najpierw rozbuduj spoke** `male-naklejki-na-laptopa` na szerszą głowę; landing `/naklejki-na-laptopa` buduj **tylko jeśli** GSC potwierdzi wolumen, a wpis nie zdominuje frazy. Na razie: NIE budować (unikaj thin/near-duplicate z blogiem).
+
+---
+
+## 7. Nisza sezonowa „znicze" (dopisano 2026-10-05) → osobna baza
+
+Pełna baza fraz (klastry, mapa fraza → strona, pytania AEO, pułapki, kalendarz, pomiar) jest w [`keywords-znicze.md`](keywords-znicze.md), strategia i otwarte punkty w [`strategia-znicze.md`](strategia-znicze.md).
+* `/naklejki-na-znicze` (zbudowane 2026-10-05) → naklejki na znicze, naklejki na znicze ze zdjęciem, naklejka na znicz (personalizowana / szklane / samoprzylepne). Landing evergreenowy, nie sezonowy wpis.
+* Poradnikowe frazy tej niszy obsługują wpisy blogowe (`znicz ze zdjęciem`, `co napisać na zniczu`) - landing NIE celuje w nie.
+* ⛔ NIE budować: landingu pod „znicz ze zdjęciem" (zakup gotowego znicza - głowa sklepów), pod `znicze personalizowane`, `znicze solarne`, `wkłady do zniczy` (retail).

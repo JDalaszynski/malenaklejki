@@ -314,6 +314,24 @@ Przy 7 428 wyświetleniach bloga podniesienie CTR z 1,13% do 2,5% to **około +1
 
 ---
 
+## 🕯️ P4.4 - Nisza sezonowa: znicze (2026-10-05) - WYKONANE, nie powtarzaj
+
+> **Źródło:** `landing-agent/strategia-znicze.md` (strategia, granice, otwarte punkty) i `landing-agent/keywords-znicze.md` (baza fraz z mapą fraza → strona). Pozycje poniżej są **już napisane i opublikowane** - autoblog ma je pominąć. Landing `/naklejki-na-znicze` zbudowany równolegle (patrz `landing-agent/plan.md` → "Zrealizowane").
+
+- [x] **Z1. Znicz ze zdjęciem - jak zrobić go samodzielnie krok po kroku** (opublikowano 2026-10-05)
+    - **Slug:** `znicz-ze-zdjeciem-jak-zrobic-samodzielnie-naklejka-na-znicz` → plik `src/content/blog/znicz-ze-zdjeciem-jak-zrobic-samodzielnie-naklejka-na-znicz.md`, ~1100 słów, 6 FAQ (H3).
+    - **Główna fraza:** `znicz ze zdjęciem` (semantyczne: `znicz ze zdjęciem zmarłego`, `zdjęcie na zniczu`, `jak zrobić znicz ze zdjęciem`). **Link nadrzędny:** landing `/naklejki-na-znicze` (1. akapit, anchor `naklejki na znicze`).
+    - **Zdjęcia:** folder `public/blog/znicz-ze-zdjeciem-jak-zrobic-samodzielnie-naklejka-na-znicz/` pusty (`.gitkeep`); **DO ZROBIENIA po dograniu zdjęć:** kompresja + nazwy SEO → osadzenie → piny (z surowych) → `add_logo_bar.mjs`.
+- [x] **Z2. Co napisać na zniczu - napisy i dedykacje dla bliskich** (opublikowano 2026-10-05)
+    - **Slug:** `co-napisac-na-zniczu-napisy-i-dedykacje-dla-bliskich`, ~1000 słów, tabela 12 adresatów w celowniku, 6 FAQ. **Główna fraza:** `co napisać na zniczu` (semantyczne: `napis na znicz`, `dedykacja na znicz`, `znicz z napisem`). **Link nadrzędny:** landing `/naklejki-na-znicze`.
+    - **Zdjęcia:** folder `public/blog/co-napisac-na-zniczu-napisy-i-dedykacje-dla-bliskich/` pusty (`.gitkeep`).
+    - **Granice:** zero cytatów z wierszy (prawa autorskie), ton stonowany także przy znicz dla dziecka.
+- [x] **Aktualizacje istniejących treści (2026-10-05):** `naklejka-ze-zdjecia-...` (punkt „Pamięć o bliskich", `updated`), `jaki-rozmiar-naklejki-wybrac` (wiersz „Naklejka na znicz", `updated`); strona główna, `/fotonaklejki`, `/naklejki-dla-firm` - link do landingu.
+- [ ] **Z3 (tylko po danych GSC z listopada).** Kolejny wpis w niszy buduj **wyłącznie** na frazę, która dała wyświetlenia i pozycję > 30 (patrz `keywords-znicze.md` §10). Nie twórz wpisów o tej samej intencji co Z1/Z2 ani landing pod „ze zdjęciem".
+- ⏸️ **Otwarte punkty właściciela** (test ciepła naklejki na palącym się zniczu, data graniczna zamówień przed 1.11, link sezonowy w stopce, gotowy zestaw „Pamięć"): `landing-agent/strategia-znicze.md` §8.
+
+---
+
 ## 📊 Mierniki Fazy 4 (weryfikacja 2026-11-30)
 
 | Miernik | Stan 2026-08-28 | Cel |

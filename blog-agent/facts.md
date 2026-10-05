@@ -4,7 +4,7 @@
 >
 > Modele LLM cytują liczby. Sprzeczne liczby na jednej domenie osłabiają nas jako źródło i realnie ryzykują reklamacją.
 
-**Ostatnia aktualizacja:** 2026-10-03
+**Ostatnia aktualizacja:** 2026-10-05
 
 ---
 
@@ -33,6 +33,7 @@
 | Liczba naklejek na gotowym zestawie | **dokładna**, podana przy każdym zestawie | wolno podać konkretną liczbę (np. "54 naklejki") - to wyjątek od zasady "orientacyjnie ok. X szt.", która dalej obowiązuje dla arkuszy układanych przez klienta | kod: `stickerCount` arkusza, 2026-10-03 |
 | Edycja gotowego zestawu | **TAK** - przed zamówieniem w kreatorze: zmiana rozmiaru, usuwanie naklejek, dokładanie własnych grafik; cena bez zmian | "dopasuj zestaw", "zmień po swojemu"; **NIE:** "zaprojektuj" | kod: `/?zestaw=<id>`, 2026-10-03 |
 | Zwrot | **14 dni** dla gotowego zestawu zamówionego **bez zmian**; naklejki z własnych grafik i gotowy zestaw zmieniony w kreatorze - **bez zwrotu** (rzecz wg specyfikacji klienta) | zawsze oba człony razem; odesłanie na koszt klienta. **NIE:** "zwrot w 14 dni" bez zastrzeżenia, **NIE:** "brak zwrotów" o całej ofercie | regulamin §7, decyzja właściciela 2026-10-03 (wariant A) |
+| Naklejki na znicze | **TAK** - drukujemy same naklejki (zdjęcie, imię, dedykacja, logo) do przyklejenia na **gładką, zewnętrzną ściankę znicza** ze szkła lub plastiku; **zniczy i wkładów nie sprzedajemy**. Kształt „Koło" w kreatorze dopasowuje się do proporcji zdjęcia (portret w pionie = owal). Tło usuwa się przyciskiem „Usuń tło", **napis przygotowuje się poza kreatorem** (brak edytora tekstu) | "naklejka na znicz", "znicz ze zdjęciem z własną naklejką", "naklejaj z dala od knota", "najbezpieczniej znicz solarny, LED lub na baterie", "sprawdź jedną naklejkę pod nadzorem". **NIE:** "odporna na płomień / ciepło / wysoką temperaturę", "na lata na cmentarzu", "odporna na mróz", "do każdego znicza", "zaprojektuj", gotowe znicze w ofercie | kod: `HomePageClient.tsx` (cięcie `circle` = elipsa), `StickerEditModal.tsx`; decyzja redakcyjna 2026-10-05, `landing-agent/strategia-znicze.md` |
 
 ---
 
@@ -42,6 +43,7 @@
 * **Deadline zamówień przed świętami / konkretna data graniczna** - wymaga osobnej zgody (dotyczy huba B3, dawniej A5; rekomendacja do decyzji: `strategia-swieta-2026.md` §12). Po zgodzie wpisz datę do tabeli faktów potwierdzonych **z adnotacją "ważne do 24.12.2026"**, dopisz ją do `FACTS` w `scripts/generuj-llms-txt.mjs` i przebuduj `llms.txt`. Po sezonie usuń oba wpisy.
 * **Sufit trwałości zewnętrznej** ("na lata", "na karoserię", "odporna na myjnię ciśnieniową") - poza woda/UV.
 * **Odporność na rozpuszczalniki, tłuszcze, benzynę, pranie, tkaninę.**
+* **Odporność na ciepło płomienia i temperaturę znicza** (naklejki na znicze, świece, lampiony). **Nie została potwierdzona** - pisz wprost, że jej nie deklarujemy, i podawaj zasady rozmieszczenia (z dala od knota, nie na wkładzie ani metalu, test jednej sztuki pod nadzorem, najbezpieczniej znicz solarny/LED). Wzmocnić copy można dopiero po teście przeprowadzonym przez właściciela (znicz szklany palony kilka godzin z naklejką, obejrzenie brzegów i klejem) i dopisaniu wyniku do tabeli faktów. Uwaga: starsze wpisy (`naklejki-z-wlasnym-logo-na-sloiki-i-opakowania` - etykiety na świece, „nie odklejają się pod wpływem ciepła"; `...sloiki-z-przyprawami...` - „nie blaknie pod wpływem ciepła z kuchenki") mówią o cieple otoczenia, nie o płomieniu - nie przenoś tego na znicze, a przy okazji odświeżenia tych wpisów rozważ złagodzenie sformułowań, bo wykraczają poza tabelę potwierdzonych faktów (woda, UV).
 * **Właściwości security / void / "nie da się zdjąć"** przy plombach na paczki.
 * **Dane konkurencji** (minimalne nakłady, ceny, czasy StickerApp / Sticker Mule / Redbubble) - pisz jakościowo, nigdy liczbowo.
 * **Gwarancja skanowalności kodu QR po wydruku** - dawaj zalecenia i każ przetestować.

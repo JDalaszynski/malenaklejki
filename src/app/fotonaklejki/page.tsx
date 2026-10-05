@@ -122,7 +122,9 @@ const USE_CASES: {
   {
     icon: Camera,
     title: "Zdjęcia rodzinne i z wakacji",
-    text: "Kadr z wyjazdu, selfie z przyjaciółmi czy portret rodziny zamieniony w trwałą, wodoodporną naklejkę na pamiątkę.",
+    text: "Kadr z wyjazdu, selfie z przyjaciółmi czy portret rodziny zamieniony w trwałą, wodoodporną naklejkę na pamiątkę - także na znicz bliskiej osoby.",
+    href: "/naklejki-na-znicze",
+    linkLabel: "Naklejki na znicze ze zdjęciem",
   },
   {
     icon: Baby,

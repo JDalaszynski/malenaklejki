@@ -2,7 +2,7 @@
 title: "Jaki rozmiar naklejki wybrać? Wymiary i ile naklejek zmieści się na arkuszu A4"
 slug: "jaki-rozmiar-naklejki-wybrac"
 date: "2026-08-20"
-updated: "2026-09-03"
+updated: "2026-10-05"
 description: "Zastanawiasz się, jaki rozmiar naklejki wybrać? Zobacz, jak dopasować wymiary i sprawdź, ile naklejek zmieści się na jednym arkuszu A4."
 image: "/blog/jaki-rozmiar-naklejki-wybrac/zestaw-naklejek-rozne-rozmiary-i-wzory.jpg"
 imageAlt: "Duży zestaw okrągłych naklejek z własnym nadrukiem w różnych rozmiarach - minimalistyczne wzory i cytaty rozłożone na drewnianym blacie."
@@ -25,6 +25,7 @@ Zastanawiasz się, gdzie najczęściej sprawdzają się określone rozmiary? Pon
 |---|---|---|
 | Naklejka na laptopa | 7-10 cm | 6-12 szt. |
 | Naklejka na bidon / butelkę | 5-8 cm | 10-15 szt. |
+| [Naklejka na znicz](/naklejki-na-znicze) (zdjęcie, dedykacja) | 5-8 cm | 6-12 szt. |
 | Naklejki na słoiki (np. konfitury) | 4-6 cm | 15-24 szt. |
 | Imienne naklejki na przybory | 4-5 cm | 24-30 szt. |
 | Plomba na paczkę wysyłkową | 5-7 cm | 12-20 szt. |
