@@ -99,9 +99,14 @@ const nextConfig: NextConfig = {
   // przekierowujemy je na stałe — razem z ogonem ścieżki i parametrami.
   async redirects() {
     return [
-      { source: "/gotowe-arkusze/:path*", destination: "/gotowe-zestawy/:path*", permanent: true },
-      { source: "/api/gotowe-arkusze/:path*", destination: "/api/gotowe-zestawy/:path*", permanent: true },
-      { source: "/admin/arkusze/:path*", destination: "/admin/zestawy/:path*", permanent: true },
+      // Ścieżki bez ogona osobno: z `:path*` dostawałyby końcowy ukośnik
+      // i drugi skok (`/gotowe-zestawy/` → `/gotowe-zestawy`).
+      { source: "/gotowe-arkusze", destination: "/gotowe-zestawy", permanent: true },
+      { source: "/api/gotowe-arkusze", destination: "/api/gotowe-zestawy", permanent: true },
+      { source: "/admin/arkusze", destination: "/admin/zestawy", permanent: true },
+      { source: "/gotowe-arkusze/:path+", destination: "/gotowe-zestawy/:path+", permanent: true },
+      { source: "/api/gotowe-arkusze/:path+", destination: "/api/gotowe-zestawy/:path+", permanent: true },
+      { source: "/admin/arkusze/:path+", destination: "/admin/zestawy/:path+", permanent: true },
     ];
   },
 
