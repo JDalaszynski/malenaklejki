@@ -12,8 +12,10 @@ import {
   Eye,
   LayoutGrid,
   Loader2,
+  Plus,
   RotateCcw,
   X,
+  ZoomIn,
 } from "lucide-react";
 
 import Link from "next/link";
@@ -30,8 +32,9 @@ const ALL = "";
 const FOCUSABLE = 'button:not([disabled]), [href], [tabindex]:not([tabindex="-1"])';
 
 /**
- * Galeria gotowych zestawów: siatka wzorów z kategoriami, a po wybraniu wzoru
- * duży podgląd z przyciskiem wczytania do kreatora.
+ * Galeria gotowych zestawów: siatka wzorów z kategoriami. Każdy wzór ma
+ * przycisk „Dodaj do kreatora" od razu w siatce; kliknięcie w obraz otwiera
+ * duży podgląd z tym samym przyciskiem.
  *
  * Ładowana dopiero po pierwszym otwarciu (osobny fragment kodu) i sama
  * dociąga listę — strona główna nie płaci za galerię, dopóki nikt jej nie
@@ -59,8 +62,12 @@ export default function ReadySheetsDialog({
   const [attempt, setAttempt] = useState(0);
   const [category, setCategory] = useState(ALL);
   const [detailId, setDetailId] = useState<string | null>(null);
-  const [busy, setBusy] = useState(false);
-  const [useFailed, setUseFailed] = useState(false);
+  /** Wzór, który właśnie się wczytuje — z siatki albo z podglądu. */
+  const [busyId, setBusyId] = useState<string | null>(null);
+  const [failedId, setFailedId] = useState<string | null>(null);
+  /** Wzór z siatki czekający na potwierdzenie, że ma zastąpić naklejki klienta. */
+  const [armedId, setArmedId] = useState<string | null>(null);
+  const busy = busyId !== null;
 
   const panelRef = useRef<HTMLDivElement>(null);
   const bodyRef = useRef<HTMLDivElement>(null);
@@ -103,7 +110,8 @@ export default function ReadySheetsDialog({
   const openDetail = useCallback(
     (sheet: PublicSheetSummary) => {
       setDetailId(sheet.id);
-      setUseFailed(false);
+      setFailedId(null);
+      setArmedId(null);
       onPreview(sheet);
       if (!data?.preview) {
         trackSelectReadySheet(sheet, "galeria w kreatorze", SHEET_PRICE);
@@ -122,16 +130,34 @@ export default function ReadySheetsDialog({
     [detailIndex, visible, openDetail]
   );
 
-  const use = async () => {
-    if (!detail || busy) return;
-    setBusy(true);
-    setUseFailed(false);
-    const ok = await onUse(detail);
+  const willReplace = replaceCount > 0;
+
+  const addToCreator = async (sheet: PublicSheetSummary) => {
+    if (busy) return;
+    setBusyId(sheet.id);
+    setFailedId(null);
+    const ok = await onUse(sheet);
     // Po udanym wczytaniu rodzic zamyka galerię — stanu już nie ruszamy.
     if (!ok) {
-      setBusy(false);
-      setUseFailed(true);
+      setBusyId(null);
+      setFailedId(sheet.id);
     }
+  };
+
+  // Dodanie prosto z siatki. Gdy na arkuszu leży praca klienta, pierwsze
+  // kliknięcie tylko uzbraja przycisk — zastąpienie wymaga drugiego.
+  const quickUse = (sheet: PublicSheetSummary) => {
+    // Zmieniony zestaw z kreatora: powrót nie może przywrócić pierwotnego układu.
+    if (sheet.id === activeSheetId && willReplace) {
+      onClose();
+      return;
+    }
+    if (willReplace && armedId !== sheet.id) {
+      setArmedId(sheet.id);
+      setFailedId(null);
+      return;
+    }
+    void addToCreator(sheet);
   };
 
   // Strona pod galerią nie przewija się razem z nią, a po zamknięciu fokus
@@ -152,7 +178,8 @@ export default function ReadySheetsDialog({
       if (event.key === "Escape") {
         if (busy) return;
         event.preventDefault();
-        if (detailId) setDetailId(null);
+        if (armedId) setArmedId(null);
+        else if (detailId) setDetailId(null);
         else onClose();
         return;
       }
@@ -178,10 +205,9 @@ export default function ReadySheetsDialog({
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [busy, detailId, onClose, step]);
+  }, [armedId, busy, detailId, onClose, step]);
 
   const isActiveDetail = !!detail && detail.id === activeSheetId;
-  const willReplace = replaceCount > 0;
 
   return createPortal(
     <div className="fixed inset-0 z-[9999] flex items-end sm:items-center justify-center sm:p-4">
@@ -240,8 +266,7 @@ export default function ReadySheetsDialog({
               </button>
             ) : (
               <p className="text-sm font-medium text-muted-foreground mt-1">
-                Wybierz wzór i dopasuj go po swojemu - każdą naklejkę zmienisz, usuniesz albo
-                zastąpisz własną.
+                Dodaj zestaw do kreatora i zmień po swojemu: usuń naklejki, dodaj własne.
               </p>
             )}
           </div>
@@ -274,6 +299,7 @@ export default function ReadySheetsDialog({
                   type="button"
                   onClick={() => {
                     setCategory(item);
+                    setArmedId(null);
                     bodyRef.current?.scrollTo({ top: 0 });
                   }}
                   aria-pressed={active}
@@ -326,6 +352,7 @@ export default function ReadySheetsDialog({
                   </div>
                   <div className="h-3.5 w-3/4 rounded bg-muted mt-2.5 mx-1" />
                   <div className="h-3 w-1/3 rounded bg-muted/70 mt-1.5 mx-1" />
+                  <div className="h-10 rounded-xl bg-muted/70 mt-2.5" />
                 </li>
               ))}
             </ul>
@@ -403,7 +430,7 @@ export default function ReadySheetsDialog({
                   </Link>
                 )}
 
-                {useFailed && (
+                {failedId === detail.id && (
                   <p role="alert" className="text-sm font-bold text-destructive">
                     Nie udało się wczytać tego zestawu. Spróbuj ponownie.
                   </p>
@@ -411,16 +438,21 @@ export default function ReadySheetsDialog({
               </div>
             </div>
           ) : (
-            <ul className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-x-3 gap-y-4 sm:gap-x-4 sm:gap-y-5">
+            <ul className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-x-3 gap-y-5 sm:gap-x-4 sm:gap-y-6">
               {visible.map((sheet) => {
                 const active = sheet.id === activeSheetId;
+                const loading = busyId === sheet.id;
+                const armed = armedId === sheet.id;
+                // Ten zestaw już leży w kreatorze — przycisk tylko do niego wraca.
+                const back = active;
                 return (
-                  <li key={sheet.id}>
+                  <li key={sheet.id} className="flex flex-col">
                     <button
                       type="button"
                       onClick={() => openDetail(sheet)}
-                      aria-label={`${sheet.name}, ${sheet.stickerCount} ${getStickersNoun(sheet.stickerCount)} - zobacz wzór`}
-                      className="group w-full text-left cursor-pointer rounded-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50"
+                      disabled={busy}
+                      aria-label={`${sheet.name}, ${sheet.stickerCount} ${getStickersNoun(sheet.stickerCount)} - zobacz z bliska`}
+                      className="group w-full text-left cursor-pointer rounded-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 disabled:cursor-default"
                     >
                       <span
                         className={`relative block rounded-2xl p-2.5 sm:p-3 transition-colors ${
@@ -443,6 +475,12 @@ export default function ReadySheetsDialog({
                             W kreatorze
                           </span>
                         )}
+                        <span
+                          aria-hidden
+                          className="absolute bottom-1.5 right-1.5 flex w-7 h-7 items-center justify-center rounded-full bg-white/95 text-[#004749] shadow-[0_2px_8px_rgba(0,71,73,0.2)] transition-transform duration-200 group-hover:scale-110"
+                        >
+                          <ZoomIn className="w-3.5 h-3.5" />
+                        </span>
                       </span>
                       <span className="block px-1 pt-2">
                         <span className="block text-sm font-extrabold text-foreground leading-snug line-clamp-2 group-hover:text-primary transition-colors">
@@ -454,6 +492,66 @@ export default function ReadySheetsDialog({
                         </span>
                       </span>
                     </button>
+
+                    <div className="mt-auto pt-2.5 space-y-1.5">
+                      {armed && !loading && (
+                        <p role="status" className="px-1 text-[11px] font-bold leading-snug text-[#8a6d00] dark:text-[#FFCD08]">
+                          {replaceCount === 1
+                            ? "Zastąpi naklejkę, którą masz na arkuszu."
+                            : `Zastąpi naklejki, które masz na arkuszu (${replaceCount}).`}
+                        </p>
+                      )}
+                      <div className="flex gap-1.5">
+                        <button
+                          type="button"
+                          onClick={() => quickUse(sheet)}
+                          onPointerEnter={() => onPreview(sheet)}
+                          onFocus={() => onPreview(sheet)}
+                          disabled={busy}
+                          aria-label={`${armed ? "Zastąp arkusz" : back ? "Wróć do kreatora" : "Dodaj do kreatora"}: ${sheet.name}`}
+                          className={`min-w-0 flex-1 inline-flex items-center justify-center gap-1.5 rounded-xl h-10 px-2 text-xs sm:text-[13px] font-extrabold whitespace-nowrap transition-all active:scale-[0.98] cursor-pointer disabled:cursor-wait ${
+                            loading ? "" : "disabled:opacity-50"
+                          } ${
+                            armed
+                              ? "bg-[#FFCD08] text-[#004749] hover:bg-[#f2c200] shadow-sm"
+                              : back
+                                ? "border border-primary/40 bg-primary/5 text-foreground hover:bg-primary/10"
+                                : "bg-primary text-primary-foreground hover:bg-primary/95 shadow-sm"
+                          }`}
+                        >
+                          {loading ? (
+                            <>
+                              <Loader2 className="w-3.5 h-3.5 animate-spin" aria-hidden />
+                              Wczytuję…
+                            </>
+                          ) : armed ? (
+                            "Zastąp arkusz"
+                          ) : back ? (
+                            "Wróć do kreatora"
+                          ) : (
+                            <>
+                              <Plus className="hidden min-[360px]:block w-3.5 h-3.5 shrink-0" aria-hidden />
+                              Dodaj do kreatora
+                            </>
+                          )}
+                        </button>
+                        {armed && !loading && (
+                          <button
+                            type="button"
+                            onClick={() => setArmedId(null)}
+                            aria-label="Anuluj - zostaw arkusz bez zmian"
+                            className="shrink-0 w-10 h-10 rounded-xl border border-border/70 flex items-center justify-center text-foreground hover:bg-muted/60 transition-colors cursor-pointer"
+                          >
+                            <X className="w-4 h-4" />
+                          </button>
+                        )}
+                      </div>
+                      {failedId === sheet.id && (
+                        <p role="alert" className="px-1 text-[11px] font-bold leading-snug text-destructive">
+                          Nie udało się wczytać. Spróbuj ponownie.
+                        </p>
+                      )}
+                    </div>
                   </li>
                 );
               })}
@@ -491,7 +589,7 @@ export default function ReadySheetsDialog({
             )}
             <button
               type="button"
-              onClick={() => void use()}
+              onClick={() => detail && void addToCreator(detail)}
               disabled={busy}
               className="ml-auto inline-flex items-center justify-center gap-2 rounded-xl text-sm font-extrabold h-12 px-5 sm:px-7 bg-primary text-primary-foreground hover:bg-primary/95 shadow-sm transition-all active:scale-[0.98] cursor-pointer disabled:opacity-70 disabled:cursor-wait"
             >
@@ -505,7 +603,7 @@ export default function ReadySheetsDialog({
               ) : willReplace ? (
                 "Zastąp arkusz tym zestawem"
               ) : (
-                "Użyj tego zestawu"
+                "Dodaj do kreatora"
               )}
             </button>
           </div>

@@ -449,3 +449,11 @@ Polecenie właściciela; domyka zmianę nazwy z 5.10.
 * **Zamiany:** „arkusz” → „zestaw” we wszystkich formach, a razem z rzeczownikiem przyimki i zaimki („Na arkuszu leży” → „W zestawie jest”, „Są na nim” → „Są w nim”, „Znajdziesz na nim” → „Znajdziesz w nim”). Dwie poprawki stylu, żeby słowo „zestaw” nie zderzało się samo ze sobą: Zimna Zima „dopełniają zestawu” → „dopełniają całość”, Dyniowe Szaleństwo „zestaw oliwkowych i piaskowych” (grupka dyń) → „komplet oliwkowych i piaskowych”.
 * **Jak:** Admin SDK, transakcja na zestaw z warunkiem na stary tekst, `updatedAt`/`updatedBy` podbite (otwarty edytor zapyta o nadpisanie), wpis w `auditLog` („Opisy gotowych zestawów”). Stare opisy w `kopie-zapasowe/opisy-zestawow-2026-10-06T18-19-35-911Z/` (poza repo).
 * **Pamięć podręczna:** zapis skryptem nie unieważnia stron statycznych - odświeża je wdrożenie tego commita.
+
+### 2026-10-06 (wieczór) - galeria w kreatorze: „Dodaj do kreatora” prosto z siatki
+Polecenie właściciela: wzór ma się dać dodać bez wchodzenia w podgląd.
+* **Siatka wzorów:** pod każdym wzorem przycisk **„Dodaj do kreatora”** (jedno kliknięcie wczytuje zestaw i zamyka galerię). Kliknięcie w obraz nadal otwiera duży podgląd - sygnalizuje to ikona lupy na miniaturze. Przycisk w podglądzie nazywa się tak samo (było „Użyj tego zestawu”).
+* **Ochrona pracy klienta:** gdy na arkuszu leżą własne albo zmienione naklejki, pierwsze kliknięcie tylko uzbraja przycisk („Zastąp arkusz” + informacja, ile naklejek zniknie + krzyżyk „Anuluj”); zastąpienie wymaga drugiego kliknięcia. Przy pustym arkuszu i przy nietkniętym gotowym zestawie dodanie jest natychmiastowe.
+* **Zestaw już leżący w kreatorze** ma przycisk „Wróć do kreatora”; przy zmienionym zestawie tylko zamyka galerię (nie przywraca pierwotnego układu).
+* **Pomiar:** szybkie dodanie liczy się jako `use` bez wcześniejszego `select`, więc w statystykach „Obejrzany” może być od teraz niższy niż „Wczytany” - to nie błąd.
+
