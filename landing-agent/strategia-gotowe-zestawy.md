@@ -430,7 +430,7 @@ Decyzja właściciela. Zrobione w jednym przebiegu (sklep + panel właściciela 
 * **Analityka GA4:** `item_category` = „Gotowe zestawy”, `item_list_name` „strona zestawu” (wcześniej „Gotowe arkusze” / „strona arkusza”) - w raportach starsze dni mają starą nazwę. Nazwy zdarzeń (`ready_sheets_open`, `ready_sheet_use`) i klucze liczników (`readySheetUsage`) bez zmian - ciągłość danych.
 * **Czego świadomie nie ruszam:** nazw w kodzie i bazie (`stickerSheets`, `settings/readySheets`, `readySheet` w pozycjach zamówień, `PublicSheet*`, `ReadySheets*`) - to identyfikatory, a ich zmiana wymagałaby migracji danych produkcyjnych bez żadnej korzyści dla klienta; kluczy źródeł wejścia (`pusty-arkusz`, `pod-arkuszem` - dotyczą płótna w kreatorze); nazw własnych zestawów. Klucze pamięci podręcznej i tagi dostały nowe nazwy (`gotowe-zestawy…`), więc po wdrożeniu dane odczytują się od zera.
 * **Panel właściciela (panel.jdalaszynski.pl):** widok „MałeNaklejki → Gotowe zestawy” (plik `lib/panel/content/gotowe-zestawy.ts`), polecenia dla Claude Code, linki i `README-PANEL.md` przepisane na nową nazwę; identyfikatory kroków (`arkusze-swieta`…) i `sheetsPlan.done` bez zmian, więc odhaczone kroki zostają odhaczone.
-* **Do dokończenia po stronie właściciela / do decyzji:** opisy 7 opublikowanych zestawów w Firestore (pole `description`) zawierają jeszcze słowo „arkusz” („Świąteczny arkusz w ciepłej…”) - zmiana wymaga zapisu w produkcyjnej bazie; skrypt jest gotowy i przetestowany na sucho, czeka na zgodę.
+* **Do dokończenia po stronie właściciela / do decyzji:** opisy 7 opublikowanych zestawów w Firestore (pole `description`) zawierają jeszcze słowo „arkusz” („Świąteczny arkusz w ciepłej…”) - zmiana wymaga zapisu w produkcyjnej bazie; skrypt jest gotowy i przetestowany na sucho, czeka na zgodę. **Zrobione 2026-10-06** (wpis niżej).
 
 
 ### 2026-10-06 - „w pełni edytowalne” widoczne w katalogu (zasada 4)
@@ -442,3 +442,10 @@ Polecenie właściciela: katalog ma jasno mówić, że zestawy da się zmieniać
 * **FAQ katalogu:** nowe pytanie „Czy mogę dodać własne naklejki do gotowego zestawu?” (z uczciwą uwagą, że zestaw wypełnia prawie cały arkusz, więc najpierw trzeba coś usunąć).
 * **Kreator:** pasek „Gotowy zestaw: <nazwa>” pokazuje zdanie-podpowiedź, dopóki zestaw jest nietknięty.
 * **Bez zmian:** „imię” zniknęło z nowych tekstów (kreator nie ma edytora tekstu - `facts.md`), zostało „zdjęcie, logo albo grafika”.
+
+### 2026-10-06 (wieczór) - opisy zestawów w bazie: „arkusz” → „zestaw”
+Polecenie właściciela; domyka zmianę nazwy z 5.10.
+* **Zmienione opisy (7 z 8):** Książkowy Raj, Ciepła Zima, Pumpkin Spiceowy Sezon, Dyniowe Szaleństwo, Jesieniarskie Strachy, Zimna Zima, Jesienna Kawka. Jesieniarski Miszmasz nie miał słowa „arkusz”. Nazwy, podtytuły i motywy były czyste - nietknięte.
+* **Zamiany:** „arkusz” → „zestaw” we wszystkich formach, a razem z rzeczownikiem przyimki i zaimki („Na arkuszu leży” → „W zestawie jest”, „Są na nim” → „Są w nim”, „Znajdziesz na nim” → „Znajdziesz w nim”). Dwie poprawki stylu, żeby słowo „zestaw” nie zderzało się samo ze sobą: Zimna Zima „dopełniają zestawu” → „dopełniają całość”, Dyniowe Szaleństwo „zestaw oliwkowych i piaskowych” (grupka dyń) → „komplet oliwkowych i piaskowych”.
+* **Jak:** Admin SDK, transakcja na zestaw z warunkiem na stary tekst, `updatedAt`/`updatedBy` podbite (otwarty edytor zapyta o nadpisanie), wpis w `auditLog` („Opisy gotowych zestawów”). Stare opisy w `kopie-zapasowe/opisy-zestawow-2026-10-06T18-19-35-911Z/` (poza repo).
+* **Pamięć podręczna:** zapis skryptem nie unieważnia stron statycznych - odświeża je wdrożenie tego commita.
