@@ -7,6 +7,7 @@ import { AdminLayout, Card } from "@/components/admin/AdminLayout";
 import { OrderFilters } from "@/components/admin/OrderFilters";
 import { OrdersTable } from "@/components/admin/OrdersTable";
 import { Pagination } from "@/components/admin/Pagination";
+import { ORDER_TABS, SectionTabs } from "@/components/admin/SectionTabs";
 import { SweepCard } from "@/components/admin/SweepCard";
 import { requireAdmin } from "@/lib/auth/dal";
 import { listOrdersPage, ORDERS_PAGE_SIZE } from "@/lib/admin/queries";
@@ -48,10 +49,12 @@ export default async function AdminOrdersPage({
           className="inline-flex items-center gap-2 rounded-xl text-sm font-bold bg-primary text-primary-foreground hover:bg-primary/95 active:scale-[0.98] h-11 px-5 shadow-sm transition-all"
         >
           <PackagePlus className="w-4 h-4" aria-hidden />
-          Dodaj zamówienie
+          Nowe zamówienie
         </Link>
       }
     >
+      <SectionTabs tabs={ORDER_TABS} current="/admin" label="Widok zamówień" />
+
       <SweepCard matched={sweep.matched} afterDays={ABANDONED_AFTER_DAYS} />
 
       <Card>

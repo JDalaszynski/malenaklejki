@@ -4,6 +4,7 @@ import {
   CollapsedCardSkeleton,
   StatTileSkeleton,
 } from "@/components/admin/AdminSkeleton";
+import { STATS_TABS, SectionTabs } from "@/components/admin/SectionTabs";
 import { SkeletonBar } from "@/components/layout/Skeleton";
 
 /**
@@ -17,6 +18,8 @@ export default function Loading() {
       subtitle="Opłacone zamówienia i sprzedaż dopisana ręcznie: przychód netto minus koszty, składka zdrowotna i PIT na skali."
       label="Wczytywanie statystyk…"
     >
+      <SectionTabs tabs={STATS_TABS} current="/admin/statystyki" label="Widok statystyk" />
+
       <Card
         title="Zysk"
         description={<SkeletonBar className="h-4 w-64 max-w-full mt-1" />}

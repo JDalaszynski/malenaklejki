@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, Minus, TrendingDown, TrendingUp } from "lucide-react";
 
 import type { MonthlyStatsWithTax, PeriodStats, TaxBreakdown } from "@/lib/admin/costs";
 import { formatPln } from "@/lib/orders/status";
@@ -75,18 +75,84 @@ export type StatsPeriod = {
   /** Dni, przez które dzielimy zysk — 0, gdy średnia dzienna nie ma sensu. */
   days: number;
   profitPerDay: number;
-  /** Zdanie o zmianie względem poprzedniego okresu — tylko tam, gdzie jest sens. */
-  note?: string;
+  /** Porównanie z poprzednim okresem — tylko tam, gdzie jest sens. */
+  compare?: PeriodComparison;
 };
+
+export type PeriodComparison = {
+  /** Z czym porównujemy, np. „wrzesień 2026, do 6. dnia”. */
+  against: string;
+  items: Array<{
+    label: string;
+    /** „+12%”, „bez zmian” — gotowy tekst zmiany. */
+    change: string;
+    trend: "up" | "down" | "flat";
+    /** Wartość z poprzedniego okresu, żeby procent nie był gołą liczbą. */
+    was: string;
+  }>;
+};
+
+const TREND_STYLES = {
+  up: "bg-primary/10 border-primary/30 text-primary",
+  down: "bg-destructive/10 border-destructive/25 text-destructive",
+  flat: "bg-muted/50 border-border/60 text-muted-foreground",
+} as const;
+
+const TREND_ICONS = { up: TrendingUp, down: TrendingDown, flat: Minus } as const;
+
+/** Czytelne zestawienie „jak idzie na tle poprzedniego miesiąca” zamiast zdania do rozszyfrowania. */
+function ComparisonStrip({ compare }: { compare: PeriodComparison }) {
+  return (
+    <div className="mt-4 flex flex-wrap items-center gap-x-3 gap-y-2">
+      <p className="text-sm font-semibold text-muted-foreground">
+        Na tle poprzedniego miesiąca <span className="text-foreground">({compare.against})</span>:
+      </p>
+      <ul className="flex flex-wrap gap-2">
+        {compare.items.map((item) => {
+          const Icon = TREND_ICONS[item.trend];
+          return (
+            <li
+              key={item.label}
+              className={`inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-xs font-extrabold ${TREND_STYLES[item.trend]}`}
+            >
+              <Icon className="w-3.5 h-3.5" aria-hidden />
+              {item.label} {item.change}
+              <span className="font-semibold opacity-80">· było {item.was}</span>
+            </li>
+          );
+        })}
+      </ul>
+    </div>
+  );
+}
 
 /**
  * Zysk w trzech horyzontach naraz. Okresy różnią się tylko liczbami, więc
  * zamiast trzech kart pod sobą przełączamy jedną — strona zostaje na ekranie.
  */
-export function StatsOverview({ periods }: { periods: StatsPeriod[] }) {
-  const [active, setActive] = useState(periods[0]?.id ?? "");
+export function StatsOverview({
+  periods,
+  initialPeriod,
+}: {
+  periods: StatsPeriod[];
+  /** Okres z adresu strony — po odświeżeniu wracasz do tego, na co patrzyłeś. */
+  initialPeriod?: string;
+}) {
+  const [active, setActive] = useState(
+    periods.some((item) => item.id === initialPeriod) ? (initialPeriod as string) : (periods[0]?.id ?? "")
+  );
   const period = periods.find((item) => item.id === active) ?? periods[0];
   if (!period) return null;
+
+  const select = (id: string) => {
+    setActive(id);
+    // Sam adres, bez nawigacji: dane wszystkich okresów już tu są, więc
+    // przełączenie ma być natychmiastowe, a link — do odłożenia w zakładkach.
+    const url = new URL(window.location.href);
+    if (id === periods[0]?.id) url.searchParams.delete("okres");
+    else url.searchParams.set("okres", id);
+    window.history.replaceState(null, "", url);
+  };
 
   return (
     <Card
@@ -96,7 +162,7 @@ export function StatsOverview({ periods }: { periods: StatsPeriod[] }) {
         <Segmented
           label="Okres"
           value={period.id}
-          onChange={setActive}
+          onChange={select}
           options={periods.map((item) => ({ id: item.id, label: item.label }))}
         />
       }
@@ -108,9 +174,7 @@ export function StatsOverview({ periods }: { periods: StatsPeriod[] }) {
         profitPerDay={period.profitPerDay}
       />
 
-      {period.note && (
-        <p className="text-sm font-semibold text-muted-foreground mt-4">{period.note}</p>
-      )}
+      {period.compare && <ComparisonStrip compare={period.compare} />}
 
       {period.stats.unpriced > 0 && (
         <p className="text-sm font-semibold text-muted-foreground mt-1.5">

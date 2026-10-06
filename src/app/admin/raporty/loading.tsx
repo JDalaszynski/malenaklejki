@@ -1,5 +1,6 @@
 import { Card } from "@/components/admin/AdminLayout";
 import { AdminPageSkeleton, AdminTableSkeleton } from "@/components/admin/AdminSkeleton";
+import { STATS_TABS, SectionTabs } from "@/components/admin/SectionTabs";
 import { SkeletonBar } from "@/components/layout/Skeleton";
 
 const HEADINGS = [
@@ -21,10 +22,12 @@ const HEADINGS = [
 export default function Loading() {
   return (
     <AdminPageSkeleton
-      title="Ewidencja sprzedaży"
-      subtitle="Podgląd jest tym samym, co trafi do plików CSV i PDF — sprawdź, zanim wyślesz księgowej."
+      title="Statystyki"
+      subtitle="Ewidencja sprzedaży: podgląd jest tym samym, co trafi do plików CSV i PDF — sprawdź, zanim wyślesz księgowej."
       label="Wczytywanie ewidencji sprzedaży…"
     >
+      <SectionTabs tabs={STATS_TABS} current="/admin/raporty" label="Widok statystyk" />
+
       <Card>
         <div className="flex flex-col sm:flex-row sm:items-end gap-4">
           <div>

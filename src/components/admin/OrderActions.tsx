@@ -14,7 +14,6 @@ import {
 } from "@/app/actions/admin";
 import { FormAlert } from "@/components/auth/fields";
 import { formatDate } from "@/lib/orders/status";
-import { Card } from "./AdminLayout";
 
 export function BaseLinkerButton({
   orderId,
@@ -29,7 +28,7 @@ export function BaseLinkerButton({
 
   if (baselinkerOrderId) {
     return (
-      <span className="inline-flex items-center gap-2 text-sm font-bold text-muted-foreground bg-muted/50 border border-border/60 rounded-xl px-4 h-11">
+      <span className="inline-flex items-center gap-2 text-xs font-bold text-muted-foreground bg-muted/50 border border-border/60 rounded-xl px-3.5 h-9">
         W BaseLinkerze · ID {baselinkerOrderId}
       </span>
     );
@@ -48,12 +47,12 @@ export function BaseLinkerButton({
             else router.refresh();
           })
         }
-        className="inline-flex items-center justify-center gap-2 rounded-xl text-sm font-bold bg-card border border-border/70 text-foreground hover:bg-muted/50 hover:text-primary h-11 px-5 transition-all cursor-pointer disabled:opacity-60"
+        className="inline-flex items-center justify-center gap-2 rounded-xl text-xs font-bold bg-card border border-border/70 text-foreground hover:bg-muted/50 hover:text-primary h-9 px-3.5 transition-all cursor-pointer disabled:opacity-60"
       >
         {isPending ? (
-          <Loader2 className="w-4 h-4 animate-spin" aria-hidden />
+          <Loader2 className="w-3.5 h-3.5 animate-spin" aria-hidden />
         ) : (
-          <Send className="w-4 h-4" aria-hidden />
+          <Send className="w-3.5 h-3.5" aria-hidden />
         )}
         Wyślij do BaseLinkera
       </button>
@@ -115,7 +114,7 @@ export function InvoiceControls({
                 else router.refresh();
               })
             }
-            className="self-start inline-flex items-center justify-center gap-2 rounded-xl text-sm font-bold bg-card border border-border/70 text-foreground hover:bg-muted/50 hover:text-primary h-11 px-5 transition-all cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
+            className="self-start inline-flex items-center justify-center gap-2 rounded-xl text-sm font-bold bg-card border border-border/70 text-foreground hover:bg-muted/50 hover:text-primary h-10 px-5 transition-all cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
           >
             {isPending ? (
               <Loader2 className="w-4 h-4 animate-spin" aria-hidden />
@@ -255,62 +254,74 @@ export function DangerZone({
 
   if (!inTrash) {
     return (
-      <Card title="Usuwanie">
-        <p className="text-sm font-medium text-muted-foreground leading-relaxed max-w-2xl">
-          Zamówienie trafi do kosza — zniknie z listy i z ewidencji sprzedaży, ale przez 30 dni
-          będzie można je przywrócić. Trwałe usunięcie jest możliwe dopiero z kosza.
-        </p>
-        {error && (
-          <div className="mt-4">
-            <FormAlert>{error}</FormAlert>
+      <section className="flex flex-col gap-3 rounded-2xl border border-destructive/25 bg-destructive/5 px-5 py-4">
+        <div className="flex flex-wrap items-center justify-between gap-x-6 gap-y-3">
+          <div className="min-w-0">
+            <h2 className="text-sm font-extrabold text-foreground">Usuwanie zamówienia</h2>
+            <p className="text-xs font-medium text-muted-foreground mt-0.5 max-w-2xl">
+              Zamówienie trafi do kosza — zniknie z listy i z ewidencji sprzedaży, ale przez 30 dni
+              będzie można je przywrócić. Trwałe usunięcie jest możliwe dopiero z kosza.
+            </p>
           </div>
-        )}
-        <button
-          type="button"
-          disabled={isPending}
-          onClick={() => run(() => moveOrderToTrash(orderId), () => router.push("/admin"))}
-          className="mt-5 inline-flex items-center justify-center gap-2 rounded-xl text-sm font-bold bg-destructive/10 border border-destructive/30 text-destructive hover:bg-destructive/15 h-11 px-5 transition-all cursor-pointer disabled:opacity-60"
-        >
-          {isPending ? (
-            <Loader2 className="w-4 h-4 animate-spin" aria-hidden />
-          ) : (
-            <Trash2 className="w-4 h-4" aria-hidden />
-          )}
-          Przenieś do kosza
-        </button>
-      </Card>
+          <button
+            type="button"
+            disabled={isPending}
+            onClick={() => run(() => moveOrderToTrash(orderId), () => router.push("/admin"))}
+            className="inline-flex items-center justify-center gap-2 rounded-xl text-sm font-bold bg-card border border-destructive/30 text-destructive hover:bg-destructive/10 h-10 px-5 transition-all cursor-pointer disabled:opacity-60 shrink-0"
+          >
+            {isPending ? (
+              <Loader2 className="w-4 h-4 animate-spin" aria-hidden />
+            ) : (
+              <Trash2 className="w-4 h-4" aria-hidden />
+            )}
+            Przenieś do kosza
+          </button>
+        </div>
+        {error && <FormAlert>{error}</FormAlert>}
+      </section>
     );
   }
 
   return (
-    <Card title="Zamówienie w koszu">
-      <p className="text-sm font-medium text-muted-foreground leading-relaxed max-w-2xl">
-        Możesz je przywrócić albo usunąć bezpowrotnie razem z zapisanymi układami arkuszy.
-        Trwałego usunięcia nie da się cofnąć, a zamówienie zniknie też z ewidencji sprzedaży.
-      </p>
-
-      {error && (
-        <div className="mt-4">
-          <FormAlert>{error}</FormAlert>
+    <section className="rounded-2xl border border-destructive/30 bg-destructive/5 px-5 py-4">
+      <div className="flex flex-wrap items-center justify-between gap-x-6 gap-y-3">
+        <div className="min-w-0">
+          <h2 className="text-sm font-extrabold text-foreground">Zamówienie jest w koszu</h2>
+          <p className="text-xs font-medium text-muted-foreground mt-0.5 max-w-2xl">
+            Nie ma go na liście ani w ewidencji sprzedaży. Możesz je przywrócić albo usunąć bezpowrotnie.
+          </p>
         </div>
-      )}
-
-      <div className="mt-5 flex flex-col gap-5">
         <button
           type="button"
           disabled={isPending}
           onClick={() => run(() => restoreOrder(orderId), () => router.refresh())}
-          className="self-start inline-flex items-center justify-center gap-2 rounded-xl text-sm font-bold bg-primary text-primary-foreground hover:bg-primary/95 h-11 px-5 transition-all cursor-pointer disabled:opacity-60"
+          className="inline-flex items-center justify-center gap-2 rounded-xl text-sm font-bold bg-primary text-primary-foreground hover:bg-primary/95 h-10 px-5 shadow-sm transition-all cursor-pointer disabled:opacity-60 shrink-0"
         >
           <RotateCcw className="w-4 h-4" aria-hidden />
           Przywróć zamówienie
         </button>
+      </div>
 
-        <div className="pt-5 border-t border-border/60 flex flex-col gap-3 max-w-md">
-          <label className="text-sm font-bold">
+      {error && (
+        <div className="mt-3">
+          <FormAlert>{error}</FormAlert>
+        </div>
+      )}
+
+      <details className="group mt-3 pt-3 border-t border-destructive/20">
+        <summary className="cursor-pointer list-none [&::-webkit-details-marker]:hidden text-xs font-bold text-destructive hover:underline w-fit">
+          Usuń bezpowrotnie…
+        </summary>
+        <div className="mt-3 flex flex-col gap-3 max-w-md">
+          <p className="text-xs font-medium text-muted-foreground">
+            Razem z zapisanymi układami arkuszy. Tego nie da się cofnąć, a zamówienie zniknie też z
+            ewidencji sprzedaży.
+          </p>
+          <label htmlFor={`confirm-${orderId}`} className="text-sm font-bold">
             Przepisz numer zamówienia, żeby usunąć trwale
           </label>
           <input
+            id={`confirm-${orderId}`}
             value={confirmText}
             onChange={(event) => setConfirmText(event.target.value)}
             placeholder={orderNumber}
@@ -326,13 +337,13 @@ export function DangerZone({
                 () => router.push("/admin/kosz")
               )
             }
-            className="self-start inline-flex items-center justify-center gap-2 rounded-xl text-sm font-bold bg-destructive text-destructive-foreground hover:opacity-90 h-11 px-5 transition-all cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed"
+            className="self-start inline-flex items-center justify-center gap-2 rounded-xl text-sm font-bold bg-destructive text-destructive-foreground hover:opacity-90 h-10 px-5 transition-all cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed"
           >
             <Trash2 className="w-4 h-4" aria-hidden />
             Usuń bezpowrotnie
           </button>
         </div>
-      </div>
-    </Card>
+      </details>
+    </section>
   );
 }

@@ -25,6 +25,8 @@ export function AdminPageSkeleton({
   actions,
   label,
   stickyHeader,
+  compact,
+  meta,
   children,
 }: {
   title?: React.ReactNode;
@@ -32,6 +34,9 @@ export function AdminPageSkeleton({
   actions?: React.ReactNode;
   label: string;
   stickyHeader?: boolean;
+  /** Ten sam niski nagłówek, co na stronie — inaczej treść „skacze” po wczytaniu. */
+  compact?: boolean;
+  meta?: React.ReactNode;
   children: React.ReactNode;
 }) {
   return (
@@ -41,6 +46,8 @@ export function AdminPageSkeleton({
       actions={actions}
       userBar={<AdminUserBarSkeleton />}
       stickyHeader={stickyHeader}
+      compact={compact}
+      meta={meta}
     >
       <SkeletonScreen label={label}>{children}</SkeletonScreen>
     </AdminLayout>

@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 
 import { AdminLayout, Card } from "@/components/admin/AdminLayout";
 import { ReportControls } from "@/components/admin/ReportControls";
+import { STATS_TABS, SectionTabs } from "@/components/admin/SectionTabs";
 import { requireAdmin } from "@/lib/auth/dal";
 import { loadReport, REPORT_SCOPE, SELLER } from "@/lib/admin/report";
 import { currentMonthValue, monthRange, type AdminSearchParams } from "@/lib/admin/filters";
@@ -46,9 +47,11 @@ export default async function ReportsPage({
   return (
     <AdminLayout
       adminEmail={admin.email ?? ""}
-      title="Ewidencja sprzedaży"
-      subtitle="Podgląd jest tym samym, co trafi do plików CSV i PDF — sprawdź, zanim wyślesz księgowej."
+      title="Statystyki"
+      subtitle="Ewidencja sprzedaży: podgląd jest tym samym, co trafi do plików CSV i PDF — sprawdź, zanim wyślesz księgowej."
     >
+      <SectionTabs tabs={STATS_TABS} current="/admin/raporty" label="Widok statystyk" />
+
       <Card>
         <Suspense fallback={<div className="h-24 animate-pulse rounded-xl bg-muted/40" />}>
           <ReportControls month={month} includeInvoiced={includeInvoiced} />

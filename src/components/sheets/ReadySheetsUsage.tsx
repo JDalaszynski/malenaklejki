@@ -5,6 +5,9 @@ import { StatTile } from "@/components/admin/ProfitStats";
 import type { UsageSummary } from "@/lib/sheets/usage";
 import { USAGE_SOURCE_LABELS, USAGE_EVENT_LABELS } from "@/lib/sheets/usageEvents";
 
+/** Liczniki mieszkają w zakładce Statystyki, nie przy samych zestawach. */
+export const USAGE_PATH = "/admin/statystyki/zestawy";
+
 export const USAGE_PERIODS = [7, 30, 90] as const;
 export type UsagePeriod = (typeof USAGE_PERIODS)[number];
 
@@ -79,7 +82,7 @@ export function ReadySheetsUsage({
           {USAGE_PERIODS.map((days) => (
             <Link
               key={days}
-              href={days === 30 ? "/admin/zestawy" : `/admin/zestawy?okres=${days}`}
+              href={days === 30 ? USAGE_PATH : `${USAGE_PATH}?okres=${days}`}
               aria-current={days === period ? "true" : undefined}
               className={`rounded-xl px-3 py-1.5 text-xs font-black transition-colors ${
                 days === period

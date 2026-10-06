@@ -2,9 +2,15 @@ import type { Metadata } from "next";
 
 import { AdminLayout, CollapsibleCard } from "@/components/admin/AdminLayout";
 import { CostModel, delta } from "@/components/admin/ProfitStats";
-import { MonthlyPanel, StatsOverview, type StatsPeriod } from "@/components/admin/StatsPanels";
+import { STATS_TABS, SectionTabs } from "@/components/admin/SectionTabs";
+import {
+  MonthlyPanel,
+  StatsOverview,
+  type PeriodComparison,
+  type StatsPeriod,
+} from "@/components/admin/StatsPanels";
 import { requireAdmin } from "@/lib/auth/dal";
-import { currentMonthValue } from "@/lib/admin/filters";
+import { currentMonthValue, type AdminSearchParams } from "@/lib/admin/filters";
 import {
   COST_RATES,
   EMPTY_STATS,
@@ -24,6 +30,7 @@ import {
   yearMonthlyBreakdown,
   type ManualSaleRow,
   type MonthlyStats,
+  type SalesEntry,
 } from "@/lib/admin/stats";
 import { ManualSales } from "@/components/admin/ManualSales";
 import { formatPln } from "@/lib/orders/status";
@@ -52,8 +59,71 @@ function daysSince(iso: string): number {
   return Math.max(1, Math.round((Date.now() - start) / DAY_MS) + 1);
 }
 
-export default async function StatsPage() {
+/** Dzień miesiąca według czasu sklepu — serwer na Vercelu liczy w UTC. */
+function dayOfMonth(iso: string): number {
+  const date = new Date(iso);
+  if (Number.isNaN(date.getTime())) return 0;
+  return Number(date.toLocaleDateString("sv-SE", { timeZone: "Europe/Warsaw" }).slice(8, 10));
+}
+
+/** Zmiana procentowa — bez punktu odniesienia nie ma czego dzielić, więc mówimy to wprost. */
+function changeText(current: number, previous: number): string {
+  if (previous === 0) return current === 0 ? "bez zmian" : "od zera";
+  return delta(current, previous);
+}
+
+function trendOf(current: number, previous: number): "up" | "down" | "flat" {
+  if (current === previous) return "flat";
+  return current > previous ? "up" : "down";
+}
+
+/**
+ * Bieżący miesiąc na tle poprzedniego — ale tylko do tego samego dnia.
+ *
+ * Porównanie z całym poprzednim miesiącem w połowie obecnego pokazywałoby
+ * „−50%” nawet przy rekordowym tempie. Dlatego z poprzedniego miesiąca bierzemy
+ * sprzedaż do dnia, który mamy dziś.
+ */
+function monthComparison(
+  entries: SalesEntry[],
+  current: MonthlyStats,
+  previous: MonthlyStats
+): PeriodComparison | undefined {
+  if (!previous.label) return undefined;
+
+  const sameSpan = summarize(
+    entries.filter(
+      (entry) => monthKey(entry.date) === previous.month && dayOfMonth(entry.date) <= current.days
+    )
+  );
+
+  return {
+    against: `${previous.label}, do ${current.days}. dnia`,
+    items: [
+      {
+        label: "Zysk",
+        change: changeText(current.profit, sameSpan.profit),
+        trend: trendOf(current.profit, sameSpan.profit),
+        was: formatPln(sameSpan.profit),
+      },
+      {
+        label: "Arkusze",
+        change: changeText(current.sheets, sameSpan.sheets),
+        trend: trendOf(current.sheets, sameSpan.sheets),
+        was: String(sameSpan.sheets),
+      },
+    ],
+  };
+}
+
+export default async function StatsPage({
+  searchParams,
+}: {
+  searchParams: Promise<AdminSearchParams>;
+}) {
   const admin = await requireAdmin();
+  const params = await searchParams;
+  const initialPeriod = typeof params.okres === "string" ? params.okres : undefined;
 
   const [orders, manualSales] = await Promise.all([loadPaidOrders(), loadManualSales()]);
 
@@ -95,15 +165,7 @@ export default async function StatsPage() {
       tax: current,
       days: current.days,
       profitPerDay: current.days ? round2(current.profitAfterTax / current.days) : 0,
-      note: previous.label
-        ? `Względem poprzedniego miesiąca (${previous.label}): zysk ${delta(
-            current.profit,
-            previous.profit
-          )} — było ${formatPln(previous.profit)}, arkusze ${delta(
-            current.sheets,
-            previous.sheets
-          )} — było ${previous.sheets}.`
-        : undefined,
+      compare: monthComparison(entries, current, previous),
     },
     {
       id: "year",
@@ -149,7 +211,9 @@ export default async function StatsPage() {
       title="Statystyki"
       subtitle="Opłacone zamówienia i sprzedaż dopisana ręcznie: przychód netto minus koszty, składka zdrowotna i PIT na skali."
     >
-      <StatsOverview periods={periods} />
+      <SectionTabs tabs={STATS_TABS} current="/admin/statystyki" label="Widok statystyk" />
+
+      <StatsOverview periods={periods} initialPeriod={initialPeriod} />
 
       <MonthlyPanel months={months} />
 

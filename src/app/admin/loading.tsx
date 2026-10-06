@@ -2,6 +2,7 @@ import Link from "next/link";
 import { PackagePlus } from "lucide-react";
 
 import { Card } from "@/components/admin/AdminLayout";
+import { ORDER_TABS, SectionTabs } from "@/components/admin/SectionTabs";
 import {
   AdminPageSkeleton,
   AdminTableSkeleton,
@@ -40,10 +41,12 @@ export default function Loading() {
           className="inline-flex items-center gap-2 rounded-xl text-sm font-bold bg-primary text-primary-foreground hover:bg-primary/95 active:scale-[0.98] h-11 px-5 shadow-sm transition-all"
         >
           <PackagePlus className="w-4 h-4" aria-hidden />
-          Dodaj zamówienie
+          Nowe zamówienie
         </Link>
       }
     >
+      <SectionTabs tabs={ORDER_TABS} current="/admin" label="Widok zamówień" />
+
       <FiltersCardSkeleton />
 
       <Card title="Wyniki">

@@ -173,15 +173,18 @@ function BreakdownRow({
 export function ProfitBreakdown({
   stats,
   tax,
+  stacked = false,
 }: {
   stats: PeriodStats;
   /** Pominięte dla przykładu jednego zamówienia — PIT nie liczy się od pojedynczej sprzedaży. */
   tax?: TaxBreakdown;
+  /** Ramki z VAT-em i marżą pod rachunkiem, nie obok — dla wąskich kolumn. */
+  stacked?: boolean;
 }) {
   const sales = pricedSales(stats);
 
   return (
-    <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_260px]">
+    <div className={`grid gap-6 ${stacked ? "" : "lg:grid-cols-[minmax(0,1fr)_260px]"}`}>
       <div className="flex flex-col">
         <BreakdownRow label="Wpłaty klientów" hint="brutto, z dostawą" amount={stats.gross} sign="+" />
         <BreakdownRow
@@ -313,6 +316,18 @@ export function ProfitBreakdown({
   );
 }
 
+/** Ostatni wiersz to bieżący miesiąc — nie jest jeszcze pełny, więc słupek nie jest porównywalny. */
+function InProgressTag() {
+  return (
+    <span
+      title="Bieżący miesiąc — jeszcze trwa, więc wynik nie jest pełny"
+      className="ml-1.5 align-middle text-[9px] font-black uppercase tracking-wider text-primary bg-primary/10 border border-primary/25 rounded px-1 py-px"
+    >
+      w toku
+    </span>
+  );
+}
+
 /**
  * Rozkład zysku w czasie (po zdrowotnej i PIT). Słupki są proporcjonalne
  * do najlepszego miesiąca — chodzi o wyłapanie trendu, nie o odczyt
@@ -323,10 +338,11 @@ export function MonthlyChart({ months }: { months: MonthlyStatsWithTax[] }) {
 
   return (
     <div className="flex flex-col gap-2.5">
-      {months.map((month) => (
+      {months.map((month, index) => (
         <div key={month.month} className="flex items-center gap-3">
-          <span className="w-28 shrink-0 text-xs font-bold text-muted-foreground capitalize">
+          <span className="w-36 shrink-0 text-xs font-bold text-muted-foreground capitalize">
             {month.label}
+            {index === months.length - 1 && <InProgressTag />}
           </span>
           <div className="flex-1 h-7 rounded-lg bg-muted/40 overflow-hidden">
             <div
@@ -407,7 +423,10 @@ export function MonthlyTable({ months }: { months: MonthlyStatsWithTax[] }) {
         <tbody>
           {months.map((month) => (
             <tr key={month.month} className="border-b border-border/40">
-              <td className="py-2.5 pr-4 font-bold capitalize whitespace-nowrap">{month.label}</td>
+              <td className="py-2.5 pr-4 font-bold capitalize whitespace-nowrap">
+                {month.label}
+                {month.month === months[months.length - 1]?.month && <InProgressTag />}
+              </td>
               <td className="py-2.5 pr-4 tabular-nums whitespace-nowrap">
                 {month.orders}
                 {month.manualEntries > 0 && (

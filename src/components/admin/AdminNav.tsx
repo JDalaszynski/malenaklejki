@@ -3,31 +3,42 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import {
-  BarChart3,
-  FileSpreadsheet,
-  Inbox,
-  Layers,
-  PackagePlus,
-  Receipt,
-  Settings,
-  Trash2,
-  Users,
-} from "lucide-react";
+import { BarChart3, Inbox, Layers, Receipt, Settings, Users } from "lucide-react";
 
 const MESSAGES_HREF = "/admin/formularz";
 
-const ITEMS = [
-  { href: "/admin", label: "Zamówienia", icon: Receipt, exact: true },
-  { href: "/admin/zamowienia/nowe", label: "Nowe zamówienie", icon: PackagePlus, exact: true },
-  { href: "/admin/zestawy", label: "Zestawy", icon: Layers, exact: false },
-  { href: MESSAGES_HREF, label: "Formularz", icon: Inbox, exact: false },
-  { href: "/admin/uzytkownicy", label: "Użytkownicy", icon: Users, exact: false },
-  { href: "/admin/statystyki", label: "Statystyki", icon: BarChart3, exact: false },
-  { href: "/admin/raporty", label: "Raporty", icon: FileSpreadsheet, exact: false },
-  { href: "/admin/kosz", label: "Kosz", icon: Trash2, exact: false },
-  { href: "/admin/ustawienia", label: "Ustawienia", icon: Settings, exact: false },
+/**
+ * Sześć zakładek zamiast dziewięciu: to, co jest tylko innym widokiem tej
+ * samej rzeczy, wylądowało w środku — kosz i nowe zamówienie przy zamówieniach,
+ * raporty i liczniki zestawów przy statystykach. Zakładka świeci się też na
+ * stronach „z jej wnętrza” (`also`), więc nie gubisz się po wejściu głębiej.
+ */
+const ITEMS: {
+  href: string;
+  label: string;
+  icon: typeof Receipt;
+  /** `/admin` jest prefiksem wszystkiego, więc dla niego liczy się tylko dokładne trafienie. */
+  exact?: boolean;
+  also?: string[];
+}[] = [
+  {
+    href: "/admin",
+    label: "Zamówienia",
+    icon: Receipt,
+    exact: true,
+    also: ["/admin/zamowienia", "/admin/kosz"],
+  },
+  { href: "/admin/zestawy", label: "Zestawy", icon: Layers },
+  { href: MESSAGES_HREF, label: "Formularz", icon: Inbox },
+  { href: "/admin/uzytkownicy", label: "Użytkownicy", icon: Users },
+  { href: "/admin/statystyki", label: "Statystyki", icon: BarChart3, also: ["/admin/raporty"] },
+  { href: "/admin/ustawienia", label: "Ustawienia", icon: Settings },
 ];
+
+function isActive(pathname: string, item: (typeof ITEMS)[number]): boolean {
+  const own = item.exact ? pathname === item.href : pathname.startsWith(item.href);
+  return own || (item.also ?? []).some((prefix) => pathname.startsWith(prefix));
+}
 
 /**
  * Liczba nieodhaczonych wiadomości z formularzy.
@@ -68,8 +79,9 @@ export function AdminNav() {
   return (
     <nav aria-label="Sekcje panelu">
       <ul className="flex gap-2 overflow-x-auto pb-1">
-        {ITEMS.map(({ href, label, icon: Icon, exact }) => {
-          const active = exact ? pathname === href : pathname.startsWith(href);
+        {ITEMS.map((item) => {
+          const { href, label, icon: Icon } = item;
+          const active = isActive(pathname, item);
           const badge = href === MESSAGES_HREF && newMessages > 0 ? newMessages : 0;
 
           return (

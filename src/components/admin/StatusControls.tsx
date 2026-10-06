@@ -18,7 +18,7 @@ import {
 import { FormAlert } from "@/components/auth/fields";
 
 const selectClass =
-  "h-11 w-full rounded-xl border border-slate-300 dark:border-white/20 bg-background px-3 text-sm font-semibold focus-visible:outline-none focus-visible:border-primary focus-visible:ring-2 focus-visible:ring-primary/20";
+  "h-10 w-full rounded-xl border border-slate-300 dark:border-white/20 bg-background px-3 text-sm font-semibold focus-visible:outline-none focus-visible:border-primary focus-visible:ring-2 focus-visible:ring-primary/20";
 
 type CustomerEmailKind = "IN_PRODUCTION" | "SHIPPED";
 
@@ -148,12 +148,12 @@ export function StatusControls({
   };
 
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-3.5">
       {message && <FormAlert tone={message.tone}>{message.text}</FormAlert>}
 
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-3">
         <div>
-          <label className="text-sm font-bold mb-2 block">Status płatności</label>
+          <label className="text-sm font-bold mb-1.5 block">Status płatności</label>
           <select
             className={selectClass}
             value={nextStatus}
@@ -168,7 +168,7 @@ export function StatusControls({
         </div>
 
         <div>
-          <label className="text-sm font-bold mb-2 block">Status realizacji</label>
+          <label className="text-sm font-bold mb-1.5 block">Status realizacji</label>
           <select
             className={selectClass}
             value={nextFulfillment}
@@ -183,8 +183,11 @@ export function StatusControls({
         </div>
 
         <div>
-          <label className="text-sm font-bold mb-2 block">Numer przesyłki</label>
+          <label htmlFor={`tracking-${orderId}`} className="text-sm font-bold mb-1.5 block">
+            Numer przesyłki
+          </label>
           <input
+            id={`tracking-${orderId}`}
             value={tracking}
             onChange={(event) => setTracking(event.target.value)}
             placeholder="np. 6200000000000"
@@ -192,9 +195,9 @@ export function StatusControls({
           />
         </div>
 
-        <div className="sm:col-span-3">
-          <label htmlFor={`tracking-url-${orderId}`} className="text-sm font-bold mb-2 block">
-            Link do śledzenia przesyłki
+        <div>
+          <label htmlFor={`tracking-url-${orderId}`} className="text-sm font-bold mb-1.5 block">
+            Link do śledzenia
           </label>
           <input
             id={`tracking-url-${orderId}`}
@@ -205,10 +208,11 @@ export function StatusControls({
             placeholder="https://inpost.pl/sledzenie-przesylek?number=…"
             className={selectClass}
           />
-          <p className="text-xs font-medium text-muted-foreground mt-1.5">
-            Trafia do maila „Wysłane” jako przycisk „Śledź przesyłkę” i do zamówienia w koncie klienta.
-          </p>
         </div>
+
+        <p className="sm:col-span-2 text-xs font-medium text-muted-foreground -mt-1">
+          Numer i link trafiają do maila „Wysłane” (przycisk „Śledź przesyłkę”) i do zamówienia w koncie klienta.
+        </p>
       </div>
 
       {becomingPaid && (
@@ -252,7 +256,7 @@ export function StatusControls({
           type="button"
           onClick={save}
           disabled={!dirty || isPending}
-          className="inline-flex items-center justify-center gap-2 rounded-xl text-sm font-bold bg-primary text-primary-foreground hover:bg-primary/95 active:scale-[0.98] h-11 px-6 shadow-sm transition-all cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+          className="inline-flex items-center justify-center gap-2 rounded-xl text-sm font-bold bg-primary text-primary-foreground hover:bg-primary/95 active:scale-[0.98] h-10 px-5 shadow-sm transition-all cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
         >
           {isPending ? (
             <Loader2 className="w-4 h-4 animate-spin" aria-hidden />
@@ -267,7 +271,7 @@ export function StatusControls({
             type="button"
             onClick={resendNotifications}
             disabled={isResending}
-            className="inline-flex items-center justify-center gap-2 rounded-xl text-sm font-bold border border-slate-300 dark:border-white/20 bg-background hover:bg-slate-50 dark:hover:bg-white/5 active:scale-[0.98] h-11 px-6 transition-all cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+            className="inline-flex items-center justify-center gap-2 rounded-xl text-sm font-bold border border-slate-300 dark:border-white/20 bg-background hover:bg-slate-50 dark:hover:bg-white/5 active:scale-[0.98] h-10 px-5 transition-all cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
           >
             {isResending && <Loader2 className="w-4 h-4 animate-spin" aria-hidden />}
             Wyślij ponownie mail o płatności
@@ -275,27 +279,32 @@ export function StatusControls({
         )}
       </div>
 
-      <div className="mt-2 pt-5 border-t border-border/60">
-        <p className="text-sm font-extrabold text-foreground">Maile do klienta</p>
-        <p className="text-xs font-medium text-muted-foreground mt-0.5 break-all">
-          {customerEmail ? `Adresat: ${customerEmail}` : "Brak adresu e-mail w zamówieniu."}
+      <div className="pt-4 border-t border-border/60">
+        <p className="text-sm font-extrabold text-foreground">
+          Maile do klienta
+          <span className="font-medium text-muted-foreground break-all">
+            {" "}
+            · {customerEmail || "brak adresu e-mail w zamówieniu"}
+          </span>
         </p>
 
-        <ul className="flex flex-col gap-3 mt-3">
+        <ul className="flex flex-col gap-2 mt-2.5">
           {CUSTOMER_EMAILS.map(({ kind, label }) => {
             const blocker = sendBlocker(kind);
             const sending = sendingKind === kind;
             return (
               <li
                 key={kind}
-                className="flex flex-col sm:flex-row sm:items-center gap-3 rounded-2xl border border-border/60 bg-muted/15 px-4 py-3"
+                className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3 rounded-xl border border-border/60 bg-muted/15 px-3 py-2"
               >
                 <div className="flex-1 min-w-0">
-                  <p className="text-sm font-extrabold text-foreground">„{label}”</p>
-                  <p
-                    className={`text-xs font-bold mt-0.5 ${sentAt[kind] ? "text-primary" : "text-muted-foreground"}`}
-                  >
-                    {sentAt[kind] ? `Wysłano ${formatDateTime(sentAt[kind])}` : "Jeszcze nie wysłano"}
+                  <p className="text-sm font-extrabold text-foreground">
+                    „{label}”
+                    <span
+                      className={`ml-2 text-xs font-bold ${sentAt[kind] ? "text-primary" : "text-muted-foreground"}`}
+                    >
+                      {sentAt[kind] ? `wysłano ${formatDateTime(sentAt[kind])}` : "jeszcze nie wysłano"}
+                    </span>
                   </p>
                   {blocker && (
                     <p className="text-xs font-medium text-muted-foreground mt-0.5">{blocker}</p>
@@ -305,12 +314,12 @@ export function StatusControls({
                   type="button"
                   onClick={() => sendCustomerEmail(kind, label)}
                   disabled={Boolean(blocker) || sendingKind !== null}
-                  className="self-start sm:self-auto inline-flex items-center justify-center gap-2 rounded-xl text-sm font-bold bg-card border border-border/70 text-foreground hover:bg-muted/50 hover:text-primary h-11 px-5 transition-all cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed shrink-0"
+                  className="self-start sm:self-auto inline-flex items-center justify-center gap-2 rounded-lg text-xs font-bold bg-card border border-border/70 text-foreground hover:bg-muted/50 hover:text-primary h-9 px-4 transition-all cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed shrink-0"
                 >
                   {sending ? (
-                    <Loader2 className="w-4 h-4 animate-spin" aria-hidden />
+                    <Loader2 className="w-3.5 h-3.5 animate-spin" aria-hidden />
                   ) : (
-                    <Mail className="w-4 h-4" aria-hidden />
+                    <Mail className="w-3.5 h-3.5" aria-hidden />
                   )}
                   {sentAt[kind] ? "Wyślij ponownie" : "Wyślij"}
                 </button>
