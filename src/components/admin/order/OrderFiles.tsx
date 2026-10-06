@@ -26,8 +26,9 @@ export type SheetFile = {
   individual: boolean;
   stickers: number;
   hasLayout: boolean;
-  /** Adres pobrania plików tego arkusza. */
-  downloadUrl: string;
+  /** Adresy pobrania plików tego arkusza; linie cięcia tylko, gdy arkusz je ma. */
+  downloadPrintUrl: string;
+  downloadCutUrl: string | null;
 };
 
 type View = "print" | "cut";
@@ -276,7 +277,21 @@ export function OrderFiles({ sheets }: { sheets: SheetFile[] }) {
                   )}
                   {zoomed ? "Dopasuj do ekranu" : "Pełna rozdzielczość"}
                 </button>
-                <DownloadButton href={sheet.downloadUrl} label="Pobierz pliki arkusza" size="sm" />
+                <DownloadButton
+                  href={sheet.downloadPrintUrl}
+                  label="Pobierz do druku"
+                  size="sm"
+                  title="Pobierz plik do druku tego arkusza"
+                />
+                {sheet.downloadCutUrl && (
+                  <DownloadButton
+                    href={sheet.downloadCutUrl}
+                    label="Pobierz linie cięcia"
+                    variant="outline"
+                    size="sm"
+                    title="Pobierz plik z liniami cięcia tego arkusza"
+                  />
+                )}
                 <button
                   type="button"
                   onClick={close}

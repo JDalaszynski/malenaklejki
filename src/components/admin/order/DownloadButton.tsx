@@ -1,7 +1,13 @@
 "use client";
 
 import { useState } from "react";
-import { Download, Loader2 } from "lucide-react";
+import { Download, Loader2, Printer, Scissors } from "lucide-react";
+
+/**
+ * Ikona jako nazwa, nie komponent: przycisk jest używany ze strony serwerowej,
+ * a z komponentu serwerowego do klienckiego nie da się przekazać funkcji.
+ */
+const ICONS = { download: Download, print: Printer, cut: Scissors } as const;
 
 /** Nazwa pliku z nagłówka `Content-Disposition` odpowiedzi trasy pobierania. */
 function fileNameFrom(header: string | null): string {
@@ -20,14 +26,20 @@ function fileNameFrom(header: string | null): string {
 export function DownloadButton({
   href,
   label,
+  icon = "download",
   variant = "primary",
   size = "md",
+  title,
 }: {
   href: string;
   label: string;
+  icon?: keyof typeof ICONS;
+  /** Podpowiedź po najechaniu — np. ile plików trafi do archiwum. */
+  title?: string;
   variant?: "primary" | "outline";
   size?: "md" | "sm";
 }) {
+  const Icon = ICONS[icon];
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -74,12 +86,13 @@ export function DownloadButton({
         type="button"
         onClick={run}
         disabled={busy}
+        title={title}
         className={`inline-flex items-center justify-center gap-2 rounded-xl text-sm font-bold active:scale-[0.98] transition-all cursor-pointer disabled:opacity-70 disabled:cursor-progress ${sizing} ${tone}`}
       >
         {busy ? (
           <Loader2 className="w-4 h-4 animate-spin" aria-hidden />
         ) : (
-          <Download className="w-4 h-4" aria-hidden />
+          <Icon className="w-4 h-4" aria-hidden />
         )}
         {busy ? "Przygotowuję…" : label}
       </button>

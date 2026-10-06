@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 import { getOrder } from "@/lib/admin/queries";
 import {
+  KIND_PARAMS,
   filePrefix,
   isStorageUrl,
   productionFiles,
@@ -31,9 +32,10 @@ async function download(file: ProductionFile): Promise<Uint8Array> {
 /**
  * Pliki produkcyjne zamówienia jednym pobraniem.
  *
- * Bez `?arkusz=` — wszystkie arkusze, z `?arkusz=2` — tylko drugi. Dwa pliki
- * i więcej wychodzą jako ZIP, pojedynczy plik jako zwykły PNG, żeby nie
- * pakować jednego obrazka w archiwum.
+ * Bez `?arkusz=` — wszystkie arkusze, z `?arkusz=2` — tylko drugi. Bez
+ * `?plik=` — druk i linie cięcia razem, z `?plik=druk` albo `?plik=ciecie` —
+ * tylko ten rodzaj. Dwa pliki i więcej wychodzą jako ZIP, pojedynczy plik jako
+ * zwykły PNG, żeby nie pakować jednego obrazka w archiwum.
  *
  * Magazyn nie zwraca nagłówków CORS, więc przeglądarka nie pobierze tych
  * plików sama — robi to serwer. Uprawnienia sprawdzamy tu, nie tylko na
@@ -54,7 +56,15 @@ export async function GET(request: NextRequest, ctx: { params: Promise<{ id: str
     return text("Numer arkusza musi być liczbą całkowitą od 1.", 400);
   }
 
-  const files = productionFiles(order).filter((file) => sheet === null || file.sheet === sheet);
+  const kindParam = request.nextUrl.searchParams.get("plik");
+  if (kindParam !== null && !Object.hasOwn(KIND_PARAMS, kindParam)) {
+    return text("Parametr „plik” musi mieć wartość „druk” albo „ciecie”.", 400);
+  }
+  const kind = kindParam === null ? null : KIND_PARAMS[kindParam as keyof typeof KIND_PARAMS];
+
+  const files = productionFiles(order).filter(
+    (file) => (sheet === null || file.sheet === sheet) && (kind === null || file.kind === kind)
+  );
   if (files.length === 0) return text("To zamówienie nie ma plików do pobrania.", 404);
   if (files.some((file) => !isStorageUrl(file.url))) {
     return text("Adres pliku wskazuje poza magazyn sklepu — pobieranie wstrzymane.", 422);
@@ -83,7 +93,9 @@ export async function GET(request: NextRequest, ctx: { params: Promise<{ id: str
   }
 
   const archive = buildZip(files.map((file, index) => ({ name: file.fileName, data: contents[index] })));
-  const zipName = sheet === null ? `${prefix}-pliki.zip` : `${prefix}-arkusz-${sheet}.zip`;
+  const scope = sheet === null ? "" : `-arkusz-${sheet}`;
+  const what = kind === "print" ? "-DRUK" : kind === "cut" ? "-LINIE-CIECIA" : sheet === null ? "-pliki" : "";
+  const zipName = `${prefix}${scope}${what}.zip`;
 
   return new NextResponse(streamOf(archive), {
     headers: {

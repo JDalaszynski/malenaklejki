@@ -43,10 +43,25 @@ export function productionFiles(order: Pick<AdminOrder, "orderNumber" | "items">
   return files;
 }
 
-/** Adres pobrania — wszystkie arkusze albo jeden (numer od 1). */
-export function filesDownloadUrl(orderId: string, sheet?: number): string {
-  const base = `/admin/zamowienia/${encodeURIComponent(orderId)}/pliki`;
-  return sheet ? `${base}?arkusz=${sheet}` : base;
+/** Rodzaje plików w adresie pobierania: `?plik=druk` albo `?plik=ciecie`. */
+export const KIND_PARAMS = { druk: "print", ciecie: "cut" } as const satisfies Record<
+  string,
+  ProductionFile["kind"]
+>;
+
+/**
+ * Adres pobrania. Bez opcji — wszystkie pliki zamówienia; `sheet` zawęża do
+ * jednego arkusza (numer od 1), `kind` do jednego rodzaju pliku.
+ */
+export function filesDownloadUrl(
+  orderId: string,
+  options: { sheet?: number; kind?: ProductionFile["kind"] } = {}
+): string {
+  const params = new URLSearchParams();
+  if (options.sheet) params.set("arkusz", String(options.sheet));
+  if (options.kind) params.set("plik", options.kind === "print" ? "druk" : "ciecie");
+  const query = params.toString();
+  return `/admin/zamowienia/${encodeURIComponent(orderId)}/pliki${query ? `?${query}` : ""}`;
 }
 
 /**

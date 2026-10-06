@@ -60,6 +60,8 @@ export function OrderDetailView({
   const sheets = countSheets(order);
 
   const files = productionFiles(order);
+  const printCount = files.filter((file) => file.kind === "print").length;
+  const cutCount = files.filter((file) => file.kind === "cut").length;
   const sheetFiles: SheetFile[] = order.items.flatMap((item, index) =>
     item.imageUrl
       ? [
@@ -71,7 +73,10 @@ export function OrderDetailView({
             individual: item.deliveryForm === "individual",
             stickers: item.stickersPerSheet,
             hasLayout: item.hasLayout,
-            downloadUrl: filesDownloadUrl(order.id, index + 1),
+            downloadPrintUrl: filesDownloadUrl(order.id, { sheet: index + 1, kind: "print" }),
+            downloadCutUrl: item.cutLinesImageUrl
+              ? filesDownloadUrl(order.id, { sheet: index + 1, kind: "cut" })
+              : null,
           },
         ]
       : []
@@ -123,10 +128,25 @@ export function OrderDetailView({
             }
             actions={
               files.length > 0 ? (
-                <DownloadButton
-                  href={filesDownloadUrl(order.id)}
-                  label={files.length > 1 ? "Pobierz pliki" : "Pobierz plik"}
-                />
+                <div className="flex flex-wrap items-start justify-end gap-2">
+                  {printCount > 0 && (
+                    <DownloadButton
+                      href={filesDownloadUrl(order.id, { kind: "print" })}
+                      label="Pobierz do druku"
+                      icon="print"
+                      title={printCount > 1 ? `${printCount} arkusze w jednym archiwum ZIP` : undefined}
+                    />
+                  )}
+                  {cutCount > 0 && (
+                    <DownloadButton
+                      href={filesDownloadUrl(order.id, { kind: "cut" })}
+                      label="Pobierz linie cięcia"
+                      icon="cut"
+                      variant="outline"
+                      title={cutCount > 1 ? `${cutCount} arkusze w jednym archiwum ZIP` : undefined}
+                    />
+                  )}
+                </div>
               ) : undefined
             }
           >
