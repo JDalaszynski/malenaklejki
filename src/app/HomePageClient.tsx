@@ -3357,6 +3357,12 @@ export function HomePageClient({
                       Przywróć układ
                     </button>
                   </div>
+                  {!isReadySheetModified && (
+                    <p className="basis-full text-[11px] sm:text-xs font-medium text-muted-foreground leading-snug">
+                      Ten zestaw jest w pełni edytowalny: wybierz naklejkę, żeby zmienić jej rozmiar
+                      albo ją usunąć, i dodaj własne.
+                    </p>
+                  )}
                 </div>
               )}
 

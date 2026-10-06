@@ -6,7 +6,6 @@ import { ArrowRight, Clock, LayoutGrid, ShieldCheck } from "lucide-react";
 import { CatalogListTracker } from "@/components/catalog/CatalogListTracker";
 import {
   Breadcrumbs,
-  EditSteps,
   FaqSection,
   SheetGrid,
   SheetsTable,
@@ -18,12 +17,14 @@ import {
   primaryCtaClass,
   secondaryCtaClass,
 } from "@/components/catalog/blocks";
+import { EditableCallout, EditablePanel } from "@/components/catalog/EditableSet";
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { getCatalogSheets } from "@/lib/sheets/public";
 import {
   CATALOG_PATH,
+  EDIT_CTA_LABEL,
   SITE_URL,
   breadcrumbSchema,
   faqSchema,
@@ -47,9 +48,9 @@ import { getDesignsNoun } from "@/lib/utils/polish";
 const PAGE_NAME = "Gotowe zestawy naklejek";
 const TITLE = "Gotowe zestawy naklejek - wzory na folii winylowej, 49 zł";
 const DESCRIPTION =
-  "Gotowe zestawy naklejek: kilkadziesiąt naklejek na jednym arkuszu A4 z folii winylowej odpornej na wodę i UV. 49,00 zł brutto, każdy wzór zmienisz w kreatorze.";
+  "Gotowe zestawy naklejek: kilkadziesiąt naklejek na arkuszu A4 z folii winylowej odpornej na wodę i UV. 49,00 zł brutto. Każdy zestaw zmienisz: usuniesz naklejki i dodasz własne.";
 /** Data ostatniej realnej zmiany treści strony (nie listy zestawów). */
-const UPDATED = { label: "5 października 2026", iso: "2026-10-05T00:00:00+02:00" };
+const UPDATED = { label: "6 października 2026", iso: "2026-10-06T00:00:00+02:00" };
 
 export const metadata: Metadata = {
   title: TITLE,
@@ -78,7 +79,11 @@ function buildFaqs(sheets: CatalogSheet[]): Faq[] {
     },
     {
       q: "Czy mogę zmienić gotowy zestaw przed zamówieniem?",
-      a: "Tak. Przycisk „Dopasuj w kreatorze” otwiera zestaw w kreatorze, gdzie zmienisz rozmiar każdej naklejki, usuniesz te, których nie chcesz, i dołożysz własne zdjęcie, logo albo imię. Cena zestawu zostaje taka sama.",
+      a: `Tak, każdy gotowy zestaw jest w pełni edytowalny. Przycisk „${EDIT_CTA_LABEL}” otwiera go w kreatorze, gdzie usuniesz naklejki, których nie chcesz, zmienisz rozmiar pozostałych i dodasz własne zdjęcia, logo albo grafiki. Cena zestawu zostaje taka sama.`,
+    },
+    {
+      q: "Czy mogę dodać własne naklejki do gotowego zestawu?",
+      a: "Tak. Po otwarciu zestawu w kreatorze wgrywasz własne zdjęcie albo grafikę, a kreator usuwa tło i wyznacza linię cięcia. Gotowe zestawy wypełniają prawie cały arkusz A4, więc żeby zrobić miejsce na swoje, najpierw usuń kilka naklejek.",
     },
     {
       q: "Czy mogę zamówić gotowy zestaw i własny zestaw naklejek w jednej paczce?",
@@ -147,10 +152,10 @@ export default async function CatalogPage() {
             z kilkudziesięcioma naklejkami wokół jednego tematu, drukowany na{" "}
             <strong>folii winylowej odpornej na wodę i UV</strong>. Stała cena{" "}
             <strong>{formatPrice(SHEET_PRICE)} brutto za zestaw</strong>, produkcja w{" "}
-            <strong>2-3 dni robocze</strong> i odbiór w paczkomacie. Zestaw zamawiasz od razu albo
-            otwierasz w kreatorze i zmieniasz po swojemu: usuwasz naklejki, zmieniasz ich rozmiar,
-            dokładasz własne zdjęcie albo imię.
+            <strong>2-3 dni robocze</strong> i odbiór w paczkomacie.
           </p>
+
+          <EditableCallout detailsHref="#zmiany" />
 
           <div className="flex flex-col sm:flex-row gap-3 pt-2">
             <a href="#wzory" className={primaryCtaClass}>
@@ -183,7 +188,13 @@ export default async function CatalogPage() {
 
         {/* Siatka zestawów */}
         <section id="wzory" className="mt-12 space-y-6 scroll-mt-24">
-          <h2 className={headingClass}>Wzory naklejek do wyboru</h2>
+          <div className="space-y-2">
+            <h2 className={headingClass}>Wzory naklejek do wyboru</h2>
+            <p className={paragraphClass}>
+              Zamów zestaw tak, jak jest, albo wybierz „{EDIT_CTA_LABEL}” - usuniesz naklejki, których nie
+              chcesz, i dodasz własne.
+            </p>
+          </div>
           {themes.length > 0 && (
             <ul className="flex flex-wrap gap-2">
               {themes.map((theme) => (
@@ -201,6 +212,18 @@ export default async function CatalogPage() {
           <SheetGrid sheets={sheets} />
         </section>
 
+        {/* Edycja */}
+        <section id="zmiany" className="mt-12 space-y-5 scroll-mt-24">
+          <div className="space-y-2">
+            <h2 className={headingClass}>Gotowy zestaw możesz zmienić po swojemu</h2>
+            <p className={paragraphClass}>
+              Każdy zestaw jest w pełni edytowalny. Otwierasz go w tym samym kreatorze, w którym układa się
+              własne naklejki, i zamawiasz dopiero wtedy, gdy jest taki, jak chcesz.
+            </p>
+          </div>
+          <EditablePanel cta={{ href: "#wzory", label: "Wybierz zestaw do zmiany" }} />
+        </section>
+
         {/* Tabela wzorów */}
         <section className="mt-12 space-y-5">
           <h2 className={headingClass}>Co jest w którym zestawie</h2>
@@ -208,16 +231,6 @@ export default async function CatalogPage() {
             Zestawienie wszystkich wzorów: motywy i dokładna liczba naklejek w każdym zestawie.
           </p>
           <SheetsTable sheets={sheets} />
-        </section>
-
-        {/* Edycja */}
-        <section className="mt-12 space-y-5">
-          <h2 className={headingClass}>Gotowy zestaw możesz zmienić po swojemu</h2>
-          <p className={paragraphClass}>
-            To nie jest gotowiec z półki. Każdy zestaw otworzysz w tym samym kreatorze, w którym
-            układa się własne naklejki - i zamówisz dopiero wtedy, gdy będzie taki, jak chcesz.
-          </p>
-          <EditSteps />
         </section>
 
         {/* Ceny */}

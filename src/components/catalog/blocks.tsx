@@ -1,7 +1,14 @@
 import Link from "next/link";
-import { ArrowRight, Check } from "lucide-react";
+import { ArrowRight, Check, PencilRuler } from "lucide-react";
 
-import { formatPrice, sheetCreatorPath, sheetHeading, sheetPath, type Faq } from "@/lib/sheets/schema";
+import {
+  EDIT_CTA_LABEL,
+  formatPrice,
+  sheetCreatorPath,
+  sheetHeading,
+  sheetPath,
+  type Faq,
+} from "@/lib/sheets/schema";
 import { SHEET_PRICE, type CatalogSheet } from "@/lib/sheets/types";
 import { getStickersNoun } from "@/lib/utils/polish";
 import { SheetImage } from "./SheetImage";
@@ -20,6 +27,9 @@ export const primaryCtaClass =
   "group inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-[#02af7a] hover:bg-[#029668] text-white text-sm sm:text-base font-black tracking-wide uppercase rounded-2xl shadow-[0_4px_14px_0_rgba(2,175,122,0.4)] hover:shadow-[0_6px_20px_0_rgba(2,175,122,0.6)] transform hover:-translate-y-0.5 transition-all duration-300";
 export const secondaryCtaClass =
   "inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-transparent border border-border text-foreground text-sm sm:text-base font-bold rounded-2xl hover:border-primary hover:text-primary transition-all duration-300";
+/** Przycisk „Zmień po swojemu": widoczny, ale drugi po zakupie. */
+export const editCtaClass =
+  "inline-flex items-center justify-center gap-2 rounded-xl border border-primary/30 bg-primary/5 px-4 h-11 text-sm font-extrabold text-foreground hover:bg-primary/10 hover:border-primary/60 transition-all active:scale-[0.98] whitespace-nowrap";
 export const panelClass = "bg-white dark:bg-[#003a3b] rounded-3xl border border-border/40 shadow-sm";
 
 export function Breadcrumbs({ items }: { items: { name: string; path?: string }[] }) {
@@ -108,16 +118,18 @@ export function SheetCard({ sheet }: { sheet: CatalogSheet }) {
         <div className="flex flex-wrap gap-2">
           <Link
             href={sheetPath(sheet.slug)}
-            className="inline-flex flex-1 items-center justify-center gap-1.5 rounded-xl bg-primary px-4 h-11 text-sm font-extrabold text-primary-foreground hover:bg-primary/95 shadow-sm transition-all active:scale-[0.98]"
+            className="inline-flex flex-1 items-center justify-center gap-1.5 rounded-xl bg-primary px-4 h-11 text-sm font-extrabold text-primary-foreground hover:bg-primary/95 shadow-sm transition-all active:scale-[0.98] whitespace-nowrap"
           >
             Zobacz zestaw
             <ArrowRight className="w-4 h-4" aria-hidden />
           </Link>
           <Link
             href={sheetCreatorPath(sheet.id)}
-            className="inline-flex flex-1 items-center justify-center rounded-xl border border-border px-4 h-11 text-sm font-bold text-foreground hover:border-primary hover:text-primary transition-all whitespace-nowrap"
+            aria-label={`${EDIT_CTA_LABEL} - otwórz zestaw ${sheet.name} w kreatorze`}
+            className={`flex-1 ${editCtaClass}`}
           >
-            Dopasuj w kreatorze
+            <PencilRuler className="w-4 h-4 text-primary" aria-hidden />
+            {EDIT_CTA_LABEL}
           </Link>
         </div>
       </div>
@@ -191,38 +203,6 @@ export function SpecTable({ rows }: { rows: { label: string; value: string }[] }
         </tbody>
       </table>
     </div>
-  );
-}
-
-const EDIT_STEPS = [
-  {
-    title: "Wybierz zestaw",
-    text: "Każdy wzór to gotowy układ A4 - możesz go zamówić od razu, bez wgrywania czegokolwiek.",
-  },
-  {
-    title: "Dopasuj po swojemu",
-    text: "W kreatorze zmienisz rozmiar naklejek, usuniesz te, których nie chcesz, i dołożysz własne zdjęcie, logo albo imię.",
-  },
-  {
-    title: "Zamów",
-    text: "Płacisz BLIK-iem albo przez Przelewy24. Produkcja zajmuje 2-3 dni robocze, paczkę odbierasz w paczkomacie.",
-  },
-];
-
-/** Trzy kroki: wybierz, dopasuj, zamów. */
-export function EditSteps() {
-  return (
-    <ol className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
-      {EDIT_STEPS.map((step, index) => (
-        <li key={step.title} className={`${panelClass} rounded-2xl p-5`}>
-          <span className="flex w-9 h-9 items-center justify-center rounded-full bg-primary/10 text-primary text-sm font-black">
-            {index + 1}
-          </span>
-          <p className="mt-3 text-base font-black text-foreground">{step.title}</p>
-          <p className="mt-1 text-sm font-medium text-muted-foreground leading-relaxed">{step.text}</p>
-        </li>
-      ))}
-    </ol>
   );
 }
 

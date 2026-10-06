@@ -1,14 +1,13 @@
 import Link from "next/link";
 import { ArrowRight, Clock, Droplets, ShieldCheck, Truck } from "lucide-react";
 
-import { CATALOG_PATH, formatPrice, sheetHeading } from "@/lib/sheets/schema";
+import { CATALOG_PATH, formatPrice, sheetCreatorPath, sheetHeading } from "@/lib/sheets/schema";
 import { THEME_PAGES } from "@/lib/sheets/themes";
 import { SHEET_PRICE, SHIPPING_PRICE, normalizeForSearch, type CatalogSheet } from "@/lib/sheets/types";
 import { getStickersNoun } from "@/lib/utils/polish";
 import { AddReadySheetToCart } from "./AddReadySheetToCart";
 import {
   Breadcrumbs,
-  EditSteps,
   SheetGrid,
   SpecTable,
   headingClass,
@@ -18,6 +17,7 @@ import {
   secondaryCtaClass,
   sheetImageAlt,
 } from "./blocks";
+import { EditablePanel } from "./EditableSet";
 import { SheetImage } from "./SheetImage";
 
 /** Strona tematyczna zestawu, jeśli taka już istnieje. */
@@ -172,14 +172,15 @@ export function SheetProduct({ sheet, related }: { sheet: CatalogSheet; related:
       </section>
 
       {/* Edycja */}
-      <section className="mt-12 space-y-5">
-        <h2 className={headingClass}>Chcesz coś zmienić? Dopasuj zestaw przed zamówieniem</h2>
-        <p className={paragraphClass}>
-          Gotowy zestaw to punkt wyjścia, a nie gotowiec bez prawa zmian. Otwórz go w kreatorze, a każdą naklejkę
-          powiększysz, zmniejszysz albo usuniesz - w zwolnione miejsce dołożysz własne zdjęcie, logo albo
-          imię. Cena zestawu się nie zmienia.
-        </p>
-        <EditSteps />
+      <section id="zmiany" className="mt-12 space-y-5 scroll-mt-24">
+        <div className="space-y-2">
+          <h2 className={headingClass}>Chcesz coś zmienić? Ten zestaw jest w pełni edytowalny</h2>
+          <p className={paragraphClass}>
+            Zestaw {sheet.name} to punkt wyjścia. Otwórz go w kreatorze, zmień, co chcesz, i zamów dopiero
+            wtedy, gdy jest taki, jak ma być.
+          </p>
+        </div>
+        <EditablePanel cta={{ href: sheetCreatorPath(sheet.id), label: "Otwórz zestaw w kreatorze" }} />
       </section>
 
       {/* Drugi zestaw */}

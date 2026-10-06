@@ -432,3 +432,13 @@ Decyzja właściciela. Zrobione w jednym przebiegu (sklep + panel właściciela 
 * **Panel właściciela (panel.jdalaszynski.pl):** widok „MałeNaklejki → Gotowe zestawy” (plik `lib/panel/content/gotowe-zestawy.ts`), polecenia dla Claude Code, linki i `README-PANEL.md` przepisane na nową nazwę; identyfikatory kroków (`arkusze-swieta`…) i `sheetsPlan.done` bez zmian, więc odhaczone kroki zostają odhaczone.
 * **Do dokończenia po stronie właściciela / do decyzji:** opisy 7 opublikowanych zestawów w Firestore (pole `description`) zawierają jeszcze słowo „arkusz” („Świąteczny arkusz w ciepłej…”) - zmiana wymaga zapisu w produkcyjnej bazie; skrypt jest gotowy i przetestowany na sucho, czeka na zgodę.
 
+
+### 2026-10-06 - „w pełni edytowalne” widoczne w katalogu (zasada 4)
+Polecenie właściciela: katalog ma jasno mówić, że zestawy da się zmieniać - usuwać naklejki i dodawać własne.
+* **Przycisk** przy zestawie nazywa się teraz **„Zmień po swojemu”** (było „Dopasuj w kreatorze”), ma ikonę i widoczne tło; jedna nazwa w `EDIT_CTA_LABEL` (`src/lib/sheets/schema.ts`), FAQ cytuje ją z tej stałej. Adres bez zmian (`/?zestaw=<id>`).
+* **Pierwszy ekran katalogu:** ramka „Każdy zestaw zmienisz po swojemu” z trzema możliwościami (usuniesz naklejki, dodasz własne, zmienisz rozmiar) i linkiem do sekcji `#zmiany`. Akapit otwierający (BLUF) skrócony o zdanie, które ramka zastąpiła.
+* **Sekcja „Gotowy zestaw możesz zmienić po swojemu”** stoi teraz zaraz pod siatką wzorów (przed tabelą) i zamiast trzech kroków ma rysunek arkusza w trakcie zmian, trzy możliwości, zdanie o cenie i zasadę zwrotu (oba człony, jak w `facts.md`). Ten sam blok (`EditablePanel`) jest na stronie zestawu (CTA „Otwórz zestaw w kreatorze”) i w szablonie `ThemeLanding`.
+* **Strona zestawu:** pod „Dodaj do koszyka” dwuwierszowy odnośnik „Zmień po swojemu w kreatorze - usuń naklejki, zmień rozmiar, dodaj własne. Cena bez zmian.”; dopisek o zwrocie ma oba człony.
+* **FAQ katalogu:** nowe pytanie „Czy mogę dodać własne naklejki do gotowego zestawu?” (z uczciwą uwagą, że zestaw wypełnia prawie cały arkusz, więc najpierw trzeba coś usunąć).
+* **Kreator:** pasek „Gotowy zestaw: <nazwa>” pokazuje zdanie-podpowiedź, dopóki zestaw jest nietknięty.
+* **Bez zmian:** „imię” zniknęło z nowych tekstów (kreator nie ma edytora tekstu - `facts.md`), zostało „zdjęcie, logo albo grafika”.

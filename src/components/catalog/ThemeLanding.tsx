@@ -17,9 +17,9 @@ import {
 import { SHEET_PRICE, SHIPPING_PRICE, type CatalogSheet } from "@/lib/sheets/types";
 import { getDesignsNoun } from "@/lib/utils/polish";
 import { CatalogListTracker } from "./CatalogListTracker";
+import { EditablePanel } from "./EditableSet";
 import {
   Breadcrumbs,
-  EditSteps,
   FaqSection,
   SheetGrid,
   SheetsTable,
@@ -161,7 +161,7 @@ export function ThemeLanding({ content, sheets }: { content: ThemeContent; sheet
 
         <section className="mt-12 space-y-5">
           <h2 className={headingClass}>Każdy zestaw możesz zmienić przed zamówieniem</h2>
-          <EditSteps />
+          <EditablePanel cta={{ href: "#wzory", label: "Wybierz zestaw do zmiany" }} />
         </section>
 
         <section className="mt-12 space-y-5">

@@ -21,6 +21,9 @@ export function sheetCreatorPath(id: string): string {
   return `/?zestaw=${id}`;
 }
 
+/** Nazwa przycisku otwierającego zestaw w kreatorze — jedna w całym katalogu. */
+export const EDIT_CTA_LABEL = "Zmień po swojemu";
+
 export function formatPrice(value: number): string {
   return `${value.toFixed(2).replace(".", ",")} zł`;
 }

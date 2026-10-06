@@ -3,11 +3,11 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { Layers, Loader2, Minus, PencilRuler, Plus, Scissors, ShoppingCart } from "lucide-react";
+import { ChevronRight, Layers, Loader2, Minus, PencilRuler, Plus, Scissors, ShoppingCart } from "lucide-react";
 
 import { trackAddToCart, trackViewReadySheet } from "@/lib/analytics";
 import { loadReadySheetLayout } from "@/lib/sheets/client";
-import { formatPrice, sheetCreatorPath } from "@/lib/sheets/schema";
+import { EDIT_CTA_LABEL, formatPrice, sheetCreatorPath } from "@/lib/sheets/schema";
 import { SHEET_PRICE, SHIPPING_PRICE, type CatalogSheet } from "@/lib/sheets/types";
 import { useCartStore } from "@/store/cartStore";
 
@@ -165,10 +165,21 @@ export function AddReadySheetToCart({
 
       <Link
         href={sheetCreatorPath(sheet.id)}
-        className="w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 border border-border text-foreground text-sm font-bold rounded-2xl hover:border-primary hover:text-primary transition-all duration-300"
+        className="group flex items-center gap-3 rounded-2xl border border-primary/30 bg-primary/5 px-4 py-3 hover:bg-primary/10 hover:border-primary/60 transition-all duration-300"
       >
-        <PencilRuler className="w-4 h-4" aria-hidden />
-        Dopasuj w kreatorze
+        <span className="flex w-9 h-9 shrink-0 items-center justify-center rounded-full bg-primary/15 text-primary">
+          <PencilRuler className="w-4 h-4" aria-hidden />
+        </span>
+        <span className="min-w-0 flex-1">
+          <span className="block text-sm font-black text-foreground">{EDIT_CTA_LABEL} w kreatorze</span>
+          <span className="block text-xs font-medium text-muted-foreground leading-snug">
+            Usuń naklejki, zmień rozmiar, dodaj własne. Cena bez zmian.
+          </span>
+        </span>
+        <ChevronRight
+          className="w-4 h-4 shrink-0 text-primary group-hover:translate-x-0.5 transition-transform"
+          aria-hidden
+        />
       </Link>
 
       {error && (
@@ -179,7 +190,7 @@ export function AddReadySheetToCart({
 
       <p className="text-[11px] font-medium text-muted-foreground leading-relaxed">
         Dostawa do paczkomatu {formatPrice(SHIPPING_PRICE)}, liczona raz za całe zamówienie.
-        Zestaw zamówiony bez zmian możesz zwrócić w 14 dni.
+        Zestaw zamówiony bez zmian możesz zwrócić w 14 dni; zmieniony w kreatorze zwrotowi nie podlega.
       </p>
     </div>
   );
