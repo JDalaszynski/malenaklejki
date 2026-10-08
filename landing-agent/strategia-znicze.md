@@ -105,7 +105,7 @@ Landing i oba wpisy **działają bez zdjęć** (zgodnie z `rules.md` §11: nie b
 3. **Gotowy zestaw „Pamięć" w panelu** (dedykacje „Kochanej Mamie", „Kochanemu Tacie", „Pamiętamy" + symbole: anioł, gołąb, świeca, róża), na które klient bez zdjęcia mógłby kliknąć. To najlepsza droga dla osób bez własnej grafiki. Własne grafiki bez treści licencjonowanych; strona tematyczna jest w etapie 2 `strategia-gotowe-zestawy.md`. Rekomendacja: **tak, ale na 2027** (zbyt mało czasu do szczytu na zamówienie grafik i publikację).
 4. ✅ **Link sezonowy w stopce - ZROBIONE 2026-10-05** (zgoda właściciela, do 3.11). Do zrobienia po sezonie: usunąć wpis i stałą `ZNICZE_LINK_HIDDEN_FROM` z `src/components/layout/Footer.tsx`.
 5. **Search Console:** ręczne „Poproś o zindeksowanie" dla trzech adresów (landing + dwa wpisy). Zrobię ping IndexNow (Bing), ale Google tego nie obsługuje.
-6. **Odświeżenie starych wpisów z sufitem ciepła:** `naklejki-z-wlasnym-logo-na-sloiki-i-opakowania` („nie odklejają się pod wpływem ciepła") i `...sloiki-z-przyprawami...` („nie blaknie pod wpływem ciepła z kuchenki") wykraczają poza tabelę faktów (woda, UV) - do złagodzenia przy okazji.
+6. ✅ **Odświeżenie starych wpisów z sufitem ciepła - ZROBIONE 2026-10-08.** Z `naklejki-z-wlasnym-logo-na-sloiki-i-opakowania` zniknęło „nie odklejają się pod wpływem ciepła" (w zamian: odporności na ciepło płomienia nie deklarujemy, naklejaj z dala od knota), z `...sloiki-z-przyprawami...` - „ani ciepła z kuchenki".
 
 ---
 

@@ -82,7 +82,7 @@ Nasze naklejki drukujemy na **folii winylowej z mocnym klejem**, co oznacza:
 
 - **Wodoodporność** - wilgotne ręce ani para z garnka nie uszkodzą etykiety.
 - **Łatwe czyszczenie** - zachlapania zetrzesz wilgotną ściereczką, bo folia nie chłonie wody.
-- **Trwałe kolory** - wydruk nie blaknie pod wpływem światła ani ciepła z kuchenki.
+- **Trwałe kolory** - wydruk nie blaknie pod wpływem światła.
 - **Łatwe usunięcie** - jeśli zmienisz aranżację, naklejka odchodzi bez śladów kleju na szkle.
 
 To ten sam materiał, którego używają [małe manufaktury do etykietowania słoików z własnymi produktami](/blog/naklejki-z-wlasnym-logo-na-sloiki-i-opakowania) - przetestowany w warunkach codziennego użytkowania.
