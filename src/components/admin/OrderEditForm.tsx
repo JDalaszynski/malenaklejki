@@ -9,6 +9,7 @@ import { Plus, Trash2, Wand2 } from "lucide-react";
 
 import { createManualOrder, updateOrder } from "@/app/actions/admin";
 import { PAYMENT_STATUSES } from "@/lib/orders/status";
+import { GOODS_LINE_NAME } from "@/lib/orders/billingLines";
 import { FormAlert, SubmitButton } from "@/components/auth/fields";
 import { Card } from "./AdminLayout";
 
@@ -55,7 +56,7 @@ export type OrderFormValues = z.infer<typeof schema>;
 /** Typowa pozycja sklepu — jedno kliknięcie zamiast przepisywania z pamięci. */
 const STANDARD_ITEM = {
   id: "",
-  name: "Naklejki (1 szt.) wraz z dostawą",
+  name: GOODS_LINE_NAME,
   sheetQuantity: 1,
   pricePerSheet: 49,
   taxRate: 23,

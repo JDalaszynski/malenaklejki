@@ -5,6 +5,7 @@ import { ArrowLeft } from "lucide-react";
 import { AdminLayout } from "@/components/admin/AdminLayout";
 import { OrderEditForm } from "@/components/admin/OrderEditForm";
 import { requireAdmin } from "@/lib/auth/dal";
+import { GOODS_LINE_NAME } from "@/lib/orders/billingLines";
 
 export const metadata: Metadata = {
   title: "Panel — nowe zamówienie",
@@ -59,7 +60,7 @@ export default async function NewOrderPage() {
           items: [
             {
               id: "",
-              name: "Naklejki (1 szt.) wraz z dostawą",
+              name: GOODS_LINE_NAME,
               sheetQuantity: 1,
               pricePerSheet: 49,
               taxRate: 23,

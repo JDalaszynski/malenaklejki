@@ -12,11 +12,12 @@
 // rozbijamy go tą samą funkcją co przy wysyłce do BaseLinkera, żeby faktura
 // i zamówienie w BaseLinkerze pokazywały ten sam adres.
 import { splitPointAddress } from "@/lib/baselinker";
+import { splitBillingLines } from "@/lib/orders/billingLines";
 
 /** Stawka VAT — sklep sprzedaje wyłącznie ze stawką podstawową. */
 export const INFAKT_TAX_SYMBOL = "23";
 
-/** Jedyna pozycja na fakturze ma jednostkę „szt.” i ilość 1. */
+/** Każda pozycja na fakturze ma jednostkę „szt.” i ilość 1. */
 export const INFAKT_UNIT = "szt.";
 
 /**
@@ -124,8 +125,7 @@ export interface InfaktOrderSource {
     companyName?: string | null;
   } | null;
   payment?: { method?: string } | null;
-  totals?: { total?: number } | null;
-  items?: Record<string, unknown>[] | null;
+  totals?: { total?: number; shipping?: number } | null;
 }
 
 export interface InfaktCreatedInvoice {
@@ -175,17 +175,6 @@ export function splitStreetAndNumber(raw: string): { street: string; number: str
     street: match[1].replace(/[.,]+$/, "").trim(),
     number: match[2].replace(/\s+/g, ""),
   };
-}
-
-/** Liczba arkuszy z całego zamówienia — trafia do nazwy pozycji na fakturze. */
-export function countSheets(items: Record<string, unknown>[]): number {
-  const total = items.reduce((sum, item) => sum + Number(item.sheetQuantity ?? 0), 0);
-  return total > 0 ? total : 1;
-}
-
-/** Nazwa jedynej pozycji faktury. */
-export function buildServiceName(items: Record<string, unknown>[]): string {
-  return `Naklejki (${countSheets(items)} szt.) wraz z dostawą`;
 }
 
 /* ------------------------------------------------------------------ */
@@ -356,8 +345,10 @@ async function resolveClient(
 }
 
 /**
- * Zamienia zamówienie na treść faktury: zawsze jedna pozycja z ceną brutto
- * równą kwocie, którą klient faktycznie zapłacił (towar razem z dostawą).
+ * Zamienia zamówienie na treść faktury: towar i dostawa to dwie osobne
+ * pozycje, a ich ceny brutto sumują się do kwoty, którą klient faktycznie
+ * zapłacił. inFakt liczy każdą pozycję od brutto i podsumowanie faktury
+ * składa z pozycji, więc rozbicie nie przesuwa sumy nawet o grosz.
  *
  * `warnings` to sygnały do sprawdzenia przez sprzedawcę — faktura i tak
  * powstaje, ale któreś dane trzeba było wziąć z zamówienia zamiast z rejestru.
@@ -366,8 +357,8 @@ export async function buildInvoicePayload(
   order: InfaktOrderSource
 ): Promise<{ invoice: InfaktInvoice; warnings: string[] }> {
   const warnings: string[] = [];
-  const items = order.items ?? [];
-  const grossPrice = Math.round(((order.totals?.total ?? 0) + Number.EPSILON) * 100);
+  const lines = splitBillingLines(order.totals);
+  const grossPrice = lines.reduce((sum, line) => sum + line.gross, 0);
   const date = warsawDate(order.paidAt ?? order.createdAt);
 
   const address = resolveBillingAddress(order);
@@ -386,15 +377,13 @@ export async function buildInvoicePayload(
     notes: order.orderNumber ? `Zamówienie: ${order.orderNumber}` : "",
     client_country: "PL",
     ...client,
-    services: [
-      {
-        name: buildServiceName(items),
-        tax_symbol: INFAKT_TAX_SYMBOL,
-        unit: INFAKT_UNIT,
-        quantity: 1,
-        gross_price: grossPrice,
-      },
-    ],
+    services: lines.map((line) => ({
+      name: line.name,
+      tax_symbol: INFAKT_TAX_SYMBOL,
+      unit: INFAKT_UNIT,
+      quantity: 1,
+      gross_price: line.gross,
+    })),
   };
 
   return { invoice, warnings };

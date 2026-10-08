@@ -71,6 +71,7 @@ const CreateOrderSchema = z.object({
 });
 
 import { registerTransaction } from "@/lib/p24";
+import { splitBillingLines } from "@/lib/orders/billingLines";
 import { buildManualTransferEmailHtml, buildNewOrderSellerEmailHtml, buildOrderAttachments } from "@/lib/emails";
 import { sendTransactionalEmail } from "@/lib/email/auth";
 
@@ -93,26 +94,16 @@ function generateOrderNumber(): string {
 
 
 /**
- * Helper to build a clean and detailed payment description for Przelewy24 reports.
+ * Tytuł transakcji w Przelewy24 — numer zamówienia i te same pozycje, które
+ * trafiają na fakturę. E-mail i kwota mają w P24 własne pola, więc nie
+ * powtarzamy ich w tytule, który klient widzi przy płatności.
  */
 function buildP24Description(
   orderNumber: string,
-  email: string,
-  total: number,
-  items: any[]
+  totals: { total?: number; shipping?: number }
 ): string {
-  const itemsSummary = items
-    .map(item => `${item.sheetQuantity}x Zestaw Naklejek`)
-    .join(", ");
-
-  // Format to show Order Number, E-mail, Amount and Goods Type
-  const desc = `Zamowienie: ${orderNumber} | E-mail: ${email} | Kwota: ${total.toFixed(2).replace('.', ',')} zl | Towar: ${itemsSummary}`;
-
-  // Przelewy24 description max length is 1024 characters, let's truncate if it's too long
-  if (desc.length > 1000) {
-    return desc.slice(0, 997) + "...";
-  }
-  return desc;
+  const lines = splitBillingLines(totals).map((line) => line.name);
+  return `Zamówienie ${orderNumber}: ${lines.join(" + ")}`;
 }
 
 // Usunięto szablony email. Zostały przeniesione do src/lib/emails.ts i są używane w webhooku P24.
@@ -351,7 +342,7 @@ async function doCreateOrder(rawData: any) {
     // P24 lub BLIK
     const statusUrl = `${appUrl}/api/webhooks/przelewy24`;
     const expectedTotalGrosze = Math.round(finalData.total * 100);
-    const p24Description = buildP24Description(orderNumber, finalData.email, finalData.total, finalData.items);
+    const p24Description = buildP24Description(orderNumber, orderData.totals);
 
     const p24Response = await registerTransaction({
       sessionId: orderRef.id, // używamy orderRef.id jako sessionId w P24, musi być unikalny dla każdej próby
@@ -432,12 +423,7 @@ export async function retryOrderPayment(orderId: string) {
     const statusUrl = `${appUrl}/api/webhooks/przelewy24`;
 
     const expectedTotalGrosze = Math.round((orderData.totals?.total || 0) * 100);
-    const p24Description = buildP24Description(
-      orderData.orderNumber,
-      orderData.customer.email,
-      orderData.totals?.total || 0,
-      orderData.items || []
-    );
+    const p24Description = buildP24Description(orderData.orderNumber, orderData.totals ?? {});
 
     // Nowa sesja P24 zapisana przy zamówieniu — zostaje przy nim na potrzeby
     // reklamacji i wyszukiwania płatności w panelu Przelewy24.

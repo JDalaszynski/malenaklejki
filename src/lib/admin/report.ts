@@ -3,6 +3,8 @@ import "server-only";
 import { listOrders, type AdminOrder } from "./queries";
 import { syncInvoiceNumbers } from "./invoiceNumbers";
 import { PAYMENT_METHOD_LABELS } from "@/lib/orders/status";
+import { splitBillingLines } from "@/lib/orders/billingLines";
+import { warsawDate } from "@/lib/infakt";
 
 export const SELLER = {
   name: "Jakub Dalaszyński",
@@ -14,6 +16,21 @@ export const SELLER = {
 export const REPORT_SCOPE = "Ewidencja dotyczy sprzedaży prowadzonej w serwisie internetowym malenaklejki.pl.";
 
 export const DEFAULT_VAT_RATE = 23;
+
+/**
+ * Od tego dnia faktura ma osobne pozycje towaru i dostawy. Wcześniejsze
+ * zamówienia zostają w ewidencji pod nazwą, pod którą je zafakturowano.
+ */
+const SPLIT_LINES_FROM = "2026-10-08";
+
+function goodsLabel(order: AdminOrder, sheets: number): string {
+  if (warsawDate(order.paidAt) < SPLIT_LINES_FROM) {
+    return `Naklejki (${sheets} szt.) wraz z dostawą`;
+  }
+  return splitBillingLines(order.totals)
+    .map((line) => line.name)
+    .join(" + ");
+}
 
 /** Excel w polskiej wersji dzieli kolumny średnikiem, nie przecinkiem. */
 const SEPARATOR = ";";
@@ -124,7 +141,7 @@ export function buildReport(orders: AdminOrder[], options: ReportOptions): Repor
       saleDate: polishDate(order.createdAt),
       paymentDate: polishDate(order.paidAt),
       buyer: `${order.customer.firstName} ${order.customer.lastName}`.trim(),
-      goods: `Naklejki (${sheets} szt.) wraz z dostawą`,
+      goods: goodsLabel(order, sheets),
       quantity: sheets,
       net,
       vatRate,
