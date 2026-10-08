@@ -183,7 +183,7 @@ Przy 7 428 wyświetleniach bloga podniesienie CTR z 1,13% do 2,5% daje **około 
 * **Wygląd w wynikach:** 1 956 wyświetleń przychodzi z fragmentami produktowymi (`Product`/`Offer`), ale ich CTR to 1,23%, czyli **poniżej średniej serwisu**. Gwiazdki ocen są największą dźwignią CTR w SERP-ie, ale `aggregateRating` wolno dodać **wyłącznie na podstawie realnych, zebranych opinii klientów** - fabrykowanie ocen to naruszenie wytycznych Google i ryzyko manualnej kary. Właściwa kolejność: najpierw zbieranie opinii po zamówieniu, potem schema.
 
 #### OŚ 2 - Konsolidacja i naprawa istniejących zasobów
-* **Filar `jak-zamowic-idealne-naklejki` wymaga przepisania, nie dopisania linku.** 1 174 wyświetlenia, 7 kliknięć, CTR 0,60%, pozycja 14,49. To najgorzej pracujący zasób o dużej ekspozycji w całym serwisie, a jest filarem - czyli stroną, która ma rozdawać autorytet reszcie klastra. Filar na pozycji 14 nie rozdaje niczego.
+* **Filar `jak-zamowic-idealne-naklejki` wymaga przepisania, nie dopisania linku.** 1 174 wyświetlenia, 7 kliknięć, CTR 0,60%, pozycja 14,49. To najgorzej pracujący zasób o dużej ekspozycji w całym serwisie, a jest filarem - czyli stroną, która ma rozdawać autorytet reszcie klastra. Filar na pozycji 14 nie rozdaje niczego. **Stan po przepisaniu (pomiar 2026-10-08): fraza główna stracona - patrz dopisek na końcu §7.**
 * **`fajne-wzory-i-pomysly` staje się realnym hubem** (dziś: 170 wyświetleń, 0 kliknięć, pozycja 8,99, **1 link przychodzący**). Pozycja 8,99 przy zerze kliknięć oznacza, że strona jest widziana i odrzucana - potrzebuje i tytułu, i linkowania.
 * **Ogon linkowy jest cienki:** `fajne-wzory`, `jak-zrobic-wlasne-naklejki-program` i `naklejki-z-imionami-na-meble` mają po **1 linku przychodzącym**. Docelowo minimum 3 na wpis.
 
@@ -272,3 +272,47 @@ Osobno w danych występują zapytania z operatorami wykluczeń (`"wódkę" -site
 **Czego NIE mierzyć w tym okresie:** liczby opublikowanych artykułów. To była właściwa miara Faz 1-2 i jest błędną miarą Fazy 4 - premiuje dokładnie to zachowanie, które właśnie ograniczamy.
 
 **Kontrola kierunku:** jeżeli po 90 dniach CTR wzrośnie, a średnia pozycja stanie w miejscu, potwierdzi to, że barierą jest autorytet domeny (linkowanie zewnętrzne), a nie treść - i Faza 5 musi przenieść ciężar poza treść. Jeżeli wzrosną obie, model "koncentracja zamiast ekspansji" jest właściwy i kontynuujemy.
+
+---
+
+### 🔎 Dopisek 2026-10-08: filar po przepisaniu - konsolidacja na `/` czy realna strata?
+
+> **Podstawa:** Google Search Console, odczyt na żywo 2026-10-08 (usługa domenowa), okres **8.09-5.10.2026** vs **11.08-7.09.2026**; raporty Zapytania, Strony i Daty z filtrem strony i zapytania. Sumy dla zapytań obejmują tylko zapytania jawne (resztę GSC anonimizuje).
+
+**Werdykt: realna strata na frazie głównej. Strona główna nie przejęła klastra `naklejki na zamówienie` - przejęła tylko część długiego ogona.** Stąd osobne zadanie naprawcze (`plan.md` → P4.2.16), a nie samo przestawienie filaru na intencję poradnikową.
+
+**Filar jako strona:**
+
+| | 11.08-7.09 | 8.09-5.10 |
+| :--- | ---: | ---: |
+| Wyświetlenia | 1 177 | **270** |
+| Kliknięcia | 6 | 5 |
+| CTR | 0,5% | 1,9% |
+| Średnia pozycja | 16,7 | **36,8** |
+
+**Kto pokazuje się na frazy filaru (wyświetlenia / średnia pozycja):**
+
+| Zestaw zapytań | Strona | 11.08-7.09 | 8.09-5.10 |
+| :--- | :--- | ---: | ---: |
+| Klaster główny: `naklejki / naklejka na zamówienie / zamowienie` (4 warianty) | cała witryna | 569 / 19,2 | **184 / 43,4** |
+| | filar | 569 / 19,2 | 144 / 48,1 |
+| | `/` | 0 | 56 / 35,2 |
+| Wszystkie 32 jawne zapytania filaru | cała witryna | 872 / 19,8 | **391 / 32,8** |
+| | filar | 846 / 19,8 | 198 / 47,3 |
+| | `/` | 44 / 29,2 | 219 / 23,9 |
+
+**Co z tego wynika:**
+
+1. **Na klastrze głównym to nie jest konsolidacja.** Witryna jako całość straciła 385 z 569 wyświetleń (-68%) i 24 pozycje. Strona główna pokazała się na te frazy tylko przez 10 dni (16-25.09), na pozycji ok. 35, i zebrała 56 wyświetleń. Od 26.09 na frazę wychodzi znów wyłącznie filar, na pozycjach 30-57 (najczęściej ok. 50). Żadna inna podstrona nie pojawia się na te zapytania.
+2. **Na całym zestawie fraz filaru `/` odzyskała 27% tego, co filar stracił** (filar -648 wyświetleń, `/` +175, witryna -481, czyli -55%).
+3. **Konsolidacja zaszła na długim ogonie i tam wyszła na plus.** Strona główna stoi wyżej, niż stał filar: `małe naklejki na zamówienie` 6,3 (filar 8,2), `stwórz własną naklejkę` 6,5 (filar 20,6), `stwórz własne naklejki` 8,8 (witryna wcześniej 17,0), `naklejki na zamówienie z własnym nadrukiem` 8,3 (filar 12,5). Oba kliknięcia z całego zestawu w nowym okresie padły na `/`.
+4. **Kliknięć nie ubyło.** Filar ma 5 kliknięć wobec 6, a klaster główny miał 0 kliknięć w obu okresach (pozycja 19 też nie klikała). Strata dotyczy pozycji na najważniejszej frazie handlowej serwisu, nie bieżącego ruchu.
+5. **To problem jednej strony.** W tym samym porównaniu witryna ma 246 kliknięć wobec 137 i pozycję 10,1 wobec 11,8. Wśród stron z ekspozycją powyżej 60 wyświetleń filar jest jedyną, której pozycja się załamała.
+
+**Kiedy to się stało i co było tuż przed:** w danych dziennych klaster główny stał na 13,7-16,8 od 23.08 do 1.09, 2.09 spadł na 27,2, 3.09 na 37,1 i od tamtej pory jest w przedziale 29-57. 30.08 wieczorem filar dostał nowy tytuł (`Jak zamówić idealne naklejki na zamówienie z własnym nadrukiem?` → `Naklejki na zamówienie - własny nadruk od 1 szt., 49 zł/A4`, P4.0.1), tego samego dnia zmienił się tytuł strony głównej, a 31.08 filar został przepisany z 1339 do ok. 2080 słów (P4.2.2). Spadek przyszedł 2-3 dni później, czyli w rytmie ponownego zaindeksowania.
+
+**Hipoteza przyczyny (zbieżność w czasie, nie dowód):** po zmianie filar i strona główna składają w tytule prawie tę samą obietnicę handlową (`własny nadruk` / `z własnym nadrukiem`, `od 1 szt.`), a filar otwiera sekcja o cenie zamiast instrukcji zamawiania. Google ma dwa adresy o tej samej intencji transakcyjnej, co łamie zasadę nr 3 Fazy 4 ("każda strona ma jedną intencję"). Zastrzeżenie: klaster już raz zniknął na 5 dni (16-20.08) i wrócił wyżej, więc część wahań to zmienność młodej domeny.
+
+**Korekta wniosku z OSI 2:** przepisanie filaru naprawiło linkowanie (30/30 wpisów), ale najpewniej kosztowało pozycję na frazie głównej. Wyższy CTR (1,9% wobec 0,5%) to efekt uboczny: znikły wyświetlenia bez kliknięć, a kliknięć jest tyle samo. Przy następnych przebudowach stron, które już rankują na frazę główną, tytuł i H1 zmieniamy osobno od treści, żeby dało się rozdzielić skutki.
+
+**Dalszy krok:** `plan.md` → P4.2.16. Kierunek naprawy i tak prowadzi przez intencję poradnikową filaru - z tą różnicą, że fraza główna nie ma dziś właściciela, więc trzeba ją świadomie przypisać (filarowi albo stronie głównej), a nie zakładać, że `/` już ją ma.
