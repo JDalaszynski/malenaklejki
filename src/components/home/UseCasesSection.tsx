@@ -12,6 +12,7 @@ import {
   inlineLink,
 } from "./primitives";
 import { Check } from "lucide-react";
+import { SWIETA_HUB_HREF, useSwietaSeason } from "@/hooks/useSwietaSeason";
 
 /* Kafle inspiracji — PLACEHOLDER: podmień PhotoPlaceholder na finalne zdjęcia. */
 type Tile = {
@@ -85,6 +86,9 @@ const PRACTICAL_USES = [
 ] as const;
 
 export function UseCasesSection() {
+  // Sezonowy link do huba świątecznego - chowa się sam od 7.01.2027 (jak w stopce).
+  const swietaSeason = useSwietaSeason();
+
   return (
     <div className="space-y-10 sm:space-y-14">
       <Reveal>
@@ -172,7 +176,17 @@ export function UseCasesSection() {
           </p>
           <p className="text-muted-foreground text-sm font-semibold leading-relaxed">
             Nic nie stoi na przeszkodzie, aby wykorzystać wykadrowane naklejki ze zdjęcia jubilata
-            do dekoracji prezentów. Niezależnie od tego, czy system ma przetworzyć klasyczne
+            do dekoracji prezentów.{" "}
+            {swietaSeason && (
+              <>
+                Przed Gwiazdką tak samo przygotujesz{" "}
+                <Link href={SWIETA_HUB_HREF} className={inlineLink}>
+                  naklejki świąteczne z własnym nadrukiem
+                </Link>{" "}
+                - imienne etykiety na paczki pod choinkę.{" "}
+              </>
+            )}
+            Niezależnie od tego, czy system ma przetworzyć klasyczne
             naklejki ze zdjeciem bez skomplikowanego tła, czy wyciąć portret całej rodziny, efekt
             zawsze jest perfekcyjny.
           </p>

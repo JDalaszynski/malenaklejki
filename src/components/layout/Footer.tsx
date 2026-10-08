@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { Sun, Moon, Contrast } from "lucide-react";
 import { motion } from "framer-motion";
 
+import { SWIETA_HUB_HREF, useSwietaSeason } from "@/hooks/useSwietaSeason";
 import { useCatalogVisible } from "./CatalogProvider";
 
 interface FooterProps {
@@ -22,6 +23,7 @@ const ZNICZE_LINK_HIDDEN_FROM = new Date("2026-11-04T00:00:00+01:00").getTime();
 export function Footer({ children }: FooterProps = {}) {
   const [mounted, setMounted] = useState(false);
   const [zniczeSeason, setZniczeSeason] = useState(true);
+  const swietaSeason = useSwietaSeason();
   const [theme, setTheme] = useState<"light" | "dark" | "system">("light");
   const catalogVisible = useCatalogVisible();
 
@@ -140,6 +142,10 @@ export function Footer({ children }: FooterProps = {}) {
                     href: "/blog/fajne-wzory-i-pomysly-na-naklejki-inspiracje-wg-zastosowania",
                     label: "Fajne wzory na naklejki",
                   },
+                  // Sezonowo, do 6.01.2027 (patrz useSwietaSeason).
+                  ...(swietaSeason
+                    ? [{ href: SWIETA_HUB_HREF, label: "Naklejki świąteczne i etykiety na prezenty" }]
+                    : []),
                   { href: "/slownik-naklejek", label: "Słownik naklejek" },
                 ].map((item) => (
                   <li key={item.href}>
