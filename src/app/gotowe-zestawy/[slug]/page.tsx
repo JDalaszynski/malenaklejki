@@ -55,7 +55,7 @@ export default async function SheetPage({ params }: Props) {
   const sheet = sheets.find((item) => item.slug === slug);
   if (!sheet) notFound();
 
-  // Najpierw zestawy z tego samego tematu, potem najnowsze z pozostałych.
+  // Najpierw zestawy z tego samego tematu, potem pozostałe — każdy w kolejności ze sklepu.
   const themes = sheet.categories.map(normalizeForSearch);
   const others = sheets.filter((item) => item.id !== sheet.id);
   const sameTheme = others.filter((item) => item.categories.some((c) => themes.includes(normalizeForSearch(c))));

@@ -8,15 +8,18 @@ import { Pagination } from "@/components/admin/Pagination";
 import { StatTile } from "@/components/admin/ProfitStats";
 import { StatusPill } from "@/components/account/StatusPill";
 import { SheetGrid } from "@/components/sheets/SheetGrid";
+import { SheetOrderButton } from "@/components/sheets/SheetOrderDialog";
 import { SheetsFilters } from "@/components/sheets/SheetsFilters";
 import { requireAdmin } from "@/lib/auth/dal";
 import { parsePage, type AdminSearchParams } from "@/lib/admin/filters";
 import { READY_SHEETS_MODE_LABELS } from "@/lib/settings/readySheets";
 import { getReadySheetsSettingsFresh } from "@/lib/settings/readySheetsStore";
+import { applySheetOrder } from "@/lib/sheets/order";
 import {
   SHEETS_PAGE_SIZE,
   countLibraryStickers,
   filterSheets,
+  getSheetOrder,
   listCategories,
   listSheets,
   paginateSheets,
@@ -39,15 +42,25 @@ export default async function AdminSheetsPage({
   const params = await searchParams;
   const filters = parseSheetFilters(params);
 
-  const [all, libraryCount, readySheets] = await Promise.all([
+  const [all, libraryCount, readySheets, savedOrder] = await Promise.all([
     listSheets(),
     countLibraryStickers(),
     getReadySheetsSettingsFresh(),
+    getSheetOrder(),
   ]);
   const categories = listCategories(all);
-  const page = paginateSheets(filterSheets(all, filters), parsePage(params));
 
-  const published = all.filter((sheet) => sheet.status === "published").length;
+  // Ta sama kolejność, w jakiej zestawy widzi klient; `listSheets` oddaje
+  // je od ostatnio zmienianych, co zostaje jako drugi wybór na liście.
+  const inShopOrder = applySheetOrder(all, savedOrder);
+  const inShop = inShopOrder.filter((sheet) => sheet.status === "published");
+  const shopPositions = Object.fromEntries(inShop.map((sheet, index) => [sheet.id, index + 1]));
+  const page = paginateSheets(
+    filterSheets(filters.sort === "zmiany" ? all : inShopOrder, filters),
+    parsePage(params)
+  );
+
+  const published = inShop.length;
 
   return (
     <AdminLayout
@@ -78,6 +91,18 @@ export default async function AdminSheetsPage({
             <BarChart3 className="w-4 h-4" aria-hidden />
             Statystyki zestawów
           </Link>
+          <SheetOrderButton
+            sheets={inShop.map((sheet) => ({
+              id: sheet.id,
+              name: sheet.name,
+              category: sheet.category,
+              category2: sheet.category2,
+              previewUrl: sheet.previewUrl,
+              stickerCount: sheet.stickerCount,
+              publishedAt: sheet.publishedAt,
+              createdAt: sheet.createdAt,
+            }))}
+          />
           <Link
             href="/admin/zestawy/baza-naklejek"
             className="inline-flex items-center gap-2 rounded-xl text-sm font-bold h-11 px-5 border border-slate-300 dark:border-white/20 bg-background hover:bg-slate-50 dark:hover:bg-white/5 transition-all active:scale-[0.98]"
@@ -136,6 +161,7 @@ export default async function AdminSheetsPage({
           sheets={page.items}
           showCreate={all.length === 0}
           emptyMessage="Brak zestawów dla wybranych filtrów."
+          shopPositions={shopPositions}
         />
         <Pagination
           page={page.page}

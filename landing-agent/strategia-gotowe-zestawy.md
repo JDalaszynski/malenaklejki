@@ -457,3 +457,19 @@ Polecenie właściciela: wzór ma się dać dodać bez wchodzenia w podgląd.
 * **Zestaw już leżący w kreatorze** ma przycisk „Wróć do kreatora”; przy zmienionym zestawie tylko zamyka galerię (nie przywraca pierwotnego układu).
 * **Pomiar:** szybkie dodanie liczy się jako `use` bez wcześniejszego `select`, więc w statystykach „Obejrzany” może być od teraz niższy niż „Wczytany” - to nie błąd.
 
+
+### 2026-10-08 - dwa nowe zestawy z kompletem treści i własna kolejność zestawów w sklepie
+Polecenie właściciela: dodać treści nowym zestawom tak jak pozostałym oraz dać w panelu wybór kolejności, w jakiej zestawy widzi klient.
+* **Nowe zestawy:** *Zimowe śnieżynki* (50 naklejek, temat Święta) i *Zimowe Zwierzaki* (28 naklejek, Święta + Dla Dzieci), oba opublikowane z edytora (obraz produktu i pliki do druku gotowe). W stanie po publikacji miały puste albo „zaślepkowe" pola: opis `Zimowe śnieżynki` / `.`, podtytuł pusty / `.`, brak motywów - strona produktu pokazywała pusty akapit (ta sama luka co przy *Ciepłej Zimie*, serwer wymaga tylko niepustego opisu).
+* **Uzupełnione** (Admin SDK, transakcja tylko do pustych albo zaślepkowych pól, wpis w `auditLog`, `updatedAt` podbity, żeby otwarty edytor zapytał o nadpisanie; kopia stanu sprzed zmiany w `kopie-zapasowe/tresci-zestawow-…`, poza repo):
+  * *Zimowe śnieżynki* - podtytuł `naklejki zimowe z błękitnymi śnieżynkami`, opis 96 słów (granat, kobalt, lodowy błękit; wzory pierzaste, kryształowe i listkowate; rozmiary od drobnych po duże płatki; zastosowania: kartki, opakowania prezentów, planer na grudzień, zeszyt, słoik z upominkiem), 10 motywów;
+  * *Zimowe Zwierzaki* - podtytuł `naklejki świąteczne dla dzieci z reniferkami i pingwinami`, opis 97 słów (renifery, pingwiny, misie polarne, bałwanek, piesek, kotek, sowa, gwiazdki i śnieżynki; zastosowania: zeszyt, kalendarz adwentowy, kartki, prezenty), 14 motywów.
+  * Opisane wyłącznie to, co widać na obrazie produktu; bez liczby naklejek, bez słów o pochodzeniu grafik, bez „akwareli", bez obietnic spoza `facts.md` (nic o oknach, bezpieczeństwie dla dzieci itp.). Temat „dla dzieci" niesie `category2`, a w podtytule jest tylko jako fraza opisowa.
+* **`llms.txt` / `llms-full.txt`** przebudowane (10 zestawów; wygenerowane z lokalnego serwera z `CATALOG_API_URL`, bo API produkcji trzyma dane do godziny).
+* **Własna kolejność zestawów w sklepie** (panel `/admin/zestawy`):
+  * przycisk **„Kolejność w sklepie"** otwiera okno z opublikowanymi zestawami: przeciąganie wierszy, strzałki góra/dół (klawiatura i telefon), „Od najnowszych" przywraca dotychczasowy porządek; zapis jednym kliknięciem, wpis w dzienniku zmian;
+  * kolejność leży w jednym dokumencie `settings/readySheetsOrder` (`ids[]`) i **rządzi całym sklepem**: galeria w kreatorze, katalog `/gotowe-zestawy`, „Pasuje do" na stronach zestawów, strony tematyczne, blok w blogu, mapa strony i miniatury na stronie głównej (pierwsze trzy). Jedno miejsce w kodzie: `readPublishedSheets` w `src/lib/sheets/public.ts`; zapis unieważnia te same tagi i strony co zmiana zestawu;
+  * **zestaw spoza zapisanej kolejności** (świeżo opublikowany, wcześniej nieustawiony) staje na początku, najnowszy pierwszy - tak sklep działał dotąd, więc bez zapisanej kolejności nic się nie zmienia (sprawdzone: lokalnie i na produkcji ta sama lista), a nowość jest widoczna, dopóki właściciel jej nie przesunie;
+  * lista w panelu domyślnie pokazuje **kolejność ze sklepu** (zamiast „od ostatnio edytowanych"); drugi wybór w liście „Sortowanie" to „Ostatnio zmieniane". Opublikowane kafelki mają znacznik „nr N" - miejsce w sklepie;
+  * szkice nie biorą udziału w kolejności do czasu publikacji.
+* **Dla agentów i generatorów:** `llms.txt` powstaje z katalogu w kolejności sklepu - po zmianie kolejności w panelu plik zmienia się dopiero przy następnym uruchomieniu `node scripts/generuj-llms-txt.mjs` (treść ta sama, inny porządek; nic nie psuje).

@@ -100,6 +100,26 @@ function toLibrarySticker(id: string, data: FirebaseFirestore.DocumentData): Lib
 /* Zestawy                                                             */
 /* ------------------------------------------------------------------ */
 
+const ORDER_DOC = "readySheetsOrder";
+
+/**
+ * Kolejność zestawów wybrana przez właściciela (`settings/readySheetsOrder`).
+ * Błąd odczytu zostaje błędem: gdyby kolejność po cichu wróciła do domyślnej,
+ * pamięć podręczna sklepu zapamiętałaby ten stan na godzinę.
+ */
+export async function getSheetOrder(): Promise<string[]> {
+  const snapshot = await db.collection("settings").doc(ORDER_DOC).get();
+  const ids: unknown = snapshot.get("ids");
+  return Array.isArray(ids) ? ids.filter((id): id is string => typeof id === "string") : [];
+}
+
+export async function writeSheetOrder(ids: string[], actorEmail: string): Promise<void> {
+  await db
+    .collection("settings")
+    .doc(ORDER_DOC)
+    .set({ ids, updatedAt: new Date().toISOString(), updatedBy: actorEmail });
+}
+
 /** Najnowsze zmiany na górze. Sortowanie po jednym polu — bez indeksu złożonego. */
 export async function listSheets(limit = SHEETS_FETCH_LIMIT): Promise<StickerSheet[]> {
   const snapshot = await db
@@ -292,6 +312,8 @@ export type SheetFilters = {
   search?: string;
   category?: string;
   status?: SheetStatus;
+  /** `zmiany` — od ostatnio edytowanych; bez wartości — kolejność ze sklepu. */
+  sort?: "zmiany";
 };
 
 type SearchParams = Record<string, string | string[] | undefined>;
@@ -307,6 +329,7 @@ export function parseSheetFilters(params: SearchParams): SheetFilters {
     search: single(params, "szukaj"),
     category: single(params, "kategoria"),
     status: status === "draft" || status === "published" ? status : undefined,
+    sort: single(params, "sortuj") === "zmiany" ? "zmiany" : undefined,
   };
 }
 

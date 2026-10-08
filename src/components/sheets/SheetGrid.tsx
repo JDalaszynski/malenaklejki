@@ -15,11 +15,14 @@ export function SheetGrid({
   sheets,
   emptyMessage,
   showCreate,
+  shopPositions = {},
 }: {
   sheets: StickerSheet[];
   emptyMessage: string;
   /** Pusta baza — zamiast komunikatu zachęta do pierwszego zestawu. */
   showCreate: boolean;
+  /** Miejsce opublikowanego zestawu w sklepie (1 = pierwszy), po identyfikatorze. */
+  shopPositions?: Record<string, number>;
 }) {
   if (sheets.length === 0) {
     return showCreate ? (
@@ -78,6 +81,14 @@ export function SheetGrid({
                 {SHEET_STATUS_LABELS[sheet.status]}
               </StatusPill>
             </div>
+            {sheet.status === "published" && shopPositions[sheet.id] && (
+              <span
+                title="Miejsce w sklepie — zmienisz je przyciskiem „Kolejność w sklepie”"
+                className="absolute top-3 right-3 inline-flex items-center rounded-full border border-border/60 bg-background/90 px-2.5 py-1 text-xs font-black text-foreground tabular-nums shadow-sm"
+              >
+                nr {shopPositions[sheet.id]}
+              </span>
+            )}
           </Link>
 
           <div className="flex flex-col gap-3 p-4 flex-1">

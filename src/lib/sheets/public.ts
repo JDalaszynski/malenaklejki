@@ -9,7 +9,15 @@ import { db, getBucket } from "@/lib/firebase/admin";
 import { CATALOG_VISIBILITY_TAG, READY_SHEETS_TAG } from "@/lib/settings/readySheets";
 import { getReadySheetsSettings } from "@/lib/settings/readySheetsStore";
 import type { PlacedSticker } from "@/types/creator";
-import { SHEETS_COLLECTION, getSheet, listCategories, ownStoragePath, readSheetLayout } from "./store";
+import { applySheetOrder } from "./order";
+import {
+  SHEETS_COLLECTION,
+  getSheet,
+  getSheetOrder,
+  listCategories,
+  ownStoragePath,
+  readSheetLayout,
+} from "./store";
 import {
   isCatalogReady,
   normalizeForSearch,
@@ -89,12 +97,9 @@ async function readPublishedSheets(): Promise<{
     )
     .get();
 
-  const docs = snapshot.docs
-    .map((doc) => ({ id: doc.id, data: doc.data() }))
-    // Najświeżej opublikowane na początku listy.
-    .sort((a, b) => String(b.data.publishedAt ?? "").localeCompare(String(a.data.publishedAt ?? "")));
+  const docs = snapshot.docs.map((doc) => ({ id: doc.id, data: doc.data() }));
 
-  const sheets: PublishedSheet[] = docs.map(({ id, data }) => {
+  const unordered: PublishedSheet[] = docs.map(({ id, data }) => {
     const category: string = data.category ?? "";
     const category2: string = data.category2 ?? "";
     return {
@@ -119,6 +124,11 @@ async function readPublishedSheets(): Promise<{
     };
   });
 
+  // Kolejność wybrana przez właściciela w panelu; zestaw, którego jeszcze
+  // nie ustawiono, stoi na początku jako najnowszy. Ta sama lista rządzi
+  // galerią w kreatorze, katalogiem, stronami tematów i mapą strony.
+  const sheets = applySheetOrder(unordered, await getSheetOrder());
+
   const categories = listCategories(
     docs.map(({ data }) => ({
       category: data.category ?? "",
@@ -131,8 +141,8 @@ async function readPublishedSheets(): Promise<{
 }
 
 // Numer w kluczu rośnie razem z kształtem danych — wpis zapamiętany przez
-// starszą wersję kodu nie może wrócić bez nowych pól.
-const getPublishedSheets = unstable_cache(readPublishedSheets, ["gotowe-zestawy-lista-4"], {
+// starszą wersję kodu nie może wrócić bez nowych pól ani bez kolejności.
+const getPublishedSheets = unstable_cache(readPublishedSheets, ["gotowe-zestawy-lista-5"], {
   tags: [READY_SHEETS_TAG],
   revalidate: 3600,
 });
@@ -232,7 +242,7 @@ export async function getCatalogSheetBySlug(slug: string): Promise<CatalogSheet 
   return (await getCatalogSheets()).find((sheet) => sheet.slug === slug) ?? null;
 }
 
-/** Zestawy danego tematu — strona tematyczna pokazuje je w kolejności publikacji. */
+/** Zestawy danego tematu — strona tematyczna pokazuje je w kolejności wybranej w panelu. */
 export async function getCatalogSheetsByCategory(category: string): Promise<CatalogSheet[]> {
   const key = normalizeForSearch(category);
   return (await getCatalogSheets()).filter((sheet) =>

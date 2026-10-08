@@ -23,8 +23,10 @@ import {
   listCategories,
   readSheetLayout,
   writeSheetLayout,
+  writeSheetOrder,
   writeSheetPreview,
 } from "@/lib/sheets/store";
+import { MAX_ORDERED_SHEETS } from "@/lib/sheets/order";
 import { CATALOG_BLOG_POSTS, THEME_PAGES } from "@/lib/sheets/themes";
 import {
   CUT_LINE_TYPES,
@@ -581,6 +583,45 @@ export async function deleteSheet(rawId: string): Promise<Result> {
 
   await refreshSheetViews();
   return { success: true };
+}
+
+/**
+ * Kolejność opublikowanych zestawów w sklepie.
+ *
+ * Zapisujemy tylko to, co jest dziś w sklepie i co przeglądarka wskazała
+ * w wybranym porządku. Zestaw opublikowany w międzyczasie (z innej karty)
+ * nie ma tu miejsca i sam stanie na początku jako najnowszy.
+ */
+export async function saveSheetsOrder(raw: string[]): Promise<Result<{ order: string[] }>> {
+  const actor = await requireAdminActor();
+  if (!actor) return DENIED;
+
+  const parsed = z.array(idSchema).max(MAX_ORDERED_SHEETS).safeParse(raw);
+  if (!parsed.success) return { success: false, error: "Nieprawidłowa kolejność zestawów." };
+
+  const snapshot = await db
+    .collection(SHEETS_COLLECTION)
+    .where("status", "==", "published")
+    .select("name")
+    .get();
+  const names = new Map(snapshot.docs.map((doc) => [doc.id, String(doc.get("name") ?? "")]));
+  const order = [...new Set(parsed.data)].filter((id) => names.has(id));
+
+  try {
+    await writeSheetOrder(order, actor.email);
+  } catch (error) {
+    console.error("saveSheetsOrder error:", error);
+    return { success: false, error: "Nie udało się zapisać kolejności." };
+  }
+
+  await recordAudit({
+    actorEmail: actor.email,
+    action: "Kolejność gotowych zestawów",
+    details: order.map((id) => `„${names.get(id)}"`).join(" → ").slice(0, 900),
+  });
+
+  await refreshSheetViews();
+  return { success: true, order };
 }
 
 /* ------------------------------------------------------------------ */

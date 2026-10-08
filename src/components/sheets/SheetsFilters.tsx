@@ -30,7 +30,7 @@ export function SheetsFilters({ categories }: { categories: string[] }) {
 
   return (
     <div className="flex flex-col gap-4">
-      <div className="grid grid-cols-1 md:grid-cols-[1fr_auto_auto] gap-3">
+      <div className="grid grid-cols-1 md:grid-cols-[1fr_auto_auto_auto] gap-3">
         <form
           onSubmit={(event) => {
             event.preventDefault();
@@ -82,6 +82,16 @@ export function SheetsFilters({ categories }: { categories: string[] }) {
           <option value="">Status: wszystkie</option>
           <option value="published">Opublikowane</option>
           <option value="draft">Szkice</option>
+        </select>
+
+        <select
+          className={`${selectClass} md:w-56`}
+          value={params.get("sortuj") ?? ""}
+          onChange={(event) => apply({ sortuj: event.target.value })}
+          aria-label="Sortowanie"
+        >
+          <option value="">Kolejność jak w sklepie</option>
+          <option value="zmiany">Ostatnio zmieniane</option>
         </select>
       </div>
 
