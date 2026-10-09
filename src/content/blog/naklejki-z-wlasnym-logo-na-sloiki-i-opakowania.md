@@ -17,7 +17,7 @@ Wydrukuj autorskie **naklejki z logo na zamówienie** na trwałej folii bez wymo
 
 Małe manufaktury, rzemieślnicy i lokalne biznesy e-commerce często borykają się z problemem wysokich kosztów przygotowalni w tradycyjnych drukarniach. Gdy dopiero wprowadzasz nowy produkt na rynek, zamawianie kilku tysięcy etykiet mija się z celem. 
 
-W MałeNaklejki proces ten wygląda zupełnie inaczej. Możesz zamówić profesjonalne [naklejki na zamówienie](/blog/jak-zamowic-idealne-naklejki-na-zamowienie-z-wlasnym-nadrukiem) już od jednego arkusza A4 w stałej cenie 49,00 zł brutto. Otrzymujesz pełną swobodę - na jednym arkuszu może znaleźć się kilkanaście większych etykiet na główne słoiki, lub kilkadziesiąt małych plomb na paczki wysyłkowe, co stanowi świetny sposób na unboxing experience. To rozwiązanie idealne dla twórców, którzy chcą elastycznie testować nowe linie produktowe i limitowane serie.
+W MałeNaklejki proces ten wygląda zupełnie inaczej. Możesz zamówić profesjonalne [naklejki na zamówienie](/blog/jak-zamowic-idealne-naklejki-na-zamowienie-z-wlasnym-nadrukiem) już od jednego arkusza A4 w stałej cenie 49,00 zł brutto. Otrzymujesz pełną swobodę - na jednym arkuszu może znaleźć się kilkanaście większych etykiet na główne słoiki, lub kilkadziesiąt małych naklejek na paczki wysyłkowe, co stanowi świetny sposób na unboxing experience. To rozwiązanie idealne dla twórców, którzy chcą elastycznie testować nowe linie produktowe i limitowane serie.
 
 ![Naklejki z własnym logo na zamówienie na opakowaniach szklanych](/blog/naklejki-z-wlasnym-logo-na-sloiki-i-opakowania/naklejki-z-wlasnym-logo-na-sloiki-i-opakowania-w-tresci.jpg)
 
@@ -51,7 +51,7 @@ Jeśli Twoje logo ma nieregularny kształt, inteligentny algorytm kreatora autom
 Z naszego doświadczenia wynika, że **małe naklejki** i spersonalizowane etykiety świetnie sprawdzają się w następujących branżach:
 * **Twórcy świec sojowych:** Etykiety z nazwą zapachu i logo pracowni na boku lub spodzie szkła. Odporności na ciepło płomienia nie deklarujemy, dlatego naklejaj je z dala od knota i wypróbuj jedną świecę, zanim okleisz całą partię.
 * **Producenci kosmetyków naturalnych:** Etykiety z logo i składem, odporne na wodę i wilgoć w łazience.
-* **Pasieki i rzemieślnicze miody:** Eleganckie znakowanie słoików oraz ozdobne banderole (plomby) na wieczko. To znak marki, a nie techniczne zabezpieczenie słoika.
+* **Pasieki i rzemieślnicze miody:** Eleganckie znakowanie słoików oraz ozdobne banderole na wieczko. To znak marki, a nie techniczne zabezpieczenie słoika.
 * **Palarnie kawy i cukiernie:** Naklejki z własnym napisem i datą palenia/przydatności na opakowania typu doypack.
 
 ![Naklejki na przetwory i opakowania w małych manufakturach](/blog/naklejki-z-wlasnym-logo-na-sloiki-i-opakowania/naklejki-z-wlasnym-logo-na-sloiki-i-opakowania-w-tresci-3.jpg)

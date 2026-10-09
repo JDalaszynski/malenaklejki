@@ -13,7 +13,6 @@ import {
   ShieldCheck,
   Sparkles,
   Tag,
-  Wrench,
   Gift,
   Boxes,
   Layers,
@@ -147,16 +146,9 @@ const USE_CASES: {
   {
     icon: Package,
     title: "Etykiety i opakowania",
-    text: "Etykiety ze składem, naklejki na słoiki i butelki oraz plomby na paczki, które budują efekt unboxingu.",
+    text: "Etykiety ze składem, naklejki na słoiki i butelki oraz naklejki na paczki, które budują efekt unboxingu.",
     href: "/blog/naklejki-z-wlasnym-logo-na-sloiki-i-opakowania",
     linkLabel: "Naklejki na słoiki i opakowania",
-  },
-  {
-    icon: Wrench,
-    title: "Naklejki serwisowe",
-    text: 'Trwałe naklejki typu "serwisowane przez" z numerem telefonu i datą przeglądu, naklejane na urządzeniach klientów.',
-    href: "/blog/naklejki-serwisowe-dla-firm-hydraulicy-elektrycy-i-instalatorzy",
-    linkLabel: "Naklejki serwisowe dla firm",
   },
   {
     icon: Gift,
@@ -571,8 +563,8 @@ export default function NaklejkiDlaFirmPage() {
           </h2>
           <div className="relative w-full aspect-square rounded-2xl shadow-sm border border-border/40 overflow-hidden flex items-start justify-center bg-black/5 dark:bg-[#003a3b]/40 my-6">
             <img
-              src="/landing/naklejki-dla-firm/naklejki-serwisowe-dla-firm.png"
-              alt="Bardzo mocna, winylowa naklejka serwisowa dla firm naklejona na piec grzewczy"
+              src="/landing/naklejki-dla-firm/naklejki-firmowe-na-urzadzeniach.png"
+              alt="Winylowa naklejka firmowa z logo naklejona na urządzenie"
               className="w-full h-auto [clip-path:inset(0_0_12%_0)]"
             />
           </div>
@@ -613,20 +605,21 @@ export default function NaklejkiDlaFirmPage() {
           </p>
           <div className="relative w-full aspect-square rounded-2xl shadow-sm border border-border/40 overflow-hidden flex items-start justify-center bg-black/5 dark:bg-[#003a3b]/40 my-6">
             <img
-              src="/landing/naklejki-dla-firm/naklejki-zabezpieczajace-plomby.png"
-              alt="Naklejki zabezpieczające i plomby firmowe naklejone na pudełko produktowe"
+              src="/landing/naklejki-dla-firm/naklejki-firmowe-na-pudelko.png"
+              alt="Naklejki firmowe z logo naklejone na pudełko produktowe"
               className="w-full h-auto [clip-path:inset(0_0_12%_0)]"
             />
           </div>
           <p className="text-sm sm:text-base text-muted-foreground font-medium leading-relaxed">
             Wysyłasz zamówienia w kartonach lub foliopakach? Jak dobrać rozmiar
-            plomby, co realnie sygnalizuje naklejka na zamknięciu paczki i ile
-            sztuk wyjdzie z jednego arkusza - opisujemy w poradniku o{" "}
+            naklejki na paczkę i ile sztuk wyjdzie z jednego arkusza - wyliczamy w
+            kreatorze, a pomysły na spójny branding opakowań znajdziesz w
+            poradniku o{" "}
             <Link
-              href="/blog/plomby-na-paczki-wysylkowe-i-naklejki-na-przesylki"
+              href="/blog/naklejki-z-wlasnym-logo-na-sloiki-i-opakowania"
               className="text-primary font-bold underline underline-offset-4 hover:text-primary/80 transition-colors"
             >
-              plombach na paczki wysyłkowe i naklejkach na przesyłki
+              naklejkach z logo na słoiki i opakowania
             </Link>
             .
           </p>

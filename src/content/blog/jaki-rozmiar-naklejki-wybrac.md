@@ -28,7 +28,7 @@ Zastanawiasz się, gdzie najczęściej sprawdzają się określone rozmiary? Pon
 | [Naklejka na znicz](/naklejki-na-znicze) (zdjęcie, dedykacja) | 5-8 cm | 6-12 szt. |
 | Naklejki na słoiki (np. konfitury) | 4-6 cm | 15-24 szt. |
 | Imienne naklejki na przybory | 4-5 cm | 24-30 szt. |
-| Plomba na paczkę wysyłkową | 5-7 cm | 12-20 szt. |
+| Naklejka na paczkę wysyłkową | 5-7 cm | 12-20 szt. |
 | Naklejki na koperty z zaproszeniem | 3-5 cm | 24-40 szt. |
 | Wlepki na kask rowerowy | 6-9 cm | 8-15 szt. |
 

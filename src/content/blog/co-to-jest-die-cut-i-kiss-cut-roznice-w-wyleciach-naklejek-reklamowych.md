@@ -60,7 +60,7 @@ Jeśli sprzedajesz autorskie wzory, rozdajesz wlepki fanom lub kibicom (patrz [w
 
 ### Firmy i e-commerce - często wybierają kiss-cut do etykiet
 
-Jeśli oklejasz dziesiątki lub setki opakowań tym samym wzorem - np. plombami wysyłkowymi czy etykietami na produkty - kiss-cut przyspiesza pracę. Odklejasz kolejną naklejkę z arkusza bez szukania jej krawędzi, co ma znaczenie przy pakowaniu większej liczby zamówień. Więcej o budowaniu spójnego wizerunku marki przeczytasz w poradniku o [naklejce z logo firmy](/blog/naklejka-z-logo-firmy-jak-skutecznie-brandowac-swoje-produkty).
+Jeśli oklejasz dziesiątki lub setki opakowań tym samym wzorem - np. naklejkami na paczki czy etykietami na produkty - kiss-cut przyspiesza pracę. Odklejasz kolejną naklejkę z arkusza bez szukania jej krawędzi, co ma znaczenie przy pakowaniu większej liczby zamówień. Więcej o budowaniu spójnego wizerunku marki przeczytasz w poradniku o [naklejce z logo firmy](/blog/naklejka-z-logo-firmy-jak-skutecznie-brandowac-swoje-produkty).
 
 ### Rękodzielnicy i producenci - zależy od liczby wzorów
 

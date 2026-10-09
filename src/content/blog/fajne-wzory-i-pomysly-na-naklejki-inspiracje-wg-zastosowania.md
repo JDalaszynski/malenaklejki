@@ -58,7 +58,7 @@ Organizacja spiżarni to ostatnio prawdziwy hit wnętrzarski. Zamiast pisać po 
 ### 5. Podziękowania dla gości i akcenty ślubne
 
 Sezon ślubny wymaga wyjątkowej oprawy. Personalizowane wlepki zastępują drogie, zamawiane u drukarzy winietki czy gotowe podziękowania.
-* **Co się sprawdza:** Okrągłe naklejki z monogramem pary młodej, kwieciste wieńce, naklejki plomby z napisem "Dziękujemy, że jesteście z nami", wklejane na koperty lub mini-słoiczki z miodem rozstawione na stołach, a także personalizowane etykiety na wódkę weselną z imionami i datą.
+* **Co się sprawdza:** Okrągłe naklejki z monogramem pary młodej, kwieciste wieńce, naklejki z napisem "Dziękujemy, że jesteście z nami", wklejane na koperty lub mini-słoiczki z miodem rozstawione na stołach, a także personalizowane etykiety na wódkę weselną z imionami i datą.
 * **Więcej inspiracji:** Przejdź do poradnika dedykowanego [naklejkom na koperty ślubne i podziękowaniom dla gości](/blog/naklejki-na-koperty-slubne-i-podziekowania-dla-gosci) albo sprawdź [personalizowane naklejki na alkohol](/blog/personalizowane-naklejki-na-alkohol-wyjatkowy-dodatek-na-wesela-i-imprezy) na wesela i imprezy.
 
 ### 6. Naklejki do przedszkola, szkoły i organizacji domu
@@ -77,8 +77,8 @@ Wlepki to osobna kategoria myślenia o naklejce - liczy się nie tyle miejsce na
 ### 8. Branding dla firm i rzemiosła - zrób to sam
 
 Zamiast płacić krocie agencjom reklamowym, małe polskie manufaktury i lokalni usługodawcy z powodzeniem wykorzystują kreator do oznaczania paczek, produktów i sprzętu.
-* **Co się sprawdza:** Proste logo firmy na okrągłej naklejce-plombie (do zaklejania bibuły w paczce), zabawne hasła na paczkę ("Otwórz mnie", "Twoje nowe ulubione rzeczy"), kody QR prowadzące na profil w social mediach, dane kontaktowe na urządzeniu serwisowanym u klienta czy naklejki powitalne dla nowych pracowników.
-* **Więcej inspiracji:** Zacznij od tego, jak działa [naklejka z logo firmy](/blog/naklejka-z-logo-firmy-jak-skutecznie-brandowac-swoje-produkty), a potem sprawdź [naklejki z własnym logo na słoiki i opakowania](/blog/naklejki-z-wlasnym-logo-na-sloiki-i-opakowania) dla manufaktur, [plomby na paczki wysyłkowe](/blog/plomby-na-paczki-wysylkowe-i-naklejki-na-przesylki) do e-commerce, [naklejki serwisowe dla hydraulików i instalatorów](/blog/naklejki-serwisowe-dla-firm-hydraulicy-elektrycy-i-instalatorzy) oraz [naklejki firmowe na eventy i welcome pack](/blog/naklejki-firmowe-na-eventy-welcome-pack-dla-pracownikow). Pełną ofertę dla biznesu zebraliśmy na stronie [naklejek dla firm](/naklejki-dla-firm).
+* **Co się sprawdza:** Proste logo firmy na okrągłej naklejce (do zaklejania bibuły w paczce), zabawne hasła na paczkę ("Otwórz mnie", "Twoje nowe ulubione rzeczy"), kody QR prowadzące na profil w social mediach, dane kontaktowe na sprzęcie firmowym czy naklejki powitalne dla nowych pracowników.
+* **Więcej inspiracji:** Zacznij od tego, jak działa [naklejka z logo firmy](/blog/naklejka-z-logo-firmy-jak-skutecznie-brandowac-swoje-produkty), a potem sprawdź [naklejki z własnym logo na słoiki i opakowania](/blog/naklejki-z-wlasnym-logo-na-sloiki-i-opakowania) dla manufaktur oraz [naklejki firmowe na eventy i welcome pack](/blog/naklejki-firmowe-na-eventy-welcome-pack-dla-pracownikow). Pełną ofertę dla biznesu zebraliśmy na stronie [naklejek dla firm](/naklejki-dla-firm).
 * **Koszty i kalkulacja:** Zastanawiasz się nad budżetem? Sprawdź [ile kosztują naklejki na zamówienie i ile sztuk zmieścisz na arkuszu A4](/blog/ile-kosztuja-naklejki-na-zamowienie-cena-za-arkusz-a4).
 
 ## Zanim wydrukujesz wzór - poradniki techniczne

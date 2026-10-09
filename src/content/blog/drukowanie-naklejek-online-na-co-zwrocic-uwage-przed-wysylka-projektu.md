@@ -68,7 +68,7 @@ Naklejka jest wycięta tylko do linii kleju - papier podkładowy pozostaje w ca�
 
 ### Prostokąt lub kwadrat
 
-Klasyczne cięcie po prostej linii - najszybszy i najtańszy wariant. Sprawdza się przy naklejkach z pełnym tłem, gdzie grafika "wychodzi" do samych krawędzi naklejki (tzw. full bleed). Osobnym wariantem tej rodziny jest równe koło - sprawdź, kiedy najlepiej wybrać [naklejki okrągłe z własnym nadrukiem](/blog/naklejki-okragle-z-wlasnym-nadrukiem) do logo, plomb i etykiet na słoiki.
+Klasyczne cięcie po prostej linii - najszybszy i najtańszy wariant. Sprawdza się przy naklejkach z pełnym tłem, gdzie grafika "wychodzi" do samych krawędzi naklejki (tzw. full bleed). Osobnym wariantem tej rodziny jest równe koło - sprawdź, kiedy najlepiej wybrać [naklejki okrągłe z własnym nadrukiem](/blog/naklejki-okragle-z-wlasnym-nadrukiem) do logo, naklejek na paczki i etykiet na słoiki.
 
 **Kiedy wybrać:** Gdy Twój projekt jest zdjęciem lub grafiką wypełniającą cały prostokąt, bez obrysowanego kształtu.
 
@@ -127,13 +127,12 @@ Zebraliśmy listę błędów, które najczęściej powodują rozczarowanie jako�
 Nasz kreator i model bez minimalnego nakładu sprawdza się w bardzo różnych sytuacjach. Oto kto najczęściej do nas trafia:
 
 - **Artyści i ilustratorzy** - zamawiają małe partie wlepek z własnymi grafikami jako merch dla fanów lub do sprzedaży online.
-- **Mikroprzedsiębiorstwa i e-commerce** - drukują etykiety produktowe, naklejki na paczki i branding dla swoich marek. Sprawdź nasz szczegółowy poradnik: [naklejka z logo firmy - jak skutecznie brandować produkty](/blog/naklejka-z-logo-firmy-jak-skutecznie-brandowac-swoje-produkty), a przy wysyłce zamówień - wpis o tym, jak działają [plomby na paczki wysyłkowe i naklejki na przesyłki](/blog/plomby-na-paczki-wysylkowe-i-naklejki-na-przesylki).
+- **Mikroprzedsiębiorstwa i e-commerce** - drukują etykiety produktowe, naklejki na paczki i branding dla swoich marek. Sprawdź nasz szczegółowy poradnik: [naklejka z logo firmy - jak skutecznie brandować produkty](/blog/naklejka-z-logo-firmy-jak-skutecznie-brandowac-swoje-produkty).
 - **Rzemieślnicy i producenci własnych wyrobów** - naklejki na słoiki z dżemem, etykiety na świece sojowe, kosmetyki naturalne. Więcej znajdziesz w artykule o [naklejkach z logo na słoiki i opakowania](/blog/naklejki-z-wlasnym-logo-na-sloiki-i-opakowania).
 - **Pary młode i organizatorzy imprez** - personalizowane naklejki na alkohol, podziękowania i dekoracje ślubne. Inspiracje znajdziesz w poradniku o [personalizowanych naklejkach na alkohol na wesela i imprezy](/blog/personalizowane-naklejki-na-alkohol-wyjatkowy-dodatek-na-wesela-i-imprezy).
 - **Rodzice i nauczyciele** - naklejki z imionami dla dzieci, etykiety na szkolne wyposażenie i organizacja spiżarni. Przeczytaj, jak zamawiać [naklejki własnego projektu na słoiki z przyprawami](/blog/naklejki-wlasnego-projektu-na-sloiki-z-przyprawami-zorganizuj-swoja-kuchnie).
 - **Fani wlepek i twórcy merchu** - zamawiają [wklepki i wlepy z własnym nadrukiem](/blog/wklepki-i-wlepy-z-wlasnym-nadrukiem-dla-artystow-i-spolecznosci) w małym nakładzie, bez przepłacania za setki sztuk. Sprawdź też, jak zamówić [naklejki w małym nakładzie bez przepłacania](/blog/naklejki-maly-naklad-jak-zamowic-pojedyncze-sztuki-bez-przeplacania).
 - **Nastolatki i twórcy social media** - tworzą naklejki wprost z telefonu, bez komputera i programów graficznych. Sprawdź, [jak zrobić własne naklejki w telefonie](/blog/jak-zrobic-wlasne-naklejki-w-telefonie-proste-aplikacje-i-triki) w kilka minut.
-- **Hydraulicy, elektrycy i instalatorzy** - zostawiają na obsłużonych urządzeniach trwałe naklejki "serwisowane przez" z numerem telefonu i datą przeglądu. Zobacz, jak zamówić [naklejki serwisowe dla firm](/blog/naklejki-serwisowe-dla-firm-hydraulicy-elektrycy-i-instalatorzy).
 
 ## Jak zamówić naklejki z własnym projektem - krok po kroku
 

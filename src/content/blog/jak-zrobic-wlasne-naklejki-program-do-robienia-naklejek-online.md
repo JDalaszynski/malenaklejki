@@ -77,7 +77,7 @@ Cały proces zamyka się w kilku minutach i działa też na telefonie:
 
 Nie ma minimalnego nakładu, więc zamówisz nawet jeden arkusz z jedną naklejką. To wygodny sposób, żeby najpierw sprawdzić jakość wydruku, a dopiero potem zamówić więcej.
 
-![Kartonowa paczka zaklejona okrągłą naklejką-plombą z minimalistycznym logo, obok papier kraft, sznurek i gałązka eukaliptusa.](/blog/jak-zrobic-wlasne-naklejki-program-do-robienia-naklejek-online/okragla-naklejka-plomba-z-logo-na-paczce.jpg)
+![Kartonowa paczka zaklejona okrągłą naklejką z minimalistycznym logo, obok papier kraft, sznurek i gałązka eukaliptusa.](/blog/jak-zrobic-wlasne-naklejki-program-do-robienia-naklejek-online/okragla-naklejka-z-logo-na-paczce.jpg)
 
 ## Dlaczego warto zrobić naklejki w polskim programie online
 

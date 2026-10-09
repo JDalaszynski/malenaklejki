@@ -107,6 +107,19 @@ const nextConfig: NextConfig = {
       { source: "/gotowe-arkusze/:path+", destination: "/gotowe-zestawy/:path+", permanent: true },
       { source: "/api/gotowe-arkusze/:path+", destination: "/api/gotowe-zestawy/:path+", permanent: true },
       { source: "/admin/arkusze/:path+", destination: "/admin/zestawy/:path+", permanent: true },
+      // Wpisy o naklejkach serwisowych i plombach usunięte (2026-10-09): nasze
+      // naklejki nie mają kleju permanentnego, więc nie pozycjonujemy ich jako
+      // zabezpieczeń ani oznaczeń trwałych. Ruch kierujemy na stronę dla firm.
+      {
+        source: "/blog/naklejki-serwisowe-dla-firm-hydraulicy-elektrycy-i-instalatorzy",
+        destination: "/naklejki-dla-firm",
+        permanent: true,
+      },
+      {
+        source: "/blog/plomby-na-paczki-wysylkowe-i-naklejki-na-przesylki",
+        destination: "/naklejki-dla-firm",
+        permanent: true,
+      },
     ];
   },
 

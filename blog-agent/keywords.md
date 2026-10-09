@@ -2,6 +2,8 @@
 
 Oto lista rzeczywistych fraz kluczowych wyszukiwanych przez użytkowników w naszej niszy. Lista jest uporządkowana od najbardziej popularnych (największy wolumen wyszukiwań) do niszowych (long-tail). Wszystkie są istotne dla budowania autorytetu tematycznego (Topical Authority).
 
+> ⛔ **Frazy wykluczone (2026-10-09):** `naklejki serwisowe`, `naklejka serwisowana przez`, `naklejki gwarancyjne`, `plomby na paczki wysyłkowe` oraz pochodne (plomby, naklejki plombujące) - nie targetuj ich, patrz `facts.md`. Wpisy usunięte i przekierowane.
+
 ---
 
 ## 1. Główne i Ogólne Frazy (Wysoki wolumen)

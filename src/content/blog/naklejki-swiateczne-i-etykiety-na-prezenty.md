@@ -73,7 +73,7 @@ Pamiętaj, że klej jest mocny: naklejkę odkleisz czysto, bez śladów, ale nie
 
 Grudzień to szczyt wysyłek w sklepach internetowych i sezon upominków firmowych. Naklejka z logo i świątecznym akcentem na paczce czy pudełku z upominkiem kosztuje ułamek ceny nadrukowanego kartonu i nie wymaga zamawiania tysięcy sztuk.
 
-- **Sklepy internetowe** - świąteczna wersja naklejki na paczkę na cały sezon. Jak dobrać rozmiar i gdzie ją naklejać, opisaliśmy we wpisie o [plombach na paczki wysyłkowe](/blog/plomby-na-paczki-wysylkowe-i-naklejki-na-przesylki). To naklejka informacyjna i dekoracyjna - nie ma właściwości zabezpieczających typu security.
+- **Sklepy internetowe** - świąteczna wersja naklejki na paczkę na cały sezon. Rozmiar dobierzesz w kreatorze, widząc od razu, ile sztuk zmieści się na arkuszu. To naklejka informacyjna i dekoracyjna - nie ma właściwości zabezpieczających typu security.
 - **Upominki dla pracowników** - naklejki z logo i imionami na paczki świąteczne. Pomysły z zestawów powitalnych przeniesiesz na święta bez zmian - patrz [naklejki firmowe na eventy](/blog/naklejki-firmowe-na-eventy-welcome-pack-dla-pracownikow).
 - **Faktura VAT** - jesteśmy płatnikiem VAT i wystawiamy fakturę na NIP. Pełna oferta dla firm: [naklejki dla firm](/naklejki-dla-firm).
 

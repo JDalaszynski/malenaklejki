@@ -120,7 +120,7 @@ Brak minimalnego nakładu otwiera zastosowania, które przy tradycyjnym druku s�
 
 ### Firma, e-commerce i opakowania
 
-Znakowanie produktów, paczek i sprzętu bez zamawiania tysięcy sztuk. Zacznij od tego, jak działa [naklejka z logo firmy](/blog/naklejka-z-logo-firmy-jak-skutecznie-brandowac-swoje-produkty), a potem sprawdź [naklejki z własnym logo na słoiki i opakowania](/blog/naklejki-z-wlasnym-logo-na-sloiki-i-opakowania) dla manufaktur, [plomby na paczki wysyłkowe](/blog/plomby-na-paczki-wysylkowe-i-naklejki-na-przesylki) do e-commerce, [naklejki serwisowe dla hydraulików i instalatorów](/blog/naklejki-serwisowe-dla-firm-hydraulicy-elektrycy-i-instalatorzy) oraz [naklejki firmowe na eventy i welcome pack](/blog/naklejki-firmowe-na-eventy-welcome-pack-dla-pracownikow). Ofertę dla biznesu zebraliśmy na stronie [naklejek dla firm](/naklejki-dla-firm).
+Znakowanie produktów, paczek i sprzętu bez zamawiania tysięcy sztuk. Zacznij od tego, jak działa [naklejka z logo firmy](/blog/naklejka-z-logo-firmy-jak-skutecznie-brandowac-swoje-produkty), a potem sprawdź [naklejki z własnym logo na słoiki i opakowania](/blog/naklejki-z-wlasnym-logo-na-sloiki-i-opakowania) dla manufaktur oraz [naklejki firmowe na eventy i welcome pack](/blog/naklejki-firmowe-na-eventy-welcome-pack-dla-pracownikow). Ofertę dla biznesu zebraliśmy na stronie [naklejek dla firm](/naklejki-dla-firm).
 
 ### Dom, kuchnia i organizacja
 

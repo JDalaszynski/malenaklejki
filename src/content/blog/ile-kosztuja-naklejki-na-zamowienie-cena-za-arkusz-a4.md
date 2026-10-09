@@ -32,10 +32,10 @@ W poniższej tabeli przedstawiamy orientacyjne wyliczenia dla najpopularniejszyc
 
 | Rozmiar naklejki | Orientacyjna liczba sztuk na A4 | Koszt 1 sztuki (brutto) | Przykładowe zastosowanie |
 | :--- | :--- | :--- | :--- |
-| **3 x 3 cm** | ok. 40 - 50 szt. | **~0,98 - 1,23 zł** | Plomby na paczki, małe logo, etykiety na słoiczki z przyprawami |
+| **3 x 3 cm** | ok. 40 - 50 szt. | **~0,98 - 1,23 zł** | Naklejki na paczki, małe logo, etykiety na słoiczki z przyprawami |
 | **4 x 4 cm** | ok. 24 - 30 szt. | **~1,63 - 2,04 zł** | Wlepki promocyjne, etykiety na świece, naklejki na kubki |
 | **5 x 5 cm** | ok. 15 - 20 szt. | **~2,45 - 3,27 zł** | Standardowe wlepki merchowe, naklejki na laptopa i bidon |
-| **6 x 6 cm** | ok. 10 - 12 szt. | **~4,08 - 4,90 zł** | Etykiety serwisowe, branding kartonów wysyłkowych |
+| **6 x 6 cm** | ok. 10 - 12 szt. | **~4,08 - 4,90 zł** | Etykiety firmowe, branding kartonów wysyłkowych |
 | **8 x 8 cm** | ok. 6 szt. | **~8,17 zł** | Naklejki na kask, auto, motocykl, wyrazisty merch dla twórców |
 | **10 x 10 cm** | ok. 4 szt. | **~12,25 zł** | Duże oznaczenia sprzętu, tabliczki informacyjne, naklejki na witryny |
 

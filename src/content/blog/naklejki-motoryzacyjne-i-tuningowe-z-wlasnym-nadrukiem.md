@@ -25,7 +25,7 @@ Najczęstsze zastosowania naklejek motoryzacyjnych z własnym nadrukiem:
 - **Numery startowe i oznaczenia trackdayowe** - wlepki na drzwi i błotniki, wymieniane po każdym sezonie.
 - **Nazwa projektu i hasła** - własny napis, ksywka auta albo tekst w stylistyce JDM czy stance na tylnej szybie.
 - **Logotypy sponsorów i marek części** - komplet mniejszych naklejek układany na jednym arkuszu.
-- **Oznaczenia serwisowe i techniczne** - ciśnienia w ogumieniu, data wymiany oleju, informacja o rodzaju paliwa w klapce wlewu.
+- **Oznaczenia techniczne i informacyjne** - ciśnienia w ogumieniu, data wymiany oleju, informacja o rodzaju paliwa w klapce wlewu.
 - **Naklejki na kask i bak motocykla** - personalizacja sprzętu, którego producent nie oferuje w wersji na zamówienie.
 
 ![Kolaż kolorowych naklejek motoryzacyjnych w stylistyce JDM i stance z hasłami Low and Slow, Boost Life oraz Turbo Squad, sylwetkami aut i turbosprężarkami.](/blog/naklejki-motoryzacyjne-i-tuningowe-z-wlasnym-nadrukiem/naklejki-motoryzacyjne-kolaz-wzorow-jdm-i-stance.png)

@@ -48,7 +48,7 @@ Nie każde zastosowanie wymaga folii. Poniżej te, w których materiał decyduje
 
 ![Arkusz z etykietami na słoiki obok szklanych słoi - przykład wodoodpornych naklejek, które nie rozmiękają od wilgoci w lodówce.](/blog/naklejki-wodoodporne-i-winylowe-jaka-folia-i-jak-dlugo-wytrzyma/wodoodporne-etykiety-na-slojach-i-arkusz.jpeg)
 - **Rower, hulajnoga, kask, sprzęt turystyczny** - deszcz plus stała ekspozycja na słońce. Szczegóły dla tej grupy zebraliśmy we wpisie o [naklejkach na rower i akcesoria sportowe](/blog/naklejki-na-rower-i-akcesoria-sportowe-dla-pasjonatow).
-- **Naklejki serwisowe na urządzeniach klientów** - piec, klimatyzacja czy pompa ciepła bywają montowane w wilgotnych pomieszczeniach lub na zewnątrz budynku. Jak przygotować taką naklejkę, opisaliśmy w poradniku o [naklejkach serwisowych dla firm](/blog/naklejki-serwisowe-dla-firm-hydraulicy-elektrycy-i-instalatorzy).
+- **Naklejki na sprzęcie w wilgotnych miejscach** - urządzenia montowane w łazienkach, kotłowniach czy na zewnątrz budynku wymagają folii winylowej, która nie chłonie wody.
 - **Paczki i przesyłki** - etykieta musi przetrwać transport w każdej pogodzie, zanim dotrze do odbiorcy.
 
 ## Jak przygotować plik, żeby nadruk zachował kolory

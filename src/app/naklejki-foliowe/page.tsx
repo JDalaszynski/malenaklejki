@@ -149,7 +149,7 @@ const USE_CASES: {
   {
     icon: Package,
     title: "Produkty i wysyłki",
-    text: "Trwałe etykiety produktowe i plomby na paczki, które nie odklejają się od wilgoci w transporcie ani nie płowieją na wystawie.",
+    text: "Trwałe etykiety produktowe i naklejki na paczki, które nie odklejają się od wilgoci w transporcie ani nie płowieją na wystawie.",
   },
 ];
 
