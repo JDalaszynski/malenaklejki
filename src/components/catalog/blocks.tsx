@@ -11,6 +11,7 @@ import {
 } from "@/lib/sheets/schema";
 import { SHEET_PRICE, type CatalogSheet } from "@/lib/sheets/types";
 import { getStickersNoun } from "@/lib/utils/polish";
+import { BestsellerBadge } from "./BestsellerBadge";
 import { SheetImage } from "./SheetImage";
 
 /**
@@ -87,9 +88,12 @@ export function SheetCard({ sheet }: { sheet: CatalogSheet }) {
     <li className="flex flex-col rounded-3xl border border-border/40 bg-white dark:bg-[#003a3b] shadow-sm overflow-hidden">
       <Link
         href={sheetPath(sheet.slug)}
-        className="group block bg-[#edf6f2] dark:bg-[#002c2e] p-4 sm:p-5"
-        aria-label={`${sheetHeading(sheet)} - zobacz zestaw`}
+        className="group relative block bg-[#edf6f2] dark:bg-[#002c2e] p-4 sm:p-5"
+        aria-label={`${sheetHeading(sheet)}${sheet.bestseller ? ", bestseller" : ""} - zobacz zestaw`}
       >
+        {sheet.bestseller && (
+          <BestsellerBadge size="md" className="absolute top-3 left-3 z-10 shadow-sm" />
+        )}
         <span className="relative block mx-auto w-full max-w-[15rem] aspect-[210/297] rounded-md bg-white overflow-hidden shadow-[0_10px_30px_rgba(0,71,73,0.12)] transition-transform duration-300 group-hover:-translate-y-1">
           {sheet.previewUrl && (
             <SheetImage

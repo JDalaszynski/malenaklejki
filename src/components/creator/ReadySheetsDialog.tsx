@@ -14,7 +14,6 @@ import {
   Loader2,
   Plus,
   RotateCcw,
-  Star,
   X,
   ZoomIn,
 } from "lucide-react";
@@ -26,21 +25,10 @@ import { loadReadySheets } from "@/lib/sheets/client";
 import { reportReadySheetsEvent } from "@/lib/sheets/trackUsage";
 import { SHEET_PRICE, type PublicSheetSummary, type PublicSheetsResponse } from "@/lib/sheets/types";
 import { getStickersNoun } from "@/lib/utils/polish";
+import { BestsellerBadge } from "@/components/catalog/BestsellerBadge";
 import { SheetImage } from "@/components/catalog/SheetImage";
 
 const ALL = "";
-
-/** Oznaczenie zestawu wybranego w panelu jako bestseller. */
-function BestsellerBadge({ className = "" }: { className?: string }) {
-  return (
-    <span
-      className={`inline-flex items-center gap-1 rounded-full bg-[#FFCD08] text-[#004749] text-[10px] font-extrabold pl-1.5 pr-2 py-0.5 ${className}`}
-    >
-      <Star className="w-3 h-3 fill-current" aria-hidden />
-      Bestseller
-    </span>
-  );
-}
 
 const FOCUSABLE = 'button:not([disabled]), [href], [tabindex]:not([tabindex="-1"])';
 
@@ -397,7 +385,7 @@ export default function ReadySheetsDialog({
                 <div>
                   {(detail.bestseller || detail.category) && (
                     <div className="flex flex-wrap items-center gap-1.5 mb-2">
-                      {detail.bestseller && <BestsellerBadge className="text-[11px] py-1 pr-2.5" />}
+                      {detail.bestseller && <BestsellerBadge size="md" />}
                       {detail.category && (
                         <span className="inline-block rounded-full bg-primary/10 text-primary text-[11px] font-extrabold px-2.5 py-1">
                           {detail.category}
