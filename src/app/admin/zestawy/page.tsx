@@ -8,7 +8,6 @@ import { Pagination } from "@/components/admin/Pagination";
 import { StatTile } from "@/components/admin/ProfitStats";
 import { StatusPill } from "@/components/account/StatusPill";
 import { SheetGrid } from "@/components/sheets/SheetGrid";
-import { SheetOrderButton } from "@/components/sheets/SheetOrderDialog";
 import { SheetsFilters } from "@/components/sheets/SheetsFilters";
 import { requireAdmin } from "@/lib/auth/dal";
 import { parsePage, type AdminSearchParams } from "@/lib/admin/filters";
@@ -91,18 +90,6 @@ export default async function AdminSheetsPage({
             <BarChart3 className="w-4 h-4" aria-hidden />
             Statystyki zestawów
           </Link>
-          <SheetOrderButton
-            sheets={inShop.map((sheet) => ({
-              id: sheet.id,
-              name: sheet.name,
-              category: sheet.category,
-              category2: sheet.category2,
-              previewUrl: sheet.previewUrl,
-              stickerCount: sheet.stickerCount,
-              publishedAt: sheet.publishedAt,
-              createdAt: sheet.createdAt,
-            }))}
-          />
           <Link
             href="/admin/zestawy/baza-naklejek"
             className="inline-flex items-center gap-2 rounded-xl text-sm font-bold h-11 px-5 border border-slate-300 dark:border-white/20 bg-background hover:bg-slate-50 dark:hover:bg-white/5 transition-all active:scale-[0.98]"

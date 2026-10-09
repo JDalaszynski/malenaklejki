@@ -66,6 +66,7 @@ function toSheet(id: string, data: FirebaseFirestore.DocumentData): StickerSheet
     printUrl: data.printUrl ?? null,
     cutLinesUrl: data.cutLinesUrl ?? null,
     assetsStale: data.assetsStale === true,
+    bestseller: data.bestseller === true,
     status: data.status === "published" ? "published" : "draft",
     stickerCount: typeof data.stickerCount === "number" ? data.stickerCount : 0,
     libraryIds: Array.isArray(data.libraryIds) ? data.libraryIds : [],

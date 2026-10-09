@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Layers, Palmtree, Truck } from "lucide-react";
+import { ArrowUpDown, Layers, Palmtree, Truck } from "lucide-react";
 
 import { AdminLayout } from "@/components/admin/AdminLayout";
 import { ReadySheetsModeForm } from "@/components/admin/ReadySheetsModeForm";
@@ -7,6 +7,7 @@ import { SettingsNav, type SettingsNavGroup } from "@/components/admin/SettingsN
 import { SettingsSection } from "@/components/admin/SettingsSection";
 import { ShippingEstimateForm } from "@/components/admin/ShippingEstimateForm";
 import { VacationSettingsForm } from "@/components/admin/VacationSettingsForm";
+import { SheetOrderCard } from "@/components/sheets/SheetOrderDialog";
 import { requireAdmin } from "@/lib/auth/dal";
 import { READY_SHEETS_MODE_LABELS } from "@/lib/settings/readySheets";
 import { getReadySheetsSettingsFresh } from "@/lib/settings/readySheetsStore";
@@ -14,7 +15,8 @@ import { businessDaysLabel } from "@/lib/settings/shippingEstimate";
 import { getShippingEstimateSettingsFresh } from "@/lib/settings/shippingEstimateStore";
 import { resolveVacation, warsawToday } from "@/lib/settings/vacation";
 import { getVacationSettingsFresh } from "@/lib/settings/vacationStore";
-import { countPublishedSheets } from "@/lib/sheets/store";
+import { applySheetOrder } from "@/lib/sheets/order";
+import { getSheetOrder, listSheets } from "@/lib/sheets/store";
 
 export const metadata: Metadata = {
   title: "Panel — ustawienia sklepu",
@@ -31,12 +33,20 @@ export default async function AdminSettingsPage() {
   const admin = await requireAdmin();
   // Celowo pomijamy pamięć podręczną — panel ma pokazywać stan zapisany
   // w bazie, a nie to, co akurat widzą klienci.
-  const [vacation, readySheets, shipping, publishedCount] = await Promise.all([
+  const [vacation, readySheets, shipping, sheets, savedOrder] = await Promise.all([
     getVacationSettingsFresh(),
     getReadySheetsSettingsFresh(),
     getShippingEstimateSettingsFresh(),
-    countPublishedSheets(),
+    listSheets(),
+    getSheetOrder(),
   ]);
+
+  // Opublikowane zestawy w kolejności, w jakiej widzi je klient.
+  const inShop = applySheetOrder(
+    sheets.filter((sheet) => sheet.status === "published"),
+    savedOrder
+  );
+  const publishedCount = inShop.length;
 
   const vacationState = resolveVacation(vacation, warsawToday());
 
@@ -82,6 +92,12 @@ export default async function AdminSettingsPage() {
           tone:
             readySheets.mode === "on" ? "success" : readySheets.mode === "preview" ? "warning" : "neutral",
         },
+        {
+          id: "kolejnosc-zestawow",
+          label: "Kolejność zestawów",
+          status: savedOrder.length > 0 ? "Własna" : "Od najnowszych",
+          tone: "neutral",
+        },
       ],
     },
   ];
@@ -90,7 +106,7 @@ export default async function AdminSettingsPage() {
     <AdminLayout
       adminEmail={admin.email ?? ""}
       title="Ustawienia sklepu"
-      subtitle="Terminy i komunikaty dla klientów oraz widoczność gotowych zestawów. Każdą sekcję zapisujesz osobno."
+      subtitle="Terminy i komunikaty dla klientów oraz widoczność i kolejność gotowych zestawów. Każdą sekcję zapisujesz osobno."
     >
       <div className="grid grid-cols-1 lg:grid-cols-[17rem_minmax(0,1fr)] gap-6 lg:gap-10 items-start">
         <SettingsNav groups={groups} />
@@ -121,6 +137,26 @@ export default async function AdminSettingsPage() {
             description="Czy klienci widzą opublikowane gotowe zestawy w kreatorze na stronie głównej."
           >
             <ReadySheetsModeForm settings={readySheets} publishedCount={publishedCount} />
+          </SettingsSection>
+
+          <SettingsSection
+            id="kolejnosc-zestawow"
+            icon={ArrowUpDown}
+            title="Kolejność zestawów"
+            description="W jakiej kolejności klienci widzą gotowe zestawy: w galerii w kreatorze, w katalogu i na stronach zestawów."
+          >
+            <SheetOrderCard
+              sheets={inShop.map((sheet) => ({
+                id: sheet.id,
+                name: sheet.name,
+                category: sheet.category,
+                category2: sheet.category2,
+                previewUrl: sheet.previewUrl,
+                stickerCount: sheet.stickerCount,
+                publishedAt: sheet.publishedAt,
+                createdAt: sheet.createdAt,
+              }))}
+            />
           </SettingsSection>
         </div>
       </div>

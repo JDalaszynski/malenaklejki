@@ -38,6 +38,7 @@ export default async function EditSheetPage({ params }: { params: Promise<{ id: 
         subtitle: sheet.subtitle,
         description: sheet.description,
         motifs: sheet.motifs,
+        bestseller: sheet.bestseller,
         status: sheet.status,
         updatedAt: sheet.updatedAt,
       }}

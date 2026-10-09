@@ -260,6 +260,8 @@ const saveSchema = z.object({
     .max(MAX_MOTIFS)
     .optional()
     .default([]),
+  /** Bez wartości (np. karta ze starszą wersją panelu) oznaczenie zostaje, jakie było. */
+  bestseller: z.boolean().optional(),
   status: z.enum(["draft", "published"]),
   stickers: stickersSchema,
   preview: z.string().max(5_000_000).nullable().optional(),
@@ -403,6 +405,7 @@ export async function saveSheet(
       subtitle: input.subtitle,
       description: input.description,
       motifs: input.motifs,
+      ...(input.bestseller === undefined ? {} : { bestseller: input.bestseller }),
       // Pliki pasują do układu tylko w chwili publikacji z edytora; zapis
       // szkicu mógł układ zmienić, więc stare przestają się liczyć.
       ...(assets ? { ...assets, assetsStale: false } : { assetsStale: true }),
@@ -496,6 +499,43 @@ export async function setSheetStatus(raw: {
   return { success: true };
 }
 
+/**
+ * Oznaczenie „Bestseller” prosto z listy. Nie dotyka układu ani plików do
+ * druku, więc opublikowany zestaw nie wymaga ponownej publikacji z edytora.
+ */
+export async function setSheetBestseller(raw: {
+  id: string;
+  bestseller: boolean;
+}): Promise<Result> {
+  const actor = await requireAdminActor();
+  if (!actor) return DENIED;
+
+  const id = idSchema.safeParse(raw?.id);
+  const bestseller = z.boolean().safeParse(raw?.bestseller);
+  if (!id.success || !bestseller.success) return { success: false, error: "Nieprawidłowe dane." };
+
+  const sheet = await getSheet(id.data);
+  if (!sheet) return { success: false, error: "Ten zestaw został usunięty." };
+  if (sheet.bestseller === bestseller.data) return { success: true };
+
+  // `updatedAt` rośnie celowo: edytor otwarty w innej karcie ma zapytać
+  // o nadpisanie, zamiast po cichu przywrócić poprzednie oznaczenie.
+  await db.collection(SHEETS_COLLECTION).doc(sheet.id).update({
+    bestseller: bestseller.data,
+    updatedAt: new Date().toISOString(),
+    updatedBy: actor.email,
+  });
+
+  await recordAudit({
+    actorEmail: actor.email,
+    action: bestseller.data ? "Zestaw oznaczony jako bestseller" : "Zestaw bez oznaczenia bestseller",
+    details: `„${sheet.name}"${sheet.category ? ` (${sheet.category})` : ""}`,
+  });
+
+  await refreshSheetViews(sheet.id);
+  return { success: true };
+}
+
 /** Kopia zestawu jako nowy szkic — do przerobienia bez ruszania oryginału. */
 export async function duplicateSheet(rawId: string): Promise<Result<{ id: string }>> {
   const actor = await requireAdminActor();
@@ -532,6 +572,8 @@ export async function duplicateSheet(rawId: string): Promise<Result<{ id: string
     printUrl: null,
     cutLinesUrl: null,
     assetsStale: true,
+    // Bestsellerem jest oryginał — kopia zaczyna bez oznaczenia.
+    bestseller: false,
     status: "draft",
     stickerCount: source.stickerCount,
     libraryIds: source.libraryIds,

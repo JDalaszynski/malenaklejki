@@ -83,7 +83,7 @@ export function SheetGrid({
             </div>
             {sheet.status === "published" && shopPositions[sheet.id] && (
               <span
-                title="Miejsce w sklepie — zmienisz je przyciskiem „Kolejność w sklepie”"
+                title="Miejsce w sklepie — zmienisz je w Ustawieniach, w sekcji „Kolejność zestawów”"
                 className="absolute top-3 right-3 inline-flex items-center rounded-full border border-border/60 bg-background/90 px-2.5 py-1 text-xs font-black text-foreground tabular-nums shadow-sm"
               >
                 nr {shopPositions[sheet.id]}
@@ -121,7 +121,12 @@ export function SheetGrid({
                 {formatDateTime(sheet.updatedAt)}
               </p>
             </div>
-            <SheetCardActions id={sheet.id} name={sheet.name} status={sheet.status} />
+            <SheetCardActions
+              id={sheet.id}
+              name={sheet.name}
+              status={sheet.status}
+              bestseller={sheet.bestseller}
+            />
           </div>
         </li>
       ))}

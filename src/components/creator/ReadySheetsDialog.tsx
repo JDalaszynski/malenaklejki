@@ -14,6 +14,7 @@ import {
   Loader2,
   Plus,
   RotateCcw,
+  Star,
   X,
   ZoomIn,
 } from "lucide-react";
@@ -28,6 +29,18 @@ import { getStickersNoun } from "@/lib/utils/polish";
 import { SheetImage } from "@/components/catalog/SheetImage";
 
 const ALL = "";
+
+/** Oznaczenie zestawu wybranego w panelu jako bestseller. */
+function BestsellerBadge({ className = "" }: { className?: string }) {
+  return (
+    <span
+      className={`inline-flex items-center gap-1 rounded-full bg-[#FFCD08] text-[#004749] text-[10px] font-extrabold pl-1.5 pr-2 py-0.5 ${className}`}
+    >
+      <Star className="w-3 h-3 fill-current" aria-hidden />
+      Bestseller
+    </span>
+  );
+}
 
 const FOCUSABLE = 'button:not([disabled]), [href], [tabindex]:not([tabindex="-1"])';
 
@@ -382,10 +395,15 @@ export default function ReadySheetsDialog({
 
               <div className="flex flex-col gap-4 sm:overflow-y-auto sm:pr-1">
                 <div>
-                  {detail.category && (
-                    <span className="inline-block rounded-full bg-primary/10 text-primary text-[11px] font-extrabold px-2.5 py-1 mb-2">
-                      {detail.category}
-                    </span>
+                  {(detail.bestseller || detail.category) && (
+                    <div className="flex flex-wrap items-center gap-1.5 mb-2">
+                      {detail.bestseller && <BestsellerBadge className="text-[11px] py-1 pr-2.5" />}
+                      {detail.category && (
+                        <span className="inline-block rounded-full bg-primary/10 text-primary text-[11px] font-extrabold px-2.5 py-1">
+                          {detail.category}
+                        </span>
+                      )}
+                    </div>
                   )}
                   <h3 className="text-2xl font-extrabold text-foreground leading-tight text-balance">
                     {detail.name}
@@ -451,7 +469,7 @@ export default function ReadySheetsDialog({
                       type="button"
                       onClick={() => openDetail(sheet)}
                       disabled={busy}
-                      aria-label={`${sheet.name}, ${sheet.stickerCount} ${getStickersNoun(sheet.stickerCount)} - zobacz z bliska`}
+                      aria-label={`${sheet.name}${sheet.bestseller ? ", bestseller" : ""}, ${sheet.stickerCount} ${getStickersNoun(sheet.stickerCount)} - zobacz z bliska`}
                       className="group w-full text-left cursor-pointer rounded-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 disabled:cursor-default"
                     >
                       <span
@@ -469,10 +487,16 @@ export default function ReadySheetsDialog({
                             />
                           )}
                         </span>
-                        {active && (
-                          <span className="absolute top-1.5 left-1.5 inline-flex items-center gap-1 rounded-full bg-primary text-primary-foreground text-[10px] font-extrabold pl-1.5 pr-2 py-0.5 shadow">
-                            <Check className="w-3 h-3" aria-hidden />
-                            W kreatorze
+                        {(active || sheet.bestseller) && (
+                          // Na wąskim kafelku oba oznaczenia nie mieszczą się obok siebie — wtedy się zawijają.
+                          <span className="absolute top-1.5 inset-x-1.5 flex flex-wrap items-start gap-1">
+                            {active && (
+                              <span className="inline-flex items-center gap-1 rounded-full bg-primary text-primary-foreground text-[10px] font-extrabold pl-1.5 pr-2 py-0.5 shadow">
+                                <Check className="w-3 h-3" aria-hidden />
+                                W kreatorze
+                              </span>
+                            )}
+                            {sheet.bestseller && <BestsellerBadge className="ml-auto shadow" />}
                           </span>
                         )}
                         <span

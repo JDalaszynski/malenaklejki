@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { Copy, EyeOff, Loader2, Pencil, Rocket, Trash2 } from "lucide-react";
 
-import { deleteSheet, duplicateSheet, setSheetStatus } from "@/app/actions/sheets";
+import { deleteSheet, duplicateSheet, setSheetBestseller, setSheetStatus } from "@/app/actions/sheets";
 import type { SheetStatus } from "@/lib/sheets/types";
 
 const iconButton =
@@ -19,18 +19,25 @@ export function SheetCardActions({
   id,
   name,
   status,
+  bestseller,
 }: {
   id: string;
   name: string;
   status: SheetStatus;
+  bestseller: boolean;
 }) {
   const router = useRouter();
-  const [pending, setPending] = useState<"status" | "duplicate" | "delete" | null>(null);
+  const [pending, setPending] = useState<"status" | "duplicate" | "delete" | "bestseller" | null>(
+    null
+  );
   const [, startTransition] = useTransition();
   const [error, setError] = useState<string | null>(null);
   const [blockers, setBlockers] = useState<string[]>([]);
 
-  const run = async (kind: "status" | "duplicate" | "delete", action: () => Promise<void>) => {
+  const run = async (
+    kind: "status" | "duplicate" | "delete" | "bestseller",
+    action: () => Promise<void>
+  ) => {
     setError(null);
     setBlockers([]);
     setPending(kind);
@@ -54,6 +61,16 @@ export function SheetCardActions({
       if (!result.success) {
         setError(result.error);
         setBlockers(result.blockers ?? []);
+        return;
+      }
+      startTransition(() => router.refresh());
+    });
+
+  const toggleBestseller = (next: boolean) =>
+    run("bestseller", async () => {
+      const result = await setSheetBestseller({ id, bestseller: next });
+      if (!result.success) {
+        setError(result.error);
         return;
       }
       startTransition(() => router.refresh());
@@ -111,6 +128,23 @@ export function SheetCardActions({
           {status === "published" ? "Do szkiców" : "Opublikuj"}
         </button>
       </div>
+
+      <label
+        title="Oznaczenie „Bestseller” przy zestawie w galerii kreatora"
+        className="flex items-center gap-2 px-0.5 text-xs font-bold text-foreground cursor-pointer select-none"
+      >
+        <input
+          type="checkbox"
+          checked={bestseller}
+          disabled={pending !== null}
+          onChange={(event) => toggleBestseller(event.target.checked)}
+          className="w-4 h-4 rounded border-border text-primary focus:ring-primary cursor-pointer disabled:cursor-not-allowed disabled:opacity-60"
+        />
+        Bestseller
+        {pending === "bestseller" && (
+          <Loader2 className="w-3.5 h-3.5 animate-spin text-muted-foreground" aria-hidden />
+        )}
+      </label>
 
       <div className="flex items-center gap-4 px-0.5">
         <button

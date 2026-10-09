@@ -93,7 +93,8 @@ async function readPublishedSheets(): Promise<{
       "productImageUrl",
       "printUrl",
       "cutLinesUrl",
-      "assetsStale"
+      "assetsStale",
+      "bestseller"
     )
     .get();
 
@@ -113,6 +114,7 @@ async function readPublishedSheets(): Promise<{
       // Adres dostaje tylko zestaw z kompletem do katalogu — inaczej link
       // z galerii prowadziłby na stronę, której nie ma.
       slug: isCatalogReady(data) ? data.slug : null,
+      bestseller: data.bestseller === true,
       subtitle: data.subtitle ?? "",
       description: data.description ?? "",
       motifs: Array.isArray(data.motifs) ? data.motifs : [],
@@ -142,7 +144,7 @@ async function readPublishedSheets(): Promise<{
 
 // Numer w kluczu rośnie razem z kształtem danych — wpis zapamiętany przez
 // starszą wersję kodu nie może wrócić bez nowych pól ani bez kolejności.
-const getPublishedSheets = unstable_cache(readPublishedSheets, ["gotowe-zestawy-lista-5"], {
+const getPublishedSheets = unstable_cache(readPublishedSheets, ["gotowe-zestawy-lista-6"], {
   tags: [READY_SHEETS_TAG],
   revalidate: 3600,
 });
@@ -154,16 +156,19 @@ export async function getGallerySheets(): Promise<{
 }> {
   const { sheets, categories } = await getPublishedSheets();
   return {
-    sheets: sheets.map(({ id, name, category, categories, previewUrl, stickerCount, version, slug }) => ({
-      id,
-      name,
-      category,
-      categories,
-      previewUrl,
-      stickerCount,
-      version,
-      slug,
-    })),
+    sheets: sheets.map(
+      ({ id, name, category, categories, previewUrl, stickerCount, version, slug, bestseller }) => ({
+        id,
+        name,
+        category,
+        categories,
+        previewUrl,
+        stickerCount,
+        version,
+        slug,
+        bestseller,
+      })
+    ),
     categories,
   };
 }

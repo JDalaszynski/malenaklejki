@@ -61,6 +61,8 @@ export type StickerSheet = {
   cutLinesUrl: string | null;
   /** Układ zmienił się po przygotowaniu plików — trzeba opublikować ponownie z edytora. */
   assetsStale: boolean;
+  /** Oznaczenie „Bestseller” w galerii przy kreatorze — wybiera je właściciel. */
+  bestseller: boolean;
   status: SheetStatus;
   stickerCount: number;
   /** Naklejki z bazy użyte w zestawie (bez powtórzeń) — do licznika użyć w bazie. */
@@ -106,6 +108,8 @@ export type PublicSheetSummary = {
   version: string;
   /** Adres strony zestawu; `null`, dopóki zestaw nie ma kompletu do katalogu. */
   slug: string | null;
+  /** Zestaw oznaczony w panelu jako bestseller. */
+  bestseller: boolean;
 };
 
 /**

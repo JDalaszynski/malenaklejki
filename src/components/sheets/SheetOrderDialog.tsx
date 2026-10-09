@@ -1,11 +1,13 @@
 "use client";
 
 import { useRef, useState } from "react";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { AnimatePresence } from "framer-motion";
 import { ArrowDown, ArrowUp, ArrowUpDown, GripVertical, Loader2 } from "lucide-react";
 
 import { saveSheetsOrder } from "@/app/actions/sheets";
+import { Card } from "@/components/admin/AdminLayout";
 import { byNewest, moveItem } from "@/lib/sheets/order";
 import { getStickersNoun } from "@/lib/utils/polish";
 import { Modal, primaryButtonClass, secondaryButtonClass } from "./Modal";
@@ -26,33 +28,79 @@ const arrowButton =
   "inline-flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 rounded-xl border border-slate-300 dark:border-white/20 bg-background text-muted-foreground hover:text-foreground hover:bg-slate-50 dark:hover:bg-white/5 transition-all active:scale-[0.95] cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed";
 
 /**
- * Przycisk w nagłówku listy zestawów i okno, w którym właściciel układa
- * kolejność zestawów w sklepie. `sheets` przychodzą w kolejności, w jakiej
- * klient widzi je dziś.
+ * Karta w ustawieniach sklepu: obecna kolejność zestawów i okno, w którym
+ * właściciel ją układa. `sheets` przychodzą w kolejności, w jakiej klient
+ * widzi je dziś.
  */
-export function SheetOrderButton({ sheets }: { sheets: OrderableSheet[] }) {
+export function SheetOrderCard({ sheets }: { sheets: OrderableSheet[] }) {
   const [open, setOpen] = useState(false);
 
   return (
-    <>
-      <button
-        type="button"
-        onClick={() => setOpen(true)}
-        disabled={sheets.length < 2}
-        title={
-          sheets.length < 2
-            ? "Do ułożenia kolejności potrzebne są co najmniej dwa opublikowane zestawy"
-            : "Ustaw, w jakiej kolejności zestawy widzą klienci"
-        }
-        className="inline-flex items-center gap-2 rounded-xl text-sm font-bold h-11 px-5 border border-slate-300 dark:border-white/20 bg-background hover:bg-slate-50 dark:hover:bg-white/5 transition-all active:scale-[0.98] cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
-      >
-        <ArrowUpDown className="w-4 h-4" aria-hidden />
-        Kolejność w sklepie
-      </button>
+    <Card
+      headingLevel={3}
+      title="Zestawy w sklepie"
+      description="Pierwszy zestaw klient widzi na początku galerii w kreatorze i katalogu."
+    >
+      <div className="flex flex-col gap-4">
+        {sheets.length === 0 ? (
+          <p className="text-sm font-medium text-muted-foreground">
+            Nie ma jeszcze żadnego opublikowanego zestawu — kolejność ustawisz, gdy pojawią się
+            w sklepie.
+          </p>
+        ) : (
+          <ol className="grid grid-cols-3 min-[440px]:grid-cols-4 sm:grid-cols-5 gap-3">
+            {sheets.map((sheet, index) => (
+              <li key={sheet.id} className="min-w-0">
+                <div className="relative aspect-[210/297] rounded-md bg-white border border-border/40 overflow-hidden">
+                  {sheet.previewUrl && (
+                    // eslint-disable-next-line @next/next/no-img-element -- adres z tokenem Storage
+                    <img
+                      src={sheet.previewUrl}
+                      alt=""
+                      loading="lazy"
+                      className="absolute inset-0 w-full h-full object-cover"
+                    />
+                  )}
+                  <span className="absolute top-1 left-1 inline-flex items-center justify-center min-w-5 h-5 px-1 rounded-full bg-background/95 border border-border/60 text-[11px] font-black text-foreground tabular-nums shadow-sm">
+                    {index + 1}
+                  </span>
+                </div>
+                <p className="mt-1.5 text-xs font-bold text-foreground leading-snug line-clamp-2 break-words">
+                  {sheet.name}
+                </p>
+              </li>
+            ))}
+          </ol>
+        )}
+
+        <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
+          <button
+            type="button"
+            onClick={() => setOpen(true)}
+            disabled={sheets.length < 2}
+            className={primaryButtonClass}
+          >
+            <ArrowUpDown className="w-4 h-4" aria-hidden />
+            Zmień kolejność
+          </button>
+          <span className="text-xs font-semibold text-muted-foreground">
+            {sheets.length < 2 ? (
+              "Do ułożenia kolejności potrzebne są co najmniej dwa opublikowane zestawy."
+            ) : (
+              <>
+                Nowy zestaw po publikacji staje na początku ·{" "}
+                <Link href="/admin/zestawy" className="font-bold text-primary hover:underline">
+                  zarządzaj zestawami
+                </Link>
+              </>
+            )}
+          </span>
+        </div>
+      </div>
       <AnimatePresence>
         {open && <SheetOrderDialog sheets={sheets} onClose={() => setOpen(false)} />}
       </AnimatePresence>
-    </>
+    </Card>
   );
 }
 

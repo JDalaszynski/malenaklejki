@@ -149,6 +149,7 @@ export type SheetEditorProps = {
     subtitle: string;
     description: string;
     motifs: string[];
+    bestseller: boolean;
     status: SheetStatus;
     updatedAt: string | null;
   };
@@ -164,6 +165,7 @@ type SheetPage = {
   subtitle: string;
   description: string;
   motifs: string[];
+  bestseller: boolean;
 };
 
 /** Odcisk stanu do wykrywania niezapisanych zmian — bez wielokątów, które liczą się w tle. */
@@ -171,7 +173,7 @@ function signatureOf(name: string, category: string, page: SheetPage, stickers: 
   return JSON.stringify([
     name.trim(),
     category.trim(),
-    [page.category2, page.slug, page.subtitle, page.description, page.motifs],
+    [page.category2, page.slug, page.subtitle, page.description, page.motifs, page.bestseller],
     stickers.map((s) => [
       s.id,
       s.imageUrl,
@@ -241,6 +243,7 @@ export function SheetEditor({ sheet, initialStickers, library: initialLibrary, c
   const [subtitle, setSubtitle] = useState(sheet.subtitle);
   const [description, setDescription] = useState(sheet.description);
   const [motifsText, setMotifsText] = useState(sheet.motifs.join(", "));
+  const [bestseller, setBestseller] = useState(sheet.bestseller);
   const [status, setStatus] = useState<SheetStatus>(sheet.status);
   const [updatedAt, setUpdatedAt] = useState(sheet.updatedAt);
   const [library, setLibrary] = useState(initialLibrary);
@@ -253,8 +256,9 @@ export function SheetEditor({ sheet, initialStickers, library: initialLibrary, c
       subtitle: subtitle.trim(),
       description: description.trim(),
       motifs: parseMotifs(motifsText),
+      bestseller,
     }),
-    [category2, slug, subtitle, description, motifsText]
+    [category2, slug, subtitle, description, motifsText, bestseller]
   );
   const descriptionWords = countWords(description);
 
@@ -268,6 +272,7 @@ export function SheetEditor({ sheet, initialStickers, library: initialLibrary, c
         subtitle: sheet.subtitle,
         description: sheet.description,
         motifs: sheet.motifs,
+        bestseller: sheet.bestseller,
       },
       initialStickers
     )
@@ -996,6 +1001,20 @@ export function SheetEditor({ sheet, initialStickers, library: initialLibrary, c
                   Zestaw pokaże się w galerii i na stronach obu tematów.
                 </p>
               </div>
+              <label className="flex items-start gap-3 rounded-xl border border-border/60 bg-muted/20 px-3.5 py-3 cursor-pointer">
+                <input
+                  type="checkbox"
+                  checked={bestseller}
+                  onChange={(event) => setBestseller(event.target.checked)}
+                  className="mt-0.5 w-4 h-4 shrink-0 rounded border-border text-primary focus:ring-primary cursor-pointer"
+                />
+                <span>
+                  <span className="block text-sm font-bold text-foreground">Bestseller</span>
+                  <span className="block mt-0.5 text-[11px] font-medium text-muted-foreground">
+                    Klient zobaczy przy zestawie oznaczenie „Bestseller” w galerii przy kreatorze.
+                  </span>
+                </span>
+              </label>
             </div>
 
             <div className="mt-5 pt-4 border-t border-border/50 flex flex-col gap-4">

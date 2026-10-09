@@ -36,6 +36,7 @@ export default async function NewSheetPage({
         subtitle: "",
         description: "",
         motifs: [],
+        bestseller: false,
         status: "draft",
         updatedAt: null,
       }}
