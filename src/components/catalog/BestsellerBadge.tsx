@@ -3,6 +3,8 @@ import { Star } from "lucide-react";
 const SIZES = {
   sm: "text-[10px] pl-1.5 pr-2 py-0.5",
   md: "text-[11px] pl-2 pr-2.5 py-1",
+  /** Obok pigułek tematów na stronie zestawu. */
+  lg: "text-xs pl-2.5 pr-3 py-1 uppercase tracking-wide",
 };
 
 /** Oznaczenie zestawu wybranego w panelu jako bestseller — galeria kreatora i katalog. */

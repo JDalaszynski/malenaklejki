@@ -6,6 +6,7 @@ import { THEME_PAGES } from "@/lib/sheets/themes";
 import { SHEET_PRICE, SHIPPING_PRICE, normalizeForSearch, type CatalogSheet } from "@/lib/sheets/types";
 import { getStickersNoun } from "@/lib/utils/polish";
 import { AddReadySheetToCart } from "./AddReadySheetToCart";
+import { BestsellerBadge } from "./BestsellerBadge";
 import {
   Breadcrumbs,
   SheetGrid,
@@ -63,6 +64,7 @@ export function SheetProduct({ sheet, related }: { sheet: CatalogSheet; related:
         <div className="flex flex-col gap-5">
           <div>
             <div className="flex flex-wrap gap-1.5">
+              {sheet.bestseller && <BestsellerBadge size="lg" />}
               {sheet.categories.map((category) => (
                 <span
                   key={category}
