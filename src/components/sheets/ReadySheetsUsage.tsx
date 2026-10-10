@@ -136,7 +136,7 @@ export function ReadySheetsUsage({
           <div className="grid gap-6 lg:grid-cols-2">
             <div>
               <h3 className="text-sm font-extrabold text-foreground mb-1">Skąd klienci otwierają galerię</h3>
-              {usage.sources.length === 0 ? (
+              {usage.sources.length === 0 && usage.retiredSourceOpens === 0 ? (
                 <p className="text-sm font-medium text-muted-foreground">Brak otwarć w tym okresie.</p>
               ) : (
                 <table className="w-full">
@@ -157,6 +157,17 @@ export function ReadySheetsUsage({
                         </td>
                       </tr>
                     ))}
+                    {usage.retiredSourceOpens > 0 && (
+                      <tr className="border-t border-border/60">
+                        <td className={`${TD} font-medium`}>
+                          <span className="text-muted-foreground">usunięte wejścia</span>
+                        </td>
+                        <td className={`${TD} text-right`}>{usage.retiredSourceOpens}</td>
+                        <td className={`${TD} text-right text-muted-foreground`}>
+                          {percent(usage.retiredSourceOpens, totals.open)}
+                        </td>
+                      </tr>
+                    )}
                   </tbody>
                 </table>
               )}

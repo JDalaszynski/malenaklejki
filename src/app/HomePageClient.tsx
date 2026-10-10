@@ -324,9 +324,13 @@ export function HomePageClient({
 
   const summaryRef = useRef<HTMLDivElement>(null);
   const [isSummaryVisible, setIsSummaryVisible] = useState(false);
+  // Podsumowanie leży jeszcze niżej na stronie — klient do niego nie dotarł.
+  const [isSummaryAhead, setIsSummaryAhead] = useState(true);
 
   const visualizerRef = useRef<HTMLDivElement>(null);
   const [isVisualizerVisible, setIsVisualizerVisible] = useState(false);
+  // Arkusz został już nad ekranem — klient przewinął do ustawień pod nim.
+  const [isVisualizerPassed, setIsVisualizerPassed] = useState(false);
 
   useEffect(() => {
     if (!mounted) return;
@@ -334,6 +338,9 @@ export function HomePageClient({
     const summaryObserver = new IntersectionObserver(
       ([entry]) => {
         setIsSummaryVisible(entry.isIntersecting);
+        setIsSummaryAhead(
+          !entry.isIntersecting && entry.boundingClientRect.top > 0,
+        );
       },
       { threshold: 0.1 },
     );
@@ -344,6 +351,9 @@ export function HomePageClient({
     const visualizerObserver = new IntersectionObserver(
       ([entry]) => {
         setIsVisualizerVisible(entry.isIntersecting);
+        setIsVisualizerPassed(
+          !entry.isIntersecting && entry.boundingClientRect.top < 0,
+        );
       },
       { threshold: 0.05 },
     );
@@ -2760,7 +2770,7 @@ export function HomePageClient({
           {/* Page Info */}
           <div>
             <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-foreground">
-              Kreator Arkusza z Naklejkami
+              Kreator Zestawu Naklejek
             </h2>
             <p className="text-muted-foreground text-sm font-semibold mt-1 theme-subtitle">
               {readySheetsTeaser ? (
@@ -3394,7 +3404,7 @@ export function HomePageClient({
                 )}
 
                 {stickers.length === 0 && (
-                  <label className="absolute inset-0 flex sm:hidden flex-col items-center justify-center bg-transparent cursor-pointer z-40 rounded-lg">
+                  <label className="group absolute inset-0 flex sm:hidden flex-col items-center justify-center bg-transparent cursor-pointer z-40 rounded-lg">
                     <input
                       type="file"
                       accept={STICKER_FILE_ACCEPT}
@@ -3405,38 +3415,41 @@ export function HomePageClient({
                         e.target.value = "";
                       }}
                     />
-                    <div className="flex flex-col items-center justify-center bg-background/95 backdrop-blur-sm border-2 border-primary/30 py-8 px-10 rounded-[2rem] shadow-xl animate-bounce">
-                      <ImagePlus className="w-10 h-10 text-primary mb-3" />
-                      <span className="text-base font-black text-foreground">
+                    {/* Karta wygląda jak naklejka czekająca na wycięcie: biały
+                        winyl i przerywana linia cięcia dookoła. Uwagę ściąga
+                        pulsująca aureola ikony, a nie skacząca karta — tekst
+                        stoi w miejscu i da się go przeczytać. */}
+                    <div className="relative flex flex-col items-center text-center w-[15rem] max-w-[76%] rounded-[2rem] bg-background border border-primary/15 px-6 pt-7 pb-6 shadow-[0_22px_48px_-20px_rgba(0,71,73,0.4),0_2px_8px_rgba(0,71,73,0.06)] transition-transform duration-200 ease-out group-active:scale-[0.97]">
+                      <span
+                        aria-hidden
+                        className="absolute -inset-2 rounded-[2.5rem] border-2 border-dashed border-primary/40"
+                      />
+                      <span className="relative flex items-center justify-center w-16 h-16 mb-4">
+                        <span
+                          aria-hidden
+                          className="absolute inset-0 rounded-full bg-primary/30 animate-ping [animation-duration:2.4s] motion-reduce:hidden"
+                        />
+                        <span className="relative flex items-center justify-center w-16 h-16 rounded-full bg-primary text-primary-foreground shadow-[0_8px_18px_-6px_rgba(2,175,122,0.6)]">
+                          <ImagePlus className="w-7 h-7" />
+                        </span>
+                      </span>
+                      <span className="text-lg font-black text-foreground leading-tight">
                         Dodaj naklejkę
                       </span>
-                      <span className="text-xs font-semibold text-muted-foreground mt-1">
+                      <span className="text-xs font-semibold text-muted-foreground mt-1.5">
                         Zdjęcie, grafika lub PDF
                       </span>
                     </div>
-                    {readySheetsTeaser && (
-                      <button
-                        type="button"
-                        onClick={(e) => {
-                          // Przycisk siedzi w etykiecie pola pliku — bez tego
-                          // kliknięcie otworzyłoby też wybór pliku.
-                          e.preventDefault();
-                          openReadySheets("pusty-arkusz");
-                        }}
-                        onPointerDown={prefetchReadySheets}
-                        aria-haspopup="dialog"
-                        className="mt-1 inline-flex items-center gap-1.5 rounded-full bg-background/95 border border-border/70 px-4 py-2 text-xs font-extrabold text-primary shadow-sm active:scale-[0.98] transition-transform cursor-pointer"
-                      >
-                        <LayoutGrid className="w-3.5 h-3.5" />
-                        albo wybierz gotowy zestaw
-                      </button>
-                    )}
                   </label>
                 )}
               </div>
 
-              {/* Mobile: przycisk dodania naklejki pod arkuszem */}
-              <label className="sm:hidden w-10/12 mx-auto mt-3 flex flex-col items-center justify-center gap-1 py-2 px-1 rounded-3xl bg-primary hover:bg-primary/90 border border-primary/20 transition-all active:scale-[0.98] cursor-pointer shadow-sm">
+              {/* Mobile: dodanie naklejki pod arkuszem. Celowo spokojne — pełną
+                  zieleń ma na telefonie tylko „Dodaj do koszyka", więc te dwie
+                  akcje nie walczą o uwagę. Układ ten sam co wejście do
+                  gotowych zestawów niżej: razem czytają się jako dwa źródła
+                  naklejek. */}
+              <label className="sm:hidden w-full mt-3 flex items-center gap-3 rounded-2xl border border-primary/35 bg-primary/[0.07] px-3 py-2.5 transition-all active:scale-[0.99] cursor-pointer">
                 <input
                   type="file"
                   accept={STICKER_FILE_ACCEPT}
@@ -3447,12 +3460,23 @@ export function HomePageClient({
                     e.target.value = "";
                   }}
                 />
-                <ImagePlus className="w-7 h-7 text-white" />
-                <span className="text-[12px] font-extrabold text-white text-center leading-tight">
-                  Dodaj Naklejkę
-                  <br />
-                  (zdjęcie, grafika lub PDF)
+                <span
+                  aria-hidden
+                  className="shrink-0 w-[3.6rem] h-[3.1rem] flex items-center justify-center"
+                >
+                  <span className="w-11 h-11 rounded-xl bg-background border border-primary/25 flex items-center justify-center shadow-[0_2px_6px_rgba(0,71,73,0.08)]">
+                    <ImagePlus className="w-5 h-5 text-primary" />
+                  </span>
                 </span>
+                <span className="min-w-0 flex-1">
+                  <span className="block text-sm font-extrabold text-foreground">
+                    Dodaj naklejkę do zestawu
+                  </span>
+                  <span className="block text-[11px] font-semibold text-muted-foreground mt-0.5">
+                    Zdjęcie, grafika lub PDF
+                  </span>
+                </span>
+                <Plus className="w-4 h-4 shrink-0 text-primary" aria-hidden />
               </label>
 
               {/* Mobile: wejście do galerii gotowych zestawów */}
@@ -3462,7 +3486,7 @@ export function HomePageClient({
                   activeName={readySheet?.name ?? null}
                   onOpen={() => openReadySheets("pod-arkuszem")}
                   onIntent={prefetchReadySheets}
-                  className="sm:hidden w-10/12 mx-auto mt-2.5"
+                  className="sm:hidden w-full mt-2"
                 />
               )}
 
@@ -3508,7 +3532,7 @@ export function HomePageClient({
           {/* Bottom Summary Bar */}
           <div
             ref={summaryRef}
-            className="relative z-40 liquid-glass border border-border/40 shadow-[0_8px_30px_rgba(0,0,0,0.04)] py-3 sm:py-4 px-4 sm:px-8 rounded-2xl mt-2 sm:mt-4 mb-32 sm:mb-0"
+            className="relative z-40 liquid-glass border border-border/40 shadow-[0_8px_30px_rgba(0,0,0,0.04)] py-3 sm:py-4 px-4 sm:px-8 rounded-2xl mt-2 sm:mt-4"
           >
             <div className="flex flex-col md:flex-row items-center justify-between gap-4">
               {/* Left: Summary Info */}
@@ -3610,21 +3634,109 @@ export function HomePageClient({
                   <button
                     onClick={handleAddToCart}
                     disabled={isAddingToCart || stickers.length === 0}
-                    className="w-full sm:w-auto inline-flex items-center justify-center rounded-2xl text-sm font-bold bg-primary text-primary-foreground hover:bg-primary/95 active:scale-[0.98] h-12 px-6 shadow-sm transition-all disabled:opacity-50 cursor-pointer"
+                    className="w-full sm:w-auto inline-flex items-center justify-center rounded-2xl text-base sm:text-sm font-black sm:font-bold bg-primary text-primary-foreground hover:bg-primary/95 active:scale-[0.98] h-14 sm:h-12 px-6 shadow-lg shadow-primary/25 sm:shadow-sm transition-all disabled:opacity-50 disabled:shadow-none cursor-pointer"
                   >
                     {isAddingToCart ? (
-                      <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                      <Loader2 className="w-5 h-5 sm:w-4 sm:h-4 mr-2 animate-spin" />
                     ) : (
-                      <ShoppingCart className="w-4 h-4 mr-2" />
+                      <ShoppingCart className="w-5 h-5 sm:w-4 sm:h-4 mr-2" />
                     )}
                     {editCartItemId
                       ? "Zaktualizuj w koszyku"
                       : "Dodaj do koszyka"}
                   </button>
+                  {stickers.length === 0 && (
+                    <p className="sm:hidden text-[11px] font-semibold text-muted-foreground text-center">
+                      Dodaj pierwszą naklejkę na arkusz, żeby zamówić zestaw.
+                    </p>
+                  )}
                 </div>
               </div>
             </div>
           </div>
+
+          {/* Mobile: znacznik końca kreatora. Pod podsumowaniem zaczyna się
+              część informacyjna strony — bez tej granicy klient przewija
+              dalej w poszukiwaniu kolejnych ustawień zamówienia. */}
+          <div className="sm:hidden px-3 pt-3 text-center">
+            <p className="flex items-center gap-3 text-[10px] font-extrabold uppercase tracking-wider text-muted-foreground/60">
+              <span aria-hidden className="h-px flex-1 bg-foreground/10" />
+              Koniec kreatora
+              <span aria-hidden className="h-px flex-1 bg-foreground/10" />
+            </p>
+            <p className="mt-1.5 text-[11px] font-semibold text-muted-foreground/60">
+              Niżej już tylko informacje o naklejkach.
+            </p>
+            <ChevronDown
+              aria-hidden
+              className="w-4 h-4 mx-auto mt-1 text-muted-foreground/40"
+            />
+          </div>
+
+          {/* Mobile: przyklejony pasek zamówienia. Najważniejsza akcja kreatora
+              jest pod kciukiem przez całe układanie arkusza. Ustępuje
+              panelowi wybranej naklejki i znika, gdy na ekranie jest pełne
+              podsumowanie — dwa takie same przyciski naraz tylko mylą. */}
+          <AnimatePresence>
+            {stickers.length > 0 &&
+              isSummaryAhead &&
+              (isVisualizerVisible || isVisualizerPassed) &&
+              !(selectedSticker && isVisualizerVisible) && (
+                <motion.div
+                  initial={{ y: 96, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  exit={{ y: 96, opacity: 0 }}
+                  transition={{ duration: 0.22, ease: "easeOut" }}
+                  className="fixed bottom-0 left-0 right-0 z-[90] sm:hidden pointer-events-none"
+                >
+                  <div className="absolute bottom-0 left-0 right-0 h-28 bg-gradient-to-t from-background/95 via-background/60 to-transparent pointer-events-none" />
+
+                  <div className="relative px-3 pt-2 pb-[max(0.75rem,env(safe-area-inset-bottom))] pointer-events-auto">
+                    <div className="liquid-glass bg-background border border-border/40 rounded-[26px] shadow-[0_-8px_30px_rgba(0,0,0,0.08)] dark:shadow-[0_-8px_30px_rgba(0,0,0,0.3)] p-2 pl-4 flex items-center gap-3">
+                      <div className="min-w-0 flex-1">
+                        <p className="text-lg font-black text-foreground leading-tight">
+                          {(49.0 * sheetQuantity).toFixed(2).replace(".", ",")}{" "}
+                          zł
+                          {sheetQuantity > 1 && (
+                            <span className="text-[11px] font-semibold text-muted-foreground">
+                              {" "}
+                              ({sheetQuantity} szt.)
+                            </span>
+                          )}
+                        </p>
+                        {stickers.some((s) => s.cutLineType === "none") ? (
+                          <p className="text-[11px] font-bold text-destructive truncate">
+                            Wybierz linie cięcia naklejek
+                          </p>
+                        ) : (
+                          <p className="text-[11px] font-bold text-muted-foreground truncate">
+                            {stickers.length} {getStickersNoun(stickers.length)}{" "}
+                            ·{" "}
+                            {deliveryForm === "individual"
+                              ? "pojedynczo"
+                              : "na arkuszu"}
+                          </p>
+                        )}
+                      </div>
+                      <button
+                        onClick={handleAddToCart}
+                        disabled={isAddingToCart}
+                        className="shrink-0 inline-flex items-center justify-center rounded-2xl text-sm font-black bg-primary text-primary-foreground active:scale-[0.98] h-12 px-4 shadow-md shadow-primary/25 transition-all disabled:opacity-60 cursor-pointer"
+                      >
+                        {isAddingToCart ? (
+                          <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                        ) : (
+                          <ShoppingCart className="w-4 h-4 mr-2" />
+                        )}
+                        {/* Krótsza etykieta niż w podsumowaniu — obok musi
+                            zmieścić się cena. */}
+                        {editCartItemId ? "Zapisz zmiany" : "Dodaj do koszyka"}
+                      </button>
+                    </div>
+                  </div>
+                </motion.div>
+              )}
+          </AnimatePresence>
 
           {/* Sticky Mobile Panel for Selected Sticker */}
           <AnimatePresence>

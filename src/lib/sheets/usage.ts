@@ -3,7 +3,7 @@ import "server-only";
 import { FieldValue, db } from "@/lib/firebase/admin";
 import {
   USAGE_EVENTS,
-  USAGE_SOURCES,
+  isUsageSource,
   type UsageEvent,
   type UsagePayload,
   type UsageSource,
@@ -63,6 +63,8 @@ export type UsageSummary = {
   daily: UsageDay[];
   /** Miejsca wejścia do galerii, od najczęściej używanego. */
   sources: Array<{ source: UsageSource; open: number }>;
+  /** Otwarcia z wejść, których w kreatorze już nie ma (zostały w dawnych dniach). */
+  retiredSourceOpens: number;
   /** Zestawy, od najczęściej wczytywanych do kreatora. */
   sheets: Array<{ id: string } & Record<Exclude<UsageEvent, "open">, number>>;
 };
@@ -87,6 +89,7 @@ export async function loadUsage(days: number): Promise<UsageSummary> {
 
   const totals = EMPTY_COUNTS();
   const sourceTotals = new Map<UsageSource, number>();
+  let retiredSourceOpens = 0;
   const sheetTotals = new Map<string, Record<Exclude<UsageEvent, "open">, number>>();
 
   const daily: UsageDay[] = snapshots.map((snapshot, index) => {
@@ -99,9 +102,11 @@ export async function loadUsage(days: number): Promise<UsageSummary> {
       totals[event] += row[event];
     }
 
-    for (const source of USAGE_SOURCES) {
-      const opens = count(data.sources?.[source]?.open);
-      if (opens) sourceTotals.set(source, (sourceTotals.get(source) ?? 0) + opens);
+    for (const [source, value] of Object.entries(data.sources ?? {})) {
+      const opens = count((value as Record<string, unknown> | null)?.open);
+      if (!opens) continue;
+      if (isUsageSource(source)) sourceTotals.set(source, (sourceTotals.get(source) ?? 0) + opens);
+      else retiredSourceOpens += opens;
     }
 
     for (const [id, value] of Object.entries(data.sheets ?? {})) {
@@ -123,6 +128,7 @@ export async function loadUsage(days: number): Promise<UsageSummary> {
     sources: [...sourceTotals.entries()]
       .map(([source, open]) => ({ source, open }))
       .sort((a, b) => b.open - a.open),
+    retiredSourceOpens,
     sheets: [...sheetTotals.entries()]
       .map(([id, counts]) => ({ id, ...counts }))
       .sort((a, b) => b.use - a.use || b.select - a.select || b.cart - a.cart),

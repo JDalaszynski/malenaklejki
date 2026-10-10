@@ -11,6 +11,7 @@ import {
   motion,
 } from "framer-motion";
 import { PlacedSticker } from "@/types/creator";
+import { layoutLooseStickers } from "@/lib/creator/looseLayout";
 import { getCutLineOffsetMm } from "@/lib/utils/collision";
 import { getDisplaySource } from "@/lib/utils/transparentBackground";
 
@@ -22,6 +23,14 @@ interface A4Visualizer3DProps {
 // Wymiary arkusza (te same co w edytorze 2D, żeby pozycje naklejek się zgadzały)
 const SHEET_WIDTH_MM = 210;
 const SHEET_HEIGHT_MM = 297;
+
+// Kadr pojedynczych sztuk: ten sam prostokąt co arkusz, z wąskim marginesem,
+// żeby cienie skrajnych naklejek nie były ucinane.
+const LOOSE_PAD_MM = 5;
+const LOOSE_GAP_MM = 5;
+
+// Promień narożnika prostokątnej naklejki: 1.008% szerokości kadru = 2,1 mm
+const CORNER_RADIUS_CQW = 1.008;
 
 // Spoczynkowe przechylenie - arkusz nigdy nie leży idealnie na wprost
 const REST_ROT_X = 8;
@@ -95,120 +104,55 @@ export function A4Visualizer3D({ stickers, deliveryForm = "sheet" }: A4Visualize
   // klient. Przy pojedynczych sztukach arkusz nie istnieje, więc pokazujemy
   // po prostu wycięte naklejki poukładane jedna obok drugiej w równych
   // rzędach: bez pozycji z arkusza i bez obrotu, bo kąt ułożenia na arkuszu
-  // nic nie znaczy dla osobno wyciętego przedmiotu.
-  const layout = useMemo(() => {
-    const cutMm = (st: PlacedSticker) =>
-      st.cutLineType === "none" ? 0 : getCutLineOffsetMm(st.cutLineType, st.widthCm);
-
+  // nic nie znaczy dla osobno wyciętego przedmiotu. Rzędy dobiera
+  // `layoutLooseStickers` - tak, żeby naklejki wypełniły kadr na szerokość.
+  const { placements, scale } = useMemo(() => {
     if (isSheet) {
-      return stickers.map((st) => ({
-        st,
-        left: (st.x / SHEET_WIDTH_MM) * 100,
-        top: (st.y / SHEET_HEIGHT_MM) * 100,
-        width: ((st.widthCm * 10) / SHEET_WIDTH_MM) * 100,
-        height: ((st.heightCm * 10) / SHEET_HEIGHT_MM) * 100,
-        rotation: st.rotation || 0,
-      }));
+      return {
+        scale: 1,
+        placements: stickers.map((st) => ({
+          st,
+          left: (st.x / SHEET_WIDTH_MM) * 100,
+          top: (st.y / SHEET_HEIGHT_MM) * 100,
+          width: ((st.widthCm * 10) / SHEET_WIDTH_MM) * 100,
+          height: ((st.heightCm * 10) / SHEET_HEIGHT_MM) * 100,
+          rotation: st.rotation || 0,
+        })),
+      };
     }
-
-    const PAD_MM = 8;
-    const GAP_MM = 5;
-    const AVAIL_W = SHEET_WIDTH_MM - 2 * PAD_MM;
-    const AVAIL_H = SHEET_HEIGHT_MM - 2 * PAD_MM;
-    // Przy kilku naklejkach wolno je powiększyć, żeby nie tonęły w pustym
-    // kadrze - nie ma tu arkusza, do którego można by porównać rozmiar,
-    // a proporcje między naklejkami i tak zostają zachowane.
-    const MAX_SCALE = 1.8;
 
     // Rozmiar gotowej, wyciętej naklejki = grafika + margines linii cięcia
     const items = stickers.map((st) => {
-      const c = cutMm(st);
+      const c = st.cutLineType === "none" ? 0 : getCutLineOffsetMm(st.cutLineType, st.widthCm);
       const bodyW = st.widthCm * 10;
       const bodyH = st.heightCm * 10;
-      return { st, bodyW, bodyH, w: bodyW + 2 * c, h: bodyH + 2 * c };
+      return { ref: { st, bodyW, bodyH }, w: bodyW + 2 * c, h: bodyH + 2 * c };
     });
-    type Item = (typeof items)[number];
 
-    // Łamanie na rzędy - jak tekst: dokładamy do rzędu, dopóki się mieści
-    const pack = (maxRowMm: number) => {
-      const rows: Item[][] = [];
-      let row: Item[] = [];
-      let rowW = 0;
-      for (const it of items) {
-        const withIt = row.length === 0 ? it.w : rowW + GAP_MM + it.w;
-        if (row.length > 0 && withIt > maxRowMm) {
-          rows.push(row);
-          row = [it];
-          rowW = it.w;
-        } else {
-          row.push(it);
-          rowW = withIt;
-        }
-      }
-      if (row.length > 0) rows.push(row);
+    const loose = layoutLooseStickers(
+      items,
+      SHEET_WIDTH_MM - 2 * LOOSE_PAD_MM,
+      SHEET_HEIGHT_MM - 2 * LOOSE_PAD_MM,
+      { gap: LOOSE_GAP_MM }
+    );
 
-      const rowSizes = rows.map((r) => ({
-        w: r.reduce((sum, it, i) => sum + it.w + (i > 0 ? GAP_MM : 0), 0),
-        h: Math.max(...r.map((it) => it.h)),
-      }));
-      const totalW = Math.max(1, ...rowSizes.map((r) => r.w));
-      const totalH = Math.max(
-        1,
-        rowSizes.reduce((sum, r, i) => sum + r.h + (i > 0 ? GAP_MM : 0), 0)
-      );
-      const fit = Math.min(MAX_SCALE, AVAIL_W / totalW, AVAIL_H / totalH);
-      return { rows, rowSizes, totalW, totalH, fit };
+    return {
+      scale: loose.scale,
+      placements: loose.placed.map(({ ref: { st, bodyW, bodyH }, cx, cy }) => ({
+        st,
+        // Pozycja samej grafiki; margines linii cięcia dorysowuje się wokół niej
+        left: 50 + ((cx - (bodyW * loose.scale) / 2) / SHEET_WIDTH_MM) * 100,
+        top: 50 + ((cy - (bodyH * loose.scale) / 2) / SHEET_HEIGHT_MM) * 100,
+        width: ((bodyW * loose.scale) / SHEET_WIDTH_MM) * 100,
+        height: ((bodyH * loose.scale) / SHEET_HEIGHT_MM) * 100,
+        rotation: 0,
+      })),
     };
-
-    // Kadr jest pionowy, więc najszerszy możliwy rząd rzadko jest najlepszy.
-    // Przymierzamy kilka szerokości łamania i bierzemy tę, przy której
-    // naklejki wychodzą największe. Idziemy od najszerszych rzędów do
-    // najwęższych i każde kolejne zwężenie musi dać co najmniej 8% zysku na
-    // rozmiarze - "jedna obok drugiej" czyta się lepiej niż kolumna, więc
-    // zwężamy rząd tylko wtedy, gdy naprawdę się to opłaca.
-    const WRAP_BIAS = 1.08;
-    const widest = items.length > 0 ? Math.max(...items.map((it) => it.w)) : AVAIL_W;
-    const narrowest = Math.min(AVAIL_W, widest);
-    const STEPS = 20;
-    let best = pack(AVAIL_W);
-    for (let step = 1; step <= STEPS; step++) {
-      const candidate = pack(AVAIL_W - ((AVAIL_W - narrowest) * step) / STEPS);
-      if (candidate.fit > best.fit * WRAP_BIAS) best = candidate;
-    }
-    const { rows, rowSizes, totalH, fit } = best;
-
-    const placed: {
-      st: PlacedSticker;
-      left: number;
-      top: number;
-      width: number;
-      height: number;
-      rotation: number;
-    }[] = [];
-
-    let y = -totalH / 2;
-    rows.forEach((r, ri) => {
-      const size = rowSizes[ri];
-      let x = -size.w / 2;
-      for (const it of r) {
-        // Środek gotowej naklejki, mierzony od środka całego układu
-        const cx = (x + it.w / 2) * fit;
-        const cy = (y + size.h / 2) * fit;
-        placed.push({
-          st: it.st,
-          left: 50 + (((cx - (it.bodyW * fit) / 2) / SHEET_WIDTH_MM) * 100),
-          top: 50 + (((cy - (it.bodyH * fit) / 2) / SHEET_HEIGHT_MM) * 100),
-          width: ((it.bodyW * fit) / SHEET_WIDTH_MM) * 100,
-          height: ((it.bodyH * fit) / SHEET_HEIGHT_MM) * 100,
-          rotation: 0,
-        });
-        x += it.w + GAP_MM;
-      }
-      y += size.h + GAP_MM;
-    });
-
-    return placed;
   }, [stickers, isSheet]);
+
+  // Narożniki skalują się razem z naklejką - inaczej pomniejszone sztuki
+  // miałyby nienaturalnie obłe rogi, a powiększone - zbyt ostre.
+  const cornerRadius = `${(CORNER_RADIUS_CQW * scale).toFixed(3)}cqw`;
 
   useEffect(() => {
     const el = containerRef.current;
@@ -276,10 +220,12 @@ export function A4Visualizer3D({ stickers, deliveryForm = "sheet" }: A4Visualize
       onPointerMove={isSheet ? handlePointerMove : undefined}
       onPointerEnter={isSheet ? () => (hoverTarget.current = 1) : undefined}
       onPointerLeave={isSheet ? handlePointerLeave : undefined}
-      className={`relative w-full max-w-[480px] aspect-[210/297] flex items-center justify-center cursor-default select-none overflow-visible ${
-        // touch-none tylko na arkuszu - tam przeciąganie palcem obraca kartkę.
-        // Nad płaskim układem pojedynczych sztuk ma działać zwykłe przewijanie.
-        isSheet ? "touch-none" : ""
+      className={`relative w-full aspect-[210/297] flex items-center justify-center cursor-default select-none overflow-visible ${
+        // Arkusz dostaje węższy kadr, bo potrzebuje miejsca na przechył, i
+        // touch-none - tam przeciąganie palcem obraca kartkę. Pojedyncze
+        // sztuki leżą płasko: zajmują całą szerokość sekcji (tak jak arkusz
+        // w edycji), a nad nimi ma działać zwykłe przewijanie.
+        isSheet ? "max-w-[480px] touch-none" : "max-w-full"
       }`}
       style={{
         perspective: isSheet ? "1300px" : undefined,
@@ -425,7 +371,7 @@ export function A4Visualizer3D({ stickers, deliveryForm = "sheet" }: A4Visualize
 
         {/* Zadruk: naklejki na arkuszu, symulacja kolorów CMYK */}
         <div className="absolute inset-0 overflow-hidden cmyk-preview">
-          {layout.map(({ st, left, top, width, height, rotation }) => {
+          {placements.map(({ st, left, top, width, height, rotation }) => {
           const wMm = st.widthCm * 10;
           const hMm = st.heightCm * 10;
           const isInside =
@@ -452,7 +398,7 @@ export function A4Visualizer3D({ stickers, deliveryForm = "sheet" }: A4Visualize
               return "ellipse(50% 50% at 50% 50%)";
             }
             if (st.cutLineType === "rounded" || st.cutLineType === "rounded_inside" || st.cutLineType === "none") {
-              return "inset(0% round 1.008cqw)";
+              return `inset(0% round ${cornerRadius})`;
             }
             if (
               (st.cutLineType === "contour" || st.cutLineType === "contour_inside") &&
@@ -600,7 +546,7 @@ export function A4Visualizer3D({ stickers, deliveryForm = "sheet" }: A4Visualize
                     right: `${-offsetPercentX}%`,
                     top: `${-offsetPercentY}%`,
                     bottom: `${-offsetPercentY}%`,
-                    borderRadius: "1.008cqw",
+                    borderRadius: cornerRadius,
                     borderColor: EDGE_LINE,
                   }}
                 />

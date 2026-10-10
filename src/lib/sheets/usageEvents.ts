@@ -23,11 +23,14 @@ export const USAGE_EVENT_LABELS: Record<UsageEvent, string> = {
   cart: "Dodane do koszyka",
 };
 
-/** Skąd klient otworzył galerię — każde wejście w kreatorze ma własny znacznik. */
+/**
+ * Skąd klient otworzył galerię — każde wejście w kreatorze ma własny znacznik.
+ * Wejście usunięte z kreatora znika też stąd: serwer przestaje je przyjmować,
+ * a jego dawne otwarcia statystyki pokazują zbiorczo jako „usunięte wejścia".
+ */
 export const USAGE_SOURCES = [
   "podtytul",
   "panel",
-  "pusty-arkusz",
   "pod-arkuszem",
   "zmien-wzor",
   "link",
@@ -37,7 +40,6 @@ export type UsageSource = (typeof USAGE_SOURCES)[number];
 export const USAGE_SOURCE_LABELS: Record<UsageSource, string> = {
   podtytul: "Link w podtytule kreatora",
   panel: "Przycisk w panelu „Dodaj naklejkę” (komputer)",
-  "pusty-arkusz": "Przycisk na pustym arkuszu",
   "pod-arkuszem": "Przycisk pod arkuszem (telefon)",
   "zmien-wzor": "„Zmień wzór” przy wczytanym zestawie",
   link: "Link z adresem #gotowe-zestawy",
