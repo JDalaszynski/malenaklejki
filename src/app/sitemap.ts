@@ -45,7 +45,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { path: "/slownik-naklejek", lastModified: "2026-10-05" },
     { path: "/etykiety-na-sloiki", lastModified: "2026-08-25" },
     { path: "/wlepki-na-zamowienie", lastModified: "2026-08-31" },
-    { path: "/naklejki-na-znicze", lastModified: "2026-10-05" },
+    { path: "/naklejki-na-znicze", lastModified: "2026-10-10" },
   ];
 
   const staticEntries = staticRoutes.map(({ path, lastModified }) => ({

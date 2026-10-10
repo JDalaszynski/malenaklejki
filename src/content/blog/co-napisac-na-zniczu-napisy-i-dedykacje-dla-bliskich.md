@@ -2,6 +2,7 @@
 title: "Co napisać na zniczu - napisy i dedykacje dla bliskich"
 slug: "co-napisac-na-zniczu-napisy-i-dedykacje-dla-bliskich"
 date: "2026-10-05"
+updated: "2026-10-10"
 description: "Co napisać na zniczu? Gotowe napisy i dedykacje dla mamy, taty, babci, dziadka i dziecka oraz wskazówki, jak zapisać je na naklejce na znicz."
 tags: ["co napisać na zniczu", "napis na znicz", "dedykacja na znicz", "naklejki na znicze"]
 role: "supporting"
@@ -71,9 +72,9 @@ Kreator MałeNaklejki układa arkusz A4 z gotowych obrazów, więc napis przygot
 
 1. **Złóż napis w Canvie, Wordzie lub PowerPoincie.** Wpisz dedykację, ustaw wyraźny krój i duży rozmiar liter, a tło zostaw jednolite. Wyeksportuj do PNG lub PDF.
 2. **Wgraj plik do kreatora.** Wybierz kształt cięcia (koło, prostokąt albo kontur) i rozmiar. Na jeden arkusz możesz wgrać wiele napisów i zdjęć.
-3. **Zamów i przyklej.** Obejrzyj podgląd 3D, zapłać BLIK-iem lub przez Przelewy24. Naklejkę przyklej na czysty, suchy znicz w temperaturze pokojowej.
+3. **Zamów i przyklej.** Obejrzyj podgląd 3D, zapłać BLIK-iem lub przez Przelewy24. Naklejkę przyklej w temperaturze pokojowej na czysty, suchy klosz znicza solarnego, LED lub na baterie.
 
-Na jednym arkuszu A4 zmieści się orientacyjnie 24 - 30 napisów o rozmiarze 4 x 4 cm, więc jedna naklejka kosztuje ok. 1,63 - 2,04 zł. Wskazówki dotyczące czytelności drobnego tekstu znajdziesz w poradniku o [naklejkach z własnym napisem](/blog/naklejki-z-wlasnym-napisem-jak-przygotowac-plik-i-zamowic-online). Ważna uwaga o bezpieczeństwie: folia jest odporna na wodę i UV, ale odporności na ciepło płomienia nie potwierdzamy - przy zniczu z ogniem naklejaj ją z dala od knota, a najbezpieczniej wybierz znicz solarny, LED lub na baterie.
+Na jednym arkuszu A4 zmieści się orientacyjnie 24 - 30 napisów o rozmiarze 4 x 4 cm, więc jedna naklejka kosztuje ok. 1,63 - 2,04 zł. Wskazówki dotyczące czytelności drobnego tekstu znajdziesz w poradniku o [naklejkach z własnym napisem](/blog/naklejki-z-wlasnym-napisem-jak-przygotowac-plik-i-zamowic-online). Ważna uwaga o bezpieczeństwie: folia jest odporna na wodę i UV, ale nie na ciepło płomienia. Nie naklejaj jej na klosz znicza z płomieniem, bo folia się stopi - naklejki są przeznaczone na znicze solarne, LED i na baterie.
 
 ## Co napisać na zniczu - najczęściej zadawane pytania (FAQ)
 

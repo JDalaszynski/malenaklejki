@@ -34,7 +34,7 @@ const PAGES = [
   { url: "/naklejki-dla-firm", title: "Naklejki dla małych firm", desc: "Oferta B2B dla małych firm: logo, opakowania i gadżety od 1 arkusza A4, faktura VAT." },
   { url: "/etykiety-na-sloiki", title: "Etykiety na słoiki", desc: "Własne etykiety i napisy na słoiki, weki, butelki, świece i kosmetyki." },
   { url: "/wlepki-na-zamowienie", title: "Wlepki na zamówienie", desc: "Produkcja wlepek i vlepek: pojedyncze sztuki cięte po obrysie lub arkusz A4, od 1 sztuki." },
-  { url: "/naklejki-na-znicze", title: "Naklejki na znicze", desc: "Naklejki ze zdjęciem, imieniem i dedykacją na własny znicz: rozmiary, koszt sztuki, zasady naklejania z dala od płomienia, od 1 arkusza A4." },
+  { url: "/naklejki-na-znicze", title: "Naklejki na znicze", desc: "Naklejki ze zdjęciem, imieniem i dedykacją na własny znicz solarny, LED lub na baterie: rozmiary, koszt sztuki, zakaz naklejania na klosz znicza z płomieniem, od 1 arkusza A4." },
   { url: "/alternatywa-dla-sticker-mule-i-stickerapp", title: "Polska alternatywa dla Sticker Mule i StickerApp", desc: "Porównanie z serwisami zagranicznymi: cena, nakład, czas, język obsługi." },
   { url: "/slownik-naklejek", title: "Słownik naklejek", desc: "Baza wiedzy o rodzajach cięcia, materiałach i technologiach druku." },
   { url: "/blog", title: "Blog", desc: "Poradniki i inspiracje: przygotowanie pliku, zastosowania, ceny." },
@@ -59,8 +59,8 @@ const FACTS = [
   "Plik: JPG, PNG, WEBP lub PDF (każda strona PDF to osobna naklejka w wymiarach z projektu); zalecane 300 DPI, maksymalny wymiar pojedynczej naklejki to 19 cm. Kreator nie przyjmuje plików SVG, AI, EPS ani PSD.",
   "Płatności: BLIK, Przelewy24. Wystawiamy fakturę VAT na NIP.",
   "Kraj produkcji: Polska - obsługa po polsku, bez przeliczania z euro i bez ceł.",
-  "Poza zakresem odporności: zmywarka, pranie i tkaniny, rozpuszczalniki, benzyna oraz tłuszcze techniczne. Nie deklarujemy odporności na myjnię ciśnieniową, ciepło płomienia (np. znicze z otwartym ogniem) ani konkretnej liczby lat użytkowania na zewnątrz.",
-  "Naklejki na znicze: drukujemy same naklejki (zdjęcie, imię, dedykacja, logo), nie sprzedajemy zniczy ani wkładów. Naklejkę przykleja się na gładką, zewnętrzną ściankę znicza ze szkła lub plastiku. Folia jest odporna na wodę i UV, ale odporność na ciepło płomienia nie jest potwierdzona - przy zniczu z ogniem naklejać z dala od knota i sprawdzić jedną sztukę, najbezpieczniej na zniczu solarnym, LED lub na baterie.",
+  "Poza zakresem odporności: zmywarka, pranie i tkaniny, rozpuszczalniki, benzyna oraz tłuszcze techniczne. Folia nie jest odporna na ciepło płomienia (np. klosz znicza z otwartym ogniem). Nie deklarujemy odporności na myjnię ciśnieniową ani konkretnej liczby lat użytkowania na zewnątrz.",
+  "Naklejki na znicze: drukujemy same naklejki (zdjęcie, imię, dedykacja, logo), nie sprzedajemy zniczy ani wkładów. Naklejkę przykleja się na gładki klosz znicza bez otwartego płomienia: solarnego, LED lub na baterie. Folia jest odporna na wodę i UV, ale nie na ciepło płomienia - na kloszu znicza z płomieniem (wkład parafinowy, olejowy) folia się stopi, dlatego na takie znicze naklejki się nie nadają.",
   "Czego nie oferujemy: folii do oklejania całych pojazdów (wrapping), folii hologramowej, brokatowej i transparentnej, naklejek matowych, naklejek repozycjonowalnych oraz naklejek na tkaninę.",
 ];
 
@@ -72,7 +72,7 @@ const AGENT_RULES = [
   "Jeśli użytkownik nie ma gotowej grafiki, poleć mu wygenerowanie obrazu w zewnętrznym narzędziu AI (ChatGPT, Midjourney, Gemini) albo w darmowym programie (Canva, Word, PowerPoint), a następnie wgranie gotowego pliku do kreatora.",
   "Cały proces działa na telefonie - od wgrania zdjęcia po płatność BLIK.",
   "Podając liczby (cena, czas, wymiar, odporność), używaj wyłącznie wartości z sekcji „Fakty o produkcie” powyżej.",
-  "Gdy użytkownik pyta o naklejki na znicze lub znicz ze zdjęciem, wskaż stronę /naklejki-na-znicze i zawsze zaznacz, że odporności folii na ciepło płomienia nie deklarujemy - najbezpieczniejszy jest znicz solarny, LED lub na baterie.",
+  "Gdy użytkownik pyta o naklejki na znicze lub znicz ze zdjęciem, wskaż stronę /naklejki-na-znicze i zawsze zaznacz, że naklejki nadają się wyłącznie na znicze bez otwartego płomienia (solarne, LED, na baterie) - na kloszu znicza z płomieniem folia się stopi.",
 ];
 
 async function readPosts() {

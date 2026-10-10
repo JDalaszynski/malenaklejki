@@ -30,7 +30,7 @@ Fraza „naklejki na znicze **ze zdjęciem**" nie ma żadnej podpowiedzi Google 
 | **naklejki na znicze ze zdjęciem** | hip. (brak AC, brak dedykowanej strony w SERP) | zakupowa | `title`, H1, H2 sekcji o zdjęciu | **P1** |
 | naklejka na znicz | AC | zakupowa | H2, FAQ | P1 |
 | naklejka na znicz personalizowana | AC | zakupowa | H2 | P1 |
-| naklejki na znicze szklane | AC | zakupowa | H2 w sekcji „na jakim zniczu" | P1 |
+| naklejki na znicze szklane | AC | zakupowa | H2 w sekcji „na jakim zniczu" - **tylko szklany klosz znicza solarnego/LED**, nie znicz z płomieniem | P1 |
 | naklejki samoprzylepne na znicze | AC | zakupowa | opis materiału (folia winylowa + mocny klej) | P2 |
 | naklejki na znicze na cmentarz | AC | zakupowa | opis, FAQ (deszcz i słońce: woda, UV) | P2 |
 | naklejki na znicz (bez „e") | AC | zakupowa | wariant w treści | P2 |
@@ -103,7 +103,7 @@ Czysta intencja informacyjna z silnym popytem (podpowiedzi w każdej odmianie ad
 ## 6. Klaster E - podłoże: solar, LED, szkło, plastik
 
 Który znicz przyjmie naklejkę - sekcja „na jakim zniczu zadziała naklejka" na landingu (tabela). Frazy: `znicze solarne personalizowane` (AC), `znicz solarny z dedykacją` (AC, ~12 wariantów), `znicz solarny z napisem` (AC, ~12 wariantów), `znicz led z dedykacją` (AC), `znicz lampion z dedykacją` (AC), `znicz szklany`, `lampion cmentarny`.
-**Priorytet rośnie przy znicz solarny/LED**: brak otwartego płomienia = brak ryzyka nagrzewania folii od knota (patrz §11 - nie potwierdzamy odporności na ciepło płomienia).
+**Priorytet rośnie przy znicz solarny/LED**: brak otwartego płomienia = brak ryzyka nagrzewania folii od knota (patrz §11; od 2026-10-10 to jedyne dopuszczone podłoże - na kloszu znicza z płomieniem folia się stopi).
 
 ---
 
@@ -174,8 +174,8 @@ Dokładne sformułowania do nagłówków H3 i pytań schematu `FAQPage`. **Odpow
 | Ile kosztuje naklejka na znicz? | landing FAQ 1 | 49,00 zł brutto za arkusz A4; koszt sztuki z tabeli rozmiarów (orientacyjnie) |
 | Jak zrobić znicz ze zdjęciem samodzielnie? | landing FAQ 2, wpis | własny znicz + naklejka |
 | Czy naklejka na znicz wytrzyma deszcz i słońce na cmentarzu? | landing FAQ 3 | **tylko woda i UV** (facts.md); **bez** mrozu, liczby lat, ścierania |
-| Czy naklejka nie stopi się od płomienia znicza? | landing FAQ 4, wpis | **NIE deklarujemy odporności na ciepło płomienia** - uczciwa odpowiedź + zasady rozmieszczenia + znicze solarne/LED |
-| Na jakich zniczach można nakleić naklejkę? | landing FAQ 5 | gładkie szkło i plastik; nie na ryflowane/ażurowe; nie na wkład z woskiem |
+| Czy naklejka nie stopi się od płomienia znicza? | landing FAQ 4, wpis | **Stopi się na kloszu znicza z płomieniem** (właściciel, 2026-10-10) - naklejki tylko na znicze solarne/LED/na baterie |
+| Na jakich zniczach można nakleić naklejkę? | landing FAQ 5 | tylko bez otwartego płomienia (solarne, LED, na baterie), gładki klosz ze szkła lub plastiku; nie na ryflowane/ażurowe; **nie na klosz znicza z płomieniem** ani na wkład |
 | Jaki rozmiar naklejki wybrać na znicz? | landing FAQ 6 | zmierz gładkie pole; tabela rozmiarów |
 | Jakie zdjęcie nadaje się na naklejkę na znicz? | landing FAQ 7, wpis | 300 DPI; stary odbitkę zeskanować lub sfotografować w świetle dziennym; **nie retuszujemy** |
 | Co napisać na naklejce na znicz? | landing FAQ 8, wpis „co napisać" | **kreator nie ma edytora tekstu** - napis przygotowany w Canvie/Wordzie |
@@ -207,7 +207,7 @@ Dokładne sformułowania do nagłówków H3 i pytań schematu `FAQPage`. **Odpow
 
 1. **Spokojny, rzeczowy ton.** Zero wykrzykników, zero emoji, zero „okazji" i odliczania do 1 listopada. Pamięć nie jest promocją.
 2. **Zdjęcia osób** - nie wymyślamy historii, nazwisk ani „zdjęć klientów"; pokazujemy wyłącznie materiały, które właściciel sam dostarczy (§ strategia).
-3. **Nie obiecujemy** ciepła płomienia, mrozu, liczby lat, kontaktu z żywnością, zmywarki. **Obiecujemy** wodę, UV, mocny klej bez śladów przy odklejaniu, 300 DPI.
+3. **Folia nie jest odporna na ciepło płomienia** (właściciel, 2026-10-10: na kloszu znicza z płomieniem się stopi - naklejki tylko na znicze solarne/LED/na baterie). **Nie obiecujemy** mrozu, liczby lat, kontaktu z żywnością, zmywarki. **Obiecujemy** wodę, UV, mocny klej bez śladów przy odklejaniu, 300 DPI.
 4. **„Zaprojektuj"** wobec naklejki - zakaz; **kreator nie ma edytora tekstu** - napis/dedykację przygotowuje się poza kreatorem.
 5. **Zdjęcie ze znaną postacią/marką** - jak w pozostałych treściach: bez postaci licencjonowanych i logotypów.
 6. Dywiz „-", nie półpauza.

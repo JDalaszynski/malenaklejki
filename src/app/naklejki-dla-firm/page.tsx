@@ -544,8 +544,9 @@ export default function NaklejkiDlaFirmPage() {
           </div>
           <p className="text-sm sm:text-base text-muted-foreground font-medium leading-relaxed">
             Szkoły, parafie, stowarzyszenia i firmy organizujące akcje pamięci
-            zamawiają też naklejki z logo i hasłem „Pamiętamy” na znicze - ich
-            opis, rozmiary i rachunek arkuszy znajdziesz na stronie{" "}
+            zamawiają też naklejki z logo i hasłem „Pamiętamy” na znicze LED i
+            solarne - ich opis, rozmiary i rachunek arkuszy znajdziesz na
+            stronie{" "}
             <Link
               href="/naklejki-na-znicze"
               className="text-primary font-bold underline underline-offset-4 hover:text-primary/80 transition-colors"

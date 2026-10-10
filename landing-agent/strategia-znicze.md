@@ -50,7 +50,7 @@
 
 ## 4. Granice merytoryczne, które nie podlegają negocjacji
 
-1. **Ciepło płomienia.** Potwierdzone są tylko woda i UV. Odporności na temperaturę znicza **nie deklarujemy** - landing i wpisy mówią to wprost (hero, ramka, tabela specyfikacji, FAQ) i dają zasady rozmieszczenia: z dala od knota, nie na wkładzie ani metalu, test jednej sztuki pod nadzorem, najbezpieczniej znicz solarny / LED / na baterie. To uczciwe i jednocześnie wyróżnik wiarygodności (E-E-A-T).
+1. **Ciepło płomienia (korekta właściciela 2026-10-10).** Folia **nie jest odporna** na ciepło płomienia - na kloszu znicza z płomieniem się stopi. Naklejki są wyłącznie na znicze **bez otwartego płomienia** (solarne, LED, na baterie); landing i wpisy mówią to wprost (hero, ramka, tabela rodzajów zniczy, specyfikacja, FAQ). Wcześniejsza wersja (5-9.10) dopuszczała naklejanie na szkło znicza z płomieniem „z dala od knota" i test jednej sztuki - to był błąd, usunięty 10.10. Nie przywracać.
 2. **Nie sprzedajemy zniczy ani wkładów** - powiedziane na landingu i w FAQ, żeby nie wprowadzać w błąd wyszukujących „znicz ze zdjęciem".
 3. **Kreator nie ma edytora tekstu** - napis i dedykację przygotowuje się w Canvie/Wordzie; mówimy to wprost.
 4. **Ton:** spokojny, rzeczowy, bez wykrzykników, emoji, „okazji" i odliczania do 1.11. Termin zamówienia: wyłącznie „zamów z zapasem" - **bez daty granicznej i bez deklaracji całkowitego czasu dostawy** (facts.md).
@@ -100,7 +100,7 @@ Landing i oba wpisy **działają bez zdjęć** (zgodnie z `rules.md` §11: nie b
 
 ## 8. Otwarte punkty (moja rekomendacja przy każdym; nic nie blokuje publikacji)
 
-1. **Test ciepła - rekomendacja: zrób go w tym tygodniu.** Jeden znicz szklany z naklejką, palony pod nadzorem 4-6 godzin; sprawdzić brzegi, falowanie i klej po ostygnięciu. Wynik zmienia najważniejszą obiekcję tej niszy („czy się nie stopi") z „nie deklarujemy" na konkret. Wpisz wynik do `facts.md` i odeślij mi - zmienię hero, ramkę, tabelę i FAQ.
+1. ✅ **Test ciepła - ROZSTRZYGNIĘTE 2026-10-10:** właściciel potwierdził, że na kloszu znicza z płomieniem folia się stopi; treści przepisane na „tylko znicze solarne, LED i na baterie". Poniżej pierwotna rekomendacja (nieaktualna). ~~Jeden znicz szklany z naklejką, palony pod nadzorem 4-6 godzin; sprawdzić brzegi, falowanie i klej po ostygnięciu. Wynik zmienia najważniejszą obiekcję tej niszy („czy się nie stopi") z „nie deklarujemy" na konkret. Wpisz wynik do `facts.md` i odeślij mi - zmienię hero, ramkę, tabelę i FAQ.~~
 2. **Data graniczna zamówienia przed 1.11.** Przy 1.11 w niedzielę i produkcji 2-3 dni roboczych plus dostawie bezpieczna data to około **środy 21.10** (rekomendacja do potwierdzenia u przewoźnika). `facts.md` wymaga Twojej zgody na datę; po zgodzie dopiszę ją na landingu, w FAQ i w `llms.txt` z adnotacją „ważne do 2.11.2026".
 3. **Gotowy zestaw „Pamięć" w panelu** (dedykacje „Kochanej Mamie", „Kochanemu Tacie", „Pamiętamy" + symbole: anioł, gołąb, świeca, róża), na które klient bez zdjęcia mógłby kliknąć. To najlepsza droga dla osób bez własnej grafiki. Własne grafiki bez treści licencjonowanych; strona tematyczna jest w etapie 2 `strategia-gotowe-zestawy.md`. Rekomendacja: **tak, ale na 2027** (zbyt mało czasu do szczytu na zamówienie grafik i publikację).
 4. ✅ **Link sezonowy w stopce - ZROBIONE 2026-10-05** (zgoda właściciela, do 3.11). Do zrobienia po sezonie: usunąć wpis i stałą `ZNICZE_LINK_HIDDEN_FROM` z `src/components/layout/Footer.tsx`.

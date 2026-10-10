@@ -63,7 +63,7 @@ Spersonalizowane naklejki ze zdjęciem to prezent, który trudno przeoczyć. Zam
 - **Urodziny i imieniny** - wlepka z portretem solenizanta jest równie zabawna, co wzruszająca.
 - **Pamiątka z imprez i eventów** - naklejki ze zdjęciami z wyjazdu integracyjnego, wesela czy festiwalu.
 - **Pamięć o zwierzętach** - klienci, którzy stracili pupila, często zamawiają naklejkę ze zdjęcia jako trwałą pamiątkę.
-- **Pamięć o bliskich** - portret z imieniem i datami do naklejenia na własny znicz. Cały proces opisaliśmy we wpisie [znicz ze zdjęciem - jak zrobić go samodzielnie](/blog/znicz-ze-zdjeciem-jak-zrobic-samodzielnie-naklejka-na-znicz), a ofertę na stronie [naklejki na znicze](/naklejki-na-znicze).
+- **Pamięć o bliskich** - portret z imieniem i datami do naklejenia na własny znicz solarny lub LED. Cały proces opisaliśmy we wpisie [znicz ze zdjęciem - jak zrobić go samodzielnie](/blog/znicz-ze-zdjeciem-jak-zrobic-samodzielnie-naklejka-na-znicz), a ofertę na stronie [naklejki na znicze](/naklejki-na-znicze).
 - **Prezent dla dziecka** - rysunek wykonany przez maluszka zamieniony w naklejkę to coś, co rodzic zachowa na lata.
 
 Każdy arkusz A4 w cenie 49,00 zł mieści albo jedną dużą naklejkę (do 19 cm), albo kilkanaście mniejszych wlepek z różnymi zdjęciami. Na święta taki zestaw sprawdza się jako [naklejki świąteczne ze zdjęciem](/blog/naklejki-swiateczne-i-etykiety-na-prezenty) - pomysły i koszt kompletu z kilku arkuszy opisaliśmy w osobnym przewodniku.
