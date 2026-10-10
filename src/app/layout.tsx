@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Nunito, Fredoka } from "next/font/google";
 import "./globals.css";
+import { AttributionCapture } from "@/components/layout/AttributionCapture";
 import { CookieBanner } from "@/components/layout/CookieBanner";
 import { Analytics } from "@vercel/analytics/react";
 import { InteractiveBackground } from "@/components/layout/InteractiveBackground";
@@ -112,7 +113,14 @@ export default async function RootLayout({
                 let consentMode = {
                   analytics_storage: 'denied',
                   ad_storage: 'denied',
+                  ad_user_data: 'denied',
+                  ad_personalization: 'denied',
                   personalization_storage: 'denied'
+                };
+                const grantMarketing = () => {
+                  consentMode.ad_storage = 'granted';
+                  consentMode.ad_user_data = 'granted';
+                  consentMode.ad_personalization = 'granted';
                 };
                 
                 try {
@@ -120,10 +128,10 @@ export default async function RootLayout({
                   if (storedPrefs) {
                     const prefs = JSON.parse(storedPrefs);
                     if (prefs.analytical) consentMode.analytics_storage = 'granted';
-                    if (prefs.marketing) consentMode.ad_storage = 'granted';
+                    if (prefs.marketing) grantMarketing();
                   } else if (localStorage.getItem('cookies-accepted') === 'true') {
                     consentMode.analytics_storage = 'granted';
-                    consentMode.ad_storage = 'granted';
+                    grantMarketing();
                   }
                 } catch (e) {
                   console.error('Failed to parse cookie preferences for GA:', e);
@@ -132,6 +140,8 @@ export default async function RootLayout({
                 gtag('consent', 'default', {
                   'analytics_storage': consentMode.analytics_storage,
                   'ad_storage': consentMode.ad_storage,
+                  'ad_user_data': consentMode.ad_user_data,
+                  'ad_personalization': consentMode.ad_personalization,
                   'personalization_storage': consentMode.personalization_storage,
                   'wait_for_update': 500
                 });
@@ -211,6 +221,7 @@ export default async function RootLayout({
             </CatalogProvider>
           </ShippingEstimateProvider>
         </VacationProvider>
+        <AttributionCapture />
         <CookieBanner />
         <Analytics />
       </body>

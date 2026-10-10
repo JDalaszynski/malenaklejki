@@ -3,6 +3,27 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { Cookie, Settings, ShieldCheck, X } from "lucide-react";
+import { syncAttributionStorage } from "@/lib/attribution";
+
+/**
+ * Zgody dla tagu Google (Consent Mode v2). Zgoda marketingowa steruje trzema
+ * sygnałami naraz: zapisem ciasteczek reklamowych, przekazywaniem danych
+ * użytkownika do Google Ads i personalizacją reklam.
+ */
+function updateConsent(prefs: { analytical: boolean; marketing: boolean }) {
+  const marketing = prefs.marketing ? "granted" : "denied";
+  const { gtag } = window as unknown as {
+    gtag?: (command: "consent", action: "update", signals: Record<string, "granted" | "denied">) => void;
+  };
+  gtag?.("consent", "update", {
+    analytics_storage: prefs.analytical ? "granted" : "denied",
+    ad_storage: marketing,
+    ad_user_data: marketing,
+    ad_personalization: marketing,
+  });
+  // Źródło wizyty wolno utrwalić tylko przy zgodzie marketingowej.
+  syncAttributionStorage();
+}
 
 export function CookieBanner() {
   const [isOpen, setIsOpen] = useState(false);
@@ -36,13 +57,7 @@ export function CookieBanner() {
     localStorage.setItem("cookies-accepted", "true");
     localStorage.setItem("cookies-preferences", JSON.stringify(allPrefs));
     setPreferences(allPrefs);
-    
-    if (typeof window !== "undefined" && (window as any).gtag) {
-      (window as any).gtag("consent", "update", {
-        analytics_storage: "granted",
-        ad_storage: "granted",
-      });
-    }
+    updateConsent(allPrefs);
 
     setIsOpen(false);
   };
@@ -52,13 +67,7 @@ export function CookieBanner() {
     localStorage.setItem("cookies-accepted", "true");
     localStorage.setItem("cookies-preferences", JSON.stringify(essentialPrefs));
     setPreferences(essentialPrefs);
-
-    if (typeof window !== "undefined" && (window as any).gtag) {
-      (window as any).gtag("consent", "update", {
-        analytics_storage: "denied",
-        ad_storage: "denied",
-      });
-    }
+    updateConsent(essentialPrefs);
 
     setIsOpen(false);
   };
@@ -66,13 +75,7 @@ export function CookieBanner() {
   const handleSavePreferences = () => {
     localStorage.setItem("cookies-accepted", "true");
     localStorage.setItem("cookies-preferences", JSON.stringify(preferences));
-
-    if (typeof window !== "undefined" && (window as any).gtag) {
-      (window as any).gtag("consent", "update", {
-        analytics_storage: preferences.analytical ? "granted" : "denied",
-        ad_storage: preferences.marketing ? "granted" : "denied",
-      });
-    }
+    updateConsent(preferences);
 
     setIsOpen(false);
   };
@@ -102,7 +105,7 @@ export function CookieBanner() {
               Dbamy o Twoją prywatność
             </h4>
             <p className="text-[11px] text-muted-foreground leading-relaxed">
-              Używamy plików cookies, aby ułatwić korzystanie z naszego sklepu (m.in. koszyk, sesja) oraz analizować ruch. Szczegóły znajdziesz w{" "}
+              Używamy plików cookies, aby ułatwić korzystanie z naszego sklepu (m.in. koszyk, sesja), analizować ruch i mierzyć skuteczność naszych reklam. Szczegóły znajdziesz w{" "}
               <Link
                 href="/polityka-prywatnosci"
                 className="text-primary hover:underline font-bold"
@@ -171,7 +174,7 @@ export function CookieBanner() {
                 />
                 <div>
                   <p className="text-[11px] font-black text-foreground">Marketingowe</p>
-                  <p className="text-[9px] text-muted-foreground leading-tight">Umożliwiają dopasowanie treści i ewentualnych reklam.</p>
+                  <p className="text-[9px] text-muted-foreground leading-tight">Pozwalają mierzyć skuteczność naszych reklam w Google i dopasowywać reklamy.</p>
                 </div>
               </label>
 

@@ -9,6 +9,7 @@ import { StatusPill } from "@/components/account/StatusPill";
 import type { AuditEntry } from "@/lib/admin/audit";
 import { filesDownloadUrl, productionFiles } from "@/lib/admin/orderFiles";
 import type { AdminOrder } from "@/lib/admin/queries";
+import { ACQUISITION_LABELS } from "@/lib/attribution";
 import { countSheets, orderStats } from "@/lib/admin/stats";
 import { isBeforeInvoicing } from "@/lib/orders/invoicing";
 import {
@@ -100,6 +101,12 @@ export function OrderDetailView({
           {order.deletedAt && <StatusPill tone="danger">W koszu</StatusPill>}
           {order.excludedFromStats && <StatusPill tone="warning">Poza statystykami</StatusPill>}
           <StatusPill tone="neutral">{SOURCE_LABELS[order.source] ?? order.source}</StatusPill>
+          {order.acquisition && (
+            <StatusPill tone="info">
+              {ACQUISITION_LABELS[order.acquisition.channel]}
+              {order.acquisition.keyword ? ` · ${order.acquisition.keyword}` : ""}
+            </StatusPill>
+          )}
         </div>
       }
       actions={

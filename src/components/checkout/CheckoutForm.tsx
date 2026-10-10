@@ -8,6 +8,7 @@ import { InPostGeowidget } from "./InPostGeowidget";
 import { useCartStore } from "@/store/cartStore";
 import { trackAddPaymentInfo, trackBeginCheckout } from "@/lib/analytics";
 import { createOrder } from "@/app/actions/createOrder";
+import { getAttribution } from "@/lib/attribution";
 import { Loader2, X, Package } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { getStickersNoun, getIndividualStickersLabel } from "@/lib/utils/polish";
@@ -186,6 +187,8 @@ export function CheckoutForm() {
         ...(wantsAccount && !isLoggedIn
           ? { accountPassword }
           : {}),
+        // Źródło wizyty (reklama Google) — serwer sam zrobi z niego etykietę.
+        attribution: getAttribution() ?? undefined,
       };
 
       // Wymuszamy pełną serializację do zwykłego obiektu JSON, aby uniknąć błędów

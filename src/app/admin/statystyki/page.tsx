@@ -23,8 +23,10 @@ import {
   monthKey,
   monthlyBreakdown,
   round2,
+  statsDate,
   sumTaxes,
   summarize,
+  summarizeAdsOrders,
   toSalesEntries,
   withTaxes,
   yearMonthlyBreakdown,
@@ -154,6 +156,10 @@ export default async function StatsPage({
   const allTimeTax = sumTaxes(allTimeMonths);
   const allTimeDays = firstSale ? daysSince(firstSale) : 0;
 
+  // Zamówienia z reklam w tych samych okresach — według tej samej daty, co zysk.
+  const adsOrders = (prefix: string) =>
+    summarizeAdsOrders(orders.filter((order) => monthKey(statsDate(order)).startsWith(prefix)));
+
   const periods: StatsPeriod[] = [
     {
       id: "month",
@@ -166,6 +172,7 @@ export default async function StatsPage({
       days: current.days,
       profitPerDay: current.days ? round2(current.profitAfterTax / current.days) : 0,
       compare: monthComparison(entries, current, previous),
+      ads: adsOrders(current.month || currentMonthValue()),
     },
     {
       id: "year",
@@ -175,6 +182,7 @@ export default async function StatsPage({
       tax: yearTax,
       days: yearDays,
       profitPerDay: yearDays ? round2(yearTax.profitAfterTax / yearDays) : 0,
+      ads: adsOrders(String(year)),
     },
     {
       id: "all",
@@ -186,6 +194,7 @@ export default async function StatsPage({
       tax: allTimeTax,
       days: allTimeDays,
       profitPerDay: allTimeDays ? round2(allTimeTax.profitAfterTax / allTimeDays) : 0,
+      ads: adsOrders(""),
     },
   ];
 

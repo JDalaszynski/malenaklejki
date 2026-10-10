@@ -4,6 +4,7 @@ import { useState } from "react";
 import { ChevronDown, Minus, TrendingDown, TrendingUp } from "lucide-react";
 
 import type { MonthlyStatsWithTax, PeriodStats, TaxBreakdown } from "@/lib/admin/costs";
+import type { AdsOrdersSummary } from "@/lib/admin/stats";
 import { formatPln } from "@/lib/orders/status";
 import { Card } from "./AdminLayout";
 import { MonthlyChart, MonthlyTable, ProfitBreakdown, ProfitSummary } from "./ProfitStats";
@@ -77,6 +78,8 @@ export type StatsPeriod = {
   profitPerDay: number;
   /** Porównanie z poprzednim okresem — tylko tam, gdzie jest sens. */
   compare?: PeriodComparison;
+  /** Zamówienia z reklam Google w tym okresie. */
+  ads?: AdsOrdersSummary;
 };
 
 export type PeriodComparison = {
@@ -124,6 +127,58 @@ function ComparisonStrip({ compare }: { compare: PeriodComparison }) {
       </ul>
     </div>
   );
+}
+
+/**
+ * Zamówienia oznaczone przy składaniu jako przyjście z reklamy Google. To z nich
+ * liczy się prawdziwy koszt zamówienia: Google Ads widzi tylko zakupy osób,
+ * które zgodziły się na cookies.
+ */
+function AdsOrders({ ads }: { ads: AdsOrdersSummary }) {
+  if (ads.orders === 0) {
+    return (
+      <p className="mt-4 text-sm font-semibold text-muted-foreground">
+        Z reklam Google Ads: brak zamówień w tym okresie.
+      </p>
+    );
+  }
+
+  return (
+    <div className="mt-4 rounded-2xl border border-border/60 bg-muted/10 px-4 py-3">
+      <p className="text-sm font-semibold text-muted-foreground">
+        Z reklam Google Ads:{" "}
+        <span className="font-extrabold text-foreground">
+          {ads.orders} {plOrders(ads.orders)}
+        </span>{" "}
+        · arkusze za <span className="font-extrabold text-foreground">{formatPln(ads.sheetsGross)}</span> ·
+        zysk przed kosztem reklamy{" "}
+        <span className="font-extrabold text-foreground">{formatPln(ads.profit)}</span>
+      </p>
+      {ads.keywords.length > 0 && (
+        <ul className="mt-2 flex flex-wrap gap-2">
+          {ads.keywords.map((item) => (
+            <li
+              key={item.keyword}
+              className="inline-flex items-center gap-1.5 rounded-full border border-border/60 bg-card px-3 py-1 text-xs font-extrabold"
+            >
+              {item.keyword}
+              <span className="font-semibold text-muted-foreground tabular-nums">× {item.orders}</span>
+            </li>
+          ))}
+        </ul>
+      )}
+      <p className="mt-2 text-xs font-medium text-muted-foreground">
+        Koszt zamówienia z reklamy = wydatki kampanii w Google Ads za ten okres ÷ liczba tych zamówień.
+      </p>
+    </div>
+  );
+}
+
+function plOrders(count: number): string {
+  if (count === 1) return "zamówienie";
+  const rest = count % 10;
+  const teens = count % 100;
+  return rest >= 2 && rest <= 4 && (teens < 12 || teens > 14) ? "zamówienia" : "zamówień";
 }
 
 /**
@@ -175,6 +230,8 @@ export function StatsOverview({
       />
 
       {period.compare && <ComparisonStrip compare={period.compare} />}
+
+      {period.ads && <AdsOrders ads={period.ads} />}
 
       {period.stats.unpriced > 0 && (
         <p className="text-sm font-semibold text-muted-foreground mt-1.5">

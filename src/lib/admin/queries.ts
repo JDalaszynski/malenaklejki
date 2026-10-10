@@ -1,6 +1,7 @@
 import "server-only";
 
 import { db } from "@/lib/firebase/admin";
+import { toStoredAcquisition, type OrderAcquisition } from "@/lib/attribution";
 
 export type AdminOrderItem = {
   id: string;
@@ -21,6 +22,8 @@ export type AdminOrder = {
   id: string;
   orderNumber: string;
   source: string;
+  /** Zamówienie z reklamy — etykieta zapisana przy składaniu (`lib/attribution`). */
+  acquisition: OrderAcquisition | null;
   createdAt: string;
   paidAt: string | null;
   deletedAt: string | null;
@@ -86,6 +89,7 @@ export function toAdminOrder(id: string, data: FirebaseFirestore.DocumentData): 
     id,
     orderNumber: data.orderNumber ?? id,
     source: data.source ?? "shop",
+    acquisition: toStoredAcquisition(data.acquisition),
     createdAt: data.createdAt ?? "",
     paidAt: data.paidAt ?? null,
     deletedAt: data.deletedAt ?? null,

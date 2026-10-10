@@ -4,6 +4,7 @@ import { Check, ExternalLink, Minus } from "lucide-react";
 import type { AdminOrder } from "@/lib/admin/queries";
 import { StatusPill } from "@/components/account/StatusPill";
 import { orderFinance } from "@/lib/admin/stats";
+import { ACQUISITION_LABELS } from "@/lib/attribution";
 import {
   DELIVERY_METHOD_LABELS,
   PAYMENT_METHOD_LABELS,
@@ -97,6 +98,16 @@ export function OrdersTable({
                   {order.billing.wantsInvoice && (
                     <span className="ml-2 text-[10px] font-black uppercase tracking-wider text-secondary">
                       FV
+                    </span>
+                  )}
+                  {order.acquisition && (
+                    <span
+                      title={`Z reklamy ${ACQUISITION_LABELS[order.acquisition.channel]}${
+                        order.acquisition.keyword ? ` — ${order.acquisition.keyword}` : ""
+                      }`}
+                      className="ml-2 text-[10px] font-black uppercase tracking-wider text-primary"
+                    >
+                      ADS
                     </span>
                   )}
                   {order.excludedFromStats && (

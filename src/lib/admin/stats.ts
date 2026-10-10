@@ -2,7 +2,7 @@ import "server-only";
 
 import { db } from "@/lib/firebase/admin";
 import { listOrders, type AdminOrder } from "./queries";
-import { financeOf, summarize, type ManualSale, type PeriodStats, type SaleFinance, type SalesEntry } from "./costs";
+import { financeOf, round2, summarize, type ManualSale, type PeriodStats, type SaleFinance, type SalesEntry } from "./costs";
 
 /**
  * Stawki i cała arytmetyka zysku siedzą w `lib/admin/costs` — module bez
@@ -70,6 +70,40 @@ export function toSalesEntries(orders: AdminOrder[], manual: ManualSale[]): Sale
       manual: true,
     })),
   ];
+}
+
+/** Zamówienia z reklam Google w jednym okresie — do zestawienia z wydatkami w Google Ads. */
+export type AdsOrdersSummary = {
+  orders: number;
+  /** Wartość arkuszy brutto, bez dostawy — tak samo liczy ją zakup w GA4. */
+  sheetsGross: number;
+  /** Zysk z tych zamówień, zanim odejmiesz koszt reklamy. */
+  profit: number;
+  /** Słowa kluczowe reklam, od najczęstszego; zamówienia bez słowa tu nie trafiają. */
+  keywords: Array<{ keyword: string; orders: number }>;
+};
+
+/**
+ * Google Ads widzi tylko zakupy osób, które zgodziły się na cookies, więc
+ * prawdziwy koszt zamówienia z reklamy liczy się z tych liczb: wydatki
+ * kampanii podzielone przez `orders`.
+ */
+export function summarizeAdsOrders(orders: AdminOrder[]): AdsOrdersSummary {
+  const fromAds = orders.filter((order) => order.acquisition && !order.excludedFromStats);
+  const byKeyword = new Map<string, number>();
+  for (const order of fromAds) {
+    const keyword = order.acquisition?.keyword;
+    if (keyword) byKeyword.set(keyword, (byKeyword.get(keyword) ?? 0) + 1);
+  }
+
+  return {
+    orders: fromAds.length,
+    sheetsGross: round2(fromAds.reduce((sum, order) => sum + order.totals.subtotal, 0)),
+    profit: round2(fromAds.reduce((sum, order) => sum + orderFinance(order).profit, 0)),
+    keywords: [...byKeyword]
+      .map(([keyword, count]) => ({ keyword, orders: count }))
+      .sort((a, b) => b.orders - a.orders || a.keyword.localeCompare(b.keyword, "pl")),
+  };
 }
 
 /**

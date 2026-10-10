@@ -105,7 +105,7 @@ export default function PrivacyPolicyPage() {
     {
       id: "cele-przetwarzania",
       title: "§ 2. Rodzaj, cele i podstawy prawne przetwarzania danych",
-      searchText: `Realizacja zamówień art 6 ust 1 lit b RODO imię nazwisko adres e-mail numer telefonu adres dostawy ulica kod pocztowy miasto kraj dane do faktury NIP nazwa firmy adres. Obsługa płatności Przelewy24. Przetwarzanie grafik Firebase Storage Google Cloud EMEA Limited UE kontur cięcia linia cięcia. Obowiązki prawne podatkowo-księgowe art 6 ust 1 lit c RODO faktura księgowość. Ustalenie dochodzenie obrona przed roszczeniami art 6 ust 1 lit f RODO. Analiza statystyki ruchu na stronie Google Analytics 4 Vercel Analytics zgoda art 6 ust 1 lit a RODO.`,
+      searchText: `Realizacja zamówień art 6 ust 1 lit b RODO imię nazwisko adres e-mail numer telefonu adres dostawy ulica kod pocztowy miasto kraj dane do faktury NIP nazwa firmy adres. Obsługa płatności Przelewy24. Przetwarzanie grafik Firebase Storage Google Cloud EMEA Limited UE kontur cięcia linia cięcia. Obowiązki prawne podatkowo-księgowe art 6 ust 1 lit c RODO faktura księgowość. Ustalenie dochodzenie obrona przed roszczeniami art 6 ust 1 lit f RODO. Analiza statystyki ruchu na stronie Google Analytics 4 Vercel Analytics zgoda art 6 ust 1 lit a RODO. Pomiar skuteczności reklam Google Ads pomiar konwersji remarketing zgoda marketingowa. Ocena skuteczności reklam bez plików cookies kampania słowo kluczowe art 6 ust 1 lit f RODO.`,
       content: (
         <div className="space-y-6">
           <p>Przetwarzamy dane osobowe użytkowników w następujących celach:</p>
@@ -228,6 +228,48 @@ export default function PrivacyPolicyPage() {
                 </li>
               </ul>
             </div>
+
+            <div className="bg-card border border-border/80 p-5 rounded-2xl flex flex-col gap-2">
+              <div className="flex items-center gap-2 mb-1">
+                <div className="w-7 h-7 rounded-lg bg-primary/10 flex items-center justify-center border border-primary/20">
+                  <span className="text-primary font-bold text-xs">7</span>
+                </div>
+                <h4 className="font-black text-foreground text-sm">
+                  Pomiar skuteczności reklam Google Ads (art. 6 ust. 1 lit. a RODO - dobrowolna zgoda)
+                </h4>
+              </div>
+              <ul className="text-sm space-y-1 pl-9">
+                <li>
+                  <strong className="text-primary">Zakres danych:</strong>{" "}
+                  identyfikator kliknięcia w reklamę, identyfikator online, adres IP oraz informacja o złożeniu zamówienia i jego wartości.
+                </li>
+                <li>
+                  <strong className="text-primary">Cel:</strong>{" "}
+                  ustalenie, czy wizyta z reklamy Google zakończyła się zamówieniem (pomiar konwersji), oraz remarketing, czyli wyświetlanie naszych reklam osobom, które odwiedziły sklep. Dane trafiają do Google Ads wyłącznie po wyrażeniu zgody na pliki marketingowe.
+                </li>
+              </ul>
+            </div>
+
+            <div className="bg-card border border-border/80 p-5 rounded-2xl flex flex-col gap-2">
+              <div className="flex items-center gap-2 mb-1">
+                <div className="w-7 h-7 rounded-lg bg-primary/10 flex items-center justify-center border border-primary/20">
+                  <span className="text-primary font-bold text-xs">8</span>
+                </div>
+                <h4 className="font-black text-foreground text-sm">
+                  Ocena skuteczności reklam bez plików cookies (art. 6 ust. 1 lit. f RODO)
+                </h4>
+              </div>
+              <ul className="text-sm space-y-1 pl-9">
+                <li>
+                  <strong className="text-primary">Zakres danych:</strong>{" "}
+                  informacja, że wizyta zakończona zamówieniem zaczęła się od reklamy Google, oraz nazwa kampanii i słowo kluczowe tej reklamy - odczytane z adresu strony, na którą prowadziła reklama.
+                </li>
+                <li>
+                  <strong className="text-primary">Cel:</strong>{" "}
+                  prawnie uzasadniony interes Administratora polegający na sprawdzeniu, które reklamy prowadzą do zamówień. Informację zapisujemy przy zamówieniu bez użycia plików cookies i bez identyfikatora kliknięcia, i nie przekazujemy jej do Google. W pamięci sesji przeglądarki utrwalamy ją wyłącznie po zgodzie na pliki marketingowe.
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
       ),
@@ -261,7 +303,7 @@ export default function PrivacyPolicyPage() {
     {
       id: "odbiorcy-danych",
       title: "§ 4. Odbiorcy danych osobowych",
-      searchText: `odbiorcy danych osobowych podmioty trzecie. Firebase Google Cloud EMEA Limited bezpieczne przechowywanie danych bazy Storage. Przelewy24 PayPro SA obsługa płatności. InPost sp z o o etykiety nadawcze wysyłka kurier. księgowość informatyczne. Google Analytics 4 Google Ireland Limited Vercel Inc.`,
+      searchText: `odbiorcy danych osobowych podmioty trzecie. Firebase Google Cloud EMEA Limited bezpieczne przechowywanie danych bazy Storage. Przelewy24 PayPro SA obsługa płatności. InPost sp z o o etykiety nadawcze wysyłka kurier. księgowość informatyczne. Google Analytics 4 Google Ads pomiar konwersji remarketing Google Ireland Limited Vercel Inc.`,
       content: (
         <div className="space-y-4">
           <p>
@@ -328,9 +370,11 @@ export default function PrivacyPolicyPage() {
                   Google Ireland Limited
                 </h4>
                 <p className="text-xs text-muted-foreground mt-1">
-                  Dostawca usług analitycznych Google Analytics 4. Dane
-                  przesyłane są w sposób w pełni zgodny z mechanizmem Google
-                  Consent Mode V2.
+                  Dostawca usług analitycznych Google Analytics 4 oraz
+                  systemu reklamowego Google Ads (pomiar konwersji i
+                  remarketing - wyłącznie po zgodzie na pliki marketingowe).
+                  Dane przesyłane są w sposób w pełni zgodny z mechanizmem
+                  Google Consent Mode V2.
                 </p>
               </div>
             </div>
@@ -500,7 +544,7 @@ export default function PrivacyPolicyPage() {
     <DocLayout
       title="Polityka Prywatności"
       description="Zasady przetwarzania i ochrony danych osobowych użytkowników korzystających z serwisu MałeNaklejki."
-      lastUpdated="22 sierpnia 2026 r."
+      lastUpdated="10 października 2026 r."
       activeTab="polityka-prywatnosci"
       sections={sections}
     />

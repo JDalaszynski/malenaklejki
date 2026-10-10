@@ -6,6 +6,7 @@ import { consumeRateLimit, formatRetryAfter } from "@/lib/auth/rateLimit";
 import { readSession } from "@/lib/auth/session";
 import { isServerPurchaseTrackingEnabled, readGaIdentifiers, toAnalyticsSheets } from "@/lib/orders/gaPurchase";
 import { attachCartLayout } from "@/lib/orders/layout";
+import { toOrderAcquisition } from "@/lib/attribution";
 import { createAccountFromOrder } from "@/lib/auth/accountFromOrder";
 import { headers } from "next/headers";
 import { formatLongDate, resolveVacation } from "@/lib/settings/vacation";
@@ -68,6 +69,10 @@ const CreateOrderSchema = z.object({
     .refine((v) => /[A-Za-zĄĆĘŁŃÓŚŹŻąćęłńóśźż]/.test(v) && /[0-9]/.test(v))
     .optional(),
   accountMarketingConsent: z.boolean().optional(),
+  // Źródło wizyty z adresu pierwszej strony. Celowo bez schematu: śmieci w tym
+  // polu nie mogą odrzucić zamówienia — `toOrderAcquisition` bierze z niego
+  // tylko to, co rozpozna.
+  attribution: z.unknown().optional(),
 });
 
 import { registerTransaction } from "@/lib/p24";
@@ -145,7 +150,7 @@ async function doCreateOrder(rawData: any) {
       console.error("Zod Validation Error:", result.error);
       return { success: false, error: "Błędne dane zamówienia. Spróbuj ponownie." };
     }
-    const { accountPassword, accountMarketingConsent, ...data } = result.data;
+    const { accountPassword, accountMarketingConsent, attribution, ...data } = result.data;
 
     // 3. Server-side price calculation
     const serverSubtotal = data.items.reduce(
@@ -200,6 +205,8 @@ async function doCreateOrder(rawData: any) {
       fulfillmentStatus: "NEW",
       source: "shop",
       analytics: gaIdentifiers ?? undefined,
+      // Zamówienie z reklamy Google — etykieta bez cookies (patrz `lib/attribution`).
+      acquisition: toOrderAcquisition(attribution) ?? undefined,
       userId: session?.uid ?? null,
       customerEmailLower: emailLower,
       deletedAt: null,
