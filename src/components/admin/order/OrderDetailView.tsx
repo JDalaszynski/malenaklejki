@@ -177,6 +177,7 @@ export function OrderDetailView({
                 isPaid={isPaid}
                 isHistorical={isBeforeInvoicing(order)}
                 invoice={order.infakt}
+                invoiceNumber={order.invoiceNumber}
               />
             </Card>
 

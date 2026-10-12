@@ -15,7 +15,11 @@ import {
   sendOrderStatusEmail,
   type StatusEmailKind,
 } from "@/lib/orders/statusEmails";
-import { issueInvoiceForOrder, issueInvoiceForOrderSafely } from "@/lib/orders/invoicing";
+import {
+  issueInvoiceForOrder,
+  issueInvoiceForOrderSafely,
+  linkInvoiceToOrder,
+} from "@/lib/orders/invoicing";
 import { pushOrderToBaseLinker as pushToBaseLinker, pushOrderToBaseLinkerSafely } from "@/lib/orders/baselinkerSync";
 import { FULFILLMENT_STATUSES, PAYMENT_STATUSES, normalizePaymentStatus } from "@/lib/orders/status";
 
@@ -695,6 +699,51 @@ export async function issueOrderInvoice(orderId: string): Promise<Result> {
 
   refreshAdminViews(String(orderId));
   return { success: true };
+}
+
+const invoiceLinkSchema = z.object({
+  orderId: z.string().min(1).max(128),
+  number: z.string().trim().min(1, "Podaj numer faktury.").max(60, "Numer faktury jest za długi."),
+});
+
+/**
+ * Ręczna zmiana faktury przypiętej do zamówienia — gdy automat powiązał nie tę
+ * albo fakturę wystawiono na nowo w inFakcie. Numer jest sprawdzany w inFakcie;
+ * `notice` opisuje przypiętą fakturę, `warnings` — rozbieżności do obejrzenia.
+ */
+export async function changeOrderInvoice(
+  raw: unknown
+): Promise<Result<{ notice: string; warnings: string[] }>> {
+  const actor = await requireAdminActor();
+  if (!actor) return DENIED;
+
+  const parsed = invoiceLinkSchema.safeParse(raw);
+  if (!parsed.success) {
+    return { success: false, error: parsed.error.issues[0]?.message || "Błędne dane." };
+  }
+  const { orderId, number } = parsed.data;
+
+  const result = await linkInvoiceToOrder(orderId, number);
+  if (!result.ok) return { success: false, error: result.error };
+
+  const snapshot = await db.collection("orders").doc(orderId).get();
+  await recordAudit({
+    actorEmail: actor.email,
+    action: "Ręczna zmiana numeru faktury",
+    orderId,
+    orderNumber: snapshot.data()?.orderNumber,
+    details: [
+      `${result.previous ?? "brak"} → ${result.number} (${result.summary})`,
+      ...result.warnings,
+    ].join(" "),
+  });
+
+  refreshAdminViews(orderId);
+  return {
+    success: true,
+    notice: `Przypięto fakturę ${result.number} — ${result.summary}.`,
+    warnings: result.warnings,
+  };
 }
 
 /* ------------------------------------------------------------------ */

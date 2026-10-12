@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { FileText, Loader2, RotateCcw, Send, Trash2 } from "lucide-react";
 
 import {
+  changeOrderInvoice,
   deleteOrderPermanently,
   issueOrderInvoice,
   moveOrderToTrash,
@@ -66,6 +67,87 @@ export function BaseLinkerButton({
 }
 
 /**
+ * Ręczna zmiana przypiętej faktury — gdy automat powiązał nie tę albo fakturę
+ * wystawiono na nowo w inFakcie. Zwinięte, bo to poprawka na wyjątkowe sytuacje.
+ */
+function InvoiceNumberEditor({
+  orderId,
+  currentNumber,
+}: {
+  orderId: string;
+  currentNumber: string | null;
+}) {
+  const router = useRouter();
+  const [isPending, startTransition] = useTransition();
+  const [number, setNumber] = useState(currentNumber ?? "");
+  const [message, setMessage] = useState<{ tone: "success" | "error"; text: string } | null>(null);
+  const [warnings, setWarnings] = useState<string[]>([]);
+
+  const submit = () =>
+    startTransition(async () => {
+      setMessage(null);
+      setWarnings([]);
+      const result = await changeOrderInvoice({ orderId, number });
+      if (!result.success) {
+        setMessage({ tone: "error", text: result.error });
+        return;
+      }
+      setMessage({ tone: "success", text: result.notice });
+      setWarnings(result.warnings);
+      router.refresh();
+    });
+
+  return (
+    <details className="group">
+      <summary className="cursor-pointer list-none [&::-webkit-details-marker]:hidden text-xs font-bold text-muted-foreground hover:text-primary hover:underline w-fit">
+        {currentNumber ? "Zmień numer faktury…" : "Przypnij fakturę wystawioną w inFakcie…"}
+      </summary>
+      <form
+        className="mt-3 flex flex-col gap-2"
+        onSubmit={(event) => {
+          event.preventDefault();
+          submit();
+        }}
+      >
+        <label htmlFor={`invoice-number-${orderId}`} className="text-sm font-bold">
+          Numer faktury w inFakcie
+        </label>
+        <div className="flex flex-wrap gap-2">
+          <input
+            id={`invoice-number-${orderId}`}
+            value={number}
+            onChange={(event) => setNumber(event.target.value)}
+            placeholder="np. 12/10/2026"
+            autoComplete="off"
+            maxLength={60}
+            className="h-10 min-w-0 flex-1 basis-36 rounded-xl border border-slate-300 dark:border-white/20 bg-background px-3 text-sm font-semibold focus-visible:outline-none focus-visible:border-primary focus-visible:ring-2 focus-visible:ring-primary/20"
+          />
+          <button
+            type="submit"
+            disabled={isPending || !number.trim()}
+            className="inline-flex items-center justify-center gap-2 rounded-xl text-sm font-bold bg-card border border-border/70 text-foreground hover:bg-muted/50 hover:text-primary h-10 px-5 transition-all cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
+          >
+            {isPending && <Loader2 className="w-4 h-4 animate-spin" aria-hidden />}
+            Przypnij
+          </button>
+        </div>
+        <p className="text-xs font-medium text-muted-foreground">
+          Faktura musi istnieć w inFakcie. Zamówienie zostanie z nią powiązane, a ten numer trafi
+          do ewidencji sprzedaży.
+        </p>
+
+        {message && <FormAlert tone={message.tone}>{message.text}</FormAlert>}
+        {warnings.length > 0 && (
+          <p className="text-xs font-bold text-amber-700 dark:text-amber-400 bg-amber-500/10 border border-amber-500/30 rounded-lg px-3 py-1.5">
+            Do sprawdzenia: {warnings.join(" ")}
+          </p>
+        )}
+      </form>
+    </details>
+  );
+}
+
+/**
  * Faktura z inFaktu. Wystawia się sama po zaksięgowaniu płatności — przycisk
  * jest tylko na wypadek, gdy inFakt odmówił albo nie zdążył odpowiedzieć.
  */
@@ -74,11 +156,14 @@ export function InvoiceControls({
   isPaid,
   isHistorical,
   invoice,
+  invoiceNumber,
 }: {
   orderId: string;
   isPaid: boolean;
   /** Zamówienie sprzed uruchomienia integracji — faktura tylko na wyraźne kliknięcie. */
   isHistorical: boolean;
+  /** Numer, który widzi ewidencja sprzedaży — punkt wyjścia do ręcznej zmiany. */
+  invoiceNumber: string | null;
   invoice: {
     status: string;
     number: string | null;
@@ -161,6 +246,8 @@ export function InvoiceControls({
           {error}
         </p>
       )}
+
+      <InvoiceNumberEditor orderId={orderId} currentNumber={invoiceNumber ?? invoice?.number ?? null} />
     </div>
   );
 }

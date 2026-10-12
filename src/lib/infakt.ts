@@ -533,6 +533,21 @@ export async function findInvoiceByUuid(uuid: string): Promise<InfaktInvoiceList
   }
 }
 
+/**
+ * Faktura o podanym numerze (np. „12/10/2026”) albo `null`, gdy takiej nie ma.
+ *
+ * Filtr `number_eq` porównuje cały numer, ale wynik i tak sprawdzamy: API
+ * nieznany filtr po cichu pomija i oddaje wtedy pierwsze z brzegu faktury.
+ */
+export async function findInvoiceByNumber(number: string): Promise<InfaktInvoiceListItem | null> {
+  const query = new URLSearchParams({ offset: "0", limit: "10", "q[number_eq]": number });
+  const data = await callInfakt<{ entities?: InfaktInvoiceListItem[] }>(
+    `/invoices.json?${query}`,
+    { signal: AbortSignal.timeout(10_000) }
+  );
+  return data?.entities?.find((invoice) => invoice.number === number) ?? null;
+}
+
 async function waitForInvoiceUuid(taskReference: string): Promise<string> {
   for (const delay of POLL_DELAYS_MS) {
     await sleep(delay);
