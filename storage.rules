@@ -17,6 +17,20 @@ service firebase.storage {
       allow update, delete: if false;
     }
 
+    // Gotowy arkusz z kreatora i plik do druku gotowego zestawu: A4 w 300 dpi
+    // (2480 × 3508 px) zapisane jako PNG bez strat. Arkusz wypełniony zdjęciami
+    // waży kilkanaście megabajtów, więc limit 10 MB dla wgrywanych grafik
+    // odrzucał takie zamówienia przy „Dodaj do koszyka”. Same piksele tego
+    // formatu to niecałe 35 MB, stąd zapas do 40.
+    //
+    // Reguła dokłada uprawnienie do tej powyżej — dostęp jest, gdy pozwala
+    // którakolwiek z pasujących.
+    match /uploads/{dateFolder}/{fileName} {
+      allow create: if fileName.matches('(composition|gotowy-zestaw-druk)-.*[.]png')
+                    && request.resource.size < 40 * 1024 * 1024
+                    && request.resource.contentType == 'image/png';
+    }
+
     // Zapisany układ arkusza (pozycje naklejek, kontury cięcia), potrzebny do
     // ponownego otwarcia zamówienia w kreatorze.
     //

@@ -6,6 +6,7 @@ import {
   createLibrarySticker,
   findLibraryStickerByFileHash,
 } from "@/app/actions/sheets";
+import { sheetCanvasToPng, uploadSheetPng } from "@/lib/creator/sheetFile";
 import { storage } from "@/lib/firebase/client";
 import { getUUID } from "@/lib/uuid";
 import type { CutLineType, LibrarySticker } from "./types";
@@ -201,26 +202,6 @@ function canvasBlob(canvas: HTMLCanvasElement, type: string, quality?: number): 
   );
 }
 
-/**
- * PNG zestawu tak samo, jak robi to kreator przy „Dodaj do koszyka": najpierw
- * kompresja na serwerze, a gdy ta zawiedzie (np. za duże żądanie) — plik
- * prosto z płótna.
- */
-async function sheetPngBlob(canvas: HTMLCanvasElement): Promise<Blob> {
-  try {
-    const response = await fetch("/api/compress-png", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ image: canvas.toDataURL("image/png") }),
-    });
-    if (!response.ok) throw new Error(`HTTP ${response.status}`);
-    return await response.blob();
-  } catch (error) {
-    console.warn("Kompresja PNG na serwerze nie powiodła się, wgrywam plik z płótna:", error);
-    return canvasBlob(canvas, "image/png");
-  }
-}
-
 export type SheetAssets = {
   productImageUrl: string;
   printUrl: string;
@@ -230,8 +211,9 @@ export type SheetAssets = {
 /**
  * Komplet plików opublikowanego zestawu: obraz produktu na stronę w sklepie
  * oraz plik do druku i plik linii cięcia — te same, które powstają w kreatorze
- * przy dodawaniu do koszyka. Dzięki nim gotowy zestaw trafia do koszyka prosto
- * ze strony produktu, bez składania go w przeglądarce klienta.
+ * przy dodawaniu do koszyka (`lib/creator/sheetFile`). Dzięki nim gotowy zestaw
+ * trafia do koszyka prosto ze strony produktu, bez składania go w przeglądarce
+ * klienta.
  */
 export async function uploadSheetAssets(canvases: {
   product: HTMLCanvasElement;
@@ -240,13 +222,14 @@ export async function uploadSheetAssets(canvases: {
 }): Promise<SheetAssets> {
   const [product, print, cutLines] = await Promise.all([
     canvasBlob(canvases.product, "image/jpeg", 0.9),
-    sheetPngBlob(canvases.print),
-    sheetPngBlob(canvases.cutLines),
+    sheetCanvasToPng(canvases.print),
+    sheetCanvasToPng(canvases.cutLines),
   ]);
 
   const [productImageUrl, printUrl, cutLinesUrl] = await Promise.all([
     uploadBlob(product, `gotowy-zestaw-produkt-${getUUID()}.jpg`),
-    uploadBlob(print, `gotowy-zestaw-druk-${getUUID()}.png`),
+    // Arkusz ze zdjęciami przekracza 10 MB — plik do druku idzie drogą z własnym limitem.
+    uploadSheetPng(print, `gotowy-zestaw-druk-${getUUID()}.png`),
     uploadBlob(cutLines, `gotowy-zestaw-linie-${getUUID()}.png`),
   ]);
   return { productImageUrl, printUrl, cutLinesUrl };

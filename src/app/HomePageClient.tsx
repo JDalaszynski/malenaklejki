@@ -130,6 +130,7 @@ import {
 import { useEstimatedShipping } from "@/hooks/useEstimatedShipping";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { storage } from "@/lib/firebase/client";
+import { sheetCanvasToPng, uploadSheetPng } from "@/lib/creator/sheetFile";
 import { useRouter } from "next/navigation";
 import {
   UploadCloud,
@@ -201,20 +202,6 @@ const layoutSignature = (list: PlacedSticker[]) =>
       s.cutLineType,
     ]),
   );
-
-const compressPNGOnServer = async (dataUrl: string): Promise<Blob> => {
-  const response = await fetch("/api/compress-png", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ image: dataUrl }),
-  });
-  if (!response.ok) {
-    throw new Error(
-      `Failed to compress image on server: ${response.statusText}`,
-    );
-  }
-  return response.blob();
-};
 
 export function HomePageClient({
   children,
@@ -2320,54 +2307,19 @@ export function HomePageClient({
     try {
       // Render print version (color, with sticker images)
       const printCanvas = await renderSheetCanvas("print");
-      const printDataUrl = printCanvas.toDataURL("image/png");
-
-      let printBlob: Blob;
-      try {
-        printBlob = await compressPNGOnServer(printDataUrl);
-      } catch (err) {
-        console.warn(
-          "Server compression failed for print image, falling back to uncompressed blob:",
-          err,
-        );
-        const rawBlob = await new Promise<Blob | null>((resolve) =>
-          printCanvas.toBlob((b) => resolve(b), "image/png"),
-        );
-        if (!rawBlob) throw new Error("Could not export print canvas to blob.");
-        printBlob = rawBlob;
-      }
-
-      const printFileName = `composition-${getUUID()}.png`;
-      const dateFolder = new Date().toISOString().split("T")[0];
-      const printRef = ref(storage, `uploads/${dateFolder}/${printFileName}`);
-      const printSnapshot = await uploadBytes(printRef, printBlob);
-      const printUrl = await getDownloadURL(printSnapshot.ref);
+      const printBlob = await sheetCanvasToPng(printCanvas);
+      const printUrl = await uploadSheetPng(
+        printBlob,
+        `composition-${getUUID()}.png`,
+      );
 
       // Render cut-lines version (black shapes on white, no images)
       const cutCanvas = await renderSheetCanvas("cut-lines");
-      const cutDataUrl = cutCanvas.toDataURL("image/png");
-
-      let cutBlob: Blob | null = null;
-      try {
-        cutBlob = await compressPNGOnServer(cutDataUrl);
-      } catch (err) {
-        console.warn(
-          "Server compression failed for cut-lines image, falling back to uncompressed blob:",
-          err,
-        );
-        cutBlob = await new Promise<Blob | null>((resolve) =>
-          cutCanvas.toBlob((b) => resolve(b), "image/png"),
-        );
-      }
-
-      let cutLinesUrl: string | undefined;
-      if (cutBlob) {
-        const cutFileName = `composition-cutlines-${getUUID()}.png`;
-        const dateFolder = new Date().toISOString().split("T")[0];
-        const cutRef = ref(storage, `uploads/${dateFolder}/${cutFileName}`);
-        const cutSnapshot = await uploadBytes(cutRef, cutBlob);
-        cutLinesUrl = await getDownloadURL(cutSnapshot.ref);
-      }
+      const cutBlob = await sheetCanvasToPng(cutCanvas);
+      const cutLinesUrl = await uploadSheetPng(
+        cutBlob,
+        `composition-cutlines-${getUUID()}.png`,
+      );
 
       // Układ arkusza wędruje do Storage osobnym plikiem JSON. Nie może jechać
       // razem z zamówieniem, bo formularz zamówienia czyści pole `stickers`,
@@ -2457,18 +2409,7 @@ export function HomePageClient({
         mode === "3d"
           ? await render3DSheetCanvas()
           : await renderSheetCanvas(mode);
-      const imgData = canvas.toDataURL("image/png");
-
-      let downloadUrl = imgData;
-      try {
-        const compressedBlob = await compressPNGOnServer(imgData);
-        downloadUrl = URL.createObjectURL(compressedBlob);
-      } catch (compressErr) {
-        console.warn(
-          "Server PNG compression failed, downloading uncompressed canvas image:",
-          compressErr,
-        );
-      }
+      const downloadUrl = URL.createObjectURL(await sheetCanvasToPng(canvas));
 
       const link = document.createElement("a");
       link.href = downloadUrl;
@@ -2483,9 +2424,7 @@ export function HomePageClient({
       link.click();
       document.body.removeChild(link);
 
-      if (downloadUrl.startsWith("blob:")) {
-        URL.revokeObjectURL(downloadUrl);
-      }
+      URL.revokeObjectURL(downloadUrl);
     } catch (err: any) {
       console.error(err);
       setError(
