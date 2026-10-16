@@ -256,12 +256,21 @@ export default function ONasPage() {
           category: "Naklejki z własnym nadrukiem",
           offers: {
             "@type": "Offer",
+            validFrom: "2024-01-01T00:00:00Z",
             price: "49.00",
             priceCurrency: "PLN",
             availability: "https://schema.org/InStock",
             url: "https://www.malenaklejki.pl/",
             priceValidUntil: "2027-12-31",
             seller: { "@id": "https://www.malenaklejki.pl/#organization" },
+            hasMerchantReturnPolicy: {
+              "@type": "MerchantReturnPolicy",
+              applicableCountry: "PL",
+              returnPolicyCategory:
+                "https://schema.org/MerchantReturnNotPermitted",
+              description:
+                "Zwrot produktów personalizowanych nie jest możliwy z uwagi na ich unikalny charakter.",
+            },
             shippingDetails: {
               "@type": "OfferShippingDetails",
               shippingRate: {
@@ -279,6 +288,12 @@ export default function ONasPage() {
                   "@type": "QuantitativeValue",
                   minValue: 2,
                   maxValue: 3,
+                  unitCode: "d",
+                },
+                transitTime: {
+                  "@type": "QuantitativeValue",
+                  minValue: 1,
+                  maxValue: 2,
                   unitCode: "d",
                 },
               },

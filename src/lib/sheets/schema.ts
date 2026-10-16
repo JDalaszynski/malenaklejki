@@ -85,6 +85,8 @@ export function productSchema(sheet: CatalogSheet) {
       url,
       price: SHEET_PRICE.toFixed(2),
       priceCurrency: "PLN",
+      // Search Console (informacje o sprzedawcy) ostrzega o braku `validFrom`.
+      ...(sheet.publishedAt ? { validFrom: sheet.publishedAt } : {}),
       priceValidUntil: "2027-12-31",
       availability: "https://schema.org/InStock",
       itemCondition: "https://schema.org/NewCondition",
