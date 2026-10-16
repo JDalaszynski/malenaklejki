@@ -12,36 +12,59 @@ import {
   BookOpen,
 } from "lucide-react";
 import { JsonLd } from "@/components/seo/JsonLd";
+import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 
-export const metadata = {
-  title: "Blog o naklejkach | Poradniki, inspiracje i porady — MałeNaklejki",
-  description:
-    "Dowiedz się, jak tworzyć naklejki z własnym nadrukiem, przygotować pliki do druku i wykorzystać naklejki w brandingu. Porady krok po kroku od MałeNaklejki.",
-  alternates: {
-    canonical: "/blog",
-  },
-  openGraph: {
-    title: "Blog o naklejkach | Poradniki, inspiracje i porady — MałeNaklejki",
-    description:
-      "Dowiedz się, jak tworzyć naklejki z własnym nadrukiem, przygotować pliki do druku i wykorzystać naklejki w brandingu.",
-    url: "https://www.malenaklejki.pl/blog",
-    type: "website",
-  },
+type BlogIndexProps = {
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 };
 
-export default async function BlogIndexPage({
-  searchParams,
-}: {
-  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
-}) {
-  const posts = await getBlogPosts();
-  const params = await searchParams;
+const POSTS_PER_PAGE = 15;
 
+const readPage = (params: { [key: string]: string | string[] | undefined }) => {
   const page = typeof params.page === "string" ? parseInt(params.page, 10) : 1;
-  const currentPage = isNaN(page) || page < 1 ? 1 : page;
+  return isNaN(page) || page < 1 ? 1 : page;
+};
 
-  const POSTS_PER_PAGE = 15;
+/** Strona 1 żyje pod `/blog` - `?page=1` byłby jej duplikatem. */
+const pageHref = (page: number) => (page === 1 ? "/blog" : `/blog?page=${page}`);
+
+/**
+ * Każda strona paginacji ma własny canonical (zalecenie Google): przy canonicalu
+ * na `/blog` Google traktuje strony 2+ jak duplikat i może pominąć starsze wpisy,
+ * do których prowadzą tylko one.
+ */
+export async function generateMetadata({ searchParams }: BlogIndexProps): Promise<Metadata> {
+  const currentPage = readPage(await searchParams);
+  const pageSuffix = currentPage > 1 ? ` - strona ${currentPage}` : "";
+  const title = `Blog o naklejkach${pageSuffix} | Poradniki, inspiracje i porady — MałeNaklejki`;
+
+  return {
+    title,
+    description:
+      "Dowiedz się, jak tworzyć naklejki z własnym nadrukiem, przygotować pliki do druku i wykorzystać naklejki w brandingu. Porady krok po kroku od MałeNaklejki.",
+    alternates: {
+      canonical: pageHref(currentPage),
+    },
+    openGraph: {
+      title,
+      description:
+        "Dowiedz się, jak tworzyć naklejki z własnym nadrukiem, przygotować pliki do druku i wykorzystać naklejki w brandingu.",
+      url: `https://www.malenaklejki.pl${pageHref(currentPage)}`,
+      type: "website",
+    },
+  };
+}
+
+export default async function BlogIndexPage({ searchParams }: BlogIndexProps) {
+  const posts = await getBlogPosts();
+  const currentPage = readPage(await searchParams);
+
   const totalPages = Math.max(1, Math.ceil(posts.length / POSTS_PER_PAGE));
+  // Pusta strona spoza zakresu (np. `?page=99`) to miękki błąd 404 w Search Console.
+  if (currentPage > totalPages) {
+    notFound();
+  }
   const currentPosts = posts.slice(
     (currentPage - 1) * POSTS_PER_PAGE,
     currentPage * POSTS_PER_PAGE,
@@ -208,7 +231,7 @@ export default async function BlogIndexPage({
               <div className="flex items-center justify-center gap-2 pt-8">
                 {currentPage > 1 ? (
                   <Link
-                    href={`/blog?page=${currentPage - 1}`}
+                    href={pageHref(currentPage - 1)}
                     className="flex items-center gap-1.5 px-4 py-2 text-sm font-bold text-foreground bg-white dark:bg-[#003a3b] border border-border/40 rounded-xl hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all duration-200 shadow-sm"
                   >
                     <ChevronLeft className="w-4 h-4" />
@@ -234,7 +257,7 @@ export default async function BlogIndexPage({
                       return (
                         <Link
                           key={pageNum}
-                          href={`/blog?page=${pageNum}`}
+                          href={pageHref(pageNum)}
                           className={`w-9 h-9 sm:w-10 sm:h-10 flex items-center justify-center text-sm font-bold rounded-xl transition-all duration-200 shadow-sm border ${
                             isActive
                               ? "bg-primary text-primary-foreground border-primary"
@@ -266,7 +289,7 @@ export default async function BlogIndexPage({
 
                 {currentPage < totalPages ? (
                   <Link
-                    href={`/blog?page=${currentPage + 1}`}
+                    href={pageHref(currentPage + 1)}
                     className="flex items-center gap-1.5 px-4 py-2 text-sm font-bold text-foreground bg-white dark:bg-[#003a3b] border border-border/40 rounded-xl hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all duration-200 shadow-sm"
                   >
                     <span className="hidden sm:inline">Następna</span>

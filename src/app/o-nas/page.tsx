@@ -260,7 +260,7 @@ export default function ONasPage() {
             priceCurrency: "PLN",
             availability: "https://schema.org/InStock",
             url: "https://www.malenaklejki.pl/",
-            priceValidUntil: "2026-12-31",
+            priceValidUntil: "2027-12-31",
             seller: { "@id": "https://www.malenaklejki.pl/#organization" },
             shippingDetails: {
               "@type": "OfferShippingDetails",

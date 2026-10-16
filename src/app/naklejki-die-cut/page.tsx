@@ -299,7 +299,7 @@ export default function NaklejkiDieCutPage() {
             priceCurrency: "PLN",
             availability: "https://schema.org/InStock",
             url: PAGE_URL,
-            priceValidUntil: "2026-12-31",
+            priceValidUntil: "2027-12-31",
             seller: { "@id": "https://www.malenaklejki.pl/#organization" },
           },
         }}
