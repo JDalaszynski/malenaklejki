@@ -277,6 +277,7 @@ Przy 7 428 wyświetleniach bloga podniesienie CTR z 1,13% do 2,5% to **około +1
     - **Proponowany zakres, krok 1 (niskie ryzyko, wspólny dla obu wariantów):** przywrócić filarowi intencję poradnikową w tytule i H1 z zachowaniem dokładnej frazy i liczb (np. `Jak zamówić naklejki na zamówienie - od 1 szt., 59 zł/A4`) oraz przesunąć sekcję "Jak zamówić ... krok po kroku" na początek, przed cenę. Treść z P4.2.2 i linkowanie zostają. Bump `updated` tylko przy realnej zmianie układu treści.
     - **Krok 2 (po 3-4 tygodniach danych, tylko jeśli klaster nie wróci poniżej pozycji 20):** przypisać frazę stronie głównej - `na zamówienie` w H1 / leadzie / meta `/` - i wtedy filar zostaje czysto poradnikowy.
     - **Pomiar:** GSC, zapytanie regex `^naklejk[ai] na zam[oó]wienie$`, raport Strony i Daty. Punkt odniesienia: 184 wyśw. / poz. 43,4 (8.09-5.10.2026); stan sprzed spadku: poz. 13,7-16,8 (23.08-1.09).
+    - **Krok 1 wykonany 2026-10-19:** `title` zmieniony na „Jak zamówić naklejki na zamówienie - od 1 szt., 59 zł/A4" (H1 i `headline` w schemacie idą za `title`, `src/app/blog/[slug]/page.tsx`), sekcja „Jak zamówić ... krok po kroku" przed sekcją o cenie; treść, linki i FAQ bez zmian, `updated` = 2026-10-19. **Punkt odniesienia do kroku 2:** 147 wyśw., poz. 28,6 (16.09-13.10.2026). Krok 2 najwcześniej ok. 16.11 (3-4 tyg. danych), tylko jeśli klaster nie wróci poniżej pozycji 20; pozycja „ukończone" dopiero po kroku 2.
 
 ---
 
@@ -323,9 +324,10 @@ Przy 7 428 wyświetleniach bloga podniesienie CTR z 1,13% do 2,5% to **około +1
 - [ ] **P4.3.7 - 🗓️ 1-20.12: brief walentynkowy B7 do P4.1** (okno publikacji 5-20.01.2027)
     - Frazy do zebrania (`naklejki walentynkowe`, `naklejki na walentynki z imieniem`, `naklejki ze zdjęciem na walentynki`), persona: pary i prezent, filar `jak-zamowic-idealne...`, link do huba B3 i `/fotonaklejki`. W GSC nie ma danych, więc wpis ~1000-1300 słów, bez ambicji huba.
 
-- [ ] **P4.3.9 - 🗓️ 10-31.10 (po B3): wpis porównawczy `gdzie-zamowic-naklejki-w-malym-nakladzie-porownanie` jako druga odpowiedź na pytania typu "gdzie zamówić"** (dopisane 2026-09-10)
+- [x] **P4.3.9 - 🗓️ 10-31.10 (po B3): wpis porównawczy `gdzie-zamowic-naklejki-w-malym-nakladzie-porownanie` jako druga odpowiedź na pytania typu "gdzie zamówić"** (dopisane 2026-09-10)
     - Stan: poz. 9,88, 51 wyśw., 0 klik. To strona, na którą trafiają pytania "gdzie zamówić" poza sezonem, a asystenci AI rozbijają pytanie prezentowe właśnie na takie zapytania pomocnicze.
     - Dopisz `## Gdzie zamówić kilka różnych naklejek na prezent - od jednego arkusza` z blokiem odpowiedzi wg `strategia-swieta-2026.md` §14.3 (podmiotem zdania jest marka) + FAQ "Która drukarnia robi naklejki bez minimalnego nakładu?" i "Gdzie wydrukować naklejki od jednej sztuki na prezent?" + link do huba B3. W FAQ "Czy mogę umieścić kilka różnych wzorów na jednym arkuszu?" dopisz, że obrazy wgrywa się do kreatora po kolei, a kilka arkuszy trafia do jednej paczki z jedną dostawą. Bump `updated`.
+    - **Wykonane 2026-10-19:** nowy H2 z blokiem odpowiedzi (§14.3) przed „Kiedy który kanał ma sens", dwa FAQ (H3) na końcu sekcji FAQ, dopisek w FAQ „Czy mogę umieścić kilka różnych wzorów na jednym arkuszu?", linki do huba B3 (`/blog/naklejki-swiateczne-i-etykiety-na-prezenty`) w H2, dopisku i FAQ. Bez daty granicznej. `updated` = 2026-10-19.
 
 - [ ] **P4.3.8 - 🗓️ 7-15.01.2027: zamknięcie sezonu**
     - Zdjąć linki sezonowe z P4.3.2 (usunąć `src/hooks/useSwietaSeason.ts` i oba użycia: `Footer.tsx`, `UseCasesSection.tsx`); usunąć datę graniczną z `facts.md` i `FACTS`, przebudować `llms.txt`.
