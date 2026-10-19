@@ -93,7 +93,7 @@ export function SeoContentSection() {
                 Kreator naklejek online - <HighlightWord>tworzenie naklejek</HighlightWord> w przeglądarce
               </>
             }
-            sub="Wgraj gotowy obraz, a kreator usunie tło, wyznaczy linię cięcia i ułoży arkusz A4. Bez instalacji, bez grafika, już od 1 arkusza za 49,00 zł brutto."
+            sub="Wgraj gotowy obraz, a kreator usunie tło, wyznaczy linię cięcia i ułoży arkusz A4. Bez instalacji, bez grafika, już od 1 arkusza za 59,00 zł brutto."
           />
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-muted-foreground leading-relaxed text-[15px] sm:text-base">
@@ -107,7 +107,7 @@ export function SeoContentSection() {
             <section className="space-y-3">
               <h3 className={`text-lg font-extrabold text-foreground ${displayFont}`}>Naklejki online - kreator układa arkusz A4 za Ciebie</h3>
               <p>
-                Tworzenie naklejek zaczynasz od jednego obrazu, ale na arkuszu zmieścisz ich tyle, ile chcesz - i mogą być zupełnie różne. Każdy kolejny wgrany plik trafia na ten sam arkusz i dostaje własną linię cięcia, a rozmiary i rozmieszczenie ustawiasz w podglądzie 3D. Stała cena 49,00 zł brutto dotyczy arkusza, nie liczby wzorów -{" "}
+                Tworzenie naklejek zaczynasz od jednego obrazu, ale na arkuszu zmieścisz ich tyle, ile chcesz - i mogą być zupełnie różne. Każdy kolejny wgrany plik trafia na ten sam arkusz i dostaje własną linię cięcia, a rozmiary i rozmieszczenie ustawiasz w podglądzie 3D. Stała cena 59,00 zł brutto dotyczy arkusza, nie liczby wzorów -{" "}
                 <Link href="/blog/ile-kosztuja-naklejki-na-zamowienie-cena-za-arkusz-a4" className={inlineLink}>
                   zobacz, jak liczy się cena za arkusz A4
                 </Link>.
@@ -169,7 +169,7 @@ export function SeoContentSection() {
             Stwórz własne naklejki online - bez grafika i bez minimalnego nakładu
           </h2>
           <p className="text-muted-foreground leading-relaxed text-[15px] sm:text-base">
-            Chcesz spersonalizować naklejkę na prezent, merch albo produkty swojej marki? Wgraj zdjęcie lub gotową grafikę do kreatora na górze strony, a my wytniemy ją po obrysie i wydrukujemy na trwałym winylu. Możesz stworzyć własną naklejkę już od 1 arkusza A4 za 49,00 zł, a produkcja zajmuje 2-3 dni robocze - bez Photoshopa i bez ukrytych kosztów przygotowalni. Brakuje Ci pomysłu na motyw? Zobacz{" "}
+            Chcesz spersonalizować naklejkę na prezent, merch albo produkty swojej marki? Wgraj zdjęcie lub gotową grafikę do kreatora na górze strony, a my wytniemy ją po obrysie i wydrukujemy na trwałym winylu. Możesz stworzyć własną naklejkę już od 1 arkusza A4 za 59,00 zł, a produkcja zajmuje 2-3 dni robocze - bez Photoshopa i bez ukrytych kosztów przygotowalni. Brakuje Ci pomysłu na motyw? Zobacz{" "}
             <Link href="/blog/fajne-wzory-i-pomysly-na-naklejki-inspiracje-wg-zastosowania" className={inlineLink}>
               fajne wzory na naklejki wg zastosowania
             </Link>.

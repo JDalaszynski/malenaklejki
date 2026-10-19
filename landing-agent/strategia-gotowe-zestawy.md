@@ -4,7 +4,7 @@
 
 > **Status: plan przyjęty 2026-10-03, zwroty w wariancie A** (sekcja 15, pkt 1). Etapy i polecenia, które je uruchamiają, są rozpisane w panelu właściciela (panel.jdalaszynski.pl → MałeNaklejki → „Gotowe zestawy") - tam też odhacza się wykonane kroki. Zadania **nie** trafiły do kolejek `landing-agent/plan.md` ani `blog-agent/plan.md`, więc autoblog nie zacznie niczego sam. Co już zrobiono: dziennik na końcu pliku (sekcja 17).
 
-> **Nazewnictwo od 2026-10-05:** funkcja nazywa się **„gotowe zestawy”** (krótko: nawigacja, przyciski, stopka) i **„gotowe zestawy naklejek”** (tytuły, H1, opisy, SEO) - wcześniej „gotowe arkusze”. **Gotowy zestaw = jeden arkusz A4 z naklejkami**, więc „arkusz” zostaje dla fizycznego formatu („49,00 zł brutto za zestaw”, „46 naklejek na arkuszu A4”) i dla kreatora (układanie własnego arkusza). Cały dokument został przepisany na nową nazwę; **frazy z danych GSC i hipotezy fraz zostają w oryginalnym brzmieniu** (np. `arkusz naklejek na zamówienie`). Adresy: `/gotowe-zestawy`, `/gotowe-zestawy/<slug>`, `/api/gotowe-zestawy/*`, panel sklepu `/admin/zestawy`, kreator `/?zestaw=<id>`, galeria `/#gotowe-zestawy`; stare adresy (`/gotowe-arkusze…`, `/admin/arkusze…`, `/api/gotowe-arkusze…`) przekierowują na stałe (308), a w kreatorze działają też `/?arkusz=<id>` i `/#gotowe-arkusze`.
+> **Nazewnictwo od 2026-10-05:** funkcja nazywa się **„gotowe zestawy”** (krótko: nawigacja, przyciski, stopka) i **„gotowe zestawy naklejek”** (tytuły, H1, opisy, SEO) - wcześniej „gotowe arkusze”. **Gotowy zestaw = jeden arkusz A4 z naklejkami**, więc „arkusz” zostaje dla fizycznego formatu („59,00 zł brutto za zestaw”, „46 naklejek na arkuszu A4”) i dla kreatora (układanie własnego arkusza). Cały dokument został przepisany na nową nazwę; **frazy z danych GSC i hipotezy fraz zostają w oryginalnym brzmieniu** (np. `arkusz naklejek na zamówienie`). Adresy: `/gotowe-zestawy`, `/gotowe-zestawy/<slug>`, `/api/gotowe-zestawy/*`, panel sklepu `/admin/zestawy`, kreator `/?zestaw=<id>`, galeria `/#gotowe-zestawy`; stare adresy (`/gotowe-arkusze…`, `/admin/arkusze…`, `/api/gotowe-arkusze…`) przekierowują na stałe (308), a w kreatorze działają też `/?arkusz=<id>` i `/#gotowe-arkusze`.
 
 ---
 
@@ -32,7 +32,7 @@
 * Sklep (wdrożone 3.10): wejście do galerii przy kreatorze, galeria z kategoriami i podglądem wzoru, wczytanie do kreatora, edycja, koszyk. Dwa linki, na których opiera się ten plan:
   * `/#gotowe-zestawy` - otwiera galerię,
   * `/?zestaw=<id>` - otwiera kreator z wczytanym wzorem.
-* Koszyk i zamówienie nie odróżniają gotowego zestawu od własnego: to zwykły "Zestaw Naklejek" za 49,00 zł.
+* Koszyk i zamówienie nie odróżniają gotowego zestawu od własnego: to zwykły "Zestaw Naklejek" za 59,00 zł.
 
 ### 2.2 Co mówią dane
 | Sygnał | Wartość | Wniosek |
@@ -140,7 +140,7 @@ Wolumeny to hipotezy. Kolumna "zestawy" pokazuje stan na 3.10 i ile trzeba dorob
 Anatomia z `rules.md` §1 z jedną zmianą: **siatka produktów stoi nad treścią**.
 
 1. Breadcrumbs: Kreator → Gotowe zestawy → [Temat].
-2. Hero: H1 z głową (np. "Naklejki świąteczne - gotowe zestawy") + BLUF w 2-3 zdaniach: ile wzorów, ile naklejek w zestawie, folia winylowa, 49,00 zł brutto za zestaw, produkcja 2-3 dni robocze, możliwość zmiany przed zamówieniem. Data ostatniej aktualizacji.
+2. Hero: H1 z głową (np. "Naklejki świąteczne - gotowe zestawy") + BLUF w 2-3 zdaniach: ile wzorów, ile naklejek w zestawie, folia winylowa, 59,00 zł brutto za zestaw, produkcja 2-3 dni robocze, możliwość zmiany przed zamówieniem. Data ostatniej aktualizacji.
 3. **Siatka zestawów** (obraz, nazwa, liczba naklejek, cena, "Zobacz" → strona zestawu, "Dopasuj w kreatorze" → `/?zestaw=<id>`).
 4. Tabela wzorów - cytowalna: `Zestaw | Motywy | Liczba naklejek | Największa naklejka`.
 5. "Co możesz zmienić" - trzy kroki: wybierz, dopasuj (zmień rozmiar, usuń, dodaj własne zdjęcie lub imię), zamów.
@@ -160,14 +160,14 @@ Anatomia z `rules.md` §1 z jedną zmianą: **siatka produktów stoi nad treści
 ## 7. Wzorzec strony zestawu (produkt)
 
 * **H1:** nazwa + opisowy podtytuł z motywem. **Title:** `<Nazwa> - <motyw>, arkusz A4 <n> naklejek | MałeNaklejki`.
-* **Pierwszy ekran:** duży obraz zestawu, cena **49,00 zł brutto**, "<n> naklejek, folia winylowa, arkusz A4", dostawa do paczkomatu 19,99 zł, produkcja 2-3 dni robocze, wybór formy (na arkuszu / pojedyncze sztuki), liczba zestawów.
+* **Pierwszy ekran:** duży obraz zestawu, cena **59,00 zł brutto**, "<n> naklejek, folia winylowa, arkusz A4", dostawa do paczkomatu 19,99 zł, produkcja 2-3 dni robocze, wybór formy (na arkuszu / pojedyncze sztuki), liczba zestawów.
 * **Dwa przyciski:**
   * **"Dodaj do koszyka"** - dodaje nieedytowany zestaw od razu. Wymaga plików do druku przygotowanych przy publikacji (sekcja 11), dzięki czemu klient nie czeka na ich złożenie w przeglądarce.
   * **"Dopasuj w kreatorze"** - `/?zestaw=<id>`.
 * **Opis** (80-150 słów, unikalny, z panelu) + lista motywów ("dynie, liście klonu, kubek kawy, cynamon...") - to jest treść, po której strona rankuje w długim ogonie i którą cytują modele.
 * **Specyfikacja** - krótka tabela (materiał, format, liczba naklejek, cięcie, odporność, mycie ręczne). Parafrazowana, nie kopiowana między stronami; długie wyjaśnienia zostają na `/naklejki-foliowe`.
 * **"Pasuje do"** - 3 inne zestawy z tematu + kafel "zestaw z własnymi naklejkami".
-* **Dane strukturalne:** `Product` (name, description, image, sku = id zestawu, brand, material, category) + `Offer` (price 49.00 PLN, availability, url, `shippingDetails` 19.99 i czas przygotowania 2-3 dni, `hasMerchantReturnPolicy` zgodne z decyzją z 8.4) + `BreadcrumbList`.
+* **Dane strukturalne:** `Product` (name, description, image, sku = id zestawu, brand, material, category) + `Offer` (price 59.00 PLN, availability, url, `shippingDetails` 19.99 i czas przygotowania 2-3 dni, `hasMerchantReturnPolicy` zgodne z decyzją z 8.4) + `BreadcrumbList`.
 * **Bez `AggregateRating`**, dopóki nie zbieramy opinii (sfabrykowaną ocenę usunęliśmy 24.07 i nie wraca).
 
 ---
@@ -202,7 +202,7 @@ Trasa `/feeds/google-merchant.xml` generowana z opublikowanych zestawów, odświ
 | `link` | `https://www.malenaklejki.pl/gotowe-zestawy/<slug>` |
 | `image_link` | obraz 1600 px |
 | `additional_image_link` | zdjęcie wydrukowanego zestawu, gdy będzie (15, pkt 5) |
-| `price` | `49.00 PLN` |
+| `price` | `59.00 PLN` |
 | `availability` | `in_stock` |
 | `condition` | `new` |
 | `brand` / `mpn` | `MałeNaklejki` / id zestawu |
@@ -221,7 +221,7 @@ Trasa `/feeds/google-merchant.xml` generowana z opublikowanych zestawów, odświ
 6. **Produkt konfigurowalny.** Jeśli jedyną drogą zakupu byłby kreator, Google może uznać, że strona docelowa nie sprzedaje produktu z feedu. Dlatego bezpośrednie "Dodaj do koszyka" nie jest wygodą, tylko warunkiem.
 
 ### 8.5 Bezpłatne wyniki czy reklamy
-Zaczynamy od **bezpłatnych wyników** - koszt zerowy, a to one karmią siatki produktów. Reklamy produktowe to decyzja budżetowa (15, pkt 4). Rachunek do tej decyzji: zysk z zamówienia jednoarkuszowego to 12,84 zł (przy koszcie wydruku 25 zł netto od 19.10.2026; wcześniej 22,84 zł), więc przy przykładowym koszcie kliknięcia 0,50 zł (realnej stawki nie znamy) reklama zwraca się dopiero powyżej ok. 3,9% konwersji - bez pomiaru z sekcji 13 nie ma jak tego ocenić. Rekomendacja: miesiąc bezpłatnych wyników, potem mały test na samych zestawach świątecznych.
+Zaczynamy od **bezpłatnych wyników** - koszt zerowy, a to one karmią siatki produktów. Reklamy produktowe to decyzja budżetowa (15, pkt 4). Rachunek do tej decyzji: zysk z zamówienia jednoarkuszowego to 20,97 zł (przy cenie 59 zł i koszcie wydruku 25 zł netto, obie od 19.10.2026; przy cenie 49 zł było to 12,84 zł, a przed podwyżką druku 22,84 zł), więc przy przykładowym koszcie kliknięcia 0,50 zł (realnej stawki nie znamy) reklama zwraca się dopiero powyżej ok. 2,4% konwersji - bez pomiaru z sekcji 13 nie ma jak tego ocenić. Rekomendacja: miesiąc bezpłatnych wyników, potem mały test na samych zestawach świątecznych.
 
 ---
 
@@ -247,7 +247,7 @@ Zaczynamy od **bezpłatnych wyników** - koszt zerowy, a to one karmią siatki p
 
 Asystent AI zapytany "gdzie kupić wodoodporne naklejki jesienne" albo "jakie naklejki do bullet journala polecasz" potrzebuje trzech rzeczy: nazwanego produktu, twardych parametrów i ceny. Dziś nie dajemy żadnej.
 
-* **Blok odpowiedzi na każdej stronie tematycznej** - 2-3 zdania samodzielne poza kontekstem: "MałeNaklejki sprzedaje gotowe zestawy naklejek [temat] w formacie A4: [n] wzorów po [x-y] naklejek, druk na folii winylowej odpornej na wodę i UV, 49,00 zł brutto za zestaw. Każdy zestaw można przed zamówieniem zmienić w kreatorze - usunąć naklejki albo dodać własne."
+* **Blok odpowiedzi na każdej stronie tematycznej** - 2-3 zdania samodzielne poza kontekstem: "MałeNaklejki sprzedaje gotowe zestawy naklejek [temat] w formacie A4: [n] wzorów po [x-y] naklejek, druk na folii winylowej odpornej na wodę i UV, 59,00 zł brutto za zestaw. Każdy zestaw można przed zamówieniem zmienić w kreatorze - usunąć naklejki albo dodać własne."
 * **Tabele** (zestaw → motywy → liczba naklejek; liczba zestawów → cena z dostawą) - modele cytują tabele chętniej niż prozę.
 * **Bank pytań - jedno pytanie, jedna strona** (zasada z §14.4 strategii świątecznej):
   * katalog: "czy można kupić gotowe naklejki bez własnego projektu", "ile naklejek jest na arkuszu A4",
@@ -344,7 +344,7 @@ Tylko to, czego nie rozstrzygnę sam. Przy każdej - rekomendacja.
 2. **Konto Google Merchant Center** - zakładasz Ty (dane firmy, weryfikacja). Ja przygotowuję feed, strony i listę ustawień.
 3. **Czas doręczenia na koncie Merchant.** Google wymaga czasu dostawy. Rekomendacja: przygotowanie 2-3 dni robocze + przewóz 1-2 dni robocze (ta sama para liczb jest już w danych strukturalnych strony głównej). W treści stron dalej mówimy tylko o produkcji.
 4. **Reklamy produktowe** - rekomendacja: nie teraz; decyzja 15.11 na danych.
-5. **Zdjęcia prawdziwych zestawów.** Zamówienie 2 zestawów (świąteczny i jesienny), ok. 118 zł z dostawą, zdjęcia do ~20.10. To najmocniejszy sygnał wiarygodności na stronach i zabezpieczenie w Merchant.
+5. **Zdjęcia prawdziwych zestawów.** Zamówienie 2 zestawów (świąteczny i jesienny), ok. 138 zł z dostawą, zdjęcia do ~20.10. To najmocniejszy sygnał wiarygodności na stronach i zabezpieczenie w Merchant.
 6. **Link "Gotowe zestawy" w stopce i w menu.** Rekomendacja: stopka od razu, menu po 15.11, jeśli gotowe zestawy sprzedają.
 7. **Tempo produkcji zestawów.** Plan zakłada ok. 12 nowych zestawów do końca listopada (5 świątecznych, 4 do planera, 3 książkowe). Jeśli to za dużo - tnę tematy, nie liczbę zestawów na temat.
 8. **Włączenie trybu "Włączony".** Rekomendacja: Podgląd dziś, Włączony po decyzji nr 1.
@@ -473,3 +473,10 @@ Polecenie właściciela: dodać treści nowym zestawom tak jak pozostałym oraz 
   * lista w panelu domyślnie pokazuje **kolejność ze sklepu** (zamiast „od ostatnio edytowanych"); drugi wybór w liście „Sortowanie" to „Ostatnio zmieniane". Opublikowane kafelki mają znacznik „nr N" - miejsce w sklepie;
   * szkice nie biorą udziału w kolejności do czasu publikacji.
 * **Dla agentów i generatorów:** `llms.txt` powstaje z katalogu w kolejności sklepu - po zmianie kolejności w panelu plik zmienia się dopiero przy następnym uruchomieniu `node scripts/generuj-llms-txt.mjs` (treść ta sama, inny porządek; nic nie psuje).
+
+### 2026-10-19 - cena zestawu 49,00 → 59,00 zł brutto
+
+* Decyzja właściciela po podwyżce druku do 25 zł netto: zestaw (gotowy i własny) kosztuje **59,00 zł brutto**. Jedna stała `SHEET_PRICE` w `src/lib/sheets/types.ts` zasila katalog, strony zestawów, `Offer` w danych strukturalnych, galerię w kreatorze i koszyk; `facts.md` zaktualizowany.
+* Specyfikacje w tym pliku (§1-16) mówią już 59,00 zł; wpisy dziennika sprzed 19.10 zostają z ceną z dnia, w którym powstały.
+* Merchant Center jeszcze nie działa (etap 3). Feed ma brać cenę z tej samej `SHEET_PRICE`, więc ruszy od razu z 59,00 zł, zgodnie ze stronami i `Offer`.
+

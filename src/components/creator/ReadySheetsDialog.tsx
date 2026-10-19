@@ -405,7 +405,7 @@ export default function ReadySheetsDialog({
                   {[
                     "Po wczytaniu edytujesz go jak własny projekt: zmienisz rozmiary, usuniesz naklejki, dodasz swoje.",
                     "Druk na folii winylowej i cięcie - tak samo jak przy Twoich grafikach.",
-                    "49 zł za zestaw na arkuszu A4, tak samo jak za każdy zestaw z kreatora.",
+                    `${SHEET_PRICE} zł za zestaw na arkuszu A4, tak samo jak za każdy zestaw z kreatora.`,
                   ].map((line) => (
                     <li key={line} className="flex items-start gap-2.5">
                       <span className="mt-0.5 shrink-0 w-4.5 h-4.5 rounded-full bg-primary/15 text-primary flex items-center justify-center">

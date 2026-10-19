@@ -40,7 +40,7 @@ Nie każda naklejka nadaje się na sprzęt elektroniczny. Niskiej jakości papie
 
 * **Trwała folia i mocny klej:** Drukujemy wyłącznie na wytrzymałej [folii winylowej](/naklejki-foliowe), odpornej na wilgoć i promieniowanie UV.
 * **Czyste usuwanie bez śladów:** Gdy zdecydujesz się na zmianę designu, nasze **małe naklejki** odejdą od obudowy w jednym kawałku, nie pozostawiając lepkiej warstwy, która mogłaby uszkodzić sprzęt.
-* **Pełna optymalizacja kosztów:** Oferujemy stałą cenę 49,00 zł za arkusz A4. Oznacza to, że na jednej kartce możesz umieścić kilkanaście lub nawet kilkadziesiąt zupełnie różnych, małych naklejek na laptopa w tej samej cenie.
+* **Pełna optymalizacja kosztów:** Oferujemy stałą cenę 59,00 zł za arkusz A4. Oznacza to, że na jednej kartce możesz umieścić kilkanaście lub nawet kilkadziesiąt zupełnie różnych, małych naklejek na laptopa w tej samej cenie.
 
 ## Stwórz naklejkę własnego projektu bezpośrednio z telefonu
 

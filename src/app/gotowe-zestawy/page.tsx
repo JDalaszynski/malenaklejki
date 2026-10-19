@@ -46,9 +46,9 @@ import { getDesignsNoun } from "@/lib/utils/polish";
  */
 
 const PAGE_NAME = "Gotowe zestawy naklejek";
-const TITLE = "Gotowe zestawy naklejek - wzory na folii winylowej, 49 zł";
+const TITLE = `Gotowe zestawy naklejek - wzory na folii winylowej, ${SHEET_PRICE} zł`;
 const DESCRIPTION =
-  "Gotowe zestawy naklejek: kilkadziesiąt naklejek na arkuszu A4 z folii winylowej odpornej na wodę i UV. 49,00 zł brutto. Każdy zestaw zmienisz: usuniesz naklejki i dodasz własne.";
+  `Gotowe zestawy naklejek: kilkadziesiąt naklejek na arkuszu A4 z folii winylowej odpornej na wodę i UV. ${formatPrice(SHEET_PRICE)} brutto. Każdy zestaw zmienisz: usuniesz naklejki i dodasz własne.`;
 /** Data ostatniej realnej zmiany treści strony (nie listy zestawów). */
 const UPDATED = { label: "6 października 2026", iso: "2026-10-06T00:00:00+02:00" };
 
@@ -179,7 +179,7 @@ export default async function CatalogPage() {
 
         <TrustStats
           stats={[
-            { value: "49 zł", label: "Brutto za zestaw" },
+            { value: `${SHEET_PRICE} zł`, label: "Brutto za zestaw" },
             { value: `${sheets.length}`, label: "Wzorów do wyboru" },
             { value: "Woda i UV", label: "Folia winylowa" },
             { value: "2-3 dni", label: "Produkcja robocze" },

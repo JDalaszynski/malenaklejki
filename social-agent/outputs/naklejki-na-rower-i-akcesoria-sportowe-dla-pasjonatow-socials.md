@@ -6,7 +6,7 @@ Twój rower wygląda jak każdy inny? 🥱
 
 Na stojaku pod pracą trudno go znaleźć, a na trasie brakuje mu charakteru. Zmień to w 3 minuty! Wgraj dowolną grafikę z telefonu i stwórz wodoodporne naklejki na ramę, kask i bidon. 🔥
 
-Nasza folia i mocny klej przetrwają deszcz, błoto i mycie pod ciśnieniem. Jeden arkusz A4 z Twoimi wzorami kosztuje zawsze 49 zł - niezależnie od tego, czy zmieścisz na nim jedną dużą wlepę, czy 30 małych.
+Nasza folia i mocny klej przetrwają deszcz, błoto i mycie pod ciśnieniem. Jeden arkusz A4 z Twoimi wzorami kosztuje zawsze 59 zł - niezależnie od tego, czy zmieścisz na nim jedną dużą wlepę, czy 30 małych.
 
 Spersonalizuj swój sprzęt i wyróżnij się z tłumu! 👇
 
@@ -52,7 +52,7 @@ Wyróżnij swój sprzęt na trasie - od pomysłu do gotowych naklejek w kilka mi
 **Slajd 5 (CTA):**
 Podoba się? Zapisz post na później! 📌
 
-Gotowy, by odpicować swój sprzęt? Wejdź na malenaklejki.pl i zamów swój arkusz już za 49 zł! 🚀
+Gotowy, by odpicować swój sprzęt? Wejdź na malenaklejki.pl i zamów swój arkusz już za 59 zł! 🚀
 
 ## C. Scenariusz TikTok / Reels
 
@@ -63,7 +63,7 @@ Gotowy, by odpicować swój sprzęt? Wejdź na malenaklejki.pl i zamów swój ar
 | **6-8s:** Zbliżenie na ekran kreatora online na MałeNaklejki.pl, gdzie grafika jest wgrywana i automatycznie dostosowywana. | **Lektor:** Wgraj dowolne zdjęcie z telefonu. |
 | **9-11s:** Ujęcie plotera tnącego arkusz naklejek, a potem dłoń odklejająca gotową naklejkę wyciętą po obrysie. | **Lektor:** Sami wytniemy je idealnie po kształcie! |
 | **12-15s:** Dynamiczne, szybkie ujęcia naklejania wlepek na ramę, kask i bidon. | **Lektor:** Są wodoodporne i mega trwałe! |
-| **16-18s:** Finalne, satysfakcjonujące ujęcie odpicowanego roweru na tle ładnego krajobrazu. Na ekranie pojawia się napis: **"Arkusz A4 za 49 zł"**. | **Lektor:** Jeden arkusz, nieskończone możliwości! Wejdź na malenaklejki.pl! (Muzyka się kończy) |
+| **16-18s:** Finalne, satysfakcjonujące ujęcie odpicowanego roweru na tle ładnego krajobrazu. Na ekranie pojawia się napis: **"Arkusz A4 za 59 zł"**. | **Lektor:** Jeden arkusz, nieskończone możliwości! Wejdź na malenaklejki.pl! (Muzyka się kończy) |
 
 ## D. Pinterest Pin
 

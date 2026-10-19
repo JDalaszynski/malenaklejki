@@ -10,6 +10,7 @@ import { Plus, Trash2, Wand2 } from "lucide-react";
 import { createManualOrder, updateOrder } from "@/app/actions/admin";
 import { PAYMENT_STATUSES } from "@/lib/orders/status";
 import { GOODS_LINE_NAME } from "@/lib/orders/billingLines";
+import { SHEET_PRICE } from "@/lib/sheets/types";
 import { FormAlert, SubmitButton } from "@/components/auth/fields";
 import { Card } from "./AdminLayout";
 
@@ -58,7 +59,7 @@ const STANDARD_ITEM = {
   id: "",
   name: GOODS_LINE_NAME,
   sheetQuantity: 1,
-  pricePerSheet: 49,
+  pricePerSheet: SHEET_PRICE,
   taxRate: 23,
 };
 

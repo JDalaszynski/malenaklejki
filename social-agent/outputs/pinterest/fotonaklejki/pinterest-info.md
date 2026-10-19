@@ -7,7 +7,7 @@ Landing docelowy: https://www.malenaklejki.pl/fotonaklejki
 Fotonaklejki ze zdjęć na arkuszu A4
 
 **Opis Pinu:**
-Zrób fotonaklejki z własnych zdjęć - portret psa, kadr z wakacji czy rysunek dziecka na jednym arkuszu A4. Wgrywasz plik z telefonu, my usuwamy tło i tniemy naklejkę po obrysie na wodoodpornej folii winylowej. Stała cena 49 zł brutto za arkusz A4, już od 1 sztuki.
+Zrób fotonaklejki z własnych zdjęć - portret psa, kadr z wakacji czy rysunek dziecka na jednym arkuszu A4. Wgrywasz plik z telefonu, my usuwamy tło i tniemy naklejkę po obrysie na wodoodpornej folii winylowej. Stała cena 59 zł brutto za arkusz A4, już od 1 sztuki.
 
 **Napis CTA na grafice:**
 Zrób fotonaklejki ze zdjęć
@@ -31,7 +31,7 @@ Zamień zdjęcie w naklejkę
 Fotonaklejka z pupila na laptopa
 
 **Opis Pinu:**
-Wgraj zdjęcie psa lub kota, a my wytniemy fotonaklejkę dokładnie po obrysie sylwetki (die-cut). Idealna na laptop, bidon czy kask - trwała folia winylowa nie boi się wody ani słońca. Naklejki ze zdjęcia już od 1 arkusza A4 za 49 zł.
+Wgraj zdjęcie psa lub kota, a my wytniemy fotonaklejkę dokładnie po obrysie sylwetki (die-cut). Idealna na laptop, bidon czy kask - trwała folia winylowa nie boi się wody ani słońca. Naklejki ze zdjęcia już od 1 arkusza A4 za 59 zł.
 
 **Napis CTA na grafice:**
 Zamów wlepkę z pupilem
@@ -67,7 +67,7 @@ Zrób prezent ze zdjęcia
 Ulubiony zwierzak jako fotonaklejka
 
 **Opis Pinu:**
-Kot, pies, a może kapibara z zoo? Każde zdjęcie zwierzaka zamienimy w fotonaklejkę wyciętą po obrysie na trwałej folii winylowej. Automatyczne usuwanie tła, druk 300 DPI, stała cena 49 zł brutto za arkusz A4, bez minimalnego nakładu.
+Kot, pies, a może kapibara z zoo? Każde zdjęcie zwierzaka zamienimy w fotonaklejkę wyciętą po obrysie na trwałej folii winylowej. Automatyczne usuwanie tła, druk 300 DPI, stała cena 59 zł brutto za arkusz A4, bez minimalnego nakładu.
 
 **Napis CTA na grafice:**
 Zamów naklejkę ze zwierzakiem
@@ -91,7 +91,7 @@ Usuniemy tło ze zdjęcia
 Fotonaklejka ze zdjęcia hobby
 
 **Opis Pinu:**
-Kolej, motoryzacja, modelarstwo - przenieś swoją pasję na naklejkę. Zdjęcie z telefonu zamieniamy w fotonaklejkę wyciętą po obrysie na trwałej folii odpornej na wodę i UV. Zamów online od 1 arkusza A4 za 49 zł brutto.
+Kolej, motoryzacja, modelarstwo - przenieś swoją pasję na naklejkę. Zdjęcie z telefonu zamieniamy w fotonaklejkę wyciętą po obrysie na trwałej folii odpornej na wodę i UV. Zamów online od 1 arkusza A4 za 59 zł brutto.
 
 **Napis CTA na grafice:**
 Zamów naklejkę z pasją

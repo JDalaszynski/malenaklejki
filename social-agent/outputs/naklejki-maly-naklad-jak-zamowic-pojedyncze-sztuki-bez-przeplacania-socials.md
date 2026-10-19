@@ -6,7 +6,7 @@ Jasne, oto zestaw gotowych formatów social media na podstawie dostarczonego art
 
 Potrzebujesz tylko kilku naklejek, a wszędzie każą zamawiać setki? 😤
 
-Koniec z przepłacaniem za zapasy, których nie potrzebujesz! W MałeNaklejki zamawiasz tyle, ile chcesz - nawet jedną sztukę. Płacisz stałą cenę 49 zł za cały arkusz A4 i umieszczasz na nim, co tylko chcesz. 🔥
+Koniec z przepłacaniem za zapasy, których nie potrzebujesz! W MałeNaklejki zamawiasz tyle, ile chcesz - nawet jedną sztukę. Płacisz stałą cenę 59 zł za cały arkusz A4 i umieszczasz na nim, co tylko chcesz. 🔥
 
 Jedna duża wlepka? Kilka różnych wzorów? A może kilkanaście małych naklejek ze zdjęć? Ty decydujesz!
 
@@ -26,7 +26,7 @@ Zamów nawet 1 sztukę i nie przepłacaj. Pokażemy Ci jak! 👇
 
 **Slajd 2:**
 **Koniec z progiem 100 sztuk! ❌**
-U nas płacisz za 1 arkusz A4 (49 zł), a nie za liczbę naklejek.
+U nas płacisz za 1 arkusz A4 (59 zł), a nie za liczbę naklejek.
 *   Zamów 1 dużą naklejkę.
 *   Albo 12 mniejszych.
 *   Albo kilka różnych wzorów!

@@ -32,7 +32,7 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://www.malenaklejki.pl"),
   title: "Naklejki z własnym nadrukiem od 1 szt. | MałeNaklejki",
   description:
-    "Naklejki z własnym nadrukiem od 1 sztuki. Cięcie po obrysie, druk na trwałej folii winylowej, 49 zł za arkusz A4, produkcja 2-3 dni robocze.",
+    "Naklejki z własnym nadrukiem od 1 sztuki. Cięcie po obrysie, druk na trwałej folii winylowej, 59 zł za arkusz A4, produkcja 2-3 dni robocze.",
   alternates: {
     canonical: "/",
   },
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     title:
       "Naklejki z własnym nadrukiem od 1 szt. | MałeNaklejki",
     description:
-      "Naklejki z własnym nadrukiem od 1 sztuki. Cięcie po obrysie, druk na trwałej folii winylowej, 49 zł za arkusz A4, produkcja 2-3 dni robocze.",
+      "Naklejki z własnym nadrukiem od 1 sztuki. Cięcie po obrysie, druk na trwałej folii winylowej, 59 zł za arkusz A4, produkcja 2-3 dni robocze.",
     url: "https://www.malenaklejki.pl",
     siteName: "MałeNaklejki",
     locale: "pl_PL",
@@ -58,7 +58,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Naklejki z własnym nadrukiem od 1 szt. | MałeNaklejki",
     description:
-      "Naklejki z własnym nadrukiem od 1 sztuki. Cięcie po obrysie, druk na trwałej folii winylowej, 49 zł za arkusz A4, produkcja 2-3 dni robocze.",
+      "Naklejki z własnym nadrukiem od 1 sztuki. Cięcie po obrysie, druk na trwałej folii winylowej, 59 zł za arkusz A4, produkcja 2-3 dni robocze.",
     images: ["/images/og-main.jpg"],
   },
   verification: {

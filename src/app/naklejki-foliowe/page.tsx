@@ -28,14 +28,14 @@ const PAGE_URL = `https://www.malenaklejki.pl${PAGE_PATH}`;
 export const metadata: Metadata = {
   title: "Naklejki foliowe (winylowe) - wodoodporne, od 1 arkusza",
   description:
-    "Naklejki foliowe z własnym nadrukiem na trwałej folii winylowej - odporne na wodę i UV, druk 300 DPI. Stała cena 49 zł brutto za arkusz A4, od 1 sztuki.",
+    "Naklejki foliowe z własnym nadrukiem na trwałej folii winylowej - odporne na wodę i UV, druk 300 DPI. Stała cena 59 zł brutto za arkusz A4, od 1 sztuki.",
   alternates: {
     canonical: PAGE_PATH,
   },
   openGraph: {
     title: "Naklejki foliowe i winylowe z własnym nadrukiem - wodoodporne",
     description:
-      "Wodoodporne naklejki foliowe (winylowe) z własnym nadrukiem: trwała folia odporna na wodę i UV, druk 300 DPI, 49 zł brutto za arkusz A4, od 1 sztuki.",
+      "Wodoodporne naklejki foliowe (winylowe) z własnym nadrukiem: trwała folia odporna na wodę i UV, druk 300 DPI, 59 zł brutto za arkusz A4, od 1 sztuki.",
     url: PAGE_URL,
     type: "website",
     images: [
@@ -51,7 +51,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Naklejki foliowe i winylowe z własnym nadrukiem - wodoodporne",
     description:
-      "Trwała folia winylowa odporna na wodę i UV, druk 300 DPI. Stała cena 49 zł brutto za arkusz A4, od 1 sztuki.",
+      "Trwała folia winylowa odporna na wodę i UV, druk 300 DPI. Stała cena 59 zł brutto za arkusz A4, od 1 sztuki.",
     images: ["/landing/naklejki-foliowe/wodoodporne-naklejki-foliowe.png"],
   },
 };
@@ -84,7 +84,7 @@ const FAQS: { q: string; a: string }[] = [
   },
   {
     q: "Ile kosztują naklejki foliowe z własnym nadrukiem?",
-    a: "Obowiązuje stała cena 49,00 zł brutto za arkusz A4, niezależnie od liczby wzorów. Na jednym arkuszu zmieścisz jedną dużą naklejkę do 19 cm albo kilkadziesiąt mniejszych - im mniejsze naklejki, tym niższy koszt pojedynczej sztuki. Nie ma minimalnego nakładu ani opłat za przygotowanie pliku, więc drukujemy już od 1 arkusza.",
+    a: "Obowiązuje stała cena 59,00 zł brutto za arkusz A4, niezależnie od liczby wzorów. Na jednym arkuszu zmieścisz jedną dużą naklejkę do 19 cm albo kilkadziesiąt mniejszych - im mniejsze naklejki, tym niższy koszt pojedynczej sztuki. Nie ma minimalnego nakładu ani opłat za przygotowanie pliku, więc drukujemy już od 1 arkusza.",
   },
   {
     q: "Czy folia zostawia ślady po odklejeniu?",
@@ -205,7 +205,7 @@ const SPECS: { label: string; value: string }[] = [
   { label: "Formaty pliku", value: "PDF, PNG, JPG" },
   {
     label: "Cena",
-    value: "49,00 zł brutto za arkusz A4, bez minimalnego nakładu",
+    value: "59,00 zł brutto za arkusz A4, bez minimalnego nakładu",
   },
   { label: "Produkcja", value: "2-3 dni robocze" },
   { label: "Wysyłka", value: "Odbiór w paczkomacie, dostawa 19,99 zł" },
@@ -240,7 +240,7 @@ export default function NaklejkiFoliowePage() {
           "@type": "Product",
           name: "Naklejki foliowe (winylowe) z własnym nadrukiem",
           description:
-            "Wodoodporne naklejki foliowe drukowane na trwałej folii winylowej, odpornej na wodę i promieniowanie UV. Druk 300 DPI, stała cena 49,00 zł brutto za arkusz A4, bez minimalnego nakładu, z odbiorem w paczkomacie.",
+            "Wodoodporne naklejki foliowe drukowane na trwałej folii winylowej, odpornej na wodę i promieniowanie UV. Druk 300 DPI, stała cena 59,00 zł brutto za arkusz A4, bez minimalnego nakładu, z odbiorem w paczkomacie.",
           image: "https://www.malenaklejki.pl/images/logo/favicon.png",
           brand: { "@type": "Brand", name: "MałeNaklejki" },
           category: "Naklejki foliowe i winylowe z własnym nadrukiem",
@@ -285,7 +285,7 @@ export default function NaklejkiFoliowePage() {
                 },
               },
             },
-            price: "49.00",
+            price: "59.00",
             priceCurrency: "PLN",
             availability: "https://schema.org/InStock",
             url: PAGE_URL,
@@ -361,7 +361,7 @@ export default function NaklejkiFoliowePage() {
             nadrukiem w polskiej drukarni: drukujemy na trwałej{" "}
             <strong>folii winylowej odpornej na wodę i UV</strong> w
             rozdzielczości <strong>300 DPI</strong>. Stała cena{" "}
-            <strong>49,00 zł brutto za arkusz A4</strong>, już od 1 sztuki,
+            <strong>59,00 zł brutto za arkusz A4</strong>, już od 1 sztuki,
             produkcja w <strong>2-3 dni robocze</strong> i odbiór w paczkomacie.
             Zależy Ci, żeby nadruk nie rozmókł ani nie spłowiał? Sprawdź, na co
             zwrócić uwagę przy{" "}
@@ -404,7 +404,7 @@ export default function NaklejkiFoliowePage() {
         {/* Trust stats */}
         <section className="mt-6 grid grid-cols-2 sm:grid-cols-4 gap-3">
           {[
-            { value: "49 zł", label: "Brutto za arkusz A4" },
+            { value: "59 zł", label: "Brutto za arkusz A4" },
             { value: "od 1 szt.", label: "Bez min. nakładu" },
             { value: "300 DPI", label: "Druk pełny kolor" },
             { value: "Woda·UV", label: "Odporność folii" },
@@ -601,7 +601,7 @@ export default function NaklejkiFoliowePage() {
               },
               {
                 title: "Zamów i odbierz w paczkomacie",
-                text: "Sprawdź podgląd 3D gotowego arkusza, zapłać BLIK-iem lub przez Przelewy24, a naklejki foliowe wyprodukujemy w 2-3 dni robocze i wyślemy do paczkomatu za stałe 49,00 zł brutto od arkusza A4.",
+                text: "Sprawdź podgląd 3D gotowego arkusza, zapłać BLIK-iem lub przez Przelewy24, a naklejki foliowe wyprodukujemy w 2-3 dni robocze i wyślemy do paczkomatu za stałe 59,00 zł brutto od arkusza A4.",
               },
             ].map((step, i) => (
               <li
@@ -674,7 +674,7 @@ export default function NaklejkiFoliowePage() {
           <p className="text-sm sm:text-base text-muted-foreground font-medium leading-relaxed max-w-2xl mx-auto">
             Wgraj grafikę do kreatora, wybierz cięcie po obrysie i liczbę sztuk
             na arkuszu. Naklejki foliowe będą gotowe w 2-3 dni robocze za stałe
-            49,00 zł brutto od arkusza A4 - na trwałej folii winylowej odpornej
+            59,00 zł brutto od arkusza A4 - na trwałej folii winylowej odpornej
             na wodę i UV, bez minimalnego nakładu.
           </p>
           <div className="flex flex-wrap justify-center gap-2 pt-2 text-xs font-bold text-muted-foreground">

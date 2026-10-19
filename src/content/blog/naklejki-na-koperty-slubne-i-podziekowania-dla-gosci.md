@@ -3,7 +3,7 @@ title: "Naklejki na koperty ślubne i podziękowania dla gości"
 slug: "naklejki-na-koperty-slubne-i-podziekowania-dla-gosci"
 date: "2026-07-28"
 updated: "2026-08-30"
-description: "Naklejki na koperty ślubne i podziękowania dla gości od 1 arkusza A4 za 49 zł. Wgraj projekt z Canvy, a my wytniemy je po kształcie. Produkcja 2-3 dni."
+description: "Naklejki na koperty ślubne i podziękowania dla gości od 1 arkusza A4 za 59 zł. Wgraj projekt z Canvy, a my wytniemy je po kształcie. Produkcja 2-3 dni."
 image: "/blog/naklejki-na-koperty-slubne-i-podziekowania-dla-gosci/naklejki-na-koperty-slubne-podziekowania-dla-gosci.jpg"
 imageAlt: "Naklejki na koperty ślubne i podziękowania dla gości - buteleczki z domową nalewką z etykietą 'Dziękujemy' z imionami pary młodej, obok zaproszenie i numer stołu."
 tags: ["naklejki", "ślub", "podziękowania", "poradnik"]
@@ -11,7 +11,7 @@ role: "supporting"
 cta_text: "Zamów naklejki ślubne"
 ---
 
-Zadbaj o spójny, dopracowany detal na swoim weselu - **naklejki na koperty ślubne** i podziękowania dla gości wydrukujesz na trwałej folii bez minimalnego zamówienia. Wygeneruj monogram z kwiatami w narzędziach AI (Midjourney, ChatGPT) lub przygotuj plik ręcznie w darmowej Canvie czy Wordzie, wgraj gotowy plik prosto z telefonu, a my wytniemy każdą naklejkę idealnie po jej kształcie. Płacisz jedną, stałą cenę 49,00 zł za arkusz A4 - niezależnie od tego, czy potrzebujesz kilkunastu dużych etykiet na koperty, czy stu małych naklejek z inicjałami na pudełeczka dla gości.
+Zadbaj o spójny, dopracowany detal na swoim weselu - **naklejki na koperty ślubne** i podziękowania dla gości wydrukujesz na trwałej folii bez minimalnego zamówienia. Wygeneruj monogram z kwiatami w narzędziach AI (Midjourney, ChatGPT) lub przygotuj plik ręcznie w darmowej Canvie czy Wordzie, wgraj gotowy plik prosto z telefonu, a my wytniemy każdą naklejkę idealnie po jej kształcie. Płacisz jedną, stałą cenę 59,00 zł za arkusz A4 - niezależnie od tego, czy potrzebujesz kilkunastu dużych etykiet na koperty, czy stu małych naklejek z inicjałami na pudełeczka dla gości.
 
 ## Dlaczego naklejki na koperty ślubne robią wrażenie już przy wejściu?
 
@@ -68,14 +68,14 @@ Chcesz dopracować sam napis - imiona, datę lub cytat na pieczęć? Krok po kro
 
 ![Pastelowe pudełeczka z makaronikami jako podziękowania dla gości, każde z okrągłą naklejką z monogramem pary młodej](/blog/naklejki-na-koperty-slubne-i-podziekowania-dla-gosci/podziekowania-dla-gosci-pudeleczka-z-makaronikami.jpg)
 
-Obowiązuje jedna, prosta zasada: **49,00 zł za arkusz A4** - bez względu na to, ile naklejek się na nim zmieści. Im mniejsza naklejka, tym więcej sztuk uzyskasz z jednego arkusza i tym niższy koszt jednostkowy.
+Obowiązuje jedna, prosta zasada: **59,00 zł za arkusz A4** - bez względu na to, ile naklejek się na nim zmieści. Im mniejsza naklejka, tym więcej sztuk uzyskasz z jednego arkusza i tym niższy koszt jednostkowy.
 
 | Liczba naklejek na arkuszu | Przykładowy rozmiar | Cena za sztukę |
 |---|---|---|
-| 12 naklejek na koperty | ok. 5 x 5 cm | ~4,08 zł / szt. |
-| 24 naklejki z monogramem | ok. 3,5 x 3,5 cm | ~2,04 zł / szt. |
-| 48 małych pieczęci | ok. 2,5 x 2,5 cm | ~1,02 zł / szt. |
-| 1 duża naklejka ozdobna | do 19 cm | 49,00 zł / szt. |
+| 12 naklejek na koperty | ok. 5 x 5 cm | ~4,92 zł / szt. |
+| 24 naklejki z monogramem | ok. 3,5 x 3,5 cm | ~2,46 zł / szt. |
+| 48 małych pieczęci | ok. 2,5 x 2,5 cm | ~1,23 zł / szt. |
+| 1 duża naklejka ozdobna | do 19 cm | 59,00 zł / szt. |
 
 Brak minimalnego nakładu oznacza, że możesz zamówić jeden arkusz na próbę, sprawdzić kolory i kształt na własnych kopertach, a dopiero potem domówić resztę.
 
@@ -108,7 +108,7 @@ Na koperty i wieczka słoiczków najelegantsze są naklejki okrągłe lub owalne
 
 ### Czy mogę zamówić różne wzory naklejek ślubnych na jednym arkuszu?
 
-Tak. Na jednym arkuszu A4 za stałą cenę 49,00 zł możesz umieścić kilka różnych projektów naraz - na przykład inne naklejki na koperty, inne na słoiczki z podziękowaniami, a jeszcze inne na butelki. Wystarczy zebrać wszystkie wzory w jednym pliku przed wgraniem do kreatora.
+Tak. Na jednym arkuszu A4 za stałą cenę 59,00 zł możesz umieścić kilka różnych projektów naraz - na przykład inne naklejki na koperty, inne na słoiczki z podziękowaniami, a jeszcze inne na butelki. Wystarczy zebrać wszystkie wzory w jednym pliku przed wgraniem do kreatora.
 
 ## Zamów naklejki na koperty ślubne i podziękowania dla gości
 

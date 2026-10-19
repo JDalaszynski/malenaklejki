@@ -11,7 +11,7 @@ role: "supporting"
 cta_text: "Sprawdź rozmiary w kreatorze"
 ---
 
-Zastanawiasz się, [jaki rozmiar naklejki wybrać](/blog/drukowanie-naklejek-online-na-co-zwrocic-uwage-przed-wysylka-projektu)? Wybór odpowiednich wymiarów to jedna z najważniejszych decyzji przed złożeniem zamówienia na druk własnych wlepek. Często pojawia się dylemat, czy dana etykieta idealnie wpasuje się w opakowanie i czy drobny druk będzie czytelny. Niezależnie od tego, czy potrzebujesz jednej dużej naklejki do 19 cm, czy kilkudziesięciu mniejszych lepek - u nas zamówisz je na tym samym arkuszu A4 w niezmiennej, stałej cenie 49,00 zł.
+Zastanawiasz się, [jaki rozmiar naklejki wybrać](/blog/drukowanie-naklejek-online-na-co-zwrocic-uwage-przed-wysylka-projektu)? Wybór odpowiednich wymiarów to jedna z najważniejszych decyzji przed złożeniem zamówienia na druk własnych wlepek. Często pojawia się dylemat, czy dana etykieta idealnie wpasuje się w opakowanie i czy drobny druk będzie czytelny. Niezależnie od tego, czy potrzebujesz jednej dużej naklejki do 19 cm, czy kilkudziesięciu mniejszych lepek - u nas zamówisz je na tym samym arkuszu A4 w niezmiennej, stałej cenie 59,00 zł.
 
 Poniżej przygotowaliśmy praktyczne zestawienie dla najpopularniejszych zastosowań, które podpowie Ci odpowiednie parametry oraz ile sztuk orientacyjnie zmieścisz na standardowym formacie A4.
 
@@ -51,7 +51,7 @@ Dzięki wysokiej jakości maszynom cyfrowym i drukowi w palecie CMYK na wytrzyma
 ### FAQ - Najczęściej zadawane pytania o rozmiary naklejek
 
 ### Ile kosztuje wydruk naklejek, jeśli wybiorę różnorodne wymiary?
-Dzięki naszemu kreatorowi, cena jest zawsze stała - 49,00 zł brutto za jeden zadrukowany arkusz A4 bez minimalnego zamówienia. Na jednym arkuszu możesz umieścić naklejki w dowolnych konfiguracjach. Zapraszamy do sprawdzenia wpisu pod tytułem: [ile kosztują naklejki na zamówienie](/blog/ile-kosztuja-naklejki-na-zamowienie-cena-za-arkusz-a4), by dowiedzieć się, ile dokładnie wyniesie koszt pojedynczej sztuki. Przesyłki dostarczamy sprawnie do Paczkomatów w cenie 19,99 zł.
+Dzięki naszemu kreatorowi, cena jest zawsze stała - 59,00 zł brutto za jeden zadrukowany arkusz A4 bez minimalnego zamówienia. Na jednym arkuszu możesz umieścić naklejki w dowolnych konfiguracjach. Zapraszamy do sprawdzenia wpisu pod tytułem: [ile kosztują naklejki na zamówienie](/blog/ile-kosztuja-naklejki-na-zamowienie-cena-za-arkusz-a4), by dowiedzieć się, ile dokładnie wyniesie koszt pojedynczej sztuki. Przesyłki dostarczamy sprawnie do Paczkomatów w cenie 19,99 zł.
 
 ### Jaki jest maksymalny rozmiar naklejki, który mogę zamówić?
 Maksymalny wymiar to 19 cm na krótszym boku. Na arkuszu A4 zmieścisz dokładnie jedną taką potężną grafikę, co świetnie sprawdzi się na przykład na obudowie laptopa, szybie lub skrzyni narzędziowej.

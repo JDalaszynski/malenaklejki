@@ -14,7 +14,7 @@ Zdecydowana większość zapytań o „znicze" to **zakup gotowego znicza** (All
 
 | Kąt | Kto szuka | Co dostaje u nas |
 | :--- | :--- | :--- |
-| **A. Własny znicz + naklejka** | ktoś, kto kupił zwykły znicz (lub ma solarny/LED) i chce go uczynić osobistym | naklejka ze zdjęciem/imieniem od 1 arkusza, 49,00 zł brutto |
+| **A. Własny znicz + naklejka** | ktoś, kto kupił zwykły znicz (lub ma solarny/LED) i chce go uczynić osobistym | naklejka ze zdjęciem/imieniem od 1 arkusza, 59,00 zł brutto |
 | **B. Wiele grobów, jedno zamówienie** | rodzina z kilkoma grobami, parafia, szkoła, firma | wiele wzorów na jednym arkuszu, jedna dostawa |
 | **C. Tekst i dedykacja** | ktoś, kto pyta „co napisać na zniczu" | poradnik z gotowymi sformułowaniami, potem naklejka |
 
@@ -171,7 +171,7 @@ Dokładne sformułowania do nagłówków H3 i pytań schematu `FAQPage`. **Odpow
 
 | Pytanie | Gdzie | Uwaga merytoryczna |
 | :--- | :--- | :--- |
-| Ile kosztuje naklejka na znicz? | landing FAQ 1 | 49,00 zł brutto za arkusz A4; koszt sztuki z tabeli rozmiarów (orientacyjnie) |
+| Ile kosztuje naklejka na znicz? | landing FAQ 1 | 59,00 zł brutto za arkusz A4; koszt sztuki z tabeli rozmiarów (orientacyjnie) |
 | Jak zrobić znicz ze zdjęciem samodzielnie? | landing FAQ 2, wpis | własny znicz + naklejka |
 | Czy naklejka na znicz wytrzyma deszcz i słońce na cmentarzu? | landing FAQ 3 | **tylko woda i UV** (facts.md); **bez** mrozu, liczby lat, ścierania |
 | Czy naklejka nie stopi się od płomienia znicza? | landing FAQ 4, wpis | **Stopi się na kloszu znicza z płomieniem** (właściciel, 2026-10-10) - naklejki tylko na znicze solarne/LED/na baterie |

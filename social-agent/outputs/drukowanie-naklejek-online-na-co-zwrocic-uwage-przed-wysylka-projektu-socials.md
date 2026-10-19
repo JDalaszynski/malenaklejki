@@ -36,7 +36,7 @@ Chcesz idealne cięcie po obrysie?
 **3. KOLORY RÓŻNIĄ SIĘ OD TYCH NA EKRANIE** 🎨
 Monitory (RGB) wyświetlają kolory inaczej niż drukarki (CMYK).
 *   **Problem:** Bardzo jaskrawe, neonowe barwy mogą wyjść na wydruku nieco bardziej zgaszone.
-*   **Rozwiązanie:** Zamów jeden arkusz próbny za 49 zł i sprawdź kolory, zanim zamówisz dużą partię!
+*   **Rozwiązanie:** Zamów jeden arkusz próbny za 59 zł i sprawdź kolory, zanim zamówisz dużą partię!
 
 **[SLIDE 5]**
 **Wiedza w pigułce!**

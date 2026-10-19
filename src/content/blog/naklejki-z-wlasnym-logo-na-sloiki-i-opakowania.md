@@ -1,5 +1,5 @@
 ---
-title: "Naklejki z logo na słoiki i opakowania - od 1 szt., 49 zł/A4"
+title: "Naklejki z logo na słoiki i opakowania - od 1 szt., 59 zł/A4"
 slug: "naklejki-z-wlasnym-logo-na-sloiki-i-opakowania"
 date: "2026-07-05"
 updated: "2026-10-08"
@@ -17,7 +17,7 @@ Wydrukuj autorskie **naklejki z logo na zamówienie** na trwałej folii bez wymo
 
 Małe manufaktury, rzemieślnicy i lokalne biznesy e-commerce często borykają się z problemem wysokich kosztów przygotowalni w tradycyjnych drukarniach. Gdy dopiero wprowadzasz nowy produkt na rynek, zamawianie kilku tysięcy etykiet mija się z celem. 
 
-W MałeNaklejki proces ten wygląda zupełnie inaczej. Możesz zamówić profesjonalne [naklejki na zamówienie](/blog/jak-zamowic-idealne-naklejki-na-zamowienie-z-wlasnym-nadrukiem) już od jednego arkusza A4 w stałej cenie 49,00 zł brutto. Otrzymujesz pełną swobodę - na jednym arkuszu może znaleźć się kilkanaście większych etykiet na główne słoiki, lub kilkadziesiąt małych naklejek na paczki wysyłkowe, co stanowi świetny sposób na unboxing experience. To rozwiązanie idealne dla twórców, którzy chcą elastycznie testować nowe linie produktowe i limitowane serie.
+W MałeNaklejki proces ten wygląda zupełnie inaczej. Możesz zamówić profesjonalne [naklejki na zamówienie](/blog/jak-zamowic-idealne-naklejki-na-zamowienie-z-wlasnym-nadrukiem) już od jednego arkusza A4 w stałej cenie 59,00 zł brutto. Otrzymujesz pełną swobodę - na jednym arkuszu może znaleźć się kilkanaście większych etykiet na główne słoiki, lub kilkadziesiąt małych naklejek na paczki wysyłkowe, co stanowi świetny sposób na unboxing experience. To rozwiązanie idealne dla twórców, którzy chcą elastycznie testować nowe linie produktowe i limitowane serie.
 
 ![Naklejki z własnym logo na zamówienie na opakowaniach szklanych](/blog/naklejki-z-wlasnym-logo-na-sloiki-i-opakowania/naklejki-z-wlasnym-logo-na-sloiki-i-opakowania-w-tresci.jpg)
 

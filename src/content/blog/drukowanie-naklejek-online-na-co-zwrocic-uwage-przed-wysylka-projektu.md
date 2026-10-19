@@ -12,7 +12,7 @@ pillarOrder: 2
 slug: "drukowanie-naklejek-online-na-co-zwrocic-uwage-przed-wysylka-projektu"
 ---
 
-Chcesz zamówić naklejki online, ale nie wiesz, jak przygotować plik, żeby wydruk wyszedł ostro i kolorowo? Dobrze trafiłeś. Za jeden w pełni zadrukowany arkusz A4 zapłacisz w MałeNaklejki stałe **49,00 zł** - niezależnie od kształtu, liczby i wzoru naklejek. Poniżej znajdziesz wszystko, co musisz wiedzieć przed wysyłką projektu, żeby efekt końcowy Cię zachwycił. Chcesz od razu przejść do działania? [Spersonalizuj naklejkę](/) w naszym kreatorze - wgraj plik, a my wydrukujemy i wytniemy go za Ciebie.
+Chcesz zamówić naklejki online, ale nie wiesz, jak przygotować plik, żeby wydruk wyszedł ostro i kolorowo? Dobrze trafiłeś. Za jeden w pełni zadrukowany arkusz A4 zapłacisz w MałeNaklejki stałe **59,00 zł** - niezależnie od kształtu, liczby i wzoru naklejek. Poniżej znajdziesz wszystko, co musisz wiedzieć przed wysyłką projektu, żeby efekt końcowy Cię zachwycił. Chcesz od razu przejść do działania? [Spersonalizuj naklejkę](/) w naszym kreatorze - wgraj plik, a my wydrukujemy i wytniemy go za Ciebie.
 
 ## Drukowanie naklejek online - od czego zacząć?
 
@@ -82,7 +82,7 @@ Monitory wyświetlają kolory w przestrzeni RGB (czerwony, zielony, niebieski), 
 - **Elektrycznego niebieskiego** - może wyjść nieco ciemniejszy.
 - **Kolorów Pantone** - jeśli zależy Ci na dokładnym odwzorowaniu koloru marki (np. specyficzny odcień czerwieni dla logo), skontaktuj się z nami przed zamówieniem.
 
-**Praktyczna rada:** Jeśli zależy Ci na kolorach identycznych z Twoją identyfikacją wizualną, zamów najpierw jeden arkusz próbny. Za 49,00 zł sprawdzisz jakość wydruku i dokładność kolorów zanim złożysz większe zamówienie. Nie masz pewności, co oznaczają RGB, CMYK czy DPI? Krótkie definicje znajdziesz w [słowniku pojęć o naklejkach](/slownik-naklejek).
+**Praktyczna rada:** Jeśli zależy Ci na kolorach identycznych z Twoją identyfikacją wizualną, zamów najpierw jeden arkusz próbny. Za 59,00 zł sprawdzisz jakość wydruku i dokładność kolorów zanim złożysz większe zamówienie. Nie masz pewności, co oznaczają RGB, CMYK czy DPI? Krótkie definicje znajdziesz w [słowniku pojęć o naklejkach](/slownik-naklejek).
 
 ## Na czym drukujemy? Folia winylowa i jej właściwości
 
@@ -98,15 +98,15 @@ Drukujemy w Polsce, na maszynach cyfrowych wysokiej klasy z szeroką gamą kolor
 
 ## Ile naklejek zmieści się na jednym arkuszu A4?
 
-Za 49,00 zł dostajesz jeden pełny arkusz A4 (21 x 29,7 cm). Ty decydujesz, co się na nim znajdzie. Im więcej, mniejszych naklejek zmieścisz - tym niższy koszt jednostkowy:
+Za 59,00 zł dostajesz jeden pełny arkusz A4 (21 x 29,7 cm). Ty decydujesz, co się na nim znajdzie. Im więcej, mniejszych naklejek zmieścisz - tym niższy koszt jednostkowy:
 
 | Rozmiar naklejki | Orientacyjna liczba na arkuszu | Koszt za sztukę |
 |---|---|---|
-| 19 cm (maksimum) | 1 szt. | 49,00 zł |
+| 19 cm (maksimum) | 1 szt. | 59,00 zł |
 | ok. 9 x 9 cm | 4 szt. | ~12,25 zł |
-| ok. 6 x 6 cm | 9 szt. | ~5,44 zł |
-| ok. 4,5 x 4,5 cm | 16 szt. | ~3,06 zł |
-| ok. 3 x 3 cm | 30 szt. | ~1,63 zł |
+| ok. 6 x 6 cm | 9 szt. | ~6,56 zł |
+| ok. 4,5 x 4,5 cm | 16 szt. | ~3,69 zł |
+| ok. 3 x 3 cm | 30 szt. | ~1,97 zł |
 
 Na jednym arkuszu możesz umieścić **wiele różnych wzorów** - zestaw je ze sobą lub dodawaj po kolei pliki pobrane np. z ChatGPT, Midjourney lub Canvy. To idealne dla twórców, którzy chcą przetestować kilka grafik jednocześnie. Zastanawiasz się, [jaki rozmiar naklejki wybrać](/blog/jaki-rozmiar-naklejki-wybrac)? Sprawdź też szczegółowy cennik i kalkulację w poradniku: [ile kosztują naklejki na zamówienie - cena za arkusz A4 i koszt pojedynczej sztuki](/blog/ile-kosztuja-naklejki-na-zamowienie-cena-za-arkusz-a4).
 
@@ -146,7 +146,7 @@ Podsumowując proces od projektu do paczki na Twoich drzwiach:
 6. **Opłać zamówienie** - realizacja startuje natychmiast po potwierdzeniu płatności.
 7. **Odbierz paczkę** w 2-3 dni robocze + czas dostawy kuriera (1-2 dni).
 
-Nie ma minimalnego nakładu. Możesz zamówić jeden arkusz z jedną naklejką lub kilkanaście arkuszy z różnymi projektami - cena za arkusz pozostaje zawsze ta sama: **49,00 zł**.
+Nie ma minimalnego nakładu. Możesz zamówić jeden arkusz z jedną naklejką lub kilkanaście arkuszy z różnymi projektami - cena za arkusz pozostaje zawsze ta sama: **59,00 zł**.
 
 ![Zestaw trwałych naklejek ze zdjęć psów różnych ras, wyciętych po kształcie pupila na folii winylowej z mocnym klejem, leżący na drewnianym stole w studio graficznym](/blog/drukowanie-naklejek-online-na-co-zwrocic-uwage-przed-wysylka-projektu/naklejki-ze-zdjecia-psa-na-zamowienie.jpg)
 
@@ -164,7 +164,7 @@ Dla naklejek wycinanych po obrysie najlepszy jest **PNG z przezroczystym tłem**
 
 ### Czy mogę zamówić jeden arkusz próbny przed większym zamówieniem?
 
-Tak. Brak minimalnego nakładu oznacza, że możesz zamówić dokładnie 1 arkusz A4 za 49,00 zł, sprawdzić jakość wydruku i kolorów, a dopiero potem złożyć większe zamówienie.
+Tak. Brak minimalnego nakładu oznacza, że możesz zamówić dokładnie 1 arkusz A4 za 59,00 zł, sprawdzić jakość wydruku i kolorów, a dopiero potem złożyć większe zamówienie.
 
 ### Czy naklejki drukowane online są wodoodporne?
 
@@ -176,7 +176,7 @@ Tak. Wgraj osobne pliki graficzne jeden po drugim do kreatora lub zestaw je wcze
 
 ### Ile kosztuje drukowanie naklejek online w MałeNaklejki?
 
-Stała cena to **49,00 zł za jeden arkusz A4** - niezależnie od liczby naklejek, ich kształtu i wzoru. Brak ukrytych kosztów, brak minimalnego nakładu.
+Stała cena to **59,00 zł za jeden arkusz A4** - niezależnie od liczby naklejek, ich kształtu i wzoru. Brak ukrytych kosztów, brak minimalnego nakładu.
 
 ### Czy mogę zamówić naklejki z własnego zdjęcia z telefonu?
 

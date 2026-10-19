@@ -25,14 +25,14 @@ const PAGE_URL = `https://www.malenaklejki.pl${PAGE_PATH}`;
 export const metadata: Metadata = {
   title: "O nas - MałeNaklejki, polska drukarnia naklejek",
   description:
-    "Kim jesteśmy: polska drukarnia naklejek z własnym nadrukiem. Drukujemy od 1 arkusza A4 za 49,00 zł brutto na trwałej folii, produkcja 2-3 dni robocze.",
+    "Kim jesteśmy: polska drukarnia naklejek z własnym nadrukiem. Drukujemy od 1 arkusza A4 za 59,00 zł brutto na trwałej folii, produkcja 2-3 dni robocze.",
   alternates: {
     canonical: PAGE_PATH,
   },
   openGraph: {
     title: "O nas - MałeNaklejki, polska drukarnia naklejek",
     description:
-      "Polska drukarnia naklejek z własnym nadrukiem: od 1 arkusza A4 za 49,00 zł brutto, druk 300 DPI na folii winylowej, produkcja 2-3 dni robocze.",
+      "Polska drukarnia naklejek z własnym nadrukiem: od 1 arkusza A4 za 59,00 zł brutto, druk 300 DPI na folii winylowej, produkcja 2-3 dni robocze.",
     url: PAGE_URL,
     type: "website",
   },
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "O nas - MałeNaklejki, polska drukarnia naklejek",
     description:
-      "Drukujemy naklejki z własnym nadrukiem od 1 arkusza A4 za 49,00 zł brutto. Polska produkcja, folia winylowa, realizacja 2-3 dni robocze.",
+      "Drukujemy naklejki z własnym nadrukiem od 1 arkusza A4 za 59,00 zł brutto. Polska produkcja, folia winylowa, realizacja 2-3 dni robocze.",
   },
 };
 
@@ -60,7 +60,7 @@ const FAQS: { q: string; a: string }[] = [
   },
   {
     q: "Ile kosztują naklejki w MałeNaklejki?",
-    a: "Jeden arkusz A4 z naklejkami kosztuje stałe 49,00 zł brutto, niezależnie od tego, czy zamawiasz jeden arkusz, czy kilkanaście. W cenie masz pełną personalizację grafiki i cięcie po obrysie (die-cut), bez dopłat za wykrojnik i przygotowanie pliku. Dostawa do paczkomatu to 19,99 zł.",
+    a: "Jeden arkusz A4 z naklejkami kosztuje stałe 59,00 zł brutto, niezależnie od tego, czy zamawiasz jeden arkusz, czy kilkanaście. W cenie masz pełną personalizację grafiki i cięcie po obrysie (die-cut), bez dopłat za wykrojnik i przygotowanie pliku. Dostawa do paczkomatu to 19,99 zł.",
   },
   {
     q: "Czy jest minimalne zamówienie naklejek?",
@@ -72,7 +72,7 @@ const FAQS: { q: string; a: string }[] = [
   },
   {
     q: "Czy wystawiacie fakturę VAT dla firm?",
-    a: "Tak, jesteśmy płatnikiem VAT i wystawiamy fakturę na dane firmy z numerem NIP. Cena 49,00 zł za arkusz A4 to kwota brutto, więc od razu wiesz, jaki będzie koszt zamówienia w budżecie marketingowym.",
+    a: "Tak, jesteśmy płatnikiem VAT i wystawiamy fakturę na dane firmy z numerem NIP. Cena 59,00 zł za arkusz A4 to kwota brutto, więc od razu wiesz, jaki będzie koszt zamówienia w budżecie marketingowym.",
   },
   {
     q: "Na jakim materiale drukujecie naklejki?",
@@ -96,7 +96,7 @@ const BENEFITS: { icon: React.ElementType; title: string; text: string }[] = [
   {
     icon: Rocket,
     title: "Testujesz pomysł bez ryzyka finansowego",
-    text: "Zamiast pudła z 500 identycznymi wlepkami zamawiasz jeden arkusz A4 za 49,00 zł brutto i sprawdzasz, jak wzór wygląda na produkcie, laptopie czy opakowaniu. Nowy motyw wypuszczasz wtedy, kiedy chcesz - bez minimalnego nakładu.",
+    text: "Zamiast pudła z 500 identycznymi wlepkami zamawiasz jeden arkusz A4 za 59,00 zł brutto i sprawdzasz, jak wzór wygląda na produkcie, laptopie czy opakowaniu. Nowy motyw wypuszczasz wtedy, kiedy chcesz - bez minimalnego nakładu.",
   },
   {
     icon: ShieldCheck,
@@ -111,7 +111,7 @@ const BENEFITS: { icon: React.ElementType; title: string; text: string }[] = [
   {
     icon: Wallet,
     title: "Płacisz jedną, jawną cenę",
-    text: "Stałe 49,00 zł brutto za arkusz A4 zawiera personalizację i precyzyjne cięcie po obrysie. Nie doliczamy opłat za wykrojnik ani za przygotowanie pliku do druku, a koszt dostawy do paczkomatu (19,99 zł) widzisz przed płatnością.",
+    text: "Stałe 59,00 zł brutto za arkusz A4 zawiera personalizację i precyzyjne cięcie po obrysie. Nie doliczamy opłat za wykrojnik ani za przygotowanie pliku do druku, a koszt dostawy do paczkomatu (19,99 zł) widzisz przed płatnością.",
   },
   {
     icon: Sparkles,
@@ -126,7 +126,7 @@ const BENEFITS: { icon: React.ElementType; title: string; text: string }[] = [
 ];
 
 const SPEC: { feature: string; value: string }[] = [
-  { feature: "Cena", value: "Stałe 49,00 zł brutto za arkusz A4" },
+  { feature: "Cena", value: "Stałe 59,00 zł brutto za arkusz A4" },
   {
     feature: "Minimalny nakład",
     value: "Brak - drukujemy już od 1 arkusza A4",
@@ -172,7 +172,7 @@ const NOT_OFFERED: string[] = [
   "Folii hologramowej, brokatowej i transparentnej - drukujemy wyłącznie na trwałej folii winylowej",
   "Folii do oklejania całych pojazdów (wrapping) i naklejek na tkaniny",
   "Naklejek repozycjonowalnych i wielokrotnego użytku - nasz klej trzyma mocno i odkleja się raz, bez śladów",
-  "Rabatów hurtowych i progów ilościowych - cena to zawsze 49,00 zł brutto za arkusz, także przy większych zamówieniach",
+  "Rabatów hurtowych i progów ilościowych - cena to zawsze 59,00 zł brutto za arkusz, także przy większych zamówieniach",
   "Etykiet do zmywarki - naklejone opakowania i słoiki myj ręcznie",
 ];
 
@@ -220,7 +220,7 @@ export default function ONasPage() {
           url: "https://www.malenaklejki.pl",
           logo: "https://www.malenaklejki.pl/images/logo/favicon.png",
           description:
-            "MałeNaklejki to polska drukarnia naklejek z własnym nadrukiem. Drukujemy na trwałej folii winylowej w 300 DPI, bez minimalnego nakładu - już od 1 arkusza A4 za 49,00 zł brutto, z produkcją w 2-3 dni robocze.",
+            "MałeNaklejki to polska drukarnia naklejek z własnym nadrukiem. Drukujemy na trwałej folii winylowej w 300 DPI, bez minimalnego nakładu - już od 1 arkusza A4 za 59,00 zł brutto, z produkcją w 2-3 dni robocze.",
           areaServed: { "@type": "Country", name: "Polska" },
           knowsLanguage: "pl-PL",
           knowsAbout: [
@@ -250,14 +250,14 @@ export default function ONasPage() {
           "@type": "Product",
           name: "Naklejki z własnym nadrukiem (arkusz A4)",
           description:
-            "Naklejki z własnym nadrukiem drukowane w Polsce na trwałej folii winylowej w 300 DPI. Stała cena 49,00 zł brutto za arkusz A4, bez minimalnego nakładu, produkcja 2-3 dni robocze.",
+            "Naklejki z własnym nadrukiem drukowane w Polsce na trwałej folii winylowej w 300 DPI. Stała cena 59,00 zł brutto za arkusz A4, bez minimalnego nakładu, produkcja 2-3 dni robocze.",
           image: "https://www.malenaklejki.pl/images/logo/favicon.png",
           brand: { "@type": "Brand", name: "MałeNaklejki" },
           category: "Naklejki z własnym nadrukiem",
           offers: {
             "@type": "Offer",
             validFrom: "2024-01-01T00:00:00Z",
-            price: "49.00",
+            price: "59.00",
             priceCurrency: "PLN",
             availability: "https://schema.org/InStock",
             url: "https://www.malenaklejki.pl/",
@@ -360,7 +360,7 @@ export default function ONasPage() {
             <strong>MałeNaklejki</strong> to polski zespół, który drukuje{" "}
             <strong>naklejki z własnym nadrukiem</strong> bez pytania o
             minimalny nakład. Realizujemy zamówienia już od{" "}
-            <strong>1 arkusza A4 za stałe 49,00 zł brutto</strong>, na trwałej
+            <strong>1 arkusza A4 za stałe 59,00 zł brutto</strong>, na trwałej
             folii winylowej w <strong>300 DPI</strong>, z cięciem po obrysie i{" "}
             <strong>produkcją w 2-3 dni robocze</strong>. Zamówienie składasz
             sam w kreatorze online - bez briefu dla grafika, bez dopłaty za
@@ -387,7 +387,7 @@ export default function ONasPage() {
         {/* Trust stats */}
         <section className="mt-6 grid grid-cols-2 sm:grid-cols-4 gap-3">
           {[
-            { value: "49 zł", label: "Za arkusz A4" },
+            { value: "59 zł", label: "Za arkusz A4" },
             { value: "od 1 szt.", label: "Bez min. nakładu" },
             { value: "2-3 dni", label: "Produkcja" },
             { value: "300 DPI", label: "Druk na winylu" },
@@ -635,7 +635,7 @@ export default function ONasPage() {
           </h2>
           <p className="text-sm sm:text-base text-muted-foreground font-medium leading-relaxed max-w-2xl mx-auto">
             Nie musisz nam wierzyć na słowo ani podpisywać umowy na duży nakład.
-            Wgraj jedną grafikę, ułóż arkusz A4 i zamów go za 49,00 zł brutto -
+            Wgraj jedną grafikę, ułóż arkusz A4 i zamów go za 59,00 zł brutto -
             wyprodukujemy naklejki w 2-3 dni robocze i wyślemy do paczkomatu.
             Kolejny arkusz zamówisz dopiero wtedy, gdy jakość Cię przekona.
           </p>

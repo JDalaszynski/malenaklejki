@@ -6,6 +6,7 @@ import { Loader2, ShoppingCart, Minus, Plus, Crop, Download } from "lucide-react
 import { useRouter } from "next/navigation";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { storage } from "@/lib/firebase/client";
+import { SHEET_PRICE } from "@/lib/sheets/types";
 
 interface A4VisualizerProps {
   imageUrl: string;
@@ -176,7 +177,7 @@ export function A4Visualizer({ imageUrl, onImageChange }: A4VisualizerProps) {
       heightCm,
       stickersPerSheet: fitCalculation.maxStickers,
       sheetQuantity: sheetQuantity,
-      pricePerSheet: 49.00,
+      pricePerSheet: SHEET_PRICE,
     });
 
     setTimeout(() => {
@@ -288,7 +289,7 @@ export function A4Visualizer({ imageUrl, onImageChange }: A4VisualizerProps) {
     }
   };
 
-  const pricePerSticker = (49.00 / (fitCalculation.maxStickers || 1)).toFixed(2).replace('.', ',');
+  const pricePerSticker = (SHEET_PRICE / (fitCalculation.maxStickers || 1)).toFixed(2).replace('.', ',');
 
   return (
     <div className="flex flex-col md:flex-row gap-8 w-full mt-8 bg-card rounded-2xl p-6 sm:p-8 pb-28 md:pb-8 border border-border/70 shadow-[0_8px_30px_rgba(0,0,0,0.02)]">
@@ -364,7 +365,7 @@ export function A4Visualizer({ imageUrl, onImageChange }: A4VisualizerProps) {
             Zmieścimy aż <span className="text-3xl font-black">{fitCalculation.maxStickers * sheetQuantity}</span> sztuk!
           </p>
           <p className="text-sm mt-2 font-medium text-foreground/90 leading-relaxed">
-            Łącznie: <span className="font-extrabold text-primary text-base">{(49.00 * sheetQuantity).toFixed(2).replace('.', ',')} zł</span>
+            Łącznie: <span className="font-extrabold text-primary text-base">{(SHEET_PRICE * sheetQuantity).toFixed(2).replace('.', ',')} zł</span>
             <span className="block text-xs text-foreground/80 mt-1">
               (A4: {fitCalculation.maxStickers} szt./arkusz po {pricePerSticker} zł za sztukę)
             </span>
@@ -375,7 +376,7 @@ export function A4Visualizer({ imageUrl, onImageChange }: A4VisualizerProps) {
         <div className="fixed bottom-0 left-0 right-0 p-4 bg-background/95 backdrop-blur-md border-t border-border/60 shadow-lg md:static md:p-0 md:bg-transparent md:border-0 md:shadow-none z-30 flex items-center justify-between md:block gap-4">
           <div className="md:hidden flex-1">
             <p className="text-[10px] uppercase tracking-wider font-bold text-muted-foreground">Suma ({sheetQuantity} ark.)</p>
-            <p className="text-xl font-black text-primary leading-tight">{(49.00 * sheetQuantity).toFixed(2).replace('.', ',')} zł</p>
+            <p className="text-xl font-black text-primary leading-tight">{(SHEET_PRICE * sheetQuantity).toFixed(2).replace('.', ',')} zł</p>
           </div>
           <button
             onClick={handleAddToCart}

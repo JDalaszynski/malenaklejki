@@ -59,7 +59,7 @@ Zapisz gotowy projekt jako plik PNG (najlepiej z przezroczystym tłem, jeśli ch
 
 Wejdź na stronę MałeNaklejki.pl, wgraj gotowy plik prosto z telefonu lub komputera, wybierz kształt cięcia (prostokąt, okrąg lub po obrysie) i ustaw liczbę naklejek. Podgląd 3D pokaże Ci dokładnie, jak będą wyglądać Twoje etykiety.
 
-Za jeden arkusz A4 zapłacisz stałe **49,00 zł**. Na takim arkuszu zmieścisz nawet 30-40 małych naklejek na przyprawy (3 x 2 cm) - co daje koszt poniżej 1,70 zł za sztukę.
+Za jeden arkusz A4 zapłacisz stałe **59,00 zł**. Na takim arkuszu zmieścisz nawet 30-40 małych naklejek na przyprawy (3 x 2 cm) - co daje koszt poniżej 2 zł za sztukę.
 
 ## Ile naklejek na przyprawy zmieści się na arkuszu A4?
 
@@ -67,10 +67,10 @@ To jedno z najczęstszych pytań. Odpowiedź zależy od wybranego rozmiaru etyki
 
 | Wymiar naklejki | Liczba na arkuszu A4 | Koszt za sztukę |
 |---|---|---|
-| 5 x 3 cm (prostokąt) | ok. 24 szt. | ~2,04 zł |
-| 4 cm (okrąg) | ok. 20 szt. | ~2,45 zł |
-| 3 x 2 cm (mała etykieta) | ok. 40 szt. | ~1,23 zł |
-| 4 x 6 cm (prostokąt wysoki) | ok. 15 szt. | ~3,27 zł |
+| 5 x 3 cm (prostokąt) | ok. 24 szt. | ~2,46 zł |
+| 4 cm (okrąg) | ok. 20 szt. | ~2,95 zł |
+| 3 x 2 cm (mała etykieta) | ok. 40 szt. | ~1,48 zł |
+| 4 x 6 cm (prostokąt wysoki) | ok. 15 szt. | ~3,93 zł |
 
 Jeśli masz 25 słoiczków w kuchni, wystarczą Ci zaledwie jeden lub dwa arkusze. A ponieważ na jednym arkuszu mogą znaleźć się **różne wzory i napisy**, nie musisz zamawiać osobno każdej nazwy.
 
@@ -131,7 +131,7 @@ Tak. Nie ma żadnych ograniczeń co do treści - przygotowujesz projekt z dowoln
 
 ### Ile kosztują naklejki na przyprawy w MałeNaklejki?
 
-Stała cena to **49,00 zł za arkusz A4**. Na jednym arkuszu zmieścisz od kilkunastu do ponad 40 małych naklejek na przyprawy, w zależności od wybranego rozmiaru. Brak minimalnego nakładu - zamawiasz tyle, ile potrzebujesz.
+Stała cena to **59,00 zł za arkusz A4**. Na jednym arkuszu zmieścisz od kilkunastu do ponad 40 małych naklejek na przyprawy, w zależności od wybranego rozmiaru. Brak minimalnego nakładu - zamawiasz tyle, ile potrzebujesz.
 
 ### Czy mogę umieścić różne nazwy przypraw na jednym arkuszu?
 
@@ -143,6 +143,6 @@ Realizacja w MałeNaklejki zajmuje 2-3 dni robocze od zatwierdzenia projektu. Na
 
 ## Zamów własne naklejki na przyprawy i odmień swoją kuchnię
 
-Uporządkowana kuchnia to nie luksus - wystarczy chwila z generatorem AI lub darmowym programem Canva i jedno zamówienie w MałeNaklejki. Efekt? Jednolity, estetyczny komplet etykiet na trwałej folii za mniej niż 50 zł. Wgraj swój projekt i przekonaj się, jak drobna zmiana potrafi odmienić całą przestrzeń.
+Uporządkowana kuchnia to nie luksus - wystarczy chwila z generatorem AI lub darmowym programem Canva i jedno zamówienie w MałeNaklejki. Efekt? Jednolity, estetyczny komplet etykiet na trwałej folii za mniej niż 60 zł. Wgraj swój projekt i przekonaj się, jak drobna zmiana potrafi odmienić całą przestrzeń.
 
 <a href="/" style="display: inline-block; background-color: #02af7a; color: #ffffff; padding: 14px 28px; text-decoration: none; border-radius: 8px; font-weight: 600; font-size: 18px; margin-top: 24px; text-align: center;">Stwórz naklejki na przyprawy</a>

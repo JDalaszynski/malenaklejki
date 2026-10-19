@@ -2,7 +2,7 @@
 title: "Naklejki z własnym napisem - jak przygotować plik i zamówić"
 date: "2026-07-08"
 updated: "2026-09-10"
-description: "Naklejki z własnym napisem bez minimalnego nakładu - jak wygenerować plik lub ułożyć go w Canva i zamówić online w kilka minut. Stała cena 49 zł za arkusz A4."
+description: "Naklejki z własnym napisem bez minimalnego nakładu - jak wygenerować plik lub ułożyć go w Canva i zamówić online w kilka minut. Stała cena 59 zł za arkusz A4."
 image: "/blog/naklejki-z-wlasnym-napisem-jak-przygotowac-plik-i-zamowic-online/naklejki-z-napisami-motywacyjnymi-na-laptopie.jpg"
 imageAlt: "Zestaw kolorowych, wyciętych po obrysie naklejek z własnymi motywującymi napisami takimi jak Believe in Yourself na obudowie laptopa."
 tags: ["naklejki z napisem", "personalizacja", "poradnik", "wesele"]
@@ -10,7 +10,7 @@ role: "supporting"
 slug: "naklejki-z-wlasnym-napisem-jak-przygotowac-plik-i-zamowic-online"
 ---
 
-Naklejki z własnym napisem zamówisz w MałeNaklejki od 1 sztuki, bez minimalnego nakładu i za stałą cenę 49,00 zł za arkusz A4. Wystarczy wygenerować grafikę w AI (ChatGPT, Midjourney, Gemini) lub przygotować plik z tekstem w darmowym programie (np. Canva lub Word), zapisać go jako PNG lub PDF i wgrać do naszego kreatora. My zajmiemy się drukiem i wycinaniem.
+Naklejki z własnym napisem zamówisz w MałeNaklejki od 1 sztuki, bez minimalnego nakładu i za stałą cenę 59,00 zł za arkusz A4. Wystarczy wygenerować grafikę w AI (ChatGPT, Midjourney, Gemini) lub przygotować plik z tekstem w darmowym programie (np. Canva lub Word), zapisać go jako PNG lub PDF i wgrać do naszego kreatora. My zajmiemy się drukiem i wycinaniem.
 
 Jeśli jeszcze nie zamawiałeś naklejek na zamówienie, zajrzyj najpierw do naszego przewodnika: [jak zamówić idealne naklejki na zamówienie z własnym nadrukiem](/blog/jak-zamowic-idealne-naklejki-na-zamowienie-z-wlasnym-nadrukiem) - znajdziesz tam odpowiedzi na pytania o materiały, kształty i opcje cięcia.
 
@@ -69,14 +69,14 @@ Gdy masz już gotowy plik, zamówienie zajmie Ci kilka minut:
 
 ## Ile kosztują naklejki z własnym napisem?
 
-W MałeNaklejki obowiązuje jedna, prosta zasada cenowa: **49,00 zł za arkusz A4** - niezależnie od tego, ile naklejek się na nim zmieści i jaki kształt wybierzesz.
+W MałeNaklejki obowiązuje jedna, prosta zasada cenowa: **59,00 zł za arkusz A4** - niezależnie od tego, ile naklejek się na nim zmieści i jaki kształt wybierzesz.
 
 | Liczba naklejek na arkuszu | Cena za sztukę |
 |---|---|
-| 1 duża naklejka (do 19 cm) | 49,00 zł / szt. |
+| 1 duża naklejka (do 19 cm) | 59,00 zł / szt. |
 | 4 naklejki (ok. 9 x 9 cm) | ~12,25 zł / szt. |
-| 9 naklejek (ok. 6 x 6 cm) | ~5,44 zł / szt. |
-| 16 małych naklejek (ok. 4,5 x 4,5 cm) | ~3,06 zł / szt. |
+| 9 naklejek (ok. 6 x 6 cm) | ~6,56 zł / szt. |
+| 16 małych naklejek (ok. 4,5 x 4,5 cm) | ~3,69 zł / szt. |
 
 Brak minimalnego nakładu - możesz zamówić jeden arkusz z jedną naklejką. Brak ukrytych kosztów przygotowalni.
 
@@ -108,7 +108,7 @@ A jeśli szukasz oryginalnej dekoracji lub upominku, świetnym pomysłem jest na
 
 ## Zamów naklejki z własnym napisem już dziś
 
-Wygeneruj tło w AI lub przygotuj gotowy napis w Canva czy Word, zapisz jako PNG lub PDF i wgraj do kreatora. Naklejki z Twoim unikalnym napisem wyprodukujemy w 2-3 dni robocze. Stała cena 49,00 zł za arkusz A4, brak minimalnego nakładu.
+Wygeneruj tło w AI lub przygotuj gotowy napis w Canva czy Word, zapisz jako PNG lub PDF i wgraj do kreatora. Naklejki z Twoim unikalnym napisem wyprodukujemy w 2-3 dni robocze. Stała cena 59,00 zł za arkusz A4, brak minimalnego nakładu.
 
 <a href="/" style="display: inline-block; background-color: #02af7a; color: #ffffff; padding: 14px 28px; text-decoration: none; border-radius: 8px; font-weight: 600; font-size: 18px; margin-top: 24px; text-align: center;">Zamów naklejki z własnym napisem</a>
 

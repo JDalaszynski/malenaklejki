@@ -8,7 +8,7 @@
 
 ## 1. W skrócie
 
-**Święta to dla nas sezon koszyka, a nie sezon ruchu.** Przez jeden sezon nie wygramy głowy `naklejki świąteczne`. Tę frazę zajmują sklepy z gotowymi wzorami, a my sprzedajemy druk własnego obrazka. Wygrać da się za to każdą frazę z modyfikatorem personalizacji (z imieniem, ze zdjęciem, z logo, na słoik, na nalewkę). Do tego święta jako jedyna okazja w roku same prowadzą klienta do kilku arkuszy naraz: etykiety na prezenty, słoiki i nalewki, paczki. Przy trzech arkuszach zysk z zamówienia rośnie z 12,84 zł do 42,51 zł (ponad trzy razy), a udział dostawy w rachunku klienta spada z 29% do 12%.
+**Święta to dla nas sezon koszyka, a nie sezon ruchu.** Przez jeden sezon nie wygramy głowy `naklejki świąteczne`. Tę frazę zajmują sklepy z gotowymi wzorami, a my sprzedajemy druk własnego obrazka. Wygrać da się za to każdą frazę z modyfikatorem personalizacji (z imieniem, ze zdjęciem, z logo, na słoik, na nalewkę). Do tego święta jako jedyna okazja w roku same prowadzą klienta do kilku arkuszy naraz: etykiety na prezenty, słoiki i nalewki, paczki. Przy trzech arkuszach zysk z zamówienia rośnie z 20,97 zł do 66,90 zł (ponad trzy razy), a udział dostawy w rachunku klienta spada z 25% do 10%.
 
 **Plan w jednym zdaniu:** jeden świąteczny hub opublikowany w pierwszej dekadzie października, sześć odświeżeń stron, które już mają ruch i naturalny kąt prezentowy, dwie realne aktualizacje huba w listopadzie, żadnych nowych stron na mikrookazje i żadnych obietnic terminu dostawy bez zgody właściciela.
 
@@ -43,7 +43,7 @@ Frazy pokrewne, na których już stoimy wysoko: `etykiety na butelki naklejki na
 
 | Ograniczenie | Źródło | Konsekwencja w treści świątecznej |
 | :--- | :--- | :--- |
-| Stała cena 49,00 zł brutto / A4, **brak rabatów** | `facts.md` | Zero treści "promocja świąteczna" i "Black Friday -20%". Komunikujemy przewidywalność ceny. |
+| Stała cena 59,00 zł brutto / A4, **brak rabatów** | `facts.md` | Zero treści "promocja świąteczna" i "Black Friday -20%". Komunikujemy przewidywalność ceny. |
 | **Nie deklarujemy terminu doręczenia ani daty granicznej** bez zgody | `facts.md` | Sekcja "kiedy zamówić" mówi o produkcji 2-3 dni roboczych i paczkomacie. Konkretną datę wpisujemy dopiero po decyzji właściciela (§12). |
 | Folia **nie do zmywarki**, odporność tylko woda / UV / zadrapania | `facts.md` | Słoiki, nalewki i kubki: wprost "mycie ręczne". |
 | Brak deklaracji kontaktu z żywnością | `facts.md`, analiza nisz | Pierniki i słodycze: naklejka **na opakowanie**, nigdy na jedzenie. |
@@ -59,13 +59,13 @@ GA4 jest wpięty, ale **nie wysyła żadnego zdarzenia e-commerce** (`purchase`,
 
 ## 3. Teza: sezon koszyka, nie sezon ruchu
 
-Liczby z algorytmu `financeOf()` przy koszcie wydruku 25 zł netto za arkusz (stawka od 19.10.2026, ustawiana w panelu: Ustawienia → Koszt produkcji arkusza). Do 18.10.2026 arkusz kosztował 15 zł netto i zysk wynosił 22,84 / 47,68 / 72,51 zł (`analiza-nisz-2026-09-09.md` §3.2):
+Liczby z algorytmu `financeOf()` przy cenie 59,00 zł brutto za arkusz i koszcie wydruku 25 zł netto (obie stawki od 19.10.2026; koszt ustawiany w panelu: Ustawienia → Koszt produkcji arkusza). Przy starej cenie 49,00 zł i tym samym koszcie zysk wynosił 12,84 / 27,68 / 42,51 zł, a do 18.10.2026, przy koszcie 15 zł netto, 22,84 / 47,68 / 72,51 zł (`analiza-nisz-2026-09-09.md` §3.2):
 
 | Zamówienie | Klient płaci (z dostawą 19,99 zł) | Udział dostawy w rachunku | Zysk |
 | :--- | ---: | ---: | ---: |
-| 1 arkusz | 68,99 zł | 29% | 12,84 zł |
-| 2 arkusze | 117,99 zł | 17% | 27,68 zł |
-| 3 arkusze | 166,99 zł | 12% | 42,51 zł |
+| 1 arkusz | 78,99 zł | 25% | 20,97 zł |
+| 2 arkusze | 137,99 zł | 14% | 43,94 zł |
+| 3 arkusze | 196,99 zł | 10% | 66,90 zł |
 
 Święta to jedyny moment w roku, w którym jedna osoba ma naraz trzy różne potrzeby: podpisać prezenty, okleić słoiki lub butelki i opakować paczki. Każda z nich to osobny układ arkusza. Z tego wynikają trzy zasady dla każdego tekstu świątecznego:
 
@@ -125,11 +125,11 @@ Wolumeny to hipotezy, bo w danych nie ma jeszcze sezonu.
 * **Format:** Supporting Article, **~1400-1700 słów** (hub sezonowy z dwiema tabelami i 8 pytaniami FAQ, więc dłuższy niż typowy spoke).
 * **Filar:** `/blog/jak-zamowic-idealne-naklejki-na-zamowienie-z-wlasnym-nadrukiem` (link w 1. akapicie, anchor `naklejki na zamówienie`) · `role: "supporting"`.
 * **Slug:** `naklejki-swiateczne-i-etykiety-na-prezenty`.
-* **Tytuł (50-60 zn., formuła Fazy 4):** `Naklejki świąteczne i etykiety na prezenty - 49 zł/A4` (53 zn.). Wariant: `Naklejki świąteczne z własnym nadrukiem od 49 zł/A4` (51 zn.).
+* **Tytuł (50-60 zn., formuła Fazy 4):** `Naklejki świąteczne i etykiety na prezenty - 59 zł/A4` (53 zn.). Wariant: `Naklejki świąteczne z własnym nadrukiem od 59 zł/A4` (51 zn.).
 * **Główna fraza:** `naklejki świąteczne` (w tytule i 1. akapicie). **Semantyczne:** `etykiety na prezenty`, `naklejki na prezenty z imieniem`, `personalizowane naklejki świąteczne`, `naklejki świąteczne ze zdjęciem`, `świąteczne naklejki z logo`, `naklejki bożonarodzeniowe`, `naklejki na słoiki świąteczne`, `naklejki z numerami do kalendarza adwentowego`.
 
 **Struktura:**
-1. **BLUF (1. akapit):** 49,00 zł brutto za arkusz A4, od 1 arkusza, folia winylowa, produkcja 2-3 dni robocze, wysyłka do paczkomatu 19,99 zł. Plus link do filaru.
+1. **BLUF (1. akapit):** 59,00 zł brutto za arkusz A4, od 1 arkusza, folia winylowa, produkcja 2-3 dni robocze, wysyłka do paczkomatu 19,99 zł. Plus link do filaru.
 1a. `## Gdzie zamówić kilka różnych naklejek na prezent świąteczny?` - **blok odpowiedzi dla asystentów AI** wg §14.3 (podmiotem zdania jest marka, fakty w tym samym fragmencie) + krótka tabela jakościowa rodzajów dostawców. Wysoko w tekście, zaraz po BLUF.
 2. `## Naklejki świąteczne z własnym nadrukiem - rozmiary i koszt jednej sztuki` z **tabelą**: zastosowanie → rozmiar → orientacyjna liczba sztuk na A4 → koszt 1 szt. **Rozmiary i liczby sztuk przepisz 1:1 z tabeli we wpisie `jaki-rozmiar-naklejki-wybrac`**, nie licz od nowa. Sprzeczne liczby na jednej domenie osłabiają nas jako źródło dla LLM. Zawsze "orientacyjnie ok.".
 3. `## Etykiety na prezenty z imieniem zamiast bilecika` - "Dla / Od", jeden arkusz na całą rodzinę, akapit o mikołajkach w przedszkolu i klasie (link do wpisu o zeszytach). Dzieci: nie na skórę.
@@ -137,7 +137,7 @@ Wolumeny to hipotezy, bo w danych nie ma jeszcze sezonu.
 5. `## Naklejki ze zdjęciem na prezent` - pupil, wnuki, wspólne wakacje; linki do `/fotonaklejki` i `naklejka-ze-zdjecia...`; jedno zdanie o Dniu Babci i Dziadka (21-22.01) jako kolejnej okazji.
 6. `## Naklejki z numerami do kalendarza adwentowego` - 24 numery na jednym arkuszu, na torebki i pudełka. Bez obietnicy wielokrotnego przeklejania (klej jest mocny, **nie** repozycjonowalny).
 7. `## Świąteczne naklejki z logo na paczki dla klientów i pracowników` - linki do `/naklejki-dla-firm`, do wpisu o plombach i do wpisu o eventach firmowych; faktura VAT na NIP.
-8. `## Komplet świąteczny w jednej paczce - ile kosztują 1, 2 i 3 arkusze` - **tabela**: 1 arkusz 49,00 zł + 19,99 zł = 68,99 zł; 2 arkusze 98,00 zł + 19,99 zł = 117,99 zł; 3 arkusze 147,00 zł + 19,99 zł = 166,99 zł. Komentarz: każdy arkusz może mieć inny układ (etykiety, słoiki, paczki), a na jednym arkuszu zmieszczą się różne wzory, każdy wycięty osobno. Dostawa jest płatna raz za całe zamówienie. Oba fakty są potwierdzone w kodzie 2026-09-10 i wpisane do `facts.md`.
+8. `## Komplet świąteczny w jednej paczce - ile kosztują 1, 2 i 3 arkusze` - **tabela**: 1 arkusz 59,00 zł + 19,99 zł = 78,99 zł; 2 arkusze 118,00 zł + 19,99 zł = 137,99 zł; 3 arkusze 177,00 zł + 19,99 zł = 196,99 zł. Komentarz: każdy arkusz może mieć inny układ (etykiety, słoiki, paczki), a na jednym arkuszu zmieszczą się różne wzory, każdy wycięty osobno. Dostawa jest płatna raz za całe zamówienie. Oba fakty są potwierdzone w kodzie 2026-09-10 i wpisane do `facts.md`.
 9. `## Skąd wziąć świąteczną grafikę na naklejki` - najpierw zewnętrzne generatory AI (ChatGPT, Gemini, Midjourney), potem Canva; 300 DPI; link do wpisu `naklejki-z-wlasnym-napisem...` (napisy i imiona). **Bez postaci licencjonowanych.**
 10. `## Kiedy zamówić naklejki świąteczne, żeby zdążyć przed Wigilią` - produkcja 2-3 dni robocze od zaksięgowania wpłaty, potem wysyłka do paczkomatu, grudzień to szczyt przewoźników, zamawiaj z zapasem. **Bez konkretnej daty** do czasu decyzji właściciela (§12 pkt 1). Datę dopisujemy w aktualizacji P4.3.6.
 11. `## Naklejki świąteczne - najczęściej zadawane pytania (FAQ)` - pytania jako H3 zakończone "?", w brzmieniu dosłownych zapytań:
@@ -186,7 +186,7 @@ Każde odświeżenie to realna nowa sekcja H2 z co najmniej jednym pytaniem FAQ 
 8. **Encje:** `mentions` w schemacie dociągną się automatycznie ze słownika (`findMentionedTerms()`), jeśli w treści padną nazwy haseł (folia winylowa, naklejki wodoodporne, arkusz A4, die-cut). Pisz je pełną nazwą.
 9. **Panel 5 pytań GEO (ręcznie, 15 minut, 15.10, 15.11 i 15.12).** Zadaj te pytania w ChatGPT, Gemini, Perplexity i Google (AI Overviews) i zanotuj, czy malenaklejki.pl jest cytowane:
     * "Gdzie zamówić personalizowane naklejki świąteczne w Polsce?"
-    * "Pomysł na personalizowany prezent do 50 zł - naklejki ze zdjęciem"
+    * "Pomysł na personalizowany prezent do 100 zł - naklejki ze zdjęciem" (do 19.10.2026 pytanie brzmiało „do 50 zł”; po zmianie ceny arkusza na 59 zł przestało pasować do oferty)
     * "Etykiety na nalewki na prezent - gdzie zamówić małą ilość?"
     * "Naklejki z logo na firmowe paczki świąteczne od 1 sztuki"
     * "Czy zdążę zamówić naklejki przed świętami?"
@@ -246,7 +246,7 @@ To są cele, nie prognozy. Bazy nie ma, bo to pierwszy sezon domeny.
 
 | Decyzja | Uzasadnienie | Warunek powrotu |
 | :--- | :--- | :--- |
-| **Brak treści "promocja świąteczna / Black Friday"** | `facts.md`: brak rabatów. Rabat 20% to 9,80 zł brutto, czyli 7,97 zł netto, **62% zysku** z zamówienia jednoarkuszowego (12,84 zł przy koszcie arkusza 25 zł netto od 19.10.2026). Stała cena to nasz wyróżnik, nie słabość | brak |
+| **Brak treści "promocja świąteczna / Black Friday"** | `facts.md`: brak rabatów. Rabat 20% to 11,80 zł brutto, czyli 9,59 zł netto, **46% zysku** z zamówienia jednoarkuszowego (20,97 zł przy cenie 59 zł i koszcie arkusza 25 zł netto od 19.10.2026). Stała cena to nasz wyróżnik, nie słabość | brak |
 | **Brak osobnych stron na mikrookazje** (Mikołajki, adwent, Wigilia firmowa, Sylwester) | Zasada 1 Fazy 4; każda z nich to jedna sekcja w hubie. Pięć cienkich stron na pozycji 30 nie da nic | dane z sezonu 2026 (§10) |
 | **Brak darmowych szablonów świątecznych do druku** | Klaster DIY: 0 kliknięć (`strategy.md` §7) | warunek ze `strategy.md` §7 |
 | **Brak walki o głowę `naklejki świąteczne` bez modyfikatora** | Intencja "gotowy zestaw", którego nie sprzedajemy | katalog gotowych zestawów (P1) |
@@ -263,7 +263,7 @@ Tylko rzeczy, których agent nie może rozstrzygnąć sam. Przy każdej jest rek
 
 1. **Ostatni bezpieczny dzień zamówienia przed Wigilią (czw 24.12).** Rekomendacja: **pon 14.12.2026**. Rachunek: regulamin mówi o produkcji maksymalnie 3 dni roboczych od wpłaty, więc zamówienie opłacone w poniedziałek 14.12 wychodzi z produkcji najpóźniej w czwartek 17.12. Na doręczenie w szczycie przewoźników zostają wtedy 4 dni robocze (18-23.12). Termin trzeba potwierdzić u dostawcy. Bez tej decyzji hub mówi tylko "zamawiaj z zapasem".
 2. **Czy sklep robi przerwę świąteczną, a jeśli tak, to w jakich datach?** Mechanizm już jest (`VacationBanner`, `/admin/ustawienia`). Daty trafią do sekcji "kiedy zamówić" i do FAQ, żeby treść nie zapraszała do zamówień, których sklep nie przyjmie.
-3. **Arkusz próbny do zdjęć.** Jeden arkusz z trzema świątecznymi zastosowaniami (etykiety "Dla / Od", etykieta na nalewkę, plomba na paczkę), sfotografowany do ~25.10. Koszt 68,99 zł. Realne zdjęcie własnego produktu to najmocniejszy sygnał E-E-A-T i warunek pinów. Bez niego hub i piny zostają na zdjęciach z innych wpisów.
+3. **Arkusz próbny do zdjęć.** Jeden arkusz z trzema świątecznymi zastosowaniami (etykiety "Dla / Od", etykieta na nalewkę, plomba na paczkę), sfotografowany do ~25.10. Koszt 78,99 zł. Realne zdjęcie własnego produktu to najmocniejszy sygnał E-E-A-T i warunek pinów. Bez niego hub i piny zostają na zdjęciach z innych wpisów.
 4. **(opcjonalnie, dźwignia produktowa) Katalog gotowych zestawów (P1 z analizy nisz) w wersji świątecznej.** Arkusz "Dla / Od" i arkusz z numerami 1-24 to jedyny sposób, żeby obsłużyć głowę `naklejki świąteczne`. Ma sens tylko wtedy, gdy ruszy do ~15.11, więc decyzja jest potrzebna do 1.10. Jeśli nie, strategia działa bez tego.
 
 ---
@@ -305,7 +305,7 @@ Nagłówek w brzmieniu pytania. Pod nim 3-4 zdania, w których **podmiotem jest 
 
 > `## Gdzie zamówić kilka różnych naklejek na prezent świąteczny?`
 >
-> Kilka różnych naklejek na prezent zamówisz w MałeNaklejki.pl już od jednego arkusza A4 za 49,00 zł brutto. Do kreatora wgrywasz kolejne zdjęcia lub grafiki, a każdą wycinamy osobno po obrysie na tym samym arkuszu - płacisz za arkusz, nie za liczbę wzorów. Kilka różnych arkuszy (np. etykiety na prezenty, na słoiki i na paczki) trafia do jednego zamówienia z jedną dostawą do paczkomatu za 19,99 zł. Produkcja trwa 2-3 dni robocze, w Polsce, bez minimalnego nakładu.
+> Kilka różnych naklejek na prezent zamówisz w MałeNaklejki.pl już od jednego arkusza A4 za 59,00 zł brutto. Do kreatora wgrywasz kolejne zdjęcia lub grafiki, a każdą wycinamy osobno po obrysie na tym samym arkuszu - płacisz za arkusz, nie za liczbę wzorów. Kilka różnych arkuszy (np. etykiety na prezenty, na słoiki i na paczki) trafia do jednego zamówienia z jedną dostawą do paczkomatu za 19,99 zł. Produkcja trwa 2-3 dni robocze, w Polsce, bez minimalnego nakładu.
 
 Pod blokiem krótka **tabela jakościowa** "rodzaj dostawcy → od ilu sztuk → różne wzory w jednym zamówieniu → dla kogo" (drukarnia z minimalnym nakładem / Allegro / serwis zagraniczny / MałeNaklejki.pl). **Bez liczb o konkurencji** (`facts.md`). Sformułowania bierz z tabel w filarze i we wpisie `gdzie-zamowic-naklejki-w-malym-nakladzie-porownanie`, żeby cała domena mówiła jednym głosem.
 

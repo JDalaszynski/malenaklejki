@@ -1,9 +1,9 @@
 ---
-title: "Wlepki z własnym nadrukiem dla artystów i fanów, 49 zł/A4"
+title: "Wlepki z własnym nadrukiem dla artystów i fanów, 59 zł/A4"
 slug: "wklepki-i-wlepy-z-wlasnym-nadrukiem-dla-artystow-i-spolecznosci"
 date: "2026-07-19"
 updated: "2026-09-10"
-description: "Wlepki z własnym nadrukiem dla artystów i fanklubów: 49,00 zł za arkusz A4, bez minimalnego nakładu, cięcie po obrysie i pojedyncze sztuki do rozdania."
+description: "Wlepki z własnym nadrukiem dla artystów i fanklubów: 59,00 zł za arkusz A4, bez minimalnego nakładu, cięcie po obrysie i pojedyncze sztuki do rozdania."
 image: "/blog/wklepki-i-wlepy-z-wlasnym-nadrukiem-dla-artystow-i-spolecznosci/wlepki-z-wlasnym-nadrukiem-kibicowski-kolaz-wzorow.jpeg"
 imageAlt: "Kolaż kolorowych wlepek z własnym nadrukiem w stylistyce kibicowskiej i stadionowej - hasła klubowe, czaszki i motywy ultras wycięte po obrysie."
 tags: ["wlepki", "naklejki", "artyści", "merch"]
@@ -11,7 +11,7 @@ role: "supporting"
 cta_text: "Zamów własne wlepki"
 ---
 
-Wydrukuj wlepki z własnym nadrukiem w [drukowaniu naklejek online](/blog/drukowanie-naklejek-online-na-co-zwrocic-uwage-przed-wysylka-projektu) MałeNaklejki za stałe **49,00 zł** od arkusza A4 - bez minimalnego nakładu i bez dopłat za to, że wzorów jest niewiele. Wgraj plik z własną grafiką, wybierz cięcie po obrysie, a gotowe wlepki odbierzesz jako pojedyncze sztuki, w pełni przygotowane do rozdania na koncercie, dołączenia do przesyłki albo sprzedaży obok merchu. Chcesz przejść od razu do zamówienia? Specyfikację, cennik i FAQ samego procesu druku zebraliśmy na stronie [wlepki na zamówienie](/wlepki-na-zamowienie).
+Wydrukuj wlepki z własnym nadrukiem w [drukowaniu naklejek online](/blog/drukowanie-naklejek-online-na-co-zwrocic-uwage-przed-wysylka-projektu) MałeNaklejki za stałe **59,00 zł** od arkusza A4 - bez minimalnego nakładu i bez dopłat za to, że wzorów jest niewiele. Wgraj plik z własną grafiką, wybierz cięcie po obrysie, a gotowe wlepki odbierzesz jako pojedyncze sztuki, w pełni przygotowane do rozdania na koncercie, dołączenia do przesyłki albo sprzedaży obok merchu. Chcesz przejść od razu do zamówienia? Specyfikację, cennik i FAQ samego procesu druku zebraliśmy na stronie [wlepki na zamówienie](/wlepki-na-zamowienie).
 
 ![Zestaw kilkudziesięciu wlepek z własnym nadrukiem w różnych stylach graficznych - rave, punk, glitch i vaporwave - pokazujący różnorodność wzorów do wycięcia po obrysie.](/blog/wklepki-i-wlepy-z-wlasnym-nadrukiem-dla-artystow-i-spolecznosci/wlepki-artystyczne-kolaz-stylow-rave-i-punk.jpeg)
 
@@ -43,10 +43,10 @@ Rozliczenie jest za powierzchnię arkusza A4, a nie za liczbę sztuk - więc im 
 
 | Liczba wlepek na arkuszu | Cena za arkusz A4 | Koszt za sztukę |
 |---|---|---|
-| 6 szt. (ok. 6x6 cm) | 49,00 zł | ~8,17 zł |
-| 12 szt. (ok. 4,5x4,5 cm) | 49,00 zł | ~4,08 zł |
-| 20 szt. (ok. 3,5x3,5 cm) | 49,00 zł | ~2,45 zł |
-| 30 szt. (ok. 3x3 cm) | 49,00 zł | ~1,63 zł |
+| 6 szt. (ok. 6x6 cm) | 59,00 zł | ~9,83 zł |
+| 12 szt. (ok. 4,5x4,5 cm) | 59,00 zł | ~4,92 zł |
+| 20 szt. (ok. 3,5x3,5 cm) | 59,00 zł | ~2,95 zł |
+| 30 szt. (ok. 3x3 cm) | 59,00 zł | ~1,97 zł |
 
 Jeśli dopiero testujesz nowy wzór przed większym nakładem, zamów jeden arkusz próbny - to wciąż jeden z najtańszych sposobów na sprawdzenie, jak grafika wygląda po wycięciu. Więcej o rozliczaniu niewielkich ilości znajdziesz w artykule o [naklejkach w małym nakładzie bez przepłacania](/blog/naklejki-maly-naklad-jak-zamowic-pojedyncze-sztuki-bez-przeplacania). Ten sam cennik obowiązuje przy zamówieniu [wlepek na zamówienie](/wlepki-na-zamowienie) - stała stawka za arkusz, bez progów ilościowych.
 
@@ -81,12 +81,12 @@ Tak. Drukujemy je na wodoodpornej folii winylowej z mocnym klejem, odpornej na w
 
 ### Jaka jest minimalna liczba wlepek do zamówienia?
 
-Brak minimalnego nakładu - płacisz stałe 49,00 zł za arkusz A4, niezależnie od tego, ile wzorów na nim umieścisz.
+Brak minimalnego nakładu - płacisz stałe 59,00 zł za arkusz A4, niezależnie od tego, ile wzorów na nim umieścisz.
 
 ![Korpus gitary elektrycznej oklejony wlepkami z własnym nadrukiem nawiązującymi do kultury punk i alternatywnej sceny muzycznej.](/blog/wklepki-i-wlepy-z-wlasnym-nadrukiem-dla-artystow-i-spolecznosci/wlepki-muzyczne-na-gitarze-elektrycznej.jpeg)
 
 ## Zamów własne wlepki bez minimalnego nakładu
 
-Wgraj grafikę do kreatora, wybierz cięcie po obrysie i formę "Pojedyncze sztuki" - Twoje wlepki z własnym nadrukiem będą gotowe do rozdania w 2-3 dni robocze, za stałe 49,00 zł od arkusza.
+Wgraj grafikę do kreatora, wybierz cięcie po obrysie i formę "Pojedyncze sztuki" - Twoje wlepki z własnym nadrukiem będą gotowe do rozdania w 2-3 dni robocze, za stałe 59,00 zł od arkusza.
 
 <a href="/" style="display: inline-block; background-color: #02af7a; color: #ffffff; padding: 14px 28px; text-decoration: none; border-radius: 8px; font-weight: 600; font-size: 18px; margin-top: 24px; text-align: center;">Zamów własne wlepki</a>

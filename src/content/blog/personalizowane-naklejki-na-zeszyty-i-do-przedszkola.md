@@ -3,7 +3,7 @@ title: "Naklejki do podpisania zeszytu z imieniem i nazwiskiem"
 slug: "personalizowane-naklejki-na-zeszyty-i-do-przedszkola"
 date: "2026-07-15"
 updated: "2026-09-21"
-description: "Naklejki do podpisania zeszytu i rzeczy do przedszkola - z imieniem i nazwiskiem dziecka, na wodoodpornej folii. Stała cena 49,00 zł za arkusz A4."
+description: "Naklejki do podpisania zeszytu i rzeczy do przedszkola - z imieniem i nazwiskiem dziecka, na wodoodpornej folii. Stała cena 59,00 zł za arkusz A4."
 image: "/blog/personalizowane-naklejki-na-zeszyty-i-do-przedszkola/naklejki-z-imieniem-dziecka-na-zeszytach-szkolnych.jpg"
 imageAlt: "Stos kolorowych zeszytów i segregatorów szkolnych z naklejonymi na grzbietach personalizowanymi naklejkami z imieniem, nazwiskiem i ikoną każdego dziecka"
 tags: ["naklejki dla dzieci", "przedszkole", "szkoła", "personalizacja"]
@@ -11,7 +11,7 @@ role: "supporting"
 cta_text: "Zamów naklejki dla dziecka"
 ---
 
-Naklejki do podpisania zeszytu oraz rzeczy do przedszkola - z imieniem i nazwiskiem dziecka - zamówisz w MałeNaklejki za stałe 49,00 zł od arkusza A4 - niezależnie od tego, czy potrzebujesz 5 sztuk na zeszyty, czy 40 małych etykiet na wszystkie rzeczy w plecaku. Wgrywasz zdjęcie lub gotowy projekt z telefonu, a trwałe, wodoodporne naklejki wyprodukujemy w 2-3 dni robocze.
+Naklejki do podpisania zeszytu oraz rzeczy do przedszkola - z imieniem i nazwiskiem dziecka - zamówisz w MałeNaklejki za stałe 59,00 zł od arkusza A4 - niezależnie od tego, czy potrzebujesz 5 sztuk na zeszyty, czy 40 małych etykiet na wszystkie rzeczy w plecaku. Wgrywasz zdjęcie lub gotowy projekt z telefonu, a trwałe, wodoodporne naklejki wyprodukujemy w 2-3 dni robocze.
 
 Zamawiasz naklejki dla dziecka po raz pierwszy? Zajrzyj najpierw do naszego przewodnika [jak zamówić idealne naklejki na zamówienie z własnym nadrukiem](/blog/jak-zamowic-idealne-naklejki-na-zamowienie-z-wlasnym-nadrukiem) - dowiesz się z niego, jakie pliki przygotować i jak wygląda cały proces krok po kroku.
 
@@ -70,7 +70,7 @@ Lista rzeczy, które w praktyce najczęściej giną i najbardziej zyskują na oz
 
 Na naklejki do podpisania zeszytu wybieraj kształt prostokątny - łatwiej trafić nim w linię na okładce niż kółkiem. Do drobnych przyborów lepiej sprawdzą się bardzo małe etykiety cięte po obrysie. Jeśli nie masz pewności, jaki wymiar zamówić, sprawdź nasz przewodnik [jaki rozmiar naklejki wybrać](/blog/jaki-rozmiar-naklejki-wybrac) - znajdziesz w nim wyliczenie, ile sztuk danego formatu zmieści się na arkuszu A4.
 
-Praktyczna wskazówka dla rodziców dwojga i więcej dzieci: przygotuj warianty imion w jednym pliku i zamów je na wspólnym arkuszu. Za te same 49,00 zł oznaczysz wyprawkę całego rodzeństwa, a nie tylko jednego dziecka.
+Praktyczna wskazówka dla rodziców dwojga i więcej dzieci: przygotuj warianty imion w jednym pliku i zamów je na wspólnym arkuszu. Za te same 59,00 zł oznaczysz wyprawkę całego rodzeństwa, a nie tylko jednego dziecka.
 
 ## Jak zamówić naklejki z imieniem dziecka w kreatorze online?
 
@@ -87,11 +87,11 @@ Cena nie zależy od liczby wzorów ani rozmiaru pojedynczej naklejki - płacisz 
 
 | Liczba naklejek na arkuszu | Orientacyjny rozmiar | Cena za sztukę |
 |---|---|---|
-| 9 naklejek | ok. 6 x 6 cm | ~5,44 zł / szt. |
-| 16 naklejek | ok. 4,5 x 4,5 cm | ~3,06 zł / szt. |
-| 30 naklejek | ok. 3 x 3 cm | ~1,63 zł / szt. |
+| 9 naklejek | ok. 6 x 6 cm | ~6,56 zł / szt. |
+| 16 naklejek | ok. 4,5 x 4,5 cm | ~3,69 zł / szt. |
+| 30 naklejek | ok. 3 x 3 cm | ~1,97 zł / szt. |
 
-Jeden arkusz za 49,00 zł spokojnie wystarczy na oznaczenie wszystkich rzeczy dziecka na cały rok szkolny - od zeszytów po bidon i plecak.
+Jeden arkusz za 59,00 zł spokojnie wystarczy na oznaczenie wszystkich rzeczy dziecka na cały rok szkolny - od zeszytów po bidon i plecak.
 
 ![Kilkanaście różnokolorowych naklejek z imionami dzieci w różnych kształtach - zwierzątka, gwiazdki, pojazdy - rozłożonych na drewnianym stole](/blog/personalizowane-naklejki-na-zeszyty-i-do-przedszkola/personalizowane-naklejki-dla-przedszkolaka-rozne-wzory.jpeg)
 
@@ -122,7 +122,7 @@ Nie musisz umieć obsługiwać zaawansowanych programów. Skorzystaj z AI do wyg
 
 ### Ile kosztują personalizowane naklejki do przedszkola?
 
-Płacisz stałe 49,00 zł za w pełni zadrukowany arkusz A4, niezależnie od tego, ile małych naklejek z imionami się na nim zmieści.
+Płacisz stałe 59,00 zł za w pełni zadrukowany arkusz A4, niezależnie od tego, ile małych naklejek z imionami się na nim zmieści.
 
 ### Ile naklejek z imieniem potrzebuje pierwszoklasista?
 
@@ -134,7 +134,7 @@ Do podpisania okładki zeszytu najlepiej sprawdza się prostokąt o wymiarach ok
 
 ### Czym podpisać zeszyt - długopisem czy naklejką z imieniem i nazwiskiem?
 
-Długopis i marker na lakierowanej okładce rozmazują się i blakną po kilku tygodniach noszenia w plecaku, a poprawianie napisu wraca co miesiąc. Naklejka do podpisania zeszytu drukowana na folii winylowej znosi wodę i promieniowanie UV, mocny klej trzyma przez cały rok szkolny, a przy odklejaniu folia schodzi bez śladów. Z jednego arkusza A4 za 49,00 zł podpiszesz naraz komplet zeszytów, podręczników i drobnych przyborów - imieniem i nazwiskiem, a przy młodszych dzieciach dodatkowo ikoną, którą rozpoznają, zanim nauczą się czytać.
+Długopis i marker na lakierowanej okładce rozmazują się i blakną po kilku tygodniach noszenia w plecaku, a poprawianie napisu wraca co miesiąc. Naklejka do podpisania zeszytu drukowana na folii winylowej znosi wodę i promieniowanie UV, mocny klej trzyma przez cały rok szkolny, a przy odklejaniu folia schodzi bez śladów. Z jednego arkusza A4 za 59,00 zł podpiszesz naraz komplet zeszytów, podręczników i drobnych przyborów - imieniem i nazwiskiem, a przy młodszych dzieciach dodatkowo ikoną, którą rozpoznają, zanim nauczą się czytać.
 
 ### Czy naklejka odklei się od zeszytu bez śladu?
 

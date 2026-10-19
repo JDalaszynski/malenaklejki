@@ -1,5 +1,5 @@
 ---
-title: "Naklejki na nalewki domowe - od 1 szt., 49 zł za arkusz A4"
+title: "Naklejki na nalewki domowe - od 1 szt., 59 zł za arkusz A4"
 slug: "naklejki-na-nalewki-domowe-jak-ozdobic-butelki-na-nalewki"
 date: "2026-07-16"
 updated: "2026-10-02"
@@ -11,7 +11,7 @@ role: "supporting"
 cta_text: "Zamów naklejki na nalewki"
 ---
 
-Wydrukuj **naklejki na nalewki domowe** z własnym projektem na wodoodpornej folii winylowej - bez minimalnego nakładu i za stałą cenę 49,00 zł od arkusza A4. Wgrywasz gotowy plik z etykietą, a my wycinamy naklejkę idealnie po kształcie, jaki wybierzesz. Ta sama folia obsłuży [własne etykiety na słoiki](/etykiety-na-sloiki), jeśli obok nalewek opisujesz też przetwory. Jeśli zamawiasz naklejki po raz pierwszy, zajrzyj do naszego przewodnika [jak zamówić idealne naklejki na zamówienie z własnym nadrukiem](/blog/jak-zamowic-idealne-naklejki-na-zamowienie-z-wlasnym-nadrukiem), aby poznać cały proces krok po kroku.
+Wydrukuj **naklejki na nalewki domowe** z własnym projektem na wodoodpornej folii winylowej - bez minimalnego nakładu i za stałą cenę 59,00 zł od arkusza A4. Wgrywasz gotowy plik z etykietą, a my wycinamy naklejkę idealnie po kształcie, jaki wybierzesz. Ta sama folia obsłuży [własne etykiety na słoiki](/etykiety-na-sloiki), jeśli obok nalewek opisujesz też przetwory. Jeśli zamawiasz naklejki po raz pierwszy, zajrzyj do naszego przewodnika [jak zamówić idealne naklejki na zamówienie z własnym nadrukiem](/blog/jak-zamowic-idealne-naklejki-na-zamowienie-z-wlasnym-nadrukiem), aby poznać cały proces krok po kroku.
 
 ## Dlaczego warto oznaczyć nalewki własną etykietą?
 
@@ -78,19 +78,19 @@ Ta sama folia winylowa obsługuje [etykiety na słoiki z własnym nadrukiem](/et
 
 ## Ile kosztują naklejki na nalewki domowe?
 
-Obowiązuje jedna zasada cenowa: **49,00 zł za arkusz A4**, niezależnie od tego, ile etykiet się na nim zmieści.
+Obowiązuje jedna zasada cenowa: **59,00 zł za arkusz A4**, niezależnie od tego, ile etykiet się na nim zmieści.
 
 | Liczba naklejek na arkuszu | Przykładowy rozmiar | Cena za sztukę |
 |---|---|---|
-| 6 naklejek | 8 x 10 cm | ~8,17 zł / szt. |
-| 12 naklejek | 7 x 5 cm | ~4,08 zł / szt. |
-| 20 naklejek | 5 x 4 cm | ~2,45 zł / szt. |
+| 6 naklejek | 8 x 10 cm | ~9,83 zł / szt. |
+| 12 naklejek | 7 x 5 cm | ~4,92 zł / szt. |
+| 20 naklejek | 5 x 4 cm | ~2,95 zł / szt. |
 
 Jeśli w jednym sezonie robisz kilka różnych smaków nalewek, możesz umieścić wszystkie warianty etykiet na jednym arkuszu i zapłacić tylko raz - za sam arkusz, nie za liczbę wzorów.
 
 ## Nalewka na prezent świąteczny - etykieta z imieniem i rocznikiem
 
-Nalewka z własną etykietą to prezent świąteczny, który przygotujesz w jeden wieczór: arkusz A4 za 49,00 zł brutto pomieści orientacyjnie ok. 12 etykiet 7 x 5 cm, każdą z innym imieniem. Butelka z piwnicy wygląda wtedy jak gotowy upominek dla dziadków, teściów czy współpracowników, a nie jak coś przelanego w ostatniej chwili. Etykiety na nalewki na prezent mają trzy elementy:
+Nalewka z własną etykietą to prezent świąteczny, który przygotujesz w jeden wieczór: arkusz A4 za 59,00 zł brutto pomieści orientacyjnie ok. 12 etykiet 7 x 5 cm, każdą z innym imieniem. Butelka z piwnicy wygląda wtedy jak gotowy upominek dla dziadków, teściów czy współpracowników, a nie jak coś przelanego w ostatniej chwili. Etykiety na nalewki na prezent mają trzy elementy:
 
 - **Nazwa smaku i rocznik** - np. "Nalewka Pigwowa 2026". Rocznik pokazuje, że to konkretna, własna partia.
 - **Imię obdarowanego i dedykacja** - np. "Dla Dziadka Janka" albo "Od Ani i Marka". Każda butelka może mieć inną etykietę, a wszystkie zmieszczą się na jednym arkuszu: kolejne wzory wgrywasz do kreatora jeden po drugim, a my wycinamy je osobno.
@@ -102,11 +102,11 @@ Prezenty z kuchni rzadko kończą się na nalewkach, dlatego przy większym zam�
 
 | Zamówienie | Arkusze (brutto) | Razem z dostawą |
 | :--- | :--- | :--- |
-| 1 arkusz, np. etykiety na nalewki | 49,00 zł | **68,99 zł** |
-| 2 arkusze, np. nalewki i słoiki z konfiturami | 98,00 zł | **117,99 zł** |
-| 3 arkusze, np. nalewki, słoiki i etykiety "Dla / Od" | 147,00 zł | **166,99 zł** |
+| 1 arkusz, np. etykiety na nalewki | 59,00 zł | **78,99 zł** |
+| 2 arkusze, np. nalewki i słoiki z konfiturami | 118,00 zł | **137,99 zł** |
+| 3 arkusze, np. nalewki, słoiki i etykiety "Dla / Od" | 177,00 zł | **196,99 zł** |
 
-Nie ma rabatów ani progów ilościowych - płacisz 49,00 zł za każdy arkusz. Produkcja trwa 2-3 dni robocze od zaksięgowania wpłaty, a potem wysyłamy paczkę do paczkomatu. Grudzień to szczyt pracy przewoźników, dlatego etykiety zamów z zapasem, a nie w ostatnim tygodniu przed świętami. Etykiety "Dla / Od", słoiki z przetworami i naklejki do kalendarza adwentowego zebraliśmy w przewodniku [etykiety na prezenty z imieniem i inne naklejki świąteczne](/blog/naklejki-swiateczne-i-etykiety-na-prezenty).
+Nie ma rabatów ani progów ilościowych - płacisz 59,00 zł za każdy arkusz. Produkcja trwa 2-3 dni robocze od zaksięgowania wpłaty, a potem wysyłamy paczkę do paczkomatu. Grudzień to szczyt pracy przewoźników, dlatego etykiety zamów z zapasem, a nie w ostatnim tygodniu przed świętami. Etykiety "Dla / Od", słoiki z przetworami i naklejki do kalendarza adwentowego zebraliśmy w przewodniku [etykiety na prezenty z imieniem i inne naklejki świąteczne](/blog/naklejki-swiateczne-i-etykiety-na-prezenty).
 
 ## Jak zamówić naklejki na nalewki w kreatorze online?
 
@@ -129,7 +129,7 @@ Skorzystaj z generatorów AI (np. ChatGPT, Midjourney), aby wygenerować piękn�
 
 ### Ile kosztują naklejki na nalewki do wydrukowania?
 
-Stała cena wynosi 49,00 zł za w pełni zadrukowany arkusz A4, niezależnie od liczby i rozmiaru etykiet, które się na nim zmieszczą. Możesz zamówić nawet jeden arkusz z jednym wzorem.
+Stała cena wynosi 59,00 zł za w pełni zadrukowany arkusz A4, niezależnie od liczby i rozmiaru etykiet, które się na nim zmieszczą. Możesz zamówić nawet jeden arkusz z jednym wzorem.
 
 ### Czy mogę zamówić różne etykiety dla kilku smaków nalewek na jednym arkuszu?
 
@@ -141,7 +141,7 @@ Do smukłych butelek po winie najlepiej pasuje prostokątna etykieta pionowa lub
 
 ### Jak podpisać nalewkę na prezent?
 
-Na etykiecie prezentowej wystarczą trzy rzeczy: nazwa smaku, rocznik i krótka dedykacja z imieniem obdarowanego, np. "Nalewka Pigwowa 2026 - Dla Dziadka Janka". Gdy rozdajesz kilka butelek, przygotuj osobną etykietę z imieniem każdego odbiorcy i wgraj je do kreatora po kolei - trafią na ten sam arkusz A4 za 49,00 zł brutto i zostaną wycięte osobno. Napis ułóż wcześniej w Canvie lub Wordzie i zapisz jako PNG lub PDF.
+Na etykiecie prezentowej wystarczą trzy rzeczy: nazwa smaku, rocznik i krótka dedykacja z imieniem obdarowanego, np. "Nalewka Pigwowa 2026 - Dla Dziadka Janka". Gdy rozdajesz kilka butelek, przygotuj osobną etykietę z imieniem każdego odbiorcy i wgraj je do kreatora po kolei - trafią na ten sam arkusz A4 za 59,00 zł brutto i zostaną wycięte osobno. Napis ułóż wcześniej w Canvie lub Wordzie i zapisz jako PNG lub PDF.
 
 ## Zamów naklejki na nalewki domowe już dziś
 

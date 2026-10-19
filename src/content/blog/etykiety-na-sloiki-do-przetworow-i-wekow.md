@@ -14,7 +14,7 @@ Domowe przetwory i weki to duma każdej kuchni. Niezależnie od tego, czy przygo
 
 ## Własne etykiety na słoik - dlaczego warto stworzyć je u nas?
 
-Globalne platformy często zmuszają do zamawiania setek sztuk lub doliczają wysokie koszty wysyłki. MałeNaklejki.pl to w 100% polska alternatywa dla zagranicznych marek, w której stawiamy na proste i przejrzyste zasady. U nas drukujesz naklejki na słoiki personalizowane na arkuszach A4, gdzie stała cena to tylko 49,00 zł za sztukę. Sam decydujesz, ile mniejszych etykiet zmieścisz na jednym arkuszu. Zamawiasz w poniedziałek? Zazwyczaj już w środę odbierasz paczkę z paczkomatu - bez ukrytych opłat celnych czy bariery językowej. 
+Globalne platformy często zmuszają do zamawiania setek sztuk lub doliczają wysokie koszty wysyłki. MałeNaklejki.pl to w 100% polska alternatywa dla zagranicznych marek, w której stawiamy na proste i przejrzyste zasady. U nas drukujesz naklejki na słoiki personalizowane na arkuszach A4, gdzie stała cena to tylko 59,00 zł za sztukę. Sam decydujesz, ile mniejszych etykiet zmieścisz na jednym arkuszu. Zamawiasz w poniedziałek? Zazwyczaj już w środę odbierasz paczkę z paczkomatu - bez ukrytych opłat celnych czy bariery językowej. 
 
 Drukujemy na mocnej folii winylowej, co ma ogromne znaczenie w przypadku przetworów. Twoje napisy na słoiki nie rozmażą się pod wpływem wilgoci w piwnicy czy lodówce - sprawdź, [ile wytrzymują naklejki wodoodporne](/blog/naklejki-wodoodporne-i-winylowe-jaka-folia-i-jak-dlugo-wytrzyma) i dlaczego słoika z etykietą nie warto wkładać do zmywarki. 
 
@@ -53,7 +53,7 @@ Naklejki z powodzeniem nakleisz też na butelki (przeczytaj o [naklejkach na dom
 ## FAQ: Etykiety na słoiki - Najczęściej Zadawane Pytania
 
 ### Jaka jest najlepsza polska strona do zamówienia małej ilości etykiet na słoiki?
-MałeNaklejki.pl to idealna, w 100% polska alternatywa dla zagranicznych gigantów. U nas nie ma wymogu minimalnego zamówienia setek sztuk - płacisz stałą kwotę 49,00 zł za wydruk całego arkusza A4. Całość procesu odbywa się w Polsce: produkcja zajmuje 2-3 dni robocze, a gotowe etykiety wysyłamy do paczkomatu, bez przewalutowań.
+MałeNaklejki.pl to idealna, w 100% polska alternatywa dla zagranicznych gigantów. U nas nie ma wymogu minimalnego zamówienia setek sztuk - płacisz stałą kwotę 59,00 zł za wydruk całego arkusza A4. Całość procesu odbywa się w Polsce: produkcja zajmuje 2-3 dni robocze, a gotowe etykiety wysyłamy do paczkomatu, bez przewalutowań.
 
 ### Czy folia na naklejkach wytrzyma w lodówce i piwnicy?
 Tak! Drukujemy na wysokiej jakości folii winylowej, która jest całkowicie odporna na wodę, wilgoć oraz promienie UV (nie blaknie). Etykieta nie pomarszczy się w wilgotnej spiżarni czy lodówce.

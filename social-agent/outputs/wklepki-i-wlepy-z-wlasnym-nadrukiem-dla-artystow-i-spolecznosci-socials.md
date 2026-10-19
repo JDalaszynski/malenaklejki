@@ -6,7 +6,7 @@ Jasne, oto zestaw gotowych formatów social media na podstawie dostarczonego art
 
 Chcesz mieć własne wlepki, ale myślisz, że to drogie i skomplikowane? 🤔 Nic bardziej mylnego!
 
-Zapomnij o minimalnych nakładach i skomplikowanych wycenach. U nas zamawiasz JEDEN arkusz A4 z Twoimi grafikami za stałe 49 zł. 🔥
+Zapomnij o minimalnych nakładach i skomplikowanych wycenach. U nas zamawiasz JEDEN arkusz A4 z Twoimi grafikami za stałe 59 zł. 🔥
 
 Wgrywasz plik, a my tniemy wlepki idealnie po obrysie i dostarczamy jako pojedyncze sztuki. Idealne na merch, dla fanów lub do ozdoby sprzętu! 🤘
 
@@ -49,10 +49,10 @@ Jak zamówić? To proste! 📲
 
 **Slajd 4 (Główne Myśli):**
 Ile to kosztuje? 💰
-Stała cena: 49 zł za arkusz A4!
+Stała cena: 59 zł za arkusz A4!
 Im mniejsze wlepki, tym więcej zmieścisz na arkuszu i niższy jest koszt jednej sztuki.
-👉 20 wlepek (ok. 3.5cm) = ~2,45 zł/szt.
-👉 30 wlepek (ok. 3cm) = ~1,63 zł/szt.
+👉 20 wlepek (ok. 3.5cm) = ~2,95 zł/szt.
+👉 30 wlepek (ok. 3cm) = ~1,97 zł/szt.
 
 **Slajd 5 (CTA):**
 Gotowy, by stworzyć własne wlepki? 🔥
@@ -72,7 +72,7 @@ Wejdź na malenaklejki.pl i wgraj swoją grafikę już teraz!
 | **3-6s:** Szybkie cięcie. Palec dotyka przycisku "Wgraj plik" na stronie malenaklejki.pl na ekranie telefonu. Grafika (np. logo zespołu) zostaje wgrana. | **Lektor:** U nas wystarczy, że wgrasz swoją grafikę! 📲 |
 | **6-9s:** Zbliżenie na ploter tnący, który precyzyjnie wycina naklejkę po nieregularnym kształcie. | **Lektor:** My ją wydrukujemy i wytniemy idealnie po obrysie! ✂️ |
 | **9-12s:** Dłoń z łatwością odkleja jedną, gotową wlepkę wyciętą po kształcie. W tle widać stosik innych, pojedynczych wlepek. | **Lektor:** Dostaniesz gotowe, pojedyncze sztuki! |
-| **12-15s:** Dynamiczny montaż: wlepka jest przyklejana na gitarę, kask, laptopa i paczkę z merchem. Na ekranie pojawia się napis: **49 zł / Arkusz A4**. | **Lektor:** Idealne na merch dla fanów! Wejdź na MałeNaklejki.pl! 🚀 |
+| **12-15s:** Dynamiczny montaż: wlepka jest przyklejana na gitarę, kask, laptopa i paczkę z merchem. Na ekranie pojawia się napis: **59 zł / Arkusz A4**. | **Lektor:** Idealne na merch dla fanów! Wejdź na MałeNaklejki.pl! 🚀 |
 
 ---
 

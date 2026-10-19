@@ -1,6 +1,6 @@
 ---
-title: "Fajne wzory na naklejki - gotowe zestawy za 49 zł"
-description: "Fajne wzory na naklejki: wybierz gotowy zestaw na arkuszu A4 za 49,00 zł brutto i zamów go od razu albo znajdź pomysły wg zastosowania - od laptopa po ślub."
+title: "Fajne wzory na naklejki - gotowe zestawy za 59 zł"
+description: "Fajne wzory na naklejki: wybierz gotowy zestaw na arkuszu A4 za 59,00 zł brutto i zamów go od razu albo znajdź pomysły wg zastosowania - od laptopa po ślub."
 image: "/blog/fajne-wzory-i-pomysly-na-naklejki-inspiracje-wg-zastosowania/fajne-wzory-na-naklejki-inspiracja.jpg"
 imageAlt: "Kolaż różnorodnych wlepek z własnym nadrukiem - inspiracja na fajne wzory naklejek do wycięcia po obrysie."
 date: "2026-08-16"
@@ -96,7 +96,7 @@ Proces w Małych Naklejkach, jakiego nie znajdziesz nigdzie indziej, jest prosty
 2. Wchodzisz na stronę naszego kreatora. Nie używasz myszki, nie siadasz do komputera. Cały proces działa płynnie na urządzeniach mobilnych.
 3. Wgrywasz po kolei swoje grafiki. Nasz algorytm wycina białe tło i od razu narzuca świetnie dopasowany kontur cięcia po obrysie.
 4. Układasz na wirtualnym arkuszu A4 wszystko to, co Ci się podoba - jedną naklejkę dla siebie, obok trzy wlepki motocyklowe dla brata, dziesięć etykiet do kuchni dla mamy. Wymiar jednego elementu nie ogranicza drugiego.
-5. Płacisz stałą cenę **49,00 zł** za arkusz, bez ukrytych opłat za matryce. Nie musisz też wcale zamawiać 500 sztuk naraz - u nas minimalny nakład to zaledwie jedna kartka A4. Naklejki produkujemy w 2-3 dni robocze, a potem wysyłamy je do paczkomatu InPost.
+5. Płacisz stałą cenę **59,00 zł** za arkusz, bez ukrytych opłat za matryce. Nie musisz też wcale zamawiać 500 sztuk naraz - u nas minimalny nakład to zaledwie jedna kartka A4. Naklejki produkujemy w 2-3 dni robocze, a potem wysyłamy je do paczkomatu InPost.
 
 ## Fajne wzory na naklejki - najczęściej zadawane pytania (FAQ)
 

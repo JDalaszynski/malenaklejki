@@ -29,14 +29,14 @@ const PAGE_URL = `https://www.malenaklejki.pl${PAGE_PATH}`;
 export const metadata: Metadata = {
   title: "Fotonaklejki - naklejki z własnego zdjęcia od 1 szt.",
   description:
-    "Zrób fotonaklejki z własnego zdjęcia: wgraj plik z telefonu, my usuniemy tło i wytniemy naklejkę po obrysie na wodoodpornej folii. 49 zł brutto/arkusz A4, od 1 sztuki.",
+    "Zrób fotonaklejki z własnego zdjęcia: wgraj plik z telefonu, my usuniemy tło i wytniemy naklejkę po obrysie na wodoodpornej folii. 59 zł brutto/arkusz A4, od 1 sztuki.",
   alternates: {
     canonical: PAGE_PATH,
   },
   openGraph: {
     title: "Fotonaklejki - naklejki z własnego zdjęcia, wodoodporne",
     description:
-      "Fotonaklejki z Twojego zdjęcia na trwałej folii winylowej: automatyczne usuwanie tła, cięcie po obrysie, druk 300 DPI. 49 zł brutto za arkusz A4, od 1 sztuki.",
+      "Fotonaklejki z Twojego zdjęcia na trwałej folii winylowej: automatyczne usuwanie tła, cięcie po obrysie, druk 300 DPI. 59 zł brutto za arkusz A4, od 1 sztuki.",
     url: PAGE_URL,
     type: "website",
     images: [
@@ -52,7 +52,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Fotonaklejki - naklejki z własnego zdjęcia, wodoodporne",
     description:
-      "Wgraj zdjęcie z telefonu, a my usuniemy tło i wytniemy fotonaklejkę po obrysie na wodoodpornej folii. 49 zł brutto za arkusz A4, od 1 sztuki.",
+      "Wgraj zdjęcie z telefonu, a my usuniemy tło i wytniemy fotonaklejkę po obrysie na wodoodpornej folii. 59 zł brutto za arkusz A4, od 1 sztuki.",
     images: ["/landing/fotonaklejki/fotonaklejki-ze-zdjec-arkusz-a4.png"],
   },
 };
@@ -69,7 +69,7 @@ const FAQS: { q: string; a: string }[] = [
   },
   {
     q: "Ile kosztują fotonaklejki z własnego zdjęcia?",
-    a: "Obowiązuje stała cena 49,00 zł brutto za arkusz A4, niezależnie od liczby zdjęć. Na jednym arkuszu zmieścisz jedną dużą fotonaklejkę do 19 cm albo kilkanaście mniejszych z różnymi kadrami - im mniejsza naklejka, tym niższy koszt sztuki. Nie ma minimalnego nakładu ani opłat za przygotowanie pliku, więc drukujemy już od 1 arkusza.",
+    a: "Obowiązuje stała cena 59,00 zł brutto za arkusz A4, niezależnie od liczby zdjęć. Na jednym arkuszu zmieścisz jedną dużą fotonaklejkę do 19 cm albo kilkanaście mniejszych z różnymi kadrami - im mniejsza naklejka, tym niższy koszt sztuki. Nie ma minimalnego nakładu ani opłat za przygotowanie pliku, więc drukujemy już od 1 arkusza.",
   },
   {
     q: "Czy fotonaklejki są wodoodporne?",
@@ -93,7 +93,7 @@ const FAQS: { q: string; a: string }[] = [
   },
   {
     q: "Ile fotonaklejek zmieszczę na jednym arkuszu A4?",
-    a: "Na arkuszu A4 zmieścisz jedną dużą fotonaklejkę do 19 cm albo kilkanaście mniejszych z różnymi zdjęciami - wszystko w tej samej cenie 49,00 zł brutto. Kreator pilnuje, aby naklejki na siebie nie nachodziły i optymalnie wykorzystały miejsce.",
+    a: "Na arkuszu A4 zmieścisz jedną dużą fotonaklejkę do 19 cm albo kilkanaście mniejszych z różnymi zdjęciami - wszystko w tej samej cenie 59,00 zł brutto. Kreator pilnuje, aby naklejki na siebie nie nachodziły i optymalnie wykorzystały miejsce.",
   },
   {
     q: "Jak szybko zrealizujecie zamówienie fotonaklejek?",
@@ -204,7 +204,7 @@ const SPECS: { label: string; value: string }[] = [
   },
   {
     label: "Cena",
-    value: "49,00 zł brutto za arkusz A4, bez minimalnego nakładu",
+    value: "59,00 zł brutto za arkusz A4, bez minimalnego nakładu",
   },
   { label: "Produkcja", value: "2-3 dni robocze" },
   { label: "Wysyłka", value: "Odbiór w paczkomacie, dostawa 19,99 zł" },
@@ -239,7 +239,7 @@ export default function FotonaklejkiPage() {
           "@type": "Product",
           name: "Fotonaklejki z własnego zdjęcia",
           description:
-            "Fotonaklejki drukowane z własnego zdjęcia na trwałej folii winylowej: automatyczne usuwanie tła, cięcie po obrysie, druk 300 DPI. Stała cena 49,00 zł brutto za arkusz A4, bez minimalnego nakładu, z odbiorem w paczkomacie.",
+            "Fotonaklejki drukowane z własnego zdjęcia na trwałej folii winylowej: automatyczne usuwanie tła, cięcie po obrysie, druk 300 DPI. Stała cena 59,00 zł brutto za arkusz A4, bez minimalnego nakładu, z odbiorem w paczkomacie.",
           image: "https://www.malenaklejki.pl/images/logo/favicon.png",
           brand: { "@type": "Brand", name: "MałeNaklejki" },
           category: "Fotonaklejki - naklejki ze zdjęcia",
@@ -284,7 +284,7 @@ export default function FotonaklejkiPage() {
                 },
               },
             },
-            price: "49.00",
+            price: "59.00",
             priceCurrency: "PLN",
             availability: "https://schema.org/InStock",
             url: PAGE_URL,
@@ -362,7 +362,7 @@ export default function FotonaklejkiPage() {
             <strong>po obrysie</strong> na trwałej{" "}
             <strong>folii winylowej odpornej na wodę i UV</strong>. Druk{" "}
             <strong>300 DPI</strong>, stała cena{" "}
-            <strong>49,00 zł brutto za arkusz A4</strong>, już od 1 sztuki,
+            <strong>59,00 zł brutto za arkusz A4</strong>, już od 1 sztuki,
             produkcja w <strong>2-3 dni robocze</strong> i odbiór w paczkomacie.
             Chcesz poznać cały proces?{" "}
             <Link
@@ -404,7 +404,7 @@ export default function FotonaklejkiPage() {
         {/* Trust stats */}
         <section className="mt-6 grid grid-cols-2 sm:grid-cols-4 gap-3">
           {[
-            { value: "49 zł", label: "Brutto za arkusz A4" },
+            { value: "59 zł", label: "Brutto za arkusz A4" },
             { value: "od 1 szt.", label: "Bez min. nakładu" },
             { value: "300 DPI", label: "Druk pełny kolor" },
             { value: "Woda·UV", label: "Odporność folii" },
@@ -647,7 +647,7 @@ export default function FotonaklejkiPage() {
               },
               {
                 title: "Sprawdź podgląd 3D i zamów",
-                text: "Obejrzyj realistyczny podgląd 3D gotowego arkusza, zapłać BLIK-iem lub przez Przelewy24, a fotonaklejki wyprodukujemy w 2-3 dni robocze i wyślemy do paczkomatu za stałe 49,00 zł brutto od arkusza A4.",
+                text: "Obejrzyj realistyczny podgląd 3D gotowego arkusza, zapłać BLIK-iem lub przez Przelewy24, a fotonaklejki wyprodukujemy w 2-3 dni robocze i wyślemy do paczkomatu za stałe 59,00 zł brutto od arkusza A4.",
               },
             ].map((step, i) => (
               <li
@@ -725,7 +725,7 @@ export default function FotonaklejkiPage() {
           </h2>
           <p className="text-sm sm:text-base text-muted-foreground font-medium leading-relaxed max-w-2xl mx-auto">
             Wgraj zdjęcie do kreatora, pozwól mu usunąć tło i wybierz cięcie po
-            obrysie. Fotonaklejki będą gotowe w 2-3 dni robocze za stałe 49,00
+            obrysie. Fotonaklejki będą gotowe w 2-3 dni robocze za stałe 59,00
             zł brutto od arkusza A4 - na trwałej folii winylowej odpornej na
             wodę i UV, bez minimalnego nakładu.
           </p>

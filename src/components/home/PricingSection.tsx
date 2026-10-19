@@ -112,7 +112,7 @@ export function PricingSection() {
               malenaklejki.pl
             </Link>
             . To tutaj szybko ułożysz i kupisz naklejki personalizowane bez minimalnych
-            limitów zamówienia. Za stałą kwotę 49,00 zł otrzymujesz w pełni zagospodarowany arkusz
+            limitów zamówienia. Za stałą kwotę 59,00 zł otrzymujesz w pełni zagospodarowany arkusz
             naklejek w formacie A4. Możesz umieścić na nim dowolną liczbę różnych grafik, a nasz
             zaawansowany system automatycznie zadba o to, aby elementy nie nachodziły na siebie. To
             Ty decydujesz, co drukujesz.
@@ -121,7 +121,7 @@ export function PricingSection() {
 
         <div className="flex items-end gap-3">
           <span className={`text-5xl sm:text-6xl font-extrabold text-primary leading-none ${displayFont}`}>
-            49,00 zł
+            59,00 zł
           </span>
           <span className="text-xs sm:text-sm font-extrabold text-muted-foreground pb-1.5 leading-tight">
             za cały arkusz A4

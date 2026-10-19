@@ -83,7 +83,7 @@ export default async function Home() {
               },
             },
             url: "https://www.malenaklejki.pl",
-            price: "49.00",
+            price: "59.00",
             priceCurrency: "PLN",
             availability: "https://schema.org/InStock",
             priceValidUntil: "2027-12-31",
@@ -116,7 +116,7 @@ export default async function Home() {
           estimatedCost: {
             "@type": "MonetaryAmount",
             currency: "PLN",
-            value: "49.00",
+            value: "59.00",
           },
           step: [
             {

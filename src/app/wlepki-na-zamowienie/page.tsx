@@ -26,16 +26,16 @@ const PAGE_PATH = "/wlepki-na-zamowienie";
 const PAGE_URL = `https://www.malenaklejki.pl${PAGE_PATH}`;
 
 export const metadata: Metadata = {
-  title: "Wlepki na zamówienie - vlepy z własnym nadrukiem od 49 zł",
+  title: "Wlepki na zamówienie - vlepy z własnym nadrukiem od 59 zł",
   description:
-    "Produkcja wlepek (vlepek) na zamówienie: pojedyncze sztuki cięte po obrysie, bez minimalnego nakładu. Stała cena 49,00 zł brutto za arkusz A4, druk 2-3 dni.",
+    "Produkcja wlepek (vlepek) na zamówienie: pojedyncze sztuki cięte po obrysie, bez minimalnego nakładu. Stała cena 59,00 zł brutto za arkusz A4, druk 2-3 dni.",
   alternates: {
     canonical: PAGE_PATH,
   },
   openGraph: {
-    title: "Wlepki na zamówienie - vlepy z własnym nadrukiem od 49 zł",
+    title: "Wlepki na zamówienie - vlepy z własnym nadrukiem od 59 zł",
     description:
-      "Druk wlepek i vlepek na zamówienie na trwałej folii winylowej. Pojedyncze sztuki cięte po obrysie, 49,00 zł brutto za arkusz A4, bez minimalnego nakładu.",
+      "Druk wlepek i vlepek na zamówienie na trwałej folii winylowej. Pojedyncze sztuki cięte po obrysie, 59,00 zł brutto za arkusz A4, bez minimalnego nakładu.",
     url: PAGE_URL,
     type: "website",
     images: [
@@ -49,9 +49,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Wlepki na zamówienie - vlepy z własnym nadrukiem od 49 zł",
+    title: "Wlepki na zamówienie - vlepy z własnym nadrukiem od 59 zł",
     description:
-      "Produkcja wlepek na zamówienie: pojedyncze sztuki cięte po obrysie. Stała cena 49,00 zł brutto za arkusz A4, produkcja 2-3 dni robocze.",
+      "Produkcja wlepek na zamówienie: pojedyncze sztuki cięte po obrysie. Stała cena 59,00 zł brutto za arkusz A4, produkcja 2-3 dni robocze.",
     images: ["/landing/wlepki-na-zamowienie/wlepki-na-zamowienie-kolaz-wzorow.jpeg"],
   },
 };
@@ -64,7 +64,7 @@ export const metadata: Metadata = {
 const FAQS: { q: string; a: string }[] = [
   {
     q: "Ile kosztuje produkcja wlepek na zamówienie?",
-    a: "Stałe 49,00 zł brutto za cały zadrukowany arkusz A4, niezależnie od tego, ile wlepek i w jakim kształcie się na nim zmieści. Nie ma minimalnego nakładu ani opłaty za przygotowalnię, więc zapłacisz tyle samo za jeden arkusz testowy, co za kolejne zamówienie.",
+    a: "Stałe 59,00 zł brutto za cały zadrukowany arkusz A4, niezależnie od tego, ile wlepek i w jakim kształcie się na nim zmieści. Nie ma minimalnego nakładu ani opłaty za przygotowalnię, więc zapłacisz tyle samo za jeden arkusz testowy, co za kolejne zamówienie.",
   },
   {
     q: "Jak wygląda projekt vlepki - co muszę przygotować?",
@@ -191,7 +191,7 @@ const SPECS: { label: string; value: string }[] = [
   { label: "Druk", value: "300 DPI, pełny kolor" },
   { label: "Maks. wymiar jednej wlepki", value: "Do 19 cm" },
   { label: "Źródło grafiki", value: "Gotowy plik PNG, JPG lub PDF albo zdjęcie z telefonu" },
-  { label: "Cena", value: "49,00 zł brutto za arkusz A4, bez minimalnego nakładu" },
+  { label: "Cena", value: "59,00 zł brutto za arkusz A4, bez minimalnego nakładu" },
   { label: "Produkcja", value: "2-3 dni robocze" },
   { label: "Wysyłka i płatność", value: "Paczkomat 19,99 zł; BLIK, Przelewy24, faktura VAT" },
 ];
@@ -224,7 +224,7 @@ export default function WlepkiNaZamowieniePage() {
           "@type": "Product",
           name: "Wlepki (vlepki) na zamówienie z własnym nadrukiem",
           description:
-            "Produkcja wlepek i vlepek na zamówienie: pojedyncze sztuki cięte po obrysie grafiki lub arkusz A4, druk na trwałej folii winylowej odpornej na wodę i UV. Stała cena 49,00 zł brutto za arkusz A4 bez minimalnego nakładu, produkcja 2-3 dni robocze i odbiór w paczkomacie.",
+            "Produkcja wlepek i vlepek na zamówienie: pojedyncze sztuki cięte po obrysie grafiki lub arkusz A4, druk na trwałej folii winylowej odpornej na wodę i UV. Stała cena 59,00 zł brutto za arkusz A4 bez minimalnego nakładu, produkcja 2-3 dni robocze i odbiór w paczkomacie.",
           image: "https://www.malenaklejki.pl/images/logo/favicon.png",
           brand: { "@type": "Brand", name: "MałeNaklejki" },
           category: "Wlepki na zamówienie",
@@ -269,7 +269,7 @@ export default function WlepkiNaZamowieniePage() {
                 },
               },
             },
-            price: "49.00",
+            price: "59.00",
             priceCurrency: "PLN",
             availability: "https://schema.org/InStock",
             url: PAGE_URL,
@@ -346,7 +346,7 @@ export default function WlepkiNaZamowieniePage() {
             po obrysie Twojej grafiki, bez minimalnego nakładu. Wgraj gotowy
             projekt wlepki, a kreator sam usunie tło i wyznaczy linię cięcia.
             Druk na trwałej <strong>folii winylowej</strong>, stała cena{" "}
-            <strong>49,00 zł brutto za arkusz A4</strong>, już od 1 arkusza,
+            <strong>59,00 zł brutto za arkusz A4</strong>, już od 1 arkusza,
             produkcja w <strong>2-3 dni robocze</strong> i wysyłka do
             paczkomatu.
           </p>
@@ -381,7 +381,7 @@ export default function WlepkiNaZamowieniePage() {
         {/* Trust stats */}
         <section className="mt-6 grid grid-cols-2 sm:grid-cols-4 gap-3">
           {[
-            { value: "49 zł", label: "Brutto za arkusz A4" },
+            { value: "59 zł", label: "Brutto za arkusz A4" },
             { value: "od 1 szt.", label: "Bez min. nakładu" },
             { value: "Pojedyncze sztuki", label: "Cięte po obrysie" },
             { value: "2-3 dni", label: "Produkcja robocza" },
@@ -646,7 +646,7 @@ export default function WlepkiNaZamowieniePage() {
             Wgraj gotowy projekt do kreatora, wybierz pojedyncze sztuki lub
             arkusz A4 i zamów. Wlepki wyprodukujemy w 2-3 dni robocze na
             trwałej folii winylowej odpornej na wodę i UV - za
-            stałe 49,00 zł brutto od arkusza, bez minimalnego nakładu.
+            stałe 59,00 zł brutto od arkusza, bez minimalnego nakładu.
           </p>
           <div className="flex flex-wrap justify-center gap-2 pt-2 text-xs font-bold text-muted-foreground">
             <span className="inline-flex items-center gap-1.5">

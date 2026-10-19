@@ -134,7 +134,7 @@ export function ThemeLanding({ content, sheets }: { content: ThemeContent; sheet
 
         <TrustStats
           stats={[
-            { value: "49 zł", label: "Brutto za zestaw" },
+            { value: `${SHEET_PRICE} zł`, label: "Brutto za zestaw" },
             { value: `${sheets.length}`, label: "Wzorów w temacie" },
             { value: "Woda i UV", label: "Folia winylowa" },
             { value: "2-3 dni", label: "Produkcja robocze" },

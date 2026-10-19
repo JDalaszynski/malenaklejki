@@ -222,7 +222,7 @@ export default function RegulaminPage() {
     {
       id: "zamowienia-platnosci",
       title: "§ 5. Zamówienia i płatności",
-      searchText: `zamówienie złożone kupuję i płacę pełna płatność. Przelewy24 płatności elektroniczne operator. cena podstawowa arkusza A4 z naklejkami 49,00 zł brutto. faktura VAT NIP dane firmy koszyk.`,
+      searchText: `zamówienie złożone kupuję i płacę pełna płatność. Przelewy24 płatności elektroniczne operator. cena podstawowa arkusza A4 z naklejkami 59,00 zł brutto. faktura VAT NIP dane firmy koszyk.`,
       content: (
         <div className="space-y-4">
           <p>

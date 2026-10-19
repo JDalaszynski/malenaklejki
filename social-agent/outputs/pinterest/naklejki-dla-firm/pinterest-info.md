@@ -5,7 +5,7 @@
 Etykiety Na Kosmetyki I Słoiki Z Własnym Logo
 
 **Opis Pinu:**
-Sprzedajesz kosmetyki naturalne albo domowe wyroby? Profesjonalna etykieta z logo od razu podnosi wartość produktu. Drukujemy na wodoodpornej folii winylowej w 300 DPI, więc napisy nie rozmażą się w łazience. Zamawiasz od 1 arkusza A4 za 49 zł brutto, z fakturą VAT i odbiorem w paczkomacie.
+Sprzedajesz kosmetyki naturalne albo domowe wyroby? Profesjonalna etykieta z logo od razu podnosi wartość produktu. Drukujemy na wodoodpornej folii winylowej w 300 DPI, więc napisy nie rozmażą się w łazience. Zamawiasz od 1 arkusza A4 za 59 zł brutto, z fakturą VAT i odbiorem w paczkomacie.
 
 **Napis CTA na grafice:**
 Zamów Etykiety Na Słoiki
@@ -17,7 +17,7 @@ Zamów Etykiety Na Słoiki
 Naklejki Na Kubki I Opakowania Dla Gastronomii
 
 **Opis Pinu:**
-Prowadzisz kawiarnię, palarnię albo food truck? Oznacz kubki na wynos, torby i opakowania spójną naklejką z logo. Mocny klej i folia odporna na wodę oraz UV trzymają się nawet na papierze i kartonie. Cena 49 zł brutto za arkusz A4, faktura VAT, wysyłka w 2-3 dni.
+Prowadzisz kawiarnię, palarnię albo food truck? Oznacz kubki na wynos, torby i opakowania spójną naklejką z logo. Mocny klej i folia odporna na wodę oraz UV trzymają się nawet na papierze i kartonie. Cena 59 zł brutto za arkusz A4, faktura VAT, wysyłka w 2-3 dni.
 
 **Napis CTA na grafice:**
 Zamów Naklejki Dla Kawiarni
@@ -29,7 +29,7 @@ Zamów Naklejki Dla Kawiarni
 Naklejki Serwisowe Z Datą Przeglądu I Kontaktem
 
 **Opis Pinu:**
-Hydraulik, elektryk, instalator? Zostaw na urządzeniu klienta naklejkę "serwisowane przez" z numerem telefonu i datą kolejnego przeglądu. Trwała folia winylowa znosi wilgoć i UV w kotłowni czy na maszynie. Drukujemy od 1 arkusza za 49 zł brutto, z fakturą VAT.
+Hydraulik, elektryk, instalator? Zostaw na urządzeniu klienta naklejkę "serwisowane przez" z numerem telefonu i datą kolejnego przeglądu. Trwała folia winylowa znosi wilgoć i UV w kotłowni czy na maszynie. Drukujemy od 1 arkusza za 59 zł brutto, z fakturą VAT.
 
 **Napis CTA na grafice:**
 Zamów Naklejki Dla Serwisu
@@ -41,7 +41,7 @@ Zamów Naklejki Dla Serwisu
 Naklejki Firmowe Zamykające Paczki Z Logo
 
 **Opis Pinu:**
-Zamień zwykłą wysyłkę w markowy unboxing. Okrągła naklejka z logo elegancko zamyka pudełko i buduje wizerunek Twojej firmy przy każdej przesyłce. Gruba folia z mocnym klejem nie zostawia śladów na kartonie. Zamawiasz od 1 arkusza A4 za 49 zł brutto, z fakturą VAT i paczkomatem.
+Zamień zwykłą wysyłkę w markowy unboxing. Okrągła naklejka z logo elegancko zamyka pudełko i buduje wizerunek Twojej firmy przy każdej przesyłce. Gruba folia z mocnym klejem nie zostawia śladów na kartonie. Zamawiasz od 1 arkusza A4 za 59 zł brutto, z fakturą VAT i paczkomatem.
 
 **Napis CTA na grafice:**
 Wgraj Logo Na Paczki
@@ -53,7 +53,7 @@ Wgraj Logo Na Paczki
 Naklejki Na Firmowe Gadżety I Butelki Zespołu
 
 **Opis Pinu:**
-Zbuduj employer branding własną maskotką lub logo na gadżetach. Wlepki z logo świetnie wyglądają na butelkach, kubkach termicznych i laptopach zespołu, w welcome packach i na eventach. Die-cut na trwałej folii, od 1 arkusza A4 za 49 zł brutto, z fakturą VAT i odbiorem w paczkomacie.
+Zbuduj employer branding własną maskotką lub logo na gadżetach. Wlepki z logo świetnie wyglądają na butelkach, kubkach termicznych i laptopach zespołu, w welcome packach i na eventach. Die-cut na trwałej folii, od 1 arkusza A4 za 59 zł brutto, z fakturą VAT i odbiorem w paczkomacie.
 
 **Napis CTA na grafice:**
 Wgraj Logo Na Gadżety

@@ -6,7 +6,7 @@ Twoje auto wygląda jak każde inne? Czas to zmienić! 😈
 
 Pokaż swój styl na zlocie i na drodze dzięki wlepkom z własnym wzorem. Zapomnij o masowych wzorach - u nas wgrasz logo swojej ekipy, numer startowy albo dowolną grafikę prosto z telefonu! 📲
 
-Drukujemy na folii, która przetrwa każdą myjnię, deszcz i słońce. A co najlepsze? Zamawiasz jeden arkusz za stałe 49 zł, bez minimalnej ilości. 🔥
+Drukujemy na folii, która przetrwa każdą myjnię, deszcz i słońce. A co najlepsze? Zamawiasz jeden arkusz za stałe 59 zł, bez minimalnej ilości. 🔥
 
 Chcesz wiedzieć, jak profesjonalnie okleić furę? Wszystkie tipy zebraliśmy w naszym nowym poradniku na blogu! 👇
 
@@ -67,7 +67,7 @@ Zapisz ten post na później i wejdź na malenaklejki.pl, by zamówić swój pie
 | **(6-9s)** Szybkie ujęcie plotera tnącego naklejki po obrysie. | **Lektor:** 1. Wgraj grafikę prosto z telefonu... 📲 |
 | **(9-12s)** Dynamiczne ujęcie ręki odklejającej gotową wlepkę z arkusza. | **Lektor:** 2. My tniemy je idealnie po kształcie... ✂️ |
 | **(12-15s)** Ręka przykleja naklejkę na szybę lub zderzak czystego, stuningowanego auta. | **Lektor:** ...na folii, która wytrzyma każdą myjnię! 💧 |
-| **(15-18s)** Finalne, szerokie ujęcie auta z nową, unikalną naklejką. Na ekranie pojawia się napis: "malenaklejki.pl - 49 zł za arkusz". | **Lektor:** Twój projekt, Twoje zasady. Wejdź na malenaklejki.pl! 😎 |
+| **(15-18s)** Finalne, szerokie ujęcie auta z nową, unikalną naklejką. Na ekranie pojawia się napis: "malenaklejki.pl - 59 zł za arkusz". | **Lektor:** Twój projekt, Twoje zasady. Wejdź na malenaklejki.pl! 😎 |
 
 ## 4. Pinterest Pin
 

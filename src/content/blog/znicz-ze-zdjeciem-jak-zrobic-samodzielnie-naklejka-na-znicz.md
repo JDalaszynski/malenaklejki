@@ -3,13 +3,13 @@ title: "Znicz ze zdjęciem - jak zrobić go samodzielnie krok po kroku"
 slug: "znicz-ze-zdjeciem-jak-zrobic-samodzielnie-naklejka-na-znicz"
 date: "2026-10-05"
 updated: "2026-10-10"
-description: "Jak zrobić znicz ze zdjęciem zmarłego samodzielnie: przygotuj zdjęcie, wybierz rozmiar i przyklej naklejkę na znicz LED lub solarny. Od 49,00 zł brutto za arkusz A4."
+description: "Jak zrobić znicz ze zdjęciem zmarłego samodzielnie: przygotuj zdjęcie, wybierz rozmiar i przyklej naklejkę na znicz LED lub solarny. Od 59,00 zł brutto za arkusz A4."
 tags: ["znicz ze zdjęciem", "naklejki na znicze", "zdjęcie na zniczu", "Wszystkich Świętych"]
 role: "supporting"
 cta_text: "Zamów naklejki na znicze"
 ---
 
-Znicz ze zdjęciem zrobisz samodzielnie w trzech krokach: kupujesz znicz solarny, LED lub na baterie o gładkim kloszu, drukujesz zdjęcie bliskiej osoby jako [naklejki na znicze](/naklejki-na-znicze) i przyklejasz je na klosz. Na znicz z płomieniem naklejka się nie nadaje, bo na nagrzanym kloszu folia się stopi. Naklejki zamówisz w MałeNaklejki od jednego arkusza A4 za stałe 49,00 zł brutto, a na jednym arkuszu zmieści się orientacyjnie ok. 12 portretów 5 x 7 cm. Drukujemy w Polsce na folii winylowej odpornej na wodę i UV, produkcja trwa 2-3 dni robocze, a przesyłkę odbierasz w paczkomacie za 19,99 zł. Nie sprzedajemy zniczy - dostarczamy naklejki, które zmieniają zwykły znicz w osobisty. Poniżej znajdziesz wskazówki, jak przygotować zdjęcie, wybrać rozmiar i bezpiecznie przykleić naklejkę.
+Znicz ze zdjęciem zrobisz samodzielnie w trzech krokach: kupujesz znicz solarny, LED lub na baterie o gładkim kloszu, drukujesz zdjęcie bliskiej osoby jako [naklejki na znicze](/naklejki-na-znicze) i przyklejasz je na klosz. Na znicz z płomieniem naklejka się nie nadaje, bo na nagrzanym kloszu folia się stopi. Naklejki zamówisz w MałeNaklejki od jednego arkusza A4 za stałe 59,00 zł brutto, a na jednym arkuszu zmieści się orientacyjnie ok. 12 portretów 5 x 7 cm. Drukujemy w Polsce na folii winylowej odpornej na wodę i UV, produkcja trwa 2-3 dni robocze, a przesyłkę odbierasz w paczkomacie za 19,99 zł. Nie sprzedajemy zniczy - dostarczamy naklejki, które zmieniają zwykły znicz w osobisty. Poniżej znajdziesz wskazówki, jak przygotować zdjęcie, wybrać rozmiar i bezpiecznie przykleić naklejkę.
 
 ## Znicz ze zdjęciem - czego potrzebujesz do samodzielnego wykonania
 
@@ -49,10 +49,10 @@ Rozmiar dobierz do znicza. Zmierz linijką gładkie pole na kloszu, a naklejkę 
 
 | Rozmiar naklejki | Orientacyjnie szt. na A4 | Koszt 1 sztuki (brutto) | Pasuje do |
 | :--- | :--- | :--- | :--- |
-| 4 x 4 cm | ok. 24 - 30 szt. | ~1,63 - 2,04 zł | imię i daty, mały znicz |
-| 5 x 7 cm (portret) | ok. 12 szt. | ~4,08 zł | zdjęcie na średnim zniczu |
-| 6 x 6 cm | ok. 10 - 12 szt. | ~4,08 - 4,90 zł | zdjęcie lub dedykacja na średnim zniczu |
-| 8 x 8 cm | ok. 6 szt. | ~8,17 zł | duży znicz solarny, lampion LED |
+| 4 x 4 cm | ok. 24 - 30 szt. | ~1,97 - 2,46 zł | imię i daty, mały znicz |
+| 5 x 7 cm (portret) | ok. 12 szt. | ~4,92 zł | zdjęcie na średnim zniczu |
+| 6 x 6 cm | ok. 10 - 12 szt. | ~4,92 - 5,90 zł | zdjęcie lub dedykacja na średnim zniczu |
+| 8 x 8 cm | ok. 6 szt. | ~9,83 zł | duży znicz solarny, lampion LED |
 
 Liczba sztuk jest orientacyjna i zależy od kształtu oraz odstępów. Pełne zestawienie znajdziesz w poradniku [jaki rozmiar naklejki wybrać](/blog/jaki-rozmiar-naklejki-wybrac).
 
@@ -84,7 +84,7 @@ Naklejki ze zdjęciem przydadzą się także poza Wszystkimi Świętymi: w Dniu 
 
 ## Ile kosztuje znicz ze zdjęciem z własną naklejką
 
-Koszt składa się z dwóch części: znicza, który kupujesz osobno, i naklejki. Arkusz A4 z naklejkami kosztuje stałe 49,00 zł brutto, a dostawa do paczkomatu 19,99 zł (liczona raz za całe zamówienie). Przy portretach 5 x 7 cm jedna naklejka kosztuje orientacyjnie ok. 4 zł. Rodzina z trzema grobami wydrukuje na jednym arkuszu po cztery naklejki na każdy grób za 49,00 zł brutto plus dostawa.
+Koszt składa się z dwóch części: znicza, który kupujesz osobno, i naklejki. Arkusz A4 z naklejkami kosztuje stałe 59,00 zł brutto, a dostawa do paczkomatu 19,99 zł (liczona raz za całe zamówienie). Przy portretach 5 x 7 cm jedna naklejka kosztuje orientacyjnie ok. 5 zł. Rodzina z trzema grobami wydrukuje na jednym arkuszu po cztery naklejki na każdy grób za 59,00 zł brutto plus dostawa.
 
 ## Znicz ze zdjęciem - najczęściej zadawane pytania (FAQ)
 
@@ -114,6 +114,6 @@ Produkcja trwa 2-3 dni robocze od opłacenia zamówienia, a potem naklejki jadą
 
 ## Zamów naklejki na znicze ze zdjęciem
 
-Wgraj zdjęcie do kreatora, wybierz owal, prostokąt lub kontur i ustaw rozmiar. Naklejki wyprodukujemy w 2-3 dni robocze na trwałej folii winylowej, bez minimalnego nakładu, w cenie 49,00 zł brutto za arkusz A4. Szczegółowa oferta: [naklejki na znicze ze zdjęciem](/naklejki-na-znicze).
+Wgraj zdjęcie do kreatora, wybierz owal, prostokąt lub kontur i ustaw rozmiar. Naklejki wyprodukujemy w 2-3 dni robocze na trwałej folii winylowej, bez minimalnego nakładu, w cenie 59,00 zł brutto za arkusz A4. Szczegółowa oferta: [naklejki na znicze ze zdjęciem](/naklejki-na-znicze).
 
 <a href="/" style="display: inline-block; background-color: #02af7a; color: #ffffff; padding: 14px 28px; text-decoration: none; border-radius: 8px; font-weight: 600; font-size: 18px; margin-top: 24px; text-align: center;">Zamów naklejki na znicze</a>

@@ -12,6 +12,7 @@ import { headers } from "next/headers";
 import { formatLongDate, resolveVacation } from "@/lib/settings/vacation";
 import { buildVacationEmailNotice } from "@/lib/settings/vacationEmail";
 import { getVacationSettingsFresh } from "@/lib/settings/vacationStore";
+import { SHEET_PRICE, SHIPPING_PRICE } from "@/lib/sheets/types";
 
 const OrderItemSchema = z.object({
   id: z.string().optional(),
@@ -19,6 +20,7 @@ const OrderItemSchema = z.object({
   heightCm: z.number().min(1).max(100),
   stickersPerSheet: z.number().int().min(0).max(1000),
   sheetQuantity: z.number().int().min(1).max(1000),
+  /** Przyjmowana dla zgodności ze starszymi koszykami — serwer i tak liczy z `SHEET_PRICE`. */
   pricePerSheet: z.number().min(0).max(10000),
   imageUrl: z.string(),
   cutLinesImageUrl: z.string().optional().nullable(),
@@ -152,17 +154,22 @@ async function doCreateOrder(rawData: any) {
     }
     const { accountPassword, accountMarketingConsent, attribution, ...data } = result.data;
 
-    // 3. Server-side price calculation
-    const serverSubtotal = data.items.reduce(
+    // 3. Cena liczona na serwerze. `pricePerSheet` z przeglądarki ignorujemy:
+    // bywa nieaktualny (koszyk leży w localStorage tygodniami, „zamów ponownie"
+    // bierze cenę ze starego zamówienia) albo podmieniony. Kwota w P24, na
+    // fakturze i w mailach idzie stąd.
+    const items = data.items.map((item) => ({ ...item, pricePerSheet: SHEET_PRICE }));
+    const serverSubtotal = items.reduce(
       (sum, item) => sum + item.pricePerSheet * item.sheetQuantity,
       0
     );
-    const shippingCost = 19.99;
-    const serverTotal = serverSubtotal + shippingCost;
+    const shippingCost = SHIPPING_PRICE;
+    const serverTotal = Math.round((serverSubtotal + shippingCost) * 100) / 100;
 
     // Build the final data object with trusted totals
     const finalData = {
       ...data,
+      items,
       subtotal: serverSubtotal,
       shippingCost,
       total: serverTotal,

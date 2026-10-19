@@ -4,7 +4,7 @@
 >
 > Modele LLM cytują liczby. Sprzeczne liczby na jednej domenie osłabiają nas jako źródło i realnie ryzykują reklamacją.
 
-**Ostatnia aktualizacja:** 2026-10-05
+**Ostatnia aktualizacja:** 2026-10-19 (cena arkusza 49,00 → 59,00 zł brutto)
 
 ---
 
@@ -12,7 +12,7 @@
 
 | Fakt | Wartość | Jak pisać w treści | Źródło / data |
 | :--- | :--- | :--- | :--- |
-| Cena arkusza | **49,00 zł brutto za arkusz A4** | zawsze "brutto"; stała cena, bez progów nakładowych | landing-agent 2026-07-24 |
+| Cena arkusza | **59,00 zł brutto za arkusz A4** | zawsze "brutto"; stała cena, bez progów nakładowych. Cena za sztukę w tabelach = 59,00 zł podzielone przez liczbę naklejek (np. 30 szt. → ~1,97 zł) | decyzja właściciela 2026-10-19 (wcześniej 49,00 zł); w kodzie stała `SHEET_PRICE` w `src/lib/sheets/types.ts` |
 | Minimalny nakład | **brak** - już od 1 arkusza / 1 sztuki | "bez minimalnego nakładu", "od 1 arkusza A4" | landing-agent 2026-07-24 |
 | Rabat hurtowy | **NIE MA** - zawsze arkusz po arkuszu | nie sugeruj negocjacji ani progów ilościowych | landing-agent 2026-07-24 |
 | Faktura VAT | **TAK**, na NIP (jesteśmy płatnikiem VAT) | atut B2B | landing-agent 2026-07-24 |
@@ -29,7 +29,7 @@
 | Różne wzory na jednym arkuszu | **TAK** - kolejne obrazy wgrywane do kreatora trafiają na ten sam arkusz, każdy z własną linią cięcia | "wgraj kolejne zdjęcia lub grafiki - każdą wytniemy osobno"; płacisz za arkusz, nie za liczbę wzorów. Złożenie wzorów w jeden plik (np. w Canvie) to **opcja, nie wymóg** | kod: `HomePageClient.tsx:661`, `types/creator.ts` (`PlacedSticker`) - 2026-09-10 |
 | Kilka arkuszy w jednym zamówieniu | **TAK**, dostawa 19,99 zł liczona **raz za całe zamówienie** | "różne arkusze (np. etykiety na prezenty, na słoiki, na paczki) w jednej paczce, z jedną dostawą" | kod: `createOrder.ts:150` - 2026-09-10 |
 | Płatności | BLIK, Przelewy24 | - | `src/app/page.tsx` |
-| Gotowe zestawy | **TAK** - zestawy naklejek z gotowymi wzorami, każdy to jeden arkusz A4 (katalog `/gotowe-zestawy`), ta sama folia winylowa i ta sama cena **49,00 zł brutto za zestaw**. Nazwa od 2026-10-05: „gotowe zestawy” / „gotowe zestawy naklejek” (wcześniej „gotowe arkusze”) | "gotowy zestaw do zamówienia", "gotowe zestawy naklejek", "wybierz wzór"; **NIE:** "gotowy arkusz" / "gotowe arkusze" (stara nazwa - „arkusz” zostaje dla formatu A4 i kreatora), "zaprojektowaliśmy", "projekt", "edytor grafiki". O pochodzeniu grafik nie piszemy (HOLD na generator AI). Pisz o nich tylko wtedy, gdy katalog jest publiczny (tryb "Włączony" w panelu) | właściciel 2026-10-03, `landing-agent/strategia-gotowe-zestawy.md` |
+| Gotowe zestawy | **TAK** - zestawy naklejek z gotowymi wzorami, każdy to jeden arkusz A4 (katalog `/gotowe-zestawy`), ta sama folia winylowa i ta sama cena **59,00 zł brutto za zestaw**. Nazwa od 2026-10-05: „gotowe zestawy” / „gotowe zestawy naklejek” (wcześniej „gotowe arkusze”) | "gotowy zestaw do zamówienia", "gotowe zestawy naklejek", "wybierz wzór"; **NIE:** "gotowy arkusz" / "gotowe arkusze" (stara nazwa - „arkusz” zostaje dla formatu A4 i kreatora), "zaprojektowaliśmy", "projekt", "edytor grafiki". O pochodzeniu grafik nie piszemy (HOLD na generator AI). Pisz o nich tylko wtedy, gdy katalog jest publiczny (tryb "Włączony" w panelu) | właściciel 2026-10-03, `landing-agent/strategia-gotowe-zestawy.md` |
 | Liczba naklejek na gotowym zestawie | **dokładna**, podana przy każdym zestawie | wolno podać konkretną liczbę (np. "54 naklejki") - to wyjątek od zasady "orientacyjnie ok. X szt.", która dalej obowiązuje dla arkuszy układanych przez klienta | kod: `stickerCount` arkusza, 2026-10-03 |
 | Edycja gotowego zestawu | **TAK** - przed zamówieniem w kreatorze: zmiana rozmiaru, usuwanie naklejek, dokładanie własnych grafik; cena bez zmian | "dopasuj zestaw", "zmień po swojemu"; **NIE:** "zaprojektuj" | kod: `/?zestaw=<id>`, 2026-10-03 |
 | Zwrot | **14 dni** dla gotowego zestawu zamówionego **bez zmian**; naklejki z własnych grafik i gotowy zestaw zmieniony w kreatorze - **bez zwrotu** (rzecz wg specyfikacji klienta) | zawsze oba człony razem; odesłanie na koszt klienta. **NIE:** "zwrot w 14 dni" bez zastrzeżenia, **NIE:** "brak zwrotów" o całej ofercie | regulamin §7, decyzja właściciela 2026-10-03 (wariant A) |

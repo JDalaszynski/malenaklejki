@@ -158,7 +158,7 @@ export type ReadySheetOrigin = {
 };
 
 /** Cena arkusza A4 brutto — jedna stała dla stron, danych strukturalnych i koszyka. */
-export const SHEET_PRICE = 49;
+export const SHEET_PRICE = 59;
 /** Koszt dostawy do paczkomatu, liczony raz na zamówienie. */
 export const SHIPPING_PRICE = 19.99;
 

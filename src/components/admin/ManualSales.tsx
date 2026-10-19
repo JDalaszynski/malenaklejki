@@ -17,7 +17,7 @@ const inputClass =
   "h-11 w-full rounded-xl border border-slate-300 dark:border-white/20 bg-background px-3 text-sm font-semibold focus-visible:outline-none focus-visible:border-primary focus-visible:ring-2 focus-visible:ring-primary/20";
 
 /**
- * Kwoty wpisuje się tak, jak się je mówi — „68,99" ma działać jak „68.99".
+ * Kwoty wpisuje się tak, jak się je mówi — „78,99" ma działać jak „78.99".
  * Kwota jest wymagana: bez niej nie da się policzyć zysku z tej sprzedaży.
  */
 const amountSchema = z
@@ -157,7 +157,7 @@ export function ManualSales({ sales }: { sales: ManualSaleRow[] }) {
             <input
               type="text"
               inputMode="decimal"
-              placeholder="np. 68,99"
+              placeholder="np. 78,99"
               className={inputClass}
               {...register("amount")}
             />

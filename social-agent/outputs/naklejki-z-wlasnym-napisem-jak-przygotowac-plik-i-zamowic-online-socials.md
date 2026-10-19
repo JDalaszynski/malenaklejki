@@ -62,7 +62,7 @@ Gotowy, by stworzyć własne naklejki? Wejdź na naszą stronę i zacznij teraz!
 | **(5-7s)** Palec na telefonie klika "Wgraj plik" w kreatorze MałeNaklejki i wybiera zapisany wcześniej plik. | **Lektor:** ...wgraj go do naszego kreatora... |
 | **(7-10s)** Dynamiczne ujęcie plotera precyzyjnie wycinającego naklejki na arkuszu. Zbliżenie na ostrze. | **Lektor:** ...a my zajmiemy się całą magią! 🪄 |
 | **(10-13s)** Dłoń odkleja z arkusza gotową, idealnie wyciętą naklejkę "Homemade with love". | **Lektor:** I gotowe! Twoje personalizowane naklejki! |
-| **(13-15s)** Finalne ujęcie: stół, na którym leży mnóstwo różnych naklejek z napisami. Na ekranie pojawia się tekst: "49 zł za arkusz A4!". | **Lektor:** Stała cena 49 zł za cały arkusz. Wejdź na malenaklejki.pl! |
+| **(13-15s)** Finalne ujęcie: stół, na którym leży mnóstwo różnych naklejek z napisami. Na ekranie pojawia się tekst: "59 zł za arkusz A4!". | **Lektor:** Stała cena 59 zł za cały arkusz. Wejdź na malenaklejki.pl! |
 
 **Tekst na ekranie (pojawiający się w trakcie):**
 1. Zrób napis w Canva

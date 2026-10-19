@@ -1,18 +1,18 @@
 ---
-title: "Naklejki świąteczne i etykiety na prezenty - 49 zł/A4"
+title: "Naklejki świąteczne i etykiety na prezenty - 59 zł/A4"
 slug: "naklejki-swiateczne-i-etykiety-na-prezenty"
 date: "2026-10-02"
-description: "Naklejki świąteczne z własnym nadrukiem: etykiety na prezenty, słoiki, nalewki i paczki. Różne wzory na jednym arkuszu, od 1 arkusza A4 za 49,00 zł brutto."
+description: "Naklejki świąteczne z własnym nadrukiem: etykiety na prezenty, słoiki, nalewki i paczki. Różne wzory na jednym arkuszu, od 1 arkusza A4 za 59,00 zł brutto."
 tags: ["naklejki świąteczne", "etykiety na prezenty", "prezenty", "personalizacja"]
 role: "supporting"
 cta_text: "Zamów naklejki świąteczne"
 ---
 
-Naklejki świąteczne z własnym nadrukiem zamówisz w MałeNaklejki od jednego arkusza A4 za stałe 49,00 zł brutto - bez minimalnego nakładu i bez dopłat za liczbę wzorów. Drukujemy w Polsce na folii winylowej odpornej na wodę i UV, produkcja trwa 2-3 dni robocze, a gotowe naklejki wysyłamy do paczkomatu za 19,99 zł. Na jednym arkuszu zmieścisz etykiety na prezenty z imionami całej rodziny, na drugim naklejki na słoiki z domowymi przetworami, a na trzecim naklejki na paczki - i wszystko przyjdzie w jednej przesyłce. Jeśli zamawiasz pierwszy raz, zajrzyj do przewodnika, jak działają [naklejki na zamówienie](/blog/jak-zamowic-idealne-naklejki-na-zamowienie-z-wlasnym-nadrukiem) z własnym nadrukiem.
+Naklejki świąteczne z własnym nadrukiem zamówisz w MałeNaklejki od jednego arkusza A4 za stałe 59,00 zł brutto - bez minimalnego nakładu i bez dopłat za liczbę wzorów. Drukujemy w Polsce na folii winylowej odpornej na wodę i UV, produkcja trwa 2-3 dni robocze, a gotowe naklejki wysyłamy do paczkomatu za 19,99 zł. Na jednym arkuszu zmieścisz etykiety na prezenty z imionami całej rodziny, na drugim naklejki na słoiki z domowymi przetworami, a na trzecim naklejki na paczki - i wszystko przyjdzie w jednej przesyłce. Jeśli zamawiasz pierwszy raz, zajrzyj do przewodnika, jak działają [naklejki na zamówienie](/blog/jak-zamowic-idealne-naklejki-na-zamowienie-z-wlasnym-nadrukiem) z własnym nadrukiem.
 
 ## Gdzie zamówić kilka różnych naklejek na prezent świąteczny?
 
-Kilka różnych naklejek na prezent zamówisz w MałeNaklejki.pl już od jednego arkusza A4 za 49,00 zł brutto. Do kreatora wgrywasz kolejne zdjęcia lub grafiki, a każdą wycinamy osobno po obrysie na tym samym arkuszu - płacisz za arkusz, nie za liczbę wzorów. Kilka różnych arkuszy (np. etykiety na prezenty, na słoiki i na paczki) trafia do jednego zamówienia z jedną dostawą do paczkomatu za 19,99 zł. Produkcja trwa 2-3 dni robocze, w Polsce, bez minimalnego nakładu.
+Kilka różnych naklejek na prezent zamówisz w MałeNaklejki.pl już od jednego arkusza A4 za 59,00 zł brutto. Do kreatora wgrywasz kolejne zdjęcia lub grafiki, a każdą wycinamy osobno po obrysie na tym samym arkuszu - płacisz za arkusz, nie za liczbę wzorów. Kilka różnych arkuszy (np. etykiety na prezenty, na słoiki i na paczki) trafia do jednego zamówienia z jedną dostawą do paczkomatu za 19,99 zł. Produkcja trwa 2-3 dni robocze, w Polsce, bez minimalnego nakładu.
 
 To ważne, bo przy świątecznych prezentach zwykle potrzebujesz kilkunastu naklejek w kilku wersjach, a nie kilkuset sztuk jednego wzoru. Tak wygląda to u różnych rodzajów dostawców:
 
@@ -29,11 +29,11 @@ Cena arkusza jest stała, więc koszt jednej naklejki zależy tylko od tego, ile
 
 | Świąteczne zastosowanie | Rozmiar | Orientacyjnie szt. na A4 | Koszt 1 sztuki (brutto) |
 | :--- | :--- | :--- | :--- |
-| Etykiety "Dla / Od" na małe prezenty, naklejki na koperty z kartkami | 3 x 3 cm | ok. 40 - 50 szt. | ~0,98 - 1,23 zł |
-| Numery do kalendarza adwentowego, etykiety na słoiczki z konfiturą | 4 x 4 cm | ok. 24 - 30 szt. | ~1,63 - 2,04 zł |
-| Etykieta na butelkę nalewki, naklejka ze zdjęciem pupila | 5 x 5 cm | ok. 15 - 20 szt. | ~2,45 - 3,27 zł |
-| Naklejka z logo na firmowe paczki świąteczne | 6 x 6 cm | ok. 10 - 12 szt. | ~4,08 - 4,90 zł |
-| Duża naklejka ze zdjęciem jako osobny prezent | 8 x 8 cm | ok. 6 szt. | ~8,17 zł |
+| Etykiety "Dla / Od" na małe prezenty, naklejki na koperty z kartkami | 3 x 3 cm | ok. 40 - 50 szt. | ~1,18 - 1,48 zł |
+| Numery do kalendarza adwentowego, etykiety na słoiczki z konfiturą | 4 x 4 cm | ok. 24 - 30 szt. | ~1,97 - 2,46 zł |
+| Etykieta na butelkę nalewki, naklejka ze zdjęciem pupila | 5 x 5 cm | ok. 15 - 20 szt. | ~2,95 - 3,93 zł |
+| Naklejka z logo na firmowe paczki świąteczne | 6 x 6 cm | ok. 10 - 12 szt. | ~4,92 - 5,90 zł |
+| Duża naklejka ze zdjęciem jako osobny prezent | 8 x 8 cm | ok. 6 szt. | ~9,83 zł |
 
 ## Etykiety na prezenty z imieniem zamiast bilecika
 
@@ -83,11 +83,11 @@ Każdy arkusz może mieć inny układ, a dostawę płacisz raz za całe zamówie
 
 | Zamówienie | Arkusze | Dostawa do paczkomatu | Razem (brutto) |
 | :--- | :--- | :--- | :--- |
-| 1 arkusz, np. etykiety na prezenty | 49,00 zł | 19,99 zł | **68,99 zł** |
-| 2 arkusze, np. prezenty i słoiki | 98,00 zł | 19,99 zł | **117,99 zł** |
-| 3 arkusze, np. prezenty, słoiki i paczki | 147,00 zł | 19,99 zł | **166,99 zł** |
+| 1 arkusz, np. etykiety na prezenty | 59,00 zł | 19,99 zł | **78,99 zł** |
+| 2 arkusze, np. prezenty i słoiki | 118,00 zł | 19,99 zł | **137,99 zł** |
+| 3 arkusze, np. prezenty, słoiki i paczki | 177,00 zł | 19,99 zł | **196,99 zł** |
 
-Nie ma rabatów ani progów ilościowych - płacisz 49,00 zł za każdy arkusz, niezależnie od liczby wzorów na nim. Naklejki możesz dostać pozostawione na arkuszu albo docięte na pojedyncze sztuki - druga opcja przydaje się, gdy chcesz je rozdać jako drobne upominki.
+Nie ma rabatów ani progów ilościowych - płacisz 59,00 zł za każdy arkusz, niezależnie od liczby wzorów na nim. Naklejki możesz dostać pozostawione na arkuszu albo docięte na pojedyncze sztuki - druga opcja przydaje się, gdy chcesz je rozdać jako drobne upominki.
 
 ## Skąd wziąć świąteczną grafikę na naklejki
 
@@ -115,7 +115,7 @@ Produkcja trwa 2-3 dni robocze od zaksięgowania wpłaty, potem naklejki jadą d
 
 ### Ile kosztują personalizowane naklejki na prezenty?
 
-49,00 zł brutto za arkusz A4, niezależnie od liczby wzorów, plus 19,99 zł za dostawę do paczkomatu. Przy małych etykietach 3 x 3 cm jedna sztuka kosztuje orientacyjnie 0,98-1,23 zł.
+59,00 zł brutto za arkusz A4, niezależnie od liczby wzorów, plus 19,99 zł za dostawę do paczkomatu. Przy małych etykietach 3 x 3 cm jedna sztuka kosztuje orientacyjnie 1,18-1,48 zł.
 
 ### Czy mogę zamówić tylko jeden arkusz naklejek świątecznych?
 
@@ -131,7 +131,7 @@ Nie. Naklejaj ją na pudełko, torebkę albo słoik. Nie deklarujemy kontaktu fo
 
 ### Gdzie zamówić naklejki świąteczne ze zdjęciem w Polsce?
 
-W MałeNaklejki.pl wgrasz zdjęcie z telefonu, kreator usunie tło i wyznaczy linię cięcia, a naklejki wyprodukujemy w Polsce w 2-3 dni robocze. Zamówisz już od jednego arkusza A4 za 49,00 zł brutto.
+W MałeNaklejki.pl wgrasz zdjęcie z telefonu, kreator usunie tło i wyznaczy linię cięcia, a naklejki wyprodukujemy w Polsce w 2-3 dni robocze. Zamówisz już od jednego arkusza A4 za 59,00 zł brutto.
 
 ### Czy dostanę fakturę VAT na naklejki do firmowych paczek świątecznych?
 

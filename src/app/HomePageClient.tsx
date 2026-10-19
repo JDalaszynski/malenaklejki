@@ -2372,7 +2372,7 @@ export function HomePageClient({
         heightCm: 29.7, // A4 sheet size
         stickersPerSheet: stickers.length,
         sheetQuantity: sheetQuantity,
-        pricePerSheet: 49.0,
+        pricePerSheet: SHEET_PRICE,
         stickers: stickers,
         deliveryForm: deliveryForm,
         ...(readySheetOrigin ? { readySheet: readySheetOrigin } : {}),
@@ -3481,7 +3481,7 @@ export function HomePageClient({
                     Podsumowanie
                   </p>
                   <h4 className="text-2xl font-black text-foreground">
-                    {(49.0 * sheetQuantity).toFixed(2).replace(".", ",")} zł{" "}
+                    {(SHEET_PRICE * sheetQuantity).toFixed(2).replace(".", ",")} zł{" "}
                     <span className="text-xs font-semibold text-muted-foreground">
                       ({sheetQuantity} szt.)
                     </span>
@@ -3499,7 +3499,7 @@ export function HomePageClient({
                           : "Pozostawione na arkuszu"}
                       </span>{" "}
                       (Tylko{" "}
-                      {(49.0 / stickers.length).toFixed(2).replace(".", ",")} zł
+                      {(SHEET_PRICE / stickers.length).toFixed(2).replace(".", ",")} zł
                       za 1 naklejkę!)
                     </p>
                   )}
@@ -3526,7 +3526,7 @@ export function HomePageClient({
                   {stickers.length > 0 && (
                     <p className="mt-0.5">
                       Tylko{" "}
-                      {(49.0 / stickers.length).toFixed(2).replace(".", ",")} zł
+                      {(SHEET_PRICE / stickers.length).toFixed(2).replace(".", ",")} zł
                       za 1 naklejkę!
                     </p>
                   )}
@@ -3634,7 +3634,7 @@ export function HomePageClient({
                     <div className="liquid-glass bg-background border border-border/40 rounded-[26px] shadow-[0_-8px_30px_rgba(0,0,0,0.08)] dark:shadow-[0_-8px_30px_rgba(0,0,0,0.3)] p-2 pl-4 flex items-center gap-3">
                       <div className="min-w-0 flex-1">
                         <p className="text-lg font-black text-foreground leading-tight">
-                          {(49.0 * sheetQuantity).toFixed(2).replace(".", ",")}{" "}
+                          {(SHEET_PRICE * sheetQuantity).toFixed(2).replace(".", ",")}{" "}
                           zł
                           {sheetQuantity > 1 && (
                             <span className="text-[11px] font-semibold text-muted-foreground">

@@ -69,7 +69,7 @@
 
 ## 6. GEO / AEO
 
-* **Cytowalne tabele:** specyfikacja (15 wierszy), rodzaje zniczy vs naklejka, rozmiary i koszt sztuki (spójne liczby z `ile-kosztuja-naklejki-...`: 49,00 zł / A4, ~4,08 zł za portret 5 x 7 cm), rachunek arkuszy dla 50 i 100 zniczy.
+* **Cytowalne tabele:** specyfikacja (15 wierszy), rodzaje zniczy vs naklejka, rozmiary i koszt sztuki (spójne liczby z `ile-kosztuja-naklejki-...`: 59,00 zł / A4, ~4,92 zł za portret 5 x 7 cm), rachunek arkuszy dla 50 i 100 zniczy.
 * **FAQ = schemat** z jednej tablicy (10 pytań), odpowiedzi samodzielne, pierwsze zdanie bezpośrednie. Pytania wprost pod PAA: ile kosztuje, jak zrobić samodzielnie, czy wytrzyma deszcz, **czy się nie stopi** (uczciwa odpowiedź), na jakich zniczach, jaki rozmiar, jakie zdjęcie, co napisać, kilka naraz, czy zdążę przed 1.11.
 * **`llms.txt` / `llms-full.txt`:** nowa strona + fakt o zniczach + reguła dla agentów („zawsze zaznacz, że odporności na ciepło płomienia nie deklarujemy") - żeby modele cytujące nas nie obiecywały czegoś, czego nie potwierdzamy.
 * **Disambiguacja:** „znicz" jako Złoty Znicz (Harry Potter) i klub Znicz Pruszków - świadomie nie celujemy (baza fraz §12).

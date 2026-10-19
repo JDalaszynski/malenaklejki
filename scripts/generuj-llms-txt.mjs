@@ -46,7 +46,7 @@ const PAGES = [
 
 /** Fakty o produkcie - wartości muszą być zgodne z `blog-agent/facts.md`. */
 const FACTS = [
-  "Cena: stałe 49,00 zł brutto za zadrukowany arkusz A4, bez progów ilościowych i bez rabatów hurtowych.",
+  "Cena: stałe 59,00 zł brutto za zadrukowany arkusz A4, bez progów ilościowych i bez rabatów hurtowych.",
   "Minimalny nakład: brak - zamówisz już 1 arkusz A4.",
   "Produkcja: 2-3 dni robocze od opłacenia zamówienia.",
   "Dostawa: paczkomat InPost, 19,99 zł. Nie oferujemy darmowej dostawy.",
@@ -101,7 +101,7 @@ const CATALOG_PAGE = {
   desc: "Katalog gotowych zestawów naklejek (każdy to jeden arkusz A4) - do zamówienia od razu albo do zmiany w kreatorze.",
 };
 const CATALOG_FACTS = [
-  "Gotowe zestawy: oprócz druku własnych grafik sprzedajemy gotowe zestawy naklejek - każdy to jeden arkusz A4 z kilkudziesięcioma naklejkami wokół jednego tematu, na tej samej folii winylowej i za tę samą cenę 49,00 zł brutto. Dokładna liczba naklejek jest podana przy każdym zestawie.",
+  "Gotowe zestawy: oprócz druku własnych grafik sprzedajemy gotowe zestawy naklejek - każdy to jeden arkusz A4 z kilkudziesięcioma naklejkami wokół jednego tematu, na tej samej folii winylowej i za tę samą cenę 59,00 zł brutto. Dokładna liczba naklejek jest podana przy każdym zestawie.",
   "Edycja gotowego zestawu: przed zamówieniem każdy gotowy zestaw można otworzyć w kreatorze i zmienić - usunąć naklejki, zmienić ich rozmiar albo dodać własne zdjęcie, logo lub imię. Cena się nie zmienia.",
   "Zwrot: gotowy zestaw zamówiony bez zmian można zwrócić w ciągu 14 dni. Naklejki z własnych grafik i gotowe zestawy zmienione w kreatorze powstają według specyfikacji klienta i zwrotowi nie podlegają.",
 ];

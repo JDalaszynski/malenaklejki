@@ -27,19 +27,19 @@ const PAGE_PATH = "/naklejki-na-znicze";
 const PAGE_URL = `https://www.malenaklejki.pl${PAGE_PATH}`;
 const OG_IMAGE = "/images/og-main.jpg";
 
-const TITLE = "Naklejki na znicze ze zdjęciem - na zamówienie od 49 zł";
+const TITLE = "Naklejki na znicze ze zdjęciem - na zamówienie od 59 zł";
 
 export const metadata: Metadata = {
   title: TITLE,
   description:
-    "Naklejki na znicze ze zdjęciem, imieniem i dedykacją na wodoodpornej folii. Stała cena 49,00 zł brutto za arkusz A4, od 1 sztuki, produkcja 2-3 dni robocze.",
+    "Naklejki na znicze ze zdjęciem, imieniem i dedykacją na wodoodpornej folii. Stała cena 59,00 zł brutto za arkusz A4, od 1 sztuki, produkcja 2-3 dni robocze.",
   alternates: {
     canonical: PAGE_PATH,
   },
   openGraph: {
     title: TITLE,
     description:
-      "Naklejka ze zdjęciem bliskiej osoby, imieniem lub dedykacją na własny znicz. Folia winylowa odporna na wodę i UV, 49,00 zł brutto za arkusz A4, bez minimalnego nakładu.",
+      "Naklejka ze zdjęciem bliskiej osoby, imieniem lub dedykacją na własny znicz. Folia winylowa odporna na wodę i UV, 59,00 zł brutto za arkusz A4, bez minimalnego nakładu.",
     url: PAGE_URL,
     type: "website",
     images: [
@@ -55,7 +55,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: TITLE,
     description:
-      "Naklejki na znicze ze zdjęciem i dedykacją na wodoodpornej folii winylowej. Stała cena 49,00 zł brutto za arkusz A4, produkcja 2-3 dni robocze.",
+      "Naklejki na znicze ze zdjęciem i dedykacją na wodoodpornej folii winylowej. Stała cena 59,00 zł brutto za arkusz A4, produkcja 2-3 dni robocze.",
     images: [OG_IMAGE],
   },
 };
@@ -68,7 +68,7 @@ export const metadata: Metadata = {
 const FAQS: { q: string; a: string }[] = [
   {
     q: "Ile kosztuje naklejka na znicz?",
-    a: "Arkusz A4 z naklejkami kosztuje stałe 49,00 zł brutto, niezależnie od liczby wzorów, a koszt jednej naklejki zależy od jej rozmiaru. Naklejka ze zdjęciem 5 x 7 cm to orientacyjnie ok. 4 zł, a mała naklejka 4 x 4 cm z imieniem i datami - od 1,63 do 2,04 zł. Do tego dochodzi dostawa do paczkomatu za 19,99 zł, liczona raz za całe zamówienie.",
+    a: "Arkusz A4 z naklejkami kosztuje stałe 59,00 zł brutto, niezależnie od liczby wzorów, a koszt jednej naklejki zależy od jej rozmiaru. Naklejka ze zdjęciem 5 x 7 cm to orientacyjnie ok. 5 zł, a mała naklejka 4 x 4 cm z imieniem i datami - od 1,97 do 2,46 zł. Do tego dochodzi dostawa do paczkomatu za 19,99 zł, liczona raz za całe zamówienie.",
   },
   {
     q: "Jak zrobić znicz ze zdjęciem samodzielnie?",
@@ -185,31 +185,31 @@ const SIZES: { size: string; count: string; cost: string; fits: string }[] = [
   {
     size: "3 x 3 cm",
     count: "ok. 40 - 50 szt.",
-    cost: "~0,98 - 1,23 zł",
+    cost: "~1,18 - 1,48 zł",
     fits: "Mały symbol, krzyżyk, krótkie hasło „Pamiętamy”",
   },
   {
     size: "4 x 4 cm",
     count: "ok. 24 - 30 szt.",
-    cost: "~1,63 - 2,04 zł",
+    cost: "~1,97 - 2,46 zł",
     fits: "Imię i daty na małym zniczu",
   },
   {
     size: "5 x 7 cm (portret)",
     count: "ok. 12 szt.",
-    cost: "~4,08 zł",
+    cost: "~4,92 zł",
     fits: "Zdjęcie portretowe na średnim zniczu",
   },
   {
     size: "6 x 6 cm",
     count: "ok. 10 - 12 szt.",
-    cost: "~4,08 - 4,90 zł",
+    cost: "~4,92 - 5,90 zł",
     fits: "Zdjęcie lub dedykacja na średnim zniczu",
   },
   {
     size: "8 x 8 cm",
     count: "ok. 6 szt.",
-    cost: "~8,17 zł",
+    cost: "~9,83 zł",
     fits: "Duży znicz solarny, lampion LED",
   },
   {
@@ -296,7 +296,7 @@ const SPECS: { label: string; value: string }[] = [
   },
   {
     label: "Cena",
-    value: "49,00 zł brutto za arkusz A4, bez minimalnego nakładu",
+    value: "59,00 zł brutto za arkusz A4, bez minimalnego nakładu",
   },
   { label: "Produkcja", value: "2-3 dni robocze" },
   {
@@ -351,7 +351,7 @@ export default function NaklejkiNaZniczePage() {
           "@type": "Product",
           name: "Naklejki na znicze ze zdjęciem i dedykacją",
           description:
-            "Personalizowane naklejki na znicze: zdjęcie, imię i daty albo dedykacja drukowane na trwałej folii winylowej odpornej na wodę i UV. Do naklejenia na klosz znicza bez otwartego płomienia: solarnego, LED lub na baterie. Nie nadają się na klosz znicza z płomieniem. Owal, koło, prostokąt lub cięcie po obrysie, druk 300 DPI, stała cena 49,00 zł brutto za arkusz A4 bez minimalnego nakładu, produkcja 2-3 dni robocze i odbiór w paczkomacie.",
+            "Personalizowane naklejki na znicze: zdjęcie, imię i daty albo dedykacja drukowane na trwałej folii winylowej odpornej na wodę i UV. Do naklejenia na klosz znicza bez otwartego płomienia: solarnego, LED lub na baterie. Nie nadają się na klosz znicza z płomieniem. Owal, koło, prostokąt lub cięcie po obrysie, druk 300 DPI, stała cena 59,00 zł brutto za arkusz A4 bez minimalnego nakładu, produkcja 2-3 dni robocze i odbiór w paczkomacie.",
           image: "https://www.malenaklejki.pl/images/logo/favicon.png",
           brand: { "@type": "Brand", name: "MałeNaklejki" },
           category: "Naklejki na znicze",
@@ -396,7 +396,7 @@ export default function NaklejkiNaZniczePage() {
                 },
               },
             },
-            price: "49.00",
+            price: "59.00",
             priceCurrency: "PLN",
             availability: "https://schema.org/InStock",
             url: PAGE_URL,
@@ -474,7 +474,7 @@ export default function NaklejkiNaZniczePage() {
             zdjęcie z telefonu albo skan starej fotografii, wybierasz kształt -
             owal, koło, prostokąt lub cięcie po obrysie - a my drukujemy i
             wycinamy naklejki w Polsce. Stała cena to{" "}
-            <strong>49,00 zł brutto za arkusz A4</strong>, już od 1 arkusza,
+            <strong>59,00 zł brutto za arkusz A4</strong>, już od 1 arkusza,
             produkcja trwa <strong>2-3 dni robocze</strong>, a przesyłkę
             odbierasz w paczkomacie. Naklejkę przyklejasz na klosz własnego
             znicza <strong>solarnego, LED lub na baterie</strong>. Ważne
@@ -513,7 +513,7 @@ export default function NaklejkiNaZniczePage() {
         {/* Trust stats */}
         <section className="mt-6 grid grid-cols-2 sm:grid-cols-4 gap-3">
           {[
-            { value: "49 zł", label: "Brutto za arkusz A4" },
+            { value: "59 zł", label: "Brutto za arkusz A4" },
             { value: "od 1 szt.", label: "Bez min. nakładu" },
             { value: "Woda i UV", label: "Folia winylowa" },
             { value: "2-3 dni", label: "Produkcja robocze" },
@@ -835,7 +835,7 @@ export default function NaklejkiNaZniczePage() {
           <p className="text-sm sm:text-base text-muted-foreground font-medium leading-relaxed">
             Przykład: rodzina z trzema grobami drukuje na jednym arkuszu po
             cztery naklejki ze zdjęciem 5 x 7 cm na każdy grób, czyli 12
-            sztuk, za 49,00 zł brutto plus 19,99 zł dostawy do paczkomatu.
+            sztuk, za 59,00 zł brutto plus 19,99 zł dostawy do paczkomatu.
           </p>
         </section>
 
@@ -856,8 +856,8 @@ export default function NaklejkiNaZniczePage() {
           <p className="text-sm sm:text-base text-muted-foreground font-medium leading-relaxed">
             Nie stosujemy rabatów ilościowych, więc rachunek jest prosty:
             przy naklejkach 5 x 5 cm na 50 zniczy potrzebujesz orientacyjnie
-            3-4 arkuszy (147,00-196,00 zł brutto), a na 100 zniczy 5-7
-            arkuszy (245,00-343,00 zł brutto) - plus jedna dostawa za całe
+            3-4 arkuszy (177,00-236,00 zł brutto), a na 100 zniczy 5-7
+            arkuszy (295,00-413,00 zł brutto) - plus jedna dostawa za całe
             zamówienie. Pełną ofertę dla firm opisaliśmy na stronie{" "}
             <Link href="/naklejki-dla-firm" className={inlineLink}>
               naklejki dla firm
@@ -979,7 +979,7 @@ export default function NaklejkiNaZniczePage() {
           <p className="text-sm sm:text-base text-muted-foreground font-medium leading-relaxed max-w-2xl mx-auto">
             Wgraj zdjęcie do kreatora, wybierz kształt i rozmiar, a naklejki
             wyprodukujemy w 2-3 dni robocze na folii odpornej na wodę i UV - za
-            stałe 49,00 zł brutto za arkusz A4, bez minimalnego nakładu. Przed
+            stałe 59,00 zł brutto za arkusz A4, bez minimalnego nakładu. Przed
             Wszystkimi Świętymi zamawiaj z zapasem czasu.
           </p>
           <div className="flex flex-wrap justify-center gap-2 pt-2 text-xs font-bold text-muted-foreground">

@@ -29,14 +29,14 @@ const PAGE_URL = `https://www.malenaklejki.pl${PAGE_PATH}`;
 export const metadata: Metadata = {
   title: "Naklejki die-cut - cięte po obrysie, dowolny kształt",
   description:
-    "Zamów naklejki die-cut cięte dokładnie po obrysie grafiki: dowolny kształt zamiast prostokąta, folia winylowa, druk 300 DPI. 49 zł brutto/arkusz A4, od 1 sztuki.",
+    "Zamów naklejki die-cut cięte dokładnie po obrysie grafiki: dowolny kształt zamiast prostokąta, folia winylowa, druk 300 DPI. 59 zł brutto/arkusz A4, od 1 sztuki.",
   alternates: {
     canonical: PAGE_PATH,
   },
   openGraph: {
     title: "Naklejki die-cut - cięte po obrysie, dowolny kształt",
     description:
-      "Naklejki die-cut wycięte po konturze grafiki na trwałej folii winylowej: dowolny kształt, druk 300 DPI, woda i UV. 49 zł brutto za arkusz A4, od 1 sztuki.",
+      "Naklejki die-cut wycięte po konturze grafiki na trwałej folii winylowej: dowolny kształt, druk 300 DPI, woda i UV. 59 zł brutto za arkusz A4, od 1 sztuki.",
     url: PAGE_URL,
     type: "website",
     images: [
@@ -52,7 +52,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Naklejki die-cut - cięte po obrysie, dowolny kształt",
     description:
-      "Naklejki die-cut wycięte dokładnie po konturze grafiki: dowolny kształt, folia winylowa, druk 300 DPI. 49 zł brutto za arkusz A4, od 1 sztuki.",
+      "Naklejki die-cut wycięte dokładnie po konturze grafiki: dowolny kształt, folia winylowa, druk 300 DPI. 59 zł brutto za arkusz A4, od 1 sztuki.",
     images: [
       "/landing/naklejki-die-cut/arkusz-naklejek-die-cut-rozne-ksztalty.jpg",
     ],
@@ -71,11 +71,11 @@ const FAQS: { q: string; a: string }[] = [
   },
   {
     q: "Ile kosztują naklejki die-cut?",
-    a: "Obowiązuje stała cena 49,00 zł brutto za arkusz A4, niezależnie od kształtu i liczby naklejek. Cięcie po obrysie nie jest droższe niż cięcie prostokątne - płacisz za powierzchnię arkusza, a nie za typ wycięcia. Nie ma minimalnego nakładu ani opłat za przygotowanie pliku, więc drukujemy już od 1 arkusza.",
+    a: "Obowiązuje stała cena 59,00 zł brutto za arkusz A4, niezależnie od kształtu i liczby naklejek. Cięcie po obrysie nie jest droższe niż cięcie prostokątne - płacisz za powierzchnię arkusza, a nie za typ wycięcia. Nie ma minimalnego nakładu ani opłat za przygotowanie pliku, więc drukujemy już od 1 arkusza.",
   },
   {
     q: "Czym różnią się naklejki die-cut od kiss-cut?",
-    a: "Die-cut oznacza, że naklejka i podkład są wycięte po obrysie grafiki - dostajesz pojedyncze naklejki w kształcie motywu. Kiss-cut to cięcie tylko przez folię, które zostawia naklejki na całym prostokątnym arkuszu podkładowym, wygodne do masowego odklejania. Oba warianty ustawisz w kreatorze w tej samej cenie 49,00 zł za arkusz A4.",
+    a: "Die-cut oznacza, że naklejka i podkład są wycięte po obrysie grafiki - dostajesz pojedyncze naklejki w kształcie motywu. Kiss-cut to cięcie tylko przez folię, które zostawia naklejki na całym prostokątnym arkuszu podkładowym, wygodne do masowego odklejania. Oba warianty ustawisz w kreatorze w tej samej cenie 59,00 zł za arkusz A4.",
   },
   {
     q: "Czy mogę zamówić naklejki w dowolnym kształcie?",
@@ -91,11 +91,11 @@ const FAQS: { q: string; a: string }[] = [
   },
   {
     q: "Ile różnych kształtów zmieszczę na jednym arkuszu A4?",
-    a: "Na arkuszu A4 ułożysz kilkanaście różnych wzorów o odmiennych kształtach - zdjęcie, cytat, logo i rysunkowy motyw obok siebie. Każdy element zostanie wycięty osobno, dokładnie po swoim obrysie, a całość kosztuje stałe 49,00 zł brutto. Kreator pilnuje, aby naklejki na siebie nie nachodziły.",
+    a: "Na arkuszu A4 ułożysz kilkanaście różnych wzorów o odmiennych kształtach - zdjęcie, cytat, logo i rysunkowy motyw obok siebie. Każdy element zostanie wycięty osobno, dokładnie po swoim obrysie, a całość kosztuje stałe 59,00 zł brutto. Kreator pilnuje, aby naklejki na siebie nie nachodziły.",
   },
   {
     q: "Jaki jest minimalny nakład naklejek die-cut?",
-    a: "Nie ma minimalnego nakładu. Zamówisz nawet pojedynczy arkusz A4 z jedną naklejką albo z kilkunastoma różnymi wzorami - zawsze za tę samą cenę 49,00 zł brutto. To dobre rozwiązanie na próbny wydruk, pojedyncze wlepki dla twórcy czy mały nakład dla firmy.",
+    a: "Nie ma minimalnego nakładu. Zamówisz nawet pojedynczy arkusz A4 z jedną naklejką albo z kilkunastoma różnymi wzorami - zawsze za tę samą cenę 59,00 zł brutto. To dobre rozwiązanie na próbny wydruk, pojedyncze wlepki dla twórcy czy mały nakład dla firmy.",
   },
   {
     q: "Jak duża może być jedna naklejka die-cut?",
@@ -213,7 +213,7 @@ const SPECS: { label: string; value: string }[] = [
   },
   {
     label: "Cena",
-    value: "49,00 zł brutto za arkusz A4, bez minimalnego nakładu",
+    value: "59,00 zł brutto za arkusz A4, bez minimalnego nakładu",
   },
   { label: "Produkcja", value: "2-3 dni robocze" },
   {
@@ -250,7 +250,7 @@ export default function NaklejkiDieCutPage() {
           "@type": "Product",
           name: "Naklejki die-cut cięte po obrysie",
           description:
-            "Naklejki die-cut wycięte dokładnie po obrysie grafiki na trwałej folii winylowej: dowolny kształt, automatyczne wyznaczanie konturu w kreatorze, druk 300 DPI. Stała cena 49,00 zł brutto za arkusz A4, bez minimalnego nakładu, z odbiorem w paczkomacie.",
+            "Naklejki die-cut wycięte dokładnie po obrysie grafiki na trwałej folii winylowej: dowolny kształt, automatyczne wyznaczanie konturu w kreatorze, druk 300 DPI. Stała cena 59,00 zł brutto za arkusz A4, bez minimalnego nakładu, z odbiorem w paczkomacie.",
           image: "https://www.malenaklejki.pl/images/logo/favicon.png",
           brand: { "@type": "Brand", name: "MałeNaklejki" },
           category: "Naklejki die-cut - cięcie po obrysie",
@@ -295,7 +295,7 @@ export default function NaklejkiDieCutPage() {
                 },
               },
             },
-            price: "49.00",
+            price: "59.00",
             priceCurrency: "PLN",
             availability: "https://schema.org/InStock",
             url: PAGE_URL,
@@ -373,7 +373,7 @@ export default function NaklejkiDieCutPage() {
             <strong>sam wyznaczy kontur</strong> i ścieżkę cięcia na trwałej{" "}
             <strong>folii winylowej odpornej na wodę i UV</strong>. Druk{" "}
             <strong>300 DPI</strong>, stała cena{" "}
-            <strong>49,00 zł brutto za arkusz A4</strong>, już od 1 sztuki,
+            <strong>59,00 zł brutto za arkusz A4</strong>, już od 1 sztuki,
             produkcja w <strong>2-3 dni robocze</strong> i odbiór w paczkomacie.
             Nie wiesz, które cięcie wybrać?{" "}
             <Link
@@ -415,7 +415,7 @@ export default function NaklejkiDieCutPage() {
         {/* Trust stats */}
         <section className="mt-6 grid grid-cols-2 sm:grid-cols-4 gap-3">
           {[
-            { value: "49 zł", label: "Brutto za arkusz A4" },
+            { value: "59 zł", label: "Brutto za arkusz A4" },
             { value: "Dowolny", label: "Kształt po obrysie" },
             { value: "od 1 szt.", label: "Bez min. nakładu" },
             { value: "300 DPI", label: "Druk pełny kolor" },
@@ -643,7 +643,7 @@ export default function NaklejkiDieCutPage() {
               },
               {
                 title: "Sprawdź podgląd 3D i zamów",
-                text: "Obejrzyj realistyczny podgląd 3D gotowego arkusza, zapłać BLIK-iem lub przez Przelewy24, a naklejki die-cut wyprodukujemy w 2-3 dni robocze i wyślemy do paczkomatu za stałe 49,00 zł brutto od arkusza A4.",
+                text: "Obejrzyj realistyczny podgląd 3D gotowego arkusza, zapłać BLIK-iem lub przez Przelewy24, a naklejki die-cut wyprodukujemy w 2-3 dni robocze i wyślemy do paczkomatu za stałe 59,00 zł brutto od arkusza A4.",
               },
             ].map((step, i) => (
               <li
@@ -722,7 +722,7 @@ export default function NaklejkiDieCutPage() {
           <p className="text-sm sm:text-base text-muted-foreground font-medium leading-relaxed max-w-2xl mx-auto">
             Wgraj plik do kreatora, pozwól mu wyznaczyć kontur i wybierz cięcie
             po obrysie. Naklejki die-cut będą gotowe w 2-3 dni robocze za stałe
-            49,00 zł brutto od arkusza A4 - na trwałej folii winylowej odpornej
+            59,00 zł brutto od arkusza A4 - na trwałej folii winylowej odpornej
             na wodę i UV, w dowolnym kształcie i bez minimalnego
             nakładu.
           </p>

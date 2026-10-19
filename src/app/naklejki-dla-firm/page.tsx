@@ -24,16 +24,16 @@ const PAGE_PATH = "/naklejki-dla-firm";
 const PAGE_URL = `https://www.malenaklejki.pl${PAGE_PATH}`;
 
 export const metadata: Metadata = {
-  title: "Naklejki dla małych firm - od 1 arkusza, 49 zł, faktura VAT",
+  title: "Naklejki dla małych firm - od 1 arkusza, 59 zł, faktura VAT",
   description:
-    "Naklejki dla małych firm z własnym logo: od 1 arkusza A4 za stałe 49,00 zł brutto, bez minimalnego nakładu, faktura VAT, produkcja w Polsce 2-3 dni robocze.",
+    "Naklejki dla małych firm z własnym logo: od 1 arkusza A4 za stałe 59,00 zł brutto, bez minimalnego nakładu, faktura VAT, produkcja w Polsce 2-3 dni robocze.",
   alternates: {
     canonical: PAGE_PATH,
   },
   openGraph: {
     title: "Naklejki dla małych firm z własnym logo - druk od 1 arkusza A4",
     description:
-      "Naklejki dla małych firm z logo: stała cena 49 zł brutto za arkusz A4, faktura VAT, bez minimalnego nakładu, trwała folia winylowa i odbiór w paczkomacie.",
+      "Naklejki dla małych firm z logo: stała cena 59 zł brutto za arkusz A4, faktura VAT, bez minimalnego nakładu, trwała folia winylowa i odbiór w paczkomacie.",
     url: PAGE_URL,
     type: "website",
     images: [
@@ -49,7 +49,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Naklejki dla małych firm z własnym logo - druk od 1 arkusza A4",
     description:
-      "Naklejki dla małych firm z logo: 49 zł brutto za arkusz A4, faktura VAT, bez minimalnego nakładu, produkcja 2-3 dni robocze.",
+      "Naklejki dla małych firm z logo: 59 zł brutto za arkusz A4, faktura VAT, bez minimalnego nakładu, produkcja 2-3 dni robocze.",
     images: ["/landing/naklejki-dla-firm/naklejki-dla-firm-na-paczki.png"],
   },
 };
@@ -62,11 +62,11 @@ export const metadata: Metadata = {
 const FAQS: { q: string; a: string }[] = [
   {
     q: "Ile kosztuje pierwsze zamówienie naklejek dla małej firmy?",
-    a: "Na start wystarczy jeden arkusz A4: 49,00 zł brutto plus dostawa do paczkomatu za 19,99 zł. Nie ma minimalnego nakładu ani opłat za przygotowanie pliku, więc możesz sprawdzić, jak logo wygląda na folii, zanim zamówisz kolejne arkusze. Każdy następny arkusz kosztuje tyle samo - stawka jest stała.",
+    a: "Na start wystarczy jeden arkusz A4: 59,00 zł brutto plus dostawa do paczkomatu za 19,99 zł. Nie ma minimalnego nakładu ani opłat za przygotowanie pliku, więc możesz sprawdzić, jak logo wygląda na folii, zanim zamówisz kolejne arkusze. Każdy następny arkusz kosztuje tyle samo - stawka jest stała.",
   },
   {
     q: "Czy mała firma może zamówić kilka różnych naklejek na jednym arkuszu?",
-    a: "Tak. Na jednym arkuszu A4 za 49,00 zł brutto umieścisz kilka różnych wzorów, na przykład logo, naklejkę z podziękowaniem dla klienta i hasło reklamowe. Wgrywasz do kreatora kolejne grafiki, a każdą wycinamy osobno po jej obrysie. Płacisz za arkusz, nie za liczbę wzorów.",
+    a: "Tak. Na jednym arkuszu A4 za 59,00 zł brutto umieścisz kilka różnych wzorów, na przykład logo, naklejkę z podziękowaniem dla klienta i hasło reklamowe. Wgrywasz do kreatora kolejne grafiki, a każdą wycinamy osobno po jej obrysie. Płacisz za arkusz, nie za liczbę wzorów.",
   },
   {
     q: "Czy mogę zamówić w jednym zamówieniu kilka różnych arkuszy naklejek?",
@@ -74,11 +74,11 @@ const FAQS: { q: string; a: string }[] = [
   },
   {
     q: "Czy wystawiacie fakturę VAT za naklejki dla firmy?",
-    a: "Tak. Do każdego zamówienia firmowego wystawiamy fakturę VAT na dane z numerem NIP. Cena 49,00 zł za arkusz A4 to kwota brutto, więc od razu widzisz pełny koszt zakupu do rozliczenia w firmie.",
+    a: "Tak. Do każdego zamówienia firmowego wystawiamy fakturę VAT na dane z numerem NIP. Cena 59,00 zł za arkusz A4 to kwota brutto, więc od razu widzisz pełny koszt zakupu do rozliczenia w firmie.",
   },
   {
     q: "Ile kosztują naklejki z logo dla firmy?",
-    a: "Obowiązuje stała cena 49,00 zł brutto za arkusz A4, niezależnie od liczby wzorów na arkuszu. Zmieścisz na nim jedną dużą naklejkę do 19 cm albo kilkadziesiąt mniejszych - im mniejsze naklejki, tym niższy koszt pojedynczej sztuki. Nie pobieramy opłat za przygotowanie pliku do druku.",
+    a: "Obowiązuje stała cena 59,00 zł brutto za arkusz A4, niezależnie od liczby wzorów na arkuszu. Zmieścisz na nim jedną dużą naklejkę do 19 cm albo kilkadziesiąt mniejszych - im mniejsze naklejki, tym niższy koszt pojedynczej sztuki. Nie pobieramy opłat za przygotowanie pliku do druku.",
   },
   {
     q: "Czy jest minimalne zamówienie? Mogę zamówić mało naklejek?",
@@ -125,7 +125,7 @@ const SMALL_BUSINESS: { icon: React.ElementType; title: string; text: string }[]
     {
       icon: Wallet,
       title: "Najpierw arkusz próbny",
-      text: "Zamów jeden arkusz, sprawdź, jak logo wygląda na folii, i dopiero wtedy powtórz zamówienie. Każdy kolejny arkusz kosztuje tyle samo: 49,00 zł brutto.",
+      text: "Zamów jeden arkusz, sprawdź, jak logo wygląda na folii, i dopiero wtedy powtórz zamówienie. Każdy kolejny arkusz kosztuje tyle samo: 59,00 zł brutto.",
     },
   ];
 
@@ -175,11 +175,11 @@ const ADVANTAGES: { icon: React.ElementType; title: string; text: string }[] = [
   {
     icon: FileText,
     title: "Faktura VAT dla firm",
-    text: "Do zamówienia firmowego wystawiamy fakturę VAT na dane z NIP. Cena 49,00 zł to kwota brutto - pełny koszt widzisz od razu.",
+    text: "Do zamówienia firmowego wystawiamy fakturę VAT na dane z NIP. Cena 59,00 zł to kwota brutto - pełny koszt widzisz od razu.",
   },
   {
     icon: Wallet,
-    title: "Stała cena 49 zł brutto",
+    title: "Stała cena 59 zł brutto",
     text: "Płacisz za cały arkusz A4, niezależnie od liczby wzorów. Im mniejsze naklejki, tym więcej zmieścisz i tym niższy koszt sztuki.",
   },
   {
@@ -222,7 +222,7 @@ const SPECS: { label: string; value: string }[] = [
   { label: "Formaty pliku", value: "PDF, PNG, JPG" },
   {
     label: "Cena",
-    value: "49,00 zł brutto za arkusz A4, bez minimalnego nakładu",
+    value: "59,00 zł brutto za arkusz A4, bez minimalnego nakładu",
   },
   { label: "Faktura", value: "VAT na dane z numerem NIP" },
   { label: "Produkcja", value: "2-3 dni robocze" },
@@ -258,7 +258,7 @@ export default function NaklejkiDlaFirmPage() {
           "@type": "Product",
           name: "Naklejki dla firm z własnym logo",
           description:
-            "Naklejki firmowe z własnym logo drukowane na trwałej folii winylowej. Stała cena 49,00 zł brutto za arkusz A4, bez minimalnego nakładu, z fakturą VAT i odbiorem w paczkomacie.",
+            "Naklejki firmowe z własnym logo drukowane na trwałej folii winylowej. Stała cena 59,00 zł brutto za arkusz A4, bez minimalnego nakładu, z fakturą VAT i odbiorem w paczkomacie.",
           image: "https://www.malenaklejki.pl/images/logo/favicon.png",
           brand: { "@type": "Brand", name: "MałeNaklejki" },
           category: "Naklejki firmowe z logo",
@@ -302,7 +302,7 @@ export default function NaklejkiDlaFirmPage() {
                 },
               },
             },
-            price: "49.00",
+            price: "59.00",
             priceCurrency: "PLN",
             availability: "https://schema.org/InStock",
             url: PAGE_URL,
@@ -376,7 +376,7 @@ export default function NaklejkiDlaFirmPage() {
           <p className="text-sm sm:text-lg text-foreground/90 font-semibold leading-relaxed">
             Zamów <strong>naklejki firmowe z logo</strong> w polskiej drukarni:
             drukujemy już od{" "}
-            <strong>1 arkusza A4 za stałe 49,00 zł brutto</strong>, wystawiamy{" "}
+            <strong>1 arkusza A4 za stałe 59,00 zł brutto</strong>, wystawiamy{" "}
             <strong>fakturę VAT</strong>, a naklejki produkujemy w{" "}
             <strong>2-3 dni robocze</strong> i wysyłamy do paczkomatu. Bez minimalnego nakładu i bez
             opłat za przygotowanie pliku. Jeśli zamawiasz po raz pierwszy,
@@ -428,7 +428,7 @@ export default function NaklejkiDlaFirmPage() {
         {/* Trust stats */}
         <section className="mt-6 grid grid-cols-2 sm:grid-cols-4 gap-3">
           {[
-            { value: "49 zł", label: "Brutto za arkusz A4" },
+            { value: "59 zł", label: "Brutto za arkusz A4" },
             { value: "od 1 szt.", label: "Bez min. nakładu" },
             { value: "2-3 dni", label: "Produkcja" },
             { value: "Faktura VAT", label: "Dla firm z NIP" },
@@ -457,7 +457,7 @@ export default function NaklejkiDlaFirmPage() {
             potrzebuje kilku wzorów - logo, podziękowania dla klienta,
             oznaczenia produktu - i możliwości sprawdzenia ich w praktyce, zanim
             zamówi więcej. Dlatego zamówienie zaczyna się od jednego arkusza A4
-            za 49,00 zł brutto, bez minimalnego nakładu i bez opłat za
+            za 59,00 zł brutto, bez minimalnego nakładu i bez opłat za
             przygotowanie pliku. O tym, jak zamawiać niewielkie ilości bez
             przepłacania, piszemy w poradniku o{" "}
             <Link
@@ -745,7 +745,7 @@ export default function NaklejkiDlaFirmPage() {
           </h2>
           <p className="text-sm sm:text-base text-muted-foreground font-medium leading-relaxed max-w-2xl mx-auto">
             Wgraj logo do kreatora, wybierz cięcie po obrysie i liczbę sztuk na
-            arkuszu. Naklejki będą gotowe w 2-3 dni robocze za stałe 49,00 zł
+            arkuszu. Naklejki będą gotowe w 2-3 dni robocze za stałe 59,00 zł
             brutto od arkusza A4 - z fakturą VAT, bez minimalnego nakładu i bez
             opłat za przygotowanie pliku.
           </p>

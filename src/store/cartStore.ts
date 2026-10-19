@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 
-import type { ReadySheetOrigin } from "@/lib/sheets/types";
+import { SHEET_PRICE, type ReadySheetOrigin } from "@/lib/sheets/types";
 import { getUUID } from "@/lib/uuid";
 
 export interface CartItem {
@@ -32,13 +32,23 @@ interface CartState {
   getTotalPrice: () => number;
 }
 
+/**
+ * Pozycja zawsze z bieżącą ceną arkusza. Koszyk potrafi leżeć w localStorage
+ * tygodniami, a „zamów ponownie" wkłada pozycję z ceną ze starego zamówienia —
+ * bez tego klient widziałby inną kwotę niż ta, którą policzy serwer
+ * (`createOrder` i tak liczy z `SHEET_PRICE`).
+ */
+function withCurrentPrice<T extends { pricePerSheet: number }>(item: T): T {
+  return { ...item, pricePerSheet: SHEET_PRICE };
+}
+
 export const useCartStore = create<CartState>()(
   persist(
     (set, get) => ({
       items: [],
       addItem: (item) => {
         const id = getUUID();
-        set((state) => ({ items: [...state.items, { ...item, id }] }));
+        set((state) => ({ items: [...state.items, { ...withCurrentPrice(item), id }] }));
         return id;
       },
       removeItem: (id) =>
@@ -52,7 +62,7 @@ export const useCartStore = create<CartState>()(
       updateItem: (id, item) =>
         set((state) => ({
           items: state.items.map((i) =>
-            i.id === id ? { ...item, id } : i
+            i.id === id ? { ...withCurrentPrice(item), id } : i
           ),
         })),
       clearCart: () => set({ items: [] }),
@@ -66,6 +76,14 @@ export const useCartStore = create<CartState>()(
     }),
     {
       name: 'malenaklejki-cart',
+      merge: (persisted, current) => {
+        const stored = (persisted ?? {}) as Partial<CartState>;
+        return {
+          ...current,
+          ...stored,
+          items: (stored.items ?? []).map(withCurrentPrice),
+        };
+      },
     }
   )
 );

@@ -5,7 +5,7 @@
 Estetyczne Naklejki Die-Cut Wycinane Po Obrysie
 
 **Opis Pinu:**
-Kochasz naklejki wycinane idealnie po obrysie, jak z zagranicznych drukarni? Zrobisz je w Polsce. Drukujemy na grubej folii winylowej odpornej na wodę i UV, a każdą naklejkę die-cut tniemy w kształcie Twojej grafiki. Zamawiasz już od 1 arkusza A4 za 49 zł, z odbiorem w paczkomacie - bez przeliczania z dolarów.
+Kochasz naklejki wycinane idealnie po obrysie, jak z zagranicznych drukarni? Zrobisz je w Polsce. Drukujemy na grubej folii winylowej odpornej na wodę i UV, a każdą naklejkę die-cut tniemy w kształcie Twojej grafiki. Zamawiasz już od 1 arkusza A4 za 59 zł, z odbiorem w paczkomacie - bez przeliczania z dolarów.
 
 **Napis CTA na grafice:**
 Zamów Naklejki Die-Cut
@@ -29,7 +29,7 @@ Wgraj Logo Marki
 Naklejki Z Logo Firmy Na Szybę I Drzwi
 
 **Opis Pinu:**
-Oznacz witrynę, drzwi biura albo lokal naklejką z logo. Gruba folia winylowa z mocnym klejem trzyma się szkła, jest odporna na wodę i UV, a po odklejeniu nie zostawia śladów. Drukujemy w Polsce od 1 arkusza A4 za 49 zł - bez zagranicznej wysyłki i cła.
+Oznacz witrynę, drzwi biura albo lokal naklejką z logo. Gruba folia winylowa z mocnym klejem trzyma się szkła, jest odporna na wodę i UV, a po odklejeniu nie zostawia śladów. Drukujemy w Polsce od 1 arkusza A4 za 59 zł - bez zagranicznej wysyłki i cła.
 
 **Napis CTA na grafice:**
 Wgraj Własną Grafikę
@@ -53,7 +53,7 @@ Dodaj Logo Do Paczki
 Okrągłe Wlepki Z Własnym Nadrukiem Dla Artystów
 
 **Opis Pinu:**
-Masz swój wzór, cytat albo streetartową grafikę? Zamień ją w okrągłe wlepki z żywym nadrukiem 300 DPI na wytrzymałej folii. Bez minimalnego nakładu przetestujesz jeden wzór od 1 arkusza A4 za 49 zł. Polska alternatywa dla Sticker Mule dla twórców i małych nakładów.
+Masz swój wzór, cytat albo streetartową grafikę? Zamień ją w okrągłe wlepki z żywym nadrukiem 300 DPI na wytrzymałej folii. Bez minimalnego nakładu przetestujesz jeden wzór od 1 arkusza A4 za 59 zł. Polska alternatywa dla Sticker Mule dla twórców i małych nakładów.
 
 **Napis CTA na grafice:**
 Stwórz Okrągłą Wlepkę

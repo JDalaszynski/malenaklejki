@@ -11,8 +11,8 @@ Dziedziczysz **cały kanon stylu** z `blog-agent/rules.md` (ton BLUF, język kor
 ## 1. Anatomia landingu (kolejność sekcji)
 Trzymaj się sprawdzonego układu z wzorca referencyjnego:
 1. **Breadcrumbs** ("Kreator Zestawu Naklejek" / [Nazwa strony]) + `BreadcrumbList`.
-2. **Hero:** badge → `H1` (główna fraza) → akapit **BLUF** (bezpośrednia odpowiedź + twarde fakty: 49 zł/A4, od 1 szt., 3 dni, produkcja PL) → 1-2 CTA (primary do `/`, secondary do powiązanego wpisu).
-3. **Trust stats** - 4 kafle (np. 49 zł / od 1 szt. / 3 dni / BLIK).
+2. **Hero:** badge → `H1` (główna fraza) → akapit **BLUF** (bezpośrednia odpowiedź + twarde fakty: 59 zł/A4, od 1 szt., 3 dni, produkcja PL) → 1-2 CTA (primary do `/`, secondary do powiązanego wpisu).
+3. **Trust stats** - 4 kafle (np. 59 zł / od 1 szt. / 3 dni / BLIK).
 4. **Sekcja właściwa dla typu** - tabela porównawcza / siatka zastosowań / specyfikacja materiału.
 5. **Zalety** - grid z ikonami `lucide-react`.
 6. **"Jak zamówić krok po kroku"** - `<ol>` 1-2-3, z wplecionym linkiem do wpisu (die-cut / mały nakład).
@@ -29,7 +29,7 @@ Trzymaj się sprawdzonego układu z wzorca referencyjnego:
 Komponent: `@/components/seo/JsonLd`. Na każdym landingu:
 * `BreadcrumbList`
 * `FAQPage` (z tablicy `FAQS`)
-* **`Product` + `Offer`** (ulepszenie względem obecnego landingu - **DODAWAJ**): `name`, `description`, `brand: MałeNaklejki`, `offers: { "@type": "Offer", price: "49.00", priceCurrency: "PLN", availability, url }`. Silny sygnał AEO na "ile kosztują naklejki".
+* **`Product` + `Offer`** (ulepszenie względem obecnego landingu - **DODAWAJ**): `name`, `description`, `brand: MałeNaklejki`, `offers: { "@type": "Offer", price: "59.00", priceCurrency: "PLN", availability, url }`. Silny sygnał AEO na "ile kosztują naklejki".
 * Rozważ globalne `Organization` + `sameAs` (jeśli nie ma w `layout.tsx`).
 
 **Zasada spójności:** widoczny FAQ i schemat `FAQPage` pochodzą z **tej samej tablicy** (jeden string zasila render i schemat) - nigdy nie dopuść, by się rozjechały.
@@ -50,8 +50,8 @@ LLM-y chętnie cytują tabele. Układ: `Cecha | malenaklejki.pl | konkurent/alte
 
 ## 5. Twarde fakty - ZATWIERDZONY zestaw
 Używaj wyłącznie potwierdzonych faktów. Zatwierdzone (źródło: produkcyjny landing porównawczy + `blog-agent/strategy.md` + potwierdzenia właściciela 2026-07-24):
-* **Cena:** stała **49,00 zł brutto / arkusz A4**, bez minimalnego nakładu, już od 1 arkusza. **Brak rabatu hurtowego** - zawsze arkusz po arkuszu (nie obiecuj cen za wolumen).
-* **Faktura:** dla firm wystawiamy **fakturę VAT** na dane z NIP (jesteśmy płatnikiem VAT). 49 zł to kwota **brutto**.
+* **Cena:** stała **59,00 zł brutto / arkusz A4**, bez minimalnego nakładu, już od 1 arkusza. **Brak rabatu hurtowego** - zawsze arkusz po arkuszu (nie obiecuj cen za wolumen).
+* **Faktura:** dla firm wystawiamy **fakturę VAT** na dane z NIP (jesteśmy płatnikiem VAT). 59 zł to kwota **brutto**.
 * **Materiał:** trwała **folia winylowa**, mocny klej, nie zostawia śladów. Druk **300 DPI**. Odporność: **woda, UV** (NIE zadrapania / ścieranie). (MałeNaklejki oferuje **tylko folię/winyl** - nie hologram, transparent, brokat itp.)
 * **Cięcie:** po obrysie (die-cut), koło, prostokąt. Jedna duża naklejka do **19 cm** lub kilkadziesiąt małych na arkuszu.
 * **Wykończenie:** pozostawione na arkuszu A4 **lub** pojedyncze docięte sztuki luzem.

@@ -7,7 +7,7 @@ Landing docelowy: https://www.malenaklejki.pl/slownik-naklejek
 Naklejki die-cut cięte po obrysie
 
 **Opis Pinu:**
-Naklejki die-cut wycięte dokładnie po obrysie grafiki - bez prostokątnego tła, z czystym konturem. Wgrywasz gotowy plik, a my tniemy naklejkę po linii cięcia na trwałej folii winylowej odpornej na wodę i UV. Stała cena 49 zł brutto za arkusz A4, już od 1 sztuki.
+Naklejki die-cut wycięte dokładnie po obrysie grafiki - bez prostokątnego tła, z czystym konturem. Wgrywasz gotowy plik, a my tniemy naklejkę po linii cięcia na trwałej folii winylowej odpornej na wodę i UV. Stała cena 59 zł brutto za arkusz A4, już od 1 sztuki.
 
 **Napis CTA na grafice:**
 Zamów Naklejki Die-cut
@@ -19,7 +19,7 @@ Zamów Naklejki Die-cut
 Linia cięcia, czyli kontur naklejki die-cut
 
 **Opis Pinu:**
-Ten biały kontur to linia cięcia, po której ploter wycina naklejkę dokładnie wzdłuż grafiki. Naklejki cięte po obrysie wyglądają jak profesjonalny merch i trzymają się laptopa czy butelki dzięki wodoodpornej folii winylowej. Od 1 arkusza A4, stała cena 49 zł brutto.
+Ten biały kontur to linia cięcia, po której ploter wycina naklejkę dokładnie wzdłuż grafiki. Naklejki cięte po obrysie wyglądają jak profesjonalny merch i trzymają się laptopa czy butelki dzięki wodoodpornej folii winylowej. Od 1 arkusza A4, stała cena 59 zł brutto.
 
 **Napis CTA na grafice:**
 Zamów Naklejki po Obrysie
@@ -31,7 +31,7 @@ Zamów Naklejki po Obrysie
 Arkusz A4 pełen naklejek kiss-cut
 
 **Opis Pinu:**
-Kilkanaście różnych naklejek na jednym arkuszu A4 - to kiss-cut, gdzie cały komplet zostaje na wspólnym podkładzie do wygodnego odklejania. Zmieścisz kilkadziesiąt małych wzorów w stałej cenie 49 zł brutto za arkusz, bez minimalnego nakładu. Folia winylowa, druk 300 DPI.
+Kilkanaście różnych naklejek na jednym arkuszu A4 - to kiss-cut, gdzie cały komplet zostaje na wspólnym podkładzie do wygodnego odklejania. Zmieścisz kilkadziesiąt małych wzorów w stałej cenie 59 zł brutto za arkusz, bez minimalnego nakładu. Folia winylowa, druk 300 DPI.
 
 **Napis CTA na grafice:**
 Zamów Arkusz Naklejek
@@ -43,7 +43,7 @@ Zamów Arkusz Naklejek
 Wlepki die-cut na telefon i laptop
 
 **Opis Pinu:**
-Autorska wlepka wycięta po obrysie świetnie leży na etui telefonu, laptopie czy notesie. Wgrywasz grafikę, a my wycinamy naklejkę dokładnie w jej kształcie na trwałej folii winylowej. Zamów pojedyncze wlepki od 1 arkusza A4 w stałej cenie 49 zł brutto.
+Autorska wlepka wycięta po obrysie świetnie leży na etui telefonu, laptopie czy notesie. Wgrywasz grafikę, a my wycinamy naklejkę dokładnie w jej kształcie na trwałej folii winylowej. Zamów pojedyncze wlepki od 1 arkusza A4 w stałej cenie 59 zł brutto.
 
 **Napis CTA na grafice:**
 Zamów Własne Wlepki

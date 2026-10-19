@@ -11,16 +11,16 @@ const PAGE_PATH = "/slownik-naklejek";
 const PAGE_URL = `https://www.malenaklejki.pl${PAGE_PATH}`;
 
 export const metadata: Metadata = {
-  title: "Słownik naklejek: die-cut, kiss-cut, DPI - druk za 49 zł/A4",
+  title: "Słownik naklejek: die-cut, kiss-cut, DPI - druk za 59 zł/A4",
   description:
-    "Słownik naklejek: die-cut, kiss-cut, folia winylowa, 300 DPI, CMYK i kanał alfa wyjaśnione prosto. Druk od 1 arkusza A4 za stałe 49,00 zł brutto.",
+    "Słownik naklejek: die-cut, kiss-cut, folia winylowa, 300 DPI, CMYK i kanał alfa wyjaśnione prosto. Druk od 1 arkusza A4 za stałe 59,00 zł brutto.",
   alternates: {
     canonical: PAGE_PATH,
   },
   openGraph: {
-    title: "Słownik naklejek: die-cut, kiss-cut, DPI - druk za 49 zł/A4",
+    title: "Słownik naklejek: die-cut, kiss-cut, DPI - druk za 59 zł/A4",
     description:
-      "Die-cut, kiss-cut, folia winylowa, 300 DPI, CMYK, kanał alfa i wlepki - słownik naklejek prostym językiem. Druk od 1 arkusza A4 za 49,00 zł brutto.",
+      "Die-cut, kiss-cut, folia winylowa, 300 DPI, CMYK, kanał alfa i wlepki - słownik naklejek prostym językiem. Druk od 1 arkusza A4 za 59,00 zł brutto.",
     url: PAGE_URL,
     type: "website",
     images: [
@@ -34,9 +34,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Słownik naklejek: die-cut, kiss-cut, DPI - druk za 49 zł/A4",
+    title: "Słownik naklejek: die-cut, kiss-cut, DPI - druk za 59 zł/A4",
     description:
-      "Słownik naklejek: die-cut, kiss-cut, folia winylowa, 300 DPI i CMYK wyjaśnione prosto. Druk od 1 arkusza A4 za 49,00 zł brutto, produkcja 2-3 dni robocze.",
+      "Słownik naklejek: die-cut, kiss-cut, folia winylowa, 300 DPI i CMYK wyjaśnione prosto. Druk od 1 arkusza A4 za 59,00 zł brutto, produkcja 2-3 dni robocze.",
     images: [
       "/landing/slownik-naklejek/die-cut-naklejka-ciecie-po-obrysie-kontur.jpg",
     ],
@@ -46,11 +46,11 @@ export const metadata: Metadata = {
 const FAQS: { q: string; a: string }[] = [
   {
     q: "Co to jest naklejka die-cut?",
-    a: "Naklejka die-cut to naklejka wycięta dokładnie po obrysie grafiki, bez prostokątnego tła. Ploter tnie folię wzdłuż konturu motywu, więc naklejka ma kształt sylwetki, logo czy napisu. W MałeNaklejki zamówisz ją na trwałej folii winylowej za stałe 49,00 zł brutto od arkusza A4, już od 1 sztuki.",
+    a: "Naklejka die-cut to naklejka wycięta dokładnie po obrysie grafiki, bez prostokątnego tła. Ploter tnie folię wzdłuż konturu motywu, więc naklejka ma kształt sylwetki, logo czy napisu. W MałeNaklejki zamówisz ją na trwałej folii winylowej za stałe 59,00 zł brutto od arkusza A4, już od 1 sztuki.",
   },
   {
     q: "Czym różni się die-cut od kiss-cut?",
-    a: "Die-cut oznacza, że naklejka i podkład są wycięte po obrysie grafiki - dostajesz pojedyncze naklejki w kształcie motywu. Kiss-cut tnie tylko wierzchnią folię i zostawia naklejki na całym prostokątnym arkuszu podkładowym, wygodnym do masowego odklejania. Oba warianty ustawisz w kreatorze w tej samej cenie 49,00 zł za arkusz A4.",
+    a: "Die-cut oznacza, że naklejka i podkład są wycięte po obrysie grafiki - dostajesz pojedyncze naklejki w kształcie motywu. Kiss-cut tnie tylko wierzchnią folię i zostawia naklejki na całym prostokątnym arkuszu podkładowym, wygodnym do masowego odklejania. Oba warianty ustawisz w kreatorze w tej samej cenie 59,00 zł za arkusz A4.",
   },
   {
     q: "Co oznacza 300 DPI przy naklejkach?",
@@ -78,7 +78,7 @@ const FAQS: { q: string; a: string }[] = [
   },
   {
     q: "Ile kosztują naklejki na zamówienie?",
-    a: "Naklejki na zamówienie w MałeNaklejki kosztują stałe 49,00 zł brutto za arkusz A4, niezależnie od kształtu i liczby naklejek na arkuszu. Nie ma minimalnego nakładu ani opłat za przygotowanie pliku, więc drukujemy już od 1 arkusza. Dla firm wystawiamy fakturę VAT.",
+    a: "Naklejki na zamówienie w MałeNaklejki kosztują stałe 59,00 zł brutto za arkusz A4, niezależnie od kształtu i liczby naklejek na arkuszu. Nie ma minimalnego nakładu ani opłat za przygotowanie pliku, więc drukujemy już od 1 arkusza. Dla firm wystawiamy fakturę VAT.",
   },
   {
     q: "Ile trwa realizacja zamówienia naklejek?",
@@ -104,8 +104,8 @@ const CUT_COMPARISON: { feature: string; dieCut: string; kissCut: string }[] = [
   },
   {
     feature: "Cena",
-    dieCut: "49,00 zł brutto za arkusz A4",
-    kissCut: "49,00 zł brutto za arkusz A4",
+    dieCut: "59,00 zł brutto za arkusz A4",
+    kissCut: "59,00 zł brutto za arkusz A4",
   },
 ];
 
@@ -156,7 +156,7 @@ export default function SlownikNaklejekPage() {
           "@type": "Product",
           name: "Naklejki na zamówienie MałeNaklejki",
           description:
-            "Naklejki na zamówienie na trwałej folii winylowej: cięcie po obrysie (die-cut) lub kiss-cut, druk 300 DPI, odporność na wodę i UV. Stała cena 49,00 zł brutto za arkusz A4, bez minimalnego nakładu, z odbiorem w paczkomacie.",
+            "Naklejki na zamówienie na trwałej folii winylowej: cięcie po obrysie (die-cut) lub kiss-cut, druk 300 DPI, odporność na wodę i UV. Stała cena 59,00 zł brutto za arkusz A4, bez minimalnego nakładu, z odbiorem w paczkomacie.",
           image: "https://www.malenaklejki.pl/images/logo/favicon.png",
           brand: { "@type": "Brand", name: "MałeNaklejki" },
           category: "Naklejki na zamówienie",
@@ -201,7 +201,7 @@ export default function SlownikNaklejekPage() {
                 },
               },
             },
-            price: "49.00",
+            price: "59.00",
             priceCurrency: "PLN",
             availability: "https://schema.org/InStock",
             url: PAGE_URL,
@@ -279,7 +279,7 @@ export default function SlownikNaklejekPage() {
             <strong>kanał alfa</strong> i wlepki. Każdy termin poznasz w
             kontekście zamówienia, żebyś wiedział, co wybierasz w kreatorze.
             Wszystkie naklejki drukujemy na trwałej folii odpornej na wodę i UV,
-            w stałej cenie <strong>49,00 zł brutto za arkusz A4</strong>, już od
+            w stałej cenie <strong>59,00 zł brutto za arkusz A4</strong>, już od
             1 sztuki i z produkcją w <strong>2-3 dni robocze</strong>.
           </p>
 
@@ -313,7 +313,7 @@ export default function SlownikNaklejekPage() {
         {/* Trust stats */}
         <section className="mt-6 grid grid-cols-2 sm:grid-cols-4 gap-3">
           {[
-            { value: "49 zł", label: "Brutto za arkusz A4" },
+            { value: "59 zł", label: "Brutto za arkusz A4" },
             { value: "od 1 szt.", label: "Bez min. nakładu" },
             { value: "Folia", label: "Winylowa, wodoodporna" },
             { value: "300 DPI", label: "Druk pełny kolor" },
@@ -519,7 +519,7 @@ export default function SlownikNaklejekPage() {
               },
               {
                 title: "Sprawdź podgląd 3D i zamów",
-                text: "Obejrzyj realistyczny podgląd 3D gotowego arkusza, zapłać BLIK-iem lub przez Przelewy24, a naklejki wyprodukujemy w 2-3 dni robocze i wyślemy do paczkomatu za stałe 49,00 zł brutto od arkusza A4.",
+                text: "Obejrzyj realistyczny podgląd 3D gotowego arkusza, zapłać BLIK-iem lub przez Przelewy24, a naklejki wyprodukujemy w 2-3 dni robocze i wyślemy do paczkomatu za stałe 59,00 zł brutto od arkusza A4.",
               },
             ].map((step, i) => (
               <li
@@ -604,7 +604,7 @@ export default function SlownikNaklejekPage() {
           <p className="text-sm sm:text-base text-muted-foreground font-medium leading-relaxed max-w-2xl mx-auto">
             Wgraj plik do kreatora, wybierz cięcie po obrysie lub kiss-cut i
             ułóż arkusz. Naklejki na trwałej folii winylowej odpornej na wodę
-            i UV będą gotowe w 2-3 dni robocze za stałe 49,00 zł
+            i UV będą gotowe w 2-3 dni robocze za stałe 59,00 zł
             brutto od arkusza A4 - w dowolnym kształcie i bez minimalnego
             nakładu.
           </p>

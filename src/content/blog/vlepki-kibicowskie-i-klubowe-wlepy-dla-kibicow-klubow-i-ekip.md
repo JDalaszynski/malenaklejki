@@ -3,7 +3,7 @@ title: "Wlepki kibicowskie i klubowe - vlepy dla kibiców i ekip"
 slug: "vlepki-kibicowskie-i-klubowe-wlepy-dla-kibicow-klubow-i-ekip"
 date: "2026-08-31"
 updated: "2026-09-03"
-description: "Wlepki (vlepki) kibicowskie i klubowe z własnym nadrukiem - pojedyncze sztuki cięte po obrysie, bez minimalnego nakładu. Stała cena 49,00 zł za arkusz A4."
+description: "Wlepki (vlepki) kibicowskie i klubowe z własnym nadrukiem - pojedyncze sztuki cięte po obrysie, bez minimalnego nakładu. Stała cena 59,00 zł za arkusz A4."
 image: "/blog/vlepki-kibicowskie-i-klubowe-wlepy-dla-kibicow-klubow-i-ekip/naklejki-klubowe-vintage-kolaz-wzorow.jpg"
 imageAlt: "Kolaż vintage naklejek klubów kolarskich i sportowych z herbami, nazwami sekcji i motywami rowerowymi."
 tags: ["wlepki", "vlepki", "kibice", "kluby", "merch"]
@@ -11,7 +11,7 @@ role: "supporting"
 cta_text: "Zamów wlepki kibicowskie"
 ---
 
-Wlepki kibicowskie i klubowe (często pisane też jako "vlepki") zamówisz w MałeNaklejki za stałe **49,00 zł brutto od arkusza A4** - bez minimalnego nakładu i bez dopłat za mały wolumen. Wgraj logo klubu, barwy sekcji albo hasło ekipy, wybierz cięcie po obrysie, a gotowe wlepki odbierzesz jako pojedyncze sztuki, w pełni przygotowane do rozdania na trybunach czy w szatni. Jeśli zamawiasz po raz pierwszy, zajrzyj też do przewodnika [jak zamówić idealne naklejki na zamówienie z własnym nadrukiem](/blog/jak-zamowic-idealne-naklejki-na-zamowienie-z-wlasnym-nadrukiem), a pełną specyfikację, cennik i FAQ znajdziesz na stronie [wlepki na zamówienie](/wlepki-na-zamowienie).
+Wlepki kibicowskie i klubowe (często pisane też jako "vlepki") zamówisz w MałeNaklejki za stałe **59,00 zł brutto od arkusza A4** - bez minimalnego nakładu i bez dopłat za mały wolumen. Wgraj logo klubu, barwy sekcji albo hasło ekipy, wybierz cięcie po obrysie, a gotowe wlepki odbierzesz jako pojedyncze sztuki, w pełni przygotowane do rozdania na trybunach czy w szatni. Jeśli zamawiasz po raz pierwszy, zajrzyj też do przewodnika [jak zamówić idealne naklejki na zamówienie z własnym nadrukiem](/blog/jak-zamowic-idealne-naklejki-na-zamowienie-z-wlasnym-nadrukiem), a pełną specyfikację, cennik i FAQ znajdziesz na stronie [wlepki na zamówienie](/wlepki-na-zamowienie).
 
 ## Czym różnią się wlepki kibicowskie od zwykłych wlepek?
 
@@ -57,9 +57,9 @@ Cena nie zależy od tego, ile różnych wzorów umieścisz na arkuszu - płacisz
 
 | Liczba wlepek na arkuszu | Orientacyjny rozmiar | Cena za sztukę |
 |---|---|---|
-| 16 wlepek | ok. 4,5 x 4,5 cm | ~3,06 zł / szt. |
-| 30 wlepek | ok. 3 x 3 cm | ~1,63 zł / szt. |
-| 50 wlepek | ok. 2,3 x 2,3 cm | ~0,98 zł / szt. |
+| 16 wlepek | ok. 4,5 x 4,5 cm | ~3,69 zł / szt. |
+| 30 wlepek | ok. 3 x 3 cm | ~1,97 zł / szt. |
+| 50 wlepek | ok. 2,3 x 2,3 cm | ~1,18 zł / szt. |
 
 Chcesz przetestować kilka wariantów herbu przed większym zamówieniem dla całej sekcji? Sprawdź [naklejki w małym nakładzie - jak zamówić pojedyncze sztuki bez przepłacania](/blog/naklejki-maly-naklad-jak-zamowic-pojedyncze-sztuki-bez-przeplacania) - jeden arkusz testowy wystarczy, żeby zobaczyć kolory i wielkość na żywo.
 
@@ -87,6 +87,6 @@ Nie ma minimalnego nakładu - zamówisz już jeden arkusz A4. To wystarczająco 
 
 ## Zamów wlepki kibicowskie i klubowe już dziś
 
-Wgraj herb, logo klubu albo hasło sekcji do naszego kreatora, wybierz cięcie po obrysie i liczbę sztuk na arkuszu - wlepki wyprodukujemy w 2-3 dni robocze za stałe 49,00 zł brutto od arkusza A4, bez minimalnego nakładu.
+Wgraj herb, logo klubu albo hasło sekcji do naszego kreatora, wybierz cięcie po obrysie i liczbę sztuk na arkuszu - wlepki wyprodukujemy w 2-3 dni robocze za stałe 59,00 zł brutto od arkusza A4, bez minimalnego nakładu.
 
 <a href="/" style="display: inline-block; background-color: #02af7a; color: #ffffff; padding: 14px 28px; text-decoration: none; border-radius: 8px; font-weight: 600; font-size: 18px; margin-top: 24px; text-align: center;">Zamów wlepki kibicowskie</a>

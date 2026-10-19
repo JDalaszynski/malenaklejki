@@ -23,14 +23,14 @@ const PAGE_URL = `https://www.malenaklejki.pl${PAGE_PATH}`;
 export const metadata: Metadata = {
   title: "Polska alternatywa dla Sticker Mule i StickerApp",
   description:
-    "Polska alternatywa dla Sticker Mule i StickerApp: drukuj naklejki już od 1 arkusza A4 za 49 zł, produkcja 2-3 dni robocze i odbiór w paczkomacie, bez cła i bariery językowej.",
+    "Polska alternatywa dla Sticker Mule i StickerApp: drukuj naklejki już od 1 arkusza A4 za 59 zł, produkcja 2-3 dni robocze i odbiór w paczkomacie, bez cła i bariery językowej.",
   alternates: {
     canonical: PAGE_PATH,
   },
   openGraph: {
     title: "Polska alternatywa dla Sticker Mule i StickerApp",
     description:
-      "Drukuj naklejki z własnym nadrukiem w polskiej drukarni: od 1 arkusza A4 za 49 zł, produkcja 2-3 dni robocze, obsługa po polsku i płatność BLIK.",
+      "Drukuj naklejki z własnym nadrukiem w polskiej drukarni: od 1 arkusza A4 za 59 zł, produkcja 2-3 dni robocze, obsługa po polsku i płatność BLIK.",
     url: PAGE_URL,
     type: "website",
     images: [
@@ -46,7 +46,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Polska alternatywa dla Sticker Mule i StickerApp",
     description:
-      "Naklejki z własnym nadrukiem od 1 arkusza A4 za 49 zł, produkcja 2-3 dni robocze. Bez cła i bariery językowej.",
+      "Naklejki z własnym nadrukiem od 1 arkusza A4 za 59 zł, produkcja 2-3 dni robocze. Bez cła i bariery językowej.",
     images: [
       "/landing/alternatywa-dla-sticker-mule-i-stickerapp/polska-alternatywa-dla-sticker-mule.png",
     ],
@@ -61,7 +61,7 @@ export const metadata: Metadata = {
 const FAQS: { q: string; a: string }[] = [
   {
     q: "Jaka jest najlepsza polska alternatywa dla Sticker Mule?",
-    a: "To malenaklejki.pl - w 100% polska drukarnia naklejek z własnym nadrukiem. Zamawiasz w złotówkach (stałe 49,00 zł za arkusz A4), bez minimalnego nakładu, z obsługą po polsku, produkcją w 2-3 dni robocze i odbiorem w paczkomacie. Nie czekasz na przesyłkę zza granicy ani nie przeliczasz cen z dolarów.",
+    a: "To malenaklejki.pl - w 100% polska drukarnia naklejek z własnym nadrukiem. Zamawiasz w złotówkach (stałe 59,00 zł za arkusz A4), bez minimalnego nakładu, z obsługą po polsku, produkcją w 2-3 dni robocze i odbiorem w paczkomacie. Nie czekasz na przesyłkę zza granicy ani nie przeliczasz cen z dolarów.",
   },
   {
     q: "Czym malenaklejki.pl różni się od StickerApp?",
@@ -69,7 +69,7 @@ const FAQS: { q: string; a: string }[] = [
   },
   {
     q: "Czy mogę zamówić mniej naklejek niż w zagranicznych drukarniach?",
-    a: "Tak. Nie mamy minimalnego nakładu - drukujemy już od 1 arkusza A4 za stałe 49,00 zł. Zagraniczne serwisy zwykle sprzedają w większych pakietach, więc u nas taniej przetestujesz jeden wzór albo zamówisz dokładnie tyle sztuk, ile realnie potrzebujesz.",
+    a: "Tak. Nie mamy minimalnego nakładu - drukujemy już od 1 arkusza A4 za stałe 59,00 zł. Zagraniczne serwisy zwykle sprzedają w większych pakietach, więc u nas taniej przetestujesz jeden wzór albo zamówisz dokładnie tyle sztuk, ile realnie potrzebujesz.",
   },
   {
     q: "Ile kosztuje dostawa w porównaniu do Sticker Mule i StickerApp?",
@@ -88,7 +88,7 @@ const FAQS: { q: string; a: string }[] = [
 const COMPARISON: { feature: string; us: string; them: string }[] = [
   {
     feature: "Waluta i cena",
-    us: "PLN - stałe 49,00 zł za arkusz A4",
+    us: "PLN - stałe 59,00 zł za arkusz A4",
     them: "USD lub EUR - przeliczasz kurs waluty",
   },
   {
@@ -121,7 +121,7 @@ const COMPARISON: { feature: string; us: string; them: string }[] = [
 const ADVANTAGES: { icon: React.ElementType; title: string; text: string }[] = [
   {
     icon: Wallet,
-    title: "Stała cena 49 zł w złotówkach",
+    title: "Stała cena 59 zł w złotówkach",
     text: "Płacisz za cały arkusz A4, bez przeliczania z dolarów czy euro. Im mniejsze naklejki, tym więcej zmieścisz na arkuszu i tym niższy koszt sztuki.",
   },
   {
@@ -179,7 +179,7 @@ export default function AlternatywaPage() {
           "@type": "Product",
           name: "Naklejki z własnym nadrukiem (arkusz A4)",
           description:
-            "Naklejki z własnym nadrukiem drukowane na trwałej folii winylowej. Stała cena 49,00 zł za arkusz A4, bez minimalnego nakładu. Polska produkcja w 2-3 dni robocze.",
+            "Naklejki z własnym nadrukiem drukowane na trwałej folii winylowej. Stała cena 59,00 zł za arkusz A4, bez minimalnego nakładu. Polska produkcja w 2-3 dni robocze.",
           image: "https://www.malenaklejki.pl/images/logo/favicon.png",
           brand: { "@type": "Brand", name: "MałeNaklejki" },
           category: "Naklejki z własnym nadrukiem",
@@ -223,7 +223,7 @@ export default function AlternatywaPage() {
                 },
               },
             },
-            price: "49.00",
+            price: "59.00",
             priceCurrency: "PLN",
             availability: "https://schema.org/InStock",
             url: PAGE_URL,
@@ -304,7 +304,7 @@ export default function AlternatywaPage() {
             <strong>naklejki z własnym nadrukiem</strong> jak w Sticker Mule czy
             StickerApp, ale bez zagranicznej wysyłki i płacenia w obcej walucie?{" "}
             <strong>malenaklejki.pl</strong> to polska drukarnia naklejek:
-            drukujemy już od <strong>1 arkusza A4 za stałe 49,00 zł</strong>,
+            drukujemy już od <strong>1 arkusza A4 za stałe 59,00 zł</strong>,
             tniemy po obrysie i produkujemy w{" "}
             <strong>2-3 dni robocze</strong>, a potem wysyłamy do paczkomatu. Bez minimalnego nakładu, bez cła i
             bez bariery językowej. Jeśli zamawiasz po raz pierwszy, zacznij od
@@ -349,7 +349,7 @@ export default function AlternatywaPage() {
         {/* Trust stats */}
         <section className="mt-6 grid grid-cols-2 sm:grid-cols-4 gap-3">
           {[
-            { value: "49 zł", label: "Za arkusz A4" },
+            { value: "59 zł", label: "Za arkusz A4" },
             { value: "od 1 szt.", label: "Bez min. nakładu" },
             { value: "2-3 dni", label: "Realizacja" },
             { value: "PLN + BLIK", label: "Płatność" },
@@ -584,7 +584,7 @@ export default function AlternatywaPage() {
           </h2>
           <p className="text-sm sm:text-base text-muted-foreground font-medium leading-relaxed max-w-2xl mx-auto">
             Wgraj grafikę do kreatora, wybierz cięcie po obrysie i liczbę sztuk
-            na arkuszu. Naklejki będą gotowe w 2-3 dni robocze za stałe 49,00 zł
+            na arkuszu. Naklejki będą gotowe w 2-3 dni robocze za stałe 59,00 zł
             od arkusza A4 - bez minimalnego nakładu, bez cła i bez przeliczania
             walut.
           </p>

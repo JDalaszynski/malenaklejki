@@ -8,7 +8,7 @@ Zamiast przepłacać za drogie gadżety, postaw na coś, co naprawdę robi wraż
 
 Spersonalizowane naklejki z logo Twojej firmy to prosty i tani sposób na profesjonalny wizerunek. Oklej nimi laptopy, kubki i notesy, tworząc spójny zestaw, który każdy zapamięta.
 
-U nas zamówisz nawet jeden arkusz za stałe 49 zł i odbierzesz go w 3 dni robocze. Bez minimum zamówienia i ukrytych kosztów! 🚀
+U nas zamówisz nawet jeden arkusz za stałe 59 zł i odbierzesz go w 3 dni robocze. Bez minimum zamówienia i ukrytych kosztów! 🚀
 
 Chcesz poznać więcej szczegółów? Wszystko opisaliśmy w naszym nowym artykule na blogu! 👇
 
@@ -58,7 +58,7 @@ Link w bio. 🔥
 | :--- | :--- |
 | **[0-3s]** Osoba z HR siedzi przy biurku, patrząc z lekkim stresem na pusty stół. Na ekranie tekst: "Welcome Pack na wczoraj?" | **Lektor (energicznie):** Masz 3 dni na przygotowanie welcome packa dla nowego pracownika? Bez paniki! 👀 |
 | **[3-5s]** Zbliżenie na palec scrollujący telefon i klikający w stronę MałeNaklejki.pl. Widać prosty interfejs kreatora. | **Lektor:** Wejdź na MałeNaklejki.pl i po prostu wgraj logo swojej firmy. |
-| **[5-7s]** Szybkie ujęcie pokazujące animację "PRZETWARZANIE" i tekst na ekranie: "Realizacja w 3 dni". | **Lektor:** Nie potrzebujesz grafika ani dużego budżetu. Jeden arkusz to tylko 49 zł! |
+| **[5-7s]** Szybkie ujęcie pokazujące animację "PRZETWARZANIE" i tekst na ekranie: "Realizacja w 3 dni". | **Lektor:** Nie potrzebujesz grafika ani dużego budżetu. Jeden arkusz to tylko 59 zł! |
 | **[7-12s]** Zmiana sceny. Te same ręce w satysfakcjonujący sposób odklejają naklejki z arkusza i naklejają je na czysty laptop, kubek i notes. | **Lektor:** W kilka chwil oklej laptopa, kubek, notes... i gotowe! 🚀 |
 | **[12-15s]** Finalne ujęcie. Pięknie ułożony, spójny Welcome Pack leży na biurku. Na ekranie pojawia się logo "MałeNaklejki" i tekst: "Link w bio". | **Lektor:** Profesjonalny zestaw powitalny w mniej niż tydzień. Sprawdź nas! 🔥 |
 
