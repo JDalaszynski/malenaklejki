@@ -11,6 +11,7 @@ import { ORDER_TABS, SectionTabs } from "@/components/admin/SectionTabs";
 import { requireAdmin } from "@/lib/auth/dal";
 import { listOrdersPage, ORDERS_PAGE_SIZE } from "@/lib/admin/queries";
 import { parseFilters, parsePage, type AdminSearchParams } from "@/lib/admin/filters";
+import { getProductionCostSettings } from "@/lib/settings/productionCostStore";
 
 export const metadata: Metadata = {
   title: "Panel — kosz",
@@ -26,7 +27,10 @@ export default async function TrashPage({
 }) {
   const admin = await requireAdmin();
   const params = await searchParams;
-  const page = await listOrdersPage(parseFilters(params, true), parsePage(params));
+  const [page, costs] = await Promise.all([
+    listOrdersPage(parseFilters(params, true), parsePage(params)),
+    getProductionCostSettings(),
+  ]);
 
   return (
     <AdminLayout
@@ -52,7 +56,7 @@ export default async function TrashPage({
       </Card>
 
       <Card title={`W koszu (${page.total})`}>
-        <OrdersTable orders={page.orders} emptyMessage="Kosz jest pusty." />
+        <OrdersTable orders={page.orders} costs={costs} emptyMessage="Kosz jest pusty." />
         <Pagination
           page={page.page}
           pageCount={page.pageCount}

@@ -19,6 +19,7 @@ import {
   daysInYear,
   financeOf,
   loadManualSales,
+  manualEntry,
   loadPaidOrders,
   monthKey,
   monthlyBreakdown,
@@ -36,6 +37,9 @@ import {
 } from "@/lib/admin/stats";
 import { ManualSales } from "@/components/admin/ManualSales";
 import { formatPln } from "@/lib/orders/status";
+import { sheetCostAt } from "@/lib/settings/productionCost";
+import { getProductionCostSettings } from "@/lib/settings/productionCostStore";
+import { SHEET_PRICE } from "@/lib/sheets/types";
 
 export const metadata: Metadata = {
   title: "Panel — statystyki",
@@ -127,11 +131,17 @@ export default async function StatsPage({
   const params = await searchParams;
   const initialPeriod = typeof params.okres === "string" ? params.okres : undefined;
 
-  const [orders, manualSales] = await Promise.all([loadPaidOrders(), loadManualSales()]);
+  const [orders, manualSales, costs] = await Promise.all([
+    loadPaidOrders(),
+    loadManualSales(),
+    getProductionCostSettings(),
+  ]);
 
   // Zamówienia ze sklepu i sprzedaż dopisana ręcznie liczą się tak samo,
-  // więc dalej pracujemy już tylko na wspólnej liście wpisów.
-  const entries = toSalesEntries(orders, manualSales);
+  // więc dalej pracujemy już tylko na wspólnej liście wpisów. Każdy wpis
+  // niesie koszt arkusza z dnia, w którym przypada.
+  const entries = toSalesEntries(orders, manualSales, costs);
+  const sheetCost = sheetCostAt(costs);
 
   const months = withTaxes(monthlyBreakdown(entries, 12));
 
@@ -158,7 +168,10 @@ export default async function StatsPage({
 
   // Zamówienia z reklam w tych samych okresach — według tej samej daty, co zysk.
   const adsOrders = (prefix: string) =>
-    summarizeAdsOrders(orders.filter((order) => monthKey(statsDate(order)).startsWith(prefix)));
+    summarizeAdsOrders(
+      orders.filter((order) => monthKey(statsDate(order)).startsWith(prefix)),
+      costs
+    );
 
   const periods: StatsPeriod[] = [
     {
@@ -199,18 +212,19 @@ export default async function StatsPage({
   ];
 
   // Rachunek modelowego zamówienia — te same funkcje, co reszta strony, więc
-  // przykład nie może rozjechać się ze stawkami.
+  // przykład nie może rozjechać się ze stawkami. Liczony po stawce na dziś.
   const example = summarize([
     {
       date: new Date().toISOString(),
       sheets: 1,
-      gross: 49 + COST_RATES.shippingGross,
+      gross: SHEET_PRICE + COST_RATES.shippingGross,
+      sheetNet: sheetCost.net,
       manual: false,
     },
   ]);
 
   const manualRows: ManualSaleRow[] = manualSales.map((sale) => {
-    const finance = financeOf({ sheets: sale.sheets, gross: sale.amount });
+    const finance = financeOf(manualEntry(sale, costs));
     return { ...sale, profit: finance.unpriced ? null : finance.profit };
   });
 
@@ -228,13 +242,13 @@ export default async function StatsPage({
 
       <CollapsibleCard
         title="Jak liczymy zysk"
-        description={`Arkusz ${formatPln(COST_RATES.sheetGross)}, kurier ${formatPln(
+        description={`Arkusz ${formatPln(sheetCost.net)} netto, kurier ${formatPln(
           COST_RATES.shippingGross
-        )}, koszt dodatkowy ${formatPln(COST_RATES.extraGross)}, VAT ${Math.round(
+        )} brutto, koszt dodatkowy ${formatPln(COST_RATES.extraGross)}, VAT ${Math.round(
           COST_RATES.vatRate * 100
         )}%.`}
       >
-        <CostModel example={example} />
+        <CostModel example={example} costs={costs} />
       </CollapsibleCard>
 
       <ManualSales sales={manualRows} />

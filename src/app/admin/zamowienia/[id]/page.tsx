@@ -5,6 +5,7 @@ import { OrderDetailView } from "@/components/admin/order/OrderDetailView";
 import { requireAdmin } from "@/lib/auth/dal";
 import { getOrder } from "@/lib/admin/queries";
 import { listAuditForOrder } from "@/lib/admin/audit";
+import { getProductionCostSettings } from "@/lib/settings/productionCostStore";
 
 export const metadata: Metadata = {
   title: "Panel — zamówienie",
@@ -22,7 +23,9 @@ export default async function AdminOrderPage({ params }: { params: Promise<{ id:
   const order = await getOrder(id);
   if (!order) notFound();
 
-  const audit = await listAuditForOrder(id);
+  const [audit, costs] = await Promise.all([listAuditForOrder(id), getProductionCostSettings()]);
 
-  return <OrderDetailView order={order} audit={audit} adminEmail={admin.email ?? ""} />;
+  return (
+    <OrderDetailView order={order} audit={audit} adminEmail={admin.email ?? ""} costs={costs} />
+  );
 }

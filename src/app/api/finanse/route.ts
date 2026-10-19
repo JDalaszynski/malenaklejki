@@ -10,6 +10,8 @@ import {
   toSalesEntries,
   type SalesEntry,
 } from "@/lib/admin/stats";
+import { sheetCostAt } from "@/lib/settings/productionCost";
+import { getProductionCostSettings } from "@/lib/settings/productionCostStore";
 
 export const dynamic = "force-dynamic";
 
@@ -19,7 +21,8 @@ export const dynamic = "force-dynamic";
  *
  * Liczy dokładnie to samo, co /admin/statystyki — te same wpisy (opłacone
  * zamówienia bez wyłączonych ze statystyk + sprzedaż ręczna) i te same stawki
- * z `lib/admin/costs` — więc panel i sklep zawsze pokazują tę samą kwotę.
+ * z `lib/admin/costs` oraz historia kosztu arkusza z ustawień sklepu — więc
+ * panel i sklep zawsze pokazują tę samą kwotę.
  * Zwraca wyłącznie sumy miesięczne i dzienne, bez żadnych danych klientów.
  *
  * Dostęp tylko z nagłówkiem `Authorization: Bearer <FINANCE_API_TOKEN>`.
@@ -73,8 +76,13 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401, headers: NO_STORE });
   }
 
-  const [orders, manualSales] = await Promise.all([loadPaidOrders(), loadManualSales()]);
-  const entries = toSalesEntries(orders, manualSales);
+  const [orders, manualSales, costs] = await Promise.all([
+    loadPaidOrders(),
+    loadManualSales(),
+    getProductionCostSettings(),
+  ]);
+  const entries = toSalesEntries(orders, manualSales, costs);
+  const sheetCost = sheetCostAt(costs);
 
   const firstSale = entries.reduce(
     (earliest, entry) => (!earliest || entry.date < earliest ? entry.date : earliest),
@@ -104,7 +112,10 @@ export async function GET(request: NextRequest) {
     {
       shop: "malenaklejki",
       generatedAt: new Date().toISOString(),
-      rates: COST_RATES,
+      // Stawki na dziś; koszt arkusza zmienia się w czasie, więc obok idzie
+      // cała historia — miesiące wyżej są już policzone po swoich stawkach.
+      rates: { ...COST_RATES, sheetNet: sheetCost.net, sheetGross: sheetCost.gross },
+      sheetCostHistory: costs.rates,
       months,
       days: dailyBreakdown(entries),
     },

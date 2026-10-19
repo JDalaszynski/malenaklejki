@@ -5,12 +5,14 @@
  */
 
 /**
- * Stawki, z których liczy się zysk. Wszystkie kwoty są brutto — tak, jak
- * widnieją na fakturach i paragonach, więc łatwo je sprawdzić i podmienić.
+ * Stałe stawki, z których liczy się zysk. Kwoty są brutto — tak, jak widnieją
+ * na fakturach i paragonach, więc łatwo je sprawdzić i podmienić.
+ *
+ * Koszt wydruku arkusza tu nie mieszka: zmienia się w czasie, więc ma własną
+ * historię ustawianą w panelu (`lib/settings/productionCost`), a każdy wpis
+ * sprzedaży niesie stawkę z dnia, w którym go liczymy (`SalesEntry.sheetNet`).
  */
 export const COST_RATES = {
-  /** Wydruk jednego arkusza A4 — faktura kosztowa, VAT do odliczenia. */
-  sheetGross: 18.45,
   /** Przesyłka kurierska od zamówienia — faktura kosztowa, VAT do odliczenia. */
   shippingGross: 19.99,
   /**
@@ -74,6 +76,12 @@ export type SalesEntry = {
   sheets: number;
   /** Kwota brutto, jaką zapłacił klient (z dostawą). */
   gross: number;
+  /**
+   * Koszt wydruku arkusza netto obowiązujący w dniu tej sprzedaży — wybiera
+   * go `sheetCostAt` z historii stawek. Dzięki temu miesiąc sprzed podwyżki
+   * liczy się po starej stawce, a po niej po nowej, bez żadnych wyjątków.
+   */
+  sheetNet: number;
   manual: boolean;
 };
 
@@ -122,7 +130,7 @@ const EMPTY_FINANCE: SaleFinance = {
  * Każdy składnik zaokrąglamy do grosza już tutaj, żeby suma miesięcy zawsze
  * zgadzała się z sumą roku — niezależnie od tego, jak pogrupujemy wpisy.
  */
-export function financeOf(entry: Pick<SalesEntry, "sheets" | "gross">): SaleFinance {
+export function financeOf(entry: Pick<SalesEntry, "sheets" | "gross" | "sheetNet">): SaleFinance {
   // Wpis bez kwoty (dopisek „ilu arkuszy", bez ceny) nie ma czego wyceniać —
   // doliczenie samych kosztów zrobiłoby z niego fikcyjną stratę.
   if (entry.gross <= 0) return EMPTY_FINANCE;
@@ -131,8 +139,10 @@ export function financeOf(entry: Pick<SalesEntry, "sheets" | "gross">): SaleFina
   const netRevenue = netOf(gross);
   const vatDue = round2(gross - netRevenue);
 
-  const sheetsCostGross = round2(entry.sheets * COST_RATES.sheetGross);
-  const sheetsCostNet = netOf(sheetsCostGross);
+  // Faktura dostawcy to netto razy arkusze plus VAT od stawki jednostkowej —
+  // przy 15 zł netto daje to dokładnie dawne 18,45 zł brutto za arkusz.
+  const sheetsCostNet = round2(entry.sheets * entry.sheetNet);
+  const sheetsCostGross = round2(entry.sheets * round2(entry.sheetNet * (1 + COST_RATES.vatRate)));
   const shippingCostNet = netOf(COST_RATES.shippingGross);
   const extraCost = COST_RATES.extraGross;
 
@@ -170,6 +180,11 @@ export type PeriodStats = {
   netRevenue: number;
   vatDue: number;
   sheetsCost: number;
+  /**
+   * Z jakich stawek złożył się koszt arkuszy — po jednej pozycji na stawkę,
+   * rosnąco. Okres na przełomie zmiany ceny ma tu dwie pozycje.
+   */
+  sheetCosts: SheetCostMix[];
   shippingCost: number;
   extraCost: number;
   costTotal: number;
@@ -184,6 +199,9 @@ export type PeriodStats = {
   margin: number;
 };
 
+/** Arkusze policzone po jednej stawce netto. */
+export type SheetCostMix = { net: number; sheets: number };
+
 export const EMPTY_STATS: PeriodStats = {
   orders: 0,
   manualEntries: 0,
@@ -194,6 +212,7 @@ export const EMPTY_STATS: PeriodStats = {
   netRevenue: 0,
   vatDue: 0,
   sheetsCost: 0,
+  sheetCosts: [],
   shippingCost: 0,
   extraCost: 0,
   costTotal: 0,
@@ -216,6 +235,7 @@ export type MonthlyStats = PeriodStats & {
 
 export function summarize(entries: SalesEntry[]): PeriodStats {
   const stats: PeriodStats = { ...EMPTY_STATS };
+  const sheetsByRate = new Map<number, number>();
 
   for (const entry of entries) {
     const finance = financeOf(entry);
@@ -237,6 +257,9 @@ export function summarize(entries: SalesEntry[]): PeriodStats {
     stats.netRevenue = round2(stats.netRevenue + finance.netRevenue);
     stats.vatDue = round2(stats.vatDue + finance.vatDue);
     stats.sheetsCost = round2(stats.sheetsCost + finance.sheetsCostNet);
+    if (entry.sheets) {
+      sheetsByRate.set(entry.sheetNet, (sheetsByRate.get(entry.sheetNet) ?? 0) + entry.sheets);
+    }
     stats.shippingCost = round2(stats.shippingCost + finance.shippingCostNet);
     stats.extraCost = round2(stats.extraCost + finance.extraCost);
     stats.costTotal = round2(stats.costTotal + finance.costTotal);
@@ -244,6 +267,10 @@ export function summarize(entries: SalesEntry[]): PeriodStats {
     stats.vatPayable = round2(stats.vatPayable + finance.vatPayable);
     stats.profit = round2(stats.profit + finance.profit);
   }
+
+  stats.sheetCosts = [...sheetsByRate]
+    .map(([net, sheets]) => ({ net, sheets }))
+    .sort((a, b) => a.net - b.net);
 
   const priced = stats.orders + stats.manualEntries - stats.unpriced;
   stats.profitPerSale = priced ? round2(stats.profit / priced) : 0;

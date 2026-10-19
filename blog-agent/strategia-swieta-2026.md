@@ -8,7 +8,7 @@
 
 ## 1. W skrócie
 
-**Święta to dla nas sezon koszyka, a nie sezon ruchu.** Przez jeden sezon nie wygramy głowy `naklejki świąteczne`. Tę frazę zajmują sklepy z gotowymi wzorami, a my sprzedajemy druk własnego obrazka. Wygrać da się za to każdą frazę z modyfikatorem personalizacji (z imieniem, ze zdjęciem, z logo, na słoik, na nalewkę). Do tego święta jako jedyna okazja w roku same prowadzą klienta do kilku arkuszy naraz: etykiety na prezenty, słoiki i nalewki, paczki. Przy trzech arkuszach zysk z zamówienia rośnie z 22,84 zł do 72,51 zł, a udział dostawy w rachunku klienta spada z 29% do 12%.
+**Święta to dla nas sezon koszyka, a nie sezon ruchu.** Przez jeden sezon nie wygramy głowy `naklejki świąteczne`. Tę frazę zajmują sklepy z gotowymi wzorami, a my sprzedajemy druk własnego obrazka. Wygrać da się za to każdą frazę z modyfikatorem personalizacji (z imieniem, ze zdjęciem, z logo, na słoik, na nalewkę). Do tego święta jako jedyna okazja w roku same prowadzą klienta do kilku arkuszy naraz: etykiety na prezenty, słoiki i nalewki, paczki. Przy trzech arkuszach zysk z zamówienia rośnie z 12,84 zł do 42,51 zł (ponad trzy razy), a udział dostawy w rachunku klienta spada z 29% do 12%.
 
 **Plan w jednym zdaniu:** jeden świąteczny hub opublikowany w pierwszej dekadzie października, sześć odświeżeń stron, które już mają ruch i naturalny kąt prezentowy, dwie realne aktualizacje huba w listopadzie, żadnych nowych stron na mikrookazje i żadnych obietnic terminu dostawy bez zgody właściciela.
 
@@ -59,13 +59,13 @@ GA4 jest wpięty, ale **nie wysyła żadnego zdarzenia e-commerce** (`purchase`,
 
 ## 3. Teza: sezon koszyka, nie sezon ruchu
 
-Liczby z `analiza-nisz-2026-09-09.md` §3.2 (algorytm `financeOf()`):
+Liczby z algorytmu `financeOf()` przy koszcie wydruku 25 zł netto za arkusz (stawka od 19.10.2026, ustawiana w panelu: Ustawienia → Koszt produkcji arkusza). Do 18.10.2026 arkusz kosztował 15 zł netto i zysk wynosił 22,84 / 47,68 / 72,51 zł (`analiza-nisz-2026-09-09.md` §3.2):
 
 | Zamówienie | Klient płaci (z dostawą 19,99 zł) | Udział dostawy w rachunku | Zysk |
 | :--- | ---: | ---: | ---: |
-| 1 arkusz | 68,99 zł | 29% | 22,84 zł |
-| 2 arkusze | 117,99 zł | 17% | 47,68 zł |
-| 3 arkusze | 166,99 zł | 12% | 72,51 zł |
+| 1 arkusz | 68,99 zł | 29% | 12,84 zł |
+| 2 arkusze | 117,99 zł | 17% | 27,68 zł |
+| 3 arkusze | 166,99 zł | 12% | 42,51 zł |
 
 Święta to jedyny moment w roku, w którym jedna osoba ma naraz trzy różne potrzeby: podpisać prezenty, okleić słoiki lub butelki i opakować paczki. Każda z nich to osobny układ arkusza. Z tego wynikają trzy zasady dla każdego tekstu świątecznego:
 
@@ -246,7 +246,7 @@ To są cele, nie prognozy. Bazy nie ma, bo to pierwszy sezon domeny.
 
 | Decyzja | Uzasadnienie | Warunek powrotu |
 | :--- | :--- | :--- |
-| **Brak treści "promocja świąteczna / Black Friday"** | `facts.md`: brak rabatów. Rabat 20% to 9,80 zł brutto, czyli 7,97 zł netto, **35% zysku** z zamówienia jednoarkuszowego (22,84 zł). Stała cena to nasz wyróżnik, nie słabość | brak |
+| **Brak treści "promocja świąteczna / Black Friday"** | `facts.md`: brak rabatów. Rabat 20% to 9,80 zł brutto, czyli 7,97 zł netto, **62% zysku** z zamówienia jednoarkuszowego (12,84 zł przy koszcie arkusza 25 zł netto od 19.10.2026). Stała cena to nasz wyróżnik, nie słabość | brak |
 | **Brak osobnych stron na mikrookazje** (Mikołajki, adwent, Wigilia firmowa, Sylwester) | Zasada 1 Fazy 4; każda z nich to jedna sekcja w hubie. Pięć cienkich stron na pozycji 30 nie da nic | dane z sezonu 2026 (§10) |
 | **Brak darmowych szablonów świątecznych do druku** | Klaster DIY: 0 kliknięć (`strategy.md` §7) | warunek ze `strategy.md` §7 |
 | **Brak walki o głowę `naklejki świąteczne` bez modyfikatora** | Intencja "gotowy zestaw", którego nie sprzedajemy | katalog gotowych zestawów (P1) |

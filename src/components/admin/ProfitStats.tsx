@@ -1,6 +1,13 @@
+import Link from "next/link";
+
 import type { MonthlyStatsWithTax, PeriodStats, TaxBreakdown } from "@/lib/admin/costs";
 import { COST_RATES, TAX_RATES, round2 } from "@/lib/admin/costs";
 import { formatPln } from "@/lib/orders/status";
+import {
+  formatCostDay,
+  sheetCostAt,
+  type ProductionCostSettings,
+} from "@/lib/settings/productionCost";
 
 function plural(count: number, one: string, few: string, many: string): string {
   if (count === 1) return one;
@@ -16,6 +23,20 @@ const daysLabel = (count: number) => plural(count, "dzień", "dni", "dni");
 /** Ile sprzedaży weszło do rachunku zysku — wpisy bez kwoty są poza nim. */
 export function pricedSales(stats: PeriodStats): number {
   return stats.orders + stats.manualEntries - stats.unpriced;
+}
+
+/**
+ * Podpis kosztu arkuszy: ile arkuszy po jakiej stawce netto. Okres na
+ * przełomie zmiany ceny pokazuje obie stawki, żeby rachunek dał się sprawdzić.
+ */
+function sheetCostHint(stats: PeriodStats): string {
+  if (stats.sheetCosts.length === 0) return "brak arkuszy";
+  // Pełne złote bez „,00" — rok na przełomie zmiany ceny i tak ma dwie stawki.
+  const amount = (net: number) =>
+    Number.isInteger(net) ? `${net} zł` : formatPln(net);
+  return `${stats.sheetCosts
+    .map((mix) => `${mix.sheets} × ${amount(mix.net)}`)
+    .join(" + ")} netto`;
 }
 
 /** Skrót kwoty do jednego miejsca po przecinku — dla podpisów pod kafelkami. */
@@ -196,7 +217,7 @@ export function ProfitBreakdown({
         <BreakdownRow label="Przychód netto" amount={stats.netRevenue} sign="=" />
         <BreakdownRow
           label="Wydruk arkuszy"
-          hint={`${stats.sheets} × ${formatPln(COST_RATES.sheetGross)} brutto`}
+          hint={sheetCostHint(stats)}
           amount={stats.sheetsCost}
           sign="−"
         />
@@ -481,12 +502,29 @@ export function MonthlyTable({ months }: { months: MonthlyStatsWithTax[] }) {
  * Ściągawka z rachunku — te same stawki, na których liczy się cała strona,
  * pokazane na jednym typowym zamówieniu.
  */
-export function CostModel({ example }: { example: PeriodStats }) {
+export function CostModel({
+  example,
+  costs,
+}: {
+  example: PeriodStats;
+  /** Historia kosztu arkusza — karta pokazuje stawkę na dziś i poprzednią. */
+  costs: ProductionCostSettings;
+}) {
+  const sheetCost = sheetCostAt(costs);
+  const currentIndex = costs.rates.findIndex((rate) => rate.from === sheetCost.from);
+  const previous = currentIndex > 0 ? costs.rates[currentIndex - 1] : null;
+
   const rates = [
     {
       label: "Arkusz A4",
-      value: `${formatPln(COST_RATES.sheetGross)} brutto`,
-      hint: `netto ${formatPln(COST_RATES.sheetGross / 1.23)} — w kosztach, VAT odliczony`,
+      value: `${formatPln(sheetCost.net)} netto`,
+      hint: `${formatPln(sheetCost.gross)} brutto, VAT odliczony${
+        sheetCost.from
+          ? ` · od ${formatCostDay(sheetCost.from)}${
+              previous ? `, wcześniej ${formatPln(previous.net)}` : ""
+            }`
+          : ""
+      }`,
     },
     {
       label: "Przesyłka kurierska",
@@ -526,9 +564,17 @@ export function CostModel({ example }: { example: PeriodStats }) {
   return (
     <div className="flex flex-col gap-5">
       <div>
-        <p className="text-[11px] font-black uppercase tracking-wider text-muted-foreground mb-3">
-          Koszty sprzedaży
-        </p>
+        <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 mb-3">
+          <p className="text-[11px] font-black uppercase tracking-wider text-muted-foreground">
+            Koszty sprzedaży
+          </p>
+          <Link
+            href="/admin/ustawienia#koszt-arkusza"
+            className="text-xs font-bold text-primary hover:underline"
+          >
+            Historia i zmiana kosztu arkusza
+          </Link>
+        </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
           {rates.map((rate) => (
             <div key={rate.label} className="rounded-2xl border border-border/60 bg-muted/20 p-4">
@@ -540,6 +586,10 @@ export function CostModel({ example }: { example: PeriodStats }) {
             </div>
           ))}
         </div>
+        <p className="text-xs font-medium text-muted-foreground mt-3">
+          Koszt arkusza liczymy po stawce z dnia zapłaty zamówienia (sprzedaż dopisana ręcznie — z
+          dnia sprzedaży), więc zmiana stawki nie przelicza miesięcy sprzed niej.
+        </p>
       </div>
 
       <div>
@@ -561,7 +611,7 @@ export function CostModel({ example }: { example: PeriodStats }) {
 
       <div className="rounded-2xl border border-border/60 p-4 sm:p-5">
         <p className="text-[11px] font-black uppercase tracking-wider text-muted-foreground mb-3">
-          Przykład: jedno zamówienie na 1 arkusz za {formatPln(example.gross)}
+          Przykład: jedno zamówienie na 1 arkusz za {formatPln(example.gross)}, po dzisiejszej stawce
         </p>
         <ProfitBreakdown stats={example} />
         <p className="text-xs font-medium text-muted-foreground mt-3">

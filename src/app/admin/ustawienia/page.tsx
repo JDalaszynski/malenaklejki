@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
-import { ArrowUpDown, Layers, Palmtree, Truck } from "lucide-react";
+import { ArrowUpDown, Layers, Palmtree, Printer, Truck } from "lucide-react";
 
 import { AdminLayout } from "@/components/admin/AdminLayout";
+import { ProductionCostForm } from "@/components/admin/ProductionCostForm";
 import { ReadySheetsModeForm } from "@/components/admin/ReadySheetsModeForm";
 import { SettingsNav, type SettingsNavGroup } from "@/components/admin/SettingsNav";
 import { SettingsSection } from "@/components/admin/SettingsSection";
@@ -9,6 +10,9 @@ import { ShippingEstimateForm } from "@/components/admin/ShippingEstimateForm";
 import { VacationSettingsForm } from "@/components/admin/VacationSettingsForm";
 import { SheetOrderCard } from "@/components/sheets/SheetOrderDialog";
 import { requireAdmin } from "@/lib/auth/dal";
+import { formatPln } from "@/lib/orders/status";
+import { formatCostDay, sheetCostAt, upcomingSheetCost } from "@/lib/settings/productionCost";
+import { getProductionCostSettings } from "@/lib/settings/productionCostStore";
 import { READY_SHEETS_MODE_LABELS } from "@/lib/settings/readySheets";
 import { getReadySheetsSettingsFresh } from "@/lib/settings/readySheetsStore";
 import { businessDaysLabel } from "@/lib/settings/shippingEstimate";
@@ -33,12 +37,13 @@ export default async function AdminSettingsPage() {
   const admin = await requireAdmin();
   // Celowo pomijamy pamięć podręczną — panel ma pokazywać stan zapisany
   // w bazie, a nie to, co akurat widzą klienci.
-  const [vacation, readySheets, shipping, sheets, savedOrder] = await Promise.all([
+  const [vacation, readySheets, shipping, sheets, savedOrder, productionCost] = await Promise.all([
     getVacationSettingsFresh(),
     getReadySheetsSettingsFresh(),
     getShippingEstimateSettingsFresh(),
     listSheets(),
     getSheetOrder(),
+    getProductionCostSettings(),
   ]);
 
   // Opublikowane zestawy w kolejności, w jakiej widzi je klient.
@@ -49,6 +54,9 @@ export default async function AdminSettingsPage() {
   const publishedCount = inShop.length;
 
   const vacationState = resolveVacation(vacation, warsawToday());
+
+  const sheetCost = sheetCostAt(productionCost);
+  const nextSheetCost = upcomingSheetCost(productionCost);
 
   const groups: SettingsNavGroup[] = [
     {
@@ -100,13 +108,26 @@ export default async function AdminSettingsPage() {
         },
       ],
     },
+    {
+      label: "Rozliczenia",
+      items: [
+        {
+          id: "koszt-arkusza",
+          label: "Koszt produkcji arkusza",
+          status: nextSheetCost?.from
+            ? `${formatPln(sheetCost.net)} → ${formatPln(nextSheetCost.net)} od ${formatCostDay(nextSheetCost.from).slice(0, 5)}`
+            : `${formatPln(sheetCost.net)} netto`,
+          tone: nextSheetCost ? "info" : "neutral",
+        },
+      ],
+    },
   ];
 
   return (
     <AdminLayout
       adminEmail={admin.email ?? ""}
       title="Ustawienia sklepu"
-      subtitle="Terminy i komunikaty dla klientów oraz widoczność i kolejność gotowych zestawów. Każdą sekcję zapisujesz osobno."
+      subtitle="Terminy i komunikaty dla klientów, widoczność i kolejność gotowych zestawów oraz koszt produkcji arkusza. Każdą sekcję zapisujesz osobno."
     >
       <div className="grid grid-cols-1 lg:grid-cols-[17rem_minmax(0,1fr)] gap-6 lg:gap-10 items-start">
         <SettingsNav groups={groups} />
@@ -157,6 +178,15 @@ export default async function AdminSettingsPage() {
                 createdAt: sheet.createdAt,
               }))}
             />
+          </SettingsSection>
+
+          <SettingsSection
+            id="koszt-arkusza"
+            icon={Printer}
+            title="Koszt produkcji arkusza"
+            description="Ile płacisz dostawcy za wydruk jednego arkusza A4, netto. Z tej kwoty idzie cena pozycji do BaseLinkera i koszt arkuszy w statystykach, rachunku zamówienia i panelu finansowym."
+          >
+            <ProductionCostForm settings={productionCost} />
           </SettingsSection>
         </div>
       </div>

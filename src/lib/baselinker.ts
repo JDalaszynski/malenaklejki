@@ -79,12 +79,6 @@ export const BL_PRODUCT = {
   storageId: 28234,
 } as const;
 
-/**
- * Cena brutto pozycji przekazywana do BaseLinkera. Stała — w BaseLinkerze
- * zamówienia mają wyglądać jednakowo, niezależnie od ceny wyliczonej w sklepie.
- */
-export const BL_UNIT_PRICE_BRUTTO = 18.45;
-
 /** Koszt dostawy przekazywany do BaseLinkera — również stały. */
 export const BL_DELIVERY_PRICE = 19.99;
 
@@ -116,6 +110,7 @@ export const BL_INVOICE_DATA = {
 export interface BLOrderSource {
   orderNumber?: string;
   createdAt?: string;
+  paidAt?: string | null;
   customer?: {
     firstName?: string;
     lastName?: string;
@@ -195,8 +190,16 @@ export function buildOrderComments(
  * Buduje komplet parametrów `addOrder` z zamówienia zapisanego w Firestore.
  * Jedno miejsce dla sklepu i dla ręcznej wysyłki z panelu, żeby zamówienia
  * w BaseLinkerze zawsze wyglądały tak samo.
+ *
+ * `unitPriceBrutto` to cena pozycji: koszt wydruku arkusza brutto u dostawcy,
+ * a nie cena ze sklepu. Wybiera ją wywołujący z historii stawek ustawianej
+ * w panelu (`sheetCostAt` w `lib/settings/productionCost`) — według dnia
+ * zapłaty, tak samo jak koszt w statystykach.
  */
-export function buildBaseLinkerOrderParams(order: BLOrderSource): BLOrderParameters {
+export function buildBaseLinkerOrderParams(
+  order: BLOrderSource,
+  unitPriceBrutto: number
+): BLOrderParameters {
   const customer = order.customer ?? {};
   const delivery = order.delivery ?? {};
   const isCourier = delivery.method === "kurier";
@@ -262,7 +265,7 @@ export function buildBaseLinkerOrderParams(order: BLOrderSource): BLOrderParamet
       storage_id: BL_PRODUCT.storageId,
       product_id: BL_PRODUCT.id,
       name: order.orderNumber ? `${BL_PRODUCT.name} - ${order.orderNumber}` : BL_PRODUCT.name,
-      price_brutto: BL_UNIT_PRICE_BRUTTO,
+      price_brutto: unitPriceBrutto,
       attributes: buildProductAttributes(item),
       tax_rate: (item.taxRate as number) ?? 23,
       quantity: (item.sheetQuantity as number) ?? 1,
@@ -375,8 +378,8 @@ function resolveNotesFieldId(): Promise<string | null> {
  * Buduje parametry z zamówienia, dopina uwagi do customowego pola "Uwagi"
  * i wysyła zamówienie do BaseLinkera.
  */
-export async function sendOrderToBaseLinker(order: BLOrderSource) {
-  const params = buildBaseLinkerOrderParams(order);
+export async function sendOrderToBaseLinker(order: BLOrderSource, unitPriceBrutto: number) {
+  const params = buildBaseLinkerOrderParams(order, unitPriceBrutto);
   const notes = buildNotesFieldValue(order);
 
   const fieldId = await resolveNotesFieldId();

@@ -34,6 +34,17 @@ import {
   getReadySheetsSettingsFresh,
   saveReadySheetsMode,
 } from "@/lib/settings/readySheetsStore";
+import {
+  formatCostDay,
+  productionCostFormSchema,
+  settingsOfFormValues,
+  type ProductionCostSettings,
+} from "@/lib/settings/productionCost";
+import {
+  getProductionCostSettings,
+  saveProductionCostSettings,
+} from "@/lib/settings/productionCostStore";
+import { formatPln } from "@/lib/orders/status";
 
 type Result<T = object> = ({ success: true } & T) | { success: false; error: string };
 
@@ -244,4 +255,54 @@ export async function updateShippingEstimate(raw: unknown): Promise<Result> {
   revalidatePath("/", "layout");
 
   return { success: true };
+}
+
+/* ------------------------------------------------------------------ */
+/* Koszt produkcji arkusza                                             */
+/* ------------------------------------------------------------------ */
+
+function describeProductionCost(settings: ProductionCostSettings): string {
+  return settings.rates
+    .map((rate) => `${formatPln(rate.net)} netto ${rate.from ? `od ${formatCostDay(rate.from)}` : "od początku"}`)
+    .join("; ");
+}
+
+/**
+ * Zapis całej historii stawek naraz — tak jak widać ją w formularzu. Zwraca
+ * zapisany stan (posortowany), żeby formularz od razu pokazał to, co poszło
+ * do bazy.
+ */
+export async function updateProductionCost(
+  raw: unknown
+): Promise<Result<{ settings: ProductionCostSettings }>> {
+  const actor = await requireAdminActor();
+  if (!actor) return DENIED;
+
+  const parsed = productionCostFormSchema.safeParse(raw);
+  if (!parsed.success) {
+    return { success: false, error: parsed.error.issues[0]?.message || "Błędne dane." };
+  }
+
+  const before = await getProductionCostSettings();
+  const settings = settingsOfFormValues(parsed.data);
+
+  let saved: ProductionCostSettings;
+  try {
+    saved = await saveProductionCostSettings(settings, actor.email);
+  } catch (error) {
+    console.error("updateProductionCost error:", error);
+    return { success: false, error: "Nie udało się zapisać stawek. Spróbuj ponownie." };
+  }
+
+  await recordAudit({
+    actorEmail: actor.email,
+    action: "Koszt produkcji arkusza",
+    details: `${describeProductionCost(before)} → ${describeProductionCost(saved)}`,
+  });
+
+  // Stawka wchodzi do statystyk, listy zamówień i rachunku przy zamówieniu —
+  // wszystkie te strony panelu liczą się od nowa przy następnym wejściu.
+  revalidatePath("/admin", "layout");
+
+  return { success: true, settings: saved };
 }

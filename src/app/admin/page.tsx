@@ -13,6 +13,7 @@ import { requireAdmin } from "@/lib/auth/dal";
 import { listOrdersPage, ORDERS_PAGE_SIZE } from "@/lib/admin/queries";
 import { parseFilters, parsePage, type AdminSearchParams } from "@/lib/admin/filters";
 import { sweepAbandonedOrders, ABANDONED_AFTER_DAYS } from "@/lib/orders/sweep";
+import { getProductionCostSettings } from "@/lib/settings/productionCostStore";
 
 export const metadata: Metadata = {
   title: "Panel — zamówienia",
@@ -30,12 +31,13 @@ export default async function AdminOrdersPage({
   const params = await searchParams;
   const filters = parseFilters(params);
 
-  // Oba zapytania idą równolegle — jedno drugiego nie potrzebuje, a przy
-  // sekwencji panel czekał na sumę obu czasów.
+  // Zapytania idą równolegle — jedno drugiego nie potrzebuje, a przy
+  // sekwencji panel czekał na sumę ich czasów.
   // Sprzątanie jest tylko podglądem: samo wejście na listę niczego nie kasuje.
-  const [page, sweep] = await Promise.all([
+  const [page, sweep, costs] = await Promise.all([
     listOrdersPage(filters, parsePage(params)),
     sweepAbandonedOrders({ dryRun: true }),
+    getProductionCostSettings(),
   ]);
 
   return (
@@ -71,7 +73,7 @@ export default async function AdminOrdersPage({
             : undefined
         }
       >
-        <OrdersTable orders={page.orders} />
+        <OrdersTable orders={page.orders} costs={costs} />
         <Pagination
           page={page.page}
           pageCount={page.pageCount}

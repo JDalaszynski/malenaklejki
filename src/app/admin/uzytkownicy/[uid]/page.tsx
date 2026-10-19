@@ -11,6 +11,7 @@ import { requireAdmin } from "@/lib/auth/dal";
 import { adminAuth, db } from "@/lib/firebase/admin";
 import { listOrdersForUser } from "@/lib/admin/queries";
 import { formatDateTime, formatPln } from "@/lib/orders/status";
+import { getProductionCostSettings } from "@/lib/settings/productionCostStore";
 
 export const metadata: Metadata = {
   title: "Panel — użytkownik",
@@ -37,9 +38,10 @@ export default async function AdminUserPage({ params }: { params: Promise<{ uid:
   const record = await adminAuth.getUser(uid).catch(() => null);
   if (!record) notFound();
 
-  const [profileSnap, orders] = await Promise.all([
+  const [profileSnap, orders, costs] = await Promise.all([
     db.collection("users").doc(uid).get(),
     listOrdersForUser(uid),
+    getProductionCostSettings(),
   ]);
   const profile = profileSnap.data();
 
@@ -168,7 +170,11 @@ export default async function AdminUserPage({ params }: { params: Promise<{ uid:
             : "To konto nie ma jeszcze żadnego zamówienia."
         }
       >
-        <OrdersTable orders={orders} emptyMessage="Brak zamówień powiązanych z tym kontem." />
+        <OrdersTable
+          orders={orders}
+          costs={costs}
+          emptyMessage="Brak zamówień powiązanych z tym kontem."
+        />
       </Card>
     </AdminLayout>
   );

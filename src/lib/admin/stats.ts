@@ -3,6 +3,11 @@ import "server-only";
 import { db } from "@/lib/firebase/admin";
 import { listOrders, type AdminOrder } from "./queries";
 import { financeOf, round2, summarize, type ManualSale, type PeriodStats, type SaleFinance, type SalesEntry } from "./costs";
+import {
+  orderCostDate,
+  sheetCostAt,
+  type ProductionCostSettings,
+} from "@/lib/settings/productionCost";
 
 /**
  * Stawki i cała arytmetyka zysku siedzą w `lib/admin/costs` — module bez
@@ -16,33 +21,50 @@ export function countSheets(order: AdminOrder): number {
   return order.items.reduce((sum, item) => sum + (item.sheetQuantity || 0), 0);
 }
 
-/** Rachunek jednego zamówienia ze sklepu — ten sam, co w statystykach. */
-export function orderFinance(order: AdminOrder): SaleFinance {
-  return financeOf({ sheets: countSheets(order), gross: order.totals.total });
-}
-
 /**
  * Miesiąc, do którego wliczamy zamówienie: data zapłaty, a dla starszych
  * zamówień bez `paidAt` — data złożenia. Bez tego zapasowego pola opłacone
- * zamówienia sprzed wdrożenia znikałyby ze statystyk.
+ * zamówienia sprzed wdrożenia znikałyby ze statystyk. Ta sama data wybiera
+ * stawkę za wydruk arkusza (`orderCostDate`), więc koszt i miesiąc się zgadzają.
  */
 export function statsDate(order: AdminOrder): string {
-  return order.paidAt || order.createdAt;
+  return orderCostDate(order);
+}
+
+/** Zamówienie ze sklepu jako wpis statystyk — ze stawką z dnia zapłaty. */
+function orderEntry(order: AdminOrder, costs: ProductionCostSettings): SalesEntry {
+  const date = statsDate(order);
+  return {
+    date,
+    sheets: countSheets(order),
+    gross: order.totals.total,
+    sheetNet: sheetCostAt(costs, date).net,
+    manual: false,
+  };
+}
+
+/** Rachunek jednego zamówienia ze sklepu — ten sam, co w statystykach. */
+export function orderFinance(order: AdminOrder, costs: ProductionCostSettings): SaleFinance {
+  return financeOf(orderEntry(order, costs));
 }
 
 /**
  * Zamówienie w kształcie statystyk — pojedyncza sprzedaż jest po prostu
  * okresem jednoelementowym, więc karta rachunku działa na nim bez zmian.
  */
-export function orderStats(order: AdminOrder): PeriodStats {
-  return summarize([
-    {
-      date: statsDate(order),
-      sheets: countSheets(order),
-      gross: order.totals.total,
-      manual: false,
-    },
-  ]);
+export function orderStats(order: AdminOrder, costs: ProductionCostSettings): PeriodStats {
+  return summarize([orderEntry(order, costs)]);
+}
+
+/** Sprzedaż dopisana ręcznie jako wpis statystyk — ze stawką z dnia sprzedaży. */
+export function manualEntry(sale: ManualSale, costs: ProductionCostSettings): SalesEntry {
+  return {
+    date: sale.soldAt,
+    sheets: sale.sheets,
+    gross: sale.amount,
+    sheetNet: sheetCostAt(costs, sale.soldAt).net,
+    manual: true,
+  };
 }
 
 /**
@@ -53,22 +75,16 @@ export function orderStats(order: AdminOrder): PeriodStats {
  * (`lib/admin/report`) idzie własną drogą i bierze je normalnie, bo do urzędu
  * musi trafić każda transakcja.
  */
-export function toSalesEntries(orders: AdminOrder[], manual: ManualSale[]): SalesEntry[] {
+export function toSalesEntries(
+  orders: AdminOrder[],
+  manual: ManualSale[],
+  costs: ProductionCostSettings
+): SalesEntry[] {
   return [
     ...orders
       .filter((order) => !order.excludedFromStats)
-      .map((order) => ({
-        date: statsDate(order),
-        sheets: countSheets(order),
-        gross: order.totals.total,
-        manual: false,
-      })),
-    ...manual.map((sale) => ({
-      date: sale.soldAt,
-      sheets: sale.sheets,
-      gross: sale.amount,
-      manual: true,
-    })),
+      .map((order) => orderEntry(order, costs)),
+    ...manual.map((sale) => manualEntry(sale, costs)),
   ];
 }
 
@@ -88,7 +104,10 @@ export type AdsOrdersSummary = {
  * prawdziwy koszt zamówienia z reklamy liczy się z tych liczb: wydatki
  * kampanii podzielone przez `orders`.
  */
-export function summarizeAdsOrders(orders: AdminOrder[]): AdsOrdersSummary {
+export function summarizeAdsOrders(
+  orders: AdminOrder[],
+  costs: ProductionCostSettings
+): AdsOrdersSummary {
   const fromAds = orders.filter((order) => order.acquisition && !order.excludedFromStats);
   const byKeyword = new Map<string, number>();
   for (const order of fromAds) {
@@ -99,7 +118,7 @@ export function summarizeAdsOrders(orders: AdminOrder[]): AdsOrdersSummary {
   return {
     orders: fromAds.length,
     sheetsGross: round2(fromAds.reduce((sum, order) => sum + order.totals.subtotal, 0)),
-    profit: round2(fromAds.reduce((sum, order) => sum + orderFinance(order).profit, 0)),
+    profit: round2(fromAds.reduce((sum, order) => sum + orderFinance(order, costs).profit, 0)),
     keywords: [...byKeyword]
       .map(([keyword, count]) => ({ keyword, orders: count }))
       .sort((a, b) => b.orders - a.orders || a.keyword.localeCompare(b.keyword, "pl")),

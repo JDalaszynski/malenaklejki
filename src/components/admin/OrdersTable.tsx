@@ -4,6 +4,7 @@ import { Check, ExternalLink, Minus } from "lucide-react";
 import type { AdminOrder } from "@/lib/admin/queries";
 import { StatusPill } from "@/components/account/StatusPill";
 import { orderFinance } from "@/lib/admin/stats";
+import type { ProductionCostSettings } from "@/lib/settings/productionCost";
 import { ACQUISITION_LABELS } from "@/lib/attribution";
 import {
   DELIVERY_METHOD_LABELS,
@@ -48,9 +49,12 @@ function CheckCell({
 
 export function OrdersTable({
   orders,
+  costs,
   emptyMessage = "Brak zamówień dla wybranych filtrów.",
 }: {
   orders: AdminOrder[];
+  /** Historia kosztu arkusza — zysk w kolumnie liczy się po stawce z dnia zapłaty. */
+  costs: ProductionCostSettings;
   emptyMessage?: string;
 }) {
   if (orders.length === 0) {
@@ -82,7 +86,7 @@ export function OrdersTable({
             // Zysk pokazujemy dopiero po zapłacie — z nieopłaconego zamówienia
             // nie ma jeszcze czego liczyć.
             const isPaid = normalizePaymentStatus(order.status) === "PAID";
-            const profit = isPaid ? orderFinance(order).profit : null;
+            const profit = isPaid ? orderFinance(order, costs).profit : null;
             const inBaselinker = order.baselinkerOrderId !== null;
             const hasInvoice = order.infakt?.status === "ISSUED" || Boolean(order.invoiceNumber);
 

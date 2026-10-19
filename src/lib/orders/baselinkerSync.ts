@@ -2,6 +2,8 @@ import "server-only";
 
 import { db } from "@/lib/firebase/admin";
 import { sendOrderToBaseLinker } from "@/lib/baselinker";
+import { orderCostDate, sheetCostAt } from "@/lib/settings/productionCost";
+import { getProductionCostSettings } from "@/lib/settings/productionCostStore";
 import { normalizePaymentStatus } from "./status";
 
 /**
@@ -78,7 +80,10 @@ export async function pushOrderToBaseLinker(
 
   if (!claimed) return { ok: true, skipped: true };
 
-  const result = await sendOrderToBaseLinker(order);
+  // Cena pozycji to koszt wydruku z dnia zapłaty — ta sama stawka, którą
+  // statystyki odejmują od zysku tego zamówienia.
+  const sheetCost = sheetCostAt(await getProductionCostSettings(), orderCostDate(order));
+  const result = await sendOrderToBaseLinker(order, sheetCost.gross);
 
   if (result?.status !== "SUCCESS") {
     // Blokadę zdejmujemy od razu — kolejna próba ma ruszyć bez czekania.

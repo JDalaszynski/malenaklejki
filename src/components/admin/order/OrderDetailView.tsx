@@ -12,6 +12,7 @@ import type { AdminOrder } from "@/lib/admin/queries";
 import { ACQUISITION_LABELS } from "@/lib/attribution";
 import { countSheets, orderStats } from "@/lib/admin/stats";
 import { isBeforeInvoicing } from "@/lib/orders/invoicing";
+import type { ProductionCostSettings } from "@/lib/settings/productionCost";
 import {
   formatDateTime,
   fulfillmentStatusOf,
@@ -49,15 +50,18 @@ export function OrderDetailView({
   order,
   audit,
   adminEmail,
+  costs,
 }: {
   order: AdminOrder;
   audit: AuditEntry[];
   adminEmail: string;
+  /** Historia kosztu arkusza — rachunek zamówienia bierze stawkę z dnia zapłaty. */
+  costs: ProductionCostSettings;
 }) {
   const payment = paymentStatusOf(order.status);
   const fulfillment = fulfillmentStatusOf(order.fulfillmentStatus);
   const isPaid = normalizePaymentStatus(order.status) === "PAID";
-  const finance = orderStats(order);
+  const finance = orderStats(order, costs);
   const sheets = countSheets(order);
 
   const files = productionFiles(order);

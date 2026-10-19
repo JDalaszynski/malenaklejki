@@ -221,7 +221,7 @@ Trasa `/feeds/google-merchant.xml` generowana z opublikowanych zestawów, odświ
 6. **Produkt konfigurowalny.** Jeśli jedyną drogą zakupu byłby kreator, Google może uznać, że strona docelowa nie sprzedaje produktu z feedu. Dlatego bezpośrednie "Dodaj do koszyka" nie jest wygodą, tylko warunkiem.
 
 ### 8.5 Bezpłatne wyniki czy reklamy
-Zaczynamy od **bezpłatnych wyników** - koszt zerowy, a to one karmią siatki produktów. Reklamy produktowe to decyzja budżetowa (15, pkt 4). Rachunek do tej decyzji: zysk z zamówienia jednoarkuszowego to 22,84 zł, więc przy przykładowym koszcie kliknięcia 0,50 zł (realnej stawki nie znamy) reklama zwraca się dopiero powyżej ok. 2,2% konwersji - bez pomiaru z sekcji 13 nie ma jak tego ocenić. Rekomendacja: miesiąc bezpłatnych wyników, potem mały test na samych zestawach świątecznych.
+Zaczynamy od **bezpłatnych wyników** - koszt zerowy, a to one karmią siatki produktów. Reklamy produktowe to decyzja budżetowa (15, pkt 4). Rachunek do tej decyzji: zysk z zamówienia jednoarkuszowego to 12,84 zł (przy koszcie wydruku 25 zł netto od 19.10.2026; wcześniej 22,84 zł), więc przy przykładowym koszcie kliknięcia 0,50 zł (realnej stawki nie znamy) reklama zwraca się dopiero powyżej ok. 3,9% konwersji - bez pomiaru z sekcji 13 nie ma jak tego ocenić. Rekomendacja: miesiąc bezpłatnych wyników, potem mały test na samych zestawach świątecznych.
 
 ---
 
