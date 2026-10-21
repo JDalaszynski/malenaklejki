@@ -18,6 +18,7 @@ import {
   secondaryCtaClass,
 } from "@/components/catalog/blocks";
 import { EditableCallout, EditablePanel } from "@/components/catalog/EditableSet";
+import { SITE_OPEN_GRAPH } from "@/lib/siteMetadata";
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
 import { JsonLd } from "@/components/seo/JsonLd";
@@ -56,7 +57,7 @@ export const metadata: Metadata = {
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: CATALOG_PATH },
-  openGraph: { title: TITLE, description: DESCRIPTION, url: `${SITE_URL}${CATALOG_PATH}`, type: "website" },
+  openGraph: { ...SITE_OPEN_GRAPH, title: TITLE, description: DESCRIPTION, url: `${SITE_URL}${CATALOG_PATH}` },
   twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
 };
 

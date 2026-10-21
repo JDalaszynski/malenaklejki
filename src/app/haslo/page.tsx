@@ -6,6 +6,7 @@ import { ResetRequestForm } from "@/components/auth/ResetRequestForm";
 
 export const metadata: Metadata = {
   title: "Nie pamiętam hasła — MałeNaklejki",
+  description: "Podaj adres e-mail konta MałeNaklejki, a wyślemy Ci link do ustawienia nowego hasła.",
   robots: { index: false, follow: false },
 };
 

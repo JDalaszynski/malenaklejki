@@ -14,6 +14,31 @@ import { FinalCTASection } from "@/components/home/FinalCTASection";
 import { LatestBlogPosts } from "@/components/blog/LatestBlogPosts";
 import { SeoContentSection } from "@/components/home/SeoContentSection";
 import { HOME_FAQS } from "@/components/home/homeFaqData";
+import type { Metadata } from "next";
+import { SITE_OPEN_GRAPH, SITE_TWITTER } from "@/lib/siteMetadata";
+
+const HOME_TITLE = "Naklejki z własnym nadrukiem od 1 sztuki | MałeNaklejki";
+const HOME_DESCRIPTION =
+  "Stwórz własne naklejki w kreatorze online: wgraj zdjęcie lub grafikę, a my wytniemy je po obrysie. Wodoodporna folia winylowa i stała cena 59 zł za arkusz A4.";
+
+export const metadata: Metadata = {
+  title: HOME_TITLE,
+  description: HOME_DESCRIPTION,
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    ...SITE_OPEN_GRAPH,
+    title: HOME_TITLE,
+    description: HOME_DESCRIPTION,
+    url: "https://www.malenaklejki.pl",
+  },
+  twitter: {
+    ...SITE_TWITTER,
+    title: HOME_TITLE,
+    description: HOME_DESCRIPTION,
+  },
+};
 
 export default async function Home() {
   // Odczyt jest zapamiętywany i nie sięga po sesję, więc strona zostaje

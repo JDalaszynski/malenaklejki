@@ -1,5 +1,11 @@
+import type { Metadata } from "next";
 import { CheckoutForm } from "@/components/checkout/CheckoutForm";
 import { Header } from "@/components/layout/Header";
+
+export const metadata: Metadata = {
+  title: "Dostawa i płatność - MałeNaklejki",
+  robots: { index: false, follow: false },
+};
 
 // Domyślny limit czasu platformy potrafił ubić akcję createOrder w trakcie
 // sekwencyjnych wywołań (BaseLinker, Brevo, P24), zanim mail o nowym

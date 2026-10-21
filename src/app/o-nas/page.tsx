@@ -2,6 +2,7 @@ import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { StickyCTAButton } from "@/components/blog/StickyCTAButton";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { SITE_OPEN_GRAPH } from "@/lib/siteMetadata";
 import { Metadata } from "next";
 import Link from "next/link";
 import {
@@ -30,6 +31,7 @@ export const metadata: Metadata = {
     canonical: PAGE_PATH,
   },
   openGraph: {
+    ...SITE_OPEN_GRAPH,
     title: "O nas - MałeNaklejki, polska drukarnia naklejek",
     description:
       "Polska drukarnia naklejek z własnym nadrukiem: od 1 arkusza A4 za 59,00 zł brutto, druk 300 DPI na folii winylowej, produkcja 2-3 dni robocze.",

@@ -75,11 +75,16 @@ export function SheetProduct({ sheet, related }: { sheet: CatalogSheet; related:
               ))}
             </div>
             <h1 className="mt-3 text-3xl sm:text-4xl font-black leading-tight tracking-tight text-foreground font-heading">
-              {sheet.name}{" "}
+              {sheet.name}
               {sheet.subtitle && (
-                <span className="mt-1.5 block text-base sm:text-lg font-extrabold leading-snug text-muted-foreground font-sans tracking-normal">
-                  {sheet.subtitle}
-                </span>
+                <>
+                  {/* Separator tylko dla tekstu: bez niego Google brał z H1
+                      „Zimna Zima naklejki zimowe…" zamiast tytułu strony. */}
+                  <span className="sr-only"> - </span>
+                  <span className="mt-1.5 block text-base sm:text-lg font-extrabold leading-snug text-muted-foreground font-sans tracking-normal">
+                    {sheet.subtitle}
+                  </span>
+                </>
               )}
             </h1>
             <p className="mt-3 text-sm font-bold text-muted-foreground">
@@ -242,7 +247,15 @@ export function SheetProduct({ sheet, related }: { sheet: CatalogSheet; related:
   );
 }
 
+const SHEET_TITLE_SUFFIX = ", arkusz A4";
+// Dłuższe tytuły Google zastępował tekstem H1, więc dopisek idzie tylko wtedy,
+// gdy tytuł się z nim mieści.
+const SHEET_TITLE_MAX = 60;
+
 /** Tytuł strony zestawu: nazwa, motyw i twarde parametry. */
 export function sheetPageTitle(sheet: CatalogSheet): string {
-  return `${sheetHeading(sheet)}, arkusz A4`;
+  const heading = sheetHeading(sheet);
+  return heading.length + SHEET_TITLE_SUFFIX.length <= SHEET_TITLE_MAX
+    ? `${heading}${SHEET_TITLE_SUFFIX}`
+    : heading;
 }

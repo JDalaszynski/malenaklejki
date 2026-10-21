@@ -3,6 +3,8 @@ import { Building2, Mail, Phone, ShieldCheck, MapPin } from "lucide-react";
 
 export const metadata = {
   title: "Regulamin - MałeNaklejki",
+  description:
+    "Regulamin sklepu MałeNaklejki: zasady korzystania z kreatora, składania zamówień, płatności, dostawy, zwrotów i reklamacji naklejek z własnym nadrukiem.",
   alternates: {
     canonical: "/regulamin",
   },

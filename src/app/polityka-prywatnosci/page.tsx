@@ -13,6 +13,8 @@ import {
 
 export const metadata = {
   title: "Polityka Prywatności - MałeNaklejki",
+  description:
+    "Polityka prywatności MałeNaklejki: jakie dane osobowe przetwarzamy przy zamówieniu, kontakcie i koncie klienta, jak długo je przechowujemy i jakie masz prawa.",
   alternates: {
     canonical: "/polityka-prywatnosci",
   },

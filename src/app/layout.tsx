@@ -15,6 +15,7 @@ import { getVacationSettings } from "@/lib/settings/vacationStore";
 import { isCatalogVisible } from "@/lib/sheets/public";
 import Script from "next/script";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { SITE_OPEN_GRAPH, SITE_TWITTER } from "@/lib/siteMetadata";
 
 const nunito = Nunito({
   variable: "--font-sans",
@@ -28,39 +29,13 @@ const fredoka = Fredoka({
   weight: ["400", "600", "700"],
 });
 
+// Tytuł, opis i adres kanoniczny strony głównej są w `page.tsx`: stąd
+// dziedziczyły je podstrony bez własnych metadanych (404, koszyk, regulamin).
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.malenaklejki.pl"),
-  title: "Naklejki z własnym nadrukiem od 1 szt. | MałeNaklejki",
-  description:
-    "Naklejki z własnym nadrukiem od 1 sztuki. Cięcie po obrysie, druk na trwałej folii winylowej, 59 zł za arkusz A4, produkcja 2-3 dni robocze.",
-  alternates: {
-    canonical: "/",
-  },
-  openGraph: {
-    title:
-      "Naklejki z własnym nadrukiem od 1 szt. | MałeNaklejki",
-    description:
-      "Naklejki z własnym nadrukiem od 1 sztuki. Cięcie po obrysie, druk na trwałej folii winylowej, 59 zł za arkusz A4, produkcja 2-3 dni robocze.",
-    url: "https://www.malenaklejki.pl",
-    siteName: "MałeNaklejki",
-    locale: "pl_PL",
-    type: "website",
-    images: [
-      {
-        url: "/images/og-main.jpg",
-        width: 1200,
-        height: 630,
-        alt: "MałeNaklejki - kreator personalizowanych naklejek na arkuszach A4",
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Naklejki z własnym nadrukiem od 1 szt. | MałeNaklejki",
-    description:
-      "Naklejki z własnym nadrukiem od 1 sztuki. Cięcie po obrysie, druk na trwałej folii winylowej, 59 zł za arkusz A4, produkcja 2-3 dni robocze.",
-    images: ["/images/og-main.jpg"],
-  },
+  title: "MałeNaklejki",
+  openGraph: SITE_OPEN_GRAPH,
+  twitter: SITE_TWITTER,
   verification: {
     google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION || "",
   },
@@ -157,6 +132,8 @@ export default async function RootLayout({
             "@type": "WebSite",
             "@id": "https://www.malenaklejki.pl/#website",
             name: "MałeNaklejki",
+            // Podpowiedź dla nazwy witryny w wynikach Google (dziś pokazuje domenę).
+            alternateName: ["Małe Naklejki", "malenaklejki.pl"],
             url: "https://www.malenaklejki.pl",
             inLanguage: "pl-PL",
             publisher: { "@id": "https://www.malenaklejki.pl/#organization" },

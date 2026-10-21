@@ -41,13 +41,16 @@ export function Header({ zen = false, sticky = true }: HeaderProps) {
         {/* Left: Logo */}
         <div className="flex justify-start items-center">
           <Link href="/" className="flex items-center">
+            {/* Nazwa raz, tekstem: alt obu wariantów logo Google sklejał
+                w tytuł strony głównej („małe Naklejki Logo małe Naklejki Logo"). */}
+            <span className="sr-only">MałeNaklejki</span>
             <motion.div
               whileTap={{ scale: 0.98 }}
               className="relative h-10 sm:h-11 md:h-12 flex items-center"
             >
               <Image
                 src="/images/logo/malenaklejki-logo-light.png?v=3"
-                alt="małe Naklejki Logo"
+                alt=""
                 width={280}
                 height={70}
                 className="h-full w-auto object-contain dark:hidden"
@@ -56,7 +59,7 @@ export function Header({ zen = false, sticky = true }: HeaderProps) {
               />
               <Image
                 src="/images/logo/malenaklejki-logo-dark.png?v=3"
-                alt="małe Naklejki Logo"
+                alt=""
                 width={280}
                 height={70}
                 className="h-full w-auto object-contain hidden dark:block"
