@@ -12,10 +12,16 @@ export function SheetActions({
   orderId,
   itemId,
   compact = false,
+  quiet = false,
 }: {
   orderId: string;
   itemId: string;
   compact?: boolean;
+  /**
+   * Spokojniejszy wygląd przy nieopłaconym zamówieniu — tam główną akcją jest
+   * „Opłać zamówienie", a ponowne zamówienie tworzyłoby duplikat.
+   */
+  quiet?: boolean;
 }) {
   const router = useRouter();
   const addItem = useCartStore((state) => state.addItem);
@@ -62,9 +68,11 @@ export function SheetActions({
         type="button"
         onClick={reorder}
         disabled={busy}
-        className={`inline-flex items-center justify-center gap-2 rounded-xl font-bold transition-all active:scale-[0.98] disabled:opacity-60 disabled:cursor-not-allowed cursor-pointer bg-primary text-primary-foreground hover:bg-primary/95 shadow-sm self-start ${
-          compact ? "h-10 px-4 text-sm" : "h-12 px-5 text-sm"
-        }`}
+        className={`inline-flex items-center justify-center gap-2 rounded-xl font-bold transition-all active:scale-[0.98] disabled:opacity-60 disabled:cursor-not-allowed cursor-pointer self-start ${
+          quiet
+            ? "bg-card text-foreground border border-border/70 hover:border-primary/40 hover:text-primary"
+            : "bg-primary text-primary-foreground hover:bg-primary/95 shadow-sm"
+        } ${compact ? "h-10 px-4 text-sm" : "h-12 px-5 text-sm"}`}
       >
         {busy ? (
           <Loader2 className="w-4 h-4 animate-spin" aria-hidden />

@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { ArrowLeft, FileText, Truck } from "lucide-react";
 
 import { AccountLayout, Panel } from "@/components/account/AccountLayout";
+import { PayOrderButton } from "@/components/account/PayOrderButton";
 import { SheetActions } from "@/components/account/SheetActions";
 import { StatusPill } from "@/components/account/StatusPill";
 import { requireVerifiedUser } from "@/lib/auth/dal";
@@ -11,6 +12,7 @@ import { getUserOrder } from "@/lib/orders/queries";
 import {
   DELIVERY_METHOD_LABELS,
   PAYMENT_METHOD_LABELS,
+  canPayOnline,
   formatDateTime,
   formatPln,
   fulfillmentStatusOf,
@@ -46,6 +48,7 @@ export default async function OrderDetailPage({
 
   const payment = paymentStatusOf(order.status);
   const fulfillment = fulfillmentStatusOf(order.fulfillmentStatus);
+  const canPay = canPayOnline(order.status, order.paymentMethod);
 
   const deliveryAddress =
     order.deliveryMethod === "paczkomat"
@@ -113,9 +116,29 @@ export default async function OrderDetailPage({
             </a>
           )}
         </div>
+
+        {canPay && (
+          <div className="mt-4 flex flex-col sm:flex-row sm:items-center gap-4 rounded-2xl border border-[#FFCD08]/40 bg-[#FFCD08]/10 p-4">
+            <div className="flex-1">
+              <p className="text-sm font-extrabold text-foreground">Płatność do nas nie dotarła</p>
+              <p className="text-sm font-medium text-muted-foreground mt-1 leading-relaxed">
+                Opłać to zamówienie tutaj — nie musisz składać nowego. Kwota do zapłaty:{" "}
+                {formatPln(order.totals.total)}.
+              </p>
+            </div>
+            <PayOrderButton orderId={order.id} />
+          </div>
+        )}
       </Panel>
 
-      <Panel title="Zamówione arkusze" description="Każdy arkusz możesz zamówić ponownie — trafi do koszyka jako nowa pozycja.">
+      <Panel
+        title="Zamówione arkusze"
+        description={
+          canPay
+            ? "„Zamów ponownie” dodaje arkusz do koszyka jako nowe zamówienie. Żeby opłacić to zamówienie, użyj przycisku „Opłać zamówienie” powyżej."
+            : "Każdy arkusz możesz zamówić ponownie — trafi do koszyka jako nowa pozycja."
+        }
+      >
         <div className="flex flex-col gap-4">
           {order.items.map((item, index) => (
             <div
@@ -151,7 +174,7 @@ export default async function OrderDetailPage({
                   </p>
                 </div>
 
-                <SheetActions orderId={order.id} itemId={item.id} compact />
+                <SheetActions orderId={order.id} itemId={item.id} compact quiet={canPay} />
               </div>
 
               <div className="sm:text-right shrink-0">

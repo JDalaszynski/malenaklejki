@@ -37,7 +37,10 @@ export function AccountLayout({
 
         {banner && <div className="mb-6">{banner}</div>}
 
-        <div className="grid gap-6 lg:grid-cols-[220px_minmax(0,1fr)] items-start">
+        {/* Kolumna `minmax(0,1fr)` także na telefonie — bez niej domyślna
+            kolumna `auto` rozciągała się do szerokości poziomego menu konta
+            i cała strona wyjeżdżała poza ekran. */}
+        <div className="grid grid-cols-[minmax(0,1fr)] gap-6 lg:grid-cols-[220px_minmax(0,1fr)] items-start">
           <div className="lg:sticky lg:top-24">
             <AccountNav />
           </div>

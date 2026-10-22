@@ -54,6 +54,20 @@ export function normalizePaymentStatus(status: string | undefined): PaymentStatu
   return LEGACY_PAYMENT_STATUSES[status] ?? "PENDING_PAYMENT";
 }
 
+/**
+ * Czy klient może sam opłacić zamówienie z konta przez Przelewy24.
+ *
+ * Przelew tradycyjny celowo pomijamy: klient mógł już zlecić przelew, który
+ * jeszcze nie wpłynął, a druga płatność przez P24 oznaczałaby zapłatę dwa razy.
+ */
+export function canPayOnline(status: string | undefined, paymentMethod: string | undefined): boolean {
+  const normalized = normalizePaymentStatus(status);
+  return (
+    (normalized === "PENDING_PAYMENT" || normalized === "FAILED") &&
+    (paymentMethod === "przelewy24" || paymentMethod === "blik")
+  );
+}
+
 export function paymentStatusOf(status: string | undefined): { label: string; tone: StatusTone } {
   const known = PAYMENT_STATUSES[normalizePaymentStatus(status)];
   return { label: known.label, tone: known.tone as StatusTone };
