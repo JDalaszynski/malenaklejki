@@ -15,6 +15,7 @@ import {
   Check,
   AlertTriangle,
   Loader2,
+  CreditCard,
 } from "lucide-react";
 import { getOrderStatus, retryOrderPayment } from "@/app/actions/createOrder";
 import { trackPurchase, type AnalyticsSheet } from "@/lib/analytics";
@@ -275,17 +276,40 @@ function SuccessContent() {
               Przelew lub BLIK mógł zostać anulowany, odrzucony przez bank lub
               sesja płatności wygasła w Przelewy24. Twoje zamówienie jest
               bezpiecznie zapisane w naszej bazie. Nie musisz ponownie
-              projektować i tworzyć koszyka — skontaktuj się z nami w celu
-              dokończenia transakcji.
+              projektować i tworzyć koszyka — wystarczy opłacić je przyciskiem
+              poniżej. Jeśli płatność znów się nie uda, napisz do nas.
             </p>
+            {retryError && (
+              <p
+                role="alert"
+                className="mt-4 p-4 bg-destructive/10 border border-destructive/20 text-destructive rounded-2xl text-sm font-semibold"
+              >
+                {retryError}
+              </p>
+            )}
           </div>
         </div>
 
         {/* CTA Buttons */}
         <div className="w-full flex flex-col gap-3 animate-in fade-in slide-in-from-bottom-4 duration-500 delay-200 max-w-sm mx-auto">
+          {/* Bez tego przycisku klient mógł tylko napisać do nas albo złożyć
+              nowe zamówienie — i składał duplikaty zamiast opłacić to samo. */}
+          <button
+            type="button"
+            onClick={handleRetryPayment}
+            disabled={retrying}
+            className="w-full inline-flex items-center justify-center gap-2 rounded-2xl text-base font-bold bg-primary text-primary-foreground hover:bg-primary/90 disabled:opacity-75 disabled:pointer-events-none h-14 px-8 transition-all hover:scale-[1.01] active:scale-[0.99] shadow-sm cursor-pointer"
+          >
+            {retrying ? (
+              <Loader2 className="w-5 h-5 animate-spin" aria-hidden />
+            ) : (
+              <CreditCard className="w-5 h-5" aria-hidden />
+            )}
+            {retrying ? "Przygotowujemy płatność…" : "Opłać zamówienie"}
+          </button>
           <Link
             href="/kontakt"
-            className="w-full inline-flex items-center justify-center gap-2 rounded-2xl text-base font-bold bg-primary text-primary-foreground hover:bg-primary/90 h-14 px-8 transition-all hover:scale-[1.01] active:scale-[0.99] shadow-sm cursor-pointer"
+            className="w-full inline-flex items-center justify-center gap-2 rounded-2xl text-base font-bold bg-card border border-border/70 text-foreground hover:bg-muted/30 h-14 px-8 transition-all hover:scale-[1.01] active:scale-[0.99]"
           >
             Kontakt z obsługą
             <ArrowRight className="w-5 h-5" />
