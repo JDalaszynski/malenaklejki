@@ -353,6 +353,23 @@ Przy 7 428 wyświetleniach bloga podniesienie CTR z 1,13% do 2,5% to **około +1
 
 ---
 
+## 🎮 P4.5 - Naklejki gamingowe (na polecenie właściciela, 2026-10-23)
+
+> **Wyjątek od wstrzymania nowych stron do 30.11:** wpis powstał na wyraźne polecenie właściciela. Geneza: pytanie o wpis „Naklejki z GTA 6” - odradzone (znak towarowy w tytule = używanie cudzego znaku w obrocie, a wpis zachęcający do wgrywania grafik z gry podważa regulamin §3), zamiast tego wpis bez żadnych marek gier. Baza fraz i wolumeny: `keywords.md` §15.
+
+- [x] **G1. Naklejki gamingowe z nickiem na pada i konsolę** (opublikowano 2026-10-23)
+    - **Slug:** `naklejki-gamingowe-dla-gracza-na-pada-konsole-i-pc`, ~1600 słów, 8 H2, 2 tabele (skórka vs naklejka, koszt prezentu), 8 FAQ (H3).
+    - **Główna fraza:** `naklejki gamingowe` (10-100). Semantyczne: `naklejki na pada ps5` i `naklejki na ps5` (100-1 tys., w SERP skórki - uczciwe „skórek nie robimy”), `naklejki na komputer` (100-1 tys., intencja laptopowa - link do wpisu o laptopie), `naklejki retro`, `prezent dla gracza do 100 zł` (59,00 + 19,99 = 78,99 zł), `prezent na mikołajki dla gracza`, `prezent pod choinkę dla gracza`.
+    - **Persona:** Hobbyści/gracze, streamerzy, rodzina kupująca prezent dla gracza (sezon XI-XII).
+    - **Link nadrzędny (Filar):** `/blog/jak-zamowic-idealne-naklejki-na-zamowienie-z-wlasnym-nadrukiem` (1. akapit, anchor `naklejki na zamówienie`). Wychodzące: `/naklejki-foliowe`, `male-naklejki-na-laptopa...`, hub B3, `/regulamin`.
+    - **Linki przychodzące (4, bez bumpa `updated`):** filar (`### Hobby, pojazdy i sprzęt`, anchor `naklejki gamingowe`), `fajne-wzory-i-pomysly...` (pkt 1, anchor `naklejkach gamingowych`; przy okazji „pixel-artowe postacie z gier retro” → „własne ... w stylu gier retro”), hub B3 (`## Naklejki ze zdjęciem na prezent`, anchor `prezent dla gracza`), `male-naklejki-na-laptopa...` (1. H2, anchor `naklejkach gamingowych z nickiem`).
+    - **Granice:** zero tytułów gier, postaci i logo; nazwy konsol tylko opisowo + nota o znakach towarowych; odporność tylko woda/UV (naklejki z dala od miejsc pod dłonią, myszka i klawiatura odradzone); bez deklaracji ciepła (z dala od kratek); bez zwrotu przy własnych grafikach.
+    - **Zdjęcia:** folder `public/blog/naklejki-gamingowe-dla-gracza-na-pada-konsole-i-pc/` pusty (`.gitkeep`), frontmatter bez `image`. Właściciel dostał 10 promptów. **DO ZROBIENIA po dograniu:** kompresja + nazwy SEO → osadzenie w sekcjach + `image`/`imageAlt` → piny i social (z surowych) → `add_logo_bar.mjs` raz → `optymalizuj-obrazy.mjs` → `updated`.
+- [ ] **G2 (pomysł, decyzja właściciela):** gotowy zestaw „Neon / Retro” dla graczy (bez marek) do katalogu `/gotowe-zestawy` - dałby wpisowi produkt do kliknięcia bez własnej grafiki.
+- [ ] **Kontrola ok. 2026-12-01:** GSC dla zapytań `gaming|gamer|gracz|pad|konsol|ps5|retro|nick` (stan wyjściowy 23.10: zero zapytań).
+
+---
+
 ## 📊 Mierniki Fazy 4 (weryfikacja 2026-11-30)
 
 | Miernik | Stan 2026-08-28 | Cel |
@@ -677,6 +694,8 @@ Właściciel podrzucił pulę fraz (patrz `blog-agent/keywords.md` §9). Po anal
 ---
 
 ## 📈 Zrealizowane Artykuły
+
+- [x] **G1. Naklejki gamingowe z nickiem na pada i konsolę** (opublikowano 2026-10-23) - szczegóły w sekcji P4.5.
 
 - [x] **A4. Naklejki na paczki i plomby - jak zabezpieczyć i obrandować przesyłki w e-commerce** (opublikowano 2026-08-27)
     - **Format:** Supporting Article (~1200-1400 słów)

@@ -274,3 +274,34 @@ Klaster obsłużony wpisami **A1** (`ile-kosztuja-naklejki-na-zamowienie-cena-za
 **Podnisza SPOŁECZNOŚCIOWA → osobny wpis B4:**
 * `vlepki kibicowskie na zamówienie` (22 wyśw., 3 klik., **CTR 13,64%**, poz. 8,77), `wlepy klubowe` (11, 8,55), `wlepki z logo` (3, 11,33), `wlepki kibicowskie` (1, 11,00), `custom wlepy` (5, 8,20).
 * ⚠️ **Granica treści:** wlepki klubowe i kibicowskie opisujemy jako merch i identyfikację społeczności. **Nie wchodzimy** w treści związane z przemocą, wrogością wobec innych klubów ani z nielegalnym naklejaniem w przestrzeni publicznej.
+
+---
+
+## 15. Gracze i gaming (NOWY klaster - pomiar 2026-10-23)
+
+**Źródła:** Planer słów kluczowych (konto MałeNaklejki, Polska, X 2025 - IX 2026, kampanie wstrzymane, więc wolumeny w przedziałach), SERP Google z 23.10.2026, GSC 1.07-22.10.2026, Allegro (licznik „kupiło ostatnio”). Wpis: `naklejki-gamingowe-dla-gracza-na-pada-konsole-i-pc`.
+
+**Stan wyjściowy:** GSC - **zero zapytań** o graczy, pady, konsole, nick, retro (nie ma pokrycia, nie „nie ma popytu”). Allegro - popyt na naklejki gamingowe mały i rozproszony (gotowe miksy 50 szt., akcesoria do padów).
+
+| Fraza | Śr. miesięcznie | Intencja w SERP | Rola we wpisie |
+| :--- | :--- | :--- | :--- |
+| `naklejki gamingowe` | 10-100 | sklepy, Allegro, naklejki ścienne | ✅ **główna** (title, H1, 1. akapit, FAQ) |
+| `naklejki dla graczy` / `naklejki dla gracza` | 10-100 / 0-10 | jw. | 🟡 semantyka w treści |
+| `naklejki na pada ps5` | **100-1 tys.** | **skórki** (okleiny na całego pada pod model) + akcesoria | ✅ H2 z uczciwym „skórek nie robimy, robimy małe naklejki” |
+| `naklejki na ps5` | **100-1 tys.** | skórki na konsolę | ✅ H3 o konsolach |
+| `naklejki na pada` / `... ps4` / `... xbox` / `okleina na pada ps5` | 10-100 | jw. | 🟡 H2/H3 + tabela skórka vs naklejka |
+| `naklejki na konsole` / `... ps5` / `naklejki na xbox` / `naklejki na nintendo switch` / `naklejki na ps4` | 10-100 | jw. | 🟡 H3 |
+| `naklejki na komputer` | **100-1 tys.** | **laptop** (to intencja wpisu o laptopie) | 🟡 H3 o PC + link do `male-naklejki-na-laptopa`, nie kanibalizuj |
+| `naklejki na myszkę` | **100-1 tys.** | - | 🟡 uczciwa odpowiedź: powierzchnia stale pod dłonią, odradzamy |
+| `naklejki na pc` / `naklejki na obudowę komputera` / `naklejki na monitor` / `naklejki na słuchawki` | 10-100 | - | 🟡 H3 o PC |
+| `naklejki gamingowe na ścianę` | 10-100 | naklejki ścienne wielkoformatowe | ⚠️ FAQ: to nie nasz produkt (arkusz A4) |
+| `naklejki retro` / `retro naklejki` | 10-100 | - | ✅ H2 retro/neon (styl wolny, logo gier nie) |
+| `naklejki z gier` / `naklejki gry` / `naklejki z gier komputerowych` | 10-100 | licencjonowane postacie | ⚠️ tylko FAQ/H2 „co wydrukujemy, a czego nie” - **nie celuj w tytuły gier** |
+| `prezent dla gracza` / `gadżety dla gracza` / `gadżety gamingowe` | **1-10 tys.** | listy prezentowe x-kom, MediaMarkt, Komputronik | 🟡 H2 prezentowa (głowy nie wygramy, łapiemy ogon) |
+| `prezent dla gracza do 100 zł` | 10-100 | - | ✅ H2 + FAQ: 59,00 + 19,99 = 78,99 zł |
+| `prezent na mikołajki dla gracza` / `prezent pod choinkę dla gracza` / `prezent dla gracza na święta` | 10-100 (rosnące r/r) | - | ✅ akapit sezonowy + link do huba B3 |
+| `gadżety do pokoju gamingowego` | 100-1 tys. | - | 🟡 wzmianka (biurko, półka z grami) |
+| `naklejki z nickiem`, `naklejki esport`, `naklejki dla streamera`, `naklejki neon`, `naklejki synthwave`, `naklejki pixel art`, `personalizowany prezent dla gracza` | 0-10 / brak danych | - | 🟡 semantyka i GEO (opisy, FAQ) - zero wolumenu, ale to nasz odróżnik |
+
+* ⛔ **Znaki towarowe (decyzja 2026-10-23):** żadnych tytułów gier, postaci ani logo w title, H1, slugu, alt-ach i treści (np. „naklejki z GTA 6”, „naklejki na pada PS5 Fortnite/Spider-Man” z „Inni wyszukiwali” - **nie celuj**). Nazwy konsol (PS5, Xbox, Nintendo Switch) wolno używać **wyłącznie opisowo** - na jaki sprzęt pasuje naklejka - z notą, że to znaki ich właścicieli. Regulamin §3 zakazuje wgrywania cudzych znaków bez licencji.
+* ⚠️ **Prawda o produkcie:** nie robimy skórek/oklein pod model; odporność tylko woda i UV (bez deklaracji na tarcie dłoni - naklejki na płaskich fragmentach, z dala od przycisków i uchwytów); bez deklaracji odporności na ciepło (z dala od kratek wentylacyjnych); naklejki z własnych grafik bez zwrotu.

@@ -31,9 +31,9 @@ Masz już gotowe zdjęcie zamiast wygenerowanego obrazu - na przykład fotografi
 ### 1. Naklejki na laptopa i sprzęt elektroniczny
 
 Laptop to wizytówka programisty, grafika i studenta. Tutaj dominują **wzory na naklejki** odzwierciedlające konkretne pasje i skille.
-* **Co się sprawdza:** Logotypy języków programowania, minimalistyczne ikony ulubionego oprogramowania, ironiczne i zabawne cytaty z branży IT, pixel-artowe postacie z gier retro.
+* **Co się sprawdza:** Logotypy języków programowania, minimalistyczne ikony ulubionego oprogramowania, ironiczne i zabawne cytaty z branży IT, własne pixel-artowe postacie w stylu gier retro.
 * **Dlaczego warto:** Nasza folia winylowa ma mocny klej. Dobrze trzyma się sprzętu noszonego w plecaku, a gdy zmienisz pracę i musisz oddać komputer, folia schodzi w 100% bez zostawiania trudnych do zmycia śladów (0 śladów).
-* **Więcej inspiracji:** Sprawdź nasz wpis, z którego dowiesz się, jak wykorzystać [małe naklejki na laptopa](/blog/male-naklejki-na-laptopa-jak-wyrazic-siebie-i-stworzyc-wlasny-styl).
+* **Więcej inspiracji:** Sprawdź nasz wpis, z którego dowiesz się, jak wykorzystać [małe naklejki na laptopa](/blog/male-naklejki-na-laptopa-jak-wyrazic-siebie-i-stworzyc-wlasny-styl). Grasz? Pomysły na pada, konsolę i obudowę komputera zebraliśmy w poradniku o [naklejkach gamingowych](/blog/naklejki-gamingowe-dla-gracza-na-pada-konsole-i-pc).
 
 ### 2. Naklejki na motocykl, kask i do auta
 

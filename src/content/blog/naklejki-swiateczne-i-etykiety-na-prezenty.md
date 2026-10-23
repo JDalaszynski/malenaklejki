@@ -63,6 +63,8 @@ Naklejka ze zdjęciem psa, wnuków czy wspólnych wakacji to drobny prezent, kt�
 
 Jak wybrać zdjęcie, żeby naklejka wyszła wyraźnie, opisaliśmy w poradniku [naklejka ze zdjęcia](/blog/naklejka-ze-zdjecia-jak-przeniesc-wspomnienia-na-naklejke), a wszystkie możliwości tego formatu na stronie [fotonaklejki](/fotonaklejki). Ten sam pomysł sprawdzi się w styczniu, na Dzień Babci i Dziadka (21-22 stycznia).
 
+Szukasz prezentu dla gracza? Arkusz z jego nickiem, logo klanu albo pupilem w pikselowej wersji to [prezent dla gracza](/blog/naklejki-gamingowe-dla-gracza-na-pada-konsole-i-pc) do 100 zł, a w poradniku podpowiadamy, gdzie takie naklejki przykleić na padzie, konsoli i komputerze.
+
 ## Naklejki z numerami do kalendarza adwentowego
 
 Kalendarz adwentowy z 24 woreczków lub pudełek potrzebuje 24 numerów. Przy rozmiarze 4 x 4 cm na arkuszu A4 zmieści się orientacyjnie 24-30 naklejek, więc cały komplet numerów wyjdzie z jednego arkusza, a na wolnych polach dodasz kilka dekoracji albo imię dziecka. Każdy numer może mieć inną grafikę, bo wszystkie obrazy wgrywasz na ten sam arkusz.

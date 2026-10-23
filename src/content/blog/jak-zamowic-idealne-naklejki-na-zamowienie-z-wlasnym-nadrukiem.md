@@ -136,7 +136,7 @@ Imienne etykiety na prezenty, numery do kalendarza adwentowego i świąteczne na
 
 ### Hobby, pojazdy i sprzęt
 
-Personalizacja rzeczy, których używasz codziennie: [naklejki na rower i akcesoria sportowe](/blog/naklejki-na-rower-i-akcesoria-sportowe-dla-pasjonatow), [naklejki motoryzacyjne i tuningowe](/blog/naklejki-motoryzacyjne-i-tuningowe-z-wlasnym-nadrukiem), [naklejki na motory i motocyklowe](/blog/naklejki-na-motory-i-motocyklowe) na kask oraz bak, a także [małe naklejki na laptopa](/blog/male-naklejki-na-laptopa-jak-wyrazic-siebie-i-stworzyc-wlasny-styl).
+Personalizacja rzeczy, których używasz codziennie: [naklejki na rower i akcesoria sportowe](/blog/naklejki-na-rower-i-akcesoria-sportowe-dla-pasjonatow), [naklejki motoryzacyjne i tuningowe](/blog/naklejki-motoryzacyjne-i-tuningowe-z-wlasnym-nadrukiem), [naklejki na motory i motocyklowe](/blog/naklejki-na-motory-i-motocyklowe) na kask oraz bak, [małe naklejki na laptopa](/blog/male-naklejki-na-laptopa-jak-wyrazic-siebie-i-stworzyc-wlasny-styl), a dla graczy [naklejki gamingowe](/blog/naklejki-gamingowe-dla-gracza-na-pada-konsole-i-pc) z nickiem na pada, konsolę i obudowę komputera.
 
 ### Twórcy, społeczności i wspomnienia
 
