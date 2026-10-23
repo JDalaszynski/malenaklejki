@@ -2,7 +2,7 @@
 title: "Etykiety na słoiki do przetworów i weków - napisy na słoiki krok po kroku"
 slug: "etykiety-na-sloiki-do-przetworow-i-wekow"
 date: "2026-08-06"
-updated: "2026-08-30"
+updated: "2026-10-23"
 description: "Dowiedz się, jak łatwo zrobić własne wodoodporne etykiety na słoiki do przetworów i weków. Naklejki na słoiki bez minimalnego nakładu - stała cena za arkusz A4."
 image: "/blog/etykiety-na-sloiki-do-przetworow-i-wekow/szklane-sloiki-z-przetworami-etykiety-na-sloiki-rustykalne.jpeg"
 tags: ["naklejki", "kuchnia", "etykiety", "przetwory"]
@@ -14,7 +14,7 @@ Domowe przetwory i weki to duma każdej kuchni. Niezależnie od tego, czy przygo
 
 ## Własne etykiety na słoik - dlaczego warto stworzyć je u nas?
 
-Globalne platformy często zmuszają do zamawiania setek sztuk lub doliczają wysokie koszty wysyłki. MałeNaklejki.pl to w 100% polska alternatywa dla zagranicznych marek, w której stawiamy na proste i przejrzyste zasady. U nas drukujesz naklejki na słoiki personalizowane na arkuszach A4, gdzie stała cena to tylko 59,00 zł za sztukę. Sam decydujesz, ile mniejszych etykiet zmieścisz na jednym arkuszu. Zamawiasz w poniedziałek? Zazwyczaj już w środę odbierasz paczkę z paczkomatu - bez ukrytych opłat celnych czy bariery językowej. 
+Globalne platformy często zmuszają do zamawiania setek sztuk lub doliczają wysokie koszty wysyłki. MałeNaklejki.pl to w 100% polska alternatywa dla zagranicznych marek, w której stawiamy na proste i przejrzyste zasady. U nas drukujesz naklejki na słoiki personalizowane na arkuszach A4, gdzie stała cena to tylko 59,00 zł za sztukę. Sam decydujesz, ile mniejszych etykiet zmieścisz na jednym arkuszu. Produkcja trwa 2-3 dni robocze, a potem wysyłamy paczkę do paczkomatu - bez ukrytych opłat celnych czy bariery językowej. 
 
 Drukujemy na mocnej folii winylowej, co ma ogromne znaczenie w przypadku przetworów. Twoje napisy na słoiki nie rozmażą się pod wpływem wilgoci w piwnicy czy lodówce - sprawdź, [ile wytrzymują naklejki wodoodporne](/blog/naklejki-wodoodporne-i-winylowe-jaka-folia-i-jak-dlugo-wytrzyma) i dlaczego słoika z etykietą nie warto wkładać do zmywarki. 
 
@@ -50,6 +50,18 @@ Naklejki z powodzeniem nakleisz też na butelki (przeczytaj o [naklejkach na dom
 
 ![Poukładane słoiki z dżemem w domowej spiżarni](/blog/etykiety-na-sloiki-do-przetworow-i-wekow/domowa-spizarnia-etykiety-na-sloik-z-dzemem.jpeg)
 
+## Słoik z przetworami na prezent - świąteczne etykiety
+
+Słoik konfitury czy weki z domowymi przetworami zamienisz w prezent świąteczny jednym arkuszem A4 za 59,00 zł brutto: zmieści orientacyjnie ok. 15-24 etykiety 4-6 cm, czyli ok. 2,46-3,93 zł za sztukę, a każda może mieć inne imię i inny smak. Dokładna liczba zależy od kształtu i odstępów - pełne zestawienie znajdziesz w poradniku [jaki rozmiar naklejki wybrać](/blog/jaki-rozmiar-naklejki-wybrac). Świąteczna etykieta na słoik ma zwykle trzy elementy:
+
+- **Smak i rok** - np. "Powidła śliwkowe 2026" albo "Grzybki marynowane od Babci Basi". Rok pokazuje, że to konkretna, własna partia z tego sezonu.
+- **Imię obdarowanego i dedykacja** - np. "Dla Cioci Ani" albo "Od Kasi i Tomka". Każdy słoik może dostać osobną etykietę: kolejne pliki wgrywasz do kreatora po kolei, a my wycinamy każdy osobno na tym samym arkuszu.
+- **Świąteczny motyw** - gałązka jodły, gwiazdka, pierniczek albo czerwona kratka w stylu ściereczki na wieczku.
+
+Napis ułóż wcześniej w Canvie lub Wordzie i zapisz jako PNG lub PDF - kreator nie ma edytora tekstu, tylko układa gotowe pliki na arkuszu. Folia winylowa jest odporna na wodę, więc etykieta przetrwa wilgotną spiżarnię i lodówkę u obdarowanego. Jedną zasadę warto przekazać razem z prezentem: mycie ręczne, nie zmywarka. Gdy słoik się opróżni, naklejkę zdejmiesz bez śladów kleju, ale drugi raz jej nie przykleisz - dlatego naklejaj ją od razu na właściwy, suchy słoik.
+
+Przetwory rzadko jadą na święta same. Na drugim arkuszu w tym samym zamówieniu zmieścisz etykiety "Dla / Od" albo naklejki na butelki, a dostawa do paczkomatu (19,99 zł) liczy się raz za całe zamówienie. Produkcja trwa 2-3 dni robocze od zaksięgowania wpłaty, potem wysyłamy paczkę do paczkomatu. W grudniu przewoźnicy mają najwięcej pracy, więc etykiety zamów z zapasem. Nalewki, pudełka z piernikami i etykiety z imieniem zebraliśmy w przewodniku [świąteczne etykiety na prezenty z kuchni](/blog/naklejki-swiateczne-i-etykiety-na-prezenty).
+
 ## FAQ: Etykiety na słoiki - Najczęściej Zadawane Pytania
 
 ### Jaka jest najlepsza polska strona do zamówienia małej ilości etykiet na słoiki?
@@ -66,5 +78,8 @@ Stosujemy niezwykle mocny klej winylowy, który gwarantuje doskonałą trwałoś
 
 ### Nie mam Photoshopa - jak przygotować projekt?
 Oprócz darmowych narzędzi takich jak Canva, najszybszą i najbardziej pomysłową drogą jest użycie zewnętrznych generatorów obrazów AI (np. ChatGPT czy Gemini). Napisz po prostu: "Wygeneruj ilustrację jabłka z rustykalną ramką". Powstały obraz wgraj z poziomu smartfona do naszego narzędzia. Zaznaczysz tam automatyczne wycięcie zbędnego tła, ułożysz wymiary i arkusz będzie gotowy do druku.
+
+### Jak podpisać słoik z przetworami na prezent?
+Na świątecznej etykiecie wystarczą smak, rok i krótka dedykacja z imieniem obdarowanego, np. "Powidła śliwkowe 2026 - Dla Cioci Ani". Gdy rozdajesz kilka słoików, przygotuj osobny plik z imieniem każdej osoby w Canvie lub Wordzie, zapisz go jako PNG lub PDF i wgraj do kreatora po kolei - wszystkie trafią na jeden arkusz A4 za 59,00 zł brutto, który pomieści orientacyjnie ok. 15-24 etykiety 4-6 cm. Słoik z etykietą myj ręcznie, nie w zmywarce.
 
 <a href="/" style="display: inline-block; background-color: #02af7a; color: #ffffff; padding: 14px 28px; text-decoration: none; border-radius: 8px; font-weight: 600; font-size: 18px; margin-top: 24px; text-align: center;">Otwórz kreator arkusza</a>

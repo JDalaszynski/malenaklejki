@@ -63,10 +63,12 @@ function parseFaq(content: string): FAQItem[] {
   if (!heading) return [];
 
   // Sekcja FAQ kończy się na kolejnym H2 (zwykle sekcji z CTA), żeby nagłówki
-  // H3 spoza FAQ nie trafiły do schematu jako rzekome pytania.
+  // H3 spoza FAQ nie trafiły do schematu jako rzekome pytania. Gdy FAQ jest
+  // ostatnią sekcją, kończy ją blok HTML przycisku CTA - bez tego jego kod
+  // trafiał do schematu jako część ostatniej odpowiedzi.
   const afterHeading = content.slice(heading.index + heading[0].length);
-  const nextH2 = afterHeading.search(/\n##\s/);
-  const faqText = nextH2 === -1 ? afterHeading : afterHeading.slice(0, nextH2);
+  const sectionEnd = afterHeading.search(/\n##\s|\n</);
+  const faqText = sectionEnd === -1 ? afterHeading : afterHeading.slice(0, sectionEnd);
 
   const faq: FAQItem[] = [];
   const qaRegex = new RegExp(FAQ_QA_REGEX.source, FAQ_QA_REGEX.flags);
