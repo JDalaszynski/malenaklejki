@@ -183,6 +183,9 @@ Dokładne sformułowania do nagłówków H3 i pytań schematu `FAQPage`. **Odpow
 | Czy zdążę z zamówieniem przed 1 listopada? | landing FAQ 10 | produkcja 2-3 dni robocze + paczkomat; **całkowitego terminu i daty granicznej nie deklarujemy** |
 | Czy odklejenie naklejki zostawia ślady? | wpis | mocny klej, bez śladów; **nie** repozycjonowalna |
 | Jak przykleić naklejkę na szklany znicz? | wpis | sucho, czysto, odtłuszczone, w temperaturze pokojowej, dociskać od środka |
+| Czy naklejka położy się na okrągłym albo kulistym zniczu? | landing FAQ, wpis | **płaska ścianka** (właściciel 2026-10-23); kulisty/z wybrzuszeniem - nie; walec - tylko mała naklejka; test z kartką papieru |
+| Jak nakleić naklejkę na znicz, żeby nie było pęcherzy? | landing FAQ + sekcja 5 kroków | środek → brzegi, pęcherzyk do najbliższego brzegu; nie zaklejać panelu słonecznego |
+| Czy sprzedajecie gotowe znicze ze zdjęciem? | landing FAQ | nie - tylko naklejki (klaster D, `znicz na zamówienie ze zdjęciem`) |
 
 ---
 

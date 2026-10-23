@@ -2,20 +2,20 @@
 title: "Znicz ze zdjęciem - jak zrobić go samodzielnie krok po kroku"
 slug: "znicz-ze-zdjeciem-jak-zrobic-samodzielnie-naklejka-na-znicz"
 date: "2026-10-05"
-updated: "2026-10-10"
+updated: "2026-10-23"
 description: "Jak zrobić znicz ze zdjęciem zmarłego samodzielnie: przygotuj zdjęcie, wybierz rozmiar i przyklej naklejkę na znicz LED lub solarny. Od 59,00 zł brutto za arkusz A4."
 tags: ["znicz ze zdjęciem", "naklejki na znicze", "zdjęcie na zniczu", "Wszystkich Świętych"]
 role: "supporting"
 cta_text: "Zamów naklejki na znicze"
 ---
 
-Znicz ze zdjęciem zrobisz samodzielnie w trzech krokach: kupujesz znicz solarny, LED lub na baterie o gładkim kloszu, drukujesz zdjęcie bliskiej osoby jako [naklejki na znicze](/naklejki-na-znicze) i przyklejasz je na klosz. Na znicz z płomieniem naklejka się nie nadaje, bo na nagrzanym kloszu folia się stopi. Naklejki zamówisz w MałeNaklejki od jednego arkusza A4 za stałe 59,00 zł brutto, a na jednym arkuszu zmieści się orientacyjnie ok. 12 portretów 5 x 7 cm. Drukujemy w Polsce na folii winylowej odpornej na wodę i UV, produkcja trwa 2-3 dni robocze, a przesyłkę odbierasz w paczkomacie za 19,99 zł. Nie sprzedajemy zniczy - dostarczamy naklejki, które zmieniają zwykły znicz w osobisty. Poniżej znajdziesz wskazówki, jak przygotować zdjęcie, wybrać rozmiar i bezpiecznie przykleić naklejkę.
+Znicz ze zdjęciem zrobisz samodzielnie w trzech krokach: kupujesz znicz solarny, LED lub na baterie z płaską, gładką ścianką klosza, drukujesz zdjęcie bliskiej osoby jako [naklejki na znicze](/naklejki-na-znicze) i przyklejasz je na klosz. Na znicz z płomieniem naklejka się nie nadaje, bo na nagrzanym kloszu folia się stopi. Naklejki zamówisz w MałeNaklejki od jednego arkusza A4 za stałe 59,00 zł brutto, a na jednym arkuszu zmieści się orientacyjnie ok. 12 portretów 5 x 7 cm. Drukujemy w Polsce na folii winylowej odpornej na wodę i UV, produkcja trwa 2-3 dni robocze, a przesyłkę odbierasz w paczkomacie za 19,99 zł. Nie sprzedajemy zniczy - dostarczamy naklejki, które zmieniają zwykły znicz w osobisty. Poniżej znajdziesz wskazówki, jak przygotować zdjęcie, wybrać rozmiar i bezpiecznie przykleić naklejkę.
 
 ## Znicz ze zdjęciem - czego potrzebujesz do samodzielnego wykonania
 
 Do zrobienia znicza ze zdjęciem potrzebujesz trzech rzeczy: znicza, zdjęcia i naklejki. Znicz kupujesz u dowolnego sprzedawcy, zdjęcie masz w telefonie lub w albumie, a naklejkę drukujemy my.
 
-- **Znicz bez otwartego płomienia** - solarny, LED lub na baterie - o gładkim kloszu ze szkła lub plastiku. Na klosz znicza z płomieniem naklejki nie przyklejaj, bo folia się stopi.
+- **Znicz bez otwartego płomienia** - solarny, LED lub na baterie - z płaską, gładką ścianką klosza ze szkła lub plastiku. Na klosz znicza z płomieniem naklejki nie przyklejaj, bo folia się stopi. Na kloszu kulistym, z wybrzuszeniem, ryflowanym albo ze wzorem naklejka się marszczy i odstaje na brzegach, więc najpewniejszy wybór to lampion z płaskimi ściankami, na przykład kwadratowy lub sześciokątny.
 - **Zdjęcie** w formie pliku JPG, PNG, WEBP lub PDF - z telefonu, ze skanera albo z fotografii odbitki.
 - **Naklejka** wydrukowana na folii winylowej odpornej na wodę i UV, wycięta w owalu, kole, prostokącie albo po obrysie.
 
@@ -45,7 +45,7 @@ W kreatorze wybierasz jeden z trzech kształtów cięcia:
 - **Prostokąt** - zaokrąglone rogi, dobry do zdjęcia z napisem pod spodem.
 - **Kontur** - cięcie dokładnie po obrysie postaci lub rysunku (die-cut). Tło możesz usunąć jednym przyciskiem w kreatorze.
 
-Rozmiar dobierz do znicza. Zmierz linijką gładkie pole na kloszu, a naklejkę wybierz odrobinę mniejszą, żeby brzegi nie wchodziły na krawędzie, rowki ani nadruki producenta.
+Rozmiar dobierz do znicza. Zmierz linijką płaską ściankę klosza, a naklejkę wybierz odrobinę mniejszą, żeby brzegi nie wchodziły na narożniki, rowki ani nadruki producenta. Na okrągłym kloszu naklejka owija się wokół szkła, więc im węższy znicz, tym mniejszy rozmiar. Najprościej sprawdzić to przed zamówieniem: wytnij z kartki papieru prostokąt lub owal w planowanym rozmiarze i przyłóż go do klosza. Jeśli papier przylega bez zagięć, naklejka też się położy. Jeśli się marszczy albo odstaje na rogach, wybierz mniejszą naklejkę, owal zamiast prostokąta albo inny znicz.
 
 | Rozmiar naklejki | Orientacyjnie szt. na A4 | Koszt 1 sztuki (brutto) | Pasuje do |
 | :--- | :--- | :--- | :--- |
@@ -69,10 +69,11 @@ Możesz też użyć odręcznego podpisu bliskiej osoby: zeskanuj kartkę lub lis
 
 Naklejkę przyklejaj w domu, nie na cmentarzu. W cieple klej wiąże pewniej niż na zimnym szkle.
 
-1. **Oczyść klosz.** Przetrzyj gładką powierzchnię alkoholem lub płynem odtłuszczającym i wytrzyj do sucha.
-2. **Zdejmij naklejkę z podkładu** i przyłóż ją jednym brzegiem do klosza.
-3. **Dociskaj od środka ku brzegom,** żeby nie zostały pęcherze powietrza. Na walcu naklejka układa się najlepiej, gdy nie jest zbyt szeroka.
-4. **Dociśnij całe brzegi** palcem lub miękką ściereczką.
+1. **Wybierz miejsce.** Najlepiej środek płaskiej ścianki od frontu znicza, z marginesem od krawędzi. Nie zaklejaj panelu słonecznego, włącznika ani klapki baterii.
+2. **Oczyść klosz.** Przetrzyj ściankę alkoholem lub płynem odtłuszczającym i wytrzyj do sucha. Znicz przyniesiony z zimna odstaw, aż się ogrzeje i obeschnie z pary.
+3. **Zdejmij naklejkę z podkładu** i przyłóż ją środkiem do ścianki.
+4. **Wygładzaj od środka ku brzegom,** żeby nie zostały pęcherze powietrza. Pęcherzyk wypchnij w stronę najbliższego brzegu.
+5. **Dociśnij całe brzegi** palcem lub miękką ściereczką.
 
 Klej jest mocny i po zdjęciu naklejki nie zostają ślady, ale naklejki nie przykleisz ponownie.
 
@@ -96,13 +97,17 @@ Tak, jeśli chodzi o wodę i słońce. Drukujemy na folii winylowej odpornej na 
 
 Stopi się, jeśli przykleisz ją na klosz znicza z płomieniem. Klosz nagrzewa się od wkładu, a folia nie jest odporna na takie ciepło. Naklejaj wyłącznie na znicz bez otwartego ognia: solarny, LED lub na baterie.
 
+### Czy naklejka położy się na okrągłym albo kulistym zniczu?
+
+Na kulistym nie, na okrągłym tylko w małym rozmiarze. Folia leży gładko na płaskiej ściance, a na kloszu kulistym, beczułkowatym albo z wybrzuszeniem marszczy się i odstaje na brzegach. Na okrągłym kloszu naklejka owija się wokół szkła, dlatego im węższy klosz, tym mniejszą naklejkę wybierz.
+
 ### Czy mogę zrobić znicz ze zdjęcia czarno-białego?
 
 Tak. Zeskanuj fotografię w 300 DPI lub sfotografuj ją telefonem w świetle dziennym, bez flesza, i wgraj plik do kreatora. Plik w odcieniach szarości drukujemy tak samo jak kolorowy.
 
 ### Czy mogę nakleić dwie naklejki na jednym zniczu?
 
-Tak, jeśli na kloszu jest dość gładkiego miejsca. Zostaw odstęp między naklejkami i od krawędzi, na przykład zdjęcie na środku i małą etykietę z imieniem i datami pod spodem.
+Tak, jeśli na kloszu jest dość płaskiego, gładkiego miejsca. Zostaw odstęp między naklejkami i od krawędzi, na przykład zdjęcie na środku i małą etykietę z imieniem i datami pod spodem.
 
 ### Czy naklejkę da się odkleić bez śladów?
 

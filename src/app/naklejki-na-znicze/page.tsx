@@ -21,6 +21,7 @@ import {
   Clock,
   TriangleAlert,
   ArrowRight,
+  Ruler,
 } from "lucide-react";
 
 const PAGE_PATH = "/naklejki-na-znicze";
@@ -32,7 +33,7 @@ const TITLE = "Naklejki na znicze ze zdjęciem - na zamówienie od 59 zł";
 export const metadata: Metadata = {
   title: TITLE,
   description:
-    "Naklejki na znicze ze zdjęciem, imieniem i dedykacją na wodoodpornej folii. Stała cena 59,00 zł brutto za arkusz A4, od 1 sztuki, produkcja 2-3 dni robocze.",
+    "Naklejki na znicze solarne i LED ze zdjęciem, imieniem lub dedykacją, na wodoodpornej folii. 59,00 zł brutto za arkusz A4, od 1 sztuki, produkcja 2-3 dni robocze.",
   alternates: {
     canonical: PAGE_PATH,
   },
@@ -72,7 +73,11 @@ const FAQS: { q: string; a: string }[] = [
   },
   {
     q: "Jak zrobić znicz ze zdjęciem samodzielnie?",
-    a: "Kup znicz bez otwartego płomienia - solarny, LED albo na baterie - o gładkim kloszu ze szkła lub plastiku i dodaj do niego własną naklejkę ze zdjęciem. Drukujemy same naklejki, nie sprzedajemy zniczy. Zdjęcie wgrywasz do kreatora, wybierasz owal lub prostokąt, a gotową naklejkę przyklejasz na suchy, odtłuszczony klosz w temperaturze pokojowej. Na klosz znicza z płomieniem naklejki nie przyklejaj, bo folia się stopi.",
+    a: "Kup znicz bez otwartego płomienia - solarny, LED albo na baterie - z płaską, gładką ścianką ze szkła lub plastiku i dodaj do niego własną naklejkę ze zdjęciem. Drukujemy same naklejki, nie sprzedajemy zniczy. Zdjęcie wgrywasz do kreatora, wybierasz owal lub prostokąt, a gotową naklejkę przyklejasz na suchy, odtłuszczony klosz w temperaturze pokojowej. Na klosz znicza z płomieniem naklejki nie przyklejaj, bo folia się stopi.",
+  },
+  {
+    q: "Czy sprzedajecie gotowe znicze ze zdjęciem?",
+    a: "Nie, drukujemy wyłącznie naklejki - zniczy ani wkładów nie sprzedajemy. Znicz solarny, LED lub na baterie z płaską ścianką kupujesz u dowolnego sprzedawcy, a naklejkę ze zdjęciem, imieniem lub dedykacją przyklejasz na niego sam. Dzięki temu jednym arkuszem A4 za 59,00 zł brutto oznaczysz kilka zniczy na różne groby.",
   },
   {
     q: "Czy naklejka na znicz wytrzyma deszcz i słońce na cmentarzu?",
@@ -84,11 +89,19 @@ const FAQS: { q: string; a: string }[] = [
   },
   {
     q: "Na jakich zniczach można nakleić naklejkę?",
-    a: "Na zniczach bez otwartego płomienia - solarnych, LED i na baterie - o gładkim kloszu ze szkła lub plastiku. Na klosz znicza z płomieniem naklejki nie przyklejaj, bo klosz nagrzewa się od wkładu i folia się stopi. Klej słabo trzyma też na kloszu ryflowanym, ażurowym i na reliefach, bo naklejka nie położy się płasko.",
+    a: "Na zniczach bez otwartego płomienia - solarnych, LED i na baterie - które mają płaską, gładką ściankę ze szkła lub plastiku. Najlepiej sprawdzają się lampiony z płaskimi ściankami, na przykład kwadratowe lub sześciokątne. Na klosz znicza z płomieniem naklejki nie przyklejaj, bo klosz nagrzewa się od wkładu i folia się stopi. Nie polecamy też kloszy kulistych, ryflowanych, ażurowych i z reliefem, bo naklejka nie położy się na nich płasko i będzie wyglądała niekorzystnie.",
+  },
+  {
+    q: "Czy naklejka położy się na okrągłym albo kulistym zniczu?",
+    a: "Na kulistym nie, na okrągłym tylko w małym rozmiarze. Folia leży gładko na płaskiej ściance, a na kloszu kulistym, beczułkowatym albo z wybrzuszeniem marszczy się, tworzy fałdy i odstaje na brzegach. Na okrągłym, walcowym kloszu naklejka owija się wokół szkła, dlatego im węższy klosz, tym mniejszą naklejkę wybierz. Przed zamówieniem przyłóż do klosza papierowy wycinek w rozmiarze naklejki - jeśli przylega bez zagięć, naklejka też się położy.",
   },
   {
     q: "Jaki rozmiar naklejki wybrać na znicz?",
-    a: "Zmierz linijką gładkie pole na kloszu swojego znicza i wybierz naklejkę odrobinę mniejszą, żeby brzegi nie wchodziły na krawędzie, rowki ani nadruki producenta. Przykładowo portret 5 x 7 cm albo kwadrat 6 x 6 cm zmieści się na wielu średnich zniczach LED, a na duże lampiony solarne lub LED wybierz 8 x 8 lub 10 x 10 cm. Zawsze jednak zmierz własny znicz.",
+    a: "Zmierz linijką płaskie, gładkie pole na kloszu swojego znicza i wybierz naklejkę odrobinę mniejszą, żeby brzegi nie wchodziły na narożniki, rowki ani nadruki producenta. Przykładowo portret 5 x 7 cm albo kwadrat 6 x 6 cm zmieści się na ściance wielu średnich zniczy LED, a na duże lampiony solarne lub LED wybierz 8 x 8 lub 10 x 10 cm. Zawsze jednak zmierz własny znicz.",
+  },
+  {
+    q: "Jak nakleić naklejkę na znicz, żeby nie było pęcherzy?",
+    a: "Naklejaj w domu, w temperaturze pokojowej, na płaską ściankę klosza przetartą alkoholem i wytartą do sucha. Zdejmij naklejkę z podkładu, przyłóż ją środkiem do szkła i wygładzaj palcem lub miękką ściereczką od środka ku brzegom. Pęcherzyk powietrza wypchnij w stronę najbliższego brzegu, a na koniec dociśnij całe brzegi. Naklejki nie odklejaj, żeby poprawić położenie, bo drugi raz się nie przyklei.",
   },
   {
     q: "Jakie zdjęcie nadaje się na naklejkę na znicz?",
@@ -137,7 +150,7 @@ const USE_CASES: {
   {
     icon: Shapes,
     title: "Symbole i własne motywy",
-    text: "Krzyż, gołąb, róża albo rysunek wykonany przez dziecko. Każdy gotowy obraz w formacie JPG, PNG, WEBP lub PDF wgrasz do kreatora i wytniesz po obrysie.",
+    text: "Krzyż, gołąb, róża, anioł albo rysunek wykonany przez dziecko. Każdy gotowy obraz w formacie JPG, PNG, WEBP lub PDF wgrasz do kreatora i wytniesz po obrysie.",
   },
   {
     icon: Users,
@@ -155,19 +168,34 @@ const USE_CASES: {
 
 const ZNICZE_TYPES: { type: string; fit: string; note: string }[] = [
   {
-    type: "Znicz solarny, LED lub na baterie - gładki klosz ze szkła",
-    fit: "Tak",
-    note: "Brak otwartego płomienia, więc klosz się nie nagrzewa. Przy walcu naklejka układa się najlepiej, gdy nie jest zbyt szeroka - zmierz szerokość gładkiego pola.",
+    type: "Znicz solarny, LED lub na baterie - płaska, gładka ścianka ze szkła (np. lampion kwadratowy lub sześciokątny)",
+    fit: "Tak - najlepszy wybór",
+    note: "Brak płomienia, więc klosz się nie nagrzewa, a naklejka leży płasko, bez fałd. Dobierz rozmiar do jednej ścianki, z marginesem od narożników - naklejka nie powinna przechodzić przez krawędź.",
   },
   {
-    type: "Znicz solarny, LED lub na baterie - klosz plastikowy",
+    type: "Znicz solarny, LED lub na baterie - płaska ścianka z plastiku",
     fit: "Tak, po sprawdzeniu powierzchni",
     note: "Klej najlepiej trzyma na gładkiej, nietłustej powierzchni. Jeśli tworzywo jest chropowate lub woskowane, przetestuj jedną naklejkę.",
   },
   {
-    type: "Klosz ryflowany, ażurowy, ze wzorem w reliefie",
+    type: "Okrągły klosz (walec) znicza solarnego, LED lub na baterie",
+    fit: "Tylko mała naklejka",
+    note: "Walec wygina się w jednym kierunku, więc naklejka się nie marszczy, ale owija wokół szkła. Im węższy klosz, tym mniejsza naklejka - szeroki portret na wąskim walcu z przodu wygląda na ściśnięty.",
+  },
+  {
+    type: "Klosz zwężający się ku górze lub ku dołowi (stożek)",
+    fit: "Tylko mała, najlepiej owal",
+    note: "Prostokątna naklejka ułoży się krzywo względem brzegu klosza. Owal lub koło nie ma prostych krawędzi, więc tego nie widać.",
+  },
+  {
+    type: "Klosz kulisty, beczułkowaty lub z wybrzuszeniem",
     fit: "Nie polecamy",
-    note: "Naklejka nie położy się płasko na nierównej powierzchni, a brzegi będą się unosić.",
+    note: "Powierzchnia wygięta w dwóch kierunkach naraz: folia się marszczy, tworzy fałdy i odstaje na brzegach, a zdjęcie wygląda niekorzystnie.",
+  },
+  {
+    type: "Klosz ryflowany, ażurowy, szlifowany, ze wzorem w reliefie",
+    fit: "Nie polecamy",
+    note: "Naklejka nie przylgnie do nierównej powierzchni: brzegi się unoszą, a pod folią odznaczają się rowki i wzór.",
   },
   {
     type: "Znicz z płomieniem - klosz szklany lub plastikowy",
@@ -198,7 +226,7 @@ const SIZES: { size: string; count: string; cost: string; fits: string }[] = [
     size: "5 x 7 cm (portret)",
     count: "ok. 12 szt.",
     cost: "~4,92 zł",
-    fits: "Zdjęcie portretowe na średnim zniczu",
+    fits: "Zdjęcie portretowe na płaskiej ściance średniego znicza",
   },
   {
     size: "6 x 6 cm",
@@ -210,13 +238,13 @@ const SIZES: { size: string; count: string; cost: string; fits: string }[] = [
     size: "8 x 8 cm",
     count: "ok. 6 szt.",
     cost: "~9,83 zł",
-    fits: "Duży znicz solarny, lampion LED",
+    fits: "Duży znicz solarny lub lampion LED z szeroką płaską ścianką",
   },
   {
     size: "10 x 10 cm",
     count: "ok. 4 szt.",
     cost: "~12,25 zł",
-    fits: "Duży lampion LED, wysoki znicz solarny",
+    fits: "Duży lampion LED lub solarny z szeroką płaską ścianką",
   },
 ];
 
@@ -258,6 +286,11 @@ const SPECS: { label: string; value: string }[] = [
     label: "Zastosowanie",
     value:
       "Znicze bez otwartego płomienia: solarne, LED i na baterie, z kloszem ze szkła lub plastiku",
+  },
+  {
+    label: "Wymagana powierzchnia",
+    value:
+      "Płaska, gładka i sucha ścianka klosza; na okrągłym kloszu tylko mała naklejka; nie na kloszach kulistych, ryflowanych, ażurowych i z reliefem",
   },
   {
     label: "Co możesz nakleić",
@@ -307,16 +340,43 @@ const SPECS: { label: string; value: string }[] = [
 
 const STEPS: { title: string; text: string }[] = [
   {
+    title: "Sprawdź znicz",
+    text: "Naklejka nadaje się na znicz bez otwartego płomienia - solarny, LED lub na baterie - z płaską, gładką ścianką. Zmierz linijką wysokość i szerokość tej ścianki, a jeśli klosz jest okrągły, przyłóż do niego papierowy wycinek w planowanym rozmiarze i sprawdź, czy przylega bez zagięć.",
+  },
+  {
     title: "Przygotuj zdjęcie i napis",
     text: "Weź zdjęcie z telefonu, skan albo fotografię odbitki zrobioną w świetle dziennym, bez flesza i odblasków. Zapisz je jako JPG, PNG, WEBP lub PDF, najlepiej w 300 DPI. Imię i dedykację złóż w darmowej Canvie, Wordzie lub PowerPoincie i wyeksportuj do pliku, bo kreator nie ma edytora tekstu. Brakuje Ci ramki albo symbolu? Wygenerujesz je w zewnętrznym narzędziu AI, takim jak ChatGPT, Gemini czy Midjourney.",
   },
   {
     title: "Wgraj plik, wybierz kształt i rozmiar",
-    text: "W kreatorze wgrywasz plik, kadrujesz portret i wybierasz owal lub koło, prostokąt albo cięcie po obrysie. Ustaw rozmiar tak, żeby naklejka zmieściła się na gładkim polu znicza. Kolejne zdjęcia i napisy wgrywasz na ten sam arkusz - każdy wzór zostanie wycięty osobno.",
+    text: "W kreatorze wgrywasz plik, kadrujesz portret i wybierasz owal lub koło, prostokąt albo cięcie po obrysie. Ustaw rozmiar tak, żeby naklejka zmieściła się na płaskiej ściance znicza, z marginesem od krawędzi. Kolejne zdjęcia i napisy wgrywasz na ten sam arkusz - każdy wzór zostanie wycięty osobno.",
   },
   {
     title: "Sprawdź podgląd i zamów z zapasem czasu",
     text: "Obejrzyj podgląd 3D i zapłać BLIK-iem lub przez Przelewy24. Naklejki wyprodukujemy w 2-3 dni robocze i wyślemy do paczkomatu za 19,99 zł. Przed Wszystkimi Świętymi zamawiaj z zapasem, bo do produkcji dochodzi jeszcze dostawa.",
+  },
+];
+
+const APPLY_STEPS: { title: string; text: string }[] = [
+  {
+    title: "Wybierz miejsce na kloszu",
+    text: "Najlepiej środek płaskiej ścianki od frontu znicza, z marginesem od krawędzi. Nie zaklejaj panelu słonecznego, włącznika ani klapki baterii i nie oklejaj całego klosza - im więcej szkła zostanie odsłonięte, tym lepiej widać światło.",
+  },
+  {
+    title: "Oczyść i osusz ściankę",
+    text: "Przetrzyj ją alkoholem lub płynem odtłuszczającym i wytrzyj do sucha. Kurz, ślady palców i wilgoć osłabiają klej.",
+  },
+  {
+    title: "Naklejaj w domu, w temperaturze pokojowej",
+    text: "Na zimnym szkle klej wiąże słabiej, dlatego nie naklejaj na cmentarzu. Znicz przyniesiony z zimna odstaw, aż się ogrzeje i obeschnie z pary.",
+  },
+  {
+    title: "Przyłóż środek i wygładzaj ku brzegom",
+    text: "Zdejmij naklejkę z podkładu, przyłóż ją środkiem do ścianki i wygładzaj palcem lub miękką ściereczką od środka ku brzegom. Pęcherzyk powietrza wypchnij w stronę najbliższego brzegu.",
+  },
+  {
+    title: "Dociśnij brzegi",
+    text: "Przeciągnij palcem po całym obwodzie naklejki. Nie odklejaj jej, żeby poprawić położenie - drugi raz się nie przyklei. Gdy kiedyś zechcesz ją zdjąć, nie zostawi śladów kleju.",
   },
 ];
 
@@ -351,7 +411,7 @@ export default function NaklejkiNaZniczePage() {
           "@type": "Product",
           name: "Naklejki na znicze ze zdjęciem i dedykacją",
           description:
-            "Personalizowane naklejki na znicze: zdjęcie, imię i daty albo dedykacja drukowane na trwałej folii winylowej odpornej na wodę i UV. Do naklejenia na klosz znicza bez otwartego płomienia: solarnego, LED lub na baterie. Nie nadają się na klosz znicza z płomieniem. Owal, koło, prostokąt lub cięcie po obrysie, druk 300 DPI, stała cena 59,00 zł brutto za arkusz A4 bez minimalnego nakładu, produkcja 2-3 dni robocze i odbiór w paczkomacie.",
+            "Personalizowane naklejki na znicze: zdjęcie, imię i daty albo dedykacja drukowane na trwałej folii winylowej odpornej na wodę i UV. Do naklejenia na płaską, gładką ściankę klosza znicza bez otwartego płomienia: solarnego, LED lub na baterie. Nie nadają się na klosz znicza z płomieniem ani na klosze kuliste, ryflowane i z reliefem. Owal, koło, prostokąt lub cięcie po obrysie, druk 300 DPI, stała cena 59,00 zł brutto za arkusz A4 bez minimalnego nakładu, produkcja 2-3 dni robocze i odbiór w paczkomacie.",
           image: "https://www.malenaklejki.pl/images/logo/favicon.png",
           brand: { "@type": "Brand", name: "MałeNaklejki" },
           category: "Naklejki na znicze",
@@ -426,7 +486,7 @@ export default function NaklejkiNaZniczePage() {
           name: "Naklejki na znicze ze zdjęciem i dedykacją",
           url: PAGE_URL,
           isPartOf: { "@id": "https://www.malenaklejki.pl/#website" },
-          dateModified: "2026-10-10T00:00:00+02:00",
+          dateModified: "2026-10-23T00:00:00+02:00",
         }}
       />
 
@@ -476,12 +536,39 @@ export default function NaklejkiNaZniczePage() {
             wycinamy naklejki w Polsce. Stała cena to{" "}
             <strong>59,00 zł brutto za arkusz A4</strong>, już od 1 arkusza,
             produkcja trwa <strong>2-3 dni robocze</strong>, a przesyłkę
-            odbierasz w paczkomacie. Naklejkę przyklejasz na klosz własnego
-            znicza <strong>solarnego, LED lub na baterie</strong>. Ważne
-            zastrzeżenie: folia nie jest odporna na{" "}
-            <strong>ciepło płomienia</strong>, dlatego nie naklejaj jej na
-            klosz znicza z płomieniem - folia się stopi.
+            odbierasz w paczkomacie. Naklejkę przyklejasz na płaską, gładką
+            ściankę klosza własnego znicza{" "}
+            <strong>solarnego, LED lub na baterie</strong> - nie na znicz z
+            płomieniem, bo folia nie jest odporna na jego ciepło i się stopi.
           </p>
+
+          <div className="rounded-2xl border border-primary/20 bg-primary/5 dark:bg-white/[0.04] p-4 sm:p-5 space-y-3">
+            <p className="text-xs font-black uppercase tracking-wide text-primary">
+              Zanim zamówisz, sprawdź swój znicz
+            </p>
+            <ul className="space-y-2.5 text-sm sm:text-base text-foreground/90 font-semibold leading-relaxed">
+              <li className="flex items-start gap-3">
+                <Flame className="w-5 h-5 mt-0.5 shrink-0 text-primary" />
+                <span>
+                  <strong>Bez otwartego płomienia.</strong> Tylko znicz
+                  solarny, LED lub na baterie - na kloszu znicza z płomieniem
+                  folia się stopi.
+                </span>
+              </li>
+              <li className="flex items-start gap-3">
+                <Ruler className="w-5 h-5 mt-0.5 shrink-0 text-primary" />
+                <span>
+                  <strong>Płaska, gładka ścianka na naklejkę.</strong> Na
+                  kloszu kulistym, z wybrzuszeniem, ryflowanym albo ze wzorem
+                  naklejka się marszczy, odstaje na brzegach i wygląda
+                  niekorzystnie.{" "}
+                  <a href="#plaska-scianka" className={inlineLink}>
+                    Jak sprawdzić znicz
+                  </a>
+                </span>
+              </li>
+            </ul>
+          </div>
 
           <div className="flex flex-col sm:flex-row gap-3 pt-2">
             <Link
@@ -504,7 +591,7 @@ export default function NaklejkiNaZniczePage() {
               <ShieldCheck className="w-3.5 h-3.5" /> W 100% polska produkcja
             </span>
             <span className="text-xs font-bold text-muted-foreground/60 flex items-center gap-1.5">
-              <Clock className="w-3.5 h-3.5" /> Ostatnia aktualizacja: 10
+              <Clock className="w-3.5 h-3.5" /> Ostatnia aktualizacja: 23
               października 2026
             </span>
           </div>
@@ -539,8 +626,8 @@ export default function NaklejkiNaZniczePage() {
           </h2>
           <p className="text-sm sm:text-base text-muted-foreground font-medium leading-relaxed">
             Naklejka na znicz to zdjęcie, imię albo dedykacja wydrukowane na
-            folii z klejem, które przyklejasz na klosz znicza bez płomienia -
-            solarnego, LED lub na baterie. Zwykły znicz z półki staje się
+            folii z klejem, które przyklejasz na płaską ściankę klosza znicza
+            bez płomienia - solarnego, LED lub na baterie. Zwykły znicz z półki staje się
             dzięki niej osobisty, a Ty nie musisz szukać sprzedawcy, który
             zrobi znicz personalizowany od zera. Kupujesz znicz solarny lub
             LED i dodajesz własną naklejkę. My drukujemy wyłącznie naklejki -
@@ -664,14 +751,16 @@ export default function NaklejkiNaZniczePage() {
         {/* Na jakim zniczu */}
         <section className="mt-12 space-y-5">
           <h2 className="text-2xl sm:text-3xl font-black text-foreground font-heading">
-            Naklejki na znicze solarne i LED - szklane lub plastikowe, zawsze
-            bez płomienia
+            Naklejki na znicze solarne i LED - szklane lub plastikowe, z
+            płaską ścianką, bez płomienia
           </h2>
           <p className="text-sm sm:text-base text-muted-foreground font-medium leading-relaxed">
-            O tym, czy naklejka się nadaje, decydują dwie rzeczy: źródło
-            światła i powierzchnia klosza. Znicz musi być bez otwartego
-            płomienia, bo na nagrzanym kloszu folia się stopi, a klej
-            potrzebuje gładkiej, suchej i czystej powierzchni.
+            O tym, czy naklejka się nadaje i dobrze wygląda, decydują trzy
+            rzeczy: źródło światła, kształt klosza i jego powierzchnia. Znicz
+            musi być bez otwartego płomienia, bo na nagrzanym kloszu folia się
+            stopi. Naklejka potrzebuje płaskiej ścianki, bo na wypukłym kloszu
+            się marszczy. A klej trzyma pewnie tylko na gładkiej, suchej i
+            czystej powierzchni.
           </p>
           <div className="overflow-x-auto rounded-2xl border border-border/60 shadow-sm">
             <table className="w-full border-collapse bg-white dark:bg-[#003a3b]/40 text-sm">
@@ -724,10 +813,79 @@ export default function NaklejkiNaZniczePage() {
           </div>
         </section>
 
+        {/* Płaska ścianka */}
+        <section id="plaska-scianka" className="mt-12 space-y-5 scroll-mt-24">
+          <h2 className="text-2xl sm:text-3xl font-black text-foreground font-heading">
+            Płaska ścianka - jak sprawdzić znicz przed zamówieniem naklejki
+          </h2>
+          <p className="text-sm sm:text-base text-muted-foreground font-medium leading-relaxed">
+            Naklejka to płaski kawałek folii. Bez fałd ułoży się na
+            powierzchni płaskiej albo wygiętej tylko w jednym kierunku, jak
+            okrągły słoik. Na kloszu wygiętym w dwóch kierunkach naraz -
+            kulistym, beczułkowatym, z wybrzuszeniem - folia musi się
+            pomarszczyć: brzegi odstają, na zdjęciu pojawiają się zagniecenia,
+            a portret bliskiej osoby wygląda niekorzystnie. Dlatego kształt
+            klosza sprawdź przed zamówieniem tak samo uważnie jak to, czy
+            znicz nie ma płomienia. Najpewniejszy wybór to lampion z płaskimi
+            ściankami, na przykład kwadratowy lub sześciokątny.
+          </p>
+          <div className="bg-white dark:bg-[#003a3b] rounded-2xl border border-border/40 p-5 sm:p-6 shadow-sm space-y-3">
+            <h3 className="text-base sm:text-lg font-black text-foreground">
+              Test z kartką papieru
+            </h3>
+            <ol className="space-y-2 text-sm sm:text-base text-muted-foreground font-medium leading-relaxed list-decimal pl-5">
+              <li>
+                Wytnij z kartki prostokąt albo owal w rozmiarze planowanej
+                naklejki, na przykład 5 x 7 cm.
+              </li>
+              <li>
+                Przyłóż go do klosza w miejscu, w którym ma być naklejka, i
+                przygładź palcami od środka ku brzegom.
+              </li>
+              <li>
+                Jeśli papier przylega całą powierzchnią, naklejka też się
+                położy. Jeśli marszczy się, odstaje na rogach albo trzeba go
+                zaginać, wybierz mniejszy rozmiar, owal zamiast prostokąta albo
+                inny znicz.
+              </li>
+            </ol>
+          </div>
+          <h3 className="text-base sm:text-lg font-black text-foreground">
+            Co psuje wygląd naklejki na zniczu
+          </h3>
+          <ul className="space-y-2.5 text-sm sm:text-base text-muted-foreground font-medium leading-relaxed list-disc pl-5">
+            <li>
+              <strong className="text-foreground">Narożniki graniastego lampionu.</strong>{" "}
+              Naklejka powinna zmieścić się na jednej ściance - złożona przez
+              krawędź odstaje i łamie zdjęcie na pół.
+            </li>
+            <li>
+              <strong className="text-foreground">Rowki, ryflowanie, szlif i relief.</strong>{" "}
+              Pod folią odznacza się wzór szkła, a brzegi się unoszą.
+            </li>
+            <li>
+              <strong className="text-foreground">Nadruki i łączenia formy.</strong>{" "}
+              Na plastikowym kloszu zaplanuj naklejkę obok nadruku producenta i
+              wypukłej linii łączenia, nie na nich.
+            </li>
+            <li>
+              <strong className="text-foreground">Wąski, okrągły klosz.</strong>{" "}
+              Szeroki portret owija się wokół szkła i z przodu wygląda na
+              ściśnięty - na wąskim walcu wybierz mniejszą naklejkę.
+            </li>
+          </ul>
+          <p className="text-sm sm:text-base text-muted-foreground font-medium leading-relaxed">
+            Na koniec zmierz linijką wysokość i szerokość płaskiej ścianki i
+            wybierz naklejkę odrobinę mniejszą, żeby został margines od
+            krawędzi. Rozmiary i koszt jednej sztuki znajdziesz w tabeli
+            poniżej.
+          </p>
+        </section>
+
         {/* Płomień i bezpieczeństwo */}
         <section className="mt-12 space-y-5">
           <h2 className="text-2xl sm:text-3xl font-black text-foreground font-heading">
-            Płomień i bezpieczeństwo - jak nakleić naklejkę na znicz
+            Płomień i bezpieczeństwo - dlaczego tylko znicze solarne i LED
           </h2>
           <div className="bg-primary/5 dark:bg-white/[0.04] border border-primary/20 rounded-2xl p-5 sm:p-6 space-y-4">
             <div className="flex items-start gap-3">
@@ -761,14 +919,39 @@ export default function NaklejkiNaZniczePage() {
                 Jeśli po czasie wymienisz go na wkład z płomieniem, klosz
                 zacznie się nagrzewać i folia się stopi.
               </li>
-              <li>
-                <strong className="text-foreground">Naklejaj w domu, w cieple.</strong>{" "}
-                Na czysty, suchy i odtłuszczony klosz, w temperaturze
-                pokojowej - na zimnym szkle klej wiąże słabiej. Dociśnij
-                całą naklejkę od środka ku brzegom.
-              </li>
             </ul>
           </div>
+        </section>
+
+        {/* Jak nakleić */}
+        <section className="mt-12 space-y-6">
+          <h2 className="text-2xl sm:text-3xl font-black text-foreground font-heading">
+            Jak nakleić naklejkę na znicz krok po kroku
+          </h2>
+          <p className="text-sm sm:text-base text-muted-foreground font-medium leading-relaxed">
+            Dobrze przyklejona naklejka leży płasko, bez pęcherzy i
+            odstających brzegów. Wystarczy pięć kroków i kilka minut w domu.
+          </p>
+          <ol className="space-y-4">
+            {APPLY_STEPS.map((step, i) => (
+              <li
+                key={step.title}
+                className="flex gap-4 bg-white dark:bg-[#003a3b] rounded-2xl border border-border/40 p-5 shadow-sm"
+              >
+                <span className="shrink-0 w-9 h-9 rounded-full bg-primary/10 text-primary flex items-center justify-center font-black">
+                  {i + 1}
+                </span>
+                <div className="space-y-1">
+                  <h3 className="text-base font-black text-foreground">
+                    {step.title}
+                  </h3>
+                  <p className="text-sm text-muted-foreground font-medium leading-relaxed">
+                    {step.text}
+                  </p>
+                </div>
+              </li>
+            ))}
+          </ol>
         </section>
 
         {/* Rozmiar i koszt */}
@@ -779,8 +962,8 @@ export default function NaklejkiNaZniczePage() {
           <p className="text-sm sm:text-base text-muted-foreground font-medium leading-relaxed">
             Cena arkusza jest stała, więc koszt jednej naklejki zależy od tego,
             ile ich zmieścisz na A4. Wartości są orientacyjne - dokładna liczba
-            zależy od kształtu i odstępów. Zmierz linijką gładkie pole na
-            swoim zniczu i wybierz naklejkę odrobinę mniejszą. Pełne
+            zależy od kształtu i odstępów. Zmierz linijką płaską ściankę
+            swojego znicza i wybierz naklejkę odrobinę mniejszą. Pełne
             zestawienie rozmiarów znajdziesz w poradniku{" "}
             <Link href="/blog/jaki-rozmiar-naklejki-wybrac" className={inlineLink}>
               jaki rozmiar naklejki wybrać
@@ -839,6 +1022,29 @@ export default function NaklejkiNaZniczePage() {
           </p>
         </section>
 
+        {/* Cały rok */}
+        <section className="mt-12 space-y-4">
+          <h2 className="text-2xl sm:text-3xl font-black text-foreground font-heading">
+            Naklejki na znicze nie tylko na 1 listopada
+          </h2>
+          <p className="text-sm sm:text-base text-muted-foreground font-medium leading-relaxed">
+            Znicz z osobistą naklejką stawia się także poza Wszystkimi
+            Świętymi i Zaduszkami: w Dniu Babci i Dniu Dziadka (21 i 22
+            stycznia), w Dniu Matki (26 maja) i Dniu Ojca (23 czerwca) oraz w
+            rocznice śmierci i urodzin bliskich. 11 listopada pod pomnikami i
+            na grobach żołnierzy pojawiają się znicze z biało-czerwonym
+            motywem - własną grafikę w barwach narodowych wgrasz do kreatora
+            jak każdy inny obraz.
+          </p>
+          <p className="text-sm sm:text-base text-muted-foreground font-medium leading-relaxed">
+            Jeden arkusz A4 wystarczy na kilka okazji: zamów od razu kilka
+            portretów i dedykacji, a niewykorzystane naklejki przechowuj w
+            oryginalnym arkuszu, w suchym miejscu i w temperaturze pokojowej.
+            Gdy zechcesz zmienić naklejkę na zniczu solarnym lub LED, starą
+            zdejmiesz bez śladów kleju i nakleisz w jej miejsce nową.
+          </p>
+        </section>
+
         {/* Firmy i organizacje */}
         <section className="mt-12 space-y-4">
           <h2 className="text-2xl sm:text-3xl font-black text-foreground font-heading">
@@ -849,9 +1055,10 @@ export default function NaklejkiNaZniczePage() {
             wymagają kilkudziesięciu jednakowych zniczy z logo lub hasłem
             „Pamiętamy”. Wgrywasz logo i hasło raz, układasz je wielokrotnie
             na arkuszu, a my drukujemy je na tej samej folii za tę samą cenę.
-            Do takiej akcji wybierz znicze LED lub solarne, bo na kloszu
-            znicza z płomieniem folia się stopi. Wystawiamy fakturę VAT na
-            NIP.
+            Do takiej akcji wybierz znicze LED lub solarne z płaską ścianką,
+            bo na kloszu znicza z płomieniem folia się stopi - a zanim kupisz
+            cały karton, sprawdź na jednej sztuce, czy naklejka dobrze się
+            kładzie. Wystawiamy fakturę VAT na NIP.
           </p>
           <p className="text-sm sm:text-base text-muted-foreground font-medium leading-relaxed">
             Nie stosujemy rabatów ilościowych, więc rachunek jest prosty:
@@ -977,7 +1184,8 @@ export default function NaklejkiNaZniczePage() {
             Zamów naklejki na znicze ze zdjęciem już od 1 arkusza
           </h2>
           <p className="text-sm sm:text-base text-muted-foreground font-medium leading-relaxed max-w-2xl mx-auto">
-            Wgraj zdjęcie do kreatora, wybierz kształt i rozmiar, a naklejki
+            Wgraj zdjęcie do kreatora, wybierz kształt i rozmiar dopasowany do
+            płaskiej ścianki znicza solarnego lub LED, a naklejki
             wyprodukujemy w 2-3 dni robocze na folii odpornej na wodę i UV - za
             stałe 59,00 zł brutto za arkusz A4, bez minimalnego nakładu. Przed
             Wszystkimi Świętymi zamawiaj z zapasem czasu.
