@@ -15,7 +15,7 @@ Znicz ze zdjęciem zrobisz samodzielnie w trzech krokach: kupujesz znicz solarny
 
 Do zrobienia znicza ze zdjęciem potrzebujesz trzech rzeczy: znicza, zdjęcia i naklejki. Znicz kupujesz u dowolnego sprzedawcy, zdjęcie masz w telefonie lub w albumie, a naklejkę drukujemy my.
 
-- **Znicz bez otwartego płomienia** - solarny, LED lub na baterie - z płaską, gładką ścianką klosza ze szkła lub plastiku. Na klosz znicza z płomieniem naklejki nie przyklejaj, bo folia się stopi. Na kloszu kulistym, z wybrzuszeniem, ryflowanym albo ze wzorem naklejka się marszczy i odstaje na brzegach, więc najpewniejszy wybór to lampion z płaskimi ściankami, na przykład kwadratowy lub sześciokątny.
+- **Znicz bez otwartego płomienia** - solarny, LED lub na baterie - z płaską, gładką ścianką klosza ze szkła lub plastiku. Na klosz znicza z płomieniem naklejki nie przyklejaj, bo folia się stopi. Na kloszu okrągłym, kulistym, ryflowanym albo ze wzorem naklejka - nawet mała - wygina się lub marszczy i wygląda niekorzystnie, więc wybierz lampion z płaskimi ściankami, na przykład kwadratowy lub sześciokątny.
 - **Zdjęcie** w formie pliku JPG, PNG, WEBP lub PDF - z telefonu, ze skanera albo z fotografii odbitki.
 - **Naklejka** wydrukowana na folii winylowej odpornej na wodę i UV, wycięta w owalu, kole, prostokącie albo po obrysie.
 
@@ -24,7 +24,7 @@ Samodzielna naklejka różni się od gotowego znicza ze zdjęciem tym, kto wybie
 | Podejście | Wybór znicza | Wiele wzorów naraz | Kiedy ma sens |
 | :--- | :--- | :--- | :--- |
 | Gotowy znicz ze zdjęciem od sprzedawcy | z oferty sprzedawcy | zależy od sprzedawcy | gdy chcesz jedną gotową sztukę i niczego nie przyklejać |
-| Własny znicz i naklejka z MałeNaklejki | dowolny solarny, LED lub na baterie | tak - kilka wzorów na jednym arkuszu | gdy masz kilka grobów albo chcesz sam wybrać znicz |
+| Własny znicz i naklejka z MałeNaklejki | dowolny solarny, LED lub na baterie z płaską ścianką | tak - kilka wzorów na jednym arkuszu | gdy masz kilka grobów albo chcesz sam wybrać znicz |
 
 ## Jak przygotować zdjęcie zmarłego na naklejkę na znicz
 
@@ -45,7 +45,7 @@ W kreatorze wybierasz jeden z trzech kształtów cięcia:
 - **Prostokąt** - zaokrąglone rogi, dobry do zdjęcia z napisem pod spodem.
 - **Kontur** - cięcie dokładnie po obrysie postaci lub rysunku (die-cut). Tło możesz usunąć jednym przyciskiem w kreatorze.
 
-Rozmiar dobierz do znicza. Zmierz linijką płaską ściankę klosza, a naklejkę wybierz odrobinę mniejszą, żeby brzegi nie wchodziły na narożniki, rowki ani nadruki producenta. Na okrągłym kloszu naklejka owija się wokół szkła, więc im węższy znicz, tym mniejszy rozmiar. Najprościej sprawdzić to przed zamówieniem: wytnij z kartki papieru prostokąt lub owal w planowanym rozmiarze i przyłóż go do klosza. Jeśli papier przylega bez zagięć, naklejka też się położy. Jeśli się marszczy albo odstaje na rogach, wybierz mniejszą naklejkę, owal zamiast prostokąta albo inny znicz.
+Rozmiar dobierz do znicza. Zmierz linijką płaską ściankę klosza, a naklejkę wybierz odrobinę mniejszą, żeby brzegi nie wchodziły na narożniki, rowki ani nadruki producenta. Czy ścianka jest naprawdę płaska, najprościej sprawdzić przed zamówieniem: wytnij z kartki papieru prostokąt lub owal w planowanym rozmiarze i przyłóż go do klosza. Jeśli papier przylega bez wyginania, naklejka też się położy. Jeśli trzeba go wyginać albo się marszczy, wybierz inny znicz - na okrągłym kloszu nawet mała naklejka wygląda niekorzystnie.
 
 | Rozmiar naklejki | Orientacyjnie szt. na A4 | Koszt 1 sztuki (brutto) | Pasuje do |
 | :--- | :--- | :--- | :--- |
@@ -99,7 +99,7 @@ Stopi się, jeśli przykleisz ją na klosz znicza z płomieniem. Klosz nagrzewa 
 
 ### Czy naklejka położy się na okrągłym albo kulistym zniczu?
 
-Na kulistym nie, na okrągłym tylko w małym rozmiarze. Folia leży gładko na płaskiej ściance, a na kloszu kulistym, beczułkowatym albo z wybrzuszeniem marszczy się i odstaje na brzegach. Na okrągłym kloszu naklejka owija się wokół szkła, dlatego im węższy klosz, tym mniejszą naklejkę wybierz.
+Nie - naklejka potrzebuje płaskiej ścianki. Na okrągłym kloszu nawet mała naklejka wygina się na łuku i wygląda niekorzystnie, a na kloszu kulistym albo z wybrzuszeniem folia dodatkowo się marszczy i odstaje na brzegach. Wybierz znicz z płaskimi ściankami, na przykład kwadratowy lub sześciokątny lampion.
 
 ### Czy mogę zrobić znicz ze zdjęcia czarno-białego?
 

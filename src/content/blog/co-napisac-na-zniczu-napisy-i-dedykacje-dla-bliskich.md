@@ -72,7 +72,7 @@ Kreator MałeNaklejki układa arkusz A4 z gotowych obrazów, więc napis przygot
 
 1. **Złóż napis w Canvie, Wordzie lub PowerPoincie.** Wpisz dedykację, ustaw wyraźny krój i duży rozmiar liter, a tło zostaw jednolite. Wyeksportuj do PNG lub PDF.
 2. **Wgraj plik do kreatora.** Wybierz kształt cięcia (koło, prostokąt albo kontur) i rozmiar. Na jeden arkusz możesz wgrać wiele napisów i zdjęć.
-3. **Zamów i przyklej.** Obejrzyj podgląd 3D, zapłać BLIK-iem lub przez Przelewy24. Naklejkę przyklej w temperaturze pokojowej na czystą, suchą i płaską ściankę klosza znicza solarnego, LED lub na baterie - na kloszu kulistym albo ryflowanym napis się pomarszczy.
+3. **Zamów i przyklej.** Obejrzyj podgląd 3D, zapłać BLIK-iem lub przez Przelewy24. Naklejkę przyklej w temperaturze pokojowej na czystą, suchą i płaską ściankę klosza znicza solarnego, LED lub na baterie - na kloszu okrągłym, kulistym albo ryflowanym napis się wygnie lub pomarszczy.
 
 Na jednym arkuszu A4 zmieści się orientacyjnie 24 - 30 napisów o rozmiarze 4 x 4 cm, więc jedna naklejka kosztuje ok. 1,97 - 2,46 zł. Wskazówki dotyczące czytelności drobnego tekstu znajdziesz w poradniku o [naklejkach z własnym napisem](/blog/naklejki-z-wlasnym-napisem-jak-przygotowac-plik-i-zamowic-online). Ważna uwaga o bezpieczeństwie: folia jest odporna na wodę i UV, ale nie na ciepło płomienia. Nie naklejaj jej na klosz znicza z płomieniem, bo folia się stopi - naklejki są przeznaczone na znicze solarne, LED i na baterie.
 

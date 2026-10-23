@@ -89,11 +89,11 @@ const FAQS: { q: string; a: string }[] = [
   },
   {
     q: "Na jakich zniczach można nakleić naklejkę?",
-    a: "Na zniczach bez otwartego płomienia - solarnych, LED i na baterie - które mają płaską, gładką ściankę ze szkła lub plastiku. Najlepiej sprawdzają się lampiony z płaskimi ściankami, na przykład kwadratowe lub sześciokątne. Na klosz znicza z płomieniem naklejki nie przyklejaj, bo klosz nagrzewa się od wkładu i folia się stopi. Nie polecamy też kloszy kulistych, ryflowanych, ażurowych i z reliefem, bo naklejka nie położy się na nich płasko i będzie wyglądała niekorzystnie.",
+    a: "Na zniczach bez otwartego płomienia - solarnych, LED i na baterie - które mają płaską, gładką ściankę ze szkła lub plastiku. Najlepiej sprawdzają się lampiony z płaskimi ściankami, na przykład kwadratowe lub sześciokątne. Na klosz znicza z płomieniem naklejki nie przyklejaj, bo klosz nagrzewa się od wkładu i folia się stopi. Nie polecamy też kloszy okrągłych, kulistych, ryflowanych, ażurowych i z reliefem, bo naklejka nie położy się na nich płasko i będzie wyglądała niekorzystnie.",
   },
   {
     q: "Czy naklejka położy się na okrągłym albo kulistym zniczu?",
-    a: "Na kulistym nie, na okrągłym tylko w małym rozmiarze. Folia leży gładko na płaskiej ściance, a na kloszu kulistym, beczułkowatym albo z wybrzuszeniem marszczy się, tworzy fałdy i odstaje na brzegach. Na okrągłym, walcowym kloszu naklejka owija się wokół szkła, dlatego im węższy klosz, tym mniejszą naklejkę wybierz. Przed zamówieniem przyłóż do klosza papierowy wycinek w rozmiarze naklejki - jeśli przylega bez zagięć, naklejka też się położy.",
+    a: "Nie - naklejka potrzebuje płaskiej ścianki. Na okrągłym kloszu nawet mała naklejka wygina się na łuku i wygląda niekorzystnie, a na kloszu kulistym, beczułkowatym albo z wybrzuszeniem folia dodatkowo się marszczy i odstaje na brzegach. Wybierz znicz z płaskimi ściankami, na przykład kwadratowy lub sześciokątny lampion LED albo solarny. Jeśli nie masz pewności, przyłóż do klosza papierowy wycinek w rozmiarze naklejki - jeśli trzeba go wyginać, ścianka nie jest płaska.",
   },
   {
     q: "Jaki rozmiar naklejki wybrać na znicz?",
@@ -178,14 +178,9 @@ const ZNICZE_TYPES: { type: string; fit: string; note: string }[] = [
     note: "Klej najlepiej trzyma na gładkiej, nietłustej powierzchni. Jeśli tworzywo jest chropowate lub woskowane, przetestuj jedną naklejkę.",
   },
   {
-    type: "Okrągły klosz (walec) znicza solarnego, LED lub na baterie",
-    fit: "Tylko mała naklejka",
-    note: "Walec wygina się w jednym kierunku, więc naklejka się nie marszczy, ale owija wokół szkła. Im węższy klosz, tym mniejsza naklejka - szeroki portret na wąskim walcu z przodu wygląda na ściśnięty.",
-  },
-  {
-    type: "Klosz zwężający się ku górze lub ku dołowi (stożek)",
-    fit: "Tylko mała, najlepiej owal",
-    note: "Prostokątna naklejka ułoży się krzywo względem brzegu klosza. Owal lub koło nie ma prostych krawędzi, więc tego nie widać.",
+    type: "Klosz okrągły (walec) lub zwężający się ku górze albo ku dołowi",
+    fit: "Nie polecamy",
+    note: "Naklejka wygina się na łuku - nawet mała - i wygląda niekorzystnie: zdjęcie z przodu jest wygięte, a brzegi układają się krzywo.",
   },
   {
     type: "Klosz kulisty, beczułkowaty lub z wybrzuszeniem",
@@ -290,7 +285,7 @@ const SPECS: { label: string; value: string }[] = [
   {
     label: "Wymagana powierzchnia",
     value:
-      "Płaska, gładka i sucha ścianka klosza; na okrągłym kloszu tylko mała naklejka; nie na kloszach kulistych, ryflowanych, ażurowych i z reliefem",
+      "Płaska, gładka i sucha ścianka klosza; nie na kloszach okrągłych, kulistych, ryflowanych, ażurowych i z reliefem",
   },
   {
     label: "Co możesz nakleić",
@@ -341,7 +336,7 @@ const SPECS: { label: string; value: string }[] = [
 const STEPS: { title: string; text: string }[] = [
   {
     title: "Sprawdź znicz",
-    text: "Naklejka nadaje się na znicz bez otwartego płomienia - solarny, LED lub na baterie - z płaską, gładką ścianką. Zmierz linijką wysokość i szerokość tej ścianki, a jeśli klosz jest okrągły, przyłóż do niego papierowy wycinek w planowanym rozmiarze i sprawdź, czy przylega bez zagięć.",
+    text: "Naklejka nadaje się na znicz bez otwartego płomienia - solarny, LED lub na baterie - z płaską, gładką ścianką. Zmierz linijką wysokość i szerokość tej ścianki, a jeśli nie masz pewności, czy jest płaska, przyłóż do niej papierowy wycinek w planowanym rozmiarze i sprawdź, czy przylega bez wyginania.",
   },
   {
     title: "Przygotuj zdjęcie i napis",
@@ -411,7 +406,7 @@ export default function NaklejkiNaZniczePage() {
           "@type": "Product",
           name: "Naklejki na znicze ze zdjęciem i dedykacją",
           description:
-            "Personalizowane naklejki na znicze: zdjęcie, imię i daty albo dedykacja drukowane na trwałej folii winylowej odpornej na wodę i UV. Do naklejenia na płaską, gładką ściankę klosza znicza bez otwartego płomienia: solarnego, LED lub na baterie. Nie nadają się na klosz znicza z płomieniem ani na klosze kuliste, ryflowane i z reliefem. Owal, koło, prostokąt lub cięcie po obrysie, druk 300 DPI, stała cena 59,00 zł brutto za arkusz A4 bez minimalnego nakładu, produkcja 2-3 dni robocze i odbiór w paczkomacie.",
+            "Personalizowane naklejki na znicze: zdjęcie, imię i daty albo dedykacja drukowane na trwałej folii winylowej odpornej na wodę i UV. Do naklejenia na płaską, gładką ściankę klosza znicza bez otwartego płomienia: solarnego, LED lub na baterie. Nie nadają się na klosz znicza z płomieniem ani na klosze okrągłe, kuliste, ryflowane i z reliefem. Owal, koło, prostokąt lub cięcie po obrysie, druk 300 DPI, stała cena 59,00 zł brutto za arkusz A4 bez minimalnego nakładu, produkcja 2-3 dni robocze i odbiór w paczkomacie.",
           image: "https://www.malenaklejki.pl/images/logo/favicon.png",
           brand: { "@type": "Brand", name: "MałeNaklejki" },
           category: "Naklejki na znicze",
@@ -559,9 +554,9 @@ export default function NaklejkiNaZniczePage() {
                 <Ruler className="w-5 h-5 mt-0.5 shrink-0 text-primary" />
                 <span>
                   <strong>Płaska, gładka ścianka na naklejkę.</strong> Na
-                  kloszu kulistym, z wybrzuszeniem, ryflowanym albo ze wzorem
-                  naklejka się marszczy, odstaje na brzegach i wygląda
-                  niekorzystnie.{" "}
+                  kloszu okrągłym, kulistym, ryflowanym albo ze wzorem naklejka
+                  wygina się lub marszczy, odstaje na brzegach i wygląda
+                  niekorzystnie - nawet mała.{" "}
                   <a href="#plaska-scianka" className={inlineLink}>
                     Jak sprawdzić znicz
                   </a>
@@ -758,8 +753,8 @@ export default function NaklejkiNaZniczePage() {
             O tym, czy naklejka się nadaje i dobrze wygląda, decydują trzy
             rzeczy: źródło światła, kształt klosza i jego powierzchnia. Znicz
             musi być bez otwartego płomienia, bo na nagrzanym kloszu folia się
-            stopi. Naklejka potrzebuje płaskiej ścianki, bo na wypukłym kloszu
-            się marszczy. A klej trzyma pewnie tylko na gładkiej, suchej i
+            stopi. Naklejka potrzebuje płaskiej ścianki, bo na okrągłym lub
+            wypukłym kloszu wygina się albo marszczy. A klej trzyma pewnie tylko na gładkiej, suchej i
             czystej powierzchni.
           </p>
           <div className="overflow-x-auto rounded-2xl border border-border/60 shadow-sm">
@@ -819,12 +814,13 @@ export default function NaklejkiNaZniczePage() {
             Płaska ścianka - jak sprawdzić znicz przed zamówieniem naklejki
           </h2>
           <p className="text-sm sm:text-base text-muted-foreground font-medium leading-relaxed">
-            Naklejka to płaski kawałek folii. Bez fałd ułoży się na
-            powierzchni płaskiej albo wygiętej tylko w jednym kierunku, jak
-            okrągły słoik. Na kloszu wygiętym w dwóch kierunkach naraz -
-            kulistym, beczułkowatym, z wybrzuszeniem - folia musi się
-            pomarszczyć: brzegi odstają, na zdjęciu pojawiają się zagniecenia,
-            a portret bliskiej osoby wygląda niekorzystnie. Dlatego kształt
+            Naklejka to płaski kawałek folii i dobrze wygląda tylko na płaskiej
+            powierzchni. Na okrągłym kloszu nawet mała naklejka wygina się na
+            łuku, więc zdjęcie z przodu jest wygięte, a brzegi układają się
+            krzywo. Na kloszu kulistym, beczułkowatym albo z wybrzuszeniem
+            folia dodatkowo się marszczy: brzegi odstają, na zdjęciu pojawiają
+            się zagniecenia, a portret bliskiej osoby wygląda niekorzystnie.
+            Dlatego kształt
             klosza sprawdź przed zamówieniem tak samo uważnie jak to, czy
             znicz nie ma płomienia. Najpewniejszy wybór to lampion z płaskimi
             ściankami, na przykład kwadratowy lub sześciokątny.
@@ -839,14 +835,14 @@ export default function NaklejkiNaZniczePage() {
                 naklejki, na przykład 5 x 7 cm.
               </li>
               <li>
-                Przyłóż go do klosza w miejscu, w którym ma być naklejka, i
+                Przyłóż go do ścianki w miejscu, w którym ma być naklejka, i
                 przygładź palcami od środka ku brzegom.
               </li>
               <li>
-                Jeśli papier przylega całą powierzchnią, naklejka też się
-                położy. Jeśli marszczy się, odstaje na rogach albo trzeba go
-                zaginać, wybierz mniejszy rozmiar, owal zamiast prostokąta albo
-                inny znicz.
+                Jeśli papier przylega całą powierzchnią bez wyginania, naklejka
+                też się położy. Jeśli trzeba go wyginać albo się marszczy,
+                ścianka nie jest płaska - wybierz inny znicz. Jeśli wchodzi na
+                krawędź lub narożnik, wybierz mniejszy rozmiar.
               </li>
             </ol>
           </div>
@@ -869,9 +865,9 @@ export default function NaklejkiNaZniczePage() {
               wypukłej linii łączenia, nie na nich.
             </li>
             <li>
-              <strong className="text-foreground">Wąski, okrągły klosz.</strong>{" "}
-              Szeroki portret owija się wokół szkła i z przodu wygląda na
-              ściśnięty - na wąskim walcu wybierz mniejszą naklejkę.
+              <strong className="text-foreground">Okrągły klosz.</strong>{" "}
+              Nawet mała naklejka wygina się na łuku i z przodu zdjęcie
+              wygląda na wygięte - zmniejszenie rozmiaru tego nie naprawi.
             </li>
           </ul>
           <p className="text-sm sm:text-base text-muted-foreground font-medium leading-relaxed">
