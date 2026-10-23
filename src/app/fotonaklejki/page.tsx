@@ -27,16 +27,16 @@ const PAGE_PATH = "/fotonaklejki";
 const PAGE_URL = `https://www.malenaklejki.pl${PAGE_PATH}`;
 
 export const metadata: Metadata = {
-  title: "Fotonaklejki - naklejki z własnego zdjęcia od 1 szt.",
+  title: "Fotonaklejki - naklejki ze zdjęcia od 1 szt., 59 zł/A4",
   description:
-    "Zrób fotonaklejki z własnego zdjęcia: wgraj plik z telefonu, my usuniemy tło i wytniemy naklejkę po obrysie na wodoodpornej folii. 59 zł brutto/arkusz A4, od 1 sztuki.",
+    "Fotonaklejki ze zdjęcia na prezent - wspólne zdjęcie albo portret pupila wytniemy po obrysie na wodoodpornej folii winylowej. 59,00 zł brutto za arkusz A4.",
   alternates: {
     canonical: PAGE_PATH,
   },
   openGraph: {
-    title: "Fotonaklejki - naklejki z własnego zdjęcia, wodoodporne",
+    title: "Fotonaklejki - naklejki ze zdjęcia od 1 szt., 59 zł/A4",
     description:
-      "Fotonaklejki z Twojego zdjęcia na trwałej folii winylowej: automatyczne usuwanie tła, cięcie po obrysie, druk 300 DPI. 59 zł brutto za arkusz A4, od 1 sztuki.",
+      "Fotonaklejki ze zdjęcia na prezent - wspólne zdjęcie albo portret pupila wytniemy po obrysie na wodoodpornej folii winylowej. 59,00 zł brutto za arkusz A4.",
     url: PAGE_URL,
     type: "website",
     images: [
@@ -50,9 +50,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Fotonaklejki - naklejki z własnego zdjęcia, wodoodporne",
+    title: "Fotonaklejki - naklejki ze zdjęcia od 1 szt., 59 zł/A4",
     description:
-      "Wgraj zdjęcie z telefonu, a my usuniemy tło i wytniemy fotonaklejkę po obrysie na wodoodpornej folii. 59 zł brutto za arkusz A4, od 1 sztuki.",
+      "Fotonaklejki ze zdjęcia na prezent - wspólne zdjęcie albo portret pupila wytniemy po obrysie na wodoodpornej folii winylowej. 59,00 zł brutto za arkusz A4.",
     images: ["/landing/fotonaklejki/fotonaklejki-ze-zdjec-arkusz-a4.png"],
   },
 };
