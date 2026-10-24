@@ -1,13 +1,17 @@
 import sharp from 'sharp';
 import fs from 'fs/promises';
 import path from 'path';
+import { fileURLToPath } from 'url';
+
+// Paths relative to this script, so it works on both Windows and macOS checkouts.
+const ROOT = path.dirname(fileURLToPath(import.meta.url));
 
 // If a specific folder is passed as an argument, use it.
 // Example usage: node add_logo_bar.mjs public/blog/moj-nowy-artykul
 const targetDirArg = process.argv[2];
-const targetDir = targetDirArg ? path.resolve(targetDirArg) : 'C:/Users/Jakub/malenaklejki/public/blog';
+const targetDir = targetDirArg ? path.resolve(targetDirArg) : path.join(ROOT, 'public', 'blog');
 
-const LOGO_PATH = 'C:/Users/Jakub/malenaklejki/public/images/logo/malenaklejki-logo-light.png';
+const LOGO_PATH = path.join(ROOT, 'public', 'images', 'logo', 'malenaklejki-logo-light.png');
 const BAR_COLOR = '#EDF6F3';
 
 async function processDirectory(dirPath) {
