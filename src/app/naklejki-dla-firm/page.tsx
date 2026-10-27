@@ -17,6 +17,7 @@ import {
   Boxes,
   Layers,
   Clock,
+  QrCode,
   ArrowRight,
 } from "lucide-react";
 
@@ -169,6 +170,13 @@ const USE_CASES: {
     href: "/blog/naklejki-maly-naklad-jak-zamowic-pojedyncze-sztuki-bez-przeplacania",
     linkLabel: "Jak zamówić mały nakład",
   },
+  {
+    icon: QrCode,
+    title: "Kody QR do opinii, menu i profilu",
+    text: "Kod do opinii Google przy kasie, menu na stoliku albo profilu w mediach społecznościowych - kilka różnych kodów mieści się na jednym arkuszu A4.",
+    href: "/naklejki-z-kodem-qr",
+    linkLabel: "Naklejki z kodem QR",
+  },
 ];
 
 const ADVANTAGES: { icon: React.ElementType; title: string; text: string }[] = [
@@ -318,7 +326,7 @@ export default function NaklejkiDlaFirmPage() {
           name: "Naklejki dla małych firm z własnym logo",
           url: PAGE_URL,
           isPartOf: { "@id": "https://www.malenaklejki.pl/#website" },
-          dateModified: "2026-09-24T00:00:00+02:00",
+          dateModified: "2026-10-27T00:00:00+01:00",
         }}
       />
       <JsonLd
@@ -419,8 +427,8 @@ export default function NaklejkiDlaFirmPage() {
 
           <div className="flex flex-wrap items-center gap-x-4 gap-y-1.5 pt-1">
             <span className="text-xs font-bold text-muted-foreground/60 flex items-center gap-1.5">
-              <Clock className="w-3.5 h-3.5" /> Ostatnia aktualizacja: 24
-              września 2026
+              <Clock className="w-3.5 h-3.5" /> Ostatnia aktualizacja: 27
+              października 2026
             </span>
           </div>
         </section>

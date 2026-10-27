@@ -50,7 +50,7 @@ Personalizowane naklejki firmowe na konferencje mają inną specyfikę niż welc
 | 20 szt. (ok. 3,5x5 cm) | Identyfikator, karta dostępu | 59,00 zł | ~2,95 zł |
 | 30 szt. (ok. 3x4 cm) | Wlepka na materiały konferencyjne, roll-up | 59,00 zł | ~1,97 zł |
 
-Przy większej konferencji zamawiasz po prostu wielokrotność arkuszy - cena za sztukę nie rośnie wraz ze skalą eventu, a organizator nie musi negocjować osobnej stawki przy każdym kolejnym zamówieniu.
+Przy większej konferencji zamawiasz po prostu wielokrotność arkuszy - cena za sztukę nie rośnie wraz ze skalą eventu, a organizator nie musi negocjować osobnej stawki przy każdym kolejnym zamówieniu. Na stoisko albo do zestawu powitalnego możesz dołożyć kod do katalogu lub formularza kontaktowego - jak go przygotować, opisujemy na stronie [naklejki z kodem QR](/naklejki-z-kodem-qr).
 
 ![Stół konferencyjny z naklejkami firmowymi w różnych kształtach, identyfikatorami gości na smyczach i długopisami z logo.](/blog/naklejki-firmowe-na-eventy-welcome-pack-dla-pracownikow/gadzety-firmowe-na-konferencje-naklejki-i-identyfikatory.png)
 

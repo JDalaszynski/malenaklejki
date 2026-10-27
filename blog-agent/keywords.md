@@ -255,7 +255,7 @@ Klaster obsłużony wpisami **A1** (`ile-kosztuja-naklejki-na-zamowienie-cena-za
 
 ## 13. Podklastry B2B dopisane do §8 (domknięcie zaległego P3.5)
 
-* **Kod QR (wpis B5):** `naklejki z kodem QR`, `naklejka QR na zamówienie`, `kod QR na naklejce`, `naklejka z QR do menu`. ⚠️ Kod generuje się w **zewnętrznym, darmowym generatorze** - to nie jest funkcja naszego kreatora. Nie deklaruj gwarancji skanowalności po wydruku; dawaj zalecenia (kontrast, jasne tło, quiet zone, minimalny rozmiar) i **wprost każ przetestować**.
+* **Kod QR (B5 - od 2026-10-27 LANDING `/naklejki-z-kodem-qr`, nie wpis; wolumeny z Planera i SERP w `landing-agent/strategia-qr.md`):** `naklejki z kodem QR` (100-1 tys./mies.), `naklejki qr` i `kod qr naklejka` (10-100); frazy z modyfikatorem (`na zamówienie`, `druk`, `etykiety z kodem qr`, `menu`, `opinie google`) - poniżej progu Planera. Kolejnego wpisu pod tę intencję nie pisz (kanibalizacja z landingiem); wolno tylko wpis informacyjny, jeśli GSC pokaże zapytania poradnikowe z pozycją > 30. ⚠️ Kod generuje się w **zewnętrznym, darmowym generatorze** - to nie jest funkcja naszego kreatora. Nie deklaruj gwarancji skanowalności po wydruku; dawaj zalecenia (kontrast, jasne tło, quiet zone, minimalny rozmiar) i **wprost każ przetestować**.
 * **Paczki i plomby:** pokryte wpisem `plomby-na-paczki-wysylkowe-i-naklejki-na-przesylki`. ⚠️ **Nie obiecuj właściwości security/void** ("nie da się zdjąć bez śladu") - `facts.md` tego zabrania.
 
 ---

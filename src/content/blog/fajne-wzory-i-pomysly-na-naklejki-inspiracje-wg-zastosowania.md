@@ -77,7 +77,7 @@ Wlepki to osobna kategoria myślenia o naklejce - liczy się nie tyle miejsce na
 ### 8. Branding dla firm i rzemiosła - zrób to sam
 
 Zamiast płacić krocie agencjom reklamowym, małe polskie manufaktury i lokalni usługodawcy z powodzeniem wykorzystują kreator do oznaczania paczek, produktów i sprzętu.
-* **Co się sprawdza:** Proste logo firmy na okrągłej naklejce (do zaklejania bibuły w paczce), zabawne hasła na paczkę ("Otwórz mnie", "Twoje nowe ulubione rzeczy"), kody QR prowadzące na profil w social mediach, dane kontaktowe na sprzęcie firmowym czy naklejki powitalne dla nowych pracowników.
+* **Co się sprawdza:** Proste logo firmy na okrągłej naklejce (do zaklejania bibuły w paczce), zabawne hasła na paczkę ("Otwórz mnie", "Twoje nowe ulubione rzeczy"), [kody QR na naklejkach](/naklejki-z-kodem-qr) prowadzące na profil w social mediach, dane kontaktowe na sprzęcie firmowym czy naklejki powitalne dla nowych pracowników.
 * **Więcej inspiracji:** Zacznij od tego, jak działa [naklejka z logo firmy](/blog/naklejka-z-logo-firmy-jak-skutecznie-brandowac-swoje-produkty), a potem sprawdź [naklejki z własnym logo na słoiki i opakowania](/blog/naklejki-z-wlasnym-logo-na-sloiki-i-opakowania) dla manufaktur oraz [naklejki firmowe na eventy i welcome pack](/blog/naklejki-firmowe-na-eventy-welcome-pack-dla-pracownikow). Pełną ofertę dla biznesu zebraliśmy na stronie [naklejek dla firm](/naklejki-dla-firm).
 * **Koszty i kalkulacja:** Zastanawiasz się nad budżetem? Sprawdź [ile kosztują naklejki na zamówienie i ile sztuk zmieścisz na arkuszu A4](/blog/ile-kosztuja-naklejki-na-zamowienie-cena-za-arkusz-a4).
 

@@ -19,7 +19,7 @@ Tradycyjny cennik naklejek w większości drukarni bywa nieczytelny. Klienci spo
 
 - **59,00 zł brutto za arkusz A4** - stała, niezmienna stawka za pełny arkusz trwałej folii winylowej z dowolnym nadrukiem w pełnym kolorze.
 - **Brak minimalnego nakładu** - możesz zamówić dokładnie 1 arkusz A4, gdy potrzebujesz zaledwie kilku wlepek testowych lub etykiet na domowe przetwory.
-- **Dowolna liczba różnych wzorów na jednym arkuszu** - na tej samej powierzchni A4 możesz połączyć logo firmy, naklejki z kodem QR, etykiety adresowe oraz grafiki okolicznościowe bez żadnej dopłaty.
+- **Dowolna liczba różnych wzorów na jednym arkuszu** - na tej samej powierzchni A4 możesz połączyć logo firmy, [naklejki z kodem QR](/naklejki-z-kodem-qr), etykiety adresowe oraz grafiki okolicznościowe bez żadnej dopłaty.
 - **Automatyczne cięcie w cenie** - cięcie po dowolnym obrysie (die-cut), prostokątne czy okrągłe jest wliczone w podstawowy koszt arkusza.
 
 Taki model sprawia, że [naklejki w małym nakładzie](/blog/naklejki-maly-naklad-jak-zamowic-pojedyncze-sztuki-bez-przeplacania) stają się w 100% przewidywalne finansowo. Płacisz wyłącznie za wykorzystaną powierzchnię, a nie za sztuczne minima produkcyjne.

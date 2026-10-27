@@ -35,6 +35,7 @@ const PAGES = [
   { url: "/etykiety-na-sloiki", title: "Etykiety na słoiki", desc: "Własne etykiety i napisy na słoiki, weki, butelki, świece i kosmetyki." },
   { url: "/wlepki-na-zamowienie", title: "Wlepki na zamówienie", desc: "Produkcja wlepek i vlepek: pojedyncze sztuki cięte po obrysie lub arkusz A4, od 1 sztuki." },
   { url: "/naklejki-na-znicze", title: "Naklejki na znicze", desc: "Naklejki ze zdjęciem, imieniem i dedykacją na płaską ściankę własnego znicza solarnego, LED lub na baterie: jak sprawdzić znicz, jak nakleić, rozmiary, koszt sztuki, zakaz naklejania na klosz znicza z płomieniem, od 1 arkusza A4." },
+  { url: "/naklejki-z-kodem-qr", title: "Naklejki z kodem QR", desc: "Naklejki z kodem QR wgranym przez klienta (opinie Google, menu, social media, Wi-Fi): kilka różnych kodów na jednym arkuszu A4, zalecenia dla kodu (margines, kontrast, rozmiar, kod statyczny), kreator nie generuje kodów QR i skanowania nie gwarantujemy." },
   { url: "/alternatywa-dla-sticker-mule-i-stickerapp", title: "Polska alternatywa dla Sticker Mule i StickerApp", desc: "Porównanie z serwisami zagranicznymi: cena, nakład, czas, język obsługi." },
   { url: "/slownik-naklejek", title: "Słownik naklejek", desc: "Baza wiedzy o rodzajach cięcia, materiałach i technologiach druku." },
   { url: "/blog", title: "Blog", desc: "Poradniki i inspiracje: przygotowanie pliku, zastosowania, ceny." },
@@ -61,6 +62,7 @@ const FACTS = [
   "Kraj produkcji: Polska - obsługa po polsku, bez przeliczania z euro i bez ceł.",
   "Poza zakresem odporności: zmywarka, pranie i tkaniny, rozpuszczalniki, benzyna oraz tłuszcze techniczne. Folia nie jest odporna na ciepło płomienia (np. klosz znicza z otwartym ogniem). Nie deklarujemy odporności na myjnię ciśnieniową ani konkretnej liczby lat użytkowania na zewnątrz.",
   "Naklejki na znicze: drukujemy same naklejki (zdjęcie, imię, dedykacja, logo), nie sprzedajemy zniczy ani wkładów. Naklejkę przykleja się na płaską, gładką ściankę klosza znicza bez otwartego płomienia: solarnego, LED lub na baterie. Na kloszu okrągłym, kulistym, z wybrzuszeniem, ryflowanym, ażurowym lub z reliefem naklejka - nawet mała - wygina się lub marszczy i wygląda niekorzystnie. Folia jest odporna na wodę i UV, ale nie na ciepło płomienia - na kloszu znicza z płomieniem (wkład parafinowy, olejowy) folia się stopi, dlatego na takie znicze naklejki się nie nadają.",
+  "Naklejki z kodem QR: drukujemy obraz z kodem QR wgrany przez klienta (najlepiej PNG z białym marginesem wokół kodu); kreator nie generuje kodów QR - kod przygotowuje się w zewnętrznym generatorze. Na jednym arkuszu może być kilka różnych kodów. Dla kodu zalecamy cięcie w prostokąt. Nie gwarantujemy skanowania po wydruku - zalecamy test wydruku próbnego w docelowym rozmiarze. Nie oferujemy naklejek NFC.",
   "Czego nie oferujemy: folii do oklejania całych pojazdów (wrapping), folii hologramowej, brokatowej i transparentnej, naklejek matowych, naklejek repozycjonowalnych oraz naklejek na tkaninę.",
 ];
 
