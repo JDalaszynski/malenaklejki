@@ -61,7 +61,7 @@
 * ✅ "produkcja 4-5 dni robocze", "realizacja zajmuje 4-5 dni robocze", "wyprodukujemy w 4-5 dni robocze", "naklejki będą gotowe w 4-5 dni robocze"
 * ❌ "dostarczymy w 4-5 dni", "odbierzesz w 4-5 dni", "dotrą do Ciebie w 4-5 dni", "wysyłka w 4-5 dni" - to obietnice **doręczenia**, a całkowity czas dostawy jest nadal DO POTWIERDZENIA. Mów o produkcji, potem osobno o paczkomacie.
 
-**Wyjątek - `src/app/regulamin/page.tsx`** mówi "maksymalnie 3 dni robocze od zaksięgowania wpłaty". Jest to zgodne z 2-3 dniami (sufit), więc **nie ruszaj regulaminu** bez decyzji prawnej.
+**Wyjątek - `src/app/regulamin/page.tsx`** mówi "maksymalnie 5 dni roboczych od zaksięgowania wpłaty" (zaktualizowany 2026-10-29 razem z 4-5 dniami; sufit zgodny z produkcją). Dalsze zmiany regulaminu tylko po decyzji prawnej.
 
 **Korekta audytu Fazy 3 (P3.3):** flaga "1-2 dni robocze" jako obietnica szybsza niż potwierdzona to **fałszywy alarm**. Oba wystąpienia (`drukowanie-naklejek-online...`, `naklejki-wlasnego-projektu-na-sloiki-z-przyprawami...`) opisują **czas kuriera po produkcji**, nie czas realizacji. Zostają.
 
