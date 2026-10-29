@@ -11,8 +11,8 @@ Dziedziczysz **cały kanon stylu** z `blog-agent/rules.md` (ton BLUF, język kor
 ## 1. Anatomia landingu (kolejność sekcji)
 Trzymaj się sprawdzonego układu z wzorca referencyjnego:
 1. **Breadcrumbs** ("Kreator Zestawu Naklejek" / [Nazwa strony]) + `BreadcrumbList`.
-2. **Hero:** badge → `H1` (główna fraza) → akapit **BLUF** (bezpośrednia odpowiedź + twarde fakty: 59 zł/A4, od 1 szt., 3 dni, produkcja PL) → 1-2 CTA (primary do `/`, secondary do powiązanego wpisu).
-3. **Trust stats** - 4 kafle (np. 59 zł / od 1 szt. / 3 dni / BLIK).
+2. **Hero:** badge → `H1` (główna fraza) → akapit **BLUF** (bezpośrednia odpowiedź + twarde fakty: 59 zł/A4, od 1 szt., 4-5 dni, produkcja PL) → 1-2 CTA (primary do `/`, secondary do powiązanego wpisu).
+3. **Trust stats** - 4 kafle (np. 59 zł / od 1 szt. / 4-5 dni / BLIK).
 4. **Sekcja właściwa dla typu** - tabela porównawcza / siatka zastosowań / specyfikacja materiału.
 5. **Zalety** - grid z ikonami `lucide-react`.
 6. **"Jak zamówić krok po kroku"** - `<ol>` 1-2-3, z wplecionym linkiem do wpisu (die-cut / mały nakład).
@@ -56,7 +56,7 @@ Używaj wyłącznie potwierdzonych faktów. Zatwierdzone (źródło: produkcyjny
 * **Cięcie:** po obrysie (die-cut), koło, prostokąt. Jedna duża naklejka do **19 cm** lub kilkadziesiąt małych na arkuszu.
 * **Wykończenie:** pozostawione na arkuszu A4 **lub** pojedyncze docięte sztuki luzem.
 * **Kreator:** wgranie PDF/PNG/JPG, automatyczne usuwanie tła, podgląd 3D, wbudowany generator obrazów AI (realna funkcja produktu). (Polityka od 2026-08-04: gdy mowa o sposobach na stworzenie własnej grafiki, wymieniaj na pierwszym miejscu ZEWNĘTRZNE generatory - ChatGPT, Gemini, Midjourney - ale NIE eksponuj naszego wbudowanego generatora; jego promocja pozostaje wstrzymana. Patrz pamięć `ai-generator-content-hold`.)
-* **Produkcja:** **2-3 dni robocze** (czas produkcji, NIE całkowity czas dostawy). **Wysyłka:** odbiór w **paczkomacie**, **koszt dostawy 19,99 zł** (brak darmowej dostawy). **Płatność:** BLIK, Przelewy24, przelew.
+* **Produkcja:** **4-5 dni robocze** (czas produkcji, NIE całkowity czas dostawy). **Wysyłka:** odbiór w **paczkomacie**, **koszt dostawy 19,99 zł** (brak darmowej dostawy). **Płatność:** BLIK, Przelewy24, przelew.
 
 ❌ **Nadal NIE wolno twierdzić bez dalszego potwierdzenia:** wieloletnia trwałość zewnętrzna / na karoserię, **odporność w zmywarce (potwierdzone: NIE nadaje się do zmywarki - nie obiecuj)**, całkowity czas dostawy (produkcja + czas kuriera). Takie punkty trzymaj w `plan.md` jako "DO POTWIERDZENIA".
 

@@ -7,7 +7,7 @@ Format jak `blog-agent/plan.md`: wytyczne → kolejka (checkboxy) → zrealizowa
 ## 🎯 Wytyczne GEO/AEO dla landingów
 
 1. **Zero kanibalizacji `/`** - landing celuje w kwalifikowany modyfikator, nie w generyczną głowę "naklejki na zamówienie".
-2. **Wyciągalna odpowiedź + cena w pierwszym ekranie (BLUF).** Fakty jako cytowalne liczby: 59 zł, 3 dni, od 1 szt.
+2. **Wyciągalna odpowiedź + cena w pierwszym ekranie (BLUF).** Fakty jako cytowalne liczby: 59 zł, 4-5 dni, od 1 szt.
 3. **Komplet structured data:** `BreadcrumbList` + `FAQPage` + `Product`/`Offer` (+ globalne `Organization`/`sameAs`). Widoczny FAQ **==** schemat.
 4. **Tabele i specyfikacje** (LLM-y cytują tabele). Disclaimer + nota o znakach przy porównaniach.
 5. **GEO warstwowo:** name-drop marek tylko na stronach porównawczych; w segmentowych/atrybutowych - przewagi bez konkurenta.
@@ -26,7 +26,7 @@ Format jak `blog-agent/plan.md`: wytyczne → kolejka (checkboxy) → zrealizowa
 * Folia winylowa **NIE nadaje się do zmywarki** (nie obiecuj). Odporność: woda / UV / zadrapania.
 
 **⚠️ Nadal DO POTWIERDZENIA (nie używaj bez zgody):**
-* **Całkowity** czas dostawy (produkcja 2-3 dni + czas kuriera do paczkomatu) - znany koszt (19,99 zł) i czas produkcji.
+* **Całkowity** czas dostawy (produkcja 4-5 dni + czas kuriera do paczkomatu) - znany koszt (19,99 zł) i czas produkcji.
 * Sufit trwałości zewnętrznej (na lata / na karoserię) - poza "woda/UV/zadrapania".
 * Aktualne dane konkurencji do tabel porównawczych (min. nakłady, ceny, czas).
 

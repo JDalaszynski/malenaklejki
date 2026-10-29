@@ -55,11 +55,11 @@
 
 ## ✅ Czas realizacji - ROZSTRZYGNIĘTE (2026-08-17)
 
-**Decyzja właściciela: obowiązuje "produkcja 2-3 dni robocze".** Wcześniej blog i strona główna mówiły "3 dni robocze" (i miejscami "wysyłka w 3 dni"), a landingi "produkcja 2-3 dni robocze". Ujednolicone w całym serwisie 2026-08-17.
+**Decyzja właściciela (zmiana 2026-10-29): obowiązuje "produkcja 4-5 dni robocze" (wcześniej 2-3, od 2026-08-17).** Wcześniej blog i strona główna mówiły "3 dni robocze" (i miejscami "wysyłka w 3 dni"), a landingi "produkcja 2-3 dni robocze". Ujednolicone w całym serwisie 2026-08-17.
 
 **Jak pisać:**
-* ✅ "produkcja 2-3 dni robocze", "realizacja zajmuje 2-3 dni robocze", "wyprodukujemy w 2-3 dni robocze", "naklejki będą gotowe w 2-3 dni robocze"
-* ❌ "dostarczymy w 2-3 dni", "odbierzesz w 2-3 dni", "dotrą do Ciebie w 2-3 dni", "wysyłka w 2-3 dni" - to obietnice **doręczenia**, a całkowity czas dostawy jest nadal DO POTWIERDZENIA. Mów o produkcji, potem osobno o paczkomacie.
+* ✅ "produkcja 4-5 dni robocze", "realizacja zajmuje 4-5 dni robocze", "wyprodukujemy w 4-5 dni robocze", "naklejki będą gotowe w 4-5 dni robocze"
+* ❌ "dostarczymy w 4-5 dni", "odbierzesz w 4-5 dni", "dotrą do Ciebie w 4-5 dni", "wysyłka w 4-5 dni" - to obietnice **doręczenia**, a całkowity czas dostawy jest nadal DO POTWIERDZENIA. Mów o produkcji, potem osobno o paczkomacie.
 
 **Wyjątek - `src/app/regulamin/page.tsx`** mówi "maksymalnie 3 dni robocze od zaksięgowania wpłaty". Jest to zgodne z 2-3 dniami (sufit), więc **nie ruszaj regulaminu** bez decyzji prawnej.
 
