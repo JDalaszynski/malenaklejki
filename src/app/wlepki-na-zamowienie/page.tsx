@@ -28,7 +28,7 @@ const PAGE_URL = `https://www.malenaklejki.pl${PAGE_PATH}`;
 export const metadata: Metadata = {
   title: "Wlepki na zamówienie - vlepy z własnym nadrukiem od 59 zł",
   description:
-    "Produkcja wlepek (vlepek) na zamówienie: pojedyncze sztuki cięte po obrysie, bez minimalnego nakładu. Stała cena 59,00 zł brutto za arkusz A4, druk 2-3 dni.",
+    "Produkcja wlepek (vlepek) na zamówienie: pojedyncze sztuki cięte po obrysie, bez minimalnego nakładu. Stała cena 59,00 zł brutto za arkusz A4, druk 4-5 dni.",
   alternates: {
     canonical: PAGE_PATH,
   },
@@ -51,7 +51,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Wlepki na zamówienie - vlepy z własnym nadrukiem od 59 zł",
     description:
-      "Produkcja wlepek na zamówienie: pojedyncze sztuki cięte po obrysie. Stała cena 59,00 zł brutto za arkusz A4, produkcja 2-3 dni robocze.",
+      "Produkcja wlepek na zamówienie: pojedyncze sztuki cięte po obrysie. Stała cena 59,00 zł brutto za arkusz A4, produkcja 4-5 dni robocze.",
     images: ["/landing/wlepki-na-zamowienie/wlepki-na-zamowienie-kolaz-wzorow.jpeg"],
   },
 };
@@ -72,7 +72,7 @@ const FAQS: { q: string; a: string }[] = [
   },
   {
     q: "Ile trwa druk wlepek i kiedy dostanę zamówienie?",
-    a: "Wlepki produkujemy w 2-3 dni robocze od zaksięgowania wpłaty. Po zakończeniu produkcji przesyłka rusza do wybranego paczkomatu - koszt dostawy to 19,99 zł.",
+    a: "Wlepki produkujemy w 4-5 dni robocze od zaksięgowania wpłaty. Po zakończeniu produkcji przesyłka rusza do wybranego paczkomatu - koszt dostawy to 19,99 zł.",
   },
   {
     q: "Czy mogę zamówić tylko jeden wzór wlepki?",
@@ -176,7 +176,7 @@ const ADVANTAGES: { icon: React.ElementType; title: string; text: string }[] = [
   {
     icon: Truck,
     title: "Polska produkcja i szybki druk",
-    text: "Drukujemy w Polsce w 2-3 dni robocze i wysyłamy do paczkomatu - bez czekania na przesyłkę zza granicy i bez przeliczania z euro.",
+    text: "Drukujemy w Polsce w 4-5 dni robocze i wysyłamy do paczkomatu - bez czekania na przesyłkę zza granicy i bez przeliczania z euro.",
   },
 ];
 
@@ -192,7 +192,7 @@ const SPECS: { label: string; value: string }[] = [
   { label: "Maks. wymiar jednej wlepki", value: "Do 19 cm" },
   { label: "Źródło grafiki", value: "Gotowy plik PNG, JPG lub PDF albo zdjęcie z telefonu" },
   { label: "Cena", value: "59,00 zł brutto za arkusz A4, bez minimalnego nakładu" },
-  { label: "Produkcja", value: "2-3 dni robocze" },
+  { label: "Produkcja", value: "4-5 dni robocze" },
   { label: "Wysyłka i płatność", value: "Paczkomat 19,99 zł; BLIK, Przelewy24, faktura VAT" },
 ];
 
@@ -224,7 +224,7 @@ export default function WlepkiNaZamowieniePage() {
           "@type": "Product",
           name: "Wlepki (vlepki) na zamówienie z własnym nadrukiem",
           description:
-            "Produkcja wlepek i vlepek na zamówienie: pojedyncze sztuki cięte po obrysie grafiki lub arkusz A4, druk na trwałej folii winylowej odpornej na wodę i UV. Stała cena 59,00 zł brutto za arkusz A4 bez minimalnego nakładu, produkcja 2-3 dni robocze i odbiór w paczkomacie.",
+            "Produkcja wlepek i vlepek na zamówienie: pojedyncze sztuki cięte po obrysie grafiki lub arkusz A4, druk na trwałej folii winylowej odpornej na wodę i UV. Stała cena 59,00 zł brutto za arkusz A4 bez minimalnego nakładu, produkcja 4-5 dni robocze i odbiór w paczkomacie.",
           image: "https://www.malenaklejki.pl/images/logo/favicon.png",
           brand: { "@type": "Brand", name: "MałeNaklejki" },
           category: "Wlepki na zamówienie",
@@ -256,9 +256,9 @@ export default function WlepkiNaZamowieniePage() {
                 "@type": "ShippingDeliveryTime",
                 handlingTime: {
                   "@type": "QuantitativeValue",
-                  // Produkcja 2-3 dni robocze (blog-agent/facts.md, decyzja z 2026-08-17).
-                  minValue: 2,
-                  maxValue: 3,
+                  // Produkcja 4-5 dni robocze (blog-agent/facts.md, decyzja z 2026-08-17).
+                  minValue: 4,
+                  maxValue: 5,
                   unitCode: "d",
                 },
                 transitTime: {
@@ -347,7 +347,7 @@ export default function WlepkiNaZamowieniePage() {
             projekt wlepki, a kreator sam usunie tło i wyznaczy linię cięcia.
             Druk na trwałej <strong>folii winylowej</strong>, stała cena{" "}
             <strong>59,00 zł brutto za arkusz A4</strong>, już od 1 arkusza,
-            produkcja w <strong>2-3 dni robocze</strong> i wysyłka do
+            produkcja w <strong>4-5 dni robocze</strong> i wysyłka do
             paczkomatu.
           </p>
 
@@ -384,7 +384,7 @@ export default function WlepkiNaZamowieniePage() {
             { value: "59 zł", label: "Brutto za arkusz A4" },
             { value: "od 1 szt.", label: "Bez min. nakładu" },
             { value: "Pojedyncze sztuki", label: "Cięte po obrysie" },
-            { value: "2-3 dni", label: "Produkcja robocza" },
+            { value: "4-5 dni", label: "Produkcja robocza" },
           ].map((stat) => (
             <div
               key={stat.label}
@@ -573,7 +573,7 @@ export default function WlepkiNaZamowieniePage() {
               },
               {
                 title: "Sprawdź podgląd 3D i zamów",
-                text: "Obejrzyj podgląd gotowego arkusza, zapłać BLIK-iem lub przez Przelewy24, a produkcję uruchomimy od razu. Wlepki wyprodukujemy w 2-3 dni robocze i wyślemy do paczkomatu za 19,99 zł.",
+                text: "Obejrzyj podgląd gotowego arkusza, zapłać BLIK-iem lub przez Przelewy24, a produkcję uruchomimy od razu. Wlepki wyprodukujemy w 4-5 dni robocze i wyślemy do paczkomatu za 19,99 zł.",
               },
             ].map((step, i) => (
               <li
@@ -644,7 +644,7 @@ export default function WlepkiNaZamowieniePage() {
           </h2>
           <p className="text-sm sm:text-base text-muted-foreground font-medium leading-relaxed max-w-2xl mx-auto">
             Wgraj gotowy projekt do kreatora, wybierz pojedyncze sztuki lub
-            arkusz A4 i zamów. Wlepki wyprodukujemy w 2-3 dni robocze na
+            arkusz A4 i zamów. Wlepki wyprodukujemy w 4-5 dni robocze na
             trwałej folii winylowej odpornej na wodę i UV - za
             stałe 59,00 zł brutto od arkusza, bez minimalnego nakładu.
           </p>

@@ -55,7 +55,7 @@ Otwórz kreator MałeNaklejki w przeglądarce telefonu i wgraj przygotowany plik
 
 ### Krok 4 - Wybierz kształt cięcia i zamów
 
-Zdecyduj, czy naklejka ma być wycięta po obrysie, w kole czy w prostokącie, sprawdź podgląd 3D i złóż zamówienie. Jeden zadrukowany arkusz A4 kosztuje stałe 59,00 zł, bez minimalnego nakładu, a realizacja trwa 2-3 dni robocze.
+Zdecyduj, czy naklejka ma być wycięta po obrysie, w kole czy w prostokącie, sprawdź podgląd 3D i złóż zamówienie. Jeden zadrukowany arkusz A4 kosztuje stałe 59,00 zł, bez minimalnego nakładu, a realizacja trwa 4-5 dni robocze.
 
 ![Dziesiątki małych naklejek wyciętych po obrysie z prawdziwych zdjęć z telefonu - portrety zwierząt, zdjęcia z wakacji i ze spotkań ze znajomymi ułożone gęsto obok siebie.](/blog/jak-zrobic-wlasne-naklejki-w-telefonie-proste-aplikacje-i-triki/wiele-naklejek-z-prawdziwych-zdjec-z-telefonu.png)
 
@@ -81,7 +81,7 @@ Naklejka na kartkę urodzinową albo do notesu spokojnie wyjdzie z domowej druka
 | Klej | papierowy, odchodzi po kilku dniach i potrafi zostawić ślad | mocny klej, przy odklejaniu schodzi bez śladów (naklejasz raz, bez przekładania) |
 | Co musisz mieć przy telefonie | drukarkę z Wi-Fi lub AirPrint, inaczej przegrywasz plik na komputer | samą przeglądarkę w telefonie |
 | Koszt startu | ryza papieru i tusz kupione z góry, nawet pod jedną naklejkę | 59,00 zł brutto za arkusz A4, bez minimalnego nakładu - już od 1 arkusza |
-| Czas | od ręki, jeśli masz papier i pełny tusz | produkcja 2-3 dni robocze, przesyłka do paczkomatu 19,99 zł |
+| Czas | od ręki, jeśli masz papier i pełny tusz | produkcja 4-5 dni robocze, przesyłka do paczkomatu 19,99 zł |
 | Jakość nadruku | tyle, ile wyciśniesz z domowej drukarki | druk w 300 DPI |
 
 **Domowy wydruk ma sens**, gdy robisz jednorazową ozdobę na kartkę, chcesz w pięć minut sprawdzić, jak wzór wygląda w skali 1:1, albo potrzebujesz czegoś "na teraz" i trwałość nie gra roli.
@@ -135,6 +135,6 @@ Cena jest stała i wynosi 59,00 zł za jeden zadrukowany arkusz A4, niezależnie
 
 ### Jak długo czeka się na wysyłkę?
 
-Realizacja zamówienia trwa 2-3 dni robocze od momentu zatwierdzenia projektu i opłacenia zamówienia.
+Realizacja zamówienia trwa 4-5 dni robocze od momentu zatwierdzenia projektu i opłacenia zamówienia.
 
 <a href="/" style="display: inline-block; background-color: #02af7a; color: #ffffff; padding: 14px 28px; text-decoration: none; border-radius: 8px; font-weight: 600; font-size: 18px; margin-top: 24px; text-align: center;">Zrób naklejkę z telefonu</a>

@@ -33,7 +33,7 @@ const TITLE = "Naklejki na znicze ze zdjęciem - na zamówienie od 59 zł";
 export const metadata: Metadata = {
   title: TITLE,
   description:
-    "Naklejki na znicze solarne i LED ze zdjęciem, imieniem lub dedykacją, na wodoodpornej folii. 59,00 zł brutto za arkusz A4, od 1 sztuki, produkcja 2-3 dni robocze.",
+    "Naklejki na znicze solarne i LED ze zdjęciem, imieniem lub dedykacją, na wodoodpornej folii. 59,00 zł brutto za arkusz A4, od 1 sztuki, produkcja 4-5 dni robocze.",
   alternates: {
     canonical: PAGE_PATH,
   },
@@ -56,7 +56,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: TITLE,
     description:
-      "Naklejki na znicze ze zdjęciem i dedykacją na wodoodpornej folii winylowej. Stała cena 59,00 zł brutto za arkusz A4, produkcja 2-3 dni robocze.",
+      "Naklejki na znicze ze zdjęciem i dedykacją na wodoodpornej folii winylowej. Stała cena 59,00 zł brutto za arkusz A4, produkcja 4-5 dni robocze.",
     images: [OG_IMAGE],
   },
 };
@@ -117,7 +117,7 @@ const FAQS: { q: string; a: string }[] = [
   },
   {
     q: "Czy zdążę z zamówieniem przed 1 listopada i ile kosztuje dostawa?",
-    a: "Produkcja trwa 2-3 dni robocze od opłacenia zamówienia, a naklejki wysyłamy do paczkomatu za 19,99 zł. Całkowitego czasu dostawy nie deklarujemy, bo zależy od przewoźnika, dlatego przed Wszystkimi Świętymi zamów z zapasem i nie zostawiaj tego na ostatnie dni. Zapłacisz BLIK-iem lub przez Przelewy24.",
+    a: "Produkcja trwa 4-5 dni robocze od opłacenia zamówienia, a naklejki wysyłamy do paczkomatu za 19,99 zł. Całkowitego czasu dostawy nie deklarujemy, bo zależy od przewoźnika, dlatego przed Wszystkimi Świętymi zamów z zapasem i nie zostawiaj tego na ostatnie dni. Zapłacisz BLIK-iem lub przez Przelewy24.",
   },
 ];
 
@@ -326,7 +326,7 @@ const SPECS: { label: string; value: string }[] = [
     label: "Cena",
     value: "59,00 zł brutto za arkusz A4, bez minimalnego nakładu",
   },
-  { label: "Produkcja", value: "2-3 dni robocze" },
+  { label: "Produkcja", value: "4-5 dni robocze" },
   {
     label: "Wysyłka i płatność",
     value: "Paczkomat 19,99 zł; BLIK, Przelewy24, przelew, faktura VAT",
@@ -348,7 +348,7 @@ const STEPS: { title: string; text: string }[] = [
   },
   {
     title: "Sprawdź podgląd i zamów z zapasem czasu",
-    text: "Obejrzyj podgląd 3D i zapłać BLIK-iem lub przez Przelewy24. Naklejki wyprodukujemy w 2-3 dni robocze i wyślemy do paczkomatu za 19,99 zł. Przed Wszystkimi Świętymi zamawiaj z zapasem, bo do produkcji dochodzi jeszcze dostawa.",
+    text: "Obejrzyj podgląd 3D i zapłać BLIK-iem lub przez Przelewy24. Naklejki wyprodukujemy w 4-5 dni robocze i wyślemy do paczkomatu za 19,99 zł. Przed Wszystkimi Świętymi zamawiaj z zapasem, bo do produkcji dochodzi jeszcze dostawa.",
   },
 ];
 
@@ -406,7 +406,7 @@ export default function NaklejkiNaZniczePage() {
           "@type": "Product",
           name: "Naklejki na znicze ze zdjęciem i dedykacją",
           description:
-            "Personalizowane naklejki na znicze: zdjęcie, imię i daty albo dedykacja drukowane na trwałej folii winylowej odpornej na wodę i UV. Do naklejenia na płaską, gładką ściankę klosza znicza bez otwartego płomienia: solarnego, LED lub na baterie. Nie nadają się na klosz znicza z płomieniem ani na klosze okrągłe, kuliste, ryflowane i z reliefem. Owal, koło, prostokąt lub cięcie po obrysie, druk 300 DPI, stała cena 59,00 zł brutto za arkusz A4 bez minimalnego nakładu, produkcja 2-3 dni robocze i odbiór w paczkomacie.",
+            "Personalizowane naklejki na znicze: zdjęcie, imię i daty albo dedykacja drukowane na trwałej folii winylowej odpornej na wodę i UV. Do naklejenia na płaską, gładką ściankę klosza znicza bez otwartego płomienia: solarnego, LED lub na baterie. Nie nadają się na klosz znicza z płomieniem ani na klosze okrągłe, kuliste, ryflowane i z reliefem. Owal, koło, prostokąt lub cięcie po obrysie, druk 300 DPI, stała cena 59,00 zł brutto za arkusz A4 bez minimalnego nakładu, produkcja 4-5 dni robocze i odbiór w paczkomacie.",
           image: "https://www.malenaklejki.pl/images/logo/favicon.png",
           brand: { "@type": "Brand", name: "MałeNaklejki" },
           category: "Naklejki na znicze",
@@ -438,9 +438,9 @@ export default function NaklejkiNaZniczePage() {
                 "@type": "ShippingDeliveryTime",
                 handlingTime: {
                   "@type": "QuantitativeValue",
-                  // Produkcja 2-3 dni robocze (blog-agent/facts.md, decyzja z 2026-08-17).
-                  minValue: 2,
-                  maxValue: 3,
+                  // Produkcja 4-5 dni robocze (blog-agent/facts.md, decyzja z 2026-08-17).
+                  minValue: 4,
+                  maxValue: 5,
                   unitCode: "d",
                 },
                 transitTime: {
@@ -530,7 +530,7 @@ export default function NaklejkiNaZniczePage() {
             owal, koło, prostokąt lub cięcie po obrysie - a my drukujemy i
             wycinamy naklejki w Polsce. Stała cena to{" "}
             <strong>59,00 zł brutto za arkusz A4</strong>, już od 1 arkusza,
-            produkcja trwa <strong>2-3 dni robocze</strong>, a przesyłkę
+            produkcja trwa <strong>4-5 dni robocze</strong>, a przesyłkę
             odbierasz w paczkomacie. Naklejkę przyklejasz na płaską, gładką
             ściankę klosza własnego znicza{" "}
             <strong>solarnego, LED lub na baterie</strong> - nie na znicz z
@@ -598,7 +598,7 @@ export default function NaklejkiNaZniczePage() {
             { value: "59 zł", label: "Brutto za arkusz A4" },
             { value: "od 1 szt.", label: "Bez min. nakładu" },
             { value: "Woda i UV", label: "Folia winylowa" },
-            { value: "2-3 dni", label: "Produkcja robocze" },
+            { value: "4-5 dni", label: "Produkcja robocze" },
           ].map((stat) => (
             <div
               key={stat.label}
@@ -1182,7 +1182,7 @@ export default function NaklejkiNaZniczePage() {
           <p className="text-sm sm:text-base text-muted-foreground font-medium leading-relaxed max-w-2xl mx-auto">
             Wgraj zdjęcie do kreatora, wybierz kształt i rozmiar dopasowany do
             płaskiej ścianki znicza solarnego lub LED, a naklejki
-            wyprodukujemy w 2-3 dni robocze na folii odpornej na wodę i UV - za
+            wyprodukujemy w 4-5 dni robocze na folii odpornej na wodę i UV - za
             stałe 59,00 zł brutto za arkusz A4, bez minimalnego nakładu. Przed
             Wszystkimi Świętymi zamawiaj z zapasem czasu.
           </p>

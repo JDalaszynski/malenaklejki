@@ -21,7 +21,7 @@ Zanim wyślesz plik do druku, warto zrozumieć, z czego składa się cały proce
 1. **Wgrasz plik** (JPG, PNG, PDF lub SVG) do naszego kreatora online - prosto z telefonu lub komputera.
 2. **Wybierzesz kształt cięcia** - po obrysie grafiki, okrągły, prostokątny lub kwadratowy.
 3. **Skonfigurujesz arkusz** - decydujesz, ile naklejek ma się zmieścić na jednym arkuszu A4.
-4. **Zatwierdzasz podgląd 3D** i składasz zamówienie. Realizacja zajmuje 2-3 dni robocze.
+4. **Zatwierdzasz podgląd 3D** i składasz zamówienie. Realizacja zajmuje 4-5 dni robocze.
 
 Cały proces odbywa się w oknie przeglądarki - bez instalowania programów i bez rejestracji. Dopiero zaczynasz i zastanawiasz się, [jak zrobić własne naklejki](/blog/jak-zrobic-wlasne-naklejki-program-do-robienia-naklejek-online) krok po kroku? W osobnym poradniku porównujemy druk domowy DIY z prostym programem do robienia naklejek online.
 
@@ -144,7 +144,7 @@ Podsumowując proces od projektu do paczki na Twoich drzwiach:
 4. **Ustaw liczbę naklejek** na arkuszu i zaznacz opcję "Pozostawione na arkuszu" lub "Pojedyncze sztuki".
 5. **Sprawdź podgląd 3D** i przejdź do zamówienia.
 6. **Opłać zamówienie** - realizacja startuje natychmiast po potwierdzeniu płatności.
-7. **Odbierz paczkę** w 2-3 dni robocze + czas dostawy kuriera (1-2 dni).
+7. **Odbierz paczkę** w 4-5 dni robocze + czas dostawy kuriera (1-2 dni).
 
 Nie ma minimalnego nakładu. Możesz zamówić jeden arkusz z jedną naklejką lub kilkanaście arkuszy z różnymi projektami - cena za arkusz pozostaje zawsze ta sama: **59,00 zł**.
 
@@ -156,7 +156,7 @@ Nie ma minimalnego nakładu. Możesz zamówić jeden arkusz z jedną naklejką l
 
 ### Jak długo trwa realizacja zamówienia na naklejki online?
 
-Realizacja zamówienia w MałeNaklejki zajmuje **2-3 dni robocze** od momentu zatwierdzenia projektu i opłacenia zamówienia. Następnie przesyłka trafia do Ciebie kurierem (1-2 dni robocze) lub Pocztą Polską.
+Realizacja zamówienia w MałeNaklejki zajmuje **4-5 dni robocze** od momentu zatwierdzenia projektu i opłacenia zamówienia. Następnie przesyłka trafia do Ciebie kurierem (1-2 dni robocze) lub Pocztą Polską.
 
 ### Jaki format pliku jest najlepszy do druku naklejek?
 

@@ -410,13 +410,13 @@ function SuccessContent() {
               {isPrzelew ? (
                 <>
                   Produkcja:{" "}
-                  <strong className="text-foreground">2-3 dni robocze</strong>{" "}
+                  <strong className="text-foreground">4-5 dni robocze</strong>{" "}
                   od zaksięgowania przelewu na konto, a potem wysyłka do paczkomatu.
                 </>
               ) : (
                 <>
                   Produkcja:{" "}
-                  <strong className="text-foreground">2-3 dni roboczych</strong>{" "}
+                  <strong className="text-foreground">4-5 dni roboczych</strong>{" "}
                   od złożenia zamówienia i jego opłacenia, a potem wysyłka do paczkomatu.
                 </>
               )}

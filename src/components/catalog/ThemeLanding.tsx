@@ -137,7 +137,7 @@ export function ThemeLanding({ content, sheets }: { content: ThemeContent; sheet
             { value: `${SHEET_PRICE} zł`, label: "Brutto za zestaw" },
             { value: `${sheets.length}`, label: "Wzorów w temacie" },
             { value: "Woda i UV", label: "Folia winylowa" },
-            { value: "2-3 dni", label: "Produkcja robocze" },
+            { value: "4-5 dni", label: "Produkcja robocze" },
           ]}
         />
 

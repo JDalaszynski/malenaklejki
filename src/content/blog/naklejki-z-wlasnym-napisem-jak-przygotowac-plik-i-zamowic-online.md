@@ -63,7 +63,7 @@ Gdy masz już gotowy plik, zamówienie zajmie Ci kilka minut:
 2. **Wybierz kształt cięcia** - zdecydujesz, czy naklejka ma być wycięta po obrysie napisu (die cut), w okrąg, prostokąt czy kwadrat
 3. **Ustaw liczbę naklejek na arkuszu** - im więcej naklejek na jednym arkuszu A4, tym niższy koszt jednostkowy
 4. **Podejrzyj efekt w 3D** - interaktywny podgląd pokaże Ci, jak będzie wyglądał finalny wydruk
-5. **Zamów i czekaj** - realizacja trwa 2-3 dni robocze, wysyłka kurierem lub Pocztą Polską
+5. **Zamów i czekaj** - realizacja trwa 4-5 dni robocze, wysyłka kurierem lub Pocztą Polską
 
 ![Okrągła biała naklejka z własnym czarnym napisem Homemade with love aplikowana dłonią na pudełko kartonowe wysyłkowe](/blog/naklejki-z-wlasnym-napisem-jak-przygotowac-plik-i-zamowic-online/naklejka-z-napisem-homemade-with-love-na-opakowanie.jpg)
 
@@ -93,7 +93,7 @@ Drukujemy w Polsce, na maszynach drukarskich wysokiej jakości z gamą kolorów 
 
 Ślubne naklejki z własnym napisem to jeden z najpopularniejszych produktów w sezonie wiosenno-letnim. Oto kilka praktycznych wskazówek:
 
-- **Zamów z wyprzedzeniem** - realizacja 2-3 dni robocze + czas dostawy. Przy weselu planowanym na sobotę zamów najpóźniej w poniedziałek tygodnia wcześniej
+- **Zamów z wyprzedzeniem** - realizacja 4-5 dni robocze + czas dostawy. Przy weselu planowanym na sobotę zamów najpóźniej w poniedziałek tygodnia wcześniej
 - **Zrób próbkę** - możesz zamówić 1 arkusz próbny, żeby sprawdzić kolor i rozmiar przed zamówieniem dużej partii
 - **Pomyśl o kształcie** - okrągłe i owalne naklejki z napisem wyglądają najeleganciej na butelkach i słoiczkach; prostokątne sprawdzą się na pudełkach
 
@@ -108,7 +108,7 @@ A jeśli szukasz oryginalnej dekoracji lub upominku, świetnym pomysłem jest na
 
 ## Zamów naklejki z własnym napisem już dziś
 
-Wygeneruj tło w AI lub przygotuj gotowy napis w Canva czy Word, zapisz jako PNG lub PDF i wgraj do kreatora. Naklejki z Twoim unikalnym napisem wyprodukujemy w 2-3 dni robocze. Stała cena 59,00 zł za arkusz A4, brak minimalnego nakładu.
+Wygeneruj tło w AI lub przygotuj gotowy napis w Canva czy Word, zapisz jako PNG lub PDF i wgraj do kreatora. Naklejki z Twoim unikalnym napisem wyprodukujemy w 4-5 dni robocze. Stała cena 59,00 zł za arkusz A4, brak minimalnego nakładu.
 
 <a href="/" style="display: inline-block; background-color: #02af7a; color: #ffffff; padding: 14px 28px; text-decoration: none; border-radius: 8px; font-weight: 600; font-size: 18px; margin-top: 24px; text-align: center;">Zamów naklejki z własnym napisem</a>
 
@@ -128,7 +128,7 @@ Tak. Drukujemy na folii winylowej, która jest w pełni wodoodporna. Naklejki z 
 
 ### Jak długo czeka się na naklejki z własnym napisem?
 
-Realizacja zamówienia zajmuje 2-3 dni robocze od momentu zatwierdzenia projektu. Następnie przesyłka jest dostarczana kurierem (1-2 dni) lub Pocztą Polską.
+Realizacja zamówienia zajmuje 4-5 dni robocze od momentu zatwierdzenia projektu. Następnie przesyłka jest dostarczana kurierem (1-2 dni) lub Pocztą Polską.
 
 ### Czy mogę zamówić naklejki z napisem w kilku różnych wzorach na jednym arkuszu?
 

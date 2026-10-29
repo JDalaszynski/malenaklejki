@@ -14,7 +14,7 @@ export function FinalCTASection() {
           </h2>
           <p className="text-white/75 text-sm sm:text-base font-semibold leading-relaxed">
             Ułóż naklejki w kreatorze na górze strony - wydrukujemy je na trwałym winylu
-            w 2-3 dni robocze.
+            w 4-5 dni robocze.
           </p>
 
           <div className="flex flex-col sm:flex-row items-center gap-4 mt-2">

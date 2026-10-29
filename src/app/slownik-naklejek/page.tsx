@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Słownik naklejek: die-cut, kiss-cut, DPI - druk za 59 zł/A4",
     description:
-      "Słownik naklejek: die-cut, kiss-cut, folia winylowa, 300 DPI i CMYK wyjaśnione prosto. Druk od 1 arkusza A4 za 59,00 zł brutto, produkcja 2-3 dni robocze.",
+      "Słownik naklejek: die-cut, kiss-cut, folia winylowa, 300 DPI i CMYK wyjaśnione prosto. Druk od 1 arkusza A4 za 59,00 zł brutto, produkcja 4-5 dni robocze.",
     images: [
       "/landing/slownik-naklejek/die-cut-naklejka-ciecie-po-obrysie-kontur.jpg",
     ],
@@ -82,7 +82,7 @@ const FAQS: { q: string; a: string }[] = [
   },
   {
     q: "Ile trwa realizacja zamówienia naklejek?",
-    a: "Naklejki produkujemy w 2-3 dni robocze od opłacenia zamówienia i wysyłamy z odbiorem w paczkomacie (koszt dostawy 19,99 zł). Całość - od wgrania pliku po płatność BLIK lub Przelewy24 - załatwiasz online, bez kontaktu z grafikiem.",
+    a: "Naklejki produkujemy w 4-5 dni robocze od opłacenia zamówienia i wysyłamy z odbiorem w paczkomacie (koszt dostawy 19,99 zł). Całość - od wgrania pliku po płatność BLIK lub Przelewy24 - załatwiasz online, bez kontaktu z grafikiem.",
   },
 ];
 
@@ -188,9 +188,9 @@ export default function SlownikNaklejekPage() {
                 "@type": "ShippingDeliveryTime",
                 handlingTime: {
                   "@type": "QuantitativeValue",
-                  // Produkcja 2-3 dni robocze (blog-agent/facts.md, decyzja z 2026-08-17).
-                  minValue: 2,
-                  maxValue: 3,
+                  // Produkcja 4-5 dni robocze (blog-agent/facts.md, decyzja z 2026-08-17).
+                  minValue: 4,
+                  maxValue: 5,
                   unitCode: "d",
                 },
                 transitTime: {
@@ -280,7 +280,7 @@ export default function SlownikNaklejekPage() {
             kontekście zamówienia, żebyś wiedział, co wybierasz w kreatorze.
             Wszystkie naklejki drukujemy na trwałej folii odpornej na wodę i UV,
             w stałej cenie <strong>59,00 zł brutto za arkusz A4</strong>, już od
-            1 sztuki i z produkcją w <strong>2-3 dni robocze</strong>.
+            1 sztuki i z produkcją w <strong>4-5 dni robocze</strong>.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-3 pt-2">
@@ -519,7 +519,7 @@ export default function SlownikNaklejekPage() {
               },
               {
                 title: "Sprawdź podgląd 3D i zamów",
-                text: "Obejrzyj realistyczny podgląd 3D gotowego arkusza, zapłać BLIK-iem lub przez Przelewy24, a naklejki wyprodukujemy w 2-3 dni robocze i wyślemy do paczkomatu za stałe 59,00 zł brutto od arkusza A4.",
+                text: "Obejrzyj realistyczny podgląd 3D gotowego arkusza, zapłać BLIK-iem lub przez Przelewy24, a naklejki wyprodukujemy w 4-5 dni robocze i wyślemy do paczkomatu za stałe 59,00 zł brutto od arkusza A4.",
               },
             ].map((step, i) => (
               <li
@@ -604,7 +604,7 @@ export default function SlownikNaklejekPage() {
           <p className="text-sm sm:text-base text-muted-foreground font-medium leading-relaxed max-w-2xl mx-auto">
             Wgraj plik do kreatora, wybierz cięcie po obrysie lub kiss-cut i
             ułóż arkusz. Naklejki na trwałej folii winylowej odpornej na wodę
-            i UV będą gotowe w 2-3 dni robocze za stałe 59,00 zł
+            i UV będą gotowe w 4-5 dni robocze za stałe 59,00 zł
             brutto od arkusza A4 - w dowolnym kształcie i bez minimalnego
             nakładu.
           </p>
@@ -618,7 +618,7 @@ export default function SlownikNaklejekPage() {
               300 DPI
             </span>
             <span className="inline-flex items-center gap-1.5">
-              <Clock className="w-3.5 h-3.5 text-primary" /> Produkcja 2-3 dni
+              <Clock className="w-3.5 h-3.5 text-primary" /> Produkcja 4-5 dni
             </span>
           </div>
           <div className="pt-2">

@@ -45,8 +45,8 @@ const SHIPPING_DETAILS = {
   shippingDestination: { "@type": "DefinedRegion", addressCountry: "PL" },
   deliveryTime: {
     "@type": "ShippingDeliveryTime",
-    // Produkcja 2-3 dni robocze; czas przewozu jak w danych strony głównej.
-    handlingTime: { "@type": "QuantitativeValue", minValue: 2, maxValue: 3, unitCode: "d" },
+    // Produkcja 4-5 dni robocze; czas przewozu jak w danych strony głównej.
+    handlingTime: { "@type": "QuantitativeValue", minValue: 4, maxValue: 5, unitCode: "d" },
     transitTime: { "@type": "QuantitativeValue", minValue: 1, maxValue: 2, unitCode: "d" },
   },
 };

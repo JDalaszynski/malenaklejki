@@ -36,7 +36,7 @@ Wlepka po kształcie herbu albo logo (nie prostokąt) wygląda profesjonalnie i 
 1. **Przygotuj plik** z herbem, logo klubu albo hasłem sekcji - najlepiej PNG z przezroczystym tłem lub gotowy PDF.
 2. **Wgraj go do kreatora** na stronie głównej - system sam rozpozna kontur i zaproponuje cięcie po obrysie.
 3. **Wybierz liczbę sztuk** na arkuszu A4 - im mniejsza wlepka, tym więcej egzemplarzy zmieści się na jednym arkuszu.
-4. **Sprawdź podgląd 3D** i złóż zamówienie - wlepki wyprodukujemy w 2-3 dni robocze i wyślemy do paczkomatu.
+4. **Sprawdź podgląd 3D** i złóż zamówienie - wlepki wyprodukujemy w 4-5 dni robocze i wyślemy do paczkomatu.
 
 Nie masz gotowego herbu w wysokiej rozdzielczości? Odtwórz go w prostym programie graficznym albo w darmowej Canvie - ważne, żeby linie herbu były wyraźne i grube, bo drobne detale na małej wlepce się zleją.
 
@@ -71,7 +71,7 @@ Nie musi, ale zdecydowanie warto. Cięcie po obrysie (die cut) sprawia, że wlep
 
 ### Ile trwa realizacja zamówienia na wlepki klubowe?
 
-Wlepki produkujemy w 2-3 dni robocze od zaksięgowania wpłaty, a następnie wysyłamy je do paczkomatu (koszt dostawy 19,99 zł).
+Wlepki produkujemy w 4-5 dni robocze od zaksięgowania wpłaty, a następnie wysyłamy je do paczkomatu (koszt dostawy 19,99 zł).
 
 ### Czy mogę zamówić kilka wariantów herbu na jednym arkuszu?
 
@@ -87,6 +87,6 @@ Nie ma minimalnego nakładu - zamówisz już jeden arkusz A4. To wystarczająco 
 
 ## Zamów wlepki kibicowskie i klubowe już dziś
 
-Wgraj herb, logo klubu albo hasło sekcji do naszego kreatora, wybierz cięcie po obrysie i liczbę sztuk na arkuszu - wlepki wyprodukujemy w 2-3 dni robocze za stałe 59,00 zł brutto od arkusza A4, bez minimalnego nakładu.
+Wgraj herb, logo klubu albo hasło sekcji do naszego kreatora, wybierz cięcie po obrysie i liczbę sztuk na arkuszu - wlepki wyprodukujemy w 4-5 dni robocze za stałe 59,00 zł brutto od arkusza A4, bez minimalnego nakładu.
 
 <a href="/" style="display: inline-block; background-color: #02af7a; color: #ffffff; padding: 14px 28px; text-decoration: none; border-radius: 8px; font-weight: 600; font-size: 18px; margin-top: 24px; text-align: center;">Zamów wlepki kibicowskie</a>

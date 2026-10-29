@@ -46,7 +46,7 @@ Nie każda naklejka nadaje się na sprzęt elektroniczny. Niskiej jakości papie
 
 Stworzenie unikalnego zestawu wlepek to kwestia zaledwie kilku minut. Nasz autorski kreator online pozwala na błyskawiczne wgranie zdjęć lub grafik prosto ze smartfona. Dodatkowo, narzędzie automatycznie wycina tło, dzięki czemu z każdego zdjęcia wyciągniesz samą esencję, tworząc estetyczne naklejki typu die-cut, docięte perfekcyjnie po obrysie. 
 
-Niezależnie od tego, czy potrzebujesz **małych naklejek na laptopa** dla siebie, czy profesjonalnych **wlepek z własnym logo** dla swojego startupu, zrealizujemy Twoje zlecenie w 2-3 dni robocze.
+Niezależnie od tego, czy potrzebujesz **małych naklejek na laptopa** dla siebie, czy profesjonalnych **wlepek z własnym logo** dla swojego startupu, zrealizujemy Twoje zlecenie w 4-5 dni robocze.
 
 ## FAQ - Najczęściej zadawane pytania
 

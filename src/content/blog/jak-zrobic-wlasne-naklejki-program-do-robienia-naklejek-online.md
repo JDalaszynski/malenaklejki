@@ -73,7 +73,7 @@ Cały proces zamyka się w kilku minutach i działa też na telefonie:
 4. **Wybierz kształt cięcia** - po obrysie dla nieregularnych sylwetek albo koło czy prostokąt dla równych formatów. Nie wiesz, co wybrać? Sprawdź różnice między [cięciem die cut a kiss-cut](/blog/co-to-jest-die-cut-i-kiss-cut-roznice-w-wyleciach-naklejek-reklamowych).
 5. **Ustaw liczbę i rozmiar** naklejek na arkuszu A4 - jedna duża (do 19 cm) albo kilkadziesiąt małych.
 6. **Wybierz formę zestawu** - pojedyncze, docięte sztuki do rozdania albo naklejki pozostawione na arkuszu do stopniowego odklejania.
-7. **Sprawdź podgląd 3D** i złóż zamówienie - realizacja zajmuje 2-3 dni robocze.
+7. **Sprawdź podgląd 3D** i złóż zamówienie - realizacja zajmuje 4-5 dni robocze.
 
 Nie ma minimalnego nakładu, więc zamówisz nawet jeden arkusz z jedną naklejką. To wygodny sposób, żeby najpierw sprawdzić jakość wydruku, a dopiero potem zamówić więcej.
 
@@ -86,7 +86,7 @@ Robienie naklejek w narzędziu online to nie tylko wygoda, ale też konkretne pr
 - **Trwała folia z mocnym klejem** - naklejki są odporne na wodę i promieniowanie UV, a po odklejeniu schodzą czysto, **bez śladów kleju**. To nie jest jednak folia repozycjonowalna - kleisz raz, na dobre.
 - **Stała cena 59,00 zł za arkusz A4** - niezależnie od liczby naklejek i kształtu cięcia. Im więcej mniejszych wzorów na arkuszu, tym niższy koszt jednej sztuki.
 - **Brak minimalnego nakładu** - drukujemy już od pojedynczego arkusza, bez pakietów na setki sztuk.
-- **Polska produkcja i szybka wysyłka** - drukujemy w Polsce, więc nie przeliczasz ceny z euro, nie czekasz na przesyłkę zza granicy, a naklejki produkujemy w 2-3 dni robocze i wysyłamy do paczkomatu.
+- **Polska produkcja i szybka wysyłka** - drukujemy w Polsce, więc nie przeliczasz ceny z euro, nie czekasz na przesyłkę zza granicy, a naklejki produkujemy w 4-5 dni robocze i wysyłamy do paczkomatu.
 
 W praktyce cały proces - od wgrania obrazu po złożenie zamówienia - jest prostszy i tańszy przy jednej sztuce niż zlecenie tego samego lokalnej drukarni, a efekt jest znacznie trwalszy niż domowy wydruk na papierze.
 
@@ -120,6 +120,6 @@ Najlepiej sprawdzi się PNG z przezroczystym tłem (do cięcia po obrysie), JPG 
 
 ## Zrób własne naklejki online już dziś
 
-Zamiast walczyć z domową drukarką i nożyczkami, wgraj gotowy obraz do kreatora - resztę, czyli usuwanie tła i cięcie po obrysie, zrobi za Ciebie program. W kilka minut ułożysz arkusz A4, sprawdzisz podgląd 3D i zamówisz naklejki na trwałej folii z mocnym klejem. Polska produkcja, stała cena 59,00 zł za arkusz, brak minimalnego nakładu i produkcja w 2-3 dni robocze sprawiają, że zrobienie własnych naklejek jest banalnie proste.
+Zamiast walczyć z domową drukarką i nożyczkami, wgraj gotowy obraz do kreatora - resztę, czyli usuwanie tła i cięcie po obrysie, zrobi za Ciebie program. W kilka minut ułożysz arkusz A4, sprawdzisz podgląd 3D i zamówisz naklejki na trwałej folii z mocnym klejem. Polska produkcja, stała cena 59,00 zł za arkusz, brak minimalnego nakładu i produkcja w 4-5 dni robocze sprawiają, że zrobienie własnych naklejek jest banalnie proste.
 
 <a href="/" style="display: inline-block; background-color: #02af7a; color: #ffffff; padding: 14px 28px; text-decoration: none; border-radius: 8px; font-weight: 600; font-size: 18px; margin-top: 24px; text-align: center;">Zrób własne naklejki</a>

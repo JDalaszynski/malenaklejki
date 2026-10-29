@@ -27,7 +27,7 @@ const PAGE_URL = `https://www.malenaklejki.pl${PAGE_PATH}`;
 export const metadata: Metadata = {
   title: "Naklejki dla małych firm - od 1 arkusza, 59 zł, faktura VAT",
   description:
-    "Naklejki dla małych firm z własnym logo: od 1 arkusza A4 za stałe 59,00 zł brutto, bez minimalnego nakładu, faktura VAT, produkcja w Polsce 2-3 dni robocze.",
+    "Naklejki dla małych firm z własnym logo: od 1 arkusza A4 za stałe 59,00 zł brutto, bez minimalnego nakładu, faktura VAT, produkcja w Polsce 4-5 dni robocze.",
   alternates: {
     canonical: PAGE_PATH,
   },
@@ -50,7 +50,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Naklejki dla małych firm z własnym logo - druk od 1 arkusza A4",
     description:
-      "Naklejki dla małych firm z logo: 59 zł brutto za arkusz A4, faktura VAT, bez minimalnego nakładu, produkcja 2-3 dni robocze.",
+      "Naklejki dla małych firm z logo: 59 zł brutto za arkusz A4, faktura VAT, bez minimalnego nakładu, produkcja 4-5 dni robocze.",
     images: ["/landing/naklejki-dla-firm/naklejki-dla-firm-na-paczki.png"],
   },
 };
@@ -95,7 +95,7 @@ const FAQS: { q: string; a: string }[] = [
   },
   {
     q: "Jak szybko zrealizujecie zamówienie dla firmy?",
-    a: "Zamówienie produkujemy w 2-3 dni robocze, a gotowe naklejki wysyłamy z odbiorem w paczkomacie. Cały proces - od wgrania logo po złożenie zamówienia - przechodzisz online w kreatorze, bez kontaktu z grafikiem.",
+    a: "Zamówienie produkujemy w 4-5 dni robocze, a gotowe naklejki wysyłamy z odbiorem w paczkomacie. Cały proces - od wgrania logo po złożenie zamówienia - przechodzisz online w kreatorze, bez kontaktu z grafikiem.",
   },
   {
     q: "Jaki rozmiar mogą mieć naklejki firmowe?",
@@ -208,7 +208,7 @@ const ADVANTAGES: { icon: React.ElementType; title: string; text: string }[] = [
   {
     icon: Truck,
     title: "Produkcja w Polsce, paczkomat",
-    text: "Naklejki produkujemy w 2-3 dni robocze i wysyłamy z odbiorem w paczkomacie. Wszystko po polsku, z płatnością BLIK i Przelewy24.",
+    text: "Naklejki produkujemy w 4-5 dni robocze i wysyłamy z odbiorem w paczkomacie. Wszystko po polsku, z płatnością BLIK i Przelewy24.",
   },
 ];
 
@@ -233,7 +233,7 @@ const SPECS: { label: string; value: string }[] = [
     value: "59,00 zł brutto za arkusz A4, bez minimalnego nakładu",
   },
   { label: "Faktura", value: "VAT na dane z numerem NIP" },
-  { label: "Produkcja", value: "2-3 dni robocze" },
+  { label: "Produkcja", value: "4-5 dni robocze" },
   { label: "Wysyłka", value: "Odbiór w paczkomacie, dostawa 19,99 zł" },
   { label: "Płatność", value: "BLIK, Przelewy24, przelew" },
 ];
@@ -297,9 +297,9 @@ export default function NaklejkiDlaFirmPage() {
                 "@type": "ShippingDeliveryTime",
                 handlingTime: {
                   "@type": "QuantitativeValue",
-                  // Produkcja 2-3 dni robocze (blog-agent/facts.md, decyzja z 2026-08-17).
-                  minValue: 2,
-                  maxValue: 3,
+                  // Produkcja 4-5 dni robocze (blog-agent/facts.md, decyzja z 2026-08-17).
+                  minValue: 4,
+                  maxValue: 5,
                   unitCode: "d",
                 },
                 transitTime: {
@@ -386,7 +386,7 @@ export default function NaklejkiDlaFirmPage() {
             drukujemy już od{" "}
             <strong>1 arkusza A4 za stałe 59,00 zł brutto</strong>, wystawiamy{" "}
             <strong>fakturę VAT</strong>, a naklejki produkujemy w{" "}
-            <strong>2-3 dni robocze</strong> i wysyłamy do paczkomatu. Bez minimalnego nakładu i bez
+            <strong>4-5 dni robocze</strong> i wysyłamy do paczkomatu. Bez minimalnego nakładu i bez
             opłat za przygotowanie pliku. Jeśli zamawiasz po raz pierwszy,
             sprawdź, jak skutecznie{" "}
             <Link
@@ -438,7 +438,7 @@ export default function NaklejkiDlaFirmPage() {
           {[
             { value: "59 zł", label: "Brutto za arkusz A4" },
             { value: "od 1 szt.", label: "Bez min. nakładu" },
-            { value: "2-3 dni", label: "Produkcja" },
+            { value: "4-5 dni", label: "Produkcja" },
             { value: "Faktura VAT", label: "Dla firm z NIP" },
           ].map((stat) => (
             <div
@@ -682,7 +682,7 @@ export default function NaklejkiDlaFirmPage() {
               },
               {
                 title: "Zamów z fakturą VAT",
-                text: "Sprawdź podgląd 3D gotowego arkusza, zapłać BLIK-iem lub przez Przelewy24, podaj dane do faktury VAT z NIP, a naklejki wyprodukujemy w 2-3 dni robocze i wyślemy do paczkomatu.",
+                text: "Sprawdź podgląd 3D gotowego arkusza, zapłać BLIK-iem lub przez Przelewy24, podaj dane do faktury VAT z NIP, a naklejki wyprodukujemy w 4-5 dni robocze i wyślemy do paczkomatu.",
               },
             ].map((step, i) => (
               <li
@@ -753,7 +753,7 @@ export default function NaklejkiDlaFirmPage() {
           </h2>
           <p className="text-sm sm:text-base text-muted-foreground font-medium leading-relaxed max-w-2xl mx-auto">
             Wgraj logo do kreatora, wybierz cięcie po obrysie i liczbę sztuk na
-            arkuszu. Naklejki będą gotowe w 2-3 dni robocze za stałe 59,00 zł
+            arkuszu. Naklejki będą gotowe w 4-5 dni robocze za stałe 59,00 zł
             brutto od arkusza A4 - z fakturą VAT, bez minimalnego nakładu i bez
             opłat za przygotowanie pliku.
           </p>
@@ -762,7 +762,7 @@ export default function NaklejkiDlaFirmPage() {
               <FileText className="w-3.5 h-3.5 text-primary" /> Faktura VAT
             </span>
             <span className="inline-flex items-center gap-1.5">
-              <Clock className="w-3.5 h-3.5 text-primary" /> Produkcja 2-3 dni
+              <Clock className="w-3.5 h-3.5 text-primary" /> Produkcja 4-5 dni
             </span>
             <span className="inline-flex items-center gap-1.5">
               <ShieldCheck className="w-3.5 h-3.5 text-primary" /> Trwała folia

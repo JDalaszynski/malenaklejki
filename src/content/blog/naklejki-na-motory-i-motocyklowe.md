@@ -41,7 +41,7 @@ Jako dumna, w 100% polska produkcja, udowadniamy każdego dnia, że zamawianie w
 1. **Wgraj zdjęcie prosto z galerii telefonu.** Nie musisz przenosić plików na komputer, szukać kabli ani uruchamiać laptopa. Jeśli masz grafikę wygenerowaną przez AI zapisaną w rolce aparatu - po prostu ją wybierz.
 2. **Automatyczne usuwanie tła:** To prawdziwy "game changer". Nasz inteligentny kreator online sam, bez Twojej ingerencji, wytnie z pliku zbędne, białe czy szare tło w zaledwie 3 sekundy. Zostawi tylko główny motyw i automatycznie dopasuje linię cięcia po obrysie (tak zwany die-cut) do kształtu wybranego wzoru (np. skrzydeł, czaszki, obrysu motocykla).
 3. **Ułóż arkusz A4 pod siebie:** Dopasuj rozmiar detalu do konkretnego miejsca na motocyklu. Możesz ułożyć na jednej kartce zarówno jedną, dużą grafikę na środek baku, jak i kilkadziesiąt małych logotypów czy znaczków na kufer. U nas nie istnieje żadne, ukryte pojęcie "minimalnego nakładu liczonego w tysiącach sztuk" - drukujemy dla Ciebie już od dokładnie 1 arkusza w stałej cenie 59,00 zł brutto. Niezależnie od tego, ile elementów się na nim znajdzie.
-4. **Zamów i odbierz w paczkomacie!** Naklejki produkujemy w Polsce w 2-3 dni robocze od zaksięgowania wpłaty, a potem przesyłka rusza do wybranego paczkomatu. Nie czekasz tygodniami na transport zza granicy.
+4. **Zamów i odbierz w paczkomacie!** Naklejki produkujemy w Polsce w 4-5 dni robocze od zaksięgowania wpłaty, a potem przesyłka rusza do wybranego paczkomatu. Nie czekasz tygodniami na transport zza granicy.
 
 ## Jak przygotować powierzchnię przed przyklejeniem naklejki?
 

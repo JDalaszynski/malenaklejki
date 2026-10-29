@@ -103,7 +103,7 @@ const FAQS: { q: string; a: string }[] = [
   },
   {
     q: "Jak szybko zrealizujecie zamówienie naklejek die-cut?",
-    a: "Naklejki die-cut produkujemy w 2-3 dni robocze od opłacenia zamówienia i wysyłamy z odbiorem w paczkomacie. Całość - od wgrania pliku po płatność BLIK lub Przelewy24 - załatwiasz online, bez kontaktu z grafikiem.",
+    a: "Naklejki die-cut produkujemy w 4-5 dni robocze od opłacenia zamówienia i wysyłamy z odbiorem w paczkomacie. Całość - od wgrania pliku po płatność BLIK lub Przelewy24 - załatwiasz online, bez kontaktu z grafikiem.",
   },
 ];
 
@@ -187,7 +187,7 @@ const ADVANTAGES: { icon: React.ElementType; title: string; text: string }[] = [
   {
     icon: Truck,
     title: "Polska produkcja, paczkomat",
-    text: "Naklejki die-cut produkujemy w Polsce w 2-3 dni robocze i wysyłamy z odbiorem w paczkomacie. Wszystko po polsku, z płatnością BLIK i Przelewy24.",
+    text: "Naklejki die-cut produkujemy w Polsce w 4-5 dni robocze i wysyłamy z odbiorem w paczkomacie. Wszystko po polsku, z płatnością BLIK i Przelewy24.",
   },
 ];
 
@@ -215,7 +215,7 @@ const SPECS: { label: string; value: string }[] = [
     label: "Cena",
     value: "59,00 zł brutto za arkusz A4, bez minimalnego nakładu",
   },
-  { label: "Produkcja", value: "2-3 dni robocze" },
+  { label: "Produkcja", value: "4-5 dni robocze" },
   {
     label: "Wysyłka i płatność",
     value: "Paczkomat 19,99 zł; BLIK, Przelewy24, przelew",
@@ -282,9 +282,9 @@ export default function NaklejkiDieCutPage() {
                 "@type": "ShippingDeliveryTime",
                 handlingTime: {
                   "@type": "QuantitativeValue",
-                  // Produkcja 2-3 dni robocze (blog-agent/facts.md, decyzja z 2026-08-17).
-                  minValue: 2,
-                  maxValue: 3,
+                  // Produkcja 4-5 dni robocze (blog-agent/facts.md, decyzja z 2026-08-17).
+                  minValue: 4,
+                  maxValue: 5,
                   unitCode: "d",
                 },
                 transitTime: {
@@ -374,7 +374,7 @@ export default function NaklejkiDieCutPage() {
             <strong>folii winylowej odpornej na wodę i UV</strong>. Druk{" "}
             <strong>300 DPI</strong>, stała cena{" "}
             <strong>59,00 zł brutto za arkusz A4</strong>, już od 1 sztuki,
-            produkcja w <strong>2-3 dni robocze</strong> i odbiór w paczkomacie.
+            produkcja w <strong>4-5 dni robocze</strong> i odbiór w paczkomacie.
             Nie wiesz, które cięcie wybrać?{" "}
             <Link
               href="/blog/co-to-jest-die-cut-i-kiss-cut-roznice-w-wyleciach-naklejek-reklamowych"
@@ -643,7 +643,7 @@ export default function NaklejkiDieCutPage() {
               },
               {
                 title: "Sprawdź podgląd 3D i zamów",
-                text: "Obejrzyj realistyczny podgląd 3D gotowego arkusza, zapłać BLIK-iem lub przez Przelewy24, a naklejki die-cut wyprodukujemy w 2-3 dni robocze i wyślemy do paczkomatu za stałe 59,00 zł brutto od arkusza A4.",
+                text: "Obejrzyj realistyczny podgląd 3D gotowego arkusza, zapłać BLIK-iem lub przez Przelewy24, a naklejki die-cut wyprodukujemy w 4-5 dni robocze i wyślemy do paczkomatu za stałe 59,00 zł brutto od arkusza A4.",
               },
             ].map((step, i) => (
               <li
@@ -721,7 +721,7 @@ export default function NaklejkiDieCutPage() {
           </h2>
           <p className="text-sm sm:text-base text-muted-foreground font-medium leading-relaxed max-w-2xl mx-auto">
             Wgraj plik do kreatora, pozwól mu wyznaczyć kontur i wybierz cięcie
-            po obrysie. Naklejki die-cut będą gotowe w 2-3 dni robocze za stałe
+            po obrysie. Naklejki die-cut będą gotowe w 4-5 dni robocze za stałe
             59,00 zł brutto od arkusza A4 - na trwałej folii winylowej odpornej
             na wodę i UV, w dowolnym kształcie i bez minimalnego
             nakładu.
@@ -735,7 +735,7 @@ export default function NaklejkiDieCutPage() {
               DPI
             </span>
             <span className="inline-flex items-center gap-1.5">
-              <Clock className="w-3.5 h-3.5 text-primary" /> Produkcja 2-3 dni
+              <Clock className="w-3.5 h-3.5 text-primary" /> Produkcja 4-5 dni
             </span>
           </div>
           <div className="pt-2">

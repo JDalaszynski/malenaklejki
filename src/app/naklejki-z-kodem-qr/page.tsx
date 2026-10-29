@@ -32,7 +32,7 @@ const TITLE = "Naklejki z kodem QR na zamówienie - od 1 szt., 59 zł/A4";
 export const metadata: Metadata = {
   title: TITLE,
   description:
-    "Naklejki z kodem QR na folii winylowej: kilka różnych kodów na jednym arkuszu A4 za 59,00 zł brutto, od 1 szt., produkcja 2-3 dni robocze.",
+    "Naklejki z kodem QR na folii winylowej: kilka różnych kodów na jednym arkuszu A4 za 59,00 zł brutto, od 1 szt., produkcja 4-5 dni robocze.",
   alternates: {
     canonical: PAGE_PATH,
   },
@@ -55,7 +55,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Naklejki z kodem QR na zamówienie - kilka kodów na jednym arkuszu",
     description:
-      "Naklejki z kodem QR na folii winylowej: 59,00 zł brutto za arkusz A4, od 1 sztuki, produkcja 2-3 dni robocze.",
+      "Naklejki z kodem QR na folii winylowej: 59,00 zł brutto za arkusz A4, od 1 sztuki, produkcja 4-5 dni robocze.",
     images: [OG_IMAGE],
   },
 };
@@ -272,7 +272,7 @@ const SPECS: { label: string; value: string }[] = [
     value: "59,00 zł brutto za arkusz A4, bez minimalnego nakładu",
   },
   { label: "Faktura", value: "VAT na dane z numerem NIP" },
-  { label: "Produkcja", value: "2-3 dni robocze" },
+  { label: "Produkcja", value: "4-5 dni robocze" },
   { label: "Wysyłka", value: "Odbiór w paczkomacie, dostawa 19,99 zł" },
   { label: "Płatność", value: "BLIK, Przelewy24" },
 ];
@@ -288,7 +288,7 @@ const STEPS: { title: string; text: string }[] = [
   },
   {
     title: "Zamów i odbierz paczkę w paczkomacie",
-    text: "Zapłać BLIK-iem lub przez Przelewy24, w razie potrzeby podaj dane do faktury VAT z numerem NIP. Naklejki wyprodukujemy w 2-3 dni robocze, a potem wyślemy je do paczkomatu.",
+    text: "Zapłać BLIK-iem lub przez Przelewy24, w razie potrzeby podaj dane do faktury VAT z numerem NIP. Naklejki wyprodukujemy w 4-5 dni robocze, a potem wyślemy je do paczkomatu.",
   },
 ];
 
@@ -354,10 +354,10 @@ export default function NaklejkiZKodemQrPage() {
                 "@type": "ShippingDeliveryTime",
                 handlingTime: {
                   "@type": "QuantitativeValue",
-                  // Produkcja 2-3 dni robocze (blog-agent/facts.md). Czasu transportu
+                  // Produkcja 4-5 dni robocze (blog-agent/facts.md). Czasu transportu
                   // celowo nie deklarujemy - całkowity czas dostawy jest poza faktami.
-                  minValue: 2,
-                  maxValue: 3,
+                  minValue: 4,
+                  maxValue: 5,
                   unitCode: "d",
                 },
               },
@@ -439,7 +439,7 @@ export default function NaklejkiZKodemQrPage() {
             prostokąt. <strong>Arkusz A4 kosztuje 59,00 zł brutto</strong>, bez
             minimalnego nakładu, a na jednym arkuszu zmieścisz{" "}
             <strong>kilka różnych kodów</strong>: opinie Google, Instagram, menu
-            i Wi-Fi. Produkcja trwa <strong>2-3 dni robocze</strong>, potem
+            i Wi-Fi. Produkcja trwa <strong>4-5 dni robocze</strong>, potem
             wysyłamy paczkę do paczkomatu. Kod generujesz sam w darmowym
             generatorze - kreator drukuje wgrany obraz i go nie tworzy. Pełną
             ofertę dla biznesu znajdziesz na stronie{" "}
@@ -481,7 +481,7 @@ export default function NaklejkiZKodemQrPage() {
           {[
             { value: "59 zł", label: "Brutto za arkusz A4" },
             { value: "od 1 szt.", label: "Bez min. nakładu" },
-            { value: "2-3 dni", label: "Produkcja" },
+            { value: "4-5 dni", label: "Produkcja" },
             { value: "Faktura VAT", label: "Dla firm z NIP" },
           ].map((stat) => (
             <div
@@ -945,7 +945,7 @@ export default function NaklejkiZKodemQrPage() {
           </h2>
           <p className="text-sm sm:text-base text-muted-foreground font-medium leading-relaxed max-w-2xl mx-auto">
             Wgraj kody jako PNG, wybierz cięcie „Prostokąt” i ułóż je na
-            arkuszu. Naklejki będą gotowe w 2-3 dni robocze za stałe 59,00 zł
+            arkuszu. Naklejki będą gotowe w 4-5 dni robocze za stałe 59,00 zł
             brutto od arkusza A4 - z fakturą VAT, bez minimalnego nakładu i bez
             opłat za przygotowanie pliku.
           </p>

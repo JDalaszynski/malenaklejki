@@ -56,7 +56,7 @@ export function SeoContentSection() {
                 <li>Wgraj grafikę w formacie PNG, JPG lub zrób zdjęcie telefonem.</li>
                 <li>System samodzielnie usunie tło i wygeneruje precyzyjne <Link href="/slownik-naklejek" className={inlineLink}>linie cięcia (kontur)</Link>.</li>
                 <li>Ustal wymiary i rozmieść dowolną liczbę wlepek na arkuszu w trybie 3D.</li>
-                <li>Sfinalizuj zamówienie (BLIK, przelew), a my wyprodukujemy naklejki w 2-3 dni robocze!</li>
+                <li>Sfinalizuj zamówienie (BLIK, przelew), a my wyprodukujemy naklejki w 4-5 dni robocze!</li>
               </ol>
             </section>
 
@@ -156,7 +156,7 @@ export function SeoContentSection() {
             <span className="text-[11px] font-bold text-muted-foreground uppercase tracking-wider">Czyste odklejanie</span>
           </div>
           <div className="flex flex-col items-center text-center gap-1">
-            <span className="text-3xl font-black text-primary">2-3 dni</span>
+            <span className="text-3xl font-black text-primary">4-5 dni</span>
             <span className="text-[11px] font-bold text-muted-foreground uppercase tracking-wider">Czas produkcji</span>
           </div>
         </div>
@@ -169,7 +169,7 @@ export function SeoContentSection() {
             Stwórz własne naklejki online - bez grafika i bez minimalnego nakładu
           </h2>
           <p className="text-muted-foreground leading-relaxed text-[15px] sm:text-base">
-            Chcesz spersonalizować naklejkę na prezent, merch albo produkty swojej marki? Wgraj zdjęcie lub gotową grafikę do kreatora na górze strony, a my wytniemy ją po obrysie i wydrukujemy na trwałym winylu. Możesz stworzyć własną naklejkę już od 1 arkusza A4 za 59,00 zł, a produkcja zajmuje 2-3 dni robocze - bez Photoshopa i bez ukrytych kosztów przygotowalni. Brakuje Ci pomysłu na motyw? Zobacz{" "}
+            Chcesz spersonalizować naklejkę na prezent, merch albo produkty swojej marki? Wgraj zdjęcie lub gotową grafikę do kreatora na górze strony, a my wytniemy ją po obrysie i wydrukujemy na trwałym winylu. Możesz stworzyć własną naklejkę już od 1 arkusza A4 za 59,00 zł, a produkcja zajmuje 4-5 dni robocze - bez Photoshopa i bez ukrytych kosztów przygotowalni. Brakuje Ci pomysłu na motyw? Zobacz{" "}
             <Link href="/blog/fajne-wzory-i-pomysly-na-naklejki-inspiracje-wg-zastosowania" className={inlineLink}>
               fajne wzory na naklejki wg zastosowania
             </Link>.

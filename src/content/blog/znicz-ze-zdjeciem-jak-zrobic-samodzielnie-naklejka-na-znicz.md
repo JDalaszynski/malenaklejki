@@ -9,7 +9,7 @@ role: "supporting"
 cta_text: "Zamów naklejki na znicze"
 ---
 
-Znicz ze zdjęciem zrobisz samodzielnie w trzech krokach: kupujesz znicz solarny, LED lub na baterie z płaską, gładką ścianką klosza, drukujesz zdjęcie bliskiej osoby jako [naklejki na znicze](/naklejki-na-znicze) i przyklejasz je na klosz. Na znicz z płomieniem naklejka się nie nadaje, bo na nagrzanym kloszu folia się stopi. Naklejki zamówisz w MałeNaklejki od jednego arkusza A4 za stałe 59,00 zł brutto, a na jednym arkuszu zmieści się orientacyjnie ok. 12 portretów 5 x 7 cm. Drukujemy w Polsce na folii winylowej odpornej na wodę i UV, produkcja trwa 2-3 dni robocze, a przesyłkę odbierasz w paczkomacie za 19,99 zł. Nie sprzedajemy zniczy - dostarczamy naklejki, które zmieniają zwykły znicz w osobisty. Poniżej znajdziesz wskazówki, jak przygotować zdjęcie, wybrać rozmiar i bezpiecznie przykleić naklejkę.
+Znicz ze zdjęciem zrobisz samodzielnie w trzech krokach: kupujesz znicz solarny, LED lub na baterie z płaską, gładką ścianką klosza, drukujesz zdjęcie bliskiej osoby jako [naklejki na znicze](/naklejki-na-znicze) i przyklejasz je na klosz. Na znicz z płomieniem naklejka się nie nadaje, bo na nagrzanym kloszu folia się stopi. Naklejki zamówisz w MałeNaklejki od jednego arkusza A4 za stałe 59,00 zł brutto, a na jednym arkuszu zmieści się orientacyjnie ok. 12 portretów 5 x 7 cm. Drukujemy w Polsce na folii winylowej odpornej na wodę i UV, produkcja trwa 4-5 dni robocze, a przesyłkę odbierasz w paczkomacie za 19,99 zł. Nie sprzedajemy zniczy - dostarczamy naklejki, które zmieniają zwykły znicz w osobisty. Poniżej znajdziesz wskazówki, jak przygotować zdjęcie, wybrać rozmiar i bezpiecznie przykleić naklejkę.
 
 ## Znicz ze zdjęciem - czego potrzebujesz do samodzielnego wykonania
 
@@ -115,10 +115,10 @@ Tak. Klej jest mocny, ale po zdjęciu naklejki nie zostawia śladów na gładkie
 
 ### Czy zdążę z zamówieniem przed 1 listopada?
 
-Produkcja trwa 2-3 dni robocze od opłacenia zamówienia, a potem naklejki jadą do paczkomatu. Całkowitego czasu dostawy nie deklarujemy, dlatego przed Wszystkimi Świętymi zamów z zapasem.
+Produkcja trwa 4-5 dni robocze od opłacenia zamówienia, a potem naklejki jadą do paczkomatu. Całkowitego czasu dostawy nie deklarujemy, dlatego przed Wszystkimi Świętymi zamów z zapasem.
 
 ## Zamów naklejki na znicze ze zdjęciem
 
-Wgraj zdjęcie do kreatora, wybierz owal, prostokąt lub kontur i ustaw rozmiar. Naklejki wyprodukujemy w 2-3 dni robocze na trwałej folii winylowej, bez minimalnego nakładu, w cenie 59,00 zł brutto za arkusz A4. Szczegółowa oferta: [naklejki na znicze ze zdjęciem](/naklejki-na-znicze).
+Wgraj zdjęcie do kreatora, wybierz owal, prostokąt lub kontur i ustaw rozmiar. Naklejki wyprodukujemy w 4-5 dni robocze na trwałej folii winylowej, bez minimalnego nakładu, w cenie 59,00 zł brutto za arkusz A4. Szczegółowa oferta: [naklejki na znicze ze zdjęciem](/naklejki-na-znicze).
 
 <a href="/" style="display: inline-block; background-color: #02af7a; color: #ffffff; padding: 14px 28px; text-decoration: none; border-radius: 8px; font-weight: 600; font-size: 18px; margin-top: 24px; text-align: center;">Zamów naklejki na znicze</a>

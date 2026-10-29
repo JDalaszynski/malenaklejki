@@ -12,7 +12,7 @@ const FACTS: {
 }[] = [
   {
     icon: Truck,
-    title: "Produkcja w 2-3 dni robocze",
+    title: "Produkcja w 4-5 dni robocze",
     sub: "Paczkomaty InPost w całej Polsce",
   },
   {

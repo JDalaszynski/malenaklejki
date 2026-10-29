@@ -101,6 +101,6 @@ Najlepiej na gładkich i twardych: szkle, metalu, plastiku, lakierowanym drewnie
 
 ## Zamów naklejki wodoodporne na folii winylowej
 
-Wgraj gotowy plik lub zdjęcie z telefonu, ułóż arkusz A4 i wybierz kształt cięcia - resztą zajmiemy się my. Naklejki wyprodukujemy w 2-3 dni robocze i wyślemy do paczkomatu. Stała cena 59,00 zł brutto za arkusz obowiązuje niezależnie od tego, czy zamawiasz jedną dużą naklejkę, czy kilkadziesiąt małych.
+Wgraj gotowy plik lub zdjęcie z telefonu, ułóż arkusz A4 i wybierz kształt cięcia - resztą zajmiemy się my. Naklejki wyprodukujemy w 4-5 dni robocze i wyślemy do paczkomatu. Stała cena 59,00 zł brutto za arkusz obowiązuje niezależnie od tego, czy zamawiasz jedną dużą naklejkę, czy kilkadziesiąt małych.
 
 <a href="/" style="display: inline-block; background-color: #02af7a; color: #ffffff; padding: 14px 28px; text-decoration: none; border-radius: 8px; font-weight: 600; font-size: 18px; margin-top: 24px; text-align: center;">Zamów naklejki na folii</a>

@@ -85,7 +85,7 @@ Zamiast płacić krocie agencjom reklamowym, małe polskie manufaktury i lokalni
 
 Masz już pomysł na motyw? Zanim wgrasz plik do kreatora, warto wiedzieć, jaki rozmiar i kształt wybrać oraz jak przygotować sam plik. [Jaki rozmiar naklejki wybrać](/blog/jaki-rozmiar-naklejki-wybrac) podpowie, ile sztuk zmieści się na arkuszu A4, a różnice między cięciem po obrysie a klasycznym prostokątem tłumaczymy w [co to jest die cut i kiss-cut](/blog/co-to-jest-die-cut-i-kiss-cut-roznice-w-wyleciach-naklejek-reklamowych). Chcesz dodać własny tekst zamiast obrazu - imiona, datę lub hasło? Sprawdź [naklejki z własnym napisem](/blog/naklejki-z-wlasnym-napisem-jak-przygotowac-plik-i-zamowic-online). Pełne wymagania techniczne pliku pod druk zebraliśmy w przewodniku [drukowanie naklejek online](/blog/drukowanie-naklejek-online-na-co-zwrocic-uwage-przed-wysylka-projektu), a jeśli potrzebujesz naprawdę niewielkiej liczby sztuk, zajrzyj do [naklejek w małym nakładzie](/blog/naklejki-maly-naklad-jak-zamowic-pojedyncze-sztuki-bez-przeplacania).
 
-## Ułóż arkusz z telefonu, a naklejki wyprodukujemy w 2-3 dni robocze
+## Ułóż arkusz z telefonu, a naklejki wyprodukujemy w 4-5 dni robocze
 
 Masz już pomysł na wzór i zastanawiasz się, u kogo go wydrukować? Cztery dostępne kanały - drukarnię lokalną, grafika z Allegro, serwisy zagraniczne i polski kreator online - zestawiamy we wpisie [gdzie zamówić naklejki w małym nakładzie](/blog/gdzie-zamowic-naklejki-w-malym-nakladzie-porownanie).
 
@@ -96,7 +96,7 @@ Proces w Małych Naklejkach, jakiego nie znajdziesz nigdzie indziej, jest prosty
 2. Wchodzisz na stronę naszego kreatora. Nie używasz myszki, nie siadasz do komputera. Cały proces działa płynnie na urządzeniach mobilnych.
 3. Wgrywasz po kolei swoje grafiki. Nasz algorytm wycina białe tło i od razu narzuca świetnie dopasowany kontur cięcia po obrysie.
 4. Układasz na wirtualnym arkuszu A4 wszystko to, co Ci się podoba - jedną naklejkę dla siebie, obok trzy wlepki motocyklowe dla brata, dziesięć etykiet do kuchni dla mamy. Wymiar jednego elementu nie ogranicza drugiego.
-5. Płacisz stałą cenę **59,00 zł** za arkusz, bez ukrytych opłat za matryce. Nie musisz też wcale zamawiać 500 sztuk naraz - u nas minimalny nakład to zaledwie jedna kartka A4. Naklejki produkujemy w 2-3 dni robocze, a potem wysyłamy je do paczkomatu InPost.
+5. Płacisz stałą cenę **59,00 zł** za arkusz, bez ukrytych opłat za matryce. Nie musisz też wcale zamawiać 500 sztuk naraz - u nas minimalny nakład to zaledwie jedna kartka A4. Naklejki produkujemy w 4-5 dni robocze, a potem wysyłamy je do paczkomatu InPost.
 
 ## Fajne wzory na naklejki - najczęściej zadawane pytania (FAQ)
 

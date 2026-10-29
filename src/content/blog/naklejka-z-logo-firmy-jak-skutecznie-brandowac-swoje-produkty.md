@@ -36,7 +36,7 @@ Naklejki z logo firmy znajdą zastosowanie praktycznie w każdej branży:
 
 Brak kosztów przygotowalni to ogromna przewaga dla małych manufaktur i startujących marek. Naklejki firmowe z logo pomagają budować wizerunek profesjonalnej marki od pierwszego dnia działalności. Oferujemy druk na wytrzymałej folii z mocnym klejem, co sprawia, że nasze realizacje doskonale trzymają się paczek wysyłkowych, szkła, a nawet chropowatych opakowań.
 
-Cały proces jest prosty - wystarczy, że wygenerujesz swoją grafikę firmową w generatorach AI (np. ChatGPT, Midjourney) lub przygotujesz logo w darmowym programie (np. Canva, Word) i zapiszesz plik w formacie JPG, PNG lub PDF. Następnie wgrywasz gotowy plik do naszego kreatora online, który automatycznie usunie tło i zaproponuje cięcie po obrysie Twojego znaku firmowego. Realizacja zajmuje 2-3 dni robocze.
+Cały proces jest prosty - wystarczy, że wygenerujesz swoją grafikę firmową w generatorach AI (np. ChatGPT, Midjourney) lub przygotujesz logo w darmowym programie (np. Canva, Word) i zapiszesz plik w formacie JPG, PNG lub PDF. Następnie wgrywasz gotowy plik do naszego kreatora online, który automatycznie usunie tło i zaproponuje cięcie po obrysie Twojego znaku firmowego. Realizacja zajmuje 4-5 dni robocze.
 
 Chcesz wiedzieć, jak technicznie przygotować plik do druku? Przeczytaj nasz szczegółowy przewodnik: [drukowanie naklejek online - na co zwrócić uwagę przed wysyłką projektu](/blog/drukowanie-naklejek-online-na-co-zwrocic-uwage-przed-wysylka-projektu).
 
@@ -51,7 +51,7 @@ Pamiętaj - wlepka na laptopie, bidonie czy notesie klienta to darmowa i trwała
 1. **Przygotuj plik** - wygeneruj grafikę w narzędziach AI (Midjourney, ChatGPT) lub złóż plik z logo ręcznie w darmowym Canva, Word czy innym programie graficznym, a następnie zapisz plik w formacie JPG, PNG lub PDF.
 2. **Wgraj plik do kreatora** - prześlij gotowy projekt bezpośrednio z komputera lub telefonu. Kreator automatycznie usunie tło i zaproponuje kształt cięcia.
 3. **Wybierz parametry** - zdecyduj o rozmiarze, kształcie (po obrysie, koło, prostokąt) i liczbie arkuszy.
-4. **Złóż zamówienie** - opłać zamówienie online. Naklejki produkujemy w 2-3 dni robocze, a potem paczka rusza do paczkomatu.
+4. **Złóż zamówienie** - opłać zamówienie online. Naklejki produkujemy w 4-5 dni robocze, a potem paczka rusza do paczkomatu.
 
 Jeśli chcesz dodać do grafiki własny napis, hasło lub slogan firmowy, wygeneruj całość od zera w narzędziach AI lub dodaj tekst do tła w Canva i wgraj gotowy plik. Szczegóły znajdziesz w artykule: [naklejki z własnym napisem - jak przygotować plik i zamówić online](/blog/naklejki-z-wlasnym-napisem-jak-przygotowac-plik-i-zamowic-online).
 

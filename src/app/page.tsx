@@ -94,9 +94,9 @@ export default async function Home() {
                 "@type": "ShippingDeliveryTime",
                 handlingTime: {
                   "@type": "QuantitativeValue",
-                  // Produkcja 2-3 dni robocze (blog-agent/facts.md, decyzja z 2026-08-17).
-                  minValue: 2,
-                  maxValue: 3,
+                  // Produkcja 4-5 dni robocze (blog-agent/facts.md, decyzja z 2026-08-17).
+                  minValue: 4,
+                  maxValue: 5,
                   unitCode: "d",
                 },
                 transitTime: {
@@ -164,7 +164,7 @@ export default async function Home() {
               "@type": "HowToStep",
               position: 3,
               name: "Sprawdź w 3D i zamów",
-              text: "Obejrzyj realistyczną wizualizację 3D gotowego arkusza, dodaj go do koszyka i sfinalizuj bezpieczne zamówienie za pomocą BLIK lub Przelewy24. Produkcja 2-3 dni robocze.",
+              text: "Obejrzyj realistyczną wizualizację 3D gotowego arkusza, dodaj go do koszyka i sfinalizuj bezpieczne zamówienie za pomocą BLIK lub Przelewy24. Produkcja 4-5 dni robocze.",
               image:
                 "https://www.malenaklejki.pl/images/kroki/krok-3-sprawdz-3d-i-zamow-naklejki.png",
             },

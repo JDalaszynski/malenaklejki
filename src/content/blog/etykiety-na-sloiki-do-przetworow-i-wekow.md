@@ -14,7 +14,7 @@ Domowe przetwory i weki to duma każdej kuchni. Niezależnie od tego, czy przygo
 
 ## Własne etykiety na słoik - dlaczego warto stworzyć je u nas?
 
-Globalne platformy często zmuszają do zamawiania setek sztuk lub doliczają wysokie koszty wysyłki. MałeNaklejki.pl to w 100% polska alternatywa dla zagranicznych marek, w której stawiamy na proste i przejrzyste zasady. U nas drukujesz naklejki na słoiki personalizowane na arkuszach A4, gdzie stała cena to tylko 59,00 zł za sztukę. Sam decydujesz, ile mniejszych etykiet zmieścisz na jednym arkuszu. Produkcja trwa 2-3 dni robocze, a potem wysyłamy paczkę do paczkomatu - bez ukrytych opłat celnych czy bariery językowej. 
+Globalne platformy często zmuszają do zamawiania setek sztuk lub doliczają wysokie koszty wysyłki. MałeNaklejki.pl to w 100% polska alternatywa dla zagranicznych marek, w której stawiamy na proste i przejrzyste zasady. U nas drukujesz naklejki na słoiki personalizowane na arkuszach A4, gdzie stała cena to tylko 59,00 zł za sztukę. Sam decydujesz, ile mniejszych etykiet zmieścisz na jednym arkuszu. Produkcja trwa 4-5 dni robocze, a potem wysyłamy paczkę do paczkomatu - bez ukrytych opłat celnych czy bariery językowej. 
 
 Drukujemy na mocnej folii winylowej, co ma ogromne znaczenie w przypadku przetworów. Twoje napisy na słoiki nie rozmażą się pod wpływem wilgoci w piwnicy czy lodówce - sprawdź, [ile wytrzymują naklejki wodoodporne](/blog/naklejki-wodoodporne-i-winylowe-jaka-folia-i-jak-dlugo-wytrzyma) i dlaczego słoika z etykietą nie warto wkładać do zmywarki. 
 
@@ -60,12 +60,12 @@ Słoik konfitury czy weki z domowymi przetworami zamienisz w prezent świąteczn
 
 Napis ułóż wcześniej w Canvie lub Wordzie i zapisz jako PNG lub PDF - kreator nie ma edytora tekstu, tylko układa gotowe pliki na arkuszu. Folia winylowa jest odporna na wodę, więc etykieta przetrwa wilgotną spiżarnię i lodówkę u obdarowanego. Jedną zasadę warto przekazać razem z prezentem: mycie ręczne, nie zmywarka. Gdy słoik się opróżni, naklejkę zdejmiesz bez śladów kleju, ale drugi raz jej nie przykleisz - dlatego naklejaj ją od razu na właściwy, suchy słoik.
 
-Przetwory rzadko jadą na święta same. Na drugim arkuszu w tym samym zamówieniu zmieścisz etykiety "Dla / Od" albo naklejki na butelki, a dostawa do paczkomatu (19,99 zł) liczy się raz za całe zamówienie. Produkcja trwa 2-3 dni robocze od zaksięgowania wpłaty, potem wysyłamy paczkę do paczkomatu. W grudniu przewoźnicy mają najwięcej pracy, więc etykiety zamów z zapasem. Nalewki, pudełka z piernikami i etykiety z imieniem zebraliśmy w przewodniku [świąteczne etykiety na prezenty z kuchni](/blog/naklejki-swiateczne-i-etykiety-na-prezenty).
+Przetwory rzadko jadą na święta same. Na drugim arkuszu w tym samym zamówieniu zmieścisz etykiety "Dla / Od" albo naklejki na butelki, a dostawa do paczkomatu (19,99 zł) liczy się raz za całe zamówienie. Produkcja trwa 4-5 dni robocze od zaksięgowania wpłaty, potem wysyłamy paczkę do paczkomatu. W grudniu przewoźnicy mają najwięcej pracy, więc etykiety zamów z zapasem. Nalewki, pudełka z piernikami i etykiety z imieniem zebraliśmy w przewodniku [świąteczne etykiety na prezenty z kuchni](/blog/naklejki-swiateczne-i-etykiety-na-prezenty).
 
 ## FAQ: Etykiety na słoiki - Najczęściej Zadawane Pytania
 
 ### Jaka jest najlepsza polska strona do zamówienia małej ilości etykiet na słoiki?
-MałeNaklejki.pl to idealna, w 100% polska alternatywa dla zagranicznych gigantów. U nas nie ma wymogu minimalnego zamówienia setek sztuk - płacisz stałą kwotę 59,00 zł za wydruk całego arkusza A4. Całość procesu odbywa się w Polsce: produkcja zajmuje 2-3 dni robocze, a gotowe etykiety wysyłamy do paczkomatu, bez przewalutowań.
+MałeNaklejki.pl to idealna, w 100% polska alternatywa dla zagranicznych gigantów. U nas nie ma wymogu minimalnego zamówienia setek sztuk - płacisz stałą kwotę 59,00 zł za wydruk całego arkusza A4. Całość procesu odbywa się w Polsce: produkcja zajmuje 4-5 dni robocze, a gotowe etykiety wysyłamy do paczkomatu, bez przewalutowań.
 
 ### Czy folia na naklejkach wytrzyma w lodówce i piwnicy?
 Tak! Drukujemy na wysokiej jakości folii winylowej, która jest całkowicie odporna na wodę, wilgoć oraz promienie UV (nie blaknie). Etykieta nie pomarszczy się w wilgotnej spiżarni czy lodówce.

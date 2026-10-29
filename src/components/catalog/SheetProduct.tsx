@@ -113,7 +113,7 @@ export function SheetProduct({ sheet, related }: { sheet: CatalogSheet; related:
           <ul className="grid grid-cols-1 gap-2 border-t border-border/50 pt-4 text-xs font-bold text-muted-foreground">
             <li className="flex items-center gap-2">
               <Clock className="w-4 h-4 text-primary shrink-0" aria-hidden />
-              Produkcja 2-3 dni robocze
+              Produkcja 4-5 dni robocze
             </li>
             <li className="flex items-center gap-2">
               <Truck className="w-4 h-4 text-primary shrink-0" aria-hidden />
@@ -166,7 +166,7 @@ export function SheetProduct({ sheet, related }: { sheet: CatalogSheet; related:
             { label: "Odporność", value: "Woda i promieniowanie UV. Mycie ręczne - folia nie nadaje się do zmywarki" },
             { label: "Forma zestawu", value: "Naklejki na arkuszu albo pojedyncze sztuki docięte osobno" },
             { label: "Cena", value: `${formatPrice(SHEET_PRICE)} brutto za zestaw` },
-            { label: "Realizacja", value: `Produkcja 2-3 dni robocze, odbiór w paczkomacie (${formatPrice(SHIPPING_PRICE)})` },
+            { label: "Realizacja", value: `Produkcja 4-5 dni robocze, odbiór w paczkomacie (${formatPrice(SHIPPING_PRICE)})` },
           ]}
         />
         <p className={paragraphClass}>

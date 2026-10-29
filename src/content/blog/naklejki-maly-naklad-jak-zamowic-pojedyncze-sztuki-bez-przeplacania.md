@@ -3,7 +3,7 @@ title: "Naklejki mały nakład - jak zamówić pojedyncze sztuki?"
 slug: "naklejki-maly-naklad-jak-zamowic-pojedyncze-sztuki-bez-przeplacania"
 date: "2026-07-18"
 updated: "2026-08-17"
-description: "Naklejki w małym nakładzie bez minimum zamówienia - już od 1 sztuki, stała cena 59,00 zł za arkusz A4 i produkcja w 2-3 dni robocze. Bez przepłacania."
+description: "Naklejki w małym nakładzie bez minimum zamówienia - już od 1 sztuki, stała cena 59,00 zł za arkusz A4 i produkcja w 4-5 dni robocze. Bez przepłacania."
 image: "/blog/naklejki-maly-naklad-jak-zamowic-pojedyncze-sztuki-bez-przeplacania/kolaz-naklejek-ze-zdjec-pies-i-kot-maly-naklad.png"
 imageAlt: "Kolaż kilkunastu naklejek wyciętych po obrysie z prywatnych zdjęć - psy, koty, zdjęcia ślubne i wakacyjne - ułożonych obok dużej naklejki z psem rasy golden retriever i kotem brytyjskim krótkowłosym."
 tags: ["naklejki", "mały nakład", "wlepki", "poradnik"]
@@ -44,7 +44,7 @@ Poniżej realny przykład, ile zapłacisz za pojedynczy arkusz w zależności od
 2. **Wybierz kształt cięcia** - po obrysie, okrąg, prostokąt lub kwadrat, w zależności od projektu.
 3. **Ustaw liczbę sztuk na arkuszu** - jeśli potrzebujesz tylko kilku naklejek, po prostu zmniejsz ich liczbę w konfiguratorze zamiast dublować wzór.
 4. **Zdecyduj o formie wykończenia** - "pozostawione na arkuszu" albo "pojedyncze sztuki" (więcej w sekcji poniżej).
-5. **Sprawdź podgląd 3D i zamów.** Realizacja trwa 2-3 dni robocze, niezależnie od wielkości nakładu.
+5. **Sprawdź podgląd 3D i zamów.** Realizacja trwa 4-5 dni robocze, niezależnie od wielkości nakładu.
 
 ![Kilkanaście naklejek wyciętych po obrysie z prywatnych zdjęć - psy, koty, para młoda, zdjęcia z podróży i koncertu - przykład różnorodnych wzorów do połączenia na jednym arkuszu A4.](/blog/naklejki-maly-naklad-jak-zamowic-pojedyncze-sztuki-bez-przeplacania/wiele-wzorow-naklejek-ze-zdjec-wakacje-i-slub.jpeg)
 
@@ -70,7 +70,7 @@ Przy zamówieniu kilku pojedynczych naklejek zdecydowanie polecamy opcję "pojed
 
 ## Zamów naklejki w małym nakładzie już dziś
 
-Nie musisz szukać drukarni akceptującej zamówienia poniżej 50 sztuk ani dopłacać za "niepełny" nakład. W MałeNaklejki zapłacisz stałe 59,00 zł za arkusz A4, niezależnie od tego, czy zmieścisz na nim 1, 3 czy 12 naklejek, a paczka rusza do Ciebie po 2-3 dniach roboczych produkcji.
+Nie musisz szukać drukarni akceptującej zamówienia poniżej 50 sztuk ani dopłacać za "niepełny" nakład. W MałeNaklejki zapłacisz stałe 59,00 zł za arkusz A4, niezależnie od tego, czy zmieścisz na nim 1, 3 czy 12 naklejek, a paczka rusza do Ciebie po 4-5 dniach roboczych produkcji.
 
 <a href="/" style="display: inline-block; background-color: #02af7a; color: #ffffff; padding: 14px 28px; text-decoration: none; border-radius: 8px; font-weight: 600; font-size: 18px; margin-top: 24px; text-align: center;">Zamów naklejki bez minimum</a>
 
@@ -90,7 +90,7 @@ Tak. Wystarczy zestawić ze sobą różne grafiki (np. pobrane z ChatGPT, Midjou
 
 ### Ile czasu trwa realizacja zamówienia w małym nakładzie?
 
-Realizacja zajmuje 2-3 dni robocze, tak samo jak przy większych zamówieniach - liczba naklejek na arkuszu nie wydłuża czasu produkcji.
+Realizacja zajmuje 4-5 dni robocze, tak samo jak przy większych zamówieniach - liczba naklejek na arkuszu nie wydłuża czasu produkcji.
 
 ### Czy lepiej wybrać naklejki pozostawione na arkuszu czy pojedyncze sztuki?
 

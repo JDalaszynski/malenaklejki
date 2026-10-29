@@ -167,7 +167,7 @@ function DaysRange({
  * Widełki „Szacowana wysyłka" w koszyku.
  *
  * Klient widzi daty, a nie liczbę dni — formularz od razu pokazuje, jakie
- * daty wyjdą dla kilku przykładowych zamówień, bo „2–3 dni robocze" mówi
+ * daty wyjdą dla kilku przykładowych zamówień, bo „4–5 dni robocze" mówi
  * niewiele, dopóki nie zobaczy się ich w kalendarzu (zwłaszcza przy weekendzie).
  */
 export function ShippingEstimateForm({

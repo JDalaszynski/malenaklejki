@@ -50,7 +50,7 @@ W MałeNaklejki stawiamy na pełną transparentność. Na ostateczną kwotę do 
 1. **Wartość zamówionych arkuszy A4** - liczba arkuszy pomnożona przez 59,00 zł brutto (cena zawiera 23% VAT).
 2. **Dostawa do Paczkomatu InPost** - stała opłata 19,99 zł za bezpiecznie zapakowaną przesyłkę na terenie całej Polski.
 
-Nie doliczamy opłat za weryfikację pliku, przygotowanie linii cięcia po obrysie, zmianę orientacji grafiki czy generowanie faktury VAT na firmę. Płatności zrealizujesz błyskawicznie przez BLIK lub szybki przelew internetowy (Przelewy24), a produkcja zajmuje standardowo 2-3 dni robocze.
+Nie doliczamy opłat za weryfikację pliku, przygotowanie linii cięcia po obrysie, zmianę orientacji grafiki czy generowanie faktury VAT na firmę. Płatności zrealizujesz błyskawicznie przez BLIK lub szybki przelew internetowy (Przelewy24), a produkcja zajmuje standardowo 4-5 dni robocze.
 
 ## Arkusz A4 czy pojedyncze sztuki docięte - co wybrać?
 
@@ -67,7 +67,7 @@ Wielu przedsiębiorców i twórców szuka usług takich jak zagraniczne platform
 
 MałeNaklejki to w 100% polska [alternatywa dla zagranicznych serwisów naklejkowych](/alternatywa-dla-sticker-mule-i-stickerapp), która oferuje kluczowe przewagi:
 
-- **Polska produkcja i szybka logistyka:** Produkcja trwa 2-3 dni robocze, a paczka trafia prosto do Twojego ulubionego Paczkomatu InPost.
+- **Polska produkcja i szybka logistyka:** Produkcja trwa 4-5 dni robocze, a paczka trafia prosto do Twojego ulubionego Paczkomatu InPost.
 - **Brak progów ilościowych:** W tradycyjnych drukarniach zamówienie 10 naklejek kosztuje niemal tyle samo co 100 sztuk z uwagi na stały koszt rozruchu maszyny. U nas cyfrowy druk pozwala zamówić pojedynczy arkusz bez żadnej kary finansowej.
 - **Faktura VAT na NIP:** Jesteśmy zarejestrowanym polskim płatnikiem VAT - każda transakcja może zostać od razu rozliczona jako koszt firmowy.
 - **Najwyższa jakość winylu:** Drukujemy na odpornej folii winylowej z mocnym klejem, która nie boi się deszczu ani promieniowania słonecznego UV, a przy odklejaniu nie pozostawia uciążliwych śladów kleju na powierzchni.
@@ -103,7 +103,7 @@ Nie. Drukujemy w pełnej palecie CMYK w wysokiej rozdzielczości, a precyzyjne c
 Tak. Jesteśmy polską firmą i zarejestrowanym podatnikiem VAT. Podczas składania zamówienia wystarczy podać numer NIP oraz dane firmy, a fakturę VAT 23% otrzymasz drogą elektroniczną.
 
 ### Jaka jest polska alternatywa dla zagranicznych serwisów typu StickerApp czy Sticker Mule przy małym nakładzie?
-MałeNaklejki to w 100% polska alternatywa dla zagranicznych platform naklejkowych. Zapewniamy stałą cenę 59,00 zł brutto za arkusz A4, brak progów ilościowych, szybką produkcję w 2-3 dni robocze, wysyłkę do Paczkomatów InPost za 19,99 zł oraz pełną obsługę w języku polskim z fakturą VAT.
+MałeNaklejki to w 100% polska alternatywa dla zagranicznych platform naklejkowych. Zapewniamy stałą cenę 59,00 zł brutto za arkusz A4, brak progów ilościowych, szybką produkcję w 4-5 dni robocze, wysyłkę do Paczkomatów InPost za 19,99 zł oraz pełną obsługę w języku polskim z fakturą VAT.
 
 ### Czy naklejki są odporne na wodę i warunki atmosferyczne?
 Tak, nasze naklejki produkujemy z wysokiej jakości folii winylowej, która charakteryzuje się odpornością na wodę i promieniowanie UV. Świetnie sprawdzają się na laptopach, bidonach, rowerach, kaskach czy paczkach wysyłkowych. Naklejki należy myć ręcznie (nie nadają się do mycia w zmywarce).

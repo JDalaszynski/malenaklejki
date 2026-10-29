@@ -153,7 +153,7 @@ export default async function RootLayout({
             },
             image: { "@id": "https://www.malenaklejki.pl/#logo" },
             description:
-              "Kreator personalizowanych naklejek z własnym nadrukiem na arkuszach A4. Cięcie po konturze, druk na trwałym winylu, produkcja 2-3 dni robocze.",
+              "Kreator personalizowanych naklejek z własnym nadrukiem na arkuszach A4. Cięcie po konturze, druk na trwałym winylu, produkcja 4-5 dni robocze.",
             sameAs: [
               "https://www.facebook.com/profile.php?id=61591604648504",
               "https://www.instagram.com/male_naklejki",

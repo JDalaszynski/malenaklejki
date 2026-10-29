@@ -26,7 +26,7 @@ const PAGE_URL = `https://www.malenaklejki.pl${PAGE_PATH}`;
 export const metadata: Metadata = {
   title: "O nas - MałeNaklejki, polska drukarnia naklejek",
   description:
-    "Kim jesteśmy: polska drukarnia naklejek z własnym nadrukiem. Drukujemy od 1 arkusza A4 za 59,00 zł brutto na trwałej folii, produkcja 2-3 dni robocze.",
+    "Kim jesteśmy: polska drukarnia naklejek z własnym nadrukiem. Drukujemy od 1 arkusza A4 za 59,00 zł brutto na trwałej folii, produkcja 4-5 dni robocze.",
   alternates: {
     canonical: PAGE_PATH,
   },
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     ...SITE_OPEN_GRAPH,
     title: "O nas - MałeNaklejki, polska drukarnia naklejek",
     description:
-      "Polska drukarnia naklejek z własnym nadrukiem: od 1 arkusza A4 za 59,00 zł brutto, druk 300 DPI na folii winylowej, produkcja 2-3 dni robocze.",
+      "Polska drukarnia naklejek z własnym nadrukiem: od 1 arkusza A4 za 59,00 zł brutto, druk 300 DPI na folii winylowej, produkcja 4-5 dni robocze.",
     url: PAGE_URL,
     type: "website",
   },
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "O nas - MałeNaklejki, polska drukarnia naklejek",
     description:
-      "Drukujemy naklejki z własnym nadrukiem od 1 arkusza A4 za 59,00 zł brutto. Polska produkcja, folia winylowa, realizacja 2-3 dni robocze.",
+      "Drukujemy naklejki z własnym nadrukiem od 1 arkusza A4 za 59,00 zł brutto. Polska produkcja, folia winylowa, realizacja 4-5 dni robocze.",
   },
 };
 
@@ -70,7 +70,7 @@ const FAQS: { q: string; a: string }[] = [
   },
   {
     q: "Jak długo trwa realizacja zamówienia?",
-    a: "Produkcja zajmuje 2-3 dni robocze od zaksięgowania płatności. Po wydrukowaniu paczka trafia do paczkomatu, a Ty dostajesz numer przesyłki do śledzenia. Zamówienie składasz w kreatorze online w kilka minut, bez wymiany maili z grafikiem.",
+    a: "Produkcja zajmuje 4-5 dni robocze od zaksięgowania płatności. Po wydrukowaniu paczka trafia do paczkomatu, a Ty dostajesz numer przesyłki do śledzenia. Zamówienie składasz w kreatorze online w kilka minut, bez wymiany maili z grafikiem.",
   },
   {
     q: "Czy wystawiacie fakturę VAT dla firm?",
@@ -108,7 +108,7 @@ const BENEFITS: { icon: React.ElementType; title: string; text: string }[] = [
   {
     icon: Clock,
     title: "Oszczędzasz czas na całym procesie",
-    text: "Zamówienie składasz sam w kreatorze w kilka minut - bez briefu, bez wymiany dziesiątek maili i bez czekania na wycenę. Produkcję zamykamy w 2-3 dni robocze, a paczkę odbierasz w paczkomacie.",
+    text: "Zamówienie składasz sam w kreatorze w kilka minut - bez briefu, bez wymiany dziesiątek maili i bez czekania na wycenę. Produkcję zamykamy w 4-5 dni robocze, a paczkę odbierasz w paczkomacie.",
   },
   {
     icon: Wallet,
@@ -149,7 +149,7 @@ const SPEC: { feature: string; value: string }[] = [
     feature: "Wykończenie",
     value: "Naklejki na arkuszu A4 lub pojedyncze sztuki docięte luzem",
   },
-  { feature: "Produkcja", value: "2-3 dni robocze od zaksięgowania płatności" },
+  { feature: "Produkcja", value: "4-5 dni robocze od zaksięgowania płatności" },
   { feature: "Dostawa", value: "Odbiór w paczkomacie, koszt 19,99 zł" },
   { feature: "Płatności", value: "BLIK, Przelewy24, zwykły przelew" },
   { feature: "Dokumenty", value: "Faktura VAT na dane firmy z numerem NIP" },
@@ -166,7 +166,7 @@ const STEPS: { title: string; text: string }[] = [
   },
   {
     title: "Płacisz i odbierasz paczkę",
-    text: "Płatność BLIK-iem lub przez Przelewy24 zajmuje kilkanaście sekund. Zamówienie produkujemy w 2-3 dni robocze, pakujemy tak, żeby arkusz nie zginał się w transporcie, i wysyłamy do paczkomatu.",
+    text: "Płatność BLIK-iem lub przez Przelewy24 zajmuje kilkanaście sekund. Zamówienie produkujemy w 4-5 dni robocze, pakujemy tak, żeby arkusz nie zginał się w transporcie, i wysyłamy do paczkomatu.",
   },
 ];
 
@@ -222,7 +222,7 @@ export default function ONasPage() {
           url: "https://www.malenaklejki.pl",
           logo: "https://www.malenaklejki.pl/images/logo/favicon.png",
           description:
-            "MałeNaklejki to polska drukarnia naklejek z własnym nadrukiem. Drukujemy na trwałej folii winylowej w 300 DPI, bez minimalnego nakładu - już od 1 arkusza A4 za 59,00 zł brutto, z produkcją w 2-3 dni robocze.",
+            "MałeNaklejki to polska drukarnia naklejek z własnym nadrukiem. Drukujemy na trwałej folii winylowej w 300 DPI, bez minimalnego nakładu - już od 1 arkusza A4 za 59,00 zł brutto, z produkcją w 4-5 dni robocze.",
           areaServed: { "@type": "Country", name: "Polska" },
           knowsLanguage: "pl-PL",
           knowsAbout: [
@@ -252,7 +252,7 @@ export default function ONasPage() {
           "@type": "Product",
           name: "Naklejki z własnym nadrukiem (arkusz A4)",
           description:
-            "Naklejki z własnym nadrukiem drukowane w Polsce na trwałej folii winylowej w 300 DPI. Stała cena 59,00 zł brutto za arkusz A4, bez minimalnego nakładu, produkcja 2-3 dni robocze.",
+            "Naklejki z własnym nadrukiem drukowane w Polsce na trwałej folii winylowej w 300 DPI. Stała cena 59,00 zł brutto za arkusz A4, bez minimalnego nakładu, produkcja 4-5 dni robocze.",
           image: "https://www.malenaklejki.pl/images/logo/favicon.png",
           brand: { "@type": "Brand", name: "MałeNaklejki" },
           category: "Naklejki z własnym nadrukiem",
@@ -288,8 +288,8 @@ export default function ONasPage() {
                 "@type": "ShippingDeliveryTime",
                 handlingTime: {
                   "@type": "QuantitativeValue",
-                  minValue: 2,
-                  maxValue: 3,
+                  minValue: 4,
+                  maxValue: 5,
                   unitCode: "d",
                 },
                 transitTime: {
@@ -364,7 +364,7 @@ export default function ONasPage() {
             minimalny nakład. Realizujemy zamówienia już od{" "}
             <strong>1 arkusza A4 za stałe 59,00 zł brutto</strong>, na trwałej
             folii winylowej w <strong>300 DPI</strong>, z cięciem po obrysie i{" "}
-            <strong>produkcją w 2-3 dni robocze</strong>. Zamówienie składasz
+            <strong>produkcją w 4-5 dni robocze</strong>. Zamówienie składasz
             sam w kreatorze online - bez briefu dla grafika, bez dopłaty za
             wykrojnik i bez tygodnia korespondencji z drukarnią.
           </p>
@@ -391,7 +391,7 @@ export default function ONasPage() {
           {[
             { value: "59 zł", label: "Za arkusz A4" },
             { value: "od 1 szt.", label: "Bez min. nakładu" },
-            { value: "2-3 dni", label: "Produkcja" },
+            { value: "4-5 dni", label: "Produkcja" },
             { value: "300 DPI", label: "Druk na winylu" },
           ].map((stat) => (
             <div
@@ -638,7 +638,7 @@ export default function ONasPage() {
           <p className="text-sm sm:text-base text-muted-foreground font-medium leading-relaxed max-w-2xl mx-auto">
             Nie musisz nam wierzyć na słowo ani podpisywać umowy na duży nakład.
             Wgraj jedną grafikę, ułóż arkusz A4 i zamów go za 59,00 zł brutto -
-            wyprodukujemy naklejki w 2-3 dni robocze i wyślemy do paczkomatu.
+            wyprodukujemy naklejki w 4-5 dni robocze i wyślemy do paczkomatu.
             Kolejny arkusz zamówisz dopiero wtedy, gdy jakość Cię przekona.
           </p>
           <div className="flex flex-wrap justify-center gap-2 pt-2 text-xs font-bold text-muted-foreground">

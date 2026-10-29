@@ -3,7 +3,7 @@ title: "Naklejki na nalewki domowe - od 1 szt., 59 zł za arkusz A4"
 slug: "naklejki-na-nalewki-domowe-jak-ozdobic-butelki-na-nalewki"
 date: "2026-07-16"
 updated: "2026-10-02"
-description: "Estetyczne naklejki na nalewki domowe z własnym projektem - wodoodporne, na okrągłe i prostokątne butelki. Zamów od 1 arkusza A4, gotowe w 2-3 dni robocze."
+description: "Estetyczne naklejki na nalewki domowe z własnym projektem - wodoodporne, na okrągłe i prostokątne butelki. Zamów od 1 arkusza A4, gotowe w 4-5 dni robocze."
 image: "/blog/naklejki-na-nalewki-domowe-jak-ozdobic-butelki-na-nalewki/naklejki-na-nalewki-domowe-komplet-butelek-z-owocowymi-etykietami.png"
 imageAlt: "Komplet butelek z domowymi nalewkami owocowymi (wiśniowa, jagodowa, malinowa, morelowa) z estetycznymi naklejkami na nalewki domowe stojący na drewnianym stole."
 tags: ["naklejki na nalewki", "nalewki domowe", "etykiety na butelki", "naklejki na zamówienie"]
@@ -106,14 +106,14 @@ Prezenty z kuchni rzadko kończą się na nalewkach, dlatego przy większym zam�
 | 2 arkusze, np. nalewki i słoiki z konfiturami | 118,00 zł | **137,99 zł** |
 | 3 arkusze, np. nalewki, słoiki i etykiety "Dla / Od" | 177,00 zł | **196,99 zł** |
 
-Nie ma rabatów ani progów ilościowych - płacisz 59,00 zł za każdy arkusz. Produkcja trwa 2-3 dni robocze od zaksięgowania wpłaty, a potem wysyłamy paczkę do paczkomatu. Grudzień to szczyt pracy przewoźników, dlatego etykiety zamów z zapasem, a nie w ostatnim tygodniu przed świętami. Etykiety "Dla / Od", słoiki z przetworami i naklejki do kalendarza adwentowego zebraliśmy w przewodniku [etykiety na prezenty z imieniem i inne naklejki świąteczne](/blog/naklejki-swiateczne-i-etykiety-na-prezenty).
+Nie ma rabatów ani progów ilościowych - płacisz 59,00 zł za każdy arkusz. Produkcja trwa 4-5 dni robocze od zaksięgowania wpłaty, a potem wysyłamy paczkę do paczkomatu. Grudzień to szczyt pracy przewoźników, dlatego etykiety zamów z zapasem, a nie w ostatnim tygodniu przed świętami. Etykiety "Dla / Od", słoiki z przetworami i naklejki do kalendarza adwentowego zebraliśmy w przewodniku [etykiety na prezenty z imieniem i inne naklejki świąteczne](/blog/naklejki-swiateczne-i-etykiety-na-prezenty).
 
 ## Jak zamówić naklejki na nalewki w kreatorze online?
 
 1. **Wgraj gotowy plik** z projektem etykiety wprost z telefonu lub komputera (PNG, JPG lub PDF).
 2. **Wybierz kształt cięcia** - prostokąt, owal, koło lub cięcie po obrysie etykiety.
 3. **Ustal liczbę naklejek na arkuszu** - im więcej sztuk, tym niższy koszt jednostkowy.
-4. **Sprawdź podgląd 3D** i zatwierdź zamówienie - realizacja zajmuje 2-3 dni robocze.
+4. **Sprawdź podgląd 3D** i zatwierdź zamówienie - realizacja zajmuje 4-5 dni robocze.
 
 Chcesz poznać dokładne wymagania techniczne dotyczące plików przed wysyłką? Zobacz przewodnik [drukowanie naklejek online - na co zwrócić uwagę przed wysyłką projektu](/blog/drukowanie-naklejek-online-na-co-zwrocic-uwage-przed-wysylka-projektu). Etykiety na alkohol przygotowujesz z okazji wesela lub innej uroczystości? Sprawdź też [personalizowane naklejki na alkohol na wesele i imprezy](/blog/personalizowane-naklejki-na-alkohol-wyjatkowy-dodatek-na-wesela-i-imprezy).
 
@@ -145,6 +145,6 @@ Na etykiecie prezentowej wystarczą trzy rzeczy: nazwa smaku, rocznik i krótka 
 
 ## Zamów naklejki na nalewki domowe już dziś
 
-Wystarczy chwila z generatorem AI (ChatGPT, Midjourney) lub wieczór na przygotowanie pliku w Canva i jedno zamówienie w MałeNaklejki, aby Twoje domowe trunki zyskały wygląd rzemieślniczego produktu. Wgraj plik z etykietą do naszego kreatora, wybierz kształt dopasowany do butelki, a gotowe naklejki na nalewki domowe wyprodukujemy w 2-3 dni robocze.
+Wystarczy chwila z generatorem AI (ChatGPT, Midjourney) lub wieczór na przygotowanie pliku w Canva i jedno zamówienie w MałeNaklejki, aby Twoje domowe trunki zyskały wygląd rzemieślniczego produktu. Wgraj plik z etykietą do naszego kreatora, wybierz kształt dopasowany do butelki, a gotowe naklejki na nalewki domowe wyprodukujemy w 4-5 dni robocze.
 
 <a href="/" style="display: inline-block; background-color: #02af7a; color: #ffffff; padding: 14px 28px; text-decoration: none; border-radius: 8px; font-weight: 600; font-size: 18px; margin-top: 24px; text-align: center;">Zamów naklejki na nalewki</a>

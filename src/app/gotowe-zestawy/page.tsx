@@ -102,7 +102,7 @@ function buildFaqs(sheets: CatalogSheet[]): Faq[] {
     },
     {
       q: "Ile trwa realizacja zamówienia?",
-      a: "Produkcja zajmuje 2-3 dni robocze od zaksięgowania płatności. Gotową paczkę wysyłamy do wybranego paczkomatu.",
+      a: "Produkcja zajmuje 4-5 dni robocze od zaksięgowania płatności. Gotową paczkę wysyłamy do wybranego paczkomatu.",
     },
   ];
 }
@@ -153,7 +153,7 @@ export default async function CatalogPage() {
             z kilkudziesięcioma naklejkami wokół jednego tematu, drukowany na{" "}
             <strong>folii winylowej odpornej na wodę i UV</strong>. Stała cena{" "}
             <strong>{formatPrice(SHEET_PRICE)} brutto za zestaw</strong>, produkcja w{" "}
-            <strong>2-3 dni robocze</strong> i odbiór w paczkomacie.
+            <strong>4-5 dni robocze</strong> i odbiór w paczkomacie.
           </p>
 
           <EditableCallout detailsHref="#zmiany" />
@@ -183,7 +183,7 @@ export default async function CatalogPage() {
             { value: `${SHEET_PRICE} zł`, label: "Brutto za zestaw" },
             { value: `${sheets.length}`, label: "Wzorów do wyboru" },
             { value: "Woda i UV", label: "Folia winylowa" },
-            { value: "2-3 dni", label: "Produkcja robocze" },
+            { value: "4-5 dni", label: "Produkcja robocze" },
           ]}
         />
 

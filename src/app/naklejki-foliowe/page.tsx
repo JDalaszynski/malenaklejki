@@ -92,7 +92,7 @@ const FAQS: { q: string; a: string }[] = [
   },
   {
     q: "Jak szybko zrealizujecie zamówienie naklejek foliowych?",
-    a: "Naklejki foliowe produkujemy w 2-3 dni robocze, a gotowe zamówienie wysyłamy z odbiorem w paczkomacie. Całość - od wgrania grafiki po złożenie zamówienia - przechodzisz online w kreatorze, bez kontaktu z grafikiem.",
+    a: "Naklejki foliowe produkujemy w 4-5 dni robocze, a gotowe zamówienie wysyłamy z odbiorem w paczkomacie. Całość - od wgrania grafiki po złożenie zamówienia - przechodzisz online w kreatorze, bez kontaktu z grafikiem.",
   },
   {
     q: "Jaki plik przygotować do druku naklejek na folii?",
@@ -182,7 +182,7 @@ const ADVANTAGES: { icon: React.ElementType; title: string; text: string }[] = [
   {
     icon: Truck,
     title: "Produkcja w Polsce, paczkomat",
-    text: "Naklejki foliowe produkujemy w 2-3 dni robocze i wysyłamy z odbiorem w paczkomacie. Wszystko po polsku, z płatnością BLIK i Przelewy24.",
+    text: "Naklejki foliowe produkujemy w 4-5 dni robocze i wysyłamy z odbiorem w paczkomacie. Wszystko po polsku, z płatnością BLIK i Przelewy24.",
   },
 ];
 
@@ -207,7 +207,7 @@ const SPECS: { label: string; value: string }[] = [
     label: "Cena",
     value: "59,00 zł brutto za arkusz A4, bez minimalnego nakładu",
   },
-  { label: "Produkcja", value: "2-3 dni robocze" },
+  { label: "Produkcja", value: "4-5 dni robocze" },
   { label: "Wysyłka", value: "Odbiór w paczkomacie, dostawa 19,99 zł" },
   { label: "Płatność", value: "BLIK, Przelewy24, przelew" },
 ];
@@ -272,9 +272,9 @@ export default function NaklejkiFoliowePage() {
                 "@type": "ShippingDeliveryTime",
                 handlingTime: {
                   "@type": "QuantitativeValue",
-                  // Produkcja 2-3 dni robocze (blog-agent/facts.md, decyzja z 2026-08-17).
-                  minValue: 2,
-                  maxValue: 3,
+                  // Produkcja 4-5 dni robocze (blog-agent/facts.md, decyzja z 2026-08-17).
+                  minValue: 4,
+                  maxValue: 5,
                   unitCode: "d",
                 },
                 transitTime: {
@@ -362,7 +362,7 @@ export default function NaklejkiFoliowePage() {
             <strong>folii winylowej odpornej na wodę i UV</strong> w
             rozdzielczości <strong>300 DPI</strong>. Stała cena{" "}
             <strong>59,00 zł brutto za arkusz A4</strong>, już od 1 sztuki,
-            produkcja w <strong>2-3 dni robocze</strong> i odbiór w paczkomacie.
+            produkcja w <strong>4-5 dni robocze</strong> i odbiór w paczkomacie.
             Zależy Ci, żeby nadruk nie rozmókł ani nie spłowiał? Sprawdź, na co
             zwrócić uwagę przy{" "}
             <Link
@@ -601,7 +601,7 @@ export default function NaklejkiFoliowePage() {
               },
               {
                 title: "Zamów i odbierz w paczkomacie",
-                text: "Sprawdź podgląd 3D gotowego arkusza, zapłać BLIK-iem lub przez Przelewy24, a naklejki foliowe wyprodukujemy w 2-3 dni robocze i wyślemy do paczkomatu za stałe 59,00 zł brutto od arkusza A4.",
+                text: "Sprawdź podgląd 3D gotowego arkusza, zapłać BLIK-iem lub przez Przelewy24, a naklejki foliowe wyprodukujemy w 4-5 dni robocze i wyślemy do paczkomatu za stałe 59,00 zł brutto od arkusza A4.",
               },
             ].map((step, i) => (
               <li
@@ -673,7 +673,7 @@ export default function NaklejkiFoliowePage() {
           </h2>
           <p className="text-sm sm:text-base text-muted-foreground font-medium leading-relaxed max-w-2xl mx-auto">
             Wgraj grafikę do kreatora, wybierz cięcie po obrysie i liczbę sztuk
-            na arkuszu. Naklejki foliowe będą gotowe w 2-3 dni robocze za stałe
+            na arkuszu. Naklejki foliowe będą gotowe w 4-5 dni robocze za stałe
             59,00 zł brutto od arkusza A4 - na trwałej folii winylowej odpornej
             na wodę i UV, bez minimalnego nakładu.
           </p>
@@ -686,7 +686,7 @@ export default function NaklejkiFoliowePage() {
               DPI
             </span>
             <span className="inline-flex items-center gap-1.5">
-              <Clock className="w-3.5 h-3.5 text-primary" /> Produkcja 2-3 dni
+              <Clock className="w-3.5 h-3.5 text-primary" /> Produkcja 4-5 dni
             </span>
           </div>
           <div className="pt-2">

@@ -1,7 +1,7 @@
 ---
 title: "Jak zamówić naklejki na zamówienie - od 1 szt., 59 zł/A4"
 date: "2026-07-02"
-description: "Naklejki na zamówienie z własnym nadrukiem bez minimalnego nakładu. Stała cena 59,00 zł brutto za arkusz A4, produkcja 2-3 dni robocze."
+description: "Naklejki na zamówienie z własnym nadrukiem bez minimalnego nakładu. Stała cena 59,00 zł brutto za arkusz A4, produkcja 4-5 dni robocze."
 image: "/blog/jak-zamowic-idealne-naklejki-na-zamowienie-z-wlasnym-nadrukiem/naklejki-na-zamowienie-z-wlasnym-nadrukiem.jpg"
 imageAlt: "Kwadratowe naklejki na zamówienie z własnym nadrukiem - gotowy arkusz A4 z wlepkami z logo firmy wydrukowanymi na trwałej folii winylowej w MałeNaklejki."
 tags: ["naklejki", "poradnik", "ecommerce", "branding"]
@@ -12,7 +12,7 @@ pillarOrder: 1
 slug: "jak-zamowic-idealne-naklejki-na-zamowienie-z-wlasnym-nadrukiem"
 ---
 
-Naklejki na zamówienie z własnym nadrukiem kosztują w MałeNaklejki **59,00 zł brutto za arkusz A4** - niezależnie od tego, czy umieścisz na nim jedną dużą naklejkę o szerokości do 19 cm, czy kilkadziesiąt małych etykiet. Nie ma minimalnego nakładu, progów ilościowych ani opłaty za przygotowalnię. Wgrywasz gotowy plik z telefonu lub komputera, kreator sam usuwa tło i wyznacza linię cięcia, a naklejki drukujemy w Polsce na folii winylowej w 2-3 dni robocze. [Stwórz własne naklejki](/) w kilka minut - resztą zajmiemy się my.
+Naklejki na zamówienie z własnym nadrukiem kosztują w MałeNaklejki **59,00 zł brutto za arkusz A4** - niezależnie od tego, czy umieścisz na nim jedną dużą naklejkę o szerokości do 19 cm, czy kilkadziesiąt małych etykiet. Nie ma minimalnego nakładu, progów ilościowych ani opłaty za przygotowalnię. Wgrywasz gotowy plik z telefonu lub komputera, kreator sam usuwa tło i wyznacza linię cięcia, a naklejki drukujemy w Polsce na folii winylowej w 4-5 dni robocze. [Stwórz własne naklejki](/) w kilka minut - resztą zajmiemy się my.
 
 ## Jak zamówić naklejki z własnym nadrukiem krok po kroku?
 
@@ -50,7 +50,7 @@ Cały nasz model rozliczeń mieści się w jednej liczbie, bo płacisz za **powi
 | Kształty cięcia | die cut po obrysie, kiss-cut, koło, prostokąt |
 | Maksymalny wymiar jednej naklejki | 19 cm |
 | Przyjmowane pliki | JPG, PNG, PDF - zalecane 300 DPI |
-| Produkcja | 2-3 dni robocze |
+| Produkcja | 4-5 dni robocze |
 | Dostawa | paczkomat, 19,99 zł |
 | Płatności | BLIK, Przelewy24, faktura VAT na NIP |
 
@@ -170,7 +170,7 @@ Tak. Drukujemy na trwałej folii winylowej z mocnym klejem, odpornej na wodę i 
 
 ### Ile trwa realizacja zamówienia?
 
-Naklejki produkujemy w 2-3 dni robocze od zaksięgowania wpłaty, a następnie wysyłamy przesyłkę do wybranego paczkomatu.
+Naklejki produkujemy w 4-5 dni robocze od zaksięgowania wpłaty, a następnie wysyłamy przesyłkę do wybranego paczkomatu.
 
 ### Czy naklejka zostawia ślady po odklejeniu?
 
@@ -186,6 +186,6 @@ To zależy od kształtu i odstępów między wzorami. Orientacyjnie na arkuszu m
 
 ## Zamów naklejki z własnym nadrukiem już dziś
 
-Wydrukowanie profesjonalnych, trwałych naklejek nie wymaga ani umiejętności graficznych, ani dużego budżetu. Wgraj gotowy plik lub zdjęcie z telefonu, ułóż arkusz A4 i wybierz kształt cięcia - naklejki wyprodukujemy w Polsce w 2-3 dni robocze za stałe 59,00 zł brutto od arkusza.
+Wydrukowanie profesjonalnych, trwałych naklejek nie wymaga ani umiejętności graficznych, ani dużego budżetu. Wgraj gotowy plik lub zdjęcie z telefonu, ułóż arkusz A4 i wybierz kształt cięcia - naklejki wyprodukujemy w Polsce w 4-5 dni robocze za stałe 59,00 zł brutto od arkusza.
 
 <a href="/" style="display: inline-block; background-color: #02af7a; color: #ffffff; padding: 14px 28px; text-decoration: none; border-radius: 8px; font-weight: 600; font-size: 18px; margin-top: 24px; text-align: center;">Zamów naklejki z własnym nadrukiem</a>

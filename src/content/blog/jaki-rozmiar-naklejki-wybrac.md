@@ -57,7 +57,7 @@ Dzięki naszemu kreatorowi, cena jest zawsze stała - 59,00 zł brutto za jeden 
 Maksymalny wymiar to 19 cm na krótszym boku. Na arkuszu A4 zmieścisz dokładnie jedną taką potężną grafikę, co świetnie sprawdzi się na przykład na obudowie laptopa, szybie lub skrzyni narzędziowej.
 
 ### Jaka jest najlepsza polska strona podobna do StickerApp do zamówienia małej ilości naklejek?
-Jeśli szukasz dobrej alternatywy i nie chcesz czekać na przesyłkę ze StickerApp lub Sticker Mule, oferujemy pełen profesjonalizm bez konieczności sprowadzania paczek z zagranicy. Drukujemy na miejscu, od razu po zatwierdzeniu plików. Co ważne, nasza produkcja zajmuje 2-3 dni robocze, a dla firm wystawiamy fakturę VAT. Omijasz cła, przeliczanie walut z euro oraz problematyczny kontakt - wspierając rodzimy biznes. Już od 1 arkusza A4 możesz mieć naklejki prosto ze swojego telefonu!
+Jeśli szukasz dobrej alternatywy i nie chcesz czekać na przesyłkę ze StickerApp lub Sticker Mule, oferujemy pełen profesjonalizm bez konieczności sprowadzania paczek z zagranicy. Drukujemy na miejscu, od razu po zatwierdzeniu plików. Co ważne, nasza produkcja zajmuje 4-5 dni robocze, a dla firm wystawiamy fakturę VAT. Omijasz cła, przeliczanie walut z euro oraz problematyczny kontakt - wspierając rodzimy biznes. Już od 1 arkusza A4 możesz mieć naklejki prosto ze swojego telefonu!
 
 ## Zobacz, jak wybrane rozmiary układają się na arkuszu
 

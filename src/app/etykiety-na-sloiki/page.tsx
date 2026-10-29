@@ -52,7 +52,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Etykiety na słoiki - własne napisy i naklejki od 59 zł",
     description:
-      "Etykiety na słoiki z własnym nadrukiem na wodoodpornej folii winylowej. Stała cena 59,00 zł brutto za arkusz A4, produkcja 2-3 dni robocze.",
+      "Etykiety na słoiki z własnym nadrukiem na wodoodpornej folii winylowej. Stała cena 59,00 zł brutto za arkusz A4, produkcja 4-5 dni robocze.",
     images: ["/landing/etykiety-na-sloiki/etykiety-na-sloiki-szklane-sloje-rustykalne.jpeg"],
   },
 };
@@ -101,7 +101,7 @@ const FAQS: { q: string; a: string }[] = [
   },
   {
     q: "Jak szybko zrealizujecie zamówienie i ile kosztuje dostawa?",
-    a: "Etykiety na słoiki produkujemy w 2-3 dni robocze od opłacenia zamówienia, a przesyłkę odbierasz w paczkomacie za 19,99 zł. Płatność załatwisz BLIK-iem lub przez Przelewy24, a firmom wystawiamy fakturę VAT na dane z NIP.",
+    a: "Etykiety na słoiki produkujemy w 4-5 dni robocze od opłacenia zamówienia, a przesyłkę odbierasz w paczkomacie za 19,99 zł. Płatność załatwisz BLIK-iem lub przez Przelewy24, a firmom wystawiamy fakturę VAT na dane z NIP.",
   },
 ];
 
@@ -218,7 +218,7 @@ const SPECS: { label: string; value: string }[] = [
     label: "Cena",
     value: "59,00 zł brutto za arkusz A4, bez minimalnego nakładu",
   },
-  { label: "Produkcja", value: "2-3 dni robocze" },
+  { label: "Produkcja", value: "4-5 dni robocze" },
   {
     label: "Wysyłka i płatność",
     value: "Paczkomat 19,99 zł; BLIK, Przelewy24, przelew, faktura VAT",
@@ -253,7 +253,7 @@ export default function EtykietyNaSloikiPage() {
           "@type": "Product",
           name: "Etykiety na słoiki z własnym nadrukiem",
           description:
-            "Personalizowane etykiety na słoiki, weki, butelki i świece drukowane na trwałej folii winylowej odpornej na wodę i UV. Dowolny kształt, druk 300 DPI, stała cena 59,00 zł brutto za arkusz A4 bez minimalnego nakładu, produkcja 2-3 dni robocze i odbiór w paczkomacie.",
+            "Personalizowane etykiety na słoiki, weki, butelki i świece drukowane na trwałej folii winylowej odpornej na wodę i UV. Dowolny kształt, druk 300 DPI, stała cena 59,00 zł brutto za arkusz A4 bez minimalnego nakładu, produkcja 4-5 dni robocze i odbiór w paczkomacie.",
           image: "https://www.malenaklejki.pl/images/logo/favicon.png",
           brand: { "@type": "Brand", name: "MałeNaklejki" },
           category: "Etykiety na słoiki i opakowania",
@@ -285,9 +285,9 @@ export default function EtykietyNaSloikiPage() {
                 "@type": "ShippingDeliveryTime",
                 handlingTime: {
                   "@type": "QuantitativeValue",
-                  // Produkcja 2-3 dni robocze (blog-agent/facts.md, decyzja z 2026-08-17).
-                  minValue: 2,
-                  maxValue: 3,
+                  // Produkcja 4-5 dni robocze (blog-agent/facts.md, decyzja z 2026-08-17).
+                  minValue: 4,
+                  maxValue: 5,
                   unitCode: "d",
                 },
                 transitTime: {
@@ -378,7 +378,7 @@ export default function EtykietyNaSloikiPage() {
             prostokącie albo dokładnie po obrysie grafiki. Druk{" "}
             <strong>300 DPI</strong>, stała cena{" "}
             <strong>59,00 zł brutto za arkusz A4</strong>, już od 1 arkusza,
-            produkcja w <strong>2-3 dni robocze</strong> i odbiór w paczkomacie.
+            produkcja w <strong>4-5 dni robocze</strong> i odbiór w paczkomacie.
             Jedno zastrzeżenie: folia <strong>nie nadaje się do zmywarki</strong>{" "}
             - opisany słoik myj ręcznie.
           </p>
@@ -416,7 +416,7 @@ export default function EtykietyNaSloikiPage() {
             { value: "59 zł", label: "Brutto za arkusz A4" },
             { value: "od 1 szt.", label: "Bez min. nakładu" },
             { value: "Wodoodporne", label: "Folia winylowa" },
-            { value: "2-3 dni", label: "Produkcja robocze" },
+            { value: "4-5 dni", label: "Produkcja robocze" },
           ].map((stat) => (
             <div
               key={stat.label}
@@ -628,7 +628,7 @@ export default function EtykietyNaSloikiPage() {
               },
               {
                 title: "Sprawdź podgląd 3D i zamów",
-                text: "Obejrzyj podgląd gotowego arkusza, zapłać BLIK-iem lub przez Przelewy24, a etykiety wyprodukujemy w 2-3 dni robocze i wyślemy do paczkomatu za 19,99 zł. Arkusz A4 kosztuje stałe 59,00 zł brutto, niezależnie od liczby wzorów.",
+                text: "Obejrzyj podgląd gotowego arkusza, zapłać BLIK-iem lub przez Przelewy24, a etykiety wyprodukujemy w 4-5 dni robocze i wyślemy do paczkomatu za 19,99 zł. Arkusz A4 kosztuje stałe 59,00 zł brutto, niezależnie od liczby wzorów.",
               },
             ].map((step, i) => (
               <li
@@ -701,7 +701,7 @@ export default function EtykietyNaSloikiPage() {
           </h2>
           <p className="text-sm sm:text-base text-muted-foreground font-medium leading-relaxed max-w-2xl mx-auto">
             Wgraj gotowy obraz do kreatora, ułóż etykiety na arkuszu A4 i
-            wybierz kształt cięcia. Wydrukujemy je w 2-3 dni robocze na trwałej
+            wybierz kształt cięcia. Wydrukujemy je w 4-5 dni robocze na trwałej
             folii winylowej odpornej na wodę i UV - za stałe 59,00
             zł brutto od arkusza, bez minimalnego nakładu i bez opłat za
             przygotowanie pliku.

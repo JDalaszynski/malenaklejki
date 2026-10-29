@@ -247,7 +247,7 @@ export default function RegulaminPage() {
     {
       id: "dostawa-realizacja",
       title: "§ 6. Dostawa i realizacja",
-      searchText: `dostawa na terenie Rzeczypospolitej Polskiej. paczkomat InPost kurier pod drzwi koszty. czas realizacji wysyłki maksymalnie 3 dni robocze od zaksięgowania wpłaty.`,
+      searchText: `dostawa na terenie Rzeczypospolitej Polskiej. paczkomat InPost kurier pod drzwi koszty. czas realizacji wysyłki maksymalnie 5 dni roboczych od zaksięgowania wpłaty.`,
       content: (
         <div className="space-y-4">
           <p>
@@ -268,7 +268,7 @@ export default function RegulaminPage() {
           </ul>
           <p>
             3. Czas realizacji i wysyłki zamówienia wynosi maksymalnie{" "}
-            <strong>3 dni robocze</strong> od momentu zaksięgowania wpłaty.
+            <strong>5 dni roboczych</strong> od momentu zaksięgowania wpłaty.
           </p>
         </div>
       ),
@@ -491,7 +491,7 @@ export default function RegulaminPage() {
     <DocLayout
       title="Regulamin Sklepu Internetowego MałeNaklejki"
       description="Regulamin określający warunki korzystania ze sklepu internetowego oraz zasady składania zamówień na spersonalizowane naklejki na arkuszach A4."
-      lastUpdated="5 października 2026 r."
+      lastUpdated="29 października 2026 r."
       activeTab="regulamin"
       sections={sections}
     />

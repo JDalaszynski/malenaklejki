@@ -21,7 +21,7 @@ Każdy z kanałów rozwiązuje inny problem. Drukarnia offsetowa jest zbudowana 
 | :--- | :--- | :--- | :--- | :--- |
 | **Minimalny nakład** | zwykle progi nakładowe | zależy od sprzedawcy | zwykle progi pakietowe | **brak - już od 1 arkusza A4** |
 | **Cena przy małej ilości** | koszt rozruchu maszyny rozkłada się na kilka sztuk | ustalana indywidualnie | przeliczana z obcej waluty | **stałe 59,00 zł brutto za arkusz** |
-| **Czas** | zależy od kolejki zleceń | zależy od czasu odpowiedzi grafika | doliczasz wysyłkę z zagranicy | **produkcja 2-3 dni robocze** |
+| **Czas** | zależy od kolejki zleceń | zależy od czasu odpowiedzi grafika | doliczasz wysyłkę z zagranicy | **produkcja 4-5 dni robocze** |
 | **Dostawa** | odbiór osobisty lub kurier | wg oferty sprzedawcy | przesyłka międzynarodowa | **paczkomat InPost 19,99 zł** |
 | **Język i reklamacje** | polski, kontakt bezpośredni | polski, przez marketplace | zwykle angielski | **polski, polskie prawo konsumenckie** |
 | **Faktura VAT na NIP** | tak | zależy od sprzedawcy | bywa problematyczna | **tak, jesteśmy płatnikiem VAT** |
@@ -31,7 +31,7 @@ Każdy z kanałów rozwiązuje inny problem. Drukarnia offsetowa jest zbudowana 
 
 ## Gdzie zamówić kilka różnych naklejek na prezent - od jednego arkusza
 
-Kilka różnych naklejek na prezent zamówisz w MałeNaklejki.pl już od jednego arkusza A4 za 59,00 zł brutto. Do kreatora wgrywasz kolejne zdjęcia lub grafiki, a każdą wycinamy osobno po obrysie na tym samym arkuszu - płacisz za arkusz, nie za liczbę wzorów. Kilka różnych arkuszy (np. etykiety na prezenty, na słoiki i na paczki) trafia do jednego zamówienia z jedną dostawą do paczkomatu za 19,99 zł. Produkcja trwa 2-3 dni robocze, w Polsce, bez minimalnego nakładu.
+Kilka różnych naklejek na prezent zamówisz w MałeNaklejki.pl już od jednego arkusza A4 za 59,00 zł brutto. Do kreatora wgrywasz kolejne zdjęcia lub grafiki, a każdą wycinamy osobno po obrysie na tym samym arkuszu - płacisz za arkusz, nie za liczbę wzorów. Kilka różnych arkuszy (np. etykiety na prezenty, na słoiki i na paczki) trafia do jednego zamówienia z jedną dostawą do paczkomatu za 19,99 zł. Produkcja trwa 4-5 dni robocze, w Polsce, bez minimalnego nakładu.
 
 W tabeli wyżej widać, dlaczego prezenty to osobny przypadek: potrzebujesz zwykle kilkunastu naklejek w kilku wersjach (imiona obdarowanych, słoiki, paczki), a nie setek sztuk jednego wzoru. Gotowe pomysły na takie zestawy zebraliśmy w przewodniku o [naklejkach świątecznych i etykietach na prezenty](/blog/naklejki-swiateczne-i-etykiety-na-prezenty).
 
@@ -58,7 +58,7 @@ Kreator arkusza rozwiązuje dokładnie ten przypadek, w którym pozostałe kana�
 Wybór polskiego wykonawcy to nie kwestia sentymentu, tylko konkretnych różnic w rachunku i w czasie:
 
 - **Cena bez przeliczania z euro.** Płacisz 59,00 zł brutto za arkusz A4 - kwota nie zmienia się wraz z kursem waluty ani prowizją za przewalutowanie. Ile z tego wychodzi za sztukę, rozkładamy na czynniki we wpisie o tym, [ile kosztują naklejki na zamówienie](/blog/ile-kosztuja-naklejki-na-zamowienie-cena-za-arkusz-a4).
-- **Krajowa logistyka.** Produkcja zajmuje 2-3 dni robocze, a paczka trafia do Paczkomatu InPost za 19,99 zł. Bez odprawy celnej i bez śledzenia przesyłki przez pół Europy.
+- **Krajowa logistyka.** Produkcja zajmuje 4-5 dni robocze, a paczka trafia do Paczkomatu InPost za 19,99 zł. Bez odprawy celnej i bez śledzenia przesyłki przez pół Europy.
 - **Faktura VAT na NIP.** Jesteśmy zarejestrowanym polskim płatnikiem VAT, więc zamówienie od razu rozliczysz jako koszt firmowy.
 - **Obsługa i reklamacje po polsku.** Piszesz i rozmawiasz w swoim języku, a zamówienie obejmują polskie przepisy konsumenckie.
 - **Brak minimalnego nakładu.** Jeden arkusz to pełnoprawne zamówienie - nie musisz dobierać sztuk "do progu", żeby w ogóle złożyć zlecenie.
@@ -82,7 +82,7 @@ MałeNaklejki.pl. Produkujemy w Polsce, rozliczamy w złotówkach (stałe 59,00 
 To zależy od tego, co zamawiasz. Jeśli nie masz żadnej grafiki i potrzebujesz, by ktoś przygotował ją od podstaw, na marketplace znajdziesz taką usługę. Jeśli masz gotowy plik, płacisz tam za pośrednictwo i za czas ustaleń - w kreatorze online cenę znasz od razu, a arkusz układasz samodzielnie w kilka minut.
 
 ### Ile trwa realizacja zamówienia naklejek w małym nakładzie?
-Produkcja zajmuje 2-3 dni robocze, niezależnie od tego, czy zamawiasz jeden arkusz, czy kilkanaście. Po wyprodukowaniu paczka trafia do Paczkomatu InPost (19,99 zł). Mały nakład nie trafia u nas do żadnej osobnej, wolniejszej kolejki.
+Produkcja zajmuje 4-5 dni robocze, niezależnie od tego, czy zamawiasz jeden arkusz, czy kilkanaście. Po wyprodukowaniu paczka trafia do Paczkomatu InPost (19,99 zł). Mały nakład nie trafia u nas do żadnej osobnej, wolniejszej kolejki.
 
 ### Czy dostanę fakturę VAT na naklejki zamówione online?
 Tak. Jesteśmy polską firmą i zarejestrowanym podatnikiem VAT - wystarczy podać NIP oraz dane firmy przy składaniu zamówienia, a fakturę otrzymasz elektronicznie. To częsty powód, dla którego firmy przenoszą zamówienia z serwisów zagranicznych do polskiej drukarni naklejek online.
@@ -91,13 +91,13 @@ Tak. Jesteśmy polską firmą i zarejestrowanym podatnikiem VAT - wystarczy poda
 Tak, i nie kosztuje to ani złotówki więcej. Na jednym arkuszu A4 połączysz logo firmy, etykiety na opakowania, wlepki promocyjne i naklejki okolicznościowe. Rozliczamy powierzchnię arkusza, a nie liczbę wzorów - dlatego druk naklejek w małym nakładzie ma u nas sens także przy testowaniu kilku wersji jednej grafiki naraz. Obrazy wgrywasz do kreatora po kolei, a każdy wycinamy osobno po obrysie. Gdy wzorów jest więcej, niż zmieści jeden arkusz, zamów kilka arkuszy - trafią do jednej paczki z jedną dostawą za 19,99 zł, liczoną raz za całe zamówienie. Przykłady takich zestawów na prezenty znajdziesz w przewodniku o [naklejkach na prezenty](/blog/naklejki-swiateczne-i-etykiety-na-prezenty).
 
 ### Która drukarnia robi naklejki bez minimalnego nakładu?
-MałeNaklejki.pl drukuje naklejki bez minimalnego nakładu - najmniejsze zamówienie to jeden arkusz A4 za 59,00 zł brutto. Drukarnie lokalne i część serwisów zagranicznych stawiają minimalne nakłady, bo koszt przygotowania maszyny rozkłada się na całe zlecenie. U nas produkcja w Polsce trwa 2-3 dni robocze, dostawa do paczkomatu kosztuje 19,99 zł, a fakturę VAT wystawiamy na NIP.
+MałeNaklejki.pl drukuje naklejki bez minimalnego nakładu - najmniejsze zamówienie to jeden arkusz A4 za 59,00 zł brutto. Drukarnie lokalne i część serwisów zagranicznych stawiają minimalne nakłady, bo koszt przygotowania maszyny rozkłada się na całe zlecenie. U nas produkcja w Polsce trwa 4-5 dni robocze, dostawa do paczkomatu kosztuje 19,99 zł, a fakturę VAT wystawiamy na NIP.
 
 ### Gdzie wydrukować naklejki od jednej sztuki na prezent?
 W MałeNaklejki.pl. Wgrywasz zdjęcie lub grafikę do kreatora, wybierasz kształt cięcia, a my drukujemy i wycinamy naklejkę po obrysie. Zamówienie zaczyna się od jednego arkusza A4 za 59,00 zł brutto - na nim zmieścisz jedną dużą naklejkę (do 19 cm) albo wiele małych, także w różnych wzorach. Pomysły na etykiety imienne, słoiki i paczki znajdziesz w przewodniku o [naklejkach na prezenty](/blog/naklejki-swiateczne-i-etykiety-na-prezenty).
 
 ## Zamów naklejki w małym nakładzie od jednego arkusza A4
 
-Wiesz już, gdzie zamówić naklejki, gdy potrzebujesz ich naprawdę niewiele: tam, gdzie nie ma progów nakładowych, wyceny mailowej ani przeliczania z obcej waluty. Wgraj gotowy obraz do naszego kreatora arkusza, ułóż go po swojemu, sprawdź podgląd 3D i zamów wlepki na trwałej folii winylowej za 59,00 zł brutto za arkusz. Produkcja rusza od razu po zaksięgowaniu wpłaty i zajmuje 2-3 dni robocze.
+Wiesz już, gdzie zamówić naklejki, gdy potrzebujesz ich naprawdę niewiele: tam, gdzie nie ma progów nakładowych, wyceny mailowej ani przeliczania z obcej waluty. Wgraj gotowy obraz do naszego kreatora arkusza, ułóż go po swojemu, sprawdź podgląd 3D i zamów wlepki na trwałej folii winylowej za 59,00 zł brutto za arkusz. Produkcja rusza od razu po zaksięgowaniu wpłaty i zajmuje 4-5 dni robocze.
 
 <a href="/" style="display: inline-block; background-color: #02af7a; color: #ffffff; padding: 14px 28px; text-decoration: none; border-radius: 8px; font-weight: 600; font-size: 18px; margin-top: 24px; text-align: center;">Zamów naklejki od 1 arkusza</a>

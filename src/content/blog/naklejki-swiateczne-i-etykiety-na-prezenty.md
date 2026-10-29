@@ -8,11 +8,11 @@ role: "supporting"
 cta_text: "Zamów naklejki świąteczne"
 ---
 
-Naklejki świąteczne z własnym nadrukiem zamówisz w MałeNaklejki od jednego arkusza A4 za stałe 59,00 zł brutto - bez minimalnego nakładu i bez dopłat za liczbę wzorów. Drukujemy w Polsce na folii winylowej odpornej na wodę i UV, produkcja trwa 2-3 dni robocze, a gotowe naklejki wysyłamy do paczkomatu za 19,99 zł. Na jednym arkuszu zmieścisz etykiety na prezenty z imionami całej rodziny, na drugim naklejki na słoiki z domowymi przetworami, a na trzecim naklejki na paczki - i wszystko przyjdzie w jednej przesyłce. Jeśli zamawiasz pierwszy raz, zajrzyj do przewodnika, jak działają [naklejki na zamówienie](/blog/jak-zamowic-idealne-naklejki-na-zamowienie-z-wlasnym-nadrukiem) z własnym nadrukiem.
+Naklejki świąteczne z własnym nadrukiem zamówisz w MałeNaklejki od jednego arkusza A4 za stałe 59,00 zł brutto - bez minimalnego nakładu i bez dopłat za liczbę wzorów. Drukujemy w Polsce na folii winylowej odpornej na wodę i UV, produkcja trwa 4-5 dni robocze, a gotowe naklejki wysyłamy do paczkomatu za 19,99 zł. Na jednym arkuszu zmieścisz etykiety na prezenty z imionami całej rodziny, na drugim naklejki na słoiki z domowymi przetworami, a na trzecim naklejki na paczki - i wszystko przyjdzie w jednej przesyłce. Jeśli zamawiasz pierwszy raz, zajrzyj do przewodnika, jak działają [naklejki na zamówienie](/blog/jak-zamowic-idealne-naklejki-na-zamowienie-z-wlasnym-nadrukiem) z własnym nadrukiem.
 
 ## Gdzie zamówić kilka różnych naklejek na prezent świąteczny?
 
-Kilka różnych naklejek na prezent zamówisz w MałeNaklejki.pl już od jednego arkusza A4 za 59,00 zł brutto. Do kreatora wgrywasz kolejne zdjęcia lub grafiki, a każdą wycinamy osobno po obrysie na tym samym arkuszu - płacisz za arkusz, nie za liczbę wzorów. Kilka różnych arkuszy (np. etykiety na prezenty, na słoiki i na paczki) trafia do jednego zamówienia z jedną dostawą do paczkomatu za 19,99 zł. Produkcja trwa 2-3 dni robocze, w Polsce, bez minimalnego nakładu.
+Kilka różnych naklejek na prezent zamówisz w MałeNaklejki.pl już od jednego arkusza A4 za 59,00 zł brutto. Do kreatora wgrywasz kolejne zdjęcia lub grafiki, a każdą wycinamy osobno po obrysie na tym samym arkuszu - płacisz za arkusz, nie za liczbę wzorów. Kilka różnych arkuszy (np. etykiety na prezenty, na słoiki i na paczki) trafia do jednego zamówienia z jedną dostawą do paczkomatu za 19,99 zł. Produkcja trwa 4-5 dni robocze, w Polsce, bez minimalnego nakładu.
 
 To ważne, bo przy świątecznych prezentach zwykle potrzebujesz kilkunastu naklejek w kilku wersjach, a nie kilkuset sztuk jednego wzoru. Tak wygląda to u różnych rodzajów dostawców:
 
@@ -103,7 +103,7 @@ Trzy zasady, które oszczędzą rozczarowań:
 
 ## Kiedy zamówić naklejki świąteczne, żeby zdążyć przed Wigilią
 
-Produkcja trwa 2-3 dni robocze od zaksięgowania wpłaty, a potem wysyłamy naklejki do paczkomatu. Grudzień to szczyt pracy przewoźników, dlatego zamawiaj z zapasem - najlepiej wtedy, gdy wiesz już, komu i co dajesz, a nie w ostatnim tygodniu przed świętami. Zapłacisz BLIK-iem lub przez Przelewy24.
+Produkcja trwa 4-5 dni robocze od zaksięgowania wpłaty, a potem wysyłamy naklejki do paczkomatu. Grudzień to szczyt pracy przewoźników, dlatego zamawiaj z zapasem - najlepiej wtedy, gdy wiesz już, komu i co dajesz, a nie w ostatnim tygodniu przed świętami. Zapłacisz BLIK-iem lub przez Przelewy24.
 
 ## Naklejki świąteczne - najczęściej zadawane pytania (FAQ)
 
@@ -113,7 +113,7 @@ Tak. Na jednym arkuszu A4 umieścisz kilka różnych zdjęć lub grafik - wgrywa
 
 ### Czy zdążę zamówić naklejki świąteczne przed Wigilią?
 
-Produkcja trwa 2-3 dni robocze od zaksięgowania wpłaty, potem naklejki jadą do paczkomatu. W grudniu przewoźnicy mają szczyt, więc nie zostawiaj zamówienia na ostatnie dni przed świętami.
+Produkcja trwa 4-5 dni robocze od zaksięgowania wpłaty, potem naklejki jadą do paczkomatu. W grudniu przewoźnicy mają szczyt, więc nie zostawiaj zamówienia na ostatnie dni przed świętami.
 
 ### Ile kosztują personalizowane naklejki na prezenty?
 
@@ -133,7 +133,7 @@ Nie. Naklejaj ją na pudełko, torebkę albo słoik. Nie deklarujemy kontaktu fo
 
 ### Gdzie zamówić naklejki świąteczne ze zdjęciem w Polsce?
 
-W MałeNaklejki.pl wgrasz zdjęcie z telefonu, kreator usunie tło i wyznaczy linię cięcia, a naklejki wyprodukujemy w Polsce w 2-3 dni robocze. Zamówisz już od jednego arkusza A4 za 59,00 zł brutto.
+W MałeNaklejki.pl wgrasz zdjęcie z telefonu, kreator usunie tło i wyznaczy linię cięcia, a naklejki wyprodukujemy w Polsce w 4-5 dni robocze. Zamówisz już od jednego arkusza A4 za 59,00 zł brutto.
 
 ### Czy dostanę fakturę VAT na naklejki do firmowych paczek świątecznych?
 
@@ -145,6 +145,6 @@ Nie. Klej jest mocny, ale przy zdejmowaniu schodzi czysto z gładkiej powierzchn
 
 ## Zamów naklejki świąteczne z własnym nadrukiem
 
-Wgraj zdjęcia lub grafiki, ułóż jeden albo kilka arkuszy A4 i wybierz kształt cięcia - resztą zajmiemy się my. Naklejki wyprodukujemy w 2-3 dni robocze i wyślemy do paczkomatu. Etykiety na prezenty, słoiki i paczki zamówisz w jednej przesyłce, bez minimalnego nakładu.
+Wgraj zdjęcia lub grafiki, ułóż jeden albo kilka arkuszy A4 i wybierz kształt cięcia - resztą zajmiemy się my. Naklejki wyprodukujemy w 4-5 dni robocze i wyślemy do paczkomatu. Etykiety na prezenty, słoiki i paczki zamówisz w jednej przesyłce, bez minimalnego nakładu.
 
 <a href="/" style="display: inline-block; background-color: #02af7a; color: #ffffff; padding: 14px 28px; text-decoration: none; border-radius: 8px; font-weight: 600; font-size: 18px; margin-top: 24px; text-align: center;">Zamów naklejki świąteczne</a>

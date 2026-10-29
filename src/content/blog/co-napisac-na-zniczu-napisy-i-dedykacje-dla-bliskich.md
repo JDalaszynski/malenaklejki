@@ -9,7 +9,7 @@ role: "supporting"
 cta_text: "Zamów naklejki z napisem"
 ---
 
-Na zniczu najlepiej sprawdza się krótka dedykacja, na przykład „Kochanej Mamie” albo „Kochanemu Tacie”, z imieniem i latami życia. Kilka słów jest czytelnych z kilku kroków nawet na małej naklejce, a długi tekst staje się drobny i trudny do odczytania. Poniżej znajdziesz gotowe sformułowania dla każdego adresata w poprawnej formie, krótkie napisy dla całej rodziny oraz wskazówki, jak zapisać je na [naklejce na znicz](/naklejki-na-znicze). Naklejki z napisem i zdjęciem zamówisz w MałeNaklejki od jednego arkusza A4 za stałe 59,00 zł brutto, a produkcja trwa 2-3 dni robocze.
+Na zniczu najlepiej sprawdza się krótka dedykacja, na przykład „Kochanej Mamie” albo „Kochanemu Tacie”, z imieniem i latami życia. Kilka słów jest czytelnych z kilku kroków nawet na małej naklejce, a długi tekst staje się drobny i trudny do odczytania. Poniżej znajdziesz gotowe sformułowania dla każdego adresata w poprawnej formie, krótkie napisy dla całej rodziny oraz wskazówki, jak zapisać je na [naklejce na znicz](/naklejki-na-znicze). Naklejki z napisem i zdjęciem zamówisz w MałeNaklejki od jednego arkusza A4 za stałe 59,00 zł brutto, a produkcja trwa 4-5 dni robocze.
 
 ## Jak napisać dedykację na znicz - cztery zasady
 
@@ -104,6 +104,6 @@ Arkusz A4 kosztuje stałe 59,00 zł brutto, bez minimalnego nakładu. Przy rozmi
 
 ## Zamów naklejki na znicze z napisem i zdjęciem
 
-Wgraj napis i zdjęcie do kreatora, wybierz kształt i rozmiar, a naklejki wyprodukujemy w 2-3 dni robocze w Polsce, w cenie 59,00 zł brutto za arkusz A4. Przed Wszystkimi Świętymi zamawiaj z zapasem czasu. Pełna oferta: [naklejki na znicze ze zdjęciem](/naklejki-na-znicze).
+Wgraj napis i zdjęcie do kreatora, wybierz kształt i rozmiar, a naklejki wyprodukujemy w 4-5 dni robocze w Polsce, w cenie 59,00 zł brutto za arkusz A4. Przed Wszystkimi Świętymi zamawiaj z zapasem czasu. Pełna oferta: [naklejki na znicze ze zdjęciem](/naklejki-na-znicze).
 
 <a href="/" style="display: inline-block; background-color: #02af7a; color: #ffffff; padding: 14px 28px; text-decoration: none; border-radius: 8px; font-weight: 600; font-size: 18px; margin-top: 24px; text-align: center;">Zamów naklejki z napisem</a>
