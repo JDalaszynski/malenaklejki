@@ -46,7 +46,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { path: "/etykiety-na-sloiki", lastModified: "2026-08-25" },
     { path: "/wlepki-na-zamowienie", lastModified: "2026-08-31" },
     { path: "/naklejki-na-znicze", lastModified: "2026-10-10" },
-    { path: "/naklejki-z-kodem-qr", lastModified: "2026-10-27" },
+    { path: "/naklejki-z-kodem-qr", lastModified: "2026-11-02" },
   ];
 
   const staticEntries = staticRoutes.map(({ path, lastModified }) => ({

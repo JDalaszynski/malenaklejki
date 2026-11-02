@@ -58,7 +58,7 @@ Top 10 Google dla `naklejki z kodem qr` i `naklejki qr na zamówienie`: **dedyko
 
 ## 6. Otwarte punkty i kontrola
 
-- [ ] **Zdjęcia** do `public/landing/naklejki-z-kodem-qr/` (folder pusty, `.gitkeep`): arkusz z różnymi kodami (opinie, Instagram, menu, Wi-Fi), naklejka na ladzie/stoliku. Po dograniu: kompresja, osadzenie wg wzorca `/naklejki-foliowe`, `openGraph`/`twitter` image (dziś `/images/og-main.jpg`).
+- [x] **Zdjęcia** do `public/landing/naklejki-z-kodem-qr/` (dodane 2026-11-02): 8 zdjęć skompresowanych do JPEG 1024 px, nazwanych SEO, obrandowanych paskiem `add_logo_bar.mjs` (1024x1177), osadzonych na stronie w 2-kolumnowych siatkach z `clip-path`, `openGraph`/`twitter` image podmieniony na `/landing/naklejki-z-kodem-qr/naklejki-z-kodem-qr-arkusz-a4.jpg`. Wygenerowano 8 pinów Pinterest (`pin-1.jpg`..`pin-8.jpg` + `pinterest-info.md` + `tiktok-info.txt` + `facebook-info.txt`) oraz materiały FB/IG i TikTok z surowych obrazów przed wypaleniem paska.
 - [ ] **Zgłoszenie do indeksowania** w GSC (Sprawdzenie adresu URL → Poproś o zindeksowanie) po wdrożeniu.
 - [ ] **Kontrola ok. 2026-12-01 i 2027-01-15:** GSC dla `query=~(qr|nfc)` i strony `/naklejki-z-kodem-qr` (stan wyjściowy 27.10: zero wyświetleń). Jeśli po 8 tygodniach < 10 wyświetleń, nie rozbudowuj - zostaw stronę jako wzmocnienie `/naklejki-dla-firm`.
 - [ ] **Decyzja właściciela (opcjonalnie):** link do strony w stopce (guardrail `rules.md` §6b) - nie dodano.

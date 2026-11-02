@@ -25,7 +25,8 @@ import {
 
 const PAGE_PATH = "/naklejki-z-kodem-qr";
 const PAGE_URL = `https://www.malenaklejki.pl${PAGE_PATH}`;
-const OG_IMAGE = "/images/og-main.jpg";
+const OG_IMAGE =
+  "/landing/naklejki-z-kodem-qr/naklejki-z-kodem-qr-arkusz-a4.jpg";
 
 const TITLE = "Naklejki z kodem QR na zamówienie - od 1 szt., 59 zł/A4";
 
@@ -45,9 +46,9 @@ export const metadata: Metadata = {
     images: [
       {
         url: OG_IMAGE,
-        width: 1200,
-        height: 630,
-        alt: "Kreator naklejek MałeNaklejki - arkusz A4 z naklejkami do zamówienia.",
+        width: 1024,
+        height: 1177,
+        alt: "Naklejki z kodem QR na arkuszu A4 - druk na zamówienie w MałeNaklejki.",
       },
     ],
   },
@@ -378,7 +379,7 @@ export default function NaklejkiZKodemQrPage() {
           name: "Naklejki z kodem QR na zamówienie",
           url: PAGE_URL,
           isPartOf: { "@id": "https://www.malenaklejki.pl/#website" },
-          dateModified: "2026-10-27T00:00:00+01:00",
+          dateModified: "2026-11-02T00:00:00+01:00",
         }}
       />
       <JsonLd
@@ -470,8 +471,8 @@ export default function NaklejkiZKodemQrPage() {
 
           <div className="flex flex-wrap items-center gap-x-4 gap-y-1.5 pt-1">
             <span className="text-xs font-bold text-muted-foreground/60 flex items-center gap-1.5">
-              <Clock className="w-3.5 h-3.5" /> Ostatnia aktualizacja: 27
-              października 2026
+              <Clock className="w-3.5 h-3.5" /> Ostatnia aktualizacja: 2
+              listopada 2026
             </span>
           </div>
         </section>
@@ -518,6 +519,24 @@ export default function NaklejkiZKodemQrPage() {
             </Link>
             .
           </p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 my-6">
+            <div className="relative w-full aspect-square rounded-2xl shadow-sm border border-border/40 overflow-hidden flex items-start justify-center bg-black/5 dark:bg-[#003a3b]/40">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/landing/naklejki-z-kodem-qr/naklejki-z-kodem-qr-arkusz-a4.jpg"
+                alt="Naklejki z kodem QR na arkuszu A4 - kilkadziesiąt kwadratowych naklejek winylowych z kodem QR na stole do pakowania paczek."
+                className="w-full h-auto [clip-path:inset(0_0_12%_0)]"
+              />
+            </div>
+            <div className="relative w-full aspect-square rounded-2xl shadow-sm border border-border/40 overflow-hidden flex items-start justify-center bg-black/5 dark:bg-[#003a3b]/40">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/landing/naklejki-z-kodem-qr/naklejka-z-kodem-qr-na-paczke-pudelko.jpg"
+                alt="Prostokątna naklejka z kodem QR zamykająca szare pudełko wysyłkowe e-commerce na stole do pakowania."
+                className="w-full h-auto [clip-path:inset(0_0_12%_0)]"
+              />
+            </div>
+          </div>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             {PLUSES.map((item) => {
               const Icon = item.icon;
@@ -669,6 +688,40 @@ export default function NaklejkiZKodemQrPage() {
             </Link>
             .
           </p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 my-6">
+            <div className="relative w-full aspect-square rounded-2xl shadow-sm border border-border/40 overflow-hidden flex items-start justify-center bg-black/5 dark:bg-[#003a3b]/40">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/landing/naklejki-z-kodem-qr/naklejka-z-kodem-qr-wifi-dla-gosci.jpg"
+                alt="Naklejka z kodem QR do Wi-Fi dla gości na drewnianej podstawce na stoliku w pokoju lub kawiarni."
+                className="w-full h-auto [clip-path:inset(0_0_12%_0)]"
+              />
+            </div>
+            <div className="relative w-full aspect-square rounded-2xl shadow-sm border border-border/40 overflow-hidden flex items-start justify-center bg-black/5 dark:bg-[#003a3b]/40">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/landing/naklejki-z-kodem-qr/naklejka-z-kodem-qr-na-torbie-papierowej.jpg"
+                alt="Kwadratowa naklejka z kodem QR do profilu w mediach społecznościowych zaklejająca białą torbę papierową w butiku."
+                className="w-full h-auto [clip-path:inset(0_0_12%_0)]"
+              />
+            </div>
+            <div className="relative w-full aspect-square rounded-2xl shadow-sm border border-border/40 overflow-hidden flex items-start justify-center bg-black/5 dark:bg-[#003a3b]/40">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/landing/naklejki-z-kodem-qr/naklejka-z-kodem-qr-welcome-pack-zestaw.jpg"
+                alt="Duża naklejka z kodem QR do instrukcji i strony powitalnej naklejona na wewnętrznej stronie wieczka pudełka welcome pack."
+                className="w-full h-auto [clip-path:inset(0_0_12%_0)]"
+              />
+            </div>
+            <div className="relative w-full aspect-square rounded-2xl shadow-sm border border-border/40 overflow-hidden flex items-start justify-center bg-black/5 dark:bg-[#003a3b]/40">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/landing/naklejki-z-kodem-qr/naklejka-z-kodem-qr-na-sloik-wieczko.jpg"
+                alt="Naklejka z kodem QR naklejona na zakrętce szklanego słoika ze świecą sojową na drewnianym stole."
+                className="w-full h-auto [clip-path:inset(0_0_12%_0)]"
+              />
+            </div>
+          </div>
         </section>
 
         {/* Jak przygotować kod */}
@@ -687,6 +740,24 @@ export default function NaklejkiZKodemQrPage() {
             poniższe zalecenia zdejmują większość problemów, a test na wydruku
             próbnym kosztuje kilka groszy.
           </p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 my-6">
+            <div className="relative w-full aspect-square rounded-2xl shadow-sm border border-border/40 overflow-hidden flex items-start justify-center bg-black/5 dark:bg-[#003a3b]/40">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/landing/naklejki-z-kodem-qr/naklejka-z-kodem-qr-na-butelke-etykieta.jpg"
+                alt="Wodoodporna naklejka z kodem QR ze składem i przepisami naklejona na szklanej butelce oliwy rzemieślniczej."
+                className="w-full h-auto [clip-path:inset(0_0_12%_0)]"
+              />
+            </div>
+            <div className="relative w-full aspect-square rounded-2xl shadow-sm border border-border/40 overflow-hidden flex items-start justify-center bg-black/5 dark:bg-[#003a3b]/40">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/landing/naklejki-z-kodem-qr/mala-naklejka-z-kodem-qr-na-wizytowce.jpg"
+                alt="Mała naklejka z kodem QR o boku 3 cm na folii winylowej z subtelnym połyskiem i białym marginesem, naklejona na wizytówce."
+                className="w-full h-auto [clip-path:inset(0_0_12%_0)]"
+              />
+            </div>
+          </div>
           {/* Na telefonie wiersze układają się jeden pod drugim - trzy wąskie kolumny
               łamałyby tekst co kilka znaków. Od sm to zwykła tabela. */}
           <div className="overflow-hidden rounded-2xl border border-border/60 shadow-sm">
