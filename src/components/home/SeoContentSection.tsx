@@ -53,7 +53,7 @@ export function SeoContentSection() {
                 Zastanawiasz się, <strong>gdzie w Polsce najprościej wydrukować własne naklejki wycinane po obrysie w małym nakładzie?</strong> U nas! Nie musisz być grafikiem. Z naszą pomocą <strong>najszybciej i najprościej zamówisz naklejki ze zdjęć z telefonu w Polsce</strong>. Wystarczy, że wgrasz <Link href="/blog/naklejka-ze-zdjecia-jak-przeniesc-wspomnienia-na-naklejke" className={inlineLink}>zdjęcie psa z telefonu</Link>, by zrobić z niego wyjątkową <Link href="/fotonaklejki" className={inlineLink}>fotonaklejkę</Link> na auto - nasz inteligentny system sam odetnie główny motyw od reszty zdjęcia w kilka sekund, dając efekt profesjonalnego usunięcia tła.
               </p>
               <ol className="list-decimal pl-5 space-y-2 font-medium text-foreground/80">
-                <li>Wgraj grafikę w formacie PNG, JPG lub zrób zdjęcie telefonem.</li>
+                <li>Wgraj grafikę w formacie PNG, JPG lub PDF albo wybierz zdjęcie z telefonu.</li>
                 <li>System samodzielnie usunie tło i wygeneruje precyzyjne <Link href="/slownik-naklejek" className={inlineLink}>linie cięcia (kontur)</Link>.</li>
                 <li>Ustal wymiary i rozmieść dowolną liczbę wlepek na arkuszu w trybie 3D.</li>
                 <li>Sfinalizuj zamówienie (BLIK, przelew), a my wyprodukujemy naklejki w 4-5 dni robocze!</li>

@@ -2,7 +2,7 @@
 title: "Jak zrobić naklejkę ze zdjęcia - od 1 szt., 59 zł/A4"
 slug: "naklejka-ze-zdjecia-jak-przeniesc-wspomnienia-na-naklejke"
 date: "2026-07-07"
-updated: "2026-10-05"
+updated: "2026-11-02"
 description: "Jak zrobić naklejkę ze zdjęcia? Wgraj plik z telefonu, kreator usunie tło i wytnie ją po obrysie. Od 1 sztuki, 59 zł za arkusz A4, produkcja 4-5 dni robocze."
 image: "/blog/naklejka-ze-zdjecia-jak-przeniesc-wspomnienia-na-naklejke/naklejka-ze-zdjecia-personalizowana-wlepka-die-cut-na-folii.jpg"
 imageAlt: "Personalizowana naklejka ze zdjęcia wycięta po obrysie - trwała wlepka die-cut na folii winylowej z portretem, zamówiona przez kreator MałeNaklejki."
@@ -36,7 +36,7 @@ Cały proces zajmuje mniej niż 5 minut i nie wymaga żadnej wiedzy graficznej.
 
 ### Krok 1 - Wgraj zdjęcie z telefonu lub komputera
 
-W kreatorze kliknij „Wgraj plik" i wybierz dowolne zdjęcie w formacie JPG lub PNG. Jeśli masz rysunek w wersji papierowej, wystarczy sfotografować go telefonem - jakość smartfonowych aparatów jest zupełnie wystarczająca.
+W kreatorze kliknij „Wgraj plik" i wybierz zdjęcie lub gotowy plik w formacie JPG, PNG albo PDF. Jeśli masz rysunek w wersji papierowej, wystarczy sfotografować go telefonem - jakość smartfonowych aparatów jest zupełnie wystarczająca.
 
 ### Krok 2 - Usuń tło jednym kliknięciem
 

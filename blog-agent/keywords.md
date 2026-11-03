@@ -239,7 +239,7 @@ Klaster obsłużony wpisami **A1** (`ile-kosztuja-naklejki-na-zamowienie-cena-za
     | Etykiety na prezenty | `etykiety na prezenty`, `naklejki na prezenty z imieniem`, `personalizowane etykiety na prezenty`, `naklejki do pakowania prezentów`, `naklejki na prezenty świąteczne` | hub B3 (H2) | ✅ |
     | Prezent z kuchni | `etykiety na nalewki na prezent`, `naklejki na słoiki świąteczne`, `naklejki na słoiki jako prezent`, `prezent ze słoika`, `etykiety na pierniki` (⚠️ tylko na opakowanie) | hub B3 + odświeżenie nalewek i przetworów (P4.3.3) | ✅ |
     | Prezent ze zdjęcia | `naklejki ze zdjęciem na prezent`, `prezent ze zdjęciem`, `naklejki z pupilem`, `prezent dla babci ze zdjęciem` | hub B3 + `naklejka-ze-zdjecia` + `/fotonaklejki` (P4.3.5) | ✅ |
-    | Paczki firmowe i e-commerce | `naklejki na paczki świąteczne`, `świąteczne naklejki z logo`, `naklejki na upominki firmowe`, `plomby na paczki świąteczne` | hub B3 + plomby + eventy (P4.3.4) | ✅ |
+    | Paczki firmowe i e-commerce | `naklejki na paczki świąteczne`, `naklejki na paczki`, `świąteczne naklejki z logo`, `naklejki na upominki firmowe` | hub B3 + eventy (P4.3.4) | ✅ |
     | Kalendarz adwentowy | `naklejki z numerami do kalendarza adwentowego`, `cyferki do kalendarza adwentowego` | **sekcja w hubie, nie osobna strona** (klaster mocno DIY) | 🟡 |
     | Mikołajki (6.12) | `naklejki na mikołajki`, `drobny prezent na mikołajki` | akapit w hubie | 🟡 |
     | Gotowe wzory bez personalizacji | `naklejki świąteczne dla dzieci`, `naklejki świąteczne` jako produkt gotowy | **nie celuj**, dopóki nie ma katalogu gotowych zestawów (P1 z `analiza-nisz-2026-09-09.md`) | ⛔ |
@@ -248,7 +248,7 @@ Klaster obsłużony wpisami **A1** (`ile-kosztuja-naklejki-na-zamowienie-cena-za
     * ⚠️ Granice: bez daty granicznej dostawy bez zgody właściciela, bez kontaktu z żywnością (pierniki: naklejka na opakowanie), bez tkanin, "nie do zmywarki" przy słoikach i butelkach, bez postaci licencjonowanych i znaków towarowych, bez ekspozycji naszego generatora AI.
 * 🗓️ **Szkoła (szczyt: przełom sierpnia i września; 438 wyśw., poz. 10,3 - drugi klaster serwisu):** `naklejki na zeszyty personalizowane` (150 wyśw.), `personalizowane naklejki na zeszyty` (78), `naklejki na zeszyty z imieniem i nazwiskiem` (43), `naklejki personalizowane na zeszyty` (41), `naklejki do przedszkola` (29), `naklejki personalizowane do szkoły` (23), `zestaw naklejek do szkoły`, `naklejki na zeszyty dla chłopca`.
     * 💡 **Odrębna podintencja bez pokrycia:** `naklejki imienne na rzeczy do przedszkola / śniadaniówki / bidony / pojemniki` - to **inna potrzeba** niż "na zeszyty" i zasługuje na własny wpis. Przygotuj w **lipcu 2027**, nie w sierpniu (patrz `plan.md` → P4.2.1). ⚠️ **Bez ubrań i metek** - naklejek na tkaninę nie oferujemy (`facts.md`; poprawka 2026-09-10). Przy bidonie i śniadaniówce napisz wprost "nie do zmywarki".
-* 🗓️ **E-commerce/paczki (listopad):** pokryte wpisem `plomby-na-paczki-wysylkowe-i-naklejki-na-przesylki` (2026-08-27) - w listopadzie odświeżenie i linkowanie, nie nowy wpis.
+* 🗓️ **E-commerce/paczki (listopad):** kąt Black Friday i `naklejki na paczki` prowadzony w sekcji o paczkach we wpisie `naklejki-firmowe-na-eventy-welcome-pack-dla-pracownikow` (P4.3.4) oraz na `/naklejki-dla-firm` - odświeżenie i linkowanie, nie nowy wpis.
 * 🗓️ **Walentynki (styczeń):** brak pokrycia i brak danych - zaplanować w grudniu 2026.
 
 ---
@@ -256,7 +256,7 @@ Klaster obsłużony wpisami **A1** (`ile-kosztuja-naklejki-na-zamowienie-cena-za
 ## 13. Podklastry B2B dopisane do §8 (domknięcie zaległego P3.5)
 
 * **Kod QR (B5 - od 2026-10-27 LANDING `/naklejki-z-kodem-qr`, nie wpis; wolumeny z Planera i SERP w `landing-agent/strategia-qr.md`):** `naklejki z kodem QR` (100-1 tys./mies.), `naklejki qr` i `kod qr naklejka` (10-100); frazy z modyfikatorem (`na zamówienie`, `druk`, `etykiety z kodem qr`, `menu`, `opinie google`) - poniżej progu Planera. Kolejnego wpisu pod tę intencję nie pisz (kanibalizacja z landingiem); wolno tylko wpis informacyjny, jeśli GSC pokaże zapytania poradnikowe z pozycją > 30. ⚠️ Kod generuje się w **zewnętrznym, darmowym generatorze** - to nie jest funkcja naszego kreatora. Nie deklaruj gwarancji skanowalności po wydruku; dawaj zalecenia (kontrast, jasne tło, quiet zone, minimalny rozmiar) i **wprost każ przetestować**.
-* **Paczki i plomby:** pokryte wpisem `plomby-na-paczki-wysylkowe-i-naklejki-na-przesylki`. ⚠️ **Nie obiecuj właściwości security/void** ("nie da się zdjąć bez śladu") - `facts.md` tego zabrania.
+* **Paczki wysyłkowe (`naklejki na paczki`, `naklejki z logo na pudełka`):** obsługiwane w `naklejki-firmowe-na-eventy-welcome-pack-dla-pracownikow` (P4.3.4), `naklejki-z-logo-firmy-branding-dla-malego-biznesu` oraz na `/naklejki-dla-firm`. ⚠️ **Nie obiecuj właściwości security/void** ("nie da się zdjąć bez śladu") - `facts.md` tego zabrania.
 
 ---
 
@@ -274,6 +274,34 @@ Klaster obsłużony wpisami **A1** (`ile-kosztuja-naklejki-na-zamowienie-cena-za
 **Podnisza SPOŁECZNOŚCIOWA → osobny wpis B4:**
 * `vlepki kibicowskie na zamówienie` (22 wyśw., 3 klik., **CTR 13,64%**, poz. 8,77), `wlepy klubowe` (11, 8,55), `wlepki z logo` (3, 11,33), `wlepki kibicowskie` (1, 11,00), `custom wlepy` (5, 8,20).
 * ⚠️ **Granica treści:** wlepki klubowe i kibicowskie opisujemy jako merch i identyfikację społeczności. **Nie wchodzimy** w treści związane z przemocą, wrogością wobec innych klubów ani z nielegalnym naklejaniem w przestrzeni publicznej.
+
+### 🔎 Pomiar 2026-11-03: kto trzyma zapytania `^(wlepki|wlepy|vlepki) na zam[oó]wienie$`?
+
+> **Podstawa:** Google Search Console (`sc-domain:malenaklejki.pl`, odczyt na żywo 2026-11-03, filtr zapytania regex `^(wlepki|wlepy|vlepki) na zam[oó]wienie$`, zakładka **Strony**). Porównanie **ostatnich 28 dni (5.10-1.11.2026)** oraz **28 dni przed 24.09.2026 (27.08-23.09.2026)**.
+
+**1. Ostatnie 28 dni (5.10-1.11.2026) - ogółem: 6 kliknięć, 570 wyświetleń, CTR 1,1%, śr. pozycja 8,8:**
+
+| Strona | Kliknięcia | Wyświetlenia | CTR | Pozycja |
+| :--- | ---: | ---: | ---: | ---: |
+| `/blog/wklepki-i-wlepy-z-wlasnym-nadrukiem-dla-artystow-i-spolecznosci` | **6** | **517** | **1,2%** | **8,4** |
+| `/blog/vlepki-kibicowskie-i-klubowe-wlepy-dla-kibicow-klubow-i-ekip` | 0 | 43 | 0,0% | 13,3 |
+| `/wlepki-na-zamowienie` | 0 | 27 | 0,0% | 25,1 |
+| `/blog` | 0 | 2 | 0,0% | 9,5 |
+
+**2. 28 dni przed 24.09.2026 (27.08-23.09.2026) - ogółem: 11 kliknięć, 801 wyświetleń, CTR 1,4%, śr. pozycja 9,2:**
+
+| Strona | Kliknięcia | Wyświetlenia | CTR | Pozycja |
+| :--- | ---: | ---: | ---: | ---: |
+| `/blog/wklepki-i-wlepy-z-wlasnym-nadrukiem-dla-artystow-i-spolecznosci` | **9** | **782** | **1,2%** | **8,6** |
+| `/wlepki-na-zamowienie` | 1 | 50 | 2,0% | 35,4 |
+| `/blog/wklepki-i-wlepy-z-wlasnym-dla-artystow-i-spolecznosci` *(wariant URL)* | 1 | 1 | 100,0% | 3,0 |
+| `/blog/wklepki-i-wlepy-z-wlasnym-nadrukiem-dla-artystog-i-spolecznosci` *(wariant URL)* | 0 | 1 | 0,0% | 4,0 |
+| `/blog/wklepki-i-wlepy-z-wlasnym-nadrukiem-dla-artystow-spolecznosci` *(wariant URL)* | 0 | 1 | 0,0% | 9,0 |
+
+**Wniosek:**
+* **Frazę `^(wlepki|wlepy|vlepki) na zam[oó]wienie$` w całości trzyma wpis `/blog/wklepki-i-wlepy-z-wlasnym-nadrukiem-dla-artystow-i-spolecznosci`**, a nie landing `/wlepki-na-zamowienie`.
+* W ostatnich 28 dniach wpis `wklepki-i-wlepy` odpowiada za **90,7% wyświetleń (`517` z `570`) i 100% kliknięć (`6` z `6`)** na ten wzorzec zapytań, utrzymując stabilną pozycję w TOP 10 (`8,4` wobec `8,6` przed 24.09.2026).
+* Landing `/wlepki-na-zamowienie` poprawił wprawdzie średnią pozycję na te zapytania z `35,4` na `25,1`, ale zbiera na nie tylko ułamek ekspozycji (`27` wyśw., `0` klik. wobec `50` wyśw. i `1` klik. przed 24.09). Oznacza to, że podział ról z §14 działa zgodnie z założeniem: Google traktuje zapytanie `wlepki/wlepy/vlepki na zamówienie` jako domenę wpisu `wklepki-i-wlepy` (który nie został skanibalizowany), natomiast landing `/wlepki-na-zamowienie` buduje ruch i pozycje na frazach produkcyjnych i długim ogonie (`9,9` średniej pozycji całej podstrony po 14.10 wobec `21,7` przed 13.09).
 
 ---
 

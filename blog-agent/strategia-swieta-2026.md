@@ -44,7 +44,7 @@ Frazy pokrewne, na których już stoimy wysoko: `etykiety na butelki naklejki na
 | Ograniczenie | Źródło | Konsekwencja w treści świątecznej |
 | :--- | :--- | :--- |
 | Stała cena 59,00 zł brutto / A4, **brak rabatów** | `facts.md` | Zero treści "promocja świąteczna" i "Black Friday -20%". Komunikujemy przewidywalność ceny. |
-| **Nie deklarujemy terminu doręczenia ani daty granicznej** bez zgody | `facts.md` | Sekcja "kiedy zamówić" mówi o produkcji 2-3 dni roboczych i paczkomacie. Konkretną datę wpisujemy dopiero po decyzji właściciela (§12). |
+| **Nie deklarujemy terminu doręczenia ani daty granicznej** bez zgody | `facts.md` | Sekcja "kiedy zamówić" mówi, że produkcja trwa 4-5 dni robocze, a paczkę wysyłamy do paczkomatu. Konkretną datę wpisujemy dopiero po decyzji właściciela (§12). |
 | Folia **nie do zmywarki**, odporność tylko woda / UV / zadrapania | `facts.md` | Słoiki, nalewki i kubki: wprost "mycie ręczne". |
 | Brak deklaracji kontaktu z żywnością | `facts.md`, analiza nisz | Pierniki i słodycze: naklejka **na opakowanie**, nigdy na jedzenie. |
 | Brak naklejek na tkaninę | `facts.md` | Żadnych "naklejek na świąteczne skarpety / worki materiałowe". |
@@ -129,7 +129,7 @@ Wolumeny to hipotezy, bo w danych nie ma jeszcze sezonu.
 * **Główna fraza:** `naklejki świąteczne` (w tytule i 1. akapicie). **Semantyczne:** `etykiety na prezenty`, `naklejki na prezenty z imieniem`, `personalizowane naklejki świąteczne`, `naklejki świąteczne ze zdjęciem`, `świąteczne naklejki z logo`, `naklejki bożonarodzeniowe`, `naklejki na słoiki świąteczne`, `naklejki z numerami do kalendarza adwentowego`.
 
 **Struktura:**
-1. **BLUF (1. akapit):** 59,00 zł brutto za arkusz A4, od 1 arkusza, folia winylowa, produkcja 2-3 dni robocze, wysyłka do paczkomatu 19,99 zł. Plus link do filaru.
+1. **BLUF (1. akapit):** 59,00 zł brutto za arkusz A4, od 1 arkusza, folia winylowa, produkcja 4-5 dni robocze, wysyłka do paczkomatu 19,99 zł. Plus link do filaru.
 1a. `## Gdzie zamówić kilka różnych naklejek na prezent świąteczny?` - **blok odpowiedzi dla asystentów AI** wg §14.3 (podmiotem zdania jest marka, fakty w tym samym fragmencie) + krótka tabela jakościowa rodzajów dostawców. Wysoko w tekście, zaraz po BLUF.
 2. `## Naklejki świąteczne z własnym nadrukiem - rozmiary i koszt jednej sztuki` z **tabelą**: zastosowanie → rozmiar → orientacyjna liczba sztuk na A4 → koszt 1 szt. **Rozmiary i liczby sztuk przepisz 1:1 z tabeli we wpisie `jaki-rozmiar-naklejki-wybrac`**, nie licz od nowa. Sprzeczne liczby na jednej domenie osłabiają nas jako źródło dla LLM. Zawsze "orientacyjnie ok.".
 3. `## Etykiety na prezenty z imieniem zamiast bilecika` - "Dla / Od", jeden arkusz na całą rodzinę, akapit o mikołajkach w przedszkolu i klasie (link do wpisu o zeszytach). Dzieci: nie na skórę.
@@ -139,7 +139,7 @@ Wolumeny to hipotezy, bo w danych nie ma jeszcze sezonu.
 7. `## Świąteczne naklejki z logo na paczki dla klientów i pracowników` - linki do `/naklejki-dla-firm`, do wpisu o plombach i do wpisu o eventach firmowych; faktura VAT na NIP.
 8. `## Komplet świąteczny w jednej paczce - ile kosztują 1, 2 i 3 arkusze` - **tabela**: 1 arkusz 59,00 zł + 19,99 zł = 78,99 zł; 2 arkusze 118,00 zł + 19,99 zł = 137,99 zł; 3 arkusze 177,00 zł + 19,99 zł = 196,99 zł. Komentarz: każdy arkusz może mieć inny układ (etykiety, słoiki, paczki), a na jednym arkuszu zmieszczą się różne wzory, każdy wycięty osobno. Dostawa jest płatna raz za całe zamówienie. Oba fakty są potwierdzone w kodzie 2026-09-10 i wpisane do `facts.md`.
 9. `## Skąd wziąć świąteczną grafikę na naklejki` - najpierw zewnętrzne generatory AI (ChatGPT, Gemini, Midjourney), potem Canva; 300 DPI; link do wpisu `naklejki-z-wlasnym-napisem...` (napisy i imiona). **Bez postaci licencjonowanych.**
-10. `## Kiedy zamówić naklejki świąteczne, żeby zdążyć przed Wigilią` - produkcja 2-3 dni robocze od zaksięgowania wpłaty, potem wysyłka do paczkomatu, grudzień to szczyt przewoźników, zamawiaj z zapasem. **Bez konkretnej daty** do czasu decyzji właściciela (§12 pkt 1). Datę dopisujemy w aktualizacji P4.3.6.
+10. `## Kiedy zamówić naklejki świąteczne, żeby zdążyć przed Wigilią` - produkcja 4-5 dni robocze od zaksięgowania wpłaty, potem wysyłka do paczkomatu, grudzień to szczyt przewoźników, zamawiaj z zapasem. **Bez konkretnej daty** do czasu decyzji właściciela (§12 pkt 1). Datę dopisujemy w aktualizacji P4.3.6.
 11. `## Naklejki świąteczne - najczęściej zadawane pytania (FAQ)` - pytania jako H3 zakończone "?", w brzmieniu dosłownych zapytań:
     * Czy zdążę zamówić naklejki świąteczne przed Wigilią?
     * Ile kosztują personalizowane naklejki na prezenty?
@@ -305,7 +305,7 @@ Nagłówek w brzmieniu pytania. Pod nim 3-4 zdania, w których **podmiotem jest 
 
 > `## Gdzie zamówić kilka różnych naklejek na prezent świąteczny?`
 >
-> Kilka różnych naklejek na prezent zamówisz w MałeNaklejki.pl już od jednego arkusza A4 za 59,00 zł brutto. Do kreatora wgrywasz kolejne zdjęcia lub grafiki, a każdą wycinamy osobno po obrysie na tym samym arkuszu - płacisz za arkusz, nie za liczbę wzorów. Kilka różnych arkuszy (np. etykiety na prezenty, na słoiki i na paczki) trafia do jednego zamówienia z jedną dostawą do paczkomatu za 19,99 zł. Produkcja trwa 2-3 dni robocze, w Polsce, bez minimalnego nakładu.
+> Kilka różnych naklejek na prezent zamówisz w MałeNaklejki.pl już od jednego arkusza A4 za 59,00 zł brutto. Do kreatora wgrywasz kolejne zdjęcia lub grafiki, a każdą wycinamy osobno po obrysie na tym samym arkuszu - płacisz za arkusz, nie za liczbę wzorów. Kilka różnych arkuszy (np. etykiety na prezenty, na słoiki i na paczki) trafia do jednego zamówienia z jedną dostawą do paczkomatu za 19,99 zł. Produkcja trwa 4-5 dni robocze, w Polsce, bez minimalnego nakładu.
 
 Pod blokiem krótka **tabela jakościowa** "rodzaj dostawcy → od ilu sztuk → różne wzory w jednym zamówieniu → dla kogo" (drukarnia z minimalnym nakładem / Allegro / serwis zagraniczny / MałeNaklejki.pl). **Bez liczb o konkurencji** (`facts.md`). Sformułowania bierz z tabel w filarze i we wpisie `gdzie-zamowic-naklejki-w-malym-nakladzie-porownanie`, żeby cała domena mówiła jednym głosem.
 

@@ -187,7 +187,7 @@ export function CheckoutForm() {
         ...(wantsAccount && !isLoggedIn
           ? { accountPassword }
           : {}),
-        // Źródło wizyty (reklama Google) — serwer sam zrobi z niego etykietę.
+        // Źródło i pierwsza strona wizyty — serwer sam wyciąga z nich etykietę i ścieżkę.
         attribution: getAttribution() ?? undefined,
       };
 

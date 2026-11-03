@@ -1,7 +1,7 @@
 ---
 title: "Drukowanie naklejek online - jak przygotować plik 300 DPI"
 date: "2026-07-10"
-updated: "2026-08-30"
+updated: "2026-11-02"
 description: "Drukowanie naklejek online: 300 dpi, PNG lub PDF i cięcie po obrysie. Poznaj 5 błędów, przez które wydruk wychodzi rozmazany - sprawdź plik przed wysyłką."
 image: "/blog/drukowanie-naklejek-online-na-co-zwrocic-uwage-przed-wysylka-projektu/drukowanie-naklejek-online-w-dowolnym-ksztalcie.jpg"
 imageAlt: "Dłoń trzymająca w palcach precyzyjnie wyciętą po obrysie naklejkę z napisem Kształt Dowolny na tle trawy - ekologiczne i trwałe drukowanie naklejek online w MałeNaklejki."
@@ -18,7 +18,7 @@ Chcesz zamówić naklejki online, ale nie wiesz, jak przygotować plik, żeby wy
 
 Zanim wyślesz plik do druku, warto zrozumieć, z czego składa się cały proces. W MałeNaklejki działa on w czterech krokach:
 
-1. **Wgrasz plik** (JPG, PNG, PDF lub SVG) do naszego kreatora online - prosto z telefonu lub komputera.
+1. **Wgrasz plik** (PNG, JPG, PDF lub WEBP) do naszego kreatora online - prosto z telefonu lub komputera.
 2. **Wybierzesz kształt cięcia** - po obrysie grafiki, okrągły, prostokątny lub kwadratowy.
 3. **Skonfigurujesz arkusz** - decydujesz, ile naklejek ma się zmieścić na jednym arkuszu A4.
 4. **Zatwierdzasz podgląd 3D** i składasz zamówienie. Realizacja zajmuje 4-5 dni robocze.
@@ -35,7 +35,7 @@ To najczęstszy błąd, który popełniają zamawiający po raz pierwszy. Zbyt n
 | Średnia naklejka (6-10 cm) | 200 dpi | 300 dpi |
 | Mała naklejka (poniżej 5 cm) | 300 dpi | 600 dpi |
 
-**Praktyczna wskazówka:** Najszybciej stworzysz grafikę wykorzystując generatory AI (Midjourney, ChatGPT lub Gemini). Jeśli jednak wolisz składać projekt ręcznie w programach takich jak Canva, przy pobieraniu zaznacz opcję "Pobierz w wysokiej jakości" lub ustaw rozmiar dokumentu na co najmniej 1200 x 1200 px dla naklejek kwadratowych. Jeśli projektujesz w programie graficznym (np. Adobe Illustrator lub Inkscape), eksportuj plik jako PDF lub SVG wektorowy - wtedy rozdzielczość nie ma znaczenia, bo grafika jest w pełni skalowalna.
+**Praktyczna wskazówka:** Najszybciej stworzysz grafikę wykorzystując generatory AI (Midjourney, ChatGPT lub Gemini). Jeśli jednak wolisz składać grafikę ręcznie w programach takich jak Canva, przy pobieraniu zaznacz opcję "Pobierz w wysokiej jakości" lub ustaw rozmiar dokumentu na co najmniej 1200 x 1200 px dla naklejek kwadratowych. Jeśli tworzysz ilustrację lub logo w programie wektorowym (np. Adobe Illustrator lub Inkscape), wyeksportuj gotowy plik jako PDF (kreator nie obsługuje plików SVG) - zachowasz wtedy pełną ostrość krawędzi i drobnych napisów przy skalowaniu.
 
 ![Arkusz A4 z artystycznymi wlepkami w stylu vaporwave z motywem klasycznych rzeźb greckich i efektami glitch art, pokazujący precyzyjny wydruk naklejek dla artystów](/blog/drukowanie-naklejek-online-na-co-zwrocic-uwage-przed-wysylka-projektu/artystyczne-wlepki-z-wlasnym-nadrukiem-vaporwave.jpg)
 
@@ -45,10 +45,10 @@ Przyjmujemy wszystkie popularne formaty:
 
 - **PNG** - najlepszy wybór, gdy chcesz naklejkę wyciętą po obrysie. Zapisz plik z przezroczystym tłem (kanał alfa), a nasz kreator automatycznie rozpozna kształt i zaproponuje cięcie po jego obrysie.
 - **JPG / JPEG** - idealne dla zdjęć i pełnokolorowych projektów z jednolitym tłem (np. białym). Jeśli chcesz cięcie po obrysie zdjęcia, nasz kreator automatycznie usunie tło za Ciebie.
-- **PDF** - świetny wybór dla plików eksportowanych z programów takich jak Canva, Word czy PowerPoint. Zachowuje ostrość tekstu i wektorowych elementów graficznych.
-- **SVG** - format wektorowy dla zaawansowanych użytkowników. Idealny, gdy Twój projekt zawiera logo lub ilustracje stworzone w Inkscape albo Illustratorze.
+- **PDF** - świetny wybór dla plików eksportowanych z programów takich jak Canva, Word, PowerPoint czy programów wektorowych (Illustrator, Inkscape). Zachowuje ostrość tekstu i wektorowych elementów graficznych.
+- **WEBP** - lekki format obrazów zapisywanych na nowoczesnych telefonach i w internecie, również obsługiwany bezpośrednio w kreatorze.
 
-> **Czego unikać:** Nie wysyłaj zrzutów ekranu z telefonu (często mają tylko 72 dpi) ani plików z Worda bez eksportu do PDF. Jakość wydruku będzie niska.
+> **Czego unikać:** Nie wysyłaj zrzutów ekranu z telefonu (często mają tylko 72 dpi) ani plików z Worda bez eksportu do PDF. Kreator nie przyjmuje też plików SVG, AI, EPS ani PSD - przed wgraniem wyeksportuj je do formatu PDF lub PNG w wysokiej rozdzielczości.
 
 ## Cięcie po obrysie, kiss-cut i prostokąt - jaka różnica dla Twojego projektu?
 
@@ -119,7 +119,7 @@ Zebraliśmy listę błędów, które najczęściej powodują rozczarowanie jako�
 1. **Za niska rozdzielczość** - plik stworzony na potrzeby social media (72 dpi) zamiast druku (300 dpi). Efekt: pikselowany, rozmazany wydruk.
 2. **Zbyt mały margines bezpieczeństwa** - grafika sięga do samej krawędzi bez 1-2 mm zapasu (tzw. spady). Przy cięciu mogą pojawić się białe krawędzie.
 3. **Jasna grafika na białym tle bez przezroczystości** - przy cięciu po obrysie kreator może mieć problem z wykryciem konturu. Zapisz plik jako PNG z przezroczystym tłem.
-4. **Tekst zapisany jako grafika rastrowa w małym rozmiarze** - drobny tekst może być nieczytelny. Używaj tekstu wektorowego (PDF, SVG) lub dbaj o odpowiednią rozdzielczość.
+4. **Tekst zapisany jako grafika rastrowa w małym rozmiarze** - drobny tekst może być nieczytelny. Wyeksportuj plik z napisami jako wektorowy PDF lub zadbaj o wysoką rozdzielczość obrazu PNG/JPG.
 5. **Jaskrawe kolory neonowe bez sprawdzenia CMYK** - zamów próbkę przed dużym zamówieniem.
 
 ## Dla kogo jest drukowanie naklejek online w MałeNaklejki?
@@ -144,7 +144,7 @@ Podsumowując proces od projektu do paczki na Twoich drzwiach:
 4. **Ustaw liczbę naklejek** na arkuszu i zaznacz opcję "Pozostawione na arkuszu" lub "Pojedyncze sztuki".
 5. **Sprawdź podgląd 3D** i przejdź do zamówienia.
 6. **Opłać zamówienie** - realizacja startuje natychmiast po potwierdzeniu płatności.
-7. **Odbierz paczkę** w 4-5 dni robocze + czas dostawy kuriera (1-2 dni).
+7. **Odbierz paczkę w paczkomacie** - produkcja zajmuje 4-5 dni robocze, po których wysyłamy gotowe zamówienie do paczkomatu InPost (19,99 zł).
 
 Nie ma minimalnego nakładu. Możesz zamówić jeden arkusz z jedną naklejką lub kilkanaście arkuszy z różnymi projektami - cena za arkusz pozostaje zawsze ta sama: **59,00 zł**.
 
@@ -156,11 +156,11 @@ Nie ma minimalnego nakładu. Możesz zamówić jeden arkusz z jedną naklejką l
 
 ### Jak długo trwa realizacja zamówienia na naklejki online?
 
-Realizacja zamówienia w MałeNaklejki zajmuje **4-5 dni robocze** od momentu zatwierdzenia projektu i opłacenia zamówienia. Następnie przesyłka trafia do Ciebie kurierem (1-2 dni robocze) lub Pocztą Polską.
+Produkcja zamówienia w MałeNaklejki zajmuje **4-5 dni robocze** od momentu opłacenia zamówienia. Gotową przesyłkę wysyłamy do wybranego paczkomatu InPost w stałej cenie 19,99 zł za całe zamówienie.
 
 ### Jaki format pliku jest najlepszy do druku naklejek?
 
-Dla naklejek wycinanych po obrysie najlepszy jest **PNG z przezroczystym tłem** (kanał alfa). Dla naklejek prostokątnych z pełnym tłem - **JPG lub PDF**. Dla projektów wektorowych (logo, fonty) - **PDF lub SVG**.
+Dla naklejek wycinanych po obrysie najlepszy jest **PNG z przezroczystym tłem** (kanał alfa). Dla zdjęć i naklejek prostokątnych z pełnym tłem - **JPG lub PDF**. Dla grafik wektorowych i drobnych napisów (logo, etykiety ze składem) najlepszy jest **PDF** (pliki z programów wektorowych zapisane jako SVG wyeksportuj przed wgraniem do PDF lub PNG).
 
 ### Czy mogę zamówić jeden arkusz próbny przed większym zamówieniem?
 

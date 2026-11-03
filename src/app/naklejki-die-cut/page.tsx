@@ -325,7 +325,7 @@ export default function NaklejkiDieCutPage() {
           name: "Naklejki die-cut cięte po obrysie",
           url: PAGE_URL,
           isPartOf: { "@id": "https://www.malenaklejki.pl/#website" },
-          dateModified: "2026-07-29T00:00:00+02:00",
+          dateModified: "2026-11-02T00:00:00+01:00",
         }}
       />
 
@@ -367,20 +367,20 @@ export default function NaklejkiDieCutPage() {
           </h1>
 
           <p className="text-sm sm:text-lg text-foreground/90 font-semibold leading-relaxed">
-            Zamów <strong>naklejki die-cut</strong> wycięte dokładnie{" "}
-            <strong>po obrysie grafiki</strong> - w dowolnym kształcie zamiast
-            nudnego prostokąta. Wgraj gotowy plik, a kreator{" "}
-            <strong>sam wyznaczy kontur</strong> i ścieżkę cięcia na trwałej{" "}
-            <strong>folii winylowej odpornej na wodę i UV</strong>. Druk{" "}
-            <strong>300 DPI</strong>, stała cena{" "}
-            <strong>59,00 zł brutto za arkusz A4</strong>, już od 1 sztuki,
-            produkcja w <strong>4-5 dni robocze</strong> i odbiór w paczkomacie.
-            Nie wiesz, które cięcie wybrać?{" "}
+            <strong>Naklejki die-cut</strong> mają dokładnie taki kształt jak
+            Twoja grafika - logo marki, ilustracja, napis czy sylwetka ze
+            zdjęcia nie są zamknięte w białym kwadracie, tylko wycięte razem z
+            podkładem wzdłuż własnego konturu. Nie musisz rysować linii cięcia w
+            programie graficznym, a na{" "}
+            <strong>jednym arkuszu A4 za stałe 59,00 zł brutto</strong> możesz
+            zestawić kilkanaście zupełnie różnych kształtów i rozmiarów, już od
+            1 arkusza. Nie wiesz, które wykończenie lepiej sprawdzi się u
+            Ciebie?{" "}
             <Link
               href="/blog/co-to-jest-die-cut-i-kiss-cut-roznice-w-wyleciach-naklejek-reklamowych"
               className="text-primary font-bold underline underline-offset-4 hover:text-primary/80 transition-colors"
             >
-              porównaj die-cut i kiss-cut
+              Porównaj die-cut i kiss-cut
             </Link>
             .
           </p>
@@ -406,8 +406,8 @@ export default function NaklejkiDieCutPage() {
               <ShieldCheck className="w-3.5 h-3.5" /> W 100% polska produkcja
             </span>
             <span className="text-xs font-bold text-muted-foreground/60 flex items-center gap-1.5">
-              <Clock className="w-3.5 h-3.5" /> Ostatnia aktualizacja: 29 lipca
-              2026
+              <Clock className="w-3.5 h-3.5" /> Ostatnia aktualizacja: 2
+              listopada 2026
             </span>
           </div>
         </section>
@@ -458,7 +458,7 @@ export default function NaklejkiDieCutPage() {
             </div>
           </div>
           <p className="text-sm sm:text-base text-muted-foreground font-medium leading-relaxed">
-            Naklejki die-cut (z ang. „cięcie matrycą") to naklejki wycięte
+            Naklejki die-cut (z ang. „cięcie matrycą”) to naklejki wycięte
             dokładnie po obrysie grafiki - bez marginesu i bez prostokątnego
             tła. Ploter prowadzi ostrze wzdłuż konturu Twojego motywu, więc
             naklejka przybiera kształt sylwetki zwierzaka, zarysu logo czy

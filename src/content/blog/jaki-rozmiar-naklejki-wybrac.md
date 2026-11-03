@@ -2,7 +2,7 @@
 title: "Jaki rozmiar naklejki wybrać? Wymiary i ile naklejek zmieści się na arkuszu A4"
 slug: "jaki-rozmiar-naklejki-wybrac"
 date: "2026-08-20"
-updated: "2026-10-05"
+updated: "2026-11-02"
 description: "Zastanawiasz się, jaki rozmiar naklejki wybrać? Zobacz, jak dopasować wymiary i sprawdź, ile naklejek zmieści się na jednym arkuszu A4."
 image: "/blog/jaki-rozmiar-naklejki-wybrac/zestaw-naklejek-rozne-rozmiary-i-wzory.jpg"
 imageAlt: "Duży zestaw okrągłych naklejek z własnym nadrukiem w różnych rozmiarach - minimalistyczne wzory i cytaty rozłożone na drewnianym blacie."
@@ -34,7 +34,7 @@ Zastanawiasz się, gdzie najczęściej sprawdzają się określone rozmiary? Pon
 
 ## Kształt cięcia a wydajność arkusza A4
 
-Na liczbę naklejek wpływa nie tylko to, jaki rozmiar naklejki wybierzesz, ale też kształt. Nasz system obsługuje [naklejki wycinane po obrysie (die-cut)](/naklejki-die-cut), a także klasyczne [naklejki okrągłe z własnym nadrukiem](/blog/naklejki-okragle-z-wlasnym-nadrukiem) oraz kwadratowe i prostokątne. Kształty proste, przylegające ściśle do siebie (np. prostokąty), pozwalają na gęstsze ułożenie elementów na arkuszu. Jeżeli zależy Ci na tym, by wykorzystać miejsce do maksimum, zdecyduj się na regularne formy. Jeśli natomiast wolisz zaszaleć - automatycznie usuniemy tło (tzw. automatyczne usuwanie tła) i obrysujemy Twoją grafikę idealnie dopasowaną ścieżką cięcia. Wtedy elementy mogą zajmować nieco więcej wolnej przestrzeni.
+Na liczbę naklejek wpływa nie tylko to, jaki rozmiar naklejki wybierzesz, ale też kształt. Nasz system obsługuje [naklejki wycinane po obrysie (die-cut)](/naklejki-die-cut), a także klasyczne [naklejki okrągłe z własnym nadrukiem](/blog/naklejki-okragle-z-wlasnym-nadrukiem) oraz kwadratowe i prostokątne. Kształty proste, przylegające ściśle do siebie (np. prostokąty), pozwalają na gęstsze ułożenie elementów na arkuszu. Jeżeli zależy Ci na tym, by wykorzystać miejsce do maksimum, zdecyduj się na regularne formy. Jeśli natomiast wolisz nieregularne sylwetki - wgraj zdjęcie, a nasz kreator sam odetnie tło i poprowadzi linię cięcia dokładnie wokół kształtu Twojej grafiki. Wtedy elementy mogą zajmować nieco więcej przestrzeni między sobą.
 
 To polska produkcja bez minimalnego nakładu - możesz wrzucić do kreatora nawet kilka zupełnie innych wzorów na jeden arkusz!
 
@@ -42,7 +42,7 @@ To polska produkcja bez minimalnego nakładu - możesz wrzucić do kreatora nawe
 
 Wymiary naklejek to nie tylko kwestia estetyki, ale przede wszystkim czytelności. Jeśli drukujesz logotyp z bardzo małymi literami lub skomplikowany skład na etykiecie o wielkości 3 cm, zadbaj o odpowiednią rozdzielczość i format pliku.
 
-1. **Pliki wektorowe są najlepsze:** Format PDF lub SVG to gwarancja ostrości niezależnie od tego, czy pomniejszysz, czy powiększysz wzór. Wektory są matematycznie wyliczane, więc drobny druk zawsze wyjdzie doskonale.
+1. **Plik wektorowy PDF daje najostrzejsze litery:** Format PDF zachowuje matematyczną ostrość czcionek przy zmianie skali, więc drobny druk wychodzi wyraźnie (jeśli masz grafikę w pliku SVG, wyeksportuj ją przed wgraniem do PDF lub gęstego PNG - samego SVG kreator nie obsługuje).
 2. **Uwaga na grafikę rastrową (JPEG, PNG):** Jeżeli zapiszesz obraz z bardzo niską rozdzielczością, to małe, szczegółowe napisy mogą się zlewać. Zawsze rekomendujemy pliki w rozdzielczości 300 DPI, szczególnie przy małych lepach (3-5 cm).
 3. **Zasada wielkości czcionki:** Przed wysłaniem zamówienia warto sprawdzić podgląd w skali 1:1. Jeśli nie jesteś w stanie odczytać najmniejszego wyrazu z odległości 30 cm - trzeba użyć większego rozmiaru lub zredukować ilość tekstu.
 

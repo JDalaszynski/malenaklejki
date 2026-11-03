@@ -21,7 +21,7 @@ Wydrukuj wlepki z własnym nadrukiem w [drukowaniu naklejek online](/blog/drukow
 
 - **Cięcie po obrysie (die cut)** - wlepka ma kształt Twojej grafiki, a nie prostokąta. Więcej o różnicach znajdziesz w poradniku o [die cut i kiss-cut w naklejkach reklamowych](/blog/co-to-jest-die-cut-i-kiss-cut-roznice-w-wyleciach-naklejek-reklamowych).
 - **Pojedyncze sztuki** - każda wlepka trafia do Ciebie osobno, gotowa do rozdania, a nie zbiorczo na jednym arkuszu.
-- **Mocny klej i wodoodporna folia winylowa** - wytrzymuje deszcz i codzienny dotyk, a po odklejeniu nie zostawia śladów (nie jest to jednak klej repozycjonowalny - naklejasz raz, bez przenoszenia w inne miejsce).
+- **Mocny klej i [trwałe naklejki foliowe](/naklejki-foliowe)** - folia winylowa wytrzymuje deszcz, promienie UV i codzienny dotyk, a po odklejeniu nie zostawia śladów (nie jest to jednak klej repozycjonowalny - naklejasz raz, bez przenoszenia w inne miejsce).
 
 Szukasz wlepek na potrzeby sekcji kibicowskiej, koła studenckiego albo drużyny amatorskiej? Sprawdź osobny poradnik o [wlepkach kibicowskich i klubowych](/blog/vlepki-kibicowskie-i-klubowe-wlepy-dla-kibicow-klubow-i-ekip).
 

@@ -6,7 +6,7 @@ import { consumeRateLimit, formatRetryAfter } from "@/lib/auth/rateLimit";
 import { readSession } from "@/lib/auth/session";
 import { isServerPurchaseTrackingEnabled, readGaIdentifiers, toAnalyticsSheets } from "@/lib/orders/gaPurchase";
 import { attachCartLayout } from "@/lib/orders/layout";
-import { toOrderAcquisition } from "@/lib/attribution";
+import { toOrderAcquisition, toOrderLandingPage } from "@/lib/attribution";
 import { createAccountFromOrder } from "@/lib/auth/accountFromOrder";
 import { headers } from "next/headers";
 import { formatLongDate, resolveVacation } from "@/lib/settings/vacation";
@@ -71,9 +71,9 @@ const CreateOrderSchema = z.object({
     .refine((v) => /[A-Za-zĄĆĘŁŃÓŚŹŻąćęłńóśźż]/.test(v) && /[0-9]/.test(v))
     .optional(),
   accountMarketingConsent: z.boolean().optional(),
-  // Źródło wizyty z adresu pierwszej strony. Celowo bez schematu: śmieci w tym
-  // polu nie mogą odrzucić zamówienia — `toOrderAcquisition` bierze z niego
-  // tylko to, co rozpozna.
+  // Źródło i pierwsza strona wizyty. Celowo bez schematu: śmieci w tym
+  // polu nie mogą odrzucić zamówienia — funkcje w `lib/attribution` biorą
+  // z niego tylko to, co rozpoznają.
   attribution: z.unknown().optional(),
 });
 
@@ -212,8 +212,9 @@ async function doCreateOrder(rawData: any) {
       fulfillmentStatus: "NEW",
       source: "shop",
       analytics: gaIdentifiers ?? undefined,
-      // Zamówienie z reklamy Google — etykieta bez cookies (patrz `lib/attribution`).
+      // Zamówienie z reklamy Google oraz ścieżka pierwszej strony wizyty — bez cookies (patrz `lib/attribution`).
       acquisition: toOrderAcquisition(attribution) ?? undefined,
+      landingPage: toOrderLandingPage(attribution) ?? undefined,
       userId: session?.uid ?? null,
       customerEmailLower: emailLower,
       deletedAt: null,

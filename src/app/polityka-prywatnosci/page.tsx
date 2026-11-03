@@ -107,7 +107,7 @@ export default function PrivacyPolicyPage() {
     {
       id: "cele-przetwarzania",
       title: "§ 2. Rodzaj, cele i podstawy prawne przetwarzania danych",
-      searchText: `Realizacja zamówień art 6 ust 1 lit b RODO imię nazwisko adres e-mail numer telefonu adres dostawy ulica kod pocztowy miasto kraj dane do faktury NIP nazwa firmy adres. Obsługa płatności Przelewy24. Przetwarzanie grafik Firebase Storage Google Cloud EMEA Limited UE kontur cięcia linia cięcia. Obowiązki prawne podatkowo-księgowe art 6 ust 1 lit c RODO faktura księgowość. Ustalenie dochodzenie obrona przed roszczeniami art 6 ust 1 lit f RODO. Analiza statystyki ruchu na stronie Google Analytics 4 Vercel Analytics zgoda art 6 ust 1 lit a RODO. Pomiar skuteczności reklam Google Ads pomiar konwersji remarketing zgoda marketingowa. Ocena skuteczności reklam bez plików cookies kampania słowo kluczowe art 6 ust 1 lit f RODO.`,
+      searchText: `Realizacja zamówień art 6 ust 1 lit b RODO imię nazwisko adres e-mail numer telefonu adres dostawy ulica kod pocztowy miasto kraj dane do faktury NIP nazwa firmy adres. Obsługa płatności Przelewy24. Przetwarzanie grafik Firebase Storage Google Cloud EMEA Limited UE kontur cięcia linia cięcia. Obowiązki prawne podatkowo-księgowe art 6 ust 1 lit c RODO faktura księgowość. Ustalenie dochodzenie obrona przed roszczeniami art 6 ust 1 lit f RODO. Analiza statystyki ruchu na stronie Google Analytics 4 Vercel Analytics zgoda art 6 ust 1 lit a RODO. Pomiar skuteczności reklam Google Ads pomiar konwersji remarketing zgoda marketingowa. Ocena skuteczności stron serwisu i reklam bez plików cookies pierwsza strona wizyty ścieżka wejścia kampania słowo kluczowe art 6 ust 1 lit f RODO.`,
       content: (
         <div className="space-y-6">
           <p>Przetwarzamy dane osobowe użytkowników w następujących celach:</p>
@@ -258,17 +258,17 @@ export default function PrivacyPolicyPage() {
                   <span className="text-primary font-bold text-xs">8</span>
                 </div>
                 <h4 className="font-black text-foreground text-sm">
-                  Ocena skuteczności reklam bez plików cookies (art. 6 ust. 1 lit. f RODO)
+                  Ocena skuteczności stron serwisu i reklam bez plików cookies (art. 6 ust. 1 lit. f RODO)
                 </h4>
               </div>
               <ul className="text-sm space-y-1 pl-9">
                 <li>
                   <strong className="text-primary">Zakres danych:</strong>{" "}
-                  informacja, że wizyta zakończona zamówieniem zaczęła się od reklamy Google, oraz nazwa kampanii i słowo kluczowe tej reklamy - odczytane z adresu strony, na którą prowadziła reklama.
+                  ścieżka pierwszej odwiedzonej podstrony naszego serwisu podczas wizyty zakończonej zamówieniem (bez parametrów adresu), a gdy wizyta zaczęła się od reklamy Google - również informacja o tym fakcie oraz nazwa kampanii i słowo kluczowe tej reklamy odczytane z adresu wejścia.
                 </li>
                 <li>
                   <strong className="text-primary">Cel:</strong>{" "}
-                  prawnie uzasadniony interes Administratora polegający na sprawdzeniu, które reklamy prowadzą do zamówień. Informację zapisujemy przy zamówieniu bez użycia plików cookies i bez identyfikatora kliknięcia, i nie przekazujemy jej do Google. W pamięci sesji przeglądarki utrwalamy ją wyłącznie po zgodzie na pliki marketingowe.
+                  prawnie uzasadniony interes Administratora polegający na sprawdzeniu, które treści serwisu oraz które reklamy prowadzą do zamówień. Informacje te zapisujemy przy zamówieniu bez użycia plików cookies, bez localStorage i bez identyfikatora kliknięcia, i nie przekazujemy ich do Google. W pamięci sesji przeglądarki (sessionStorage) utrwalamy je na czas otwartej karty wyłącznie po zgodzie na pliki marketingowe.
                 </li>
               </ul>
             </div>
@@ -546,7 +546,7 @@ export default function PrivacyPolicyPage() {
     <DocLayout
       title="Polityka Prywatności"
       description="Zasady przetwarzania i ochrony danych osobowych użytkowników korzystających z serwisu MałeNaklejki."
-      lastUpdated="10 października 2026 r."
+      lastUpdated="3 listopada 2026 r."
       activeTab="polityka-prywatnosci"
       sections={sections}
     />

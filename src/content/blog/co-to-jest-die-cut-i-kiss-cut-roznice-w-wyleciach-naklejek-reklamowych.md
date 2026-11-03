@@ -2,7 +2,7 @@
 title: "Wykroje die-cut i kiss-cut - różnice, oba za 59 zł/A4"
 slug: "co-to-jest-die-cut-i-kiss-cut-roznice-w-wyleciach-naklejek-reklamowych"
 date: "2026-07-14"
-updated: "2026-08-31"
+updated: "2026-11-02"
 description: "Wykroje die-cut i kiss-cut: naklejka wycięta po obrysie albo zostawiona na arkuszu. Poznaj różnice - oba cięcia od 1 arkusza A4 za stałe 59,00 zł brutto."
 image: "/blog/co-to-jest-die-cut-i-kiss-cut-roznice-w-wyleciach-naklejek-reklamowych/naklejka-die-cut-pies-corgi-wycieta-po-obrysie.png"
 imageAlt: "Dłoń trzymająca naklejkę die-cut przedstawiającą uśmiechniętego psa rasy corgi, wyciętą dokładnie po obrysie sylwetki, na tle zielonych liści"
@@ -21,7 +21,7 @@ Die cut (dosłownie "cięcie matrycą") oznacza, że plotter tnie folię dokład
 
 W naszym kreatorze proces wygląda tak:
 
-1. **Wgrywasz plik** PNG z przezroczystym tłem (kanał alfa) lub zwykłe zdjęcie JPG.
+1. **Wgrywasz plik** PNG z przezroczystym tłem (kanał alfa), zdjęcie JPG albo gotową grafikę w PDF.
 2. **Kreator automatycznie wykrywa kontur** grafiki lub usuwa tło ze zdjęcia.
 3. **Wybierasz opcję "cięcie po obrysie"** i sprawdzasz podgląd 3D dokładnego kształtu.
 4. **Zatwierdzasz zamówienie** - plotter tnie naklejkę idealnie po krawędzi.
@@ -30,7 +30,7 @@ Efekt to naklejka, która nie ma żadnych prostych, "sztucznych" krawędzi - wyg
 
 ## Co to jest kiss-cut - cięcie na całym arkuszu podkładowym
 
-Kiss-cut to technika, w której ostrze przecina wyłącznie wierzchnią warstwę folii z nadrukiem, nie naruszając papieru podkładowego pod spodem. Nazwa pochodzi od delikatności cięcia - ostrze "całuje" materiał, wchodząc tylko na głębokość folii.
+Kiss-cut to technika, w której ostrze przecina wyłącznie wierzchnią warstwę [naklejki z folii winylowej](/naklejki-foliowe), nie naruszając papieru podkładowego pod spodem. Nazwa pochodzi od delikatności cięcia - ostrze "całuje" materiał, wchodząc tylko na głębokość folii.
 
 Praktyczny skutek: naklejka ma kształt Twojej grafiki, ale cały arkusz pozostaje w jednym kawałku papieru podkładowego. To rozwiązanie sprawdza się, gdy:
 
@@ -70,7 +70,7 @@ Jeśli masz jeden wzór etykiety powtarzany na wielu słoikach czy butelkach, ki
 
 Wymagania techniczne różnią się w zależności od wybranej opcji:
 
-- **Do die cut:** najlepiej sprawdzi się plik PNG z przezroczystym tłem (kanał alfa) - kreator automatycznie rozpozna kontur. Zdjęcia w JPG również działają - system usunie tło i wytnie po sylwetce głównego obiektu.
+- **Do die cut:** najlepiej sprawdzi się plik PNG z przezroczystym tłem (kanał alfa) - kreator od razu rozpozna kontur. Zdjęcia w JPG oraz pliki PDF również działają - ze zdjęcia system sam odetnie tło i wytnie naklejkę po sylwetce głównego obiektu.
 - **Do kiss-cut:** wgraj pliki po kolei lub zestaw kilka wygenerowanych (np. przez Midjourney, ChatGPT lub Gemini) bądź przygotowanych w Canvie wzorów obok siebie - każdy zostanie wycięty osobno, a podkład pozostanie w całości jako jeden arkusz.
 - **Rozdzielczość:** minimum 300 dpi dla małych naklejek (poniżej 5 cm), żeby uniknąć pikselowania przy precyzyjnym cięciu wzdłuż konturu.
 
@@ -84,7 +84,7 @@ Nie. W MałeNaklejki obie opcje kosztują tyle samo - 59,00 zł za arkusz A4. Wy
 
 ### Jaki plik przygotować do cięcia die cut?
 
-Najlepszy jest PNG z przezroczystym tłem (kanał alfa) - kreator automatycznie wykryje kontur grafiki. Zdjęcie w JPG też zadziała, ponieważ system usunie tło i wytnie naklejkę po kształcie głównego obiektu.
+Najlepszy jest PNG z przezroczystym tłem (kanał alfa) - kreator od razu wykryje kontur grafiki. Wgrasz też zwykłe zdjęcie JPG (system sam usunie tło i wytnie naklejkę po kształcie obiektu) albo plik PDF.
 
 ### Czy mogę zamówić różne kształty die cut na jednym arkuszu?
 

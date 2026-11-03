@@ -315,7 +315,7 @@ export default function NaklejkiFoliowePage() {
           name: "Naklejki foliowe (winylowe) z własnym nadrukiem",
           url: PAGE_URL,
           isPartOf: { "@id": "https://www.malenaklejki.pl/#website" },
-          dateModified: "2026-07-25T00:00:00+02:00",
+          dateModified: "2026-11-02T00:00:00+01:00",
         }}
       />
 
@@ -357,14 +357,15 @@ export default function NaklejkiFoliowePage() {
           </h1>
 
           <p className="text-sm sm:text-lg text-foreground/90 font-semibold leading-relaxed">
-            Zamów <strong>naklejki foliowe (winylowe)</strong> z własnym
-            nadrukiem w polskiej drukarni: drukujemy na trwałej{" "}
-            <strong>folii winylowej odpornej na wodę i UV</strong> w
-            rozdzielczości <strong>300 DPI</strong>. Stała cena{" "}
-            <strong>59,00 zł brutto za arkusz A4</strong>, już od 1 sztuki,
-            produkcja w <strong>4-5 dni robocze</strong> i odbiór w paczkomacie.
-            Zależy Ci, żeby nadruk nie rozmókł ani nie spłowiał? Sprawdź, na co
-            zwrócić uwagę przy{" "}
+            <strong>Naklejki foliowe (winylowe)</strong> wybierasz tam, gdzie
+            zwykła papierowa etykieta poddaje się po pierwszym deszczu,
+            zachlapaniu lub tygodniu na słońcu - na bidon, laptop, ramę roweru,
+            kosmetyki w łazience czy paczki wysyłkowe. Drukujemy na elastycznej{" "}
+            <strong>folii winylowej odpornej na wodę i promieniowanie UV</strong>
+            , z mocnym klejem, który po zdjęciu nie zostawia śladów, w stałej
+            cenie <strong>59,00 zł brutto za arkusz A4</strong> już od 1
+            arkusza. Chcesz dobrze przygotować grafikę przed zamówieniem?
+            Sprawdź poradnik o{" "}
             <Link
               href="/blog/drukowanie-naklejek-online-na-co-zwrocic-uwage-przed-wysylka-projektu"
               className="text-primary font-bold underline underline-offset-4 hover:text-primary/80 transition-colors"
@@ -395,8 +396,8 @@ export default function NaklejkiFoliowePage() {
               <ShieldCheck className="w-3.5 h-3.5" /> W 100% polska produkcja
             </span>
             <span className="text-xs font-bold text-muted-foreground/60 flex items-center gap-1.5">
-              <Clock className="w-3.5 h-3.5" /> Ostatnia aktualizacja: 25 lipca
-              2026
+              <Clock className="w-3.5 h-3.5" /> Ostatnia aktualizacja: 2
+              listopada 2026
             </span>
           </div>
         </section>

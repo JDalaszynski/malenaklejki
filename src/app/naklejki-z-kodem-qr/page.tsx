@@ -25,8 +25,7 @@ import {
 
 const PAGE_PATH = "/naklejki-z-kodem-qr";
 const PAGE_URL = `https://www.malenaklejki.pl${PAGE_PATH}`;
-const OG_IMAGE =
-  "/landing/naklejki-z-kodem-qr/naklejki-z-kodem-qr-arkusz-a4.jpg";
+const OG_IMAGE = "/images/og-main.jpg";
 
 const TITLE = "Naklejki z kodem QR na zamówienie - od 1 szt., 59 zł/A4";
 
@@ -46,9 +45,9 @@ export const metadata: Metadata = {
     images: [
       {
         url: OG_IMAGE,
-        width: 1024,
-        height: 1177,
-        alt: "Naklejki z kodem QR na arkuszu A4 - druk na zamówienie w MałeNaklejki.",
+        width: 1200,
+        height: 630,
+        alt: "Kreator naklejek MałeNaklejki - arkusz A4 z naklejkami do zamówienia.",
       },
     ],
   },
@@ -73,7 +72,7 @@ const FAQS: { q: string; a: string }[] = [
   },
   {
     q: "Czy generujecie kod QR za mnie?",
-    a: "Nie. Kreator drukuje obraz, który wgrasz, i nie tworzy kodów QR. Kod wygenerujesz w dowolnym darmowym generatorze, zapiszesz jako PNG (kreator nie przyjmuje plików SVG) i wgrasz do kreatora razem z innymi grafikami.",
+    a: "Nie. Kreator drukuje obraz, który wgrasz, i nie tworzy kodów QR. Kod wygenerujesz w dowolnym darmowym generatorze, zapiszesz jako PNG, JPG lub PDF (kreator nie przyjmuje plików SVG) i wgrasz do kreatora razem z innymi grafikami.",
   },
   {
     q: "Czy mogę zamówić kilka różnych kodów QR na jednym arkuszu?",
@@ -97,7 +96,7 @@ const FAQS: { q: string; a: string }[] = [
   },
   {
     q: "Czy mogę dodać logo, napis lub ramkę wokół kodu QR?",
-    a: "Tak, ale kreator nie ma edytora tekstu, więc przygotuj całość jako jeden obraz w Canvie lub Wordzie i wgraj jako PNG albo PDF. Zostaw wokół kodu biały margines i dopisz pod nim adres tekstem. Logo w środku kodu zmniejsza jego czytelność, więc wymaga wyższego poziomu korekcji błędów i testu.",
+    a: "Tak, ale kreator nie ma edytora tekstu, więc przygotuj całość jako jeden plik w Canvie lub Wordzie i wgraj jako PNG, JPG albo PDF. Zostaw wokół kodu biały margines i dopisz pod nim adres tekstem. Logo w środku kodu zmniejsza jego czytelność, więc wymaga wyższego poziomu korekcji błędów i testu.",
   },
   {
     q: "Naklejka z kodem QR czy z chipem NFC?",
@@ -230,8 +229,8 @@ const PARAMS: { label: string; value: string; why: string }[] = [
   },
   {
     label: "Plik",
-    value: "PNG, co najmniej ok. 1000 px szerokości, bez zrzutu ekranu",
-    why: "Kreator nie przyjmuje SVG. Zapisz kod z generatora jako PNG w największym rozmiarze, żeby krawędzie kwadracików były ostre.",
+    value: "PNG, JPG lub PDF (bez SVG i bez zrzutu ekranu), min. ok. 1000 px",
+    why: "Kreator przyjmuje PNG, JPG, WEBP i PDF (nie obsługuje SVG). Sam kod pobierz z generatora najlepiej w PNG lub JPG o dużej rozdzielczości, a gotową tabliczkę z ramką i podpisem możesz wgrać także jako PDF.",
   },
   {
     label: "Podpis pod kodem",
@@ -281,7 +280,7 @@ const SPECS: { label: string; value: string }[] = [
 const STEPS: { title: string; text: string }[] = [
   {
     title: "Wygeneruj i przetestuj kod",
-    text: "Wpisz adres w darmowym generatorze kodów QR, wybierz kod statyczny i zapisz go jako PNG. Chcesz podpis lub logo wokół kodu? Złóż całość w Canvie albo Wordzie i wyeksportuj jako jeden obraz. Wydrukuj próbkę w docelowym rozmiarze i zeskanuj ją dwoma telefonami.",
+    text: "Wpisz adres w darmowym generatorze kodów QR, wybierz kod statyczny i pobierz plik PNG lub JPG. Chcesz podpis albo ramkę wokół kodu? Złóż całość w Canvie lub Wordzie i zapisz jako PNG, JPG albo PDF. Wydrukuj próbkę w docelowym rozmiarze i zeskanuj ją dwoma telefonami.",
   },
   {
     title: "Wgraj kody do kreatora i ustaw cięcie „Prostokąt”",
@@ -435,15 +434,17 @@ export default function NaklejkiZKodemQrPage() {
           </h1>
 
           <p className="text-sm sm:text-lg text-foreground/90 font-semibold leading-relaxed">
-            Wgraj kod QR jako plik PNG, a wydrukujemy go na{" "}
-            <strong>folii winylowej odpornej na wodę i UV</strong> i wytniemy w
-            prostokąt. <strong>Arkusz A4 kosztuje 59,00 zł brutto</strong>, bez
-            minimalnego nakładu, a na jednym arkuszu zmieścisz{" "}
-            <strong>kilka różnych kodów</strong>: opinie Google, Instagram, menu
-            i Wi-Fi. Produkcja trwa <strong>4-5 dni robocze</strong>, potem
-            wysyłamy paczkę do paczkomatu. Kod generujesz sam w darmowym
-            generatorze - kreator drukuje wgrany obraz i go nie tworzy. Pełną
-            ofertę dla biznesu znajdziesz na stronie{" "}
+            <strong>Naklejki z kodem QR</strong> jednym skanem telefonu kierują
+            klientów prosto do opinii w Google przy kasie, karty menu na
+            stoliku, profilu na Instagramie w paczce czy hasła do firmowego
+            Wi-Fi. W MałeNaklejki nie musisz zamawiać całej partii jednego
+            wzoru - na{" "}
+            <strong>jednym arkuszu A4 za 59,00 zł brutto</strong> ułożysz{" "}
+            <strong>kilka zupełnie różnych kodów</strong> albo kilkadziesiąt
+            kopii jednego, już od 1 arkusza. Wystarczy wgrać gotowy kod z
+            dowolnego generatora (<strong>PNG, JPG lub PDF</strong>), a resztą
+            zajmiemy się w druku; pełną ofertę dla biznesu znajdziesz na
+            stronie{" "}
             <Link href="/naklejki-dla-firm" className={linkClass}>
               naklejki dla firm
             </Link>
@@ -519,24 +520,6 @@ export default function NaklejkiZKodemQrPage() {
             </Link>
             .
           </p>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 my-6">
-            <div className="relative w-full aspect-square rounded-2xl shadow-sm border border-border/40 overflow-hidden flex items-start justify-center bg-black/5 dark:bg-[#003a3b]/40">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src="/landing/naklejki-z-kodem-qr/naklejki-z-kodem-qr-arkusz-a4.jpg"
-                alt="Naklejki z kodem QR na arkuszu A4 - kilkadziesiąt kwadratowych naklejek winylowych z kodem QR na stole do pakowania paczek."
-                className="w-full h-auto [clip-path:inset(0_0_12%_0)]"
-              />
-            </div>
-            <div className="relative w-full aspect-square rounded-2xl shadow-sm border border-border/40 overflow-hidden flex items-start justify-center bg-black/5 dark:bg-[#003a3b]/40">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src="/landing/naklejki-z-kodem-qr/naklejka-z-kodem-qr-na-paczke-pudelko.jpg"
-                alt="Prostokątna naklejka z kodem QR zamykająca szare pudełko wysyłkowe e-commerce na stole do pakowania."
-                className="w-full h-auto [clip-path:inset(0_0_12%_0)]"
-              />
-            </div>
-          </div>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             {PLUSES.map((item) => {
               const Icon = item.icon;
@@ -688,40 +671,6 @@ export default function NaklejkiZKodemQrPage() {
             </Link>
             .
           </p>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 my-6">
-            <div className="relative w-full aspect-square rounded-2xl shadow-sm border border-border/40 overflow-hidden flex items-start justify-center bg-black/5 dark:bg-[#003a3b]/40">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src="/landing/naklejki-z-kodem-qr/naklejka-z-kodem-qr-wifi-dla-gosci.jpg"
-                alt="Naklejka z kodem QR do Wi-Fi dla gości na drewnianej podstawce na stoliku w pokoju lub kawiarni."
-                className="w-full h-auto [clip-path:inset(0_0_12%_0)]"
-              />
-            </div>
-            <div className="relative w-full aspect-square rounded-2xl shadow-sm border border-border/40 overflow-hidden flex items-start justify-center bg-black/5 dark:bg-[#003a3b]/40">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src="/landing/naklejki-z-kodem-qr/naklejka-z-kodem-qr-na-torbie-papierowej.jpg"
-                alt="Kwadratowa naklejka z kodem QR do profilu w mediach społecznościowych zaklejająca białą torbę papierową w butiku."
-                className="w-full h-auto [clip-path:inset(0_0_12%_0)]"
-              />
-            </div>
-            <div className="relative w-full aspect-square rounded-2xl shadow-sm border border-border/40 overflow-hidden flex items-start justify-center bg-black/5 dark:bg-[#003a3b]/40">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src="/landing/naklejki-z-kodem-qr/naklejka-z-kodem-qr-welcome-pack-zestaw.jpg"
-                alt="Duża naklejka z kodem QR do instrukcji i strony powitalnej naklejona na wewnętrznej stronie wieczka pudełka welcome pack."
-                className="w-full h-auto [clip-path:inset(0_0_12%_0)]"
-              />
-            </div>
-            <div className="relative w-full aspect-square rounded-2xl shadow-sm border border-border/40 overflow-hidden flex items-start justify-center bg-black/5 dark:bg-[#003a3b]/40">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src="/landing/naklejki-z-kodem-qr/naklejka-z-kodem-qr-na-sloik-wieczko.jpg"
-                alt="Naklejka z kodem QR naklejona na zakrętce szklanego słoika ze świecą sojową na drewnianym stole."
-                className="w-full h-auto [clip-path:inset(0_0_12%_0)]"
-              />
-            </div>
-          </div>
         </section>
 
         {/* Jak przygotować kod */}
@@ -740,24 +689,6 @@ export default function NaklejkiZKodemQrPage() {
             poniższe zalecenia zdejmują większość problemów, a test na wydruku
             próbnym kosztuje kilka groszy.
           </p>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 my-6">
-            <div className="relative w-full aspect-square rounded-2xl shadow-sm border border-border/40 overflow-hidden flex items-start justify-center bg-black/5 dark:bg-[#003a3b]/40">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src="/landing/naklejki-z-kodem-qr/naklejka-z-kodem-qr-na-butelke-etykieta.jpg"
-                alt="Wodoodporna naklejka z kodem QR ze składem i przepisami naklejona na szklanej butelce oliwy rzemieślniczej."
-                className="w-full h-auto [clip-path:inset(0_0_12%_0)]"
-              />
-            </div>
-            <div className="relative w-full aspect-square rounded-2xl shadow-sm border border-border/40 overflow-hidden flex items-start justify-center bg-black/5 dark:bg-[#003a3b]/40">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src="/landing/naklejki-z-kodem-qr/mala-naklejka-z-kodem-qr-na-wizytowce.jpg"
-                alt="Mała naklejka z kodem QR o boku 3 cm na folii winylowej z subtelnym połyskiem i białym marginesem, naklejona na wizytówce."
-                className="w-full h-auto [clip-path:inset(0_0_12%_0)]"
-              />
-            </div>
-          </div>
           {/* Na telefonie wiersze układają się jeden pod drugim - trzy wąskie kolumny
               łamałyby tekst co kilka znaków. Od sm to zwykła tabela. */}
           <div className="overflow-hidden rounded-2xl border border-border/60 shadow-sm">
@@ -835,10 +766,13 @@ export default function NaklejkiZKodemQrPage() {
               tła.
             </li>
             <li>
-              <strong className="text-foreground">PNG zamiast PDF.</strong> Przy
-              plikach PDF kreator przycina puste marginesy strony, więc mógłby
-              zjeść biały margines kodu. PNG z marginesem w pliku jest
-              bezpieczniejszy.
+              <strong className="text-foreground">
+                Sam kod lepiej w PNG lub JPG niż w PDF.
+              </strong>{" "}
+              Kreator obsługuje PNG, JPG i PDF, ale przy imporcie PDF przycina
+              puste marginesy strony i mógłby obciąć białą strefę ciszy wokół
+              samego kodu. PDF sprawdzi się wtedy, gdy kod jest zamknięty w
+              gotowej tabliczce z ramką lub kolorowym tłem.
             </li>
             <li>
               <strong className="text-foreground">Płaska powierzchnia.</strong>{" "}
@@ -1015,10 +949,10 @@ export default function NaklejkiZKodemQrPage() {
             Zamów naklejki z kodem QR od jednego arkusza
           </h2>
           <p className="text-sm sm:text-base text-muted-foreground font-medium leading-relaxed max-w-2xl mx-auto">
-            Wgraj kody jako PNG, wybierz cięcie „Prostokąt” i ułóż je na
-            arkuszu. Naklejki będą gotowe w 4-5 dni robocze za stałe 59,00 zł
-            brutto od arkusza A4 - z fakturą VAT, bez minimalnego nakładu i bez
-            opłat za przygotowanie pliku.
+            Ułóż wszystkie kody dla swojej firmy na jednym arkuszu A4 - wgraj
+            gotowe pliki PNG, JPG lub PDF i dopasuj ich wymiary w podglądzie na
+            żywo. Stała cena 59,00 zł brutto za arkusz, produkcja w 4-5 dni
+            robocze i faktura VAT bez minimalnego nakładu.
           </p>
           <div className="pt-2">
             <Link

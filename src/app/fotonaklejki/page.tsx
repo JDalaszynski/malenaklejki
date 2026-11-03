@@ -314,7 +314,7 @@ export default function FotonaklejkiPage() {
           name: "Fotonaklejki z własnego zdjęcia",
           url: PAGE_URL,
           isPartOf: { "@id": "https://www.malenaklejki.pl/#website" },
-          dateModified: "2026-07-27T00:00:00+02:00",
+          dateModified: "2026-11-02T00:00:00+01:00",
         }}
       />
 
@@ -356,20 +356,19 @@ export default function FotonaklejkiPage() {
           </h1>
 
           <p className="text-sm sm:text-lg text-foreground/90 font-semibold leading-relaxed">
-            Zrób <strong>fotonaklejki z własnego zdjęcia</strong> w polskiej
-            drukarni: wgraj plik prosto z telefonu, a kreator{" "}
-            <strong>automatycznie usunie tło</strong> i wytnie naklejkę{" "}
-            <strong>po obrysie</strong> na trwałej{" "}
-            <strong>folii winylowej odpornej na wodę i UV</strong>. Druk{" "}
-            <strong>300 DPI</strong>, stała cena{" "}
-            <strong>59,00 zł brutto za arkusz A4</strong>, już od 1 sztuki,
-            produkcja w <strong>4-5 dni robocze</strong> i odbiór w paczkomacie.
-            Chcesz poznać cały proces?{" "}
+            Zamień ulubione kadry z telefonu - portret psa lub kota, wspólne
+            zdjęcie z wakacji czy rysunek dziecka - w trwałe{" "}
+            <strong>fotonaklejki wycięte dokładnie po sylwetce</strong>, bez
+            przypadkowego tła z pokoju i bez znajomości Photoshopa. Na{" "}
+            <strong>jednym arkuszu A4 za stałe 59,00 zł brutto</strong>{" "}
+            zmieścisz kilkanaście różnych ujęć na prezent, laptop, bidon czy
+            lodówkę, już od 1 arkusza bez minimalnego nakładu. Chcesz poznać
+            cały proces?{" "}
             <Link
               href="/blog/naklejka-ze-zdjecia-jak-przeniesc-wspomnienia-na-naklejke"
               className="text-primary font-bold underline underline-offset-4 hover:text-primary/80 transition-colors"
             >
-              zobacz, jak zrobić naklejkę ze zdjęcia krok po kroku
+              Zobacz, jak zrobić naklejkę ze zdjęcia krok po kroku
             </Link>
             .
           </p>
@@ -395,8 +394,8 @@ export default function FotonaklejkiPage() {
               <ShieldCheck className="w-3.5 h-3.5" /> W 100% polska produkcja
             </span>
             <span className="text-xs font-bold text-muted-foreground/60 flex items-center gap-1.5">
-              <Clock className="w-3.5 h-3.5" /> Ostatnia aktualizacja: 27 lipca
-              2026
+              <Clock className="w-3.5 h-3.5" /> Ostatnia aktualizacja: 2
+              listopada 2026
             </span>
           </div>
         </section>

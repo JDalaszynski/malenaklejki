@@ -41,7 +41,7 @@ Kreator automatycznie usuwa tło i generuje podgląd 3D, dzięki czemu zobaczysz
 Jeden zadrukowany arkusz A4 wystarczy na komplet małych naklejek z imionami na wszystkie rzeczy dziecka:
 
 - **Zeszyty i podręczniki** - na okładce lub w rogu strony tytułowej.
-- **Bidon i kubek** - wodoodporna folia nie odklei się od ręcznego mycia.
+- **Bidon i kubek** - [wodoodporne naklejki foliowe](/naklejki-foliowe) nie odkleją się od ręcznego mycia.
 - **Pudełko śniadaniowe i piórnik** - folia znosi wilgoć i codzienne wycieranie (mycie ręczne, nie w zmywarce).
 - **Twarda część plecaka** - klapka, przednia kieszeń lub plakietka.
 - **Meble w pokoju dziecka** - [naklejki z imionami na meble, drzwi i pojemniki](/blog/naklejki-z-imionami-na-meble-drzwi-i-pojemniki-organizacja-domu) ułatwiają oznaczenie szuflad z zabawkami czy ubraniami.

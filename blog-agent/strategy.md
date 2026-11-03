@@ -177,7 +177,7 @@ Trzy zasady nadrzędne, obowiązujące każdą decyzję w Fazie 4:
 #### OŚ 1 - Przechwytywanie kliknięć (natychmiast, zero nowej treści, najwyższy zwrot)
 Przy 7 428 wyświetleniach bloga podniesienie CTR z 1,13% do 2,5% daje **około +100 kliknięć miesięcznie bez ruszania jednej pozycji w Google**. To najtańszy zysk dostępny w całym projekcie i dlatego jest przed wszystkim innym.
 
-* **Formuła tytułu na Fazę 4:** `[fraza główna] + [twarda liczba z facts.md] + [odróżnik]`. W SERP-ie konkurujemy z Allegro i dużymi drukarniami - jedyne, czym wygrywamy w linii tytułu, to konkret: `od 1 sztuki`, `59 zł za arkusz A4`, `2-3 dni`. Tytuł opisowy bez liczby przegrywa z marketplace'em zawsze.
+* **Formuła tytułu na Fazę 4:** `[fraza główna] + [twarda liczba z facts.md] + [odróżnik]`. W SERP-ie konkurujemy z Allegro i dużymi drukarniami - jedyne, czym wygrywamy w linii tytułu, to konkret: `od 1 sztuki`, `59 zł za arkusz A4`, `4-5 dni robocze`. Tytuł opisowy bez liczby przegrywa z marketplace'em zawsze.
 * **Stopka nie linkuje do żadnej strony komercyjnej** (tylko `/blog`, `/o-nas`, `/kontakt` i dokumenty prawne). To marnowanie jedynego linku obecnego na 100% podstron serwisu. Moduł linków w stopce do landingów i filarów jest zadaniem technicznym o najlepszym stosunku efektu do pracy.
 * **Obrona nazwy własnej:** `małe naklejki` - pozycja 8,26, `male naklejki` - pozycja 5,26. Nazwa marki poza TOP 5 to sygnał słabego autorytetu. Fraza w formie dwuwyrazowej ("Małe naklejki") nie występuje w tytule strony głównej ani razu - występuje wyłącznie jako zbitka w nazwie marki. Do naprawy w `layout.tsx`.
 * **Wygląd w wynikach:** 1 956 wyświetleń przychodzi z fragmentami produktowymi (`Product`/`Offer`), ale ich CTR to 1,23%, czyli **poniżej średniej serwisu**. Gwiazdki ocen są największą dźwignią CTR w SERP-ie, ale `aggregateRating` wolno dodać **wyłącznie na podstawie realnych, zebranych opinii klientów** - fabrykowanie ocen to naruszenie wytycznych Google i ryzyko manualnej kary. Właściwa kolejność: najpierw zbieranie opinii po zamówieniu, potem schema.
@@ -316,3 +316,92 @@ Osobno w danych występują zapytania z operatorami wykluczeń (`"wódkę" -site
 **Korekta wniosku z OSI 2:** przepisanie filaru naprawiło linkowanie (30/30 wpisów), ale najpewniej kosztowało pozycję na frazie głównej. Wyższy CTR (1,9% wobec 0,5%) to efekt uboczny: znikły wyświetlenia bez kliknięć, a kliknięć jest tyle samo. Przy następnych przebudowach stron, które już rankują na frazę główną, tytuł i H1 zmieniamy osobno od treści, żeby dało się rozdzielić skutki.
 
 **Dalszy krok:** `plan.md` → P4.2.16. Kierunek naprawy i tak prowadzi przez intencję poradnikową filaru - z tą różnicą, że fraza główna nie ma dziś właściciela, więc trzeba ją świadomie przypisać (filarowi albo stronie głównej), a nie zakładać, że `/` już ją ma.
+
+---
+
+### 🔎 Dopisek 2026-11-03: porównanie 3-30.10.2026 vs 5.09-2.10.2026 (Strony, Zapytania, marka, szkoła i sezonowość strat)
+
+> **Podstawa:** Google Search Console (`sc-domain:malenaklejki.pl`, odczyt na żywo 2026-11-03, typ wyszukiwania: Sieć), okres **3.10-30.10.2026** w porównaniu z **5.09-2.10.2026**, zakładki **Strony** i **Zapytania** posortowane wg różnicy kliknięć.
+
+**Wynik całej domeny:**
+
+| Metryka | 5.09-2.10.2026 | 3.10-30.10.2026 | Różnica |
+| :--- | ---: | ---: | ---: |
+| Kliknięcia | 251 | **195** | **-56 (-22,3%)** |
+| Wyświetlenia | 12,7 tys. | **12,4 tys.** | **-0,3 tys. (-2,4%)** |
+| Średni CTR | 2,0% | **1,6%** | **-0,4 pp** |
+| Średnia pozycja | 10,3 | **8,4** | **-1,9 (poprawa)** |
+
+#### 1. Zakładka Strony - 10 największych strat wg różnicy kliknięć
+
+| # | Strona | Klik. 3-30.10 | Klik. 5.09-2.10 | Różnica klik. | Wyśw. 3-30.10 | Wyśw. 5.09-2.10 | Różnica wyśw. | CTR 3-30.10 | CTR 5.09-2.10 | Poz. 3-30.10 | Poz. 5.09-2.10 |
+| :--- | :--- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| 1 | `/blog/wklepki-i-wlepy-z-wlasnym-nadrukiem-dla-artystow-i-spolecznosci` | 18 | 54 | **-36** | 1 887 | 2 925 | -1 038 | 1,0% | 1,8% | 7,8 | 7,9 |
+| 2 | `/blog/vlepki-kibicowskie-i-klubowe-wlepy-dla-kibicow-klubow-i-ekip` | 2 | 23 | **-21** | 300 | 856 | -556 | 0,7% | 2,7% | 6,7 | 7,4 |
+| 3 | `/blog/jak-zrobic-wlasne-naklejki-w-telefonie-proste-aplikacje-i-triki` | 6 | 16 | **-10** | 2 993 | 2 370 | +623 | 0,2% | 0,7% | 7,3 | 7,1 |
+| 4 | `/blog/naklejki-na-nalewki-domowe-jak-ozdobic-butelki-na-nalewki` | 0 | 7 | **-7** | 124 | 394 | -270 | 0,0% | 1,8% | 9,4 | 10,2 |
+| 5 | `/naklejki-die-cut` | 0 | 4 | **-4** | 166 | 183 | -17 | 0,0% | 2,2% | 20,0 | 8,1 |
+| 6 | `/blog/naklejki-wlasnego-projektu-na-sloiki-z-przyprawami-zorganizuj-swoja-kuchnie` | 1 | 5 | **-4** | 118 | 110 | +8 | 0,8% | 4,5% | 8,7 | 8,7 |
+| 7 | `/` | 79 | 82 | **-3** | 1 480 | 2 062 | -582 | 5,3% | 4,0% | 7,2 | 14,0 |
+| 8 | `/blog/naklejki-z-wlasnym-napisem-jak-przygotowac-plik-i-zamowic-online` | 1 | 4 | **-3** | 118 | 157 | -39 | 0,8% | 2,5% | 7,5 | 7,5 |
+| 9 | `/blog/drukowanie-naklejek-online-na-co-zwrocic-uwage-przed-wysylka-projektu` | 0 | 2 | **-2** | 141 | 158 | -17 | 0,0% | 1,3% | 9,4 | 12,8 |
+| 10 | `/blog/naklejki-na-motory-i-motocyklowe` | 0 | 2 | **-2** | 29 | 46 | -17 | 0,0% | 4,3% | 8,7 | 9,0 |
+
+*(Ex aequo na 10. miejscu z różnicą `-2` klik.: `/blog/naklejka-ze-zdjecia-jak-przeniesc-wspomnienia-na-naklejke` - `0` vs `2` klik., `294` vs `152` wyśw. `+142`, poz. `8,0` vs `11,1`. Z kolei największe przyrosty w październiku wygenerował klaster Wszystkich Świętych: `/naklejki-na-znicze` `+12` klik., `/blog/znicz-ze-zdjeciem-jak-zrobic-samodzielnie-naklejka-na-znicz` `+11` klik., `/blog/co-napisac-na-zniczu-napisy-i-dedykacje-dla-bliskich` `+4` klik. - łącznie `+27` klik. od zera, oraz `/blog/jak-zrobic-wlasne-naklejki-program-do-robienia-naklejek-online` `+5` klik.)*
+
+#### 2. Zakładka Zapytania - 10 największych strat wg różnicy kliknięć
+
+| # | Zapytanie | Klik. 3-30.10 | Klik. 5.09-2.10 | Różnica klik. | Wyśw. 3-30.10 | Wyśw. 5.09-2.10 | Różnica wyśw. | CTR 3-30.10 | CTR 5.09-2.10 | Poz. 3-30.10 | Poz. 5.09-2.10 |
+| :--- | :--- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| 1 | `vlepki kibicowskie` | 0 | 5 | **-5** | 14 | 199 | -185 | 0,0% | 2,5% | 10,8 | 8,9 |
+| 2 | `wlepki na zamówienie` | 3 | 8 | **-5** | 389 | 434 | -45 | 0,8% | 1,8% | 8,1 | 8,3 |
+| 3 | `wlepy kibicowskie` | 0 | 4 | **-4** | 3 | 67 | -64 | 0,0% | 6,0% | 4,7 | 8,3 |
+| 4 | `jak zrobic naklejke z zdjecia` | 0 | 2 | **-2** | 83 | 47 | +36 | 0,0% | 4,3% | 8,7 | 8,8 |
+| 5 | `własne wlepy` | 0 | 1 | **-1** | 44 | 78 | -34 | 0,0% | 1,3% | 10,8 | 9,4 |
+| 6 | `naklejki kibicowskie` | 0 | 1 | **-1** | 4 | 34 | -30 | 0,0% | 2,9% | 9,3 | 7,8 |
+| 7 | `naklejki na nalewki domowe` | 0 | 1 | **-1** | 4 | 31 | -27 | 0,0% | 3,2% | 4,5 | 8,9 |
+| 8 | `kiss cut` | 0 | 1 | **-1** | 6 | 32 | -26 | 0,0% | 3,1% | 6,0 | 6,7 |
+| 9 | `wlepki com cennik` | 0 | 1 | **-1** | 32 | 50 | -18 | 0,0% | 2,0% | 4,5 | 4,2 |
+| 10 | `vlepki produkcja` | 0 | 1 | **-1** | 3 | 12 | -9 | 0,0% | 8,3% | 7,0 | 12,6 |
+
+*(Pozostałe zapytania z różnicą `-1` klik. przy mniejszym spadku lub przy wzroście wyświetleń: `naklejki ze zdjec` `-4` wyśw., `arkusz naklejek na zamówienie` `-2` wyśw., `zamów naklejki` `0` wyśw., `naklejki cięte po obrysie` `+2` wyśw., `naklejki die cut` `+6` wyśw. przy spadku pozycji z `8,4` na `20,2`, `małe naklejki na zamówienie` `+10` wyśw.)*
+
+#### 3. Frazy z marką (osobne zestawienie)
+
+Frazy z marką zanotowały **silny wzrost netto o +18 kliknięć** (`36` vs `18` kliknięć, `308` vs `246` wyświetleń) - to główny powód, dla którego strona główna `/` utrzymała poziom kliknięć (`79` vs `82`) mimo spadku ogólnych wyświetleń:
+
+| Zapytanie z marką | Klik. 3-30.10 | Klik. 5.09-2.10 | Różnica klik. | Wyśw. 3-30.10 | Wyśw. 5.09-2.10 | Różnica wyśw. | CTR 3-30.10 | CTR 5.09-2.10 | Poz. 3-30.10 | Poz. 5.09-2.10 |
+| :--- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| `małe naklejki` | 26 | 11 | **+15** | 164 | 88 | +76 | 15,9% | 12,5% | 2,8 | 2,5 |
+| `male naklejki` | 9 | 6 | **+3** | 46 | 51 | -5 | 19,6% | 11,8% | 2,0 | 1,4 |
+| `naklejki male` | 1 | 0 | **+1** | 28 | 32 | -4 | 3,6% | 0,0% | 5,8 | 6,0 |
+| `małe naklejki na zamówienie` | 0 | 1 | **-1** | 19 | 9 | +10 | 0,0% | 11,1% | 5,7 | 5,6 |
+| `małe naklejki z własnym nadrukiem` | 0 | 0 | 0 | 27 | 41 | -14 | 0,0% | 0,0% | 8,4 | 13,1 |
+| `naklejki małe` | 0 | 0 | 0 | 22 | 19 | +3 | 0,0% | 0,0% | 6,9 | 7,1 |
+
+#### 4. Frazy szkolne (osobne zestawienie)
+
+* **Strona `/blog/personalizowane-naklejki-na-zeszyty-i-do-przedszkola`:** `0` vs `1` kliknięcie (`-1`), wyświetlenia `328` vs `506` (**`-178`, `-35,2%`**), CTR `0,0%` vs `0,2%`, pozycja `9,5` vs `8,1` (`+1,4`). *(Główny szczyt szkolny przypadł na sierpień i pierwsze dni września przed 5.09; w oknie 5.09-2.10 wygasała już końcówka fali wyprawkowej).*
+* **Jawne zapytania szkolne (39 fraz w GSC, 0 jawnych kliknięć w obu oknach):**
+
+| Zapytanie szkolne | Wyśw. 3-30.10 | Wyśw. 5.09-2.10 | Różnica wyśw. | Poz. 3-30.10 | Poz. 5.09-2.10 |
+| :--- | ---: | ---: | ---: | ---: | ---: |
+| `naklejki do podpisania zeszytu` | 10 | 45 | **-35** | 5,1 | 9,6 |
+| `naklejki na zeszyty personalizowane` | 4 | 11 | **-7** | 8,0 | 8,5 |
+| `personalizowane naklejki na zeszyty` | 4 | 11 | **-7** | 10,8 | 8,6 |
+| `zestaw naklejek do szkoły` | 0 | 6 | **-6** | - | 9,8 |
+| `naklejki personalizowane na zeszyty` | 0 | 5 | **-5** | - | 9,2 |
+| `naklejki personalizowane do szkoły` | 0 | 4 | **-4** | - | 10,8 |
+| `naklejki na zeszyty z imieniem i nazwiskiem` | 33 | 35 | **-2** | 7,8 | 6,5 |
+| `naklejki na zeszyty` | 38 | 3 | **+35** | 12,2 | 10,0 |
+
+#### 5. Wniosek: które straty są sezonowe, a które strukturalne?
+
+1. **Straty sezonowe (wygasanie popytu przy zachowanej lub lepszej pozycji w Google):**
+   * **Klaster nalewek i przetworów (`/blog/naklejki-na-nalewki-domowe...` `-7` klik., `-270` wyśw.; `/etykiety-na-sloiki` `-1` klik., `-57` wyśw.; `/blog/etykiety-na-sloiki-do-przetworow-i-wekow` `-17` wyśw.):** czysta sezonowość końca lata i wczesnej jesieni (sezon owocobrania i nastawiania nalewek w sierpniu-wrześniu). Pozycja wpisu o nalewkach **poprawiła się** z `10,2` na `9,4` (a frazy `naklejki na nalewki domowe` z `8,9` na `4,5`), a mimo to wyświetlenia spadły o 69% (`394` -> `124`).
+   * **Klaster kibicowski (`/blog/vlepki-kibicowskie-i-klubowe...` `-21` klik., `-556` wyśw.) oraz część ogólnego ruchu wlepek (`/blog/wklepki-i-wlepy...` `-36` klik., `-1 038` wyśw.):** średnia pozycja obu wpisów jest stabilna lub lepsza (`vlepki-kibicowskie`: poprawa z `7,4` na `6,7`; `wklepki-i-wlepy`: `7,8` vs `7,9`; fraza `wlepy kibicowskie`: poprawa z `8,3` na `4,7`). Spadek wynika z wygaśnięcia wrześniowego piku startu rundy/roku szkolno-akademickiego na frazy kibicowskie (`vlepki kibicowskie` `199` -> `14` wyśw., `wlepy kibicowskie` `67` -> `3` wyśw., `naklejki kibicowskie` `34` -> `4` wyśw.).
+   * **Klaster szkolny (`/blog/personalizowane-naklejki-na-zeszyty-i-do-przedszkola` `-1` klik., `-178` wyśw.) i motocyklowy (`/blog/naklejki-na-motory-i-motocyklowe` `-2` klik., `-17` wyśw., poz. `8,7` vs `9,0`):** naturalne wygaszenie po pierwszym tygodniu września (wyprawka szkolna) oraz końcu sezonu motocyklowego.
+2. **Straty niesezonowe (strukturalne / techniczne / CTR):**
+   * **`/naklejki-die-cut` (`-4` klik., spadek pozycji z `8,1` na `20,0`):** jedyna strona w TOP 10 strat ze spadkiem pozycji - bezpośredni i oczekiwany skutek przekierowania 301 `/naklejki-die-cut` -> `/naklejki-foliowe` (P4.1.2). W tym samym czasie docelowy `/naklejki-foliowe` urósł z `377` do `494` wyświetleń (`+117`), poprawił pozycję z `16,0` na `15,2` i zdobył pierwsze kliknięcie bezpośrednio na frazę główną `naklejki foliowe`.
+   * **`/blog/jak-zrobic-wlasne-naklejki-w-telefonie...` (`-10` klik. mimo wzrostu wyświetleń z `2 370` do `2 993`, `+623` wyśw. przy stabilnej pozycji `7,3` vs `7,1`):** problem wyłącznie z CTR (`0,7%` -> `0,2%`) i intencją DIY ("zrób sam w telefonie za darmo"), częściowo zrekompensowany wzrostem sąsiedniego wpisu `/blog/jak-zrobic-wlasne-naklejki-program-do-robienia-naklejek-online` (`+5` klik., `87` -> `659` wyśw.).
+   * **Część straty na `wlepki na zamówienie` (`-5` klik., `8` -> `3` klik. przy stabilnej pozycji `8,1` vs `8,3` i małym spadku wyświetleń `434` -> `389`):** spadek CTR na wpisie poradnikowym `wklepki-i-wlepy` przy braku obecności landingu `/wlepki-na-zamowienie` w TOP 10 na tę frazę (szczegółowy rozkład w `keywords.md` §14).

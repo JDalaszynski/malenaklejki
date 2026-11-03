@@ -2,7 +2,7 @@
 title: "Etykiety na słoiki do przetworów i weków - napisy na słoiki krok po kroku"
 slug: "etykiety-na-sloiki-do-przetworow-i-wekow"
 date: "2026-08-06"
-updated: "2026-10-23"
+updated: "2026-11-02"
 description: "Dowiedz się, jak łatwo zrobić własne wodoodporne etykiety na słoiki do przetworów i weków. Naklejki na słoiki bez minimalnego nakładu - stała cena za arkusz A4."
 image: "/blog/etykiety-na-sloiki-do-przetworow-i-wekow/szklane-sloiki-z-przetworami-etykiety-na-sloiki-rustykalne.jpeg"
 tags: ["naklejki", "kuchnia", "etykiety", "przetwory"]
@@ -23,11 +23,11 @@ Drukujemy na mocnej folii winylowej, co ma ogromne znaczenie w przypadku przetwo
 ## Skąd wziąć autorskie napisy na słoiki?
 
 Nie znasz Photoshopa? Żaden problem. Masz do wyboru kilka szybkich ścieżek, by pozyskać gotowy obraz:
-* **Generatory obrazów AI:** Skorzystaj z zewnętrznych narzędzi sztucznej inteligencji (np. ChatGPT, Gemini lub Midjourney). Wystarczy wpisać prompt (np. "rustykalna etykieta na konfiturę malinową z białym tłem i malinami po bokach"), a otrzymany kwadratowy plik wgrać do nas. Nasz inteligentny kreator arkusza sam usunie z niego zbędne tło w kilka sekund (tzw. automatyczne usuwanie tła), oszczędzając Twój czas.
+* **Generatory obrazów AI:** Skorzystaj z zewnętrznych narzędzi sztucznej inteligencji (np. ChatGPT, Gemini lub Midjourney). Wystarczy wpisać prompt (np. "rustykalna etykieta na konfiturę malinową z białym tłem i malinami po bokach"), a otrzymany kwadratowy plik wgrać do nas. Nasz kreator arkusza sam odetnie z niego zbędne tło w kilka sekund, oszczędzając Twój czas.
 * **Darmowe programy graficzne:** Canva, a nawet zwykły Word wystarczą, by wpisać odpowiednie nazwy i dobrać ładną czcionkę. 
 * **Twoje własne zdjęcia:** Naklejka ze zdjęcia spiżarni lub kosza owoców to świetny, domowy motyw.
 
-Kiedy masz już gotowy plik JPG lub PNG, wchodzisz do naszego kreatora arkusza i ładujesz go do systemu z poziomu swojego telefonu. Szukasz gotowego pomysłu na całą spiżarnię? Zobacz, jak przygotować [własne etykiety na słoiki z przyprawami](/blog/naklejki-wlasnego-projektu-na-sloiki-z-przyprawami-zorganizuj-swoja-kuchnie).
+Kiedy masz już gotowy plik PNG, JPG lub PDF (np. wyeksportowany z Canvy albo Worda), wchodzisz do naszego kreatora arkusza i ładujesz go do systemu z poziomu swojego telefonu. Szukasz gotowego pomysłu na całą spiżarnię? Zobacz, jak przygotować [własne etykiety na słoiki z przyprawami](/blog/naklejki-wlasnego-projektu-na-sloiki-z-przyprawami-zorganizuj-swoja-kuchnie).
 
 ## Organizacja to podstawa: naklejki na słoiki personalizowane krok po kroku
 

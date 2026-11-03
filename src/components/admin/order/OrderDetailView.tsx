@@ -111,6 +111,14 @@ export function OrderDetailView({
               {order.acquisition.keyword ? ` · ${order.acquisition.keyword}` : ""}
             </StatusPill>
           )}
+          {order.landingPage && (
+            <StatusPill tone="neutral" className="max-w-full">
+              <span>Wejście:</span>
+              <span className="font-mono truncate max-w-[20rem]" title={order.landingPage}>
+                {order.landingPage}
+              </span>
+            </StatusPill>
+          )}
         </div>
       }
       actions={

@@ -95,6 +95,7 @@ export function OrdersTable({
                 <td className="py-3 pr-4 whitespace-nowrap">
                   <Link
                     href={`/admin/zamowienia/${order.id}`}
+                    title={order.landingPage ? `Wejście: ${order.landingPage}` : undefined}
                     className="font-mono font-extrabold text-foreground hover:text-primary transition-colors"
                   >
                     {order.orderNumber}
@@ -108,7 +109,7 @@ export function OrdersTable({
                     <span
                       title={`Z reklamy ${ACQUISITION_LABELS[order.acquisition.channel]}${
                         order.acquisition.keyword ? ` — ${order.acquisition.keyword}` : ""
-                      }`}
+                      }${order.landingPage ? ` (${order.landingPage})` : ""}`}
                       className="ml-2 text-[10px] font-black uppercase tracking-wider text-primary"
                     >
                       ADS

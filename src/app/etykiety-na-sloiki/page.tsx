@@ -328,7 +328,7 @@ export default function EtykietyNaSloikiPage() {
           name: "Etykiety na słoiki z własnym nadrukiem",
           url: PAGE_URL,
           isPartOf: { "@id": "https://www.malenaklejki.pl/#website" },
-          dateModified: "2026-09-03T00:00:00+02:00",
+          dateModified: "2026-11-02T00:00:00+01:00",
         }}
       />
 
@@ -370,17 +370,15 @@ export default function EtykietyNaSloikiPage() {
           </h1>
 
           <p className="text-sm sm:text-lg text-foreground/90 font-semibold leading-relaxed">
-            Wydrukuj <strong>etykiety na słoiki</strong> z własną nazwą,
-            składem i datą na trwałej{" "}
-            <strong>folii winylowej odpornej na wodę i UV</strong> - zamiast
-            papierowych karteczek, które rozmiękają w spiżarni. Wgraj gotowy
-            obraz, a kreator sam usunie tło i wytnie etykietę w kole, owalu,
-            prostokącie albo dokładnie po obrysie grafiki. Druk{" "}
-            <strong>300 DPI</strong>, stała cena{" "}
-            <strong>59,00 zł brutto za arkusz A4</strong>, już od 1 arkusza,
-            produkcja w <strong>4-5 dni robocze</strong> i odbiór w paczkomacie.
-            Jedno zastrzeżenie: folia <strong>nie nadaje się do zmywarki</strong>{" "}
-            - opisany słoik myj ręcznie.
+            <strong>Etykiety na słoiki</strong> z własną nazwą, rocznikiem lub
+            składem porządkują domową spiżarnię z przetworami i nalewkami oraz
+            nadają spójny wygląd krótkim seriom miodów, świec sojowych czy
+            kosmetyków. W odróżnieniu od papierowych karteczek nie rozmiękają od
+            wilgoci w piwnicy ani w lodówce (pamiętaj jedynie o myciu ręcznym -
+            nie w zmywarce). Na{" "}
+            <strong>jednym arkuszu A4 za 59,00 zł brutto</strong> połączysz
+            etykiety na kilka różnych smaków i pojemności słoików naraz, już od
+            1 arkusza bez minimalnego nakładu.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-3 pt-2">
@@ -404,8 +402,8 @@ export default function EtykietyNaSloikiPage() {
               <ShieldCheck className="w-3.5 h-3.5" /> W 100% polska produkcja
             </span>
             <span className="text-xs font-bold text-muted-foreground/60 flex items-center gap-1.5">
-              <Clock className="w-3.5 h-3.5" /> Ostatnia aktualizacja: 3
-              września 2026
+              <Clock className="w-3.5 h-3.5" /> Ostatnia aktualizacja: 2
+              listopada 2026
             </span>
           </div>
         </section>

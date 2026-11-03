@@ -299,7 +299,7 @@ export default function WlepkiNaZamowieniePage() {
           name: "Wlepki na zamówienie z własnym nadrukiem",
           url: PAGE_URL,
           isPartOf: { "@id": "https://www.malenaklejki.pl/#website" },
-          dateModified: "2026-09-03T00:00:00+02:00",
+          dateModified: "2026-11-02T00:00:00+01:00",
         }}
       />
 
@@ -341,14 +341,15 @@ export default function WlepkiNaZamowieniePage() {
           </h1>
 
           <p className="text-sm sm:text-lg text-foreground/90 font-semibold leading-relaxed">
-            Zamów <strong>produkcję wlepek</strong> (pisanych też jako{" "}
-            <strong>vlepki</strong>) w pojedynczych sztukach ciętych dokładnie
-            po obrysie Twojej grafiki, bez minimalnego nakładu. Wgraj gotowy
-            projekt wlepki, a kreator sam usunie tło i wyznaczy linię cięcia.
-            Druk na trwałej <strong>folii winylowej</strong>, stała cena{" "}
-            <strong>59,00 zł brutto za arkusz A4</strong>, już od 1 arkusza,
-            produkcja w <strong>4-5 dni robocze</strong> i wysyłka do
-            paczkomatu.
+            <strong>Wlepki na zamówienie</strong> (pisane też jako{" "}
+            <strong>vlepki</strong>) to autorskie naklejki do rozdawania fanom
+            na koncertach, dorzucania do paczek z merchem albo oznaczania
+            sprzętu ekipy, klubu i sekcji kibicowskiej. Zamiast zamawiać setki
+            identycznych sztuk w hurtowni, na{" "}
+            <strong>jednym arkuszu A4 za 59,00 zł brutto</strong> zmieścisz
+            jeden lub kilka różnych wzorów - pociętych po obrysie na pojedyncze
+            sztuki gotowe do rozdania albo zostawionych na wspólnym arkuszu,
+            już od 1 arkusza bez minimalnego nakładu.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-3 pt-2">
@@ -372,8 +373,8 @@ export default function WlepkiNaZamowieniePage() {
               <ShieldCheck className="w-3.5 h-3.5" /> W 100% polska produkcja
             </span>
             <span className="text-xs font-bold text-muted-foreground/60 flex items-center gap-1.5">
-              <Clock className="w-3.5 h-3.5" /> Ostatnia aktualizacja: 3
-              września 2026
+              <Clock className="w-3.5 h-3.5" /> Ostatnia aktualizacja: 2
+              listopada 2026
             </span>
           </div>
         </section>

@@ -206,7 +206,7 @@ export const GLOSSARY: TermGroup[] = [
         icon: Shapes,
         slug: "wektor-i-raster",
         name: "Wektor i raster",
-        def: "Raster (JPG, PNG) to obraz zbudowany z pikseli - zbyt mocno powiększony zaczyna się rozmywać. Wektor (SVG, PDF) opisuje kształty matematycznie, więc skaluje się bez utraty jakości. Do naklejek nadają się oba formaty, ale przy dużym powiększeniu grafiki wektorowe dają najostrzejsze krawędzie.",
+        def: "Raster (JPG, PNG, WEBP) to obraz zbudowany z pikseli - zbyt mocno powiększony zaczyna się rozmywać. Wektor (np. PDF lub SVG) opisuje kształty matematycznie, więc skaluje się bez utraty jakości. Nasz kreator przyjmuje zarówno pliki rastrowe (PNG, JPG, WEBP), jak i wektorowe PDF - grafiki z programów wektorowych zapisz przed wgraniem jako PDF (plików SVG kreator nie obsługuje).",
         matchTerms: ["plik wektorowy", "grafika rastrowa"],
       },
       {

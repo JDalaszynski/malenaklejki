@@ -17,7 +17,14 @@ export type ThemePage = {
   lastModified: string;
 };
 
-export const THEME_PAGES: ThemePage[] = [];
+export const THEME_PAGES: ThemePage[] = [
+  {
+    path: "/naklejki-swiateczne",
+    category: "Święta",
+    label: "Naklejki świąteczne",
+    lastModified: "2026-11-02",
+  },
+];
 
 /**
  * Wpisy blogowe z blokiem gotowych zestawów (frontmatter `catalog: true`) —

@@ -1,7 +1,11 @@
 import "server-only";
 
 import { db } from "@/lib/firebase/admin";
-import { toStoredAcquisition, type OrderAcquisition } from "@/lib/attribution";
+import {
+  toStoredAcquisition,
+  toStoredLandingPage,
+  type OrderAcquisition,
+} from "@/lib/attribution";
 
 export type AdminOrderItem = {
   id: string;
@@ -24,6 +28,8 @@ export type AdminOrder = {
   source: string;
   /** Zamówienie z reklamy — etykieta zapisana przy składaniu (`lib/attribution`). */
   acquisition: OrderAcquisition | null;
+  /** Ścieżka pierwszej strony wizyty bez parametrów adresu (`lib/attribution`). */
+  landingPage: string | null;
   createdAt: string;
   paidAt: string | null;
   deletedAt: string | null;
@@ -90,6 +96,7 @@ export function toAdminOrder(id: string, data: FirebaseFirestore.DocumentData): 
     orderNumber: data.orderNumber ?? id,
     source: data.source ?? "shop",
     acquisition: toStoredAcquisition(data.acquisition),
+    landingPage: toStoredLandingPage(data.landingPage),
     createdAt: data.createdAt ?? "",
     paidAt: data.paidAt ?? null,
     deletedAt: data.deletedAt ?? null,
@@ -178,6 +185,8 @@ export function toAdminOrder(id: string, data: FirebaseFirestore.DocumentData): 
 const LIST_FIELDS = [
   "orderNumber",
   "source",
+  "acquisition",
+  "landingPage",
   "createdAt",
   "paidAt",
   "deletedAt",
@@ -261,6 +270,7 @@ async function fetchOrders(
         order.billing.nip ?? "",
         order.billing.companyName ?? "",
         order.trackingNumber ?? "",
+        order.landingPage ?? "",
       ]
         .join(" ")
         .toLowerCase();
