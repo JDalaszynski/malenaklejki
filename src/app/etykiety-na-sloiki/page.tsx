@@ -575,6 +575,14 @@ export default function EtykietyNaSloikiPage() {
             >
               personalizowane naklejki na alkohol i butelki weselne
             </Link>
+            , a słoiczki z miodem jako upominek dla gości opisujemy w poradniku
+            o{" "}
+            <Link
+              href="/blog/naklejki-na-koperty-slubne-i-podziekowania-dla-gosci"
+              className="text-primary font-bold underline underline-offset-4 hover:text-primary/80 transition-colors"
+            >
+              naklejkach na podziękowania dla gości weselnych
+            </Link>
             .
           </p>
         </section>

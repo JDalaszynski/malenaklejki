@@ -131,7 +131,12 @@ export function SeoContentSection() {
                     <Link href="/gotowe-zestawy" className={inlineLink}>
                       gotowych zestawów naklejek
                     </Link>{" "}
-                    - zamówisz go od razu albo zmienisz po swojemu.
+                    - zamówisz go od razu albo zmienisz po swojemu. Na grudzień
+                    mamy też{" "}
+                    <Link href="/naklejki-swiateczne" className={inlineLink}>
+                      naklejki świąteczne
+                    </Link>{" "}
+                    na prezenty i kalendarz adwentowy.
                   </>
                 )}
               </p>

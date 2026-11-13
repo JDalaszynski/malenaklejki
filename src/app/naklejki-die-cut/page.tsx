@@ -464,7 +464,16 @@ export default function NaklejkiDieCutPage() {
             naklejka przybiera kształt sylwetki zwierzaka, zarysu logo czy
             nieregularnego rysunku. To ten szczegół sprawia, że naklejki
             wyglądają jak profesjonalny merch dopasowany na miarę, a nie jak
-            seria etykiet w kwadratach.
+            seria etykiet w kwadratach. Gdy logo albo monogram jest wpisany w
+            okrąg, lepiej wypadnie cięcie w koło - kiedy wybrać ten kształt,
+            piszemy w poradniku o{" "}
+            <Link
+              href="/blog/naklejki-okragle-z-wlasnym-nadrukiem"
+              className="text-primary font-bold underline underline-offset-4 hover:text-primary/80 transition-colors"
+            >
+              okrągłych naklejkach z własnym nadrukiem
+            </Link>
+            .
           </p>
           <p className="text-sm sm:text-base text-muted-foreground font-medium leading-relaxed">
             Cały proces przygotowania konturu dzieje się w kreatorze. Wgrywasz
