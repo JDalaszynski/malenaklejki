@@ -1,5 +1,7 @@
 # 📅 Plan i strategia landing pages
 
+> **Od 2026-11-18 kolejka treści żyje w `tresci/rejestr.json` (agent `redaktor-tresci`, `/tresc <id>`).** Ten plik zostaje historią decyzji i analiz; otwarte pozycje przeniesiono do rejestru (lista w `tresci/dziennik.md`, wpis z 2026-11-18). Nowych pozycji tu nie dopisuj.
+
 Format jak `blog-agent/plan.md`: wytyczne → kolejka (checkboxy) → zrealizowane. Agent bierze pierwszy niewykonany `- [ ]`, **potwierdza fakty oznaczone "DO POTWIERDZENIA"**, buduje stronę wg `rules.md`, dodaje URL do `sitemap.ts` i oznacza `- [x]`.
 
 ---

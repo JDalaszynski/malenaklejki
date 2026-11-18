@@ -1,0 +1,1731 @@
+{
+  "projekt": "malenaklejki",
+  "zaktualizowano": "2026-11-18",
+  "opis": "Rejestr treści MałeNaklejki: landingi i wpisy opublikowane, kolejka nowych stron i zadania poprawy opublikowanych. Jedno źródło dla agenta treści (/tresc, /frazy, /przeglad-tresci) i panelu (Treści, Frazy). Pola opisuje tresci/system.md, sekcja 2.",
+  "segmenty": {
+    "wszyscy": "Wszyscy klienci",
+    "firmy": "Małe firmy i manufaktury",
+    "tworcy": "Twórcy, pasjonaci i społeczności",
+    "okazje": "Okazje, prezenty i pamiątki",
+    "dom": "Dom, rodzina i szkoła"
+  },
+  "tresci": [
+    {
+      "id": "naklejki-foliowe",
+      "typ": "landing",
+      "sciezka": "/naklejki-foliowe",
+      "plik": "src/app/naklejki-foliowe/page.tsx",
+      "tytul": "Naklejki foliowe i winylowe z własnym nadrukiem",
+      "nazwa": "Naklejki foliowe",
+      "zajawka": "Naklejki foliowe z własnym nadrukiem na trwałej folii winylowej - odporne na wodę i UV, druk 300 DPI. Stała cena 59 zł brutto za arkusz A4, od 1 sztuki.",
+      "fraza": "naklejki foliowe",
+      "frazy": [
+        "naklejki winylowe",
+        "naklejki wodoodporne",
+        "naklejki foliowe na zamówienie",
+        "naklejki odporne na uv"
+      ],
+      "pytania_ai": [
+        "Gdzie zamówić wodoodporne naklejki winylowe z własnym nadrukiem w małej ilości?",
+        "Czy naklejki z folii winylowej są wodoodporne i odporne na słońce?"
+      ],
+      "intencja": "transakcyjna",
+      "potrzeba": "Chce kupić trwałe naklejki z własnym nadrukiem, które przetrwają deszcz, mycie i słońce, i sprawdzić, z jakiej folii są zrobione.",
+      "segment": "wszyscy",
+      "odbiorca": "Osoba, która ma już grafikę i szuka wodoodpornej naklejki na bidon, laptopa, rower albo opakowanie, a papier odpada.",
+      "etap": "BOFU",
+      "filar": null,
+      "kotwica": "naklejki foliowe",
+      "cta": {
+        "href": "/",
+        "tekst": "Zamów naklejki na folii"
+      },
+      "roznica": "Strona sprzedaje naklejki na folii winylowej; wpis o wodoodporności odpowiada, ile ta folia wytrzymuje w praktyce.",
+      "priorytet": "P0",
+      "status": "opublikowane",
+      "opublikowano": "2026-07-25",
+      "zmieniono": "2026-07-25",
+      "zgloszenia": {},
+      "zadanie": {
+        "rodzaj": "poglebienie",
+        "tytul": "Wzmocnić landing na „naklejki foliowe” i „naklejki winylowe”",
+        "powod": "GSC 90 dni 18.08-15.11.2026: 1404 wyświetlenia, 32 kliknięcia przy poz. 18,3. „naklejki foliowe” 449 wyświetleń na poz. 24,9, „naklejki winylowe” 183 na poz. 35,9, „naklejki wodoodporne” 76 na poz. 30,6. Wejścia z GA4 i zamówienia według strony: tresci/frazy.json (poza gitem).",
+        "teza": "Strona prowadzi do koszyka (liczby GA4 w tresci/frazy.json), ale stoi poza pierwszą stroną. Dodaj tabelę „folia winylowa a papier samoprzylepny” (fakty tylko z facts.md: woda i UV tak, zmywarka nie), H2 z „naklejki winylowe” i „naklejki wodoodporne”, 2-3 pytania FAQ z prawdziwych zapytań. Linki przychodzące kotwicą „naklejki foliowe” z wpisów o rowerze, motorze, motoryzacji i trwałości folii.",
+        "priorytet": "P1",
+        "kolejnosc": 7,
+        "zrodlo": "przegląd treści 2026-11-18",
+        "dodano": "2026-11-18"
+      }
+    },
+    {
+      "id": "fotonaklejki",
+      "typ": "landing",
+      "sciezka": "/fotonaklejki",
+      "plik": "src/app/fotonaklejki/page.tsx",
+      "tytul": "Fotonaklejki - naklejki z własnego zdjęcia",
+      "nazwa": "Fotonaklejki",
+      "zajawka": "Fotonaklejki ze zdjęcia na prezent - wspólne zdjęcie albo portret pupila wytniemy po obrysie na wodoodpornej folii winylowej. 59,00 zł brutto za arkusz A4.",
+      "fraza": "fotonaklejki",
+      "frazy": [
+        "naklejki z własnego zdjęcia",
+        "naklejka ze zdjęcia"
+      ],
+      "pytania_ai": [
+        "Gdzie zamówić naklejki z własnego zdjęcia wycięte po obrysie, bez usuwania tła samemu?"
+      ],
+      "intencja": "transakcyjna",
+      "potrzeba": "Chce zamówić naklejki z własnych zdjęć (pupil, rodzina, wakacje) wycięte po sylwetce i wie, że to ma być wydruk, nie aplikacja.",
+      "segment": "okazje",
+      "odbiorca": "Osoba z ulubionym zdjęciem w telefonie, która szuka prezentu albo pamiątki i nie umie usunąć tła sama.",
+      "etap": "BOFU",
+      "filar": null,
+      "kotwica": "fotonaklejki ze zdjęcia",
+      "cta": {
+        "href": "/",
+        "tekst": "Zrób fotonaklejki"
+      },
+      "roznica": "Strona sprzedaje fotonaklejki; wpis o naklejce ze zdjęcia uczy, jak ją zrobić krok po kroku.",
+      "priorytet": "P0",
+      "status": "opublikowane",
+      "opublikowano": "2026-07-27",
+      "zmieniono": "2026-07-27",
+      "zgloszenia": {},
+      "zadanie": {
+        "rodzaj": "konwersja",
+        "tytul": "Pierwszy ekran prowadzi od zdjęcia prosto do kreatora",
+        "powod": "Wejścia z GA4 kończą się bez dodania do koszyka, a zamówień zaczętych na tej stronie od 3.11 nie ma (liczby w tresci/frazy.json, poza gitem). GSC 90 dni 18.08-15.11.2026: 1871 wyświetleń, poz. 8,8, CTR 1,3%.",
+        "teza": "Sprawdź pierwszy ekran przy 375 px: czy jest jedno zdanie odpowiedzi, przykład zdjęcie → naklejka i przycisk do kreatora nad linią zgięcia. Rozbrój obawy przy CTA: tło usuwa kreator, cena 59 zł za arkusz od razu, różne zdjęcia na jednym arkuszu. Dodaj sekcję „Fotonaklejki na prezent - święta i Dzień Babci i Dziadka” (21-22.01) z 1-2 pytaniami FAQ (zadanie P4.3.5 z blog-agent/plan.md). Bez grafik AI.",
+        "priorytet": "P1",
+        "kolejnosc": 2,
+        "zrodlo": "przegląd treści 2026-11-18",
+        "dodano": "2026-11-18"
+      }
+    },
+    {
+      "id": "wlepki-na-zamowienie",
+      "typ": "landing",
+      "sciezka": "/wlepki-na-zamowienie",
+      "plik": "src/app/wlepki-na-zamowienie/page.tsx",
+      "tytul": "Wlepki na zamówienie z własnym nadrukiem",
+      "nazwa": "Wlepki na zamówienie",
+      "zajawka": "Produkcja wlepek (vlepek) na zamówienie: pojedyncze sztuki cięte po obrysie, bez minimalnego nakładu. Stała cena 59,00 zł brutto za arkusz A4, druk 4-5 dni.",
+      "fraza": "wlepki na zamówienie",
+      "frazy": [
+        "vlepki na zamówienie",
+        "wlepy na zamówienie",
+        "produkcja vlepek",
+        "projekt vlepki",
+        "druk vlepek"
+      ],
+      "pytania_ai": [
+        "Gdzie zamówić wlepki z własnym nadrukiem w małym nakładzie w Polsce?"
+      ],
+      "intencja": "transakcyjna",
+      "potrzeba": "Chce zamówić wlepki (vlepki) z własnym nadrukiem w małej ilości i sprawdzić cenę, cięcie i czas produkcji.",
+      "segment": "tworcy",
+      "odbiorca": "Artysta, zespół, ekipa albo klub, który ma grafikę i potrzebuje kilkudziesięciu wlepek do rozdania, bez hurtowego nakładu.",
+      "etap": "BOFU",
+      "filar": null,
+      "kotwica": "wlepki na zamówienie",
+      "cta": {
+        "href": "/",
+        "tekst": "Zamów wlepki"
+      },
+      "roznica": "Strona sprzedaje wlepki; wpis o wlepkach dla artystów odpowiada, czym są wlepki i do czego służą, a wpis kibicowski na niszę klubową.",
+      "priorytet": "P0",
+      "status": "opublikowane",
+      "opublikowano": "2026-08-31",
+      "zmieniono": "2026-08-31",
+      "zgloszenia": {}
+    },
+    {
+      "id": "naklejki-die-cut",
+      "typ": "landing",
+      "sciezka": "/naklejki-die-cut",
+      "plik": "src/app/naklejki-die-cut/page.tsx",
+      "tytul": "Naklejki die-cut - cięte po obrysie",
+      "nazwa": "Naklejki die-cut",
+      "zajawka": "Zamów naklejki die-cut cięte dokładnie po obrysie grafiki: dowolny kształt zamiast prostokąta, folia winylowa, druk 300 DPI. 59 zł brutto/arkusz A4, od 1 sztuki.",
+      "fraza": "naklejki die cut",
+      "frazy": [
+        "naklejki cięte po obrysie",
+        "naklejki po obrysie",
+        "naklejki po kształcie"
+      ],
+      "pytania_ai": [
+        "Gdzie zamówić naklejki die-cut cięte po obrysie od jednej sztuki?"
+      ],
+      "intencja": "transakcyjna",
+      "potrzeba": "Chce kupić naklejki w kształcie grafiki, bez prostokątnego tła, i sprawdzić, czy da się to zamówić od 1 sztuki.",
+      "segment": "wszyscy",
+      "odbiorca": "Twórca albo mała firma z logo, ilustracją lub sylwetką ze zdjęcia, która nie chce białego kwadratu wokół grafiki.",
+      "etap": "BOFU",
+      "filar": null,
+      "kotwica": "naklejki cięte po obrysie",
+      "cta": {
+        "href": "/",
+        "tekst": "Zamów naklejki po obrysie"
+      },
+      "roznica": "Strona sprzedaje cięcie po obrysie; wpis o die-cut i kiss-cut tłumaczy różnicę między wykrojami.",
+      "priorytet": "P1",
+      "status": "opublikowane",
+      "opublikowano": "2026-07-29",
+      "zmieniono": "2026-07-29",
+      "zgloszenia": {}
+    },
+    {
+      "id": "naklejki-dla-firm",
+      "typ": "landing",
+      "sciezka": "/naklejki-dla-firm",
+      "plik": "src/app/naklejki-dla-firm/page.tsx",
+      "tytul": "Naklejki dla małych firm z własnym logo",
+      "nazwa": "Naklejki dla firm",
+      "zajawka": "Naklejki dla małych firm z własnym logo: od 1 arkusza A4 za stałe 59,00 zł brutto, bez minimalnego nakładu, faktura VAT, produkcja w Polsce 4-5 dni robocze.",
+      "fraza": "naklejki dla firm",
+      "frazy": [
+        "naklejki firmowe",
+        "naklejki dla małych firm",
+        "naklejki firmowe z logo",
+        "naklejki z logo"
+      ],
+      "pytania_ai": [
+        "Gdzie mała firma zamówi naklejki z logo z fakturą VAT bez minimalnego nakładu?"
+      ],
+      "intencja": "transakcyjna",
+      "potrzeba": "Chce zamówić naklejki z logo dla małej firmy z fakturą VAT, bez hurtowego nakładu i kosztów przygotowalni.",
+      "segment": "firmy",
+      "odbiorca": "Właściciel małej firmy, manufaktury albo sklepu internetowego, który potrzebuje kilkudziesięciu naklejek z logo na paczki i produkty.",
+      "etap": "BOFU",
+      "filar": null,
+      "kotwica": "naklejki dla firm",
+      "cta": {
+        "href": "/",
+        "tekst": "Zamów naklejki z logo"
+      },
+      "roznica": "Strona sprzedaje naklejki firmom; wpis o naklejce z logo odpowiada, jak brandować produkty.",
+      "priorytet": "P1",
+      "status": "opublikowane",
+      "opublikowano": "2026-07-24",
+      "zmieniono": "2026-10-27",
+      "zgloszenia": {},
+      "zadanie": {
+        "rodzaj": "poglebienie",
+        "tytul": "Wyjść z pozycji 20+ na „naklejki firmowe” i „naklejki dla firm”",
+        "powod": "GSC 90 dni 18.08-15.11.2026: 531 wyświetleń, 0 kliknięć przy poz. 21,8. „naklejki firmowe” 196 wyświetleń na poz. 37,8, „naklejki dla firm” 67 na poz. 19,2. „naklejki z logo” Google pokazuje z wpisu o słoikach (poz. 3,5), nie stąd.",
+        "teza": "Sprawdź, co jest w pierwszej dziesiątce na „naklejki firmowe” (WebSearch) i czego brakuje na stronie. Dodaj sekcję „Naklejki na paczki z logo - sezon wysyłek” (zadanie P4.3.4: jeden wzór na cały sezon, faktura VAT, zamówienie z wyprzedzeniem, bez daty granicznej). Dopisz linki przychodzące kotwicą „naklejki dla firm” z wpisów firmowych (naklejka z logo, eventy, logo na słoiki) i „naklejki firmowe” w H2. Title może zawierać „naklejki firmowe”.",
+        "priorytet": "P1",
+        "kolejnosc": 6,
+        "zrodlo": "przegląd treści 2026-11-18",
+        "dodano": "2026-11-18"
+      }
+    },
+    {
+      "id": "etykiety-na-sloiki",
+      "typ": "landing",
+      "sciezka": "/etykiety-na-sloiki",
+      "plik": "src/app/etykiety-na-sloiki/page.tsx",
+      "tytul": "Etykiety na słoiki z własnym nadrukiem",
+      "nazwa": "Etykiety na słoiki",
+      "zajawka": "Zamów etykiety na słoiki z własnym nadrukiem: wodoodporna folia winylowa, dowolny kształt i napisy. Stała cena 59,00 zł brutto za arkusz A4, już od 1 sztuki.",
+      "fraza": "etykiety na słoiki",
+      "frazy": [
+        "naklejki na słoiki z własnym nadrukiem",
+        "etykieta na słoik",
+        "etykiety na słoiki drukarnia"
+      ],
+      "pytania_ai": [
+        "Gdzie zamówić wodoodporne etykiety na słoiki z własnym napisem w małej ilości?"
+      ],
+      "intencja": "transakcyjna",
+      "potrzeba": "Chce zamówić etykiety na słoiki z własnym napisem, które nie rozmokną w lodówce i przy myciu.",
+      "segment": "dom",
+      "odbiorca": "Osoba robiąca przetwory, miód albo nalewki w domu lub w małej manufakturze, która chce ładnych, trwałych etykiet w małej ilości.",
+      "etap": "BOFU",
+      "filar": null,
+      "kotwica": "etykiety na słoiki",
+      "cta": {
+        "href": "/",
+        "tekst": "Zamów etykiety na słoiki"
+      },
+      "roznica": "Strona sprzedaje etykiety na słoiki; wpis o przetworach podpowiada, co napisać na słoiku, a wpis o logo mówi do manufaktur.",
+      "priorytet": "P1",
+      "status": "opublikowane",
+      "opublikowano": "2026-08-25",
+      "zmieniono": "2026-08-25",
+      "zgloszenia": {},
+      "zadanie": {
+        "rodzaj": "linki",
+        "tytul": "Oddać landingowi frazy o słoikach, które dziś łapią wpisy",
+        "powod": "GSC 90 dni 18.08-15.11.2026: 809 wyświetleń, 7 kliknięć przy poz. 23,7. „naklejki na słoiki z własnym nadrukiem”: wpis o logo na słoikach poz. 9,4, landing poz. 18,1. „etykiety na słoiki” 52 wyświetlenia na poz. 35,6.",
+        "teza": "Linki do landingu kotwicą „etykiety na słoiki” z wpisów o przetworach, przyprawach, nalewkach i logo na słoikach, w akapicie, który odpowiada na pytanie zakupowe. Na landingu H2 z „naklejki na słoiki z własnym nadrukiem” i odpowiedź 40-60 słów pod nim.",
+        "priorytet": "P1",
+        "kolejnosc": 8,
+        "zrodlo": "przegląd treści 2026-11-18",
+        "dodano": "2026-11-18"
+      }
+    },
+    {
+      "id": "naklejki-na-znicze",
+      "typ": "landing",
+      "sciezka": "/naklejki-na-znicze",
+      "plik": "src/app/naklejki-na-znicze/page.tsx",
+      "tytul": "Naklejki na znicze ze zdjęciem i dedykacją",
+      "nazwa": "Naklejki na znicze",
+      "zajawka": "Naklejki na znicze solarne i LED ze zdjęciem, imieniem lub dedykacją, na wodoodpornej folii. 59,00 zł brutto za arkusz A4, od 1 sztuki, produkcja 4-5 dni robocze.",
+      "fraza": "naklejki na znicze",
+      "frazy": [
+        "naklejka na znicz personalizowana",
+        "naklejki na znicze na cmentarz",
+        "naklejki na znicze ze zdjęciem",
+        "naklejki na znicze szklane"
+      ],
+      "pytania_ai": [
+        "Gdzie zamówić naklejkę ze zdjęciem na znicz solarny lub LED?"
+      ],
+      "intencja": "transakcyjna",
+      "potrzeba": "Chce zamówić naklejkę ze zdjęciem lub dedykacją na znicz i upewnić się, na jaki znicz ją przykleić.",
+      "segment": "okazje",
+      "odbiorca": "Osoba przygotowująca znicz dla bliskiej osoby na cmentarz, najczęściej przed 1 listopada i rocznicami.",
+      "etap": "BOFU",
+      "filar": null,
+      "kotwica": "naklejki na znicze",
+      "cta": {
+        "href": "/",
+        "tekst": "Zamów naklejki na znicze"
+      },
+      "roznica": "Strona sprzedaje naklejki na znicze; wpisy podpowiadają, co napisać na zniczu i jak zrobić znicz ze zdjęciem samemu.",
+      "priorytet": "P1",
+      "status": "opublikowane",
+      "opublikowano": "2026-10-05",
+      "zmieniono": "2026-10-10",
+      "zgloszenia": {}
+    },
+    {
+      "id": "naklejki-z-kodem-qr",
+      "typ": "landing",
+      "sciezka": "/naklejki-z-kodem-qr",
+      "plik": "src/app/naklejki-z-kodem-qr/page.tsx",
+      "tytul": "Naklejki z kodem QR na zamówienie",
+      "nazwa": "Naklejki z kodem QR",
+      "zajawka": "Naklejki z kodem QR na folii winylowej: kilka różnych kodów na jednym arkuszu A4 za 59,00 zł brutto, od 1 szt., produkcja 4-5 dni robocze.",
+      "fraza": "naklejki z kodem qr",
+      "frazy": [
+        "naklejki qr",
+        "naklejka z kodem qr"
+      ],
+      "pytania_ai": [
+        "Gdzie wydrukować naklejki z kodem QR do opinii Google w małej ilości?"
+      ],
+      "intencja": "transakcyjna",
+      "potrzeba": "Chce wydrukować naklejki z własnym kodem QR (opinie, menu, Instagram) w małej ilości.",
+      "segment": "firmy",
+      "odbiorca": "Właściciel kawiarni, salonu albo sklepu internetowego, który ma już kod QR i potrzebuje go na trwałej naklejce.",
+      "etap": "BOFU",
+      "filar": null,
+      "kotwica": "naklejki z kodem QR",
+      "cta": {
+        "href": "/",
+        "tekst": "Zamów naklejki z kodem QR"
+      },
+      "roznica": "Jedyna strona o kodach QR; wpisy o firmie i logo odsyłają tu przy temacie kodów.",
+      "priorytet": "P2",
+      "status": "opublikowane",
+      "opublikowano": "2026-10-27",
+      "zmieniono": "2026-10-27",
+      "zgloszenia": {}
+    },
+    {
+      "id": "naklejki-swiateczne",
+      "typ": "landing",
+      "sciezka": "/naklejki-swiateczne",
+      "plik": "src/app/naklejki-swiateczne/page.tsx",
+      "tytul": "Naklejki świąteczne - gotowe zestawy",
+      "nazwa": "Naklejki świąteczne",
+      "zajawka": "Gotowe naklejki świąteczne, bożonarodzeniowe i zimowe na prezenty, słoiki i do planera. Arkusz A4 z folii winylowej za 59,00 zł brutto, z opcją zmiany.",
+      "fraza": "naklejki świąteczne",
+      "frazy": [
+        "gotowe naklejki świąteczne",
+        "naklejki bożonarodzeniowe",
+        "naklejki zimowe"
+      ],
+      "pytania_ai": [
+        "Gdzie kupić gotowy arkusz naklejek świątecznych na prezenty?"
+      ],
+      "intencja": "transakcyjna",
+      "potrzeba": "Chce kupić gotowe naklejki świąteczne na prezenty, słoiki albo do planera, bez przygotowywania własnej grafiki.",
+      "segment": "okazje",
+      "odbiorca": "Osoba pakująca prezenty albo robiąca świąteczne słoiki, która chce gotowego zestawu, a nie projektowania.",
+      "etap": "BOFU",
+      "filar": null,
+      "kotwica": "naklejki świąteczne",
+      "cta": {
+        "href": "/gotowe-zestawy",
+        "tekst": "Wybierz zestaw świąteczny"
+      },
+      "roznica": "Strona sprzedaje gotowe zestawy świąteczne; wpis o etykietach na prezenty mówi do osób z własnym nadrukiem.",
+      "priorytet": "P1",
+      "status": "opublikowane",
+      "opublikowano": "2026-11-02",
+      "zmieniono": "2026-11-02",
+      "zgloszenia": {}
+    },
+    {
+      "id": "slownik-naklejek",
+      "typ": "landing",
+      "sciezka": "/slownik-naklejek",
+      "plik": "src/app/slownik-naklejek/page.tsx",
+      "tytul": "Słownik naklejek - die-cut, kiss-cut, folia i DPI",
+      "nazwa": "Słownik naklejek",
+      "zajawka": "Słownik naklejek: die-cut, kiss-cut, folia winylowa, 300 DPI, CMYK i kanał alfa wyjaśnione prosto. Druk od 1 arkusza A4 za stałe 59,00 zł brutto.",
+      "fraza": "słownik naklejek",
+      "frazy": [
+        "rodzaje naklejek"
+      ],
+      "pytania_ai": [
+        "Czym różni się naklejka die-cut od kiss-cut?"
+      ],
+      "intencja": "informacyjna",
+      "potrzeba": "Chce zrozumieć pojęcia z oferty drukarni (die-cut, kiss-cut, DPI, folia) przed zamówieniem.",
+      "segment": "wszyscy",
+      "odbiorca": "Osoba, która pierwszy raz zamawia naklejki i trafia na słowa, których nie zna.",
+      "etap": "TOFU",
+      "filar": null,
+      "kotwica": "słownik naklejek",
+      "cta": {
+        "href": "/",
+        "tekst": "Otwórz kreator"
+      },
+      "roznica": "Strona definicji; wpisy rozwijają pojedyncze pojęcia, a landingi sprzedają.",
+      "priorytet": "P2",
+      "status": "opublikowane",
+      "opublikowano": "2026-07-29",
+      "zmieniono": "2026-10-05",
+      "zgloszenia": {}
+    },
+    {
+      "id": "alternatywa-dla-sticker-mule-i-stickerapp",
+      "typ": "landing",
+      "sciezka": "/alternatywa-dla-sticker-mule-i-stickerapp",
+      "plik": "src/app/alternatywa-dla-sticker-mule-i-stickerapp/page.tsx",
+      "tytul": "Polska alternatywa dla Sticker Mule i StickerApp",
+      "nazwa": "Alternatywa dla Sticker Mule",
+      "zajawka": "Polska alternatywa dla Sticker Mule i StickerApp: drukuj naklejki już od 1 arkusza A4 za 59 zł, produkcja 4-5 dni robocze i odbiór w paczkomacie, bez cła i bariery językowej.",
+      "fraza": "alternatywa dla sticker mule",
+      "frazy": [
+        "polska alternatywa dla stickerapp",
+        "sticker mule polska",
+        "stickerapp polska"
+      ],
+      "pytania_ai": [
+        "Jaka jest polska alternatywa dla Sticker Mule do zamawiania naklejek w małej ilości?"
+      ],
+      "intencja": "komercyjna",
+      "potrzeba": "Zna zagraniczne serwisy z naklejkami i szuka polskiego odpowiednika bez cła, euro i długiej wysyłki.",
+      "segment": "wszyscy",
+      "odbiorca": "Twórca albo mała firma, która zamawiała za granicą albo trafiła na polecenie Sticker Mule lub StickerApp.",
+      "etap": "MOFU",
+      "filar": null,
+      "kotwica": "polska alternatywa dla Sticker Mule i StickerApp",
+      "cta": {
+        "href": "/",
+        "tekst": "Zamów naklejki w Polsce"
+      },
+      "roznica": "Jedyna strona porównawcza z markami; inne strony mówią o przewagach bez nazw konkurentów.",
+      "priorytet": "P2",
+      "status": "opublikowane",
+      "opublikowano": "2026-07-24",
+      "zmieniono": "2026-07-25",
+      "zgloszenia": {}
+    },
+    {
+      "id": "naklejki-w-telefonie",
+      "typ": "wpis",
+      "sciezka": "/blog/jak-zrobic-wlasne-naklejki-w-telefonie-proste-aplikacje-i-triki",
+      "plik": "src/content/blog/jak-zrobic-wlasne-naklejki-w-telefonie-proste-aplikacje-i-triki.md",
+      "tytul": "Jak zrobić naklejki w telefonie i wydrukować od 1 sztuki",
+      "nazwa": "Naklejki w telefonie",
+      "zajawka": "Zrób naklejkę ze zdjęcia w telefonie: aplikacje do usuwania tła, gotowy plik i druk na trwałej folii od 59,00 zł za arkusz A4. Bez komputera.",
+      "fraza": "jak zrobić naklejki w telefonie",
+      "frazy": [
+        "naklejki w telefonie",
+        "naklejki na zdjęcia w telefonie",
+        "aplikacja do robienia naklejek"
+      ],
+      "pytania_ai": [
+        "Jak zrobić naklejkę ze zdjęcia w telefonie i wydrukować ją na folii?"
+      ],
+      "intencja": "informacyjna",
+      "potrzeba": "Chce zrobić naklejkę ze zdjęcia w telefonie (często do komunikatora) albo wydrukować ją bez komputera.",
+      "segment": "wszyscy",
+      "odbiorca": "Osoba z telefonem i zdjęciem, która nie ma komputera ani programu graficznego.",
+      "etap": "TOFU",
+      "filar": "/fotonaklejki",
+      "kotwica": "jak zrobić naklejki w telefonie",
+      "cta": {
+        "href": "/",
+        "tekst": "Zrób naklejkę z telefonu"
+      },
+      "roznica": "Wpis o robieniu naklejek telefonem; wpis o naklejce ze zdjęcia prowadzi przez sam wydruk zdjęcia, a fotonaklejki je sprzedają.",
+      "priorytet": "P0",
+      "status": "opublikowane",
+      "opublikowano": "2026-07-17",
+      "zmieniono": "2026-09-21",
+      "zgloszenia": {},
+      "zadanie": {
+        "rodzaj": "ctr",
+        "tytul": "Odpowiedź na „jak zrobić naklejkę ze zdjęcia” w pierwszym ekranie",
+        "powod": "GSC 90 dni 18.08-15.11.2026: 7764 wyświetleń, 29 kliknięć (CTR 0,4%) przy pozycji 7,3. Samo zapytanie „jak zrobić naklejkę ze zdjęcia” i jego warianty bez polskich znaków dają ok. 935 wyświetleń i 2 kliknięcia. Wpis naklejka-ze-zdjecia, który dziś jest właścicielem tej frazy, ma na nią 53 wyświetlenia.",
+        "teza": "Większość pytających chce naklejki cyfrowej w telefonie (iPhone, Android, WhatsApp), a nasz opis obiecuje wydruk, więc nikt nie klika. Przed pisaniem sprawdź WebSearch, jak dziś robi się naklejkę ze zdjęcia w iOS, Androidzie i WhatsAppie. Title (do 60 znaków) i pierwszy akapit odpowiadają wprost na „jak zrobić naklejkę ze zdjęcia w telefonie”, krótko dla każdego systemu; druga sekcja to most: „chcesz ją mieć na laptopie albo bidonie - wydrukuj”, z CTA do kreatora. Przenieś właściciela frazy „jak zrobić naklejkę ze zdjęcia” na ten wpis (CSV, powód w dzienniku), a wpis naklejka-ze-zdjecia zostaw przy wydruku zdjęcia na prezent (patrz jego zadanie).",
+        "priorytet": "P0",
+        "kolejnosc": 1,
+        "zrodlo": "przegląd treści 2026-11-18",
+        "dodano": "2026-11-18"
+      }
+    },
+    {
+      "id": "wlepki-dla-artystow",
+      "typ": "wpis",
+      "sciezka": "/blog/wklepki-i-wlepy-z-wlasnym-nadrukiem-dla-artystow-i-spolecznosci",
+      "plik": "src/content/blog/wklepki-i-wlepy-z-wlasnym-nadrukiem-dla-artystow-i-spolecznosci.md",
+      "tytul": "Wlepki z własnym nadrukiem dla artystów i fanów, 59 zł/A4",
+      "nazwa": "Wlepki dla artystów",
+      "zajawka": "Wlepki z własnym nadrukiem dla artystów i fanklubów: 59,00 zł za arkusz A4, bez minimalnego nakładu, cięcie po obrysie i pojedyncze sztuki do rozdania.",
+      "fraza": "własne wlepy",
+      "frazy": [
+        "wlepy z własnym nadrukiem",
+        "wlepki dla artystów",
+        "co to są wlepki"
+      ],
+      "pytania_ai": [
+        "Co to są wlepki i jak zamówić je z własną grafiką w małej ilości?"
+      ],
+      "intencja": "informacyjna",
+      "potrzeba": "Chce wiedzieć, czym są wlepki, jak je wykorzystać jako artysta albo społeczność i ile kosztuje mała seria.",
+      "segment": "tworcy",
+      "odbiorca": "Ilustrator, muzyk, streamer albo fanklub, który chce rozdawać wlepki z własnym znakiem.",
+      "etap": "MOFU",
+      "filar": "/wlepki-na-zamowienie",
+      "kotwica": "wlepki dla artystów i fanów",
+      "cta": {
+        "href": "/",
+        "tekst": "Zamów własne wlepki"
+      },
+      "roznica": "Wpis informacyjny o wlepkach dla artystów i społeczności; landing wlepek sprzedaje, a wpis kibicowski mówi do klubów.",
+      "priorytet": "P0",
+      "status": "opublikowane",
+      "opublikowano": "2026-07-19",
+      "zmieniono": "2026-09-10",
+      "zgloszenia": {}
+    },
+    {
+      "id": "naklejki-na-zeszyty",
+      "typ": "wpis",
+      "sciezka": "/blog/personalizowane-naklejki-na-zeszyty-i-do-przedszkola",
+      "plik": "src/content/blog/personalizowane-naklejki-na-zeszyty-i-do-przedszkola.md",
+      "tytul": "Naklejki do podpisania zeszytu z imieniem i nazwiskiem",
+      "nazwa": "Naklejki na zeszyty",
+      "zajawka": "Naklejki do podpisania zeszytu i rzeczy do przedszkola - z imieniem i nazwiskiem dziecka, na wodoodpornej folii. Stała cena 59,00 zł za arkusz A4.",
+      "fraza": "naklejki do podpisania zeszytu",
+      "frazy": [
+        "naklejki na zeszyty z imieniem i nazwiskiem",
+        "naklejki na zeszyty personalizowane",
+        "naklejki imienne na zeszyty",
+        "naklejki do przedszkola"
+      ],
+      "pytania_ai": [
+        "Gdzie zamówić naklejki z imieniem i nazwiskiem dziecka do podpisania zeszytów?"
+      ],
+      "intencja": "komercyjna",
+      "potrzeba": "Rodzic chce podpisać zeszyty i rzeczy dziecka naklejkami z imieniem i nazwiskiem przed szkołą lub przedszkolem.",
+      "segment": "dom",
+      "odbiorca": "Rodzic ucznia albo przedszkolaka, zwykle w sierpniu i wrześniu, który chce kilkudziesięciu identycznych naklejek imiennych.",
+      "etap": "MOFU",
+      "filar": "/blog/naklejki-z-imionami-na-meble-drzwi-i-pojemniki-organizacja-domu",
+      "kotwica": "naklejki do podpisania zeszytu",
+      "cta": {
+        "href": "/",
+        "tekst": "Zamów naklejki dla dziecka"
+      },
+      "roznica": "Jedyny wpis o naklejkach imiennych do szkoły; wpis o imionach na meble mówi o organizacji domu.",
+      "priorytet": "P0",
+      "status": "opublikowane",
+      "opublikowano": "2026-07-15",
+      "zmieniono": "2026-09-21",
+      "zgloszenia": {},
+      "zadanie": {
+        "rodzaj": "ctr",
+        "tytul": "Krótszy title i opis z frazą „naklejki na zeszyty z imieniem i nazwiskiem”",
+        "powod": "GSC 90 dni 18.08-15.11.2026: 2887 wyświetleń, 12 kliknięć (CTR 0,4%) przy pozycji 8,2. „naklejki na zeszyty z imieniem i nazwiskiem” 137 wyświetleń na poz. 7,3, „naklejki do podpisania zeszytu” 151 na poz. 9,1, oba bez kliknięć. Title ma 74 znaki.",
+        "teza": "Title do 60 znaków, który mieści obie frazy i konkret (np. ile naklejek imiennych na arkuszu, wg tabeli we wpisie o rozmiarze), opis meta 140-155 znaków z odpowiedzią „od 1 arkusza, 59 zł”. To zmiana pod drugi semestr i przedszkola; pełna aktualizacja sezonowa przed sierpniem 2027 to osobne zadanie.",
+        "priorytet": "P1",
+        "kolejnosc": 3,
+        "zrodlo": "przegląd treści 2026-11-18",
+        "dodano": "2026-11-18"
+      }
+    },
+    {
+      "id": "jak-zamowic-naklejki",
+      "typ": "wpis",
+      "sciezka": "/blog/jak-zamowic-idealne-naklejki-na-zamowienie-z-wlasnym-nadrukiem",
+      "plik": "src/content/blog/jak-zamowic-idealne-naklejki-na-zamowienie-z-wlasnym-nadrukiem.md",
+      "tytul": "Jak zamówić naklejki na zamówienie - od 1 szt., 59 zł/A4",
+      "nazwa": "Jak zamówić naklejki",
+      "zajawka": "Naklejki na zamówienie z własnym nadrukiem bez minimalnego nakładu. Stała cena 59,00 zł brutto za arkusz A4, produkcja 4-5 dni robocze.",
+      "fraza": "jak zamówić naklejki",
+      "frazy": [
+        "naklejki na zamówienie z własnym nadrukiem"
+      ],
+      "pytania_ai": [
+        "Jak zamówić naklejki z własnym nadrukiem online od jednej sztuki?"
+      ],
+      "intencja": "komercyjna",
+      "potrzeba": "Chce zrozumieć, jak wygląda zamówienie własnych naklejek online: plik, kształt, arkusz, cena i czas.",
+      "segment": "wszyscy",
+      "odbiorca": "Osoba, która pierwszy raz zamawia naklejki z własnym nadrukiem i porównuje sposoby.",
+      "etap": "MOFU",
+      "filar": "/",
+      "kotwica": "jak zamówić naklejki na zamówienie",
+      "cta": {
+        "href": "/",
+        "tekst": "Otwórz kreator arkusza"
+      },
+      "roznica": "Filar bloga z procesem zamówienia; strona główna sprzedaje i obsługuje frazę „naklejki na zamówienie”.",
+      "priorytet": "P1",
+      "status": "opublikowane",
+      "opublikowano": "2026-07-02",
+      "zmieniono": "2026-10-19",
+      "zgloszenia": {}
+    },
+    {
+      "id": "naklejka-ze-zdjecia",
+      "typ": "wpis",
+      "sciezka": "/blog/naklejka-ze-zdjecia-jak-przeniesc-wspomnienia-na-naklejke",
+      "plik": "src/content/blog/naklejka-ze-zdjecia-jak-przeniesc-wspomnienia-na-naklejke.md",
+      "tytul": "Jak zrobić naklejkę ze zdjęcia - od 1 szt., 59 zł/A4",
+      "nazwa": "Naklejka ze zdjęcia",
+      "zajawka": "Jak zrobić naklejkę ze zdjęcia? Wgraj plik z telefonu, kreator usunie tło i wytnie ją po obrysie. Od 1 sztuki, 59 zł za arkusz A4, produkcja 4-5 dni robocze.",
+      "fraza": "jak zrobić naklejkę ze zdjęcia",
+      "frazy": [
+        "zdjęcia na naklejki",
+        "zrób naklejkę ze zdjęcia"
+      ],
+      "pytania_ai": [
+        "Jak zrobić naklejkę z własnego zdjęcia i zamówić wydruk na folii?"
+      ],
+      "intencja": "informacyjna",
+      "potrzeba": "Chce zamienić konkretne zdjęcie w naklejkę i wie, że potrzebuje wydruku, ale nie wie, jak przygotować zdjęcie.",
+      "segment": "okazje",
+      "odbiorca": "Osoba ze zdjęciem pupila, dziecka albo z wakacji, która chce naklejki na pamiątkę lub prezent.",
+      "etap": "MOFU",
+      "filar": "/fotonaklejki",
+      "kotwica": "jak zrobić naklejkę ze zdjęcia",
+      "cta": {
+        "href": "/",
+        "tekst": "Zrób naklejkę ze zdjęcia"
+      },
+      "roznica": "Wpis o drodze od zdjęcia do wydruku; wpis o telefonie mówi o aplikacjach, a fotonaklejki sprzedają gotowy produkt.",
+      "priorytet": "P0",
+      "status": "opublikowane",
+      "opublikowano": "2026-07-07",
+      "zmieniono": "2026-11-02",
+      "zgloszenia": {},
+      "zadanie": {
+        "rodzaj": "odswiezenie",
+        "tytul": "Wpis o wydruku zdjęcia na prezent (święta, Dzień Babci i Dziadka)",
+        "powod": "GSC 90 dni 18.08-15.11.2026: 787 wyświetleń, 5 kliknięć przy poz. 9,1. Google na „jak zrobić naklejkę ze zdjęcia” pokazuje wpis o telefonie (ok. 935 wyświetleń wobec 53 tutaj).",
+        "teza": "Po zadaniu wpisu o telefonie ten wpis przestaje celować w „jak zrobić naklejkę ze zdjęcia” i bierze wydruk zdjęcia jako prezent: nowa fraza główna z bazy (np. „naklejka ze zdjęcia na prezent”, sprawdź warianty w GSC), title i H1 bez frazy wpisu o telefonie, sekcja „Naklejki ze zdjęciem na prezent - święta i Dzień Babci i Dziadka” (P4.3.5). Link do /fotonaklejki kotwicą „fotonaklejki” w pierwszym akapicie. Zmiana głównej frazy żywej strony: zapisz decyzję w dzienniku.",
+        "priorytet": "P1",
+        "kolejnosc": 10,
+        "zrodlo": "przegląd treści 2026-11-18",
+        "dodano": "2026-11-18"
+      }
+    },
+    {
+      "id": "program-do-robienia-naklejek",
+      "typ": "wpis",
+      "sciezka": "/blog/jak-zrobic-wlasne-naklejki-program-do-robienia-naklejek-online",
+      "plik": "src/content/blog/jak-zrobic-wlasne-naklejki-program-do-robienia-naklejek-online.md",
+      "tytul": "Jak zrobić własne naklejki - program do robienia naklejek",
+      "nazwa": "Program do robienia naklejek",
+      "zajawka": "Jak zrobić własne naklejki bez grafika? Program do robienia naklejek online: wgraj obraz, usuń tło, wytnij po obrysie. Arkusz A4 za 59 zł, bez minimum.",
+      "fraza": "jak zrobić własne naklejki",
+      "frazy": [
+        "program do robienia naklejek",
+        "kreator naklejek online",
+        "robienie naklejek",
+        "tworzenie naklejek"
+      ],
+      "pytania_ai": [
+        "Jaki jest najprostszy program online do robienia naklejek z wydrukiem?"
+      ],
+      "intencja": "informacyjna",
+      "potrzeba": "Szuka programu albo strony, w której sam przygotuje naklejki i zamówi ich wydruk.",
+      "segment": "wszyscy",
+      "odbiorca": "Osoba bez umiejętności graficznych, która ma obraz albo pomysł i nie chce instalować programów.",
+      "etap": "MOFU",
+      "filar": "/",
+      "kotwica": "program do robienia naklejek",
+      "cta": {
+        "href": "/",
+        "tekst": "Zrób własne naklejki"
+      },
+      "roznica": "Wpis o narzędziu (kreatorze arkusza) i drodze od obrazu do wydruku; wpis o telefonie mówi o aplikacjach mobilnych.",
+      "priorytet": "P1",
+      "status": "opublikowane",
+      "opublikowano": "2026-08-04",
+      "zmieniono": "2026-08-30",
+      "zgloszenia": {}
+    },
+    {
+      "id": "vlepki-kibicowskie",
+      "typ": "wpis",
+      "sciezka": "/blog/vlepki-kibicowskie-i-klubowe-wlepy-dla-kibicow-klubow-i-ekip",
+      "plik": "src/content/blog/vlepki-kibicowskie-i-klubowe-wlepy-dla-kibicow-klubow-i-ekip.md",
+      "tytul": "Wlepki kibicowskie i klubowe - vlepy dla kibiców i ekip",
+      "nazwa": "Vlepki kibicowskie",
+      "zajawka": "Wlepki (vlepki) kibicowskie i klubowe z własnym nadrukiem - pojedyncze sztuki cięte po obrysie, bez minimalnego nakładu. Stała cena 59,00 zł za arkusz A4.",
+      "fraza": "vlepki kibicowskie",
+      "frazy": [
+        "wlepy kibicowskie",
+        "vlepki klubowe",
+        "naklejki kibicowskie",
+        "wlepki kibicowskie",
+        "wlepy klubowe"
+      ],
+      "pytania_ai": [],
+      "intencja": "komercyjna",
+      "potrzeba": "Kibic albo członek klubu chce zamówić wlepki z herbem i barwami w małej ilości.",
+      "segment": "tworcy",
+      "odbiorca": "Kibic, sekcja klubu, drużyna amatorska albo koło studenckie z własnym znakiem.",
+      "etap": "MOFU",
+      "filar": "/wlepki-na-zamowienie",
+      "kotwica": "vlepki kibicowskie",
+      "cta": {
+        "href": "/",
+        "tekst": "Zamów wlepki kibicowskie"
+      },
+      "roznica": "Nisza klubowa i kibicowska; wpis o wlepkach dla artystów mówi o twórcach, a landing sprzedaje wszystkim.",
+      "priorytet": "P1",
+      "status": "opublikowane",
+      "opublikowano": "2026-08-31",
+      "zmieniono": "2026-09-03",
+      "zgloszenia": {}
+    },
+    {
+      "id": "naklejki-na-nalewki",
+      "typ": "wpis",
+      "sciezka": "/blog/naklejki-na-nalewki-domowe-jak-ozdobic-butelki-na-nalewki",
+      "plik": "src/content/blog/naklejki-na-nalewki-domowe-jak-ozdobic-butelki-na-nalewki.md",
+      "tytul": "Naklejki na nalewki domowe - od 1 szt., 59 zł za arkusz A4",
+      "nazwa": "Naklejki na nalewki",
+      "zajawka": "Estetyczne naklejki na nalewki domowe z własnym projektem - wodoodporne, na okrągłe i prostokątne butelki. Zamów od 1 arkusza A4, gotowe w 4-5 dni robocze.",
+      "fraza": "naklejki na nalewki domowe",
+      "frazy": [
+        "etykiety na nalewki domowe",
+        "etykiety na butelki własny projekt",
+        "naklejki na nalewki"
+      ],
+      "pytania_ai": [],
+      "intencja": "komercyjna",
+      "potrzeba": "Chce ładnie oznaczyć butelki z domową nalewką: nazwa, rocznik, skład, często na prezent.",
+      "segment": "dom",
+      "odbiorca": "Osoba robiąca nalewki w domu, która daje je w prezencie i chce trwałej, ładnej etykiety.",
+      "etap": "MOFU",
+      "filar": "/etykiety-na-sloiki",
+      "kotwica": "naklejki na nalewki domowe",
+      "cta": {
+        "href": "/",
+        "tekst": "Zamów naklejki na nalewki"
+      },
+      "roznica": "Wpis o butelkach z nalewką; wpis weselny mówi o alkoholu na imprezę, a etykiety na słoiki o przetworach.",
+      "priorytet": "P1",
+      "status": "opublikowane",
+      "opublikowano": "2026-07-16",
+      "zmieniono": "2026-10-02",
+      "zgloszenia": {}
+    },
+    {
+      "id": "logo-na-sloiki-i-opakowania",
+      "typ": "wpis",
+      "sciezka": "/blog/naklejki-z-wlasnym-logo-na-sloiki-i-opakowania",
+      "plik": "src/content/blog/naklejki-z-wlasnym-logo-na-sloiki-i-opakowania.md",
+      "tytul": "Naklejki z logo na słoiki i opakowania - od 1 szt., 59 zł/A4",
+      "nazwa": "Logo na słoiki i opakowania",
+      "zajawka": "Prowadzisz manufakturę? Sprawdź, jak zamówić naklejki z logo na zamówienie oraz wodoodporne naklejki na słoiki z własnym nadrukiem od 1 sztuki.",
+      "fraza": "naklejki z logo na słoiki",
+      "frazy": [
+        "słoiki z logo",
+        "naklejki na opakowania z logo"
+      ],
+      "pytania_ai": [],
+      "intencja": "komercyjna",
+      "potrzeba": "Mała manufaktura chce oznaczyć słoiki i opakowania własnym logo w krótkiej serii.",
+      "segment": "firmy",
+      "odbiorca": "Producent miodu, świec, kosmetyków albo kawy, który sprzedaje kilkadziesiąt sztuk miesięcznie.",
+      "etap": "MOFU",
+      "filar": "/naklejki-dla-firm",
+      "kotwica": "naklejki z logo na słoiki i opakowania",
+      "cta": {
+        "href": "/",
+        "tekst": "Zamów naklejki z logo"
+      },
+      "roznica": "Wpis dla manufaktur o słoikach z logo; etykiety na słoiki sprzedają wszystkim, a naklejki dla firm mówią ogólnie o B2B.",
+      "priorytet": "P1",
+      "status": "opublikowane",
+      "opublikowano": "2026-07-05",
+      "zmieniono": "2026-11-02",
+      "zgloszenia": {},
+      "zadanie": {
+        "rodzaj": "ctr",
+        "tytul": "Title i opis pod frazy z logo, na których wpis stoi wysoko bez kliknięć",
+        "powod": "GSC 90 dni 18.08-15.11.2026: 325 wyświetleń, 0 kliknięć przy poz. 11,2. „naklejki z logo” 44 wyświetlenia na poz. 3,5, „słoiki z logo” 51 na poz. 17, „naklejki na słoiki z własnym nadrukiem” 49 na poz. 9,4 - wszystkie bez kliknięć.",
+        "teza": "Title do 60 znaków z „naklejki z logo na słoiki” i konkretem dla manufaktury (od 1 arkusza, faktura VAT). Opis meta z odpowiedzią. Link w pierwszym akapicie do /etykiety-na-sloiki kotwicą „etykiety na słoiki” i do /naklejki-dla-firm kotwicą „naklejki dla firm”, bo to strony, które mają tę frazę sprzedawać.",
+        "priorytet": "P1",
+        "kolejnosc": 5,
+        "zrodlo": "przegląd treści 2026-11-18",
+        "dodano": "2026-11-18"
+      }
+    },
+    {
+      "id": "naklejki-na-alkohol",
+      "typ": "wpis",
+      "sciezka": "/blog/personalizowane-naklejki-na-alkohol-wyjatkowy-dodatek-na-wesela-i-imprezy",
+      "plik": "src/content/blog/personalizowane-naklejki-na-alkohol-wyjatkowy-dodatek-na-wesela-i-imprezy.md",
+      "tytul": "Personalizowane naklejki na alkohol na wesele i imprezy - wódka, wino, nalewki",
+      "nazwa": "Naklejki na alkohol",
+      "zajawka": "Personalizowane naklejki na alkohol, wódkę weselną i nalewki od 59 zł za arkusz A4. Wgraj gotowy projekt i zamów bez minimalnego nakładu.",
+      "fraza": "naklejki na alkohol personalizowane",
+      "frazy": [
+        "personalizowane naklejki na alkohol",
+        "naklejki na wódkę weselną",
+        "naklejki na alkohol weselny"
+      ],
+      "pytania_ai": [],
+      "intencja": "komercyjna",
+      "potrzeba": "Para młoda albo organizator imprezy chce oznaczyć butelki imionami, datą albo zdjęciem.",
+      "segment": "okazje",
+      "odbiorca": "Para młoda, organizator urodzin, chrzcin albo osiemnastki, który przygotowuje alkohol na stoły.",
+      "etap": "MOFU",
+      "filar": "/fotonaklejki",
+      "kotwica": "personalizowane naklejki na alkohol",
+      "cta": {
+        "href": "/",
+        "tekst": "Zamów naklejki na alkohol"
+      },
+      "roznica": "Wpis o alkoholu na imprezy; wpis o nalewkach mówi o domowych butelkach, a koperty ślubne o papeterii.",
+      "priorytet": "P1",
+      "status": "opublikowane",
+      "opublikowano": "2026-07-05",
+      "zmieniono": "2026-08-31",
+      "zgloszenia": {}
+    },
+    {
+      "id": "naklejki-z-napisem",
+      "typ": "wpis",
+      "sciezka": "/blog/naklejki-z-wlasnym-napisem-jak-przygotowac-plik-i-zamowic-online",
+      "plik": "src/content/blog/naklejki-z-wlasnym-napisem-jak-przygotowac-plik-i-zamowic-online.md",
+      "tytul": "Naklejki z własnym napisem - jak przygotować plik i zamówić",
+      "nazwa": "Naklejki z napisem",
+      "zajawka": "Naklejki z własnym napisem bez minimalnego nakładu - jak wygenerować plik lub ułożyć go w Canva i zamówić online w kilka minut. Stała cena 59 zł za arkusz A4.",
+      "fraza": "naklejki z własnym napisem",
+      "frazy": [
+        "naklejki z napisem",
+        "naklejki z własnym tekstem"
+      ],
+      "pytania_ai": [],
+      "intencja": "komercyjna",
+      "potrzeba": "Chce naklejki z konkretnym tekstem i nie wie, jak przygotować plik, skoro kreator nie ma edytora tekstu.",
+      "segment": "wszyscy",
+      "odbiorca": "Osoba z hasłem, imieniem albo cytatem, która nie ma gotowej grafiki.",
+      "etap": "MOFU",
+      "filar": "/naklejki-die-cut",
+      "kotwica": "naklejki z własnym napisem",
+      "cta": {
+        "href": "/",
+        "tekst": "Zamów naklejki z napisem"
+      },
+      "roznica": "Wpis o przygotowaniu pliku z napisem; landing die-cut sprzedaje cięcie po obrysie.",
+      "priorytet": "P1",
+      "status": "opublikowane",
+      "opublikowano": "2026-07-08",
+      "zmieniono": "2026-09-10",
+      "zgloszenia": {}
+    },
+    {
+      "id": "die-cut-i-kiss-cut",
+      "typ": "wpis",
+      "sciezka": "/blog/co-to-jest-die-cut-i-kiss-cut-roznice-w-wyleciach-naklejek-reklamowych",
+      "plik": "src/content/blog/co-to-jest-die-cut-i-kiss-cut-roznice-w-wyleciach-naklejek-reklamowych.md",
+      "tytul": "Wykroje die-cut i kiss-cut - różnice, oba za 59 zł/A4",
+      "nazwa": "Die-cut i kiss-cut",
+      "zajawka": "Wykroje die-cut i kiss-cut: naklejka wycięta po obrysie albo zostawiona na arkuszu. Poznaj różnice - oba cięcia od 1 arkusza A4 za stałe 59,00 zł brutto.",
+      "fraza": "die cut i kiss cut",
+      "frazy": [
+        "kiss cut",
+        "wykroje die-cut i kiss-cut",
+        "naklejki kiss cut"
+      ],
+      "pytania_ai": [
+        "Czym różni się naklejka die-cut od kiss-cut i którą wybrać?"
+      ],
+      "intencja": "informacyjna",
+      "potrzeba": "Chce zrozumieć różnicę między cięciem die-cut i kiss-cut, zanim wybierze sposób zamówienia.",
+      "segment": "wszyscy",
+      "odbiorca": "Twórca albo mała firma, która trafiła na te pojęcia w ofercie drukarni.",
+      "etap": "MOFU",
+      "filar": "/naklejki-die-cut",
+      "kotwica": "różnica między die-cut a kiss-cut",
+      "cta": {
+        "href": "/",
+        "tekst": "Zamów naklejki die cut"
+      },
+      "roznica": "Wpis wyjaśnia dwa wykroje; landing die-cut sprzedaje cięcie po obrysie, a słownik zbiera definicje.",
+      "priorytet": "P1",
+      "status": "opublikowane",
+      "opublikowano": "2026-07-14",
+      "zmieniono": "2026-11-02",
+      "zgloszenia": {},
+      "zadanie": {
+        "rodzaj": "ctr",
+        "tytul": "Title pod „wykroje die-cut i kiss-cut” i „kiss cut”",
+        "powod": "GSC 90 dni 18.08-15.11.2026: 814 wyświetleń, 8 kliknięć (CTR 1%) przy poz. 7. „wykroje die-cut i kiss-cut” 183 wyświetlenia na poz. 6,6 i 0 kliknięć, „kiss cut” 51 na poz. 7.",
+        "teza": "Title zaczyna się od różnicy, której szuka człowiek („Die-cut i kiss-cut - różnica…”), do 60 znaków. Pierwszy akapit: jedno zdanie definicji każdego wykroju i kiedy który wybrać. Link do /naklejki-die-cut kotwicą „naklejki cięte po obrysie” w pierwszych dwóch akapitach.",
+        "priorytet": "P1",
+        "kolejnosc": 4,
+        "zrodlo": "przegląd treści 2026-11-18",
+        "dodano": "2026-11-18"
+      }
+    },
+    {
+      "id": "ile-kosztuja-naklejki",
+      "typ": "wpis",
+      "sciezka": "/blog/ile-kosztuja-naklejki-na-zamowienie-cena-za-arkusz-a4",
+      "plik": "src/content/blog/ile-kosztuja-naklejki-na-zamowienie-cena-za-arkusz-a4.md",
+      "tytul": "Ile kosztują naklejki na zamówienie? Cena za arkusz A4 i koszt jednej sztuki",
+      "nazwa": "Ile kosztują naklejki",
+      "zajawka": "Sprawdź, ile kosztują naklejki na zamówienie. Stała cena 59,00 zł za arkusz A4, brak minimalnego nakładu i wyliczenie kosztu za 1 sztukę. Bez ukrytych opłat.",
+      "fraza": "ile kosztują naklejki na zamówienie",
+      "frazy": [
+        "naklejki cennik",
+        "druk naklejek cennik",
+        "cena naklejek za sztukę"
+      ],
+      "pytania_ai": [
+        "Ile kosztują naklejki z własnym nadrukiem przy zamówieniu kilkudziesięciu sztuk?"
+      ],
+      "intencja": "komercyjna",
+      "potrzeba": "Chce znać cenę własnych naklejek przed zamówieniem i porównać koszt jednej sztuki.",
+      "segment": "wszyscy",
+      "odbiorca": "Osoba porównująca drukarnie, Allegro i serwisy online pod kątem ceny małej ilości.",
+      "etap": "MOFU",
+      "filar": "/",
+      "kotwica": "ile kosztują naklejki na zamówienie",
+      "cta": {
+        "href": "/",
+        "tekst": "Zamów naklejki od 59 zł"
+      },
+      "roznica": "Jedyny wpis cenowy; inne strony podają cenę jednym zdaniem i linkują tutaj.",
+      "priorytet": "P1",
+      "status": "opublikowane",
+      "opublikowano": "2026-08-17",
+      "zmieniono": "2026-09-03",
+      "zgloszenia": {}
+    },
+    {
+      "id": "naklejki-w-malym-nakladzie",
+      "typ": "wpis",
+      "sciezka": "/blog/naklejki-maly-naklad-jak-zamowic-pojedyncze-sztuki-bez-przeplacania",
+      "plik": "src/content/blog/naklejki-maly-naklad-jak-zamowic-pojedyncze-sztuki-bez-przeplacania.md",
+      "tytul": "Naklejki mały nakład - jak zamówić pojedyncze sztuki?",
+      "nazwa": "Naklejki w małym nakładzie",
+      "zajawka": "Naklejki w małym nakładzie bez minimum zamówienia - już od 1 sztuki, stała cena 59,00 zł za arkusz A4 i produkcja w 4-5 dni robocze. Bez przepłacania.",
+      "fraza": "naklejki mały nakład",
+      "frazy": [
+        "naklejki od 1 sztuki",
+        "naklejki bez minimalnego nakładu"
+      ],
+      "pytania_ai": [],
+      "intencja": "komercyjna",
+      "potrzeba": "Potrzebuje kilku albo kilkunastu naklejek i szuka miejsca, które nie wymaga minimalnego nakładu.",
+      "segment": "wszyscy",
+      "odbiorca": "Osoba albo mała firma, której drukarnie odmawiają albo liczą przygotowalnię przy małej ilości.",
+      "etap": "MOFU",
+      "filar": "/",
+      "kotwica": "naklejki w małym nakładzie",
+      "cta": {
+        "href": "/",
+        "tekst": "Zamów naklejki bez minimum"
+      },
+      "roznica": "Wpis o samym małym nakładzie; wpis porównawczy zestawia miejsca zamówienia, a cenowy liczy koszt sztuki.",
+      "priorytet": "P1",
+      "status": "opublikowane",
+      "opublikowano": "2026-07-18",
+      "zmieniono": "2026-08-17",
+      "zgloszenia": {}
+    },
+    {
+      "id": "gdzie-zamowic-naklejki",
+      "typ": "wpis",
+      "sciezka": "/blog/gdzie-zamowic-naklejki-w-malym-nakladzie-porownanie",
+      "plik": "src/content/blog/gdzie-zamowic-naklejki-w-malym-nakladzie-porownanie.md",
+      "tytul": "Gdzie zamówić naklejki w małym nakładzie? Porównanie opcji",
+      "nazwa": "Gdzie zamówić naklejki",
+      "zajawka": "Gdzie zamówić naklejki w małym nakładzie? Porównujemy drukarnię lokalną, Allegro i serwisy zagraniczne z polskim kreatorem online. Arkusz A4 za 59,00 zł.",
+      "fraza": "gdzie zamówić naklejki",
+      "frazy": [
+        "gdzie zamówić naklejki w małym nakładzie"
+      ],
+      "pytania_ai": [
+        "Gdzie najlepiej zamówić kilkanaście naklejek z własnym nadrukiem w Polsce?"
+      ],
+      "intencja": "komercyjna",
+      "potrzeba": "Porównuje miejsca, w których zamówi kilkanaście naklejek: drukarnia, Allegro, zagraniczne serwisy, kreator online.",
+      "segment": "wszyscy",
+      "odbiorca": "Osoba, która ma grafikę i wybiera dostawcę dla małej serii.",
+      "etap": "MOFU",
+      "filar": "/alternatywa-dla-sticker-mule-i-stickerapp",
+      "kotwica": "gdzie zamówić naklejki",
+      "cta": {
+        "href": "/",
+        "tekst": "Zamów naklejki od 1 arkusza"
+      },
+      "roznica": "Wpis porównuje typy dostawców; strona o Sticker Mule porównuje się z dwoma markami.",
+      "priorytet": "P1",
+      "status": "opublikowane",
+      "opublikowano": "2026-08-25",
+      "zmieniono": "2026-10-19",
+      "zgloszenia": {},
+      "zadanie": {
+        "rodzaj": "ctr",
+        "tytul": "Opis i title, które obiecują odpowiedź, nie listę",
+        "powod": "GSC 90 dni 18.08-15.11.2026: 168 wyświetleń, 0 kliknięć przy poz. 7,8. Wejścia z GA4 na ten wpis częściej niż na inne wpisy kończą się koszykiem (tresci/frazy.json, poza gitem).",
+        "teza": "Wpis prowadzi do koszyka, a nikt nie klika w wynik. Title do 60 znaków z „gdzie zamówić naklejki” i odpowiedzią w skrócie (od 1 arkusza, 59 zł), opis meta z konkretną odpowiedzią. Bez nazw konkurentów w title.",
+        "priorytet": "P2",
+        "kolejnosc": 12,
+        "zrodlo": "przegląd treści 2026-11-18",
+        "dodano": "2026-11-18"
+      }
+    },
+    {
+      "id": "drukowanie-naklejek-online",
+      "typ": "wpis",
+      "sciezka": "/blog/drukowanie-naklejek-online-na-co-zwrocic-uwage-przed-wysylka-projektu",
+      "plik": "src/content/blog/drukowanie-naklejek-online-na-co-zwrocic-uwage-przed-wysylka-projektu.md",
+      "tytul": "Drukowanie naklejek online - jak przygotować plik 300 DPI",
+      "nazwa": "Drukowanie naklejek online",
+      "zajawka": "Drukowanie naklejek online: 300 dpi, PNG lub PDF i cięcie po obrysie. Poznaj 5 błędów, przez które wydruk wychodzi rozmazany - sprawdź plik przed wysyłką.",
+      "fraza": "drukowanie naklejek online",
+      "frazy": [
+        "druk naklejek online",
+        "naklejki 300 dpi"
+      ],
+      "pytania_ai": [
+        "Jak przygotować plik do druku naklejek, żeby wydruk był ostry?"
+      ],
+      "intencja": "informacyjna",
+      "potrzeba": "Chce przygotować plik do druku naklejek tak, żeby wydruk wyszedł ostry, i wie, że zamówi online.",
+      "segment": "wszyscy",
+      "odbiorca": "Osoba z własną grafiką, która boi się rozmazanego wydruku albo złego formatu pliku.",
+      "etap": "MOFU",
+      "filar": "/",
+      "kotwica": "drukowanie naklejek online",
+      "cta": {
+        "href": "/",
+        "tekst": "Otwórz kreator arkusza"
+      },
+      "roznica": "Filar techniczny o pliku i druku; wpis o rozmiarze mówi o wymiarach, a słownik o pojęciach.",
+      "priorytet": "P1",
+      "status": "opublikowane",
+      "opublikowano": "2026-07-10",
+      "zmieniono": "2026-11-02",
+      "zgloszenia": {},
+      "zadanie": {
+        "rodzaj": "ctr",
+        "tytul": "Title filaru technicznego do 60 znaków i odpowiedź w pierwszym akapicie",
+        "powod": "GSC 90 dni 18.08-15.11.2026: 451 wyświetleń, 2 kliknięcia (CTR 0,4%) przy poz. 10,6. „drukowanie naklejek online” 39 wyświetleń na poz. 15,7. Pierwszy akapit nie zawiera frazy głównej.",
+        "teza": "Title do 60 znaków z frazą na początku, pierwsze zdanie odpowiada, jak przygotować plik (300 DPI, PNG albo PDF, tło), opis meta 140-155 znaków.",
+        "priorytet": "P2",
+        "kolejnosc": 11,
+        "zrodlo": "przegląd treści 2026-11-18",
+        "dodano": "2026-11-18"
+      }
+    },
+    {
+      "id": "naklejka-z-logo-firmy",
+      "typ": "wpis",
+      "sciezka": "/blog/naklejka-z-logo-firmy-jak-skutecznie-brandowac-swoje-produkty",
+      "plik": "src/content/blog/naklejka-z-logo-firmy-jak-skutecznie-brandowac-swoje-produkty.md",
+      "tytul": "Naklejka z logo firmy - jak skutecznie brandować swoje produkty?",
+      "nazwa": "Naklejka z logo firmy",
+      "zajawka": "Naklejki z logo firmy bez minimalnego nakładu od 59 zł za arkusz A4. Dowiedz się, jak skutecznie brandować produkty, paczki i opakowania w e-commerce.",
+      "fraza": "naklejka z logo firmy",
+      "frazy": [
+        "naklejki z logo firmy",
+        "naklejki logo firmy",
+        "jak brandować produkty"
+      ],
+      "pytania_ai": [],
+      "intencja": "komercyjna",
+      "potrzeba": "Chce oznaczyć produkty i paczki logo firmy i szuka sposobu tańszego niż nadruk na opakowaniu.",
+      "segment": "firmy",
+      "odbiorca": "Właściciel sklepu internetowego albo małej marki, który wysyła paczki i chce, żeby je zapamiętano.",
+      "etap": "MOFU",
+      "filar": "/naklejki-dla-firm",
+      "kotwica": "naklejka z logo firmy",
+      "cta": {
+        "href": "/",
+        "tekst": "Zamów naklejki z logo"
+      },
+      "roznica": "Wpis o brandowaniu produktów naklejką; landing dla firm sprzedaje, a wpis o słoikach mówi do manufaktur.",
+      "priorytet": "P1",
+      "status": "opublikowane",
+      "opublikowano": "2026-07-02",
+      "zmieniono": "2026-07-02",
+      "zgloszenia": {}
+    },
+    {
+      "id": "etykiety-na-prezenty",
+      "typ": "wpis",
+      "sciezka": "/blog/naklejki-swiateczne-i-etykiety-na-prezenty",
+      "plik": "src/content/blog/naklejki-swiateczne-i-etykiety-na-prezenty.md",
+      "tytul": "Naklejki świąteczne i etykiety na prezenty - 59 zł/A4",
+      "nazwa": "Etykiety na prezenty",
+      "zajawka": "Naklejki świąteczne z własnym nadrukiem: etykiety na prezenty, słoiki, nalewki i paczki. Różne wzory na jednym arkuszu, od 1 arkusza A4 za 59,00 zł brutto.",
+      "fraza": "etykiety na prezenty",
+      "frazy": [
+        "naklejki na prezenty",
+        "naklejki świąteczne z własnym nadrukiem"
+      ],
+      "pytania_ai": [
+        "Gdzie zamówić kilka różnych naklejek na prezenty świąteczne w jednym zamówieniu?"
+      ],
+      "intencja": "komercyjna",
+      "potrzeba": "Chce oznaczyć prezenty i świąteczne słoiki własnymi naklejkami z imionami albo napisem.",
+      "segment": "okazje",
+      "odbiorca": "Osoba pakująca prezenty dla rodziny albo klientów, która chce własnych napisów zamiast bilecików.",
+      "etap": "MOFU",
+      "filar": "/naklejki-swiateczne",
+      "kotwica": "etykiety na prezenty",
+      "cta": {
+        "href": "/",
+        "tekst": "Zamów naklejki świąteczne"
+      },
+      "roznica": "Wpis o własnym nadruku na święta; landing świąteczny sprzedaje gotowe zestawy.",
+      "priorytet": "P1",
+      "status": "opublikowane",
+      "opublikowano": "2026-10-02",
+      "zmieniono": "2026-11-02",
+      "zgloszenia": {},
+      "zadanie": {
+        "rodzaj": "odswiezenie",
+        "tytul": "Realna aktualizacja huba świątecznego (P4.3.6)",
+        "powod": "Zadanie P4.3.6 z blog-agent/plan.md: okno 10-20.11, bez daty granicznej i zdjęć przesuwa się na 1-5.12. Wpis ma 14 wyświetleń w 90 dni (sezon dopiero rusza).",
+        "teza": "Aktualizuj tylko, jeśli jest decyzja o dacie granicznej zamówień przed świętami (P4.3.0, facts.md) albo są zdjęcia od Jakuba. Bez tego niczego nie zmieniaj i przesuń zadanie na 1-5.12 z wpisem w dzienniku. Dodaj link do landingu /naklejki-swiateczne kotwicą „naklejki świąteczne” (gotowe zestawy) w sekcji dla osób bez własnej grafiki.",
+        "priorytet": "P1",
+        "kolejnosc": 9,
+        "zrodlo": "przegląd treści 2026-11-18",
+        "od": "2026-11-18",
+        "dodano": "2026-11-18"
+      }
+    },
+    {
+      "id": "wzory-na-naklejki",
+      "typ": "wpis",
+      "sciezka": "/blog/fajne-wzory-i-pomysly-na-naklejki-inspiracje-wg-zastosowania",
+      "plik": "src/content/blog/fajne-wzory-i-pomysly-na-naklejki-inspiracje-wg-zastosowania.md",
+      "tytul": "Fajne wzory na naklejki - gotowe zestawy za 59 zł",
+      "nazwa": "Wzory na naklejki",
+      "zajawka": "Fajne wzory na naklejki: wybierz gotowy zestaw na arkuszu A4 za 59,00 zł brutto i zamów go od razu albo znajdź pomysły wg zastosowania - od laptopa po ślub.",
+      "fraza": "wzory na naklejki",
+      "frazy": [
+        "pomysły na naklejki",
+        "fajne naklejki",
+        "inspiracje na naklejki"
+      ],
+      "pytania_ai": [],
+      "intencja": "informacyjna",
+      "potrzeba": "Szuka pomysłu albo gotowego wzoru na naklejki, bo nie ma własnej grafiki.",
+      "segment": "wszyscy",
+      "odbiorca": "Osoba, która chce naklejek, ale nie wie, co na nich umieścić.",
+      "etap": "TOFU",
+      "filar": "/gotowe-zestawy",
+      "kotwica": "wzory na naklejki",
+      "cta": {
+        "href": "/",
+        "tekst": "Zobacz gotowe zestawy"
+      },
+      "roznica": "Wpis z pomysłami według zastosowania; katalog gotowych zestawów sprzedaje gotowe wzory.",
+      "priorytet": "P2",
+      "status": "opublikowane",
+      "opublikowano": "2026-08-16",
+      "zmieniono": "2026-10-04",
+      "zgloszenia": {},
+      "zadanie": {
+        "rodzaj": "ctr",
+        "tytul": "Title pod „wzory na naklejki” i „pomysły na naklejki”",
+        "powod": "GSC 90 dni 18.08-15.11.2026: 239 wyświetleń, 1 kliknięcie przy poz. 7,7. „wzory na naklejki” 12 wyświetleń na poz. 8,6, „pomysły na naklejki” 9 na poz. 8.",
+        "teza": "Title do 60 znaków z obiema frazami, pierwszy akapit z odpowiedzią i linkiem do /gotowe-zestawy (gotowe wzory, które można od razu zamówić).",
+        "priorytet": "P2",
+        "kolejnosc": 13,
+        "zrodlo": "przegląd treści 2026-11-18",
+        "dodano": "2026-11-18"
+      }
+    },
+    {
+      "id": "jaki-rozmiar-naklejki",
+      "typ": "wpis",
+      "sciezka": "/blog/jaki-rozmiar-naklejki-wybrac",
+      "plik": "src/content/blog/jaki-rozmiar-naklejki-wybrac.md",
+      "tytul": "Jaki rozmiar naklejki wybrać? Wymiary i ile naklejek zmieści się na arkuszu A4",
+      "nazwa": "Jaki rozmiar naklejki",
+      "zajawka": "Zastanawiasz się, jaki rozmiar naklejki wybrać? Zobacz, jak dopasować wymiary i sprawdź, ile naklejek zmieści się na jednym arkuszu A4.",
+      "fraza": "jaki rozmiar naklejki wybrać",
+      "frazy": [
+        "rozmiary naklejek",
+        "ile naklejek na arkuszu a4"
+      ],
+      "pytania_ai": [
+        "Ile naklejek o średnicy 5 cm zmieści się na arkuszu A4?"
+      ],
+      "intencja": "informacyjna",
+      "potrzeba": "Chce dobrać wymiar naklejki do miejsca i wiedzieć, ile sztuk zmieści się na arkuszu A4.",
+      "segment": "wszyscy",
+      "odbiorca": "Osoba, która ma grafikę i nie wie, jak duża ma być naklejka na słoik, laptopa albo kopertę.",
+      "etap": "MOFU",
+      "filar": "/",
+      "kotwica": "jaki rozmiar naklejki wybrać",
+      "cta": {
+        "href": "/",
+        "tekst": "Sprawdź rozmiary w kreatorze"
+      },
+      "roznica": "Jedyny wpis o wymiarach; wpis cenowy przelicza koszt sztuki.",
+      "priorytet": "P2",
+      "status": "opublikowane",
+      "opublikowano": "2026-08-20",
+      "zmieniono": "2026-11-02",
+      "zgloszenia": {}
+    },
+    {
+      "id": "naklejki-okragle",
+      "typ": "wpis",
+      "sciezka": "/blog/naklejki-okragle-z-wlasnym-nadrukiem",
+      "plik": "src/content/blog/naklejki-okragle-z-wlasnym-nadrukiem.md",
+      "tytul": "Naklejki okrągłe z własnym nadrukiem - od 1 szt., 59 zł/A4",
+      "nazwa": "Naklejki okrągłe",
+      "zajawka": "Naklejki okrągłe z własnym nadrukiem od 1 sztuki. Kiedy koło wygląda lepiej niż cięcie po obrysie? Stała cena 59,00 zł za arkusz A4.",
+      "fraza": "naklejki okrągłe",
+      "frazy": [
+        "naklejki okrągłe z logo",
+        "naklejki okrągłe na zamówienie"
+      ],
+      "pytania_ai": [],
+      "intencja": "komercyjna",
+      "potrzeba": "Chce zamówić okrągłe naklejki z własnym nadrukiem, najczęściej z logo albo na słoik.",
+      "segment": "wszyscy",
+      "odbiorca": "Mała firma albo osoba z logo w kole, która chce równych, okrągłych naklejek.",
+      "etap": "MOFU",
+      "filar": "/naklejki-die-cut",
+      "kotwica": "naklejki okrągłe",
+      "cta": {
+        "href": "/",
+        "tekst": "Zamów okrągłe naklejki"
+      },
+      "roznica": "Wpis o kształcie koła; landing die-cut mówi o cięciu po obrysie.",
+      "priorytet": "P2",
+      "status": "opublikowane",
+      "opublikowano": "2026-08-03",
+      "zmieniono": "2026-08-30",
+      "zgloszenia": {}
+    },
+    {
+      "id": "ile-wytrzymaja-naklejki-winylowe",
+      "typ": "wpis",
+      "sciezka": "/blog/naklejki-wodoodporne-i-winylowe-jaka-folia-i-jak-dlugo-wytrzyma",
+      "plik": "src/content/blog/naklejki-wodoodporne-i-winylowe-jaka-folia-i-jak-dlugo-wytrzyma.md",
+      "tytul": "Naklejki wodoodporne i winylowe - ile wytrzymają w praktyce",
+      "nazwa": "Ile wytrzymają naklejki winylowe",
+      "zajawka": "Czy naklejki wodoodporne wytrzymają deszcz, słońce i mycie? Sprawdź, co realnie znosi folia winylowa i czego lepiej unikać. Stała cena 59,00 zł za arkusz A4.",
+      "fraza": "ile wytrzymują naklejki winylowe",
+      "frazy": [
+        "czy naklejki winylowe są wodoodporne"
+      ],
+      "pytania_ai": [
+        "Czy naklejki winylowe są wodoodporne i czy można je myć w zmywarce?"
+      ],
+      "intencja": "informacyjna",
+      "potrzeba": "Przed zakupem chce wiedzieć, czy naklejka przetrwa deszcz, słońce i mycie.",
+      "segment": "wszyscy",
+      "odbiorca": "Osoba planująca naklejkę na bidon, rower, słoik albo paczkę, która nie chce, żeby odpadła.",
+      "etap": "MOFU",
+      "filar": "/naklejki-foliowe",
+      "kotwica": "ile wytrzymują naklejki winylowe",
+      "cta": {
+        "href": "/",
+        "tekst": "Zamów naklejki na folii"
+      },
+      "roznica": "Wpis o trwałości folii w praktyce; landing foliowy sprzedaje naklejki i obsługuje frazę „naklejki wodoodporne”.",
+      "priorytet": "P1",
+      "status": "opublikowane",
+      "opublikowano": "2026-08-30",
+      "zmieniono": "2026-09-03",
+      "zgloszenia": {}
+    },
+    {
+      "id": "naklejki-na-przyprawy",
+      "typ": "wpis",
+      "sciezka": "/blog/naklejki-wlasnego-projektu-na-sloiki-z-przyprawami-zorganizuj-swoja-kuchnie",
+      "plik": "src/content/blog/naklejki-wlasnego-projektu-na-sloiki-z-przyprawami-zorganizuj-swoja-kuchnie.md",
+      "tytul": "Naklejki na przyprawy na zamówienie - zorganizuj kuchnię",
+      "nazwa": "Naklejki na przyprawy",
+      "zajawka": "Małe naklejki na przyprawy na zamówienie od 1 sztuki. Stwórz etykiety na słoiczki, wydrukuj na trwałej folii i zorganizuj kuchnię raz na zawsze.",
+      "fraza": "naklejki na przyprawy",
+      "frazy": [
+        "naklejki na przyprawy na zamówienie",
+        "jak zrobić naklejki na przyprawy",
+        "naklejki na słoiczki do przypraw"
+      ],
+      "pytania_ai": [],
+      "intencja": "komercyjna",
+      "potrzeba": "Chce ujednolicić słoiczki z przyprawami jednym wzorem naklejek.",
+      "segment": "dom",
+      "odbiorca": "Osoba organizująca kuchnię, która przesypała przyprawy do jednakowych słoiczków.",
+      "etap": "MOFU",
+      "filar": "/etykiety-na-sloiki",
+      "kotwica": "naklejki na przyprawy",
+      "cta": {
+        "href": "/",
+        "tekst": "Stwórz naklejki na przyprawy"
+      },
+      "roznica": "Wpis o przyprawach w kuchni; landing etykiet sprzedaje etykiety na każdy słoik.",
+      "priorytet": "P2",
+      "status": "opublikowane",
+      "opublikowano": "2026-07-13",
+      "zmieniono": "2026-09-10",
+      "zgloszenia": {}
+    },
+    {
+      "id": "co-napisac-na-zniczu",
+      "typ": "wpis",
+      "sciezka": "/blog/co-napisac-na-zniczu-napisy-i-dedykacje-dla-bliskich",
+      "plik": "src/content/blog/co-napisac-na-zniczu-napisy-i-dedykacje-dla-bliskich.md",
+      "tytul": "Co napisać na zniczu - napisy i dedykacje dla bliskich",
+      "nazwa": "Co napisać na zniczu",
+      "zajawka": "Co napisać na zniczu? Gotowe napisy i dedykacje dla mamy, taty, babci, dziadka i dziecka oraz wskazówki, jak zapisać je na naklejce na znicz.",
+      "fraza": "co napisać na zniczu",
+      "frazy": [
+        "napis na znicz",
+        "dedykacja na znicz",
+        "napisy na znicze"
+      ],
+      "pytania_ai": [],
+      "intencja": "informacyjna",
+      "potrzeba": "Szuka słów dedykacji na znicz dla mamy, taty albo dziadków.",
+      "segment": "okazje",
+      "odbiorca": "Osoba przygotowująca znicz dla bliskiej osoby, która chce krótkiego, osobistego napisu.",
+      "etap": "TOFU",
+      "filar": "/naklejki-na-znicze",
+      "kotwica": "co napisać na zniczu",
+      "cta": {
+        "href": "/",
+        "tekst": "Zamów naklejki z napisem"
+      },
+      "roznica": "Wpis z gotowymi napisami; landing sprzedaje naklejki na znicze, a drugi wpis prowadzi przez znicz ze zdjęciem.",
+      "priorytet": "P2",
+      "status": "opublikowane",
+      "opublikowano": "2026-10-05",
+      "zmieniono": "2026-10-23",
+      "zgloszenia": {}
+    },
+    {
+      "id": "znicz-ze-zdjeciem",
+      "typ": "wpis",
+      "sciezka": "/blog/znicz-ze-zdjeciem-jak-zrobic-samodzielnie-naklejka-na-znicz",
+      "plik": "src/content/blog/znicz-ze-zdjeciem-jak-zrobic-samodzielnie-naklejka-na-znicz.md",
+      "tytul": "Znicz ze zdjęciem - jak zrobić go samodzielnie krok po kroku",
+      "nazwa": "Znicz ze zdjęciem",
+      "zajawka": "Jak zrobić znicz ze zdjęciem zmarłego samodzielnie: przygotuj zdjęcie, wybierz rozmiar i przyklej naklejkę na znicz LED lub solarny. Od 59,00 zł brutto za arkusz A4.",
+      "fraza": "znicz ze zdjęciem",
+      "frazy": [
+        "jak zrobić znicz ze zdjęciem",
+        "znicz ze zdjęciem zmarłego"
+      ],
+      "pytania_ai": [],
+      "intencja": "informacyjna",
+      "potrzeba": "Chce samodzielnie zrobić znicz ze zdjęciem bliskiej osoby i wie, że potrzebuje naklejki.",
+      "segment": "okazje",
+      "odbiorca": "Osoba przygotowująca znicz na cmentarz, która woli zrobić go sama niż kupić gotowy.",
+      "etap": "MOFU",
+      "filar": "/naklejki-na-znicze",
+      "kotwica": "znicz ze zdjęciem",
+      "cta": {
+        "href": "/",
+        "tekst": "Zamów naklejki na znicze"
+      },
+      "roznica": "Wpis instruktażowy; landing sprzedaje naklejki na znicze.",
+      "priorytet": "P1",
+      "status": "opublikowane",
+      "opublikowano": "2026-10-05",
+      "zmieniono": "2026-10-23",
+      "zgloszenia": {}
+    },
+    {
+      "id": "naklejki-z-imionami",
+      "typ": "wpis",
+      "sciezka": "/blog/naklejki-z-imionami-na-meble-drzwi-i-pojemniki-organizacja-domu",
+      "plik": "src/content/blog/naklejki-z-imionami-na-meble-drzwi-i-pojemniki-organizacja-domu.md",
+      "tytul": "Małe naklejki z imionami na meble, drzwi i pojemniki - organizacja domu",
+      "nazwa": "Naklejki z imionami",
+      "zajawka": "Zorganizuj dom i pokój dziecka wykorzystując małe naklejki z imionami na meble, drzwi i pojemniki. Wgraj plik z telefonu, druk już od 1 arkusza!",
+      "fraza": "naklejki z imionami",
+      "frazy": [
+        "małe naklejki z imionami",
+        "naklejki na meble",
+        "naklejki na pojemniki"
+      ],
+      "pytania_ai": [],
+      "intencja": "komercyjna",
+      "potrzeba": "Chce oznaczyć pojemniki, szuflady i drzwi w domu albo pokoju dziecka.",
+      "segment": "dom",
+      "odbiorca": "Rodzic albo osoba organizująca dom, która lubi porządek w pudełkach i szufladach.",
+      "etap": "TOFU",
+      "filar": "/etykiety-na-sloiki",
+      "kotwica": "naklejki z imionami",
+      "cta": {
+        "href": "/",
+        "tekst": "Zamów naklejki z imionami"
+      },
+      "roznica": "Wpis o organizacji domu; wpis o zeszytach mówi o szkole i przedszkolu.",
+      "priorytet": "P2",
+      "status": "opublikowane",
+      "opublikowano": "2026-07-25",
+      "zmieniono": "2026-11-02",
+      "zgloszenia": {}
+    },
+    {
+      "id": "naklejki-na-koperty-slubne",
+      "typ": "wpis",
+      "sciezka": "/blog/naklejki-na-koperty-slubne-i-podziekowania-dla-gosci",
+      "plik": "src/content/blog/naklejki-na-koperty-slubne-i-podziekowania-dla-gosci.md",
+      "tytul": "Naklejki na koperty ślubne i podziękowania dla gości",
+      "nazwa": "Naklejki na koperty ślubne",
+      "zajawka": "Naklejki na koperty ślubne i podziękowania dla gości od 1 arkusza A4 za 59 zł. Wgraj projekt z Canvy, a my wytniemy je po kształcie. Produkcja 4-5 dni.",
+      "fraza": "naklejki na koperty ślubne",
+      "frazy": [
+        "podziękowania dla gości naklejki",
+        "naklejki ślubne"
+      ],
+      "pytania_ai": [],
+      "intencja": "komercyjna",
+      "potrzeba": "Para młoda chce naklejek na koperty z zaproszeniami i na podziękowania dla gości.",
+      "segment": "okazje",
+      "odbiorca": "Para młoda albo wedding planner, który kompletuje papeterię ślubną.",
+      "etap": "TOFU",
+      "filar": "/fotonaklejki",
+      "kotwica": "naklejki na koperty ślubne",
+      "cta": {
+        "href": "/",
+        "tekst": "Zamów naklejki ślubne"
+      },
+      "roznica": "Wpis o papeterii ślubnej; wpis o alkoholu mówi o butelkach na stoły.",
+      "priorytet": "P2",
+      "status": "opublikowane",
+      "opublikowano": "2026-07-28",
+      "zmieniono": "2026-08-30",
+      "zgloszenia": {}
+    },
+    {
+      "id": "naklejki-gamingowe",
+      "typ": "wpis",
+      "sciezka": "/blog/naklejki-gamingowe-dla-gracza-na-pada-konsole-i-pc",
+      "plik": "src/content/blog/naklejki-gamingowe-dla-gracza-na-pada-konsole-i-pc.md",
+      "tytul": "Naklejki gamingowe z nickiem na pada i konsolę - od 1 szt.",
+      "nazwa": "Naklejki gamingowe",
+      "zajawka": "Naklejki gamingowe z nickiem, logo klanu lub własną grafiką na pada, konsolę i PC. Od 1 arkusza A4 za 59 zł, produkcja 4-5 dni. Prezent dla gracza do 100 zł.",
+      "fraza": "naklejki gamingowe",
+      "frazy": [
+        "naklejki na pada",
+        "naklejki z gier",
+        "naklejki na pada ps5"
+      ],
+      "pytania_ai": [],
+      "intencja": "komercyjna",
+      "potrzeba": "Gracz albo osoba szukająca prezentu chce naklejek z nickiem lub logo na pada, konsolę albo PC.",
+      "segment": "tworcy",
+      "odbiorca": "Gracz, streamer albo rodzic szukający prezentu dla gracza.",
+      "etap": "TOFU",
+      "filar": "/naklejki-die-cut",
+      "kotwica": "naklejki gamingowe",
+      "cta": {
+        "href": "/",
+        "tekst": "Stwórz naklejki gamingowe"
+      },
+      "roznica": "Jedyny wpis o gamingu; landing die-cut sprzedaje cięcie po obrysie.",
+      "priorytet": "P2",
+      "status": "opublikowane",
+      "opublikowano": "2026-10-23",
+      "zmieniono": "2026-10-24",
+      "zgloszenia": {}
+    },
+    {
+      "id": "naklejki-na-motor",
+      "typ": "wpis",
+      "sciezka": "/blog/naklejki-na-motory-i-motocyklowe",
+      "plik": "src/content/blog/naklejki-na-motory-i-motocyklowe.md",
+      "tytul": "Naklejki na motory i motocyklowe - personalizacja motocykla, kasku i baku",
+      "nazwa": "Naklejki na motor",
+      "zajawka": "Naklejki na motory i wlepki motocyklowe na kask, bak i owiewki. Personalizacja jednośladu bez pełnego oklejania - już od 1 arkusza A4 za 59,00 zł.",
+      "fraza": "naklejki na motor",
+      "frazy": [
+        "naklejki motocyklowe",
+        "naklejki na kask"
+      ],
+      "pytania_ai": [],
+      "intencja": "komercyjna",
+      "potrzeba": "Motocyklista chce spersonalizować kask, bak albo owiewki bez pełnego oklejania.",
+      "segment": "tworcy",
+      "odbiorca": "Motocyklista albo klub motocyklowy z własnym znakiem.",
+      "etap": "TOFU",
+      "filar": "/naklejki-foliowe",
+      "kotwica": "naklejki na motor",
+      "cta": {
+        "href": "/",
+        "tekst": "Zamów naklejki na motor"
+      },
+      "roznica": "Wpis o motocyklach; wpis motoryzacyjny mówi o samochodach i tuningu.",
+      "priorytet": "P2",
+      "status": "opublikowane",
+      "opublikowano": "2026-08-16",
+      "zmieniono": "2026-09-03",
+      "zgloszenia": {}
+    },
+    {
+      "id": "naklejki-motoryzacyjne",
+      "typ": "wpis",
+      "sciezka": "/blog/naklejki-motoryzacyjne-i-tuningowe-z-wlasnym-nadrukiem",
+      "plik": "src/content/blog/naklejki-motoryzacyjne-i-tuningowe-z-wlasnym-nadrukiem.md",
+      "tytul": "Naklejki motoryzacyjne i tuningowe z własnym nadrukiem",
+      "nazwa": "Naklejki motoryzacyjne",
+      "zajawka": "Naklejki motoryzacyjne i wlepki tuningowe z własnym nadrukiem - stałe 59,00 zł za arkusz A4, cięcie po obrysie, bez minimalnego nakładu, gotowe w 4-5 dni.",
+      "fraza": "naklejki motoryzacyjne",
+      "frazy": [
+        "naklejki tuningowe",
+        "wlepki tuningowe"
+      ],
+      "pytania_ai": [],
+      "intencja": "komercyjna",
+      "potrzeba": "Fan motoryzacji chce własnych wlepek na auto, szybę albo do klubu.",
+      "segment": "tworcy",
+      "odbiorca": "Członek klubu motoryzacyjnego albo fan tuningu z własnym logo.",
+      "etap": "TOFU",
+      "filar": "/naklejki-foliowe",
+      "kotwica": "naklejki motoryzacyjne",
+      "cta": {
+        "href": "/",
+        "tekst": "Zamów wlepki tuningowe"
+      },
+      "roznica": "Wpis o samochodach; wpis o motocyklach mówi o kaskach i bakach.",
+      "priorytet": "P2",
+      "status": "opublikowane",
+      "opublikowano": "2026-07-23",
+      "zmieniono": "2026-08-31",
+      "zgloszenia": {}
+    },
+    {
+      "id": "naklejki-na-rower",
+      "typ": "wpis",
+      "sciezka": "/blog/naklejki-na-rower-i-akcesoria-sportowe-dla-pasjonatow",
+      "plik": "src/content/blog/naklejki-na-rower-i-akcesoria-sportowe-dla-pasjonatow.md",
+      "tytul": "Naklejki na rower i akcesoria sportowe dla pasjonatów",
+      "nazwa": "Naklejki na rower",
+      "zajawka": "Personalizowane naklejki na rower i kask na wodoodpornej folii - stała cena 59,00 zł od arkusza A4, mocny klej i cięcie po obrysie, gotowe w 4-5 dni robocze.",
+      "fraza": "naklejki na rower",
+      "frazy": [
+        "naklejki na kask rowerowy",
+        "personalizowane naklejki na rower"
+      ],
+      "pytania_ai": [],
+      "intencja": "komercyjna",
+      "potrzeba": "Rowerzysta chce oznaczyć rower, kask albo bidon własną naklejką.",
+      "segment": "tworcy",
+      "odbiorca": "Rowerzysta, drużyna albo organizator zawodów.",
+      "etap": "TOFU",
+      "filar": "/naklejki-foliowe",
+      "kotwica": "naklejki na rower",
+      "cta": {
+        "href": "/",
+        "tekst": "Zamów naklejki na rower"
+      },
+      "roznica": "Jedyny wpis rowerowy; landing foliowy sprzedaje wodoodporne naklejki.",
+      "priorytet": "P2",
+      "status": "opublikowane",
+      "opublikowano": "2026-07-22",
+      "zmieniono": "2026-08-31",
+      "zgloszenia": {}
+    },
+    {
+      "id": "naklejki-na-laptopa",
+      "typ": "wpis",
+      "sciezka": "/blog/male-naklejki-na-laptopa-jak-wyrazic-siebie-i-stworzyc-wlasny-styl",
+      "plik": "src/content/blog/male-naklejki-na-laptopa-jak-wyrazic-siebie-i-stworzyc-wlasny-styl.md",
+      "tytul": "Małe naklejki na laptopa - jak wyrazić siebie i stworzyć własny styl",
+      "nazwa": "Naklejki na laptopa",
+      "zajawka": "Małe naklejki na laptopa i wlepki z własnym logo - spersonalizuj sprzęt po swojemu. Zamów wytrzymałe naklejki od 1 sztuki, bez minimalnego nakładu.",
+      "fraza": "naklejki na laptopa",
+      "frazy": [
+        "małe naklejki na laptopa"
+      ],
+      "pytania_ai": [],
+      "intencja": "komercyjna",
+      "potrzeba": "Chce spersonalizować laptopa własnymi naklejkami.",
+      "segment": "tworcy",
+      "odbiorca": "Student, programista albo twórca, który lubi oklejony sprzęt.",
+      "etap": "TOFU",
+      "filar": "/naklejki-die-cut",
+      "kotwica": "naklejki na laptopa",
+      "cta": {
+        "href": "/",
+        "tekst": "Stwórz swoje naklejki"
+      },
+      "roznica": "Jedyny wpis o laptopach; landing die-cut sprzedaje cięcie po obrysie.",
+      "priorytet": "P2",
+      "status": "opublikowane",
+      "opublikowano": "2026-07-06",
+      "zmieniono": "2026-07-06",
+      "zgloszenia": {}
+    },
+    {
+      "id": "naklejki-na-eventy",
+      "typ": "wpis",
+      "sciezka": "/blog/naklejki-firmowe-na-eventy-welcome-pack-dla-pracownikow",
+      "plik": "src/content/blog/naklejki-firmowe-na-eventy-welcome-pack-dla-pracownikow.md",
+      "tytul": "Naklejki firmowe na eventy - Welcome Pack dla pracowników",
+      "nazwa": "Naklejki na eventy",
+      "zajawka": "Naklejki firmowe na eventy i welcome pack dla nowych pracowników - stała cena 59,00 zł za arkusz A4, bez minimalnego nakładu, gotowe w 4-5 dni robocze.",
+      "fraza": "naklejki na eventy firmowe",
+      "frazy": [
+        "welcome pack dla pracowników",
+        "naklejki firmowe na eventy"
+      ],
+      "pytania_ai": [],
+      "intencja": "komercyjna",
+      "potrzeba": "Dział HR albo organizator eventu chce naklejek do welcome packa albo na konferencję.",
+      "segment": "firmy",
+      "odbiorca": "Office manager, HR albo organizator małej konferencji w firmie.",
+      "etap": "TOFU",
+      "filar": "/naklejki-dla-firm",
+      "kotwica": "naklejki na eventy firmowe",
+      "cta": {
+        "href": "/",
+        "tekst": "Zamów naklejki na eventy"
+      },
+      "roznica": "Wpis o eventach i welcome packach; landing dla firm sprzedaje naklejki z logo.",
+      "priorytet": "P2",
+      "status": "opublikowane",
+      "opublikowano": "2026-07-21",
+      "zmieniono": "2026-07-21",
+      "zgloszenia": {}
+    },
+    {
+      "id": "etykiety-na-przetwory",
+      "typ": "wpis",
+      "sciezka": "/blog/etykiety-na-sloiki-do-przetworow-i-wekow",
+      "plik": "src/content/blog/etykiety-na-sloiki-do-przetworow-i-wekow.md",
+      "tytul": "Etykiety na słoiki do przetworów i weków - napisy na słoiki krok po kroku",
+      "nazwa": "Etykiety na przetwory",
+      "zajawka": "Dowiedz się, jak łatwo zrobić własne wodoodporne etykiety na słoiki do przetworów i weków. Naklejki na słoiki bez minimalnego nakładu - stała cena za arkusz A4.",
+      "fraza": "etykiety na przetwory",
+      "frazy": [
+        "etykiety na słoiki do przetworów",
+        "napisy na słoiki",
+        "etykiety na weki"
+      ],
+      "pytania_ai": [],
+      "intencja": "informacyjna",
+      "potrzeba": "Robi przetwory i szuka pomysłu na napisy oraz trwałe etykiety na słoiki i weki.",
+      "segment": "dom",
+      "odbiorca": "Osoba robiąca przetwory w domu, która chce ładnie i czytelnie opisać słoiki.",
+      "etap": "TOFU",
+      "filar": "/etykiety-na-sloiki",
+      "kotwica": "etykiety na przetwory",
+      "cta": {
+        "href": "/",
+        "tekst": "Otwórz kreator arkusza"
+      },
+      "roznica": "Wpis z pomysłami na napisy na przetworach; landing sprzedaje etykiety na słoiki.",
+      "priorytet": "P2",
+      "status": "opublikowane",
+      "opublikowano": "2026-08-06",
+      "zmieniono": "2026-11-02",
+      "zgloszenia": {}
+    },
+    {
+      "id": "naklejki-walentynkowe",
+      "typ": "wpis",
+      "sciezka": "/blog/naklejki-walentynkowe",
+      "plik": "src/content/blog/naklejki-walentynkowe.md",
+      "tytul": "Naklejki walentynkowe z imieniem i zdjęciem",
+      "nazwa": "Naklejki walentynkowe",
+      "zajawka": "Naklejki walentynkowe z imionami, zdjęciem pary albo własnym napisem: na prezent, kartkę i opakowanie. Od 1 arkusza A4 za 59 zł.",
+      "fraza": "naklejki walentynkowe",
+      "frazy": [
+        "naklejki na walentynki z imieniem",
+        "naklejki ze zdjęciem na walentynki"
+      ],
+      "pytania_ai": [],
+      "intencja": "komercyjna",
+      "potrzeba": "Szuka naklejek na Walentynki z imieniem albo zdjęciem do prezentu, kartki lub opakowania.",
+      "segment": "okazje",
+      "odbiorca": "Osoba w parze przygotowująca drobny, osobisty prezent na 14 lutego.",
+      "etap": "MOFU",
+      "filar": "/fotonaklejki",
+      "kotwica": "naklejki walentynkowe",
+      "cta": {
+        "href": "/",
+        "tekst": "Zrób naklejki walentynkowe"
+      },
+      "roznica": "Okazja walentynkowa i para jako odbiorca; fotonaklejki sprzedają naklejki ze zdjęć bez okazji, a hub świąteczny dotyczy grudnia.",
+      "teza": "Brief B7 (P4.3.7): frazy zebrać 1-20.12 (podpowiedzi Google), wpis ok. 1000-1300 słów bez ambicji huba, bo w GSC nie ma danych. Naklejka z imionami albo wspólnym zdjęciem na prezent, kartkę i opakowanie; różne wzory na jednym arkuszu. Link do /fotonaklejki i do huba świątecznego. Produkcja 4-5 dni roboczych: pisz o zamówieniu z wyprzedzeniem, bez daty doręczenia.",
+      "priorytet": "P2",
+      "status": "w_kolejce",
+      "kolejnosc": 14,
+      "okno": {
+        "od": "2027-01-05",
+        "do": "2027-01-20"
+      },
+      "zgloszenia": {}
+    },
+    {
+      "id": "etykiety-na-kosmetyki-i-swiece",
+      "typ": "wpis",
+      "sciezka": "/blog/etykiety-na-kosmetyki-i-swiece",
+      "plik": "src/content/blog/etykiety-na-kosmetyki-i-swiece.md",
+      "tytul": "Etykiety na kosmetyki naturalne i świece dla małej manufaktury",
+      "nazwa": "Etykiety na kosmetyki i świece",
+      "zajawka": "Co umieścić na etykiecie kosmetyku naturalnego i świecy z małej manufaktury i jak zamówić krótką serię etykiet od 1 arkusza A4.",
+      "fraza": "etykiety na kosmetyki naturalne",
+      "frazy": [
+        "etykiety na świece",
+        "etykiety ze składem"
+      ],
+      "pytania_ai": [],
+      "intencja": "komercyjna",
+      "potrzeba": "Mała manufaktura szuka etykiet na kosmetyki albo świece w krótkiej serii i chce wiedzieć, co na nich umieścić.",
+      "segment": "firmy",
+      "odbiorca": "Mydlarnia, świecarnia albo twórca kosmetyków naturalnych sprzedający kilkadziesiąt sztuk miesięcznie.",
+      "etap": "MOFU",
+      "filar": "/naklejki-dla-firm",
+      "kotwica": "etykiety na kosmetyki naturalne",
+      "cta": {
+        "href": "/",
+        "tekst": "Zamów etykiety na kosmetyki"
+      },
+      "roznica": "Kosmetyki i świece (skład, ostrzeżenia, seria); wpis o logo na słoikach mówi o branding, a etykiety na słoiki o przetworach.",
+      "teza": "Brief B6 z blog-agent/plan.md, łącznie z ograniczeniem prawnym: nie udzielamy porad o obowiązkowej treści etykiety kosmetyku (odsyłamy do przepisów i producenta), mówimy o formie i trwałości etykiety. Świece: bez obietnic odporności na ciepło (facts.md).",
+      "priorytet": "P2",
+      "status": "wstrzymane",
+      "kolejnosc": 15,
+      "warunek": "Nowe strony wstrzymane do kontroli mierników Fazy 4 (30.11.2026), a harmonogram sezonu nie przewiduje nowych stron 29.11-24.12. Wraca, gdy etykiety na słoiki wyjdą z pozycji 20+.",
+      "zgloszenia": {}
+    }
+  ]
+}

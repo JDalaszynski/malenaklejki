@@ -49,3 +49,8 @@ next-env.d.ts
 
 # kopie zapasowe wyciągnięte z bazy (dane klientów — nigdy do repo)
 /kopie-zapasowe/
+
+# content agent: data pulled from Google and the shop (business numbers, public repo) and the generated keyword base
+/tresci/dane-google.json
+/tresci/dane-sklep.json
+/tresci/frazy.json

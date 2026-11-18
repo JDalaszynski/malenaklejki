@@ -8,7 +8,11 @@
     "prebuild": "node scripts/kopiuj-zasoby-pdfjs.mjs",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "tresci:sprawdz": "node scripts/tresci/sprawdz.mts",
+    "tresci:frazy": "node scripts/tresci/frazy.mts",
+    "tresci:zamowienia": "node --env-file=.env.local scripts/tresci/zamowienia.mts",
+    "tresci:zglos": "node scripts/tresci/zglos.mjs"
   },
   "dependencies": {
     "@base-ui/react": "^1.5.0",

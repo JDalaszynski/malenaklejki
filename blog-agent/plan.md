@@ -1,5 +1,7 @@
 # 📅 Plan Publikacji Artykułów
 
+> **Od 2026-11-18 kolejka treści żyje w `tresci/rejestr.json` (agent `redaktor-tresci`, `/tresc <id>`).** Ten plik zostaje historią decyzji i analiz; otwarte pozycje przeniesiono do rejestru (lista w `tresci/dziennik.md`, wpis z 2026-11-18). Nowych pozycji tu nie dopisuj.
+
 Poniżej znajduje się harmonogram wpisów na bloga. Agent AI automatycznie pobiera pierwszy niewykonany temat (oznaczony jako `- [ ]`), odczytuje jego parametry, generuje artykuł i po pomyślnym wysłaniu na GitHub zaznacza go jako wykonany (`- [x]`).
 
 Możesz dodawać nowe tematy, zachowując format wcięć pod spodem.

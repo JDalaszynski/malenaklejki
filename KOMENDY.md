@@ -4,6 +4,20 @@ Wywołania agenta dla projektu `malenaklejki`. Wszystkie komendy działają w j�
 
 ---
 
+## ⭐ TREŚCI - agent redaktor-tresci (od 2026-11-18, zastępuje kolejkę z planów)
+
+| Cel | Komenda |
+|---|---|
+| Napisz albo popraw pozycję z kolejki | `/tresc <id>` (prompt do skopiowania w panelu: MałeNaklejki → Treści) |
+| Dodane i usunięte frazy z panelu, braki fraz w treściach | `/frazy` (prompt w panelu: MałeNaklejki → Frazy) |
+| Świeże dane z GSC, GA4 i zamówień, ocena zmian, nowa kolejka | `/przeglad-tresci` |
+| Bramka przed pushem treści | `npm run tresci:sprawdz` |
+| Gdzie stoją frazy, braki, kolizje, sygnały | `npm run build` → `npm run tresci:frazy` |
+
+**Referencje:** `.claude/agents/redaktor-tresci.md`, `tresci/system.md`, `tresci/strategia.md`, `tresci/rejestr.json`. Pipeline Autoblog niżej zostaje jako procedura zdjęć, pinów i `llms.txt` w ramach `/tresc`.
+
+---
+
 ## 🟢 BLOG
 
 | Cel | Komenda |

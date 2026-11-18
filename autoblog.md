@@ -1,5 +1,7 @@
 # Instrukcja Agenta: Automatyczny Blog (Autoblog)
 
+> **Od 2026-11-18 treści prowadzi agent `redaktor-tresci` (`/tresc <id>`, `tresci/system.md`).** Kolejka nie jest już w `blog-agent/plan.md`, tylko w `tresci/rejestr.json`. Ten plik zostaje jako procedura frontmattera, zdjęć, pinów, paska z logo i `llms.txt` (kroki 2 i 4), na którą powołuje się `tresci/system.md`. Krok 4.4 (IndexNow) zastępuje `npm run tresci:zglos`.
+
 Jako agent AI jesteś odpowiedzialny za proces tworzenia i publikacji nowych artykułów na blogu MałeNaklejki. Poniżej znajduje się procedura krok po kroku, którą musisz wykonać przy każdym uruchomieniu procesu "Autoblog".
 
 ## Krok 1: Przygotowanie i Kontekst
