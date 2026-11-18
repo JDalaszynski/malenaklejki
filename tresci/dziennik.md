@@ -2,6 +2,22 @@
 
 Prowadzi agent `redaktor-tresci`. Najnowsze wpisy na górze. Każdy wpis: data, co się zmieniło (adresy), dlaczego (liczby z oknem), zgłoszenia, kiedy ocenić. Starsza historia: `blog-agent/plan.md`, `landing-agent/plan.md`, `blog-agent/strategy.md`.
 
+## 2026-11-18 - /frazy: 5 fraz z panelu
+
+**Zmiany z panelu:** 5 dodanych, 0 usuniętych, wszystkie `dodana` (`tresci/frazy-zmiany.json`). Rozpoznanie: wyszukiwania 18.11.2026 (narzędzie WebSearch, nie google.pl - przybliżenie wyników).
+
+- „naklejka logo firmy” - wariant na `/blog/naklejka-z-logo-firmy-jak-skutecznie-brandowac-swoje-produkty` (Google pokazuje tę stronę, poz. 20,6).
+- „naklejki ze zdjęcia” - wariant wspierającej „naklejka ze zdjęcia” na `/fotonaklejki` (poz. 24). W wynikach przeważają edytory naklejek cyfrowych.
+- „zamów naklejki online” - wariant strony głównej `/` (transakcyjna, poz. 20,3). Strona główna bez zmian (tylko za zgodą).
+- „zamówienie naklejek” - wariant na `/blog/jak-zamowic-idealne-naklejki-na-zamowienie-z-wlasnym-nadrukiem`, właściciela „naklejki zamówienie”. GSC 90 dni: 7 wyświetleń na wpisie o wlepkach (poz. 3,3) i 4 na właścicielu (poz. 9,8). Intencja to ogólne zamawianie, więc właściciel zostaje; jeśli przy przeglądzie wpis o wlepkach dalej będzie wyżej, rozważyć przeniesienie.
+- „jak zrobić vlepki kibicowskie” - szósta wspierająca `vlepki-kibicowskie`. Google pokazuje dziś wpis o wlepkach dla artystów (poz. 9,2, 10 wyświetleń), ale pytanie dotyczy niszy kibicowskiej, którą ma ten wpis. W wynikach wyszukiwania nie ma poradnika o vlepkach kibicowskich.
+
+**Zmieniona strona:** `/blog/vlepki-kibicowskie-i-klubowe-wlepy-dla-kibicow-klubow-i-ekip` (P1, `zmieniono` i `updated` = 2026-11-18). Nowa sekcja H2 „Jak zrobić vlepki kibicowskie?” z odpowiedzią 40-60 słów na początku, wskazówkami do grafiki (generatory AI, potem Canva; brak edytora tekstu w kreatorze; „Usuń tło”) i uczciwym porównaniem z domowym wydrukiem. Braki strony uzupełnione: „vlepki kibicowskie” w pierwszym zdaniu, „naklejki kibicowskie” w H2. Przy okazji: FAQ o kilku wzorach na arkuszu mówiło, że trzeba je złożyć w jeden plik - poprawione według `facts.md` (kolejne grafiki wgrywa się osobno); „Nie musi” → „Nie muszą”.
+
+**Braki w bazie:** 32 → 30 (na 24 → 23 stronach).
+
+**Kiedy ocenić:** pozycja wpisu na „jak zrobić vlepki kibicowskie” i „naklejki kibicowskie” po 60-90 dniach (od 2027-01-17).
+
 ## 2026-11-18 - start systemu treści
 
 **Co powstało:** agent `redaktor-tresci` i komendy `/tresc`, `/frazy`, `/przeglad-tresci`; rejestr `tresci/rejestr.json` (11 landingów, 34 wpisy, 2 nowe wpisy w kolejce, 13 zadań poprawy); baza `tresci/slowa-kluczowe.csv` (504 frazy: z rejestru, `blog-agent/keywords.md`, `landing-agent/keywords.md`, `landing-agent/keywords-znicze.md` i zapytań GSC z co najmniej 15 wyświetleniami w 90 dni); skrypty `tresci:sprawdz`, `tresci:frazy`, `tresci:zamowienia`, `tresci:zglos`; zakładki „Treści” i „Frazy” w panelu (MałeNaklejki).

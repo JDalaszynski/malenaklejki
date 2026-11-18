@@ -1,4 +1,55 @@
 {
   "opis": "Zmiany bazy fraz zgłoszone przez Jakuba w panelu (MałeNaklejki → Frazy) i decyzja agenta przy każdej. Prowadzi agent przy /frazy, procedura: .claude/commands/frazy.md.",
-  "zmiany": []
+  "zmiany": [
+    {
+      "id": "5c220f2a-b1eb-458b-9968-ec3f6d413691",
+      "typ": "dodaj",
+      "fraza": "naklejka logo firmy",
+      "uwaga": "Z Google: 14 wyśw., poz. 20,6, strona /blog/naklejka-z-logo-firmy-jak-skutecznie-brandowac-swoje-produkty",
+      "zgloszono": "2026-11-18",
+      "obsluzono": "2026-11-18",
+      "decyzja": "dodana",
+      "wynik": "Wariant frazy „naklejka z logo firmy” na /blog/naklejka-z-logo-firmy-jak-skutecznie-brandowac-swoje-produkty, tej samej strony, którą pokazuje Google; główna fraza strony stoi już w title, H1 i nagłówkach."
+    },
+    {
+      "id": "1b9c5a2b-bb35-4c49-9964-5ad3ec3ad80d",
+      "typ": "dodaj",
+      "fraza": "naklejki ze zdjęcia",
+      "uwaga": "Z Google: 14 wyśw., poz. 24, strona /fotonaklejki",
+      "zgloszono": "2026-11-18",
+      "obsluzono": "2026-11-18",
+      "decyzja": "dodana",
+      "wynik": "Wariant wspierającej „naklejka ze zdjęcia” na /fotonaklejki (tę stronę pokazuje Google); odmiana stoi już w title, H1, pierwszym akapicie i FAQ."
+    },
+    {
+      "id": "87239b06-f943-4581-b2a3-20665e0af73b",
+      "typ": "dodaj",
+      "fraza": "zamów naklejki online",
+      "uwaga": "Z Google: 13 wyśw., poz. 20,3, strona /",
+      "zgloszono": "2026-11-18",
+      "obsluzono": "2026-11-18",
+      "decyzja": "dodana",
+      "wynik": "Wariant na stronie głównej / (intencja transakcyjna, kreator; tę stronę pokazuje Google), obok wspierającej „naklejki online”; strona główna bez zmian, bo zmienia się tylko za zgodą."
+    },
+    {
+      "id": "741b3983-aaf3-48c4-98de-2bb57da22d88",
+      "typ": "dodaj",
+      "fraza": "zamówienie naklejek",
+      "uwaga": "Z Google: 14 wyśw., poz. 3,3, strona /blog/wklepki-i-wlepy-z-wlasnym-nadrukiem-dla-artystow-i-spolecznosci",
+      "zgloszono": "2026-11-18",
+      "obsluzono": "2026-11-18",
+      "decyzja": "dodana",
+      "wynik": "Wariant „naklejki zamówienie” na /blog/jak-zamowic-idealne-naklejki-na-zamowienie-z-wlasnym-nadrukiem (ogólne zamawianie, nie wlepki); Google pokazuje dziś wpis o wlepkach, decyzja o przeniesieniu przy przeglądzie, jeśli to się utrzyma."
+    },
+    {
+      "id": "a8d591ee-07e2-48fa-b78a-14d08987d7e5",
+      "typ": "dodaj",
+      "fraza": "jak zrobić vlepki kibicowskie",
+      "uwaga": "Z Google: 14 wyśw., poz. 9,2, strona /blog/wklepki-i-wlepy-z-wlasnym-nadrukiem-dla-artystow-i-spolecznosci",
+      "zgloszono": "2026-11-18",
+      "obsluzono": "2026-11-18",
+      "decyzja": "dodana",
+      "wynik": "Szósta wspierająca na /blog/vlepki-kibicowskie-i-klubowe-wlepy-dla-kibicow-klubow-i-ekip (nisza kibicowska należy do tego wpisu): nowa sekcja H2 „Jak zrobić vlepki kibicowskie?” z odpowiedzią na początku."
+    }
+  ]
 }
