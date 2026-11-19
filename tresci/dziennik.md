@@ -12,6 +12,8 @@ Prowadzi agent `redaktor-tresci`. Najnowsze wpisy na górze. Każdy wpis: data, 
 
 **Dlaczego:** GSC 90 dni 18.08-15.11.2026: 239 wyświetleń, 1 kliknięcie, CTR 0,4% przy poz. 7,7 (typowo ok. 2,5%); „wzory na naklejki” 12 wyświetleń na poz. 8,6, „pomysły na naklejki” 9 na poz. 8 (tej drugiej nie było w title).
 
+**Zgłoszenia:** commit 274cc0a na produkcji 19.11, IndexNow 200 OK 19.11. **GSC do ponowienia od 2026-11-20** (nowy title i opis; limit 19.11 wyczerpany).
+
 **Skan:** bez braków i kolizji.
 
 **Kiedy ocenić:** title i opis - sygnał od 2026-12-03, odczyt CTR od 2026-12-17 (28 dni).
