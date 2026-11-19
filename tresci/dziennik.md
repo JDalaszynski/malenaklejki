@@ -6,6 +6,14 @@ Prowadzi agent `redaktor-tresci`. Najnowsze wpisy na górze. Każdy wpis: data, 
 
 
 
+## 2026-11-19 - /frazy: 28 fraz usuniętych z panelu
+
+**Co się zmieniło:** 28 wierszy usuniętych z `tresci/slowa-kluczowe.csv` (509 → 481 fraz): śmieciowe („- patrz”, „wobec”, „jesieniarski”), generator AI pod HOLD („generator naklejek ai”, „generator naklejek online”, „jak wygenerować naklejkę ai”, „wzory na naklejki ai”), obietnice terminu („naklejki na już”, „naklejki w 3 dni”), „tani zamiennik stickerapp”, „gadżety firmowe z logo”, „naklejka serwisowana przez” oraz 15 fraz zniczowych poza ofertą albo bez strony (lampion, wkłady, znicz logo/świąteczny/patriotyczny, znicze solarne i personalizowane, dedykacje na zniczach solarnych i LED). Wszystkie były bez strony (`docelowy_url` = `brak`), żadna nie była główną ani wspierającą, więc rejestr i teksty stron bez zmian. Decyzje w `tresci/frazy-zmiany.json` (`usunieta`).
+
+**Skan:** `scripts/tresci/frazy.mts` pomija w kandydatach frazy usunięte w panelu - inaczej „jesieniarski” (GSC) wracał od razu jako kandydat do dodania. Braki na stronach z rejestru: 0 przed i po; kandydaci 17 → 16.
+
+**Zgłoszenia:** brak (żadna strona się nie zmieniła).
+
 ## 2026-11-19 - /tresc wzory-na-naklejki: title z obiema frazami, odpowiedź z katalogiem
 
 **Co się zmieniło:** `/blog/fajne-wzory-i-pomysly-na-naklejki-inspiracje-wg-zastosowania` (P2, `zmieniono` i `updated` = 2026-11-19). Title i H1 „Fajne wzory na naklejki - gotowe zestawy za 59 zł” (od 19.10) → „Wzory i pomysły na naklejki - gotowe zestawy za 59 zł” (53 znaki + dopisek szablonu; fraza główna na początku, „pomysły na naklejki” w title i H1, bez kolizji z frazami `/gotowe-zestawy`). Nowy opis meta (149 znaków) zaczyna się od frazy głównej. Pierwszy akapit (58 słów) odpowiada wprost: wzory z katalogu [gotowe zestawy naklejek](/gotowe-zestawy) (arkusz A4 za 59,00 zł brutto, zamówisz od razu albo zmienisz w kreatorze) albo własny pomysł według zastosowania; zamiast wstępu „Decyzja o zamówieniu…”. H2 „Skąd wziąć darmowe wzory na naklejki do druku? Rewolucja AI” → „Skąd wziąć własne wzory na naklejki? Generatory AI” (decyzja 4: bez darmowych szablonów do druku). Katalog publiczny (200 na produkcji 19.11), więc link zgodny z decyzją 6.

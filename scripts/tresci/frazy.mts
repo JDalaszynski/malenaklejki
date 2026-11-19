@@ -44,7 +44,7 @@ type Rola = "glowna" | "wspierajaca" | "pytanie" | "wariant" | "pozniej";
 
 const rejestr = czytajRejestr();
 const wiersze = czytajBaze();
-const historia = JSON.parse(readFileSync(plik("tresci/frazy-zmiany.json"), "utf8")) as { zmiany: { id: string; obsluzono: string }[] };
+const historia = JSON.parse(readFileSync(plik("tresci/frazy-zmiany.json"), "utf8")) as { zmiany: { id: string; obsluzono: string; typ?: string; fraza?: string; decyzja?: string }[] };
 const czytajJson = (nazwa: string) => (existsSync(plik("tresci", nazwa)) ? JSON.parse(readFileSync(plik("tresci", nazwa), "utf8")) : null);
 const google = czytajJson("dane-google.json");
 const sklep = czytajJson("dane-sklep.json");
@@ -287,8 +287,10 @@ for (const s of strony) {
 
 /** Zapytania z wyświetleniami, których nie ma w bazie: kandydaci do bazy przy `/frazy` i `/przeglad-tresci`. */
 const wBazie = new Set(frazy.map((f) => klucz(f.fraza)));
+/** Frazy usunięte przez Jakuba w panelu nie wracają jako kandydaci. */
+const usuniete = new Set(historia.zmiany.filter((z) => z.typ === "usun" && z.decyzja === "usunieta" && z.fraza).map((z) => klucz(z.fraza!)));
 const kandydaci = [...poKluczu.entries()]
-  .filter(([k]) => !wBazie.has(k))
+  .filter(([k]) => !wBazie.has(k) && !usuniete.has(k))
   .map(([, rows]) => {
     const najlepsza = [...rows].sort((a, b) => b.wysw - a.wysw)[0];
     return { fraza: najlepsza.fraza, sciezka: najlepsza.sciezka, wysw: rows.reduce((n, r) => n + r.wysw, 0), klik: rows.reduce((n, r) => n + r.klik, 0), poz: najlepsza.poz };
