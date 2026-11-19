@@ -20,6 +20,8 @@ Prowadzi agent `redaktor-tresci`. Najnowsze wpisy na górze. Każdy wpis: data, 
 
 **Do obserwacji:** wpis o wodoodporności zaczyna się od „Naklejki wodoodporne zamówisz…”, a ta fraza należy do landingu. Jeśli przy przeglądzie Google dalej będzie pokazywał na nią wpis, rozstrzygnąć właściciela.
 
+**Zgłoszenia:** commit c471702 na produkcji 19.11, IndexNow 200 OK 19.11. **GSC do ponowienia od 2026-11-20** (P0, istotna aktualizacja; limit 19.11 wyczerpany).
+
 **Kiedy ocenić:** pozycja „naklejki foliowe”, „naklejki winylowe” i „naklejki wodoodporne” po 60-90 dniach (od 2027-01-18); wejścia i koszyk z GA4 przy przeglądzie.
 
 ## 2026-11-19 - /tresc naklejki-dla-firm: pogłębienie pod „naklejki firmowe” i „naklejki dla firm”
