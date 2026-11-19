@@ -14,6 +14,8 @@ Prowadzi agent `redaktor-tresci`. Najnowsze wpisy na górze. Każdy wpis: data, 
 
 **Dlaczego:** GSC 90 dni 18.08-15.11.2026: 787 wyświetleń, 5 kliknięć, poz. 9,1, CTR 0,6%. Google na „jak zrobić naklejkę ze zdjęcia” pokazywał wpis o telefonie (ok. 935 wyświetleń wobec 53 tutaj), fraza przeszła do niego 19.11. Wariant główny: ani „naklejki ze zdjęciem na prezent”, ani „naklejka ze zdjęcia na prezent” nie mają wyświetleń w GSC (90 dni do 15.11), więc baza bez zmian; title w liczbie mnogiej trafia też w „naklejka ze zdjęcia” (76 wyświetleń na tym wpisie, odmiana). Rozpoznanie 19.11.2026 (WebSearch „naklejki ze zdjęciem na prezent”): marketplace'y z ceną za sztukę (Shein, Etsy, Kaufland) i edytory bez wydruku (Canva, VistaCreate) - nikt nie pokazuje kilku zdjęć dla kilku osób na jednym arkuszu za jedną cenę.
 
+**Zgłoszenia:** commit b1080b3 na produkcji 19.11, IndexNow 200 OK 19.11. **GSC do ponowienia od 2026-11-20** (P0, istotna aktualizacja i nowy title; limit 19.11 wyczerpany).
+
 **Skan:** wszystkie frazy strony na miejscach, bez braków i kolizji. Zostaje sygnał „Google pokazuje inną stronę” na „zrób naklejkę ze zdjęcia” (`/fotonaklejki` 20 wyświetleń wobec 11 tutaj) - do decyzji przy przeglądzie.
 
 **Kiedy ocenić:** title i opis - sygnał od 2026-12-03, odczyt od 2026-12-17 (28 dni); pozycja na frazy prezentowe po Dniu Babci i Dziadka (od 2027-01-25), pozycja strony 60-90 dni (od 2027-01-18).
