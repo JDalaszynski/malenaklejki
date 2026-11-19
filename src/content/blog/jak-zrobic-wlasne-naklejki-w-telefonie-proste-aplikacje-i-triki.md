@@ -1,11 +1,11 @@
 ---
-title: "Jak zrobić naklejki w telefonie i wydrukować od 1 sztuki"
+title: "Jak zrobić naklejki w telefonie ze zdjęcia: iPhone i Android"
 slug: "jak-zrobic-wlasne-naklejki-w-telefonie-proste-aplikacje-i-triki"
 date: "2026-07-17"
-description: "Zrób naklejkę ze zdjęcia w telefonie: aplikacje do usuwania tła, gotowy plik i druk na trwałej folii od 59,00 zł za arkusz A4. Bez komputera."
+description: "Jak zrobić naklejki w telefonie ze zdjęcia: iPhone, Android i WhatsApp krok po kroku. Chcesz ją na laptopie albo bidonie? Wydrukuj od 1 arkusza A4."
 image: "/blog/jak-zrobic-wlasne-naklejki-w-telefonie-proste-aplikacje-i-triki/naklejka-ze-zdjecia-psa-zrobiona-telefonem-na-laptopie.jpg"
 imageAlt: "Naklejka wycięta po obrysie ze zdjęcia psa rasy golden retriever zrobionego telefonem, naklejona na pokrywie laptopa obok smartfona z tym samym zdjęciem w galerii."
-updated: "2026-09-21"
+updated: "2026-11-19"
 tags: ["naklejki", "smartfon", "DIY", "poradnik"]
 role: "supporting"
 pillar: true
@@ -13,31 +13,67 @@ pillarOrder: 6
 cta_text: "Zrób naklejkę z telefonu"
 ---
 
-Nie potrzebujesz komputera ani programów graficznych, żeby stworzyć własną naklejkę - wystarczy telefon, jedno zdjęcie i kilka minut. Poniżej znajdziesz sprawdzone triki, dzięki którym dowiesz się, jak zrobić własne naklejki w telefonie, a gotowy plik od razu wgrasz do [drukowania naklejek online](/blog/drukowanie-naklejek-online-na-co-zwrocic-uwage-przed-wysylka-projektu) bez odrywania się od kanapy. Najczęściej powstają tak [naklejki z własnego zdjęcia](/fotonaklejki) - portret psa, rysunek dziecka albo kadr z wakacji. Chcesz zacząć od ręki? [Stwórz własną naklejkę](/) prosto w przeglądarce telefonu - wgraj zdjęcie, a resztą zajmie się kreator.
+Naklejki w telefonie zrobisz ze zwykłego zdjęcia w minutę, bez komputera i bez instalowania aplikacji. Na iPhonie przytrzymaj palcem psa, osobę albo przedmiot na zdjęciu w aplikacji Zdjęcia i wybierz „Dodaj naklejkę”. Na Samsungu Galaxy przytrzymaj obiekt w Galerii, a telefon wytnie go z tła. W WhatsAppie naklejkę utworzysz ze zdjęcia wprost w panelu naklejek czatu.
 
-## Co potrzebujesz, żeby zrobić naklejkę z telefonu?
+Taka naklejka zostaje w telefonie i wysyłasz ją w czatach. Jeśli chcesz ją mieć na laptopie, bidonie albo etui, to samo zdjęcie wgrasz do kreatora arkusza MałeNaklejki i zamówisz wydruk na folii winylowej - [fotonaklejki ze zdjęcia](/fotonaklejki) od jednego arkusza A4 za 59,00 zł brutto.
+
+## Jak zrobić naklejkę ze zdjęcia na iPhonie, Androidzie i w WhatsAppie?
+
+Każdy z trzech sposobów zaczyna się tak samo: zdjęcie z wyraźnym obiektem na spokojnym tle. Im ostrzejsze krawędzie psa, kubka czy twarzy, tym czyściej telefon odetnie tło.
+
+### iPhone - aplikacja Zdjęcia (iOS 17 i nowszy)
+
+1. Otwórz zdjęcie w aplikacji **Zdjęcia**.
+2. Przytrzymaj palcem obiekt, aż wokół niego pojawi się świecący kontur.
+3. Puść i wybierz **„Dodaj naklejkę”**. Możesz od razu dodać efekt, np. biały obrys.
+4. Naklejka trafia do zakładki naklejek na klawiaturze emoji - wyślesz ją w Wiadomościach, WhatsAppie i innych komunikatorach.
+
+### Android - Galeria Samsunga i aplikacje do naklejek
+
+Na nowszych telefonach **Samsung Galaxy** otwórz zdjęcie w Galerii i przytrzymaj obiekt - telefon wytnie go z tła, a wycinek skopiujesz, udostępnisz w czacie albo zapiszesz jako obraz. Na innych telefonach z Androidem najprościej użyć kreatora naklejek w WhatsAppie albo aplikacji do naklejek, która eksportuje paczki do komunikatorów (np. Sticker.ly).
+
+### WhatsApp - naklejka ze zdjęcia w czacie
+
+Otwórz czat, wejdź w panel naklejek i wybierz tworzenie nowej naklejki, a potem wskaż zdjęcie z galerii. WhatsApp sam usunie tło, a przed wysłaniem dodasz napis albo emoji. Na iPhonie ta opcja działa od dawna, na Androidzie trafia do kolejnych wersji aplikacji - jeśli jej nie widzisz, zaktualizuj WhatsAppa albo użyj aplikacji do naklejek.
+
+## Chcesz ją mieć na laptopie albo bidonie? Wydrukuj naklejkę z telefonu
+
+Naklejka w czacie zostaje na ekranie. Żeby trzymała się laptopa, bidonu czy etui, potrzebny jest wydruk na folii - i też zrobisz go samym telefonem:
+
+1. Otwórz [kreator arkusza](/) w przeglądarce telefonu i wgraj oryginalne zdjęcie (JPG, PNG albo WEBP prosto z galerii).
+2. Tło usuniesz przyciskiem **„Usuń tło”** - nie musisz wycinać obiektu wcześniej.
+3. Kreator sam wyznaczy linię cięcia po obrysie. Na jednym arkuszu A4 zmieścisz kilka różnych zdjęć - każde dostanie własną linię cięcia.
+4. Płacisz 59,00 zł brutto za arkusz, bez minimalnego nakładu. Produkcja trwa 4-5 dni robocze, a paczka jedzie do paczkomatu (19,99 zł).
+
+Folia winylowa jest odporna na wodę i promieniowanie UV, więc bidon z naklejką umyjesz ręcznie pod kranem (do zmywarki folia się nie nadaje).
+
+<a href="/" style="display: inline-block; background-color: #02af7a; color: #ffffff; padding: 14px 28px; text-decoration: none; border-radius: 8px; font-weight: 600; font-size: 18px; margin-top: 8px; text-align: center;">Zrób naklejkę z telefonu</a>
+
+## Co potrzebujesz, żeby wydrukować naklejkę z telefonu?
 
 Cały proces zamyka się w trzech elementach:
 
 - **Zdjęcie lub grafika** - z galerii, aparatu telefonu albo darmowej aplikacji do tworzenia grafik.
-- **Aplikacja do kadrowania i usuwania tła** - opcjonalnie, bo kreator MałeNaklejki robi to automatycznie po wgraniu pliku.
+- **Aplikacja do kadrowania i usuwania tła** - opcjonalnie, bo tło usuniesz w kreatorze MałeNaklejki przyciskiem „Usuń tło”.
 - **Przeglądarka internetowa** - wystarczy otworzyć kreator na telefonie, wgrać plik i zamówić wydruk na trwałej folii.
 
-Zero instalowania Photoshopa i zero przegrywania zdjęć kablem USB na komputer.
+Zero instalowania Photoshopa i zero przegrywania zdjęć kablem USB na komputer. Szczegóły przygotowania pliku znajdziesz w poradniku o [drukowaniu naklejek online](/blog/drukowanie-naklejek-online-na-co-zwrocic-uwage-przed-wysylka-projektu).
 
 ## Najlepsze aplikacje do robienia naklejek w telefonie
 
 | Aplikacja | Do czego służy | Koszt |
 |---|---|---|
-| **Generatory AI (ChatGPT, Midjourney )** | Tworzenie gotowej grafiki na podstawie opisu słownego w kilka sekund | Darmowe lub w abonamencie |
+| **Generatory AI (ChatGPT, Gemini, Midjourney)** | Tworzenie gotowej grafiki na podstawie opisu słownego w kilka sekund | Darmowe lub w abonamencie |
 | **Canva (wersja mobilna)** | Dodawanie tekstu, ramek i efektów do zdjęcia przed eksportem do PNG | Darmowa wersja podstawowa |
 | **Background Eraser / Remove.bg** | Błyskawiczne usuwanie tła ze zdjęcia wprost na telefonie | Darmowa z limitem, płatna bez limitu |
+| **Zdjęcia (iPhone) i Galeria (Samsung)** | Wycięcie obiektu ze zdjęcia jednym przytrzymaniem palca - naklejka do czatu bez instalowania aplikacji | Wbudowane, bezpłatne |
+| **WhatsApp** | Naklejka ze zdjęcia tworzona w panelu naklejek czatu | Bezpłatny |
 | **Aparat i galeria telefonu** | Zrobienie ostrego zdjęcia na jednolitym tle - podstawa dobrej naklejki | Wbudowane, bezpłatne |
-| **Kreator MałeNaklejki (przeglądarka)** | Wgranie pliku, automatyczne usunięcie tła i cięcie po obrysie | Bezpłatny podgląd, płatność dopiero przy zamówieniu |
+| **Kreator MałeNaklejki (przeglądarka)** | Wgranie pliku, usunięcie tła przyciskiem „Usuń tło” i cięcie po obrysie na folii | Bezpłatny podgląd, płatność dopiero przy zamówieniu |
 
 ![Naklejki wycięte po obrysie stworzone w telefonie bez zdjęcia - ilustrowany portret kota, naklejka z logo kanału podróżniczego i naklejka z cytatem motywacyjnym wygenerowane w aplikacji graficznej.](/blog/jak-zrobic-wlasne-naklejki-w-telefonie-proste-aplikacje-i-triki/naklejki-wygenerowane-w-telefonie-bez-zdjecia-ai.jpeg)
 
-## Naklejka z własnego zdjęcia w telefonie - krok po kroku
+## Naklejka z własnego zdjęcia w telefonie - jak przygotować zdjęcie do druku
 
 ### Krok 1 - Zrób lub wybierz zdjęcie
 
@@ -82,7 +118,7 @@ Naklejka na kartkę urodzinową albo do notesu spokojnie wyjdzie z domowej druka
 | Co musisz mieć przy telefonie | drukarkę z Wi-Fi lub AirPrint, inaczej przegrywasz plik na komputer | samą przeglądarkę w telefonie |
 | Koszt startu | ryza papieru i tusz kupione z góry, nawet pod jedną naklejkę | 59,00 zł brutto za arkusz A4, bez minimalnego nakładu - już od 1 arkusza |
 | Czas | od ręki, jeśli masz papier i pełny tusz | produkcja 4-5 dni robocze, przesyłka do paczkomatu 19,99 zł |
-| Jakość nadruku | tyle, ile wyciśniesz z domowej drukarki | druk w 300 DPI |
+| Jakość nadruku | tyle, ile wyciśniesz z domowej drukarki | ostry nadruk z pliku w 300 DPI |
 
 **Domowy wydruk ma sens**, gdy robisz jednorazową ozdobę na kartkę, chcesz w pięć minut sprawdzić, jak wzór wygląda w skali 1:1, albo potrzebujesz czegoś "na teraz" i trwałość nie gra roli.
 
@@ -101,9 +137,13 @@ Naklejka na kartkę urodzinową albo do notesu spokojnie wyjdzie z domowej druka
 
 ## Zamień telefon w mini-studio graficzne i zamów naklejkę już dziś
 
-Cały proces - od zdjęcia po złożenie zamówienia - zajmuje mniej niż 10 minut. Jeden zadrukowany arkusz A4 kosztuje stałe 59,00 zł niezależnie od liczby, kształtu i liczby wzorów naklejek, jakie na nim umieścisz.
+Cały proces - od zdjęcia po złożenie zamówienia - zajmuje kilka minut i odbywa się w telefonie. Jeden zadrukowany arkusz A4 kosztuje stałe 59,00 zł niezależnie od liczby, kształtu i liczby wzorów naklejek, jakie na nim umieścisz.
 
 ## Naklejki zrobione telefonem - najczęściej zadawane pytania (FAQ)
+
+### Jak zrobić naklejkę ze zdjęcia w telefonie i wydrukować ją na folii?
+
+Zrób zdjęcie obiektu na spokojnym tle, otwórz kreator arkusza MałeNaklejki w przeglądarce telefonu i wgraj zdjęcie z galerii. Tło usuniesz przyciskiem „Usuń tło”, a kreator wyznaczy linię cięcia po obrysie. Arkusz A4 kosztuje 59,00 zł brutto, bez minimalnego nakładu, a produkcja trwa 4-5 dni robocze.
 
 ### Czy mogę zrobić naklejkę bez komputera, tylko telefonem?
 
@@ -111,11 +151,11 @@ Tak. Cały proces - od zrobienia zdjęcia, przez poprawki w aplikacji mobilnej, 
 
 ### Jaka aplikacja najlepiej usuwa tło ze zdjęcia na telefonie?
 
-Sprawdzają się darmowe aplikacje typu Background Eraser czy Remove.bg. Możesz jednak pominąć ten krok - kreator MałeNaklejki usuwa tło automatycznie po wgraniu zdjęcia.
+Na iPhonie i nowszych Samsungach tło odetniesz bez aplikacji, przytrzymując obiekt na zdjęciu. Sprawdzają się też darmowe aplikacje typu Background Eraser czy Remove.bg. Jeśli zdjęcie idzie do druku, możesz pominąć ten krok - w kreatorze MałeNaklejki tło usuniesz przyciskiem „Usuń tło”.
 
 ### Czy zdjęcie zrobione telefonem ma wystarczającą jakość do druku?
 
-Tak, jeśli telefon ma aparat od 12 Mpx wzwyż (standard w większości smartfonów od kilku lat) i zdjęcie zostało zrobione bez cyfrowego zoomu, w dobrym oświetleniu.
+Tak, jeśli zdjęcie jest ostre, zrobione bez cyfrowego zoomu i w dobrym świetle. Wgraj oryginał z galerii, a nie zrzut ekranu ani zdjęcie przesłane komunikatorem - te mają zwykle za małą rozdzielczość do druku.
 
 ### Czy mogę stworzyć naklejkę bez własnego zdjęcia?
 
@@ -133,8 +173,8 @@ Trzema rzeczami: materiałem (papier nasiąka, folia winylowa jest odporna na wo
 
 Cena jest stała i wynosi 59,00 zł za jeden zadrukowany arkusz A4, niezależnie od tego, ile naklejek i w jakim kształcie na nim umieścisz.
 
-### Jak długo czeka się na wysyłkę?
+### Ile trwa produkcja naklejek?
 
-Realizacja zamówienia trwa 4-5 dni robocze od momentu zatwierdzenia projektu i opłacenia zamówienia.
+Produkcja trwa 4-5 dni robocze od opłacenia zamówienia, a potem paczka jedzie do wybranego paczkomatu (dostawa 19,99 zł).
 
 <a href="/" style="display: inline-block; background-color: #02af7a; color: #ffffff; padding: 14px 28px; text-decoration: none; border-radius: 8px; font-weight: 600; font-size: 18px; margin-top: 24px; text-align: center;">Zrób naklejkę z telefonu</a>

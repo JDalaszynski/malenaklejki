@@ -1,6 +1,6 @@
 {
   "projekt": "malenaklejki",
-  "zaktualizowano": "2026-11-18",
+  "zaktualizowano": "2026-11-19",
   "opis": "Rejestr treści MałeNaklejki: landingi i wpisy opublikowane, kolejka nowych stron i zadania poprawy opublikowanych. Jedno źródło dla agenta treści (/tresc, /frazy, /przeglad-tresci) i panelu (Treści, Frazy). Pola opisuje tresci/system.md, sekcja 2.",
   "segmenty": {
     "wszyscy": "Wszyscy klienci",
@@ -442,14 +442,15 @@
       "typ": "wpis",
       "sciezka": "/blog/jak-zrobic-wlasne-naklejki-w-telefonie-proste-aplikacje-i-triki",
       "plik": "src/content/blog/jak-zrobic-wlasne-naklejki-w-telefonie-proste-aplikacje-i-triki.md",
-      "tytul": "Jak zrobić naklejki w telefonie i wydrukować od 1 sztuki",
+      "tytul": "Jak zrobić naklejki w telefonie ze zdjęcia: iPhone i Android",
       "nazwa": "Naklejki w telefonie",
-      "zajawka": "Zrób naklejkę ze zdjęcia w telefonie: aplikacje do usuwania tła, gotowy plik i druk na trwałej folii od 59,00 zł za arkusz A4. Bez komputera.",
+      "zajawka": "Jak zrobić naklejki w telefonie ze zdjęcia: iPhone, Android i WhatsApp krok po kroku. Chcesz ją na laptopie albo bidonie? Wydrukuj od 1 arkusza A4.",
       "fraza": "jak zrobić naklejki w telefonie",
       "frazy": [
         "naklejki w telefonie",
         "naklejki na zdjęcia w telefonie",
-        "aplikacja do robienia naklejek"
+        "aplikacja do robienia naklejek",
+        "jak zrobić naklejkę ze zdjęcia"
       ],
       "pytania_ai": [
         "Jak zrobić naklejkę ze zdjęcia w telefonie i wydrukować ją na folii?"
@@ -469,18 +470,8 @@
       "priorytet": "P0",
       "status": "opublikowane",
       "opublikowano": "2026-07-17",
-      "zmieniono": "2026-09-21",
-      "zgloszenia": {},
-      "zadanie": {
-        "rodzaj": "ctr",
-        "tytul": "Odpowiedź na „jak zrobić naklejkę ze zdjęcia” w pierwszym ekranie",
-        "powod": "GSC 90 dni 18.08-15.11.2026: 7764 wyświetleń, 29 kliknięć (CTR 0,4%) przy pozycji 7,3. Samo zapytanie „jak zrobić naklejkę ze zdjęcia” i jego warianty bez polskich znaków dają ok. 935 wyświetleń i 2 kliknięcia. Wpis naklejka-ze-zdjecia, który dziś jest właścicielem tej frazy, ma na nią 53 wyświetlenia.",
-        "teza": "Większość pytających chce naklejki cyfrowej w telefonie (iPhone, Android, WhatsApp), a nasz opis obiecuje wydruk, więc nikt nie klika. Przed pisaniem sprawdź WebSearch, jak dziś robi się naklejkę ze zdjęcia w iOS, Androidzie i WhatsAppie. Title (do 60 znaków) i pierwszy akapit odpowiadają wprost na „jak zrobić naklejkę ze zdjęcia w telefonie”, krótko dla każdego systemu; druga sekcja to most: „chcesz ją mieć na laptopie albo bidonie - wydrukuj”, z CTA do kreatora. Przenieś właściciela frazy „jak zrobić naklejkę ze zdjęcia” na ten wpis (CSV, powód w dzienniku), a wpis naklejka-ze-zdjecia zostaw przy wydruku zdjęcia na prezent (patrz jego zadanie).",
-        "priorytet": "P0",
-        "kolejnosc": 1,
-        "zrodlo": "przegląd treści 2026-11-18",
-        "dodano": "2026-11-18"
-      }
+      "zmieniono": "2026-11-19",
+      "zgloszenia": {}
     },
     {
       "id": "wlepki-dla-artystow",
@@ -604,7 +595,7 @@
       "tytul": "Jak zrobić naklejkę ze zdjęcia - od 1 szt., 59 zł/A4",
       "nazwa": "Naklejka ze zdjęcia",
       "zajawka": "Jak zrobić naklejkę ze zdjęcia? Wgraj plik z telefonu, kreator usunie tło i wytnie ją po obrysie. Od 1 sztuki, 59 zł za arkusz A4, produkcja 4-5 dni robocze.",
-      "fraza": "jak zrobić naklejkę ze zdjęcia",
+      "fraza": "naklejki ze zdjęciem na prezent",
       "frazy": [
         "zdjęcia na naklejki",
         "zrób naklejkę ze zdjęcia"
@@ -633,7 +624,7 @@
         "rodzaj": "odswiezenie",
         "tytul": "Wpis o wydruku zdjęcia na prezent (święta, Dzień Babci i Dziadka)",
         "powod": "GSC 90 dni 18.08-15.11.2026: 787 wyświetleń, 5 kliknięć przy poz. 9,1. Google na „jak zrobić naklejkę ze zdjęcia” pokazuje wpis o telefonie (ok. 935 wyświetleń wobec 53 tutaj).",
-        "teza": "Po zadaniu wpisu o telefonie ten wpis przestaje celować w „jak zrobić naklejkę ze zdjęcia” i bierze wydruk zdjęcia jako prezent: nowa fraza główna z bazy (np. „naklejka ze zdjęcia na prezent”, sprawdź warianty w GSC), title i H1 bez frazy wpisu o telefonie, sekcja „Naklejki ze zdjęciem na prezent - święta i Dzień Babci i Dziadka” (P4.3.5). Link do /fotonaklejki kotwicą „fotonaklejki” w pierwszym akapicie. Zmiana głównej frazy żywej strony: zapisz decyzję w dzienniku.",
+        "teza": "Fraza „jak zrobić naklejkę ze zdjęcia” należy od 2026-11-19 do wpisu o telefonie, a główna tego wpisu w bazie to już „naklejki ze zdjęciem na prezent” (sprawdź w GSC, czy lepszy jest wariant „naklejka ze zdjęcia na prezent”). Do zrobienia: title i H1 z nową główną, bez frazy wpisu o telefonie; opis meta i pierwsze zdanie z nową główną; sekcja „Naklejki ze zdjęciem na prezent - święta i Dzień Babci i Dziadka” (P4.3.5). Link do /fotonaklejki kotwicą „fotonaklejki” w pierwszym akapicie i link do wpisu o telefonie dla osób, które chcą naklejki w czacie.",
         "priorytet": "P1",
         "kolejnosc": 10,
         "zrodlo": "przegląd treści 2026-11-18",

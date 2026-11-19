@@ -2,6 +2,16 @@
 
 Prowadzi agent `redaktor-tresci`. Najnowsze wpisy na górze. Każdy wpis: data, co się zmieniło (adresy), dlaczego (liczby z oknem), zgłoszenia, kiedy ocenić. Starsza historia: `blog-agent/plan.md`, `landing-agent/plan.md`, `blog-agent/strategy.md`.
 
+## 2026-11-19 - /tresc naklejki-w-telefonie: odpowiedź na „jak zrobić naklejkę ze zdjęcia”
+
+**Co się zmieniło:** `/blog/jak-zrobic-wlasne-naklejki-w-telefonie-proste-aplikacje-i-triki` (P0, `zmieniono` i `updated` = 2026-11-19). Nowy title i H1 „Jak zrobić naklejki w telefonie ze zdjęcia: iPhone i Android” (60 znaków + dopisek szablonu), nowy opis meta (147 znaków, fraza główna w pierwszym zdaniu - brak z bazy zamknięty). Pierwszy akapit odpowiada wprost: iPhone (Zdjęcia, przytrzymaj obiekt, „Dodaj naklejkę”), Samsung (Galeria), WhatsApp (panel naklejek); drugi akapit z linkiem do filaru kotwicą „fotonaklejki ze zdjęcia”. Nowe H2 „Jak zrobić naklejkę ze zdjęcia na iPhonie, Androidzie i w WhatsAppie?” z H3 dla każdego systemu i H2-most „Chcesz ją mieć na laptopie albo bidonie? Wydrukuj naklejkę z telefonu” z krokami w kreatorze i przyciskiem w środku. FAQ: nowe pytanie AI (wydruk ze zdjęcia z telefonu na folii), „Ile trwa produkcja naklejek?” zamiast „wysyłki”. Poprawki według `facts.md`: tło usuwa się przyciskiem „Usuń tło” (było „automatycznie po wgraniu”), bez „aparatu od 12 Mpx”, „mniej niż 10 minut” i „druku w 300 DPI” (300 DPI to zalecenie dla pliku).
+
+**Dlaczego:** GSC 90 dni 18.08-15.11.2026: 7764 wyświetleń, CTR 0,4% przy poz. 7,3; „jak zrobić naklejkę ze zdjęcia” z wariantami ok. 935 wyświetleń i 2 kliknięcia na tym wpisie. Pytający chcą naklejki cyfrowej, a stary opis obiecywał wydruk. Rozpoznanie 19.11.2026 (WebSearch): iOS 17+ „Dodaj naklejkę” w Zdjęciach, Galeria Samsunga wycina obiekt przytrzymaniem, WhatsApp tworzy naklejki ze zdjęcia (na Androidzie od 2026 w kolejnych wersjach).
+
+**Baza fraz:** „jak zrobić naklejkę ze zdjęcia” przeniesiona z `naklejka-ze-zdjecia` na ten wpis jako czwarta wspierająca (Google i tak pokazywał tu tę frazę: ok. 935 wyświetleń wobec 53 na poprzednim właścicielu; przeniesienie na polecenie Jakuba w prompcie). Wpis `naklejka-ze-zdjecia` ma w bazie nową główną „naklejki ze zdjęciem na prezent” (dotąd bez strony). Jego title i H1 się nie zmieniły - to robi jego zadanie (kolejność 10, teza zaktualizowana). Do tego czasu ma 1 brak w bazie. Braki w bazie: 30 → 29.
+
+**Kiedy ocenić:** title i opis - pierwszy sygnał od 2026-12-03 (14 dni), pełny odczyt CTR od 2026-12-17 (28 dni), okna 28 dni z tym samym dniem tygodnia.
+
 ## 2026-11-18 - /frazy: 5 fraz z panelu
 
 **Zmiany z panelu:** 5 dodanych, 0 usuniętych, wszystkie `dodana` (`tresci/frazy-zmiany.json`). Rozpoznanie: wyszukiwania 18.11.2026 (narzędzie WebSearch, nie google.pl - przybliżenie wyników).
