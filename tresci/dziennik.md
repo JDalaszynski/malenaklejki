@@ -12,6 +12,8 @@ Prowadzi agent `redaktor-tresci`. Najnowsze wpisy na górze. Każdy wpis: data, 
 
 **Baza fraz:** pytanie AI strony ma teraz miejsce (nagłówki, FAQ, tekst). Główna i obie wspierające bez braków (`npm run tresci:frazy -- --sprawdz /fotonaklejki`).
 
+**Zgłoszenia:** commit 018461e - build na Vercelu padł na błędzie fontów Google (`next/font/google`, ten sam co lokalnie przy pierwszej próbie i 5.10), pusty commit 16f5911 wdrożył stronę 19.11 (sprawdzona na produkcji). IndexNow 200 OK 19.11 (ponowione po wdrożeniu). GSC: „Przekroczono limit” 19.11 - **GSC do ponowienia od 2026-11-20** (`/fotonaklejki`, P0 z nową sekcją; adres jest w indeksie).
+
 **Kiedy ocenić:** proporcja wejść do dodań do koszyka (GA4) i zamówienia ze strony wejścia od 2026-12-17 (28 dni), sekcja prezentowa - wyświetlenia na frazy prezentowe po Dniu Babci i Dziadka (od 2027-01-25). Pozycja strony 60-90 dni (od 2027-01-18).
 
 ## 2026-11-19 - /tresc naklejki-w-telefonie: odpowiedź na „jak zrobić naklejkę ze zdjęcia”

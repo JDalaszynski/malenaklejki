@@ -89,7 +89,9 @@
       "status": "opublikowane",
       "opublikowano": "2026-07-27",
       "zmieniono": "2026-11-19",
-      "zgloszenia": {}
+      "zgloszenia": {
+        "indexnow": "2026-11-19"
+      }
     },
     {
       "id": "wlepki-na-zamowienie",
