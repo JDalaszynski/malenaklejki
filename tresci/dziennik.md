@@ -23,6 +23,8 @@ Prowadzi agent `redaktor-tresci`. Najnowsze wpisy na górze. Każdy wpis: data, 
 
 **Zauważone, poza zakresem:** wpis o przetworach ma brak „etykiety na przetwory” we wstępie (fraza główna nie stoi w pierwszym akapicie) - do zadania przy przeglądzie. Zapytanie „słoiki z logo” Google pokazuje częściej z landingu (76 wyśw., poz. 43,3) niż z wpisu-właściciela (51, poz. 17).
 
+**Zgłoszenia:** commit 669e9d1 na produkcji 19.11, IndexNow 200 OK 19.11. **GSC do ponowienia od 2026-11-20** (P1, istotna aktualizacja; limit 19.11 wyczerpany).
+
 **Kiedy ocenić:** pozycja landingu na „naklejki na słoiki z własnym nadrukiem” i „etykiety na słoiki” po 60-90 dniach (od 2027-01-18); czy Google przestał pokazywać na pierwszą wpis o logo - przy przeglądzie po 28 dniach (od 2026-12-17).
 
 ## 2026-11-19 - /tresc naklejki-foliowe: tabela folia a papier, H2 z frazami, FAQ, linki z wpisów
