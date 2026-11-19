@@ -730,9 +730,9 @@
       "typ": "wpis",
       "sciezka": "/blog/naklejki-z-wlasnym-logo-na-sloiki-i-opakowania",
       "plik": "src/content/blog/naklejki-z-wlasnym-logo-na-sloiki-i-opakowania.md",
-      "tytul": "Naklejki z logo na słoiki i opakowania - od 1 szt., 59 zł/A4",
+      "tytul": "Naklejki z logo na słoiki - od 1 arkusza A4",
       "nazwa": "Logo na słoiki i opakowania",
-      "zajawka": "Prowadzisz manufakturę? Sprawdź, jak zamówić naklejki z logo na zamówienie oraz wodoodporne naklejki na słoiki z własnym nadrukiem od 1 sztuki.",
+      "zajawka": "Naklejki z logo na słoiki zamówisz od 1 arkusza A4 za 59,00 zł brutto, z fakturą VAT. Folia winylowa odporna na wodę, kilka wzorów na jednym arkuszu.",
       "fraza": "naklejki z logo na słoiki",
       "frazy": [
         "słoiki z logo",
@@ -754,18 +754,8 @@
       "priorytet": "P1",
       "status": "opublikowane",
       "opublikowano": "2026-07-05",
-      "zmieniono": "2026-11-02",
-      "zgloszenia": {},
-      "zadanie": {
-        "rodzaj": "ctr",
-        "tytul": "Title i opis pod frazy z logo, na których wpis stoi wysoko bez kliknięć",
-        "powod": "GSC 90 dni 18.08-15.11.2026: 325 wyświetleń, 0 kliknięć przy poz. 11,2. „naklejki z logo” 44 wyświetlenia na poz. 3,5, „słoiki z logo” 51 na poz. 17, „naklejki na słoiki z własnym nadrukiem” 49 na poz. 9,4 - wszystkie bez kliknięć.",
-        "teza": "Title do 60 znaków z „naklejki z logo na słoiki” i konkretem dla manufaktury (od 1 arkusza, faktura VAT). Opis meta z odpowiedzią. Link w pierwszym akapicie do /etykiety-na-sloiki kotwicą „etykiety na słoiki” i do /naklejki-dla-firm kotwicą „naklejki dla firm”, bo to strony, które mają tę frazę sprzedawać.",
-        "priorytet": "P1",
-        "kolejnosc": 5,
-        "zrodlo": "przegląd treści 2026-11-18",
-        "dodano": "2026-11-18"
-      }
+      "zmieniono": "2026-11-19",
+      "zgloszenia": {}
     },
     {
       "id": "naklejki-na-alkohol",

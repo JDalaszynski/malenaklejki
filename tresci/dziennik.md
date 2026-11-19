@@ -2,6 +2,24 @@
 
 Prowadzi agent `redaktor-tresci`. Najnowsze wpisy na górze. Każdy wpis: data, co się zmieniło (adresy), dlaczego (liczby z oknem), zgłoszenia, kiedy ocenić. Starsza historia: `blog-agent/plan.md`, `landing-agent/plan.md`, `blog-agent/strategy.md`.
 
+
+## 2026-11-19 - /tresc logo-na-sloiki-i-opakowania: title, opis i pierwszy akapit
+
+**Powód:** GSC 90 dni 18.08-15.11.2026: 325 wyświetleń, 0 kliknięć przy poz. 11,2; „naklejki z logo” 44 wyświetlenia na poz. 3,5, „słoiki z logo” 51 na poz. 17, „naklejki na słoiki z własnym nadrukiem” 49 na poz. 9,4 - bez kliknięć. Dane z 18.11 - powód aktualny.
+
+**Zmiana** (`/blog/naklejki-z-wlasnym-logo-na-sloiki-i-opakowania`, P1, `zmieniono` i `updated` = 2026-11-19):
+
+- title i H1: „Naklejki z logo na słoiki - od 1 arkusza A4” (43 znaki, 63 z dopiskiem szablonu; było 80). Faktura VAT nie zmieściła się w title, jest w opisie i pierwszym zdaniu.
+- opis meta (149 znaków): fraza główna, od 1 arkusza A4, 59,00 zł brutto, faktura VAT, folia odporna na wodę, kilka wzorów na arkuszu.
+- pierwszy akapit od nowa: fraza główna w pierwszym zdaniu, odpowiedź (cena, faktura VAT na NIP, bez minimalnego nakładu, warianty na jednym arkuszu), linki do `/etykiety-na-sloiki` („etykiety na słoiki”) i `/naklejki-dla-firm` („naklejki dla firm”).
+- H2 „Profesjonalny wizerunek…” → „Naklejki na opakowania z logo w krótkich seriach” (fraza wspierająca wypadła z title).
+- przycisk i `cta_text`: „Zamów naklejki z logo” (zgodnie z rejestrem; było „Zamów własne naklejki”).
+- Skan: brak „wstep” frazy głównej usunięty, strona bez braków.
+
+**Zgłoszenia:** GSC do ponowienia od 2026-11-20 (limit 19.11 wyczerpany).
+
+**Kiedy ocenić:** title i opis - pierwszy sygnał od 2026-12-03 (14 dni), pełny odczyt CTR od 2026-12-17 (28 dni).
+
 ## 2026-11-19 - /tresc die-cut-i-kiss-cut: title i pierwszy akapit
 
 **Powód:** GSC 90 dni 18.08-15.11.2026: 814 wyświetleń, 8 kliknięć (CTR 1%) przy poz. 7; „wykroje die-cut i kiss-cut” 183 wyświetlenia na poz. 6,6 i 0 kliknięć, „kiss cut” 51 na poz. 7. Dane z 18.11 - powód aktualny.
