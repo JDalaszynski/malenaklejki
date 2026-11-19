@@ -120,7 +120,9 @@
       "status": "opublikowane",
       "opublikowano": "2026-08-31",
       "zmieniono": "2026-11-19",
-      "zgloszenia": {}
+      "zgloszenia": {
+        "indexnow": "2026-11-19"
+      }
     },
     {
       "id": "naklejki-die-cut",
@@ -476,7 +478,9 @@
       "status": "opublikowane",
       "opublikowano": "2026-07-19",
       "zmieniono": "2026-11-19",
-      "zgloszenia": {}
+      "zgloszenia": {
+        "indexnow": "2026-11-19"
+      }
     },
     {
       "id": "naklejki-na-zeszyty",
@@ -547,7 +551,9 @@
       "status": "opublikowane",
       "opublikowano": "2026-07-02",
       "zmieniono": "2026-11-19",
-      "zgloszenia": {}
+      "zgloszenia": {
+        "indexnow": "2026-11-19"
+      }
     },
     {
       "id": "naklejka-ze-zdjecia",
@@ -619,7 +625,9 @@
       "status": "opublikowane",
       "opublikowano": "2026-08-04",
       "zmieniono": "2026-11-19",
-      "zgloszenia": {}
+      "zgloszenia": {
+        "indexnow": "2026-11-19"
+      }
     },
     {
       "id": "vlepki-kibicowskie",
@@ -691,7 +699,9 @@
       "status": "opublikowane",
       "opublikowano": "2026-07-16",
       "zmieniono": "2026-11-19",
-      "zgloszenia": {}
+      "zgloszenia": {
+        "indexnow": "2026-11-19"
+      }
     },
     {
       "id": "logo-na-sloiki-i-opakowania",

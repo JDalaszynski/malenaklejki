@@ -19,7 +19,7 @@ Prowadzi agent `redaktor-tresci`. Najnowsze wpisy na górze. Każdy wpis: data, 
 
 **Skan:** braki 21 → 13 (12 na 10 stronach z rejestru, 1 na stronie głównej). Kolizja bez zmian: „gotowe zestawy naklejek” (`/gotowe-zestawy`) w H1 `/naklejki-swiateczne` - do następnego `/frazy` (limit 5 stron).
 
-**Zgłoszenia:** w commicie publikacji, stan niżej po wdrożeniu.
+**Zgłoszenia:** commit 6ecaf26 na produkcji 19.11, IndexNow 200 OK 19.11 (5 adresów). **GSC do ponowienia od 2026-11-20** dla wszystkich pięciu (P0 i P1; limit 19.11 wyczerpany) - razem z dwoma adresami z wcześniejszych wpisów to 7 próśb.
 
 **Kiedy ocenić:** pozycje fraz od 2026-12-17 (28 dni), pełny odczyt 2027-01-18 do 2027-02-17.
 
