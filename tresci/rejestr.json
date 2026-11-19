@@ -865,7 +865,9 @@
       "status": "opublikowane",
       "opublikowano": "2026-07-14",
       "zmieniono": "2026-11-19",
-      "zgloszenia": {}
+      "zgloszenia": {
+        "indexnow": "2026-11-19"
+      }
     },
     {
       "id": "ile-kosztuja-naklejki",

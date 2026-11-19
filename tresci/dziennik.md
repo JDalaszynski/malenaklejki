@@ -14,6 +14,8 @@ Prowadzi agent `redaktor-tresci`. Najnowsze wpisy na górze. Każdy wpis: data, 
 - H2 z tabelą: „Wykroje die-cut i kiss-cut - najważniejsze różnice w tabeli” (fraza wspierająca w H2, nie tylko w title).
 - Skan: brak „wstep” dla frazy głównej usunięty, strona bez braków.
 
+**Zgłoszenia:** commit 3ed2411 na produkcji 19.11, IndexNow 200 OK 19.11. GSC: limit próśb wyczerpany 19.11 (wpis wyżej), więc **GSC do ponowienia od 2026-11-20** (zmiana title, prośba potrzebna).
+
 **Kiedy ocenić:** title i opis - pierwszy sygnał od 2026-12-03 (14 dni), pełny odczyt CTR od 2026-12-17 (28 dni), okna 28 dni z tym samym dniem tygodnia.
 
 ## 2026-11-19 - /tresc naklejki-na-zeszyty: opis meta z konkretem
