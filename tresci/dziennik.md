@@ -6,6 +6,16 @@ Prowadzi agent `redaktor-tresci`. Najnowsze wpisy na górze. Każdy wpis: data, 
 
 
 
+## 2026-11-19 - /tresc wzory-na-naklejki: title z obiema frazami, odpowiedź z katalogiem
+
+**Co się zmieniło:** `/blog/fajne-wzory-i-pomysly-na-naklejki-inspiracje-wg-zastosowania` (P2, `zmieniono` i `updated` = 2026-11-19). Title i H1 „Fajne wzory na naklejki - gotowe zestawy za 59 zł” (od 19.10) → „Wzory i pomysły na naklejki - gotowe zestawy za 59 zł” (53 znaki + dopisek szablonu; fraza główna na początku, „pomysły na naklejki” w title i H1, bez kolizji z frazami `/gotowe-zestawy`). Nowy opis meta (149 znaków) zaczyna się od frazy głównej. Pierwszy akapit (58 słów) odpowiada wprost: wzory z katalogu [gotowe zestawy naklejek](/gotowe-zestawy) (arkusz A4 za 59,00 zł brutto, zamówisz od razu albo zmienisz w kreatorze) albo własny pomysł według zastosowania; zamiast wstępu „Decyzja o zamówieniu…”. H2 „Skąd wziąć darmowe wzory na naklejki do druku? Rewolucja AI” → „Skąd wziąć własne wzory na naklejki? Generatory AI” (decyzja 4: bez darmowych szablonów do druku). Katalog publiczny (200 na produkcji 19.11), więc link zgodny z decyzją 6.
+
+**Dlaczego:** GSC 90 dni 18.08-15.11.2026: 239 wyświetleń, 1 kliknięcie, CTR 0,4% przy poz. 7,7 (typowo ok. 2,5%); „wzory na naklejki” 12 wyświetleń na poz. 8,6, „pomysły na naklejki” 9 na poz. 8 (tej drugiej nie było w title).
+
+**Skan:** bez braków i kolizji.
+
+**Kiedy ocenić:** title i opis - sygnał od 2026-12-03, odczyt CTR od 2026-12-17 (28 dni).
+
 ## 2026-11-19 - /tresc gdzie-zamowic-naklejki: title i opis z odpowiedzią
 
 **Co się zmieniło:** `/blog/gdzie-zamowic-naklejki-w-malym-nakladzie-porownanie` (P1, `zmieniono` i `updated` = 2026-11-19). Title i H1 „Gdzie zamówić naklejki w małym nakładzie? Porównanie opcji” (od 25.08) → „Gdzie zamówić naklejki? Od 1 arkusza za 59 zł, bez minimum” (58 znaków + dopisek szablonu, bez nazw konkurentów). Opis meta (152 znaki) z odpowiedzią: od 1 arkusza A4 za 59,00 zł brutto, bez minimum i wykrojnika; wcześniej „Porównujemy…”. Pierwsze zdanie odpowiada zamiast wyliczać cztery kanały: „Kilkanaście naklejek najprościej zamówić w polskim kreatorze online…” (cena, bez wykrojnika, produkcja 4-5 dni robocze), kanały w drugim zdaniu. Pierwsze pytanie FAQ zamienione na pytanie AI „Gdzie najlepiej zamówić kilkanaście naklejek z własnym nadrukiem w Polsce?” (odpowiedź bez zmian). Wspierająca „gdzie zamówić naklejki w małym nakładzie” wyszła z title, zostaje w H2 i opisie.

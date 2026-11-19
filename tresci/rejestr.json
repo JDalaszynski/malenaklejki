@@ -1050,9 +1050,9 @@
       "typ": "wpis",
       "sciezka": "/blog/fajne-wzory-i-pomysly-na-naklejki-inspiracje-wg-zastosowania",
       "plik": "src/content/blog/fajne-wzory-i-pomysly-na-naklejki-inspiracje-wg-zastosowania.md",
-      "tytul": "Fajne wzory na naklejki - gotowe zestawy za 59 zł",
+      "tytul": "Wzory i pomysły na naklejki - gotowe zestawy za 59 zł",
       "nazwa": "Wzory na naklejki",
-      "zajawka": "Fajne wzory na naklejki: wybierz gotowy zestaw na arkuszu A4 za 59,00 zł brutto i zamów go od razu albo znajdź pomysły wg zastosowania - od laptopa po ślub.",
+      "zajawka": "Wzory na naklejki: gotowe zestawy na arkuszu A4 za 59,00 zł brutto do zamówienia od razu i pomysły według zastosowania - laptop, słoiki, ślub, firma.",
       "fraza": "wzory na naklejki",
       "frazy": [
         "pomysły na naklejki",
@@ -1075,18 +1075,8 @@
       "priorytet": "P2",
       "status": "opublikowane",
       "opublikowano": "2026-08-16",
-      "zmieniono": "2026-10-04",
-      "zgloszenia": {},
-      "zadanie": {
-        "rodzaj": "ctr",
-        "tytul": "Title pod „wzory na naklejki” i „pomysły na naklejki”",
-        "powod": "GSC 90 dni 18.08-15.11.2026: 239 wyświetleń, 1 kliknięcie przy poz. 7,7. „wzory na naklejki” 12 wyświetleń na poz. 8,6, „pomysły na naklejki” 9 na poz. 8.",
-        "teza": "Title do 60 znaków z obiema frazami, pierwszy akapit z odpowiedzią i linkiem do /gotowe-zestawy (gotowe wzory, które można od razu zamówić).",
-        "priorytet": "P2",
-        "kolejnosc": 13,
-        "zrodlo": "przegląd treści 2026-11-18",
-        "dodano": "2026-11-18"
-      }
+      "zmieniono": "2026-11-19",
+      "zgloszenia": {}
     },
     {
       "id": "jaki-rozmiar-naklejki",
