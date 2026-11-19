@@ -1,9 +1,9 @@
 ---
-title: "Wykroje die-cut i kiss-cut - różnice, oba za 59 zł/A4"
+title: "Die-cut i kiss-cut - różnica wykrojów"
 slug: "co-to-jest-die-cut-i-kiss-cut-roznice-w-wyleciach-naklejek-reklamowych"
 date: "2026-07-14"
-updated: "2026-11-02"
-description: "Wykroje die-cut i kiss-cut: naklejka wycięta po obrysie albo zostawiona na arkuszu. Poznaj różnice - oba cięcia od 1 arkusza A4 za stałe 59,00 zł brutto."
+updated: "2026-11-19"
+description: "Die-cut i kiss-cut: die-cut wycina naklejkę razem z podkładem, kiss-cut tnie samą folię na arkuszu. Kiedy który wybrać - oba po 59,00 zł brutto za A4."
 image: "/blog/co-to-jest-die-cut-i-kiss-cut-roznice-w-wyleciach-naklejek-reklamowych/naklejka-die-cut-pies-corgi-wycieta-po-obrysie.png"
 imageAlt: "Dłoń trzymająca naklejkę die-cut przedstawiającą uśmiechniętego psa rasy corgi, wyciętą dokładnie po obrysie sylwetki, na tle zielonych liści"
 tags: ["die cut", "kiss-cut", "cięcie po obrysie", "naklejki reklamowe"]
@@ -13,7 +13,9 @@ pillarOrder: 3
 cta_text: "Zamów naklejki die cut"
 ---
 
-Die cut sticker (nazywany też wykrojem po kształcie grafiki) to naklejka wycięta dokładnie po obrysie - bez marginesu, bez prostokątnego tła. Kiss-cut to cięcie tylko przez cienką warstwę folii, które pozostawia naklejkę na całym, prostokątnym arkuszu papieru podkładowego. Ta jedna różnica decyduje, czy Twoje naklejki wyglądają jak profesjonalny merch z unikalnym kształtem, czy jak seria etykiet gotowych do szybkiego odklejania z arkusza. Oba warianty cięcia po obrysie ustawisz samodzielnie podczas [drukowania naklejek online](/blog/drukowanie-naklejek-online-na-co-zwrocic-uwage-przed-wysylka-projektu) w MałeNaklejki za stałe 59,00 zł od arkusza A4. Wiesz już, że chcesz cięcie po obrysie? [Stwórz własną naklejkę](/) w dowolnym kształcie - wgraj grafikę, a kreator sam wygeneruje ścieżkę cięcia.
+Die-cut i kiss-cut różnią się głębokością cięcia. Die-cut przecina folię razem z papierem podkładowym, więc każda naklejka jest osobną sztuką w kształcie grafiki. Kiss-cut przecina samą folię, więc naklejki w kształcie grafiki zostają na wspólnym, prostokątnym arkuszu podkładu. Die-cut wybierz do wlepek, merchu i naklejek do rozdania, kiss-cut do etykiet naklejanych seriami z jednego arkusza. Jeśli chcesz pojedyncze sztuki o dowolnym kształcie, zamów [naklejki cięte po obrysie](/naklejki-die-cut).
+
+Po angielsku die-cut to „die cut sticker”, a po polsku mówi się też o wykroju po kształcie grafiki. W MałeNaklejki oba wykroje kosztują tyle samo: 59,00 zł brutto za arkusz A4, bez minimalnego nakładu. Cięcie ustawisz podczas [drukowania naklejek online](/blog/drukowanie-naklejek-online-na-co-zwrocic-uwage-przed-wysylka-projektu) w kreatorze arkusza. [Stwórz własną naklejkę](/) - wgraj grafikę, a kreator sam wyznaczy linię cięcia.
 
 ## Co to jest die cut - wykrój i cięcie po obrysie krok po kroku
 
@@ -38,7 +40,7 @@ Praktyczny skutek: naklejka ma kształt Twojej grafiki, ale cały arkusz pozosta
 - planujesz naklejać je pojedynczo w różnym czasie (np. etykiety na kolejne słoiki),
 - zależy Ci na łatwym, szybkim odklejaniu bez szukania krawędzi.
 
-## Die cut kontra kiss-cut - najważniejsze różnice w tabeli
+## Wykroje die-cut i kiss-cut - najważniejsze różnice w tabeli
 
 | Cecha | Die cut | Kiss-cut |
 |---|---|---|

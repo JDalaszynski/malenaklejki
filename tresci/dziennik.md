@@ -2,6 +2,20 @@
 
 Prowadzi agent `redaktor-tresci`. Najnowsze wpisy na górze. Każdy wpis: data, co się zmieniło (adresy), dlaczego (liczby z oknem), zgłoszenia, kiedy ocenić. Starsza historia: `blog-agent/plan.md`, `landing-agent/plan.md`, `blog-agent/strategy.md`.
 
+## 2026-11-19 - /tresc die-cut-i-kiss-cut: title i pierwszy akapit
+
+**Powód:** GSC 90 dni 18.08-15.11.2026: 814 wyświetleń, 8 kliknięć (CTR 1%) przy poz. 7; „wykroje die-cut i kiss-cut” 183 wyświetlenia na poz. 6,6 i 0 kliknięć, „kiss cut” 51 na poz. 7. Dane z 18.11 - powód aktualny.
+
+**Zmiana** (`/blog/co-to-jest-die-cut-i-kiss-cut-roznice-w-wyleciach-naklejek-reklamowych`, P1, `zmieniono` i `updated` = 2026-11-19):
+
+- title i H1: „Die-cut i kiss-cut - różnica wykrojów” (37 znaków, 57 z dopiskiem szablonu; było 73), bez ceny w tytule - cena została w opisie.
+- opis meta (150 znaków): od frazy głównej, różnica w jednym zdaniu, cena 59,00 zł brutto za A4.
+- pierwszy akapit od nowa: fraza główna w pierwszym zdaniu, definicja każdego wykroju, kiedy który wybrać, link do `/naklejki-die-cut` kotwicą „naklejki cięte po obrysie”. Drugi akapit: „die cut sticker”, cena, link do kreatora i do wpisu o drukowaniu online.
+- H2 z tabelą: „Wykroje die-cut i kiss-cut - najważniejsze różnice w tabeli” (fraza wspierająca w H2, nie tylko w title).
+- Skan: brak „wstep” dla frazy głównej usunięty, strona bez braków.
+
+**Kiedy ocenić:** title i opis - pierwszy sygnał od 2026-12-03 (14 dni), pełny odczyt CTR od 2026-12-17 (28 dni), okna 28 dni z tym samym dniem tygodnia.
+
 ## 2026-11-19 - /tresc naklejki-na-zeszyty: opis meta z konkretem
 
 **Co się zmieniło:** `/blog/personalizowane-naklejki-na-zeszyty-i-do-przedszkola` (P0) - nowy opis meta (143 znaki): „Naklejki do podpisania zeszytu z imieniem i nazwiskiem dziecka: ok. 30 sztuk na arkuszu A4, od 1 arkusza za 59 zł brutto. Także do przedszkola.” (ok. 30 sztuk według tabeli cen we wpisie: 30 naklejek ok. 3 x 3 cm; „Imienne naklejki na przybory” 24-30 szt. w `jaki-rozmiar-naklejki-wybrac`). Title i H1 bez zmian: „Naklejki do podpisania zeszytu z imieniem i nazwiskiem” (54 znaki) ma już frazę główną na początku i „naklejki na zeszyty z imieniem i nazwiskiem”. Do 74 znaków wydłuża go tylko dopisek szablonu „ - Blog MałeNaklejki”, więc title do 60 znaków zależy od decyzji D1 (szablon wpisu, za zgodą Jakuba) - przygotowana, pokazana w raporcie. Zmiana tylko opisu: `zmieniono` i `updated` bez zmian (sekcja 8).
