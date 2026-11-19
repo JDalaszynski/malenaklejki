@@ -44,7 +44,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { path: "/naklejki-die-cut", lastModified: "2026-07-29" },
     { path: "/slownik-naklejek", lastModified: "2026-10-05" },
     { path: "/etykiety-na-sloiki", lastModified: "2026-11-19" },
-    { path: "/wlepki-na-zamowienie", lastModified: "2026-08-31" },
+    { path: "/wlepki-na-zamowienie", lastModified: "2026-11-19" },
     { path: "/naklejki-na-znicze", lastModified: "2026-10-10" },
     { path: "/naklejki-z-kodem-qr", lastModified: "2026-10-27" },
   ];

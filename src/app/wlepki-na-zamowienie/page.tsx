@@ -63,7 +63,7 @@ export const metadata: Metadata = {
  */
 const FAQS: { q: string; a: string }[] = [
   {
-    q: "Ile kosztuje produkcja wlepek na zamówienie?",
+    q: "Ile kosztuje produkcja wlepek (vlepek) na zamówienie?",
     a: "Stałe 59,00 zł brutto za cały zadrukowany arkusz A4, niezależnie od tego, ile wlepek i w jakim kształcie się na nim zmieści. Nie ma minimalnego nakładu ani opłaty za przygotowalnię, więc zapłacisz tyle samo za jeden arkusz testowy, co za kolejne zamówienie.",
   },
   {
@@ -71,7 +71,7 @@ const FAQS: { q: string; a: string }[] = [
     a: "Wystarczy gotowy plik graficzny w formacie PNG, JPG lub PDF, najlepiej z przezroczystym tłem. Nie masz własnej grafiki? Opisz pomysł w zewnętrznym narzędziu AI, takim jak ChatGPT, Gemini czy Midjourney, albo złóż prosty projekt w darmowej Canvie lub Wordzie. Gotowy plik wgrywasz do naszego kreatora arkusza, a on sam usuwa tło i wyznacza linię cięcia.",
   },
   {
-    q: "Ile trwa druk wlepek i kiedy dostanę zamówienie?",
+    q: "Ile trwa druk wlepek (vlepek) i kiedy dostanę zamówienie?",
     a: "Wlepki produkujemy w 4-5 dni robocze od zaksięgowania wpłaty. Po zakończeniu produkcji przesyłka rusza do wybranego paczkomatu - koszt dostawy to 19,99 zł.",
   },
   {
@@ -299,7 +299,7 @@ export default function WlepkiNaZamowieniePage() {
           name: "Wlepki na zamówienie z własnym nadrukiem",
           url: PAGE_URL,
           isPartOf: { "@id": "https://www.malenaklejki.pl/#website" },
-          dateModified: "2026-11-02T00:00:00+01:00",
+          dateModified: "2026-11-19T00:00:00+01:00",
         }}
       />
 

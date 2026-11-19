@@ -6,6 +6,23 @@ Prowadzi agent `redaktor-tresci`. Najnowsze wpisy na górze. Każdy wpis: data, 
 
 
 
+## 2026-11-19 - /frazy: braki fraz na 5 stronach z największym ruchem
+
+**Co się zmieniło** (`zmieniono`/`updated` = 2026-11-19 na wszystkich pięciu):
+- `/blog/wklepki-i-wlepy-z-wlasnym-nadrukiem-dla-artystow-i-spolecznosci` (P0): H2 „Czym różnią się wlepki od zwykłych naklejek…” → „Co to są wlepki i czym różnią się od zwykłych naklejek?” z odpowiedzią na początku (50 słów, encje: wlepy, vlepki, folia winylowa). Krok 3 instrukcji poprawiony według `facts.md`: kolejne grafiki wgrywa się osobno na ten sam arkusz (było: składanie w jednym pliku).
+- `/blog/jak-zamowic-idealne-naklejki-na-zamowienie-z-wlasnym-nadrukiem` (P1): opis meta zaczyna się od „Jak zamówić naklejki z własnym nadrukiem” (151 znaków), pierwsze zdanie „Naklejki z własnym nadrukiem zamówisz w MałeNaklejki w kilka minut…”, pytanie FAQ „Ile kosztują naklejki na zamówienie z własnym nadrukiem?”.
+- `/blog/jak-zrobic-wlasne-naklejki-program-do-robienia-naklejek-online` (P1): H2 „Jak stworzyć własne naklejki w kreatorze naklejek online - krok po kroku”.
+- `/wlepki-na-zamowienie` (P0): pytania FAQ „Ile kosztuje produkcja wlepek (vlepek)…” i „Ile trwa druk wlepek (vlepek)…”; `dateModified` i sitemapa 2026-11-19.
+- `/blog/naklejki-na-nalewki-domowe-jak-ozdobic-butelki-na-nalewki` (P1): H2 „Pomysły na etykiety na nalewki domowe…”, pytanie FAQ „Jak przygotować etykietę na butelkę z własnym projektem…”.
+
+**Dlaczego:** braki ze skanu, kolejność według wyświetleń GSC 90 dni 18.08-15.11.2026 (6676, 2298, 1633, 1397, 972). „Druk vlepek” i „produkcja vlepek” Google pokazuje dziś głównie przy wpisie o wlepkach (100 i 116 wyświetleń, poz. ok. 30) - wzmocniony właściciel (landing), decyzja o przeniesieniu przy przeglądzie.
+
+**Skan:** braki 21 → 13 (12 na 10 stronach z rejestru, 1 na stronie głównej). Kolizja bez zmian: „gotowe zestawy naklejek” (`/gotowe-zestawy`) w H1 `/naklejki-swiateczne` - do następnego `/frazy` (limit 5 stron).
+
+**Zgłoszenia:** w commicie publikacji, stan niżej po wdrożeniu.
+
+**Kiedy ocenić:** pozycje fraz od 2026-12-17 (28 dni), pełny odczyt 2027-01-18 do 2027-02-17.
+
 ## 2026-11-19 - /frazy: 28 fraz usuniętych z panelu
 
 **Co się zmieniło:** 28 wierszy usuniętych z `tresci/slowa-kluczowe.csv` (509 → 481 fraz): śmieciowe („- patrz”, „wobec”, „jesieniarski”), generator AI pod HOLD („generator naklejek ai”, „generator naklejek online”, „jak wygenerować naklejkę ai”, „wzory na naklejki ai”), obietnice terminu („naklejki na już”, „naklejki w 3 dni”), „tani zamiennik stickerapp”, „gadżety firmowe z logo”, „naklejka serwisowana przez” oraz 15 fraz zniczowych poza ofertą albo bez strony (lampion, wkłady, znicz logo/świąteczny/patriotyczny, znicze solarne i personalizowane, dedykacje na zniczach solarnych i LED). Wszystkie były bez strony (`docelowy_url` = `brak`), żadna nie była główną ani wspierającą, więc rejestr i teksty stron bez zmian. Decyzje w `tresci/frazy-zmiany.json` (`usunieta`).
