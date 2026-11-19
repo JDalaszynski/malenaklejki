@@ -6,6 +6,10 @@ Prowadzi agent `redaktor-tresci`. Najnowsze wpisy na górze. Każdy wpis: data, 
 
 **Co się zmieniło:** `/blog/personalizowane-naklejki-na-zeszyty-i-do-przedszkola` (P0) - nowy opis meta (143 znaki): „Naklejki do podpisania zeszytu z imieniem i nazwiskiem dziecka: ok. 30 sztuk na arkuszu A4, od 1 arkusza za 59 zł brutto. Także do przedszkola.” (ok. 30 sztuk według tabeli cen we wpisie: 30 naklejek ok. 3 x 3 cm; „Imienne naklejki na przybory” 24-30 szt. w `jaki-rozmiar-naklejki-wybrac`). Title i H1 bez zmian: „Naklejki do podpisania zeszytu z imieniem i nazwiskiem” (54 znaki) ma już frazę główną na początku i „naklejki na zeszyty z imieniem i nazwiskiem”. Do 74 znaków wydłuża go tylko dopisek szablonu „ - Blog MałeNaklejki”, więc title do 60 znaków zależy od decyzji D1 (szablon wpisu, za zgodą Jakuba) - przygotowana, pokazana w raporcie. Zmiana tylko opisu: `zmieniono` i `updated` bez zmian (sekcja 8).
 
+**Zgłoszenia:** commit 5d5178a na produkcji 19.11, IndexNow 200 OK 19.11. GSC: limit dzienny wyczerpany 19.11 - **GSC do ponowienia od 2026-11-20** (zmiana opisu, więc prośba jest potrzebna).
+
+**Kiedy ocenić:** CTR - pierwszy sygnał od 2026-12-03, pełny odczyt od 2026-12-17 (okna 28 dni, ten sam dzień tygodnia; uwaga na sezon - drugi semestr i ferie).
+
 **Dlaczego:** GSC 90 dni 18.08-15.11.2026: 2887 wyświetleń, 12 kliknięć (CTR 0,4%) przy poz. 8,2; „naklejki na zeszyty z imieniem i nazwiskiem” 137 wyświetleń (poz. 7,3), „naklejki do podpisania zeszytu” 151 (poz. 9,1), oba bez kliknięć. Stary opis nie mówił, ile naklejek jest na arkuszu ani że zamówienie jest od 1 arkusza.
 
 ## 2026-11-19 - /tresc fotonaklejki: pierwszy ekran prowadzi od zdjęcia do kreatora
