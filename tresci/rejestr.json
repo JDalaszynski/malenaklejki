@@ -971,7 +971,9 @@
       "status": "opublikowane",
       "opublikowano": "2026-07-10",
       "zmieniono": "2026-11-19",
-      "zgloszenia": {}
+      "zgloszenia": {
+        "indexnow": "2026-11-19"
+      }
     },
     {
       "id": "naklejka-z-logo-firmy",

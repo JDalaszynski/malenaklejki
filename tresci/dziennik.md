@@ -12,6 +12,8 @@ Prowadzi agent `redaktor-tresci`. Najnowsze wpisy na górze. Każdy wpis: data, 
 
 **Dlaczego:** GSC 90 dni 18.08-15.11.2026: 451 wyświetleń, 2 kliknięcia, CTR 0,4% przy poz. 10,6 (typowo ok. 1,2%); „drukowanie naklejek online” 39 wyświetleń na poz. 15,7. Skan: brak frazy głównej w pierwszym akapicie, „druk naklejek online” bez H2/H3/FAQ. Title ostatnio zmieniany przed 25.10, więc nie ruszam go drugi raz na tych samych danych; wynik i opis zmienia nowy opis meta i pierwsze zdanie.
 
+**Zgłoszenia:** commit 394cac1 na produkcji 19.11, IndexNow 200 OK 19.11. **GSC do ponowienia od 2026-11-20** (P1, istotna aktualizacja i nowy opis; limit 19.11 wyczerpany).
+
 **Skan:** frazy główna i wspierające na miejscach, bez braków i kolizji. Zostaje sygnał CTR (do odczytu).
 
 **Kiedy ocenić:** opis i pierwszy akapit - sygnał od 2026-12-03, odczyt CTR od 2026-12-17 (28 dni, porównanie z 28 dniami przed 19.11). Jeśli CTR nie wzrośnie, następny krok to title (po decyzji D1 albo nowa formuła).
