@@ -59,7 +59,7 @@ Wybór polskiego wykonawcy to nie kwestia sentymentu, tylko konkretnych różnic
 
 - **Cena bez przeliczania z euro.** Płacisz 59,00 zł brutto za arkusz A4 - kwota nie zmienia się wraz z kursem waluty ani prowizją za przewalutowanie. Ile z tego wychodzi za sztukę, rozkładamy na czynniki we wpisie o tym, [ile kosztują naklejki na zamówienie](/blog/ile-kosztuja-naklejki-na-zamowienie-cena-za-arkusz-a4).
 - **Krajowa logistyka.** Produkcja zajmuje 4-5 dni robocze, a paczka trafia do Paczkomatu InPost za 19,99 zł. Bez odprawy celnej i bez śledzenia przesyłki przez pół Europy.
-- **Faktura VAT na NIP.** Jesteśmy zarejestrowanym polskim płatnikiem VAT, więc zamówienie od razu rozliczysz jako koszt firmowy.
+- **Faktura VAT na NIP.** Jesteśmy zarejestrowanym polskim płatnikiem VAT, więc zamówienie od razu rozliczysz jako koszt firmowy. Zamawianie dla firmy opisujemy na stronie [naklejki dla firm](/naklejki-dla-firm).
 - **Obsługa i reklamacje po polsku.** Piszesz i rozmawiasz w swoim języku, a zamówienie obejmują polskie przepisy konsumenckie.
 - **Brak minimalnego nakładu.** Jeden arkusz to pełnoprawne zamówienie - nie musisz dobierać sztuk "do progu", żeby w ogóle złożyć zlecenie.
 - **Trwała folia winylowa.** Drukujemy na winylu odpornym na wodę i promieniowanie UV, z mocnym klejem, który przy odklejaniu nie zostawia śladów. Naklejki myj ręcznie - nie nadają się do zmywarki.

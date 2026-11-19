@@ -10,7 +10,7 @@ role: "supporting"
 cta_text: "Zamów naklejki na eventy"
 ---
 
-Skompletuj naklejki firmowe na eventy i welcome pack dla nowych pracowników jako [naklejki na zamówienie z własnym nadrukiem](/blog/jak-zamowic-idealne-naklejki-na-zamowienie-z-wlasnym-nadrukiem) w MałeNaklejki za stałe **59,00 zł** od arkusza A4 - bez minimalnego nakładu, więc jeden onboarding czy jedna konferencja nie zmuszają Cię do magazynowania setek sztuk na zapas. Wgraj plik z logo firmy do kreatora online, wybierz kształt cięcia, a gotowe wlepki dla pracowników i gości wyprodukujemy w 4-5 dni robocze. Welcome packi to część szerszej oferty [naklejek firmowych](/naklejki-dla-firm), którą rozliczysz fakturą VAT.
+Skompletuj naklejki firmowe na eventy i welcome pack dla nowych pracowników jako [naklejki na zamówienie z własnym nadrukiem](/blog/jak-zamowic-idealne-naklejki-na-zamowienie-z-wlasnym-nadrukiem) w MałeNaklejki za stałe **59,00 zł** od arkusza A4 - bez minimalnego nakładu, więc jeden onboarding czy jedna konferencja nie zmuszają Cię do magazynowania setek sztuk na zapas. Wgraj plik z logo firmy do kreatora online, wybierz kształt cięcia, a gotowe wlepki dla pracowników i gości wyprodukujemy w 4-5 dni robocze. Welcome packi to część oferty, którą opisujemy na stronie [naklejki dla firm](/naklejki-dla-firm) - z fakturą VAT na NIP.
 
 ![Zestaw powitalny (Welcome Pack) dla nowego pracownika - laptop, czarny kubek, notes i wizytówka oklejone spójnymi naklejkami firmowymi z logo na biurku.](/blog/naklejki-firmowe-na-eventy-welcome-pack-dla-pracownikow/welcome-pack-naklejki-firmowe-na-laptopie-i-kubku.png)
 

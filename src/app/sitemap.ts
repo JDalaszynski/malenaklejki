@@ -38,7 +38,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { path: "/blog" },
     { path: "/zamow-projekt" },
     { path: "/alternatywa-dla-sticker-mule-i-stickerapp", lastModified: "2026-07-25" },
-    { path: "/naklejki-dla-firm", lastModified: "2026-10-27" },
+    { path: "/naklejki-dla-firm", lastModified: "2026-11-19" },
     { path: "/naklejki-foliowe", lastModified: "2026-07-25" },
     { path: "/fotonaklejki", lastModified: "2026-11-19" },
     { path: "/naklejki-die-cut", lastModified: "2026-07-29" },

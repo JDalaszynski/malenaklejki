@@ -25,16 +25,16 @@ const PAGE_PATH = "/naklejki-dla-firm";
 const PAGE_URL = `https://www.malenaklejki.pl${PAGE_PATH}`;
 
 export const metadata: Metadata = {
-  title: "Naklejki dla małych firm - od 1 arkusza, 59 zł, faktura VAT",
+  title: "Naklejki dla firm - naklejki firmowe z logo, faktura VAT",
   description:
-    "Naklejki dla małych firm z własnym logo: od 1 arkusza A4 za stałe 59,00 zł brutto, bez minimalnego nakładu, faktura VAT, produkcja w Polsce 4-5 dni robocze.",
+    "Naklejki dla firm z logo od 1 arkusza A4 za 59,00 zł brutto, z fakturą VAT i bez minimalnego nakładu. Naklejki firmowe na paczki, produkty i opakowania.",
   alternates: {
     canonical: PAGE_PATH,
   },
   openGraph: {
-    title: "Naklejki dla małych firm z własnym logo - druk od 1 arkusza A4",
+    title: "Naklejki dla firm z logo - druk od 1 arkusza A4",
     description:
-      "Naklejki dla małych firm z logo: stała cena 59 zł brutto za arkusz A4, faktura VAT, bez minimalnego nakładu, trwała folia winylowa i odbiór w paczkomacie.",
+      "Naklejki dla firm z logo: stała cena 59 zł brutto za arkusz A4, faktura VAT, bez minimalnego nakładu, trwała folia winylowa i odbiór w paczkomacie.",
     url: PAGE_URL,
     type: "website",
     images: [
@@ -48,9 +48,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Naklejki dla małych firm z własnym logo - druk od 1 arkusza A4",
+    title: "Naklejki dla firm z logo - druk od 1 arkusza A4",
     description:
-      "Naklejki dla małych firm z logo: 59 zł brutto za arkusz A4, faktura VAT, bez minimalnego nakładu, produkcja 4-5 dni robocze.",
+      "Naklejki dla firm z logo: 59 zł brutto za arkusz A4, faktura VAT, bez minimalnego nakładu, produkcja 4-5 dni robocze.",
     images: ["/landing/naklejki-dla-firm/naklejki-dla-firm-na-paczki.png"],
   },
 };
@@ -103,7 +103,15 @@ const FAQS: { q: string; a: string }[] = [
   },
   {
     q: "Jaki plik z logo najlepiej wgrać do druku?",
-    a: "Najlepszy jest plik z logo na przezroczystym tle w formacie PNG lub PDF - naklejka zostanie wtedy wycięta dokładnie po kształcie znaku. Przyjmujemy też JPG i zwykłe zdjęcia, bo kreator sam usunie tło. Gdy nie masz gotowej grafiki, narzędzia AI (jak ChatGPT czy wbudowany generator) stworzą obraz na podstawie opisu tekstowego.",
+    a: "Najlepszy jest plik z logo na przezroczystym tle w formacie PNG lub PDF - naklejka zostanie wtedy wycięta dokładnie po kształcie znaku. Przyjmujemy też JPG i zwykłe zdjęcia, bo kreator sam usunie tło. Gdy nie masz gotowej grafiki, zewnętrzne generatory AI (ChatGPT, Gemini, Midjourney) albo Canva przygotują obraz, który potem wgrasz do kreatora.",
+  },
+  {
+    q: "Kiedy zamówić naklejki firmowe na paczki przed sezonem wysyłek?",
+    a: "Z wyprzedzeniem, zanim zacznie się szczyt zamówień w Twoim sklepie. Produkcja trwa 4-5 dni robocze, potem dochodzi dostawa do paczkomatu. Najprościej zamówić od razu kilka arkuszy z jednym wzorem naklejki na paczkę - wystarczą na cały sezon, a dostawa 19,99 zł jest liczona raz za całe zamówienie.",
+  },
+  {
+    q: "Czy naklejki firmowe z logo opłacają się bardziej niż w tradycyjnej drukarni?",
+    a: "Przy kilkudziesięciu lub kilkuset naklejkach i kilku różnych wzorach - tak, bo płacisz 59,00 zł brutto za arkusz A4 bez opłat za przygotowanie i bez minimalnego nakładu. Przy tysiącach identycznych etykiet w jednym rozmiarze albo etykietach na rolce do etykieciarki tradycyjna drukarnia z nakładem zwykle wyjdzie taniej na sztukę.",
   },
   {
     q: "Jak zapłacić za zamówienie firmowe i dostać fakturę?",
@@ -129,6 +137,54 @@ const SMALL_BUSINESS: { icon: React.ElementType; title: string; text: string }[]
       text: "Zamów jeden arkusz, sprawdź, jak logo wygląda na folii, i dopiero wtedy powtórz zamówienie. Każdy kolejny arkusz kosztuje tyle samo: 59,00 zł brutto.",
     },
   ];
+
+const PARCEL_SEASON: { title: string; text: string }[] = [
+  {
+    title: "Jeden wzór na cały sezon.",
+    text: "Wgraj logo raz, ustaw rozmiar naklejki na paczkę i wypełnij arkusz kopiami przyciskiem „Wypełnij arkusz”. Obok logo zmieścisz naklejkę z podziękowaniem dla klienta - każdą grafikę wytniemy osobno.",
+  },
+  {
+    title: "Faktura VAT na NIP.",
+    text: "Zapas naklejek na paczki rozliczysz w firmie jak każdy inny koszt. Cena 59,00 zł za arkusz A4 to kwota brutto.",
+  },
+  {
+    title: "Zamów z wyprzedzeniem.",
+    text: "Produkcja trwa 4-5 dni robocze, potem dochodzi dostawa do paczkomatu. Zamów kilka arkuszy, zanim ruszy szczyt zamówień w Twoim sklepie, żeby naklejki czekały na pierwsze paczki.",
+  },
+];
+
+const COMPARISON: { label: string; ours: string; print: string }[] = [
+  {
+    label: "Najmniejsze zamówienie",
+    ours: "1 arkusz A4",
+    print: "Zwykle nakład w setkach lub tysiącach sztuk",
+  },
+  {
+    label: "Cena",
+    ours: "Stałe 59,00 zł brutto za arkusz A4",
+    print: "Wycena zależna od nakładu, formatu i materiału",
+  },
+  {
+    label: "Kilka wzorów",
+    ours: "Na jednym arkuszu, bez dopłat",
+    print: "Zależy od drukarni, często osobna wycena",
+  },
+  {
+    label: "Przygotowanie pliku",
+    ours: "Bez opłat, kreator sam wyznacza linię cięcia",
+    print: "Zależy od drukarni",
+  },
+  {
+    label: "Faktura VAT",
+    ours: "Tak, na NIP",
+    print: "Tak",
+  },
+  {
+    label: "Kiedy wybrać",
+    ours: "Kilkadziesiąt do kilkuset sztuk, kilka wzorów, test logo",
+    print: "Tysiące identycznych etykiet, etykiety na rolce",
+  },
+];
 
 const USE_CASES: {
   icon: React.ElementType;
@@ -326,7 +382,7 @@ export default function NaklejkiDlaFirmPage() {
           name: "Naklejki dla małych firm z własnym logo",
           url: PAGE_URL,
           isPartOf: { "@id": "https://www.malenaklejki.pl/#website" },
-          dateModified: "2026-10-27T00:00:00+01:00",
+          dateModified: "2026-11-19T00:00:00+01:00",
         }}
       />
       <JsonLd
@@ -382,12 +438,13 @@ export default function NaklejkiDlaFirmPage() {
           </h1>
 
           <p className="text-sm sm:text-lg text-foreground/90 font-semibold leading-relaxed">
-            Zamów <strong>naklejki firmowe z logo</strong> w polskiej drukarni:
-            drukujemy już od{" "}
-            <strong>1 arkusza A4 za stałe 59,00 zł brutto</strong>, wystawiamy{" "}
-            <strong>fakturę VAT</strong>, a naklejki produkujemy w{" "}
-            <strong>4-5 dni robocze</strong> i wysyłamy do paczkomatu. Bez minimalnego nakładu i bez
-            opłat za przygotowanie pliku. Jeśli zamawiasz po raz pierwszy,
+            Naklejki dla firm z logo zamówisz w MałeNaklejki już od{" "}
+            <strong>1 arkusza A4 za stałe 59,00 zł brutto</strong>, z{" "}
+            <strong>fakturą VAT na NIP</strong>, bez minimalnego nakładu i
+            bez opłat za przygotowanie pliku. Naklejki firmowe na paczki,
+            produkty i opakowania produkujemy w Polsce w{" "}
+            <strong>4-5 dni robocze</strong> i wysyłamy do paczkomatu. Jeśli
+            zamawiasz po raz pierwszy,
             sprawdź, jak skutecznie{" "}
             <Link
               href="/blog/naklejka-z-logo-firmy-jak-skutecznie-brandowac-swoje-produkty"
@@ -414,7 +471,7 @@ export default function NaklejkiDlaFirmPage() {
               href="/"
               className="group inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-[#02af7a] hover:bg-[#029668] text-white text-sm sm:text-base font-black tracking-wide uppercase rounded-2xl shadow-[0_4px_14px_0_rgba(2,175,122,0.4)] hover:shadow-[0_6px_20px_0_rgba(2,175,122,0.6)] transform hover:-translate-y-0.5 transition-all duration-300"
             >
-              Otwórz kreator naklejek
+              Zamów naklejki z logo
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </Link>
             <Link
@@ -427,8 +484,8 @@ export default function NaklejkiDlaFirmPage() {
 
           <div className="flex flex-wrap items-center gap-x-4 gap-y-1.5 pt-1">
             <span className="text-xs font-bold text-muted-foreground/60 flex items-center gap-1.5">
-              <Clock className="w-3.5 h-3.5" /> Ostatnia aktualizacja: 27
-              października 2026
+              <Clock className="w-3.5 h-3.5" /> Ostatnia aktualizacja: 19
+              listopada 2026
             </span>
           </div>
         </section>
@@ -498,6 +555,98 @@ export default function NaklejkiDlaFirmPage() {
                 </div>
               );
             })}
+          </div>
+        </section>
+
+        {/* Paczki - sezon wysyłek */}
+        <section className="mt-12 space-y-6">
+          <h2 className="text-2xl sm:text-3xl font-black text-foreground font-heading">
+            Naklejki na paczki z logo - sezon wysyłek
+          </h2>
+          <p className="text-sm sm:text-base text-muted-foreground font-medium leading-relaxed">
+            Naklejka z logo na paczce podpisuje nadawcę i robi pierwsze
+            wrażenie, zanim klient otworzy karton. Na sezon wysyłek najlepiej
+            zamówić jeden wzór na cały sezon: kilka arkuszy A4 z tą samą
+            naklejką, po 59,00 zł brutto za arkusz, z fakturą VAT i jedną
+            dostawą do paczkomatu za 19,99 zł.
+          </p>
+          <ul className="space-y-3">
+            {PARCEL_SEASON.map((item) => (
+              <li
+                key={item.title}
+                className="flex gap-3 bg-white dark:bg-[#003a3b] rounded-2xl border border-border/40 p-5 shadow-sm"
+              >
+                <Check className="shrink-0 w-5 h-5 mt-0.5 text-primary" />
+                <p className="text-sm text-muted-foreground font-medium leading-relaxed">
+                  <strong className="text-foreground font-black">
+                    {item.title}
+                  </strong>{" "}
+                  {item.text}
+                </p>
+              </li>
+            ))}
+          </ul>
+          <Link
+            href="/"
+            className="group inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-[#02af7a] hover:bg-[#029668] text-white text-sm sm:text-base font-black tracking-wide uppercase rounded-2xl shadow-[0_4px_14px_0_rgba(2,175,122,0.4)] hover:shadow-[0_6px_20px_0_rgba(2,175,122,0.6)] transform hover:-translate-y-0.5 transition-all duration-300"
+          >
+            Zamów naklejki z logo
+            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+          </Link>
+        </section>
+
+        {/* Arkusz czy drukarnia z nakładem */}
+        <section className="mt-12 space-y-6">
+          <h2 className="text-2xl sm:text-3xl font-black text-foreground font-heading">
+            Naklejki firmowe: arkusz od 1 sztuki czy drukarnia z nakładem?
+          </h2>
+          <p className="text-sm sm:text-base text-muted-foreground font-medium leading-relaxed">
+            Naklejki firmowe w MałeNaklejki opłacają się, gdy potrzebujesz od
+            kilkudziesięciu do kilkuset sztuk, kilku różnych wzorów albo chcesz
+            sprawdzić logo na folii przed większym zamówieniem. Tradycyjna
+            drukarnia z nakładem zwykle wychodzi taniej na sztukę przy
+            tysiącach identycznych etykiet w jednym rozmiarze i przy etykietach
+            na rolce do etykieciarki.
+          </p>
+          <div className="overflow-x-auto rounded-2xl border border-border/60 shadow-sm">
+            <table className="w-full border-collapse bg-white dark:bg-[#003a3b]/40 text-sm">
+              <thead>
+                <tr>
+                  <th className="p-3 sm:p-4 border-b border-border/60 text-left font-black text-foreground">
+                    Kryterium
+                  </th>
+                  <th className="p-3 sm:p-4 border-b border-border/60 text-left font-black text-foreground">
+                    MałeNaklejki (arkusz A4)
+                  </th>
+                  <th className="p-3 sm:p-4 border-b border-border/60 text-left font-black text-foreground">
+                    Drukarnia z nakładem
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {COMPARISON.map((row, i) => (
+                  <tr
+                    key={row.label}
+                    className={
+                      i % 2 === 1 ? "bg-[#edf6f2]/30 dark:bg-[#002c2e]/20" : ""
+                    }
+                  >
+                    <th
+                      scope="row"
+                      className="p-3 sm:p-4 border-b border-border/60 text-left font-black text-foreground align-top"
+                    >
+                      {row.label}
+                    </th>
+                    <td className="p-3 sm:p-4 border-b border-border/60 text-foreground/80 dark:text-[#a0d4c8] font-semibold align-top">
+                      {row.ours}
+                    </td>
+                    <td className="p-3 sm:p-4 border-b border-border/60 text-foreground/80 dark:text-[#a0d4c8] font-semibold align-top">
+                      {row.print}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
         </section>
 
@@ -674,7 +823,7 @@ export default function NaklejkiDlaFirmPage() {
             {[
               {
                 title: "Wgraj logo lub grafikę",
-                text: "Wgraj logo w formacie PDF, PNG lub JPG. Zwykłe zdjęcie z telefonu też wystarczy - kreator sam usunie tło i wytnie naklejkę po kształcie. Nie masz grafiki? Opisz pomysł tekstem, a generatory AI (np. Midjourney, ChatGPT lub wbudowany u nas) wygenerują gotowy obraz.",
+                text: "Wgraj logo w formacie PDF, PNG lub JPG. Zwykłe zdjęcie z telefonu też wystarczy - kreator sam usunie tło i wytnie naklejkę po kształcie. Nie masz grafiki? Opisz pomysł tekstem, a generatory AI (np. ChatGPT, Gemini lub Midjourney) wygenerują gotowy obraz.",
               },
               {
                 title: "Wybierz cięcie, rozmiar i liczbę sztuk",
@@ -774,7 +923,7 @@ export default function NaklejkiDlaFirmPage() {
               href="/"
               className="group inline-flex items-center justify-center gap-2 px-8 py-4 bg-[#02af7a] hover:bg-[#029668] text-white text-sm sm:text-lg font-black tracking-wide uppercase rounded-2xl shadow-[0_4px_14px_0_rgba(2,175,122,0.4)] hover:shadow-[0_6px_20px_0_rgba(2,175,122,0.6)] transform hover:-translate-y-0.5 transition-all duration-300"
             >
-              Otwórz kreator naklejek
+              Zamów naklejki z logo
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </Link>
           </div>

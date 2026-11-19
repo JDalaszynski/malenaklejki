@@ -172,7 +172,7 @@
       "plik": "src/app/naklejki-dla-firm/page.tsx",
       "tytul": "Naklejki dla małych firm z własnym logo",
       "nazwa": "Naklejki dla firm",
-      "zajawka": "Naklejki dla małych firm z własnym logo: od 1 arkusza A4 za stałe 59,00 zł brutto, bez minimalnego nakładu, faktura VAT, produkcja w Polsce 4-5 dni robocze.",
+      "zajawka": "Naklejki dla firm z logo od 1 arkusza A4 za 59,00 zł brutto, z fakturą VAT i bez minimalnego nakładu. Naklejki firmowe na paczki, produkty i opakowania.",
       "fraza": "naklejki dla firm",
       "frazy": [
         "naklejki firmowe",
@@ -198,18 +198,8 @@
       "priorytet": "P1",
       "status": "opublikowane",
       "opublikowano": "2026-07-24",
-      "zmieniono": "2026-10-27",
-      "zgloszenia": {},
-      "zadanie": {
-        "rodzaj": "poglebienie",
-        "tytul": "Wyjść z pozycji 20+ na „naklejki firmowe” i „naklejki dla firm”",
-        "powod": "GSC 90 dni 18.08-15.11.2026: 531 wyświetleń, 0 kliknięć przy poz. 21,8. „naklejki firmowe” 196 wyświetleń na poz. 37,8, „naklejki dla firm” 67 na poz. 19,2. „naklejki z logo” Google pokazuje z wpisu o słoikach (poz. 3,5), nie stąd.",
-        "teza": "Sprawdź, co jest w pierwszej dziesiątce na „naklejki firmowe” (WebSearch) i czego brakuje na stronie. Dodaj sekcję „Naklejki na paczki z logo - sezon wysyłek” (zadanie P4.3.4: jeden wzór na cały sezon, faktura VAT, zamówienie z wyprzedzeniem, bez daty granicznej). Dopisz linki przychodzące kotwicą „naklejki dla firm” z wpisów firmowych (naklejka z logo, eventy, logo na słoiki) i „naklejki firmowe” w H2. Title może zawierać „naklejki firmowe”.",
-        "priorytet": "P1",
-        "kolejnosc": 6,
-        "zrodlo": "przegląd treści 2026-11-18",
-        "dodano": "2026-11-18"
-      }
+      "zmieniono": "2026-11-19",
+      "zgloszenia": {}
     },
     {
       "id": "etykiety-na-sloiki",

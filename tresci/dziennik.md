@@ -3,6 +3,27 @@
 Prowadzi agent `redaktor-tresci`. Najnowsze wpisy na górze. Każdy wpis: data, co się zmieniło (adresy), dlaczego (liczby z oknem), zgłoszenia, kiedy ocenić. Starsza historia: `blog-agent/plan.md`, `landing-agent/plan.md`, `blog-agent/strategy.md`.
 
 
+
+## 2026-11-19 - /tresc naklejki-dla-firm: pogłębienie pod „naklejki firmowe” i „naklejki dla firm”
+
+**Powód:** GSC 90 dni 18.08-15.11.2026: 531 wyświetleń, 0 kliknięć przy poz. 21,8; „naklejki firmowe” 196 wyświetleń na poz. 37,8, „naklejki dla firm” 67 na poz. 19,2. Dane z 18.11 - powód aktualny.
+
+**Rozpoznanie** (WebSearch 19.11.2026, przybliżenie wyników google.pl): na „naklejki firmowe” i „naklejki dla firm z logo” w wynikach Canva (kreator naklejek z logo), Oferteo (porównywarka drukarni, wyceny), lokalne drukarnie i poradniki o druku po obrysie. Żaden wynik nie porównuje uczciwie arkusza od 1 sztuki z drukarnią z nakładem i nie mówi, kiedy który się opłaca - to dołożyliśmy.
+
+**Zmiana** (`/naklejki-dla-firm`, P1, `zmieniono`, `dateModified` i `lastModified` w sitemapie = 2026-11-19):
+
+- title: „Naklejki dla firm - naklejki firmowe z logo, faktura VAT” (56 znaków; było „Naklejki dla małych firm - od 1 arkusza, 59 zł, faktura VAT”). Opis meta (152): fraza główna, od 1 arkusza A4, 59,00 zł brutto, faktura VAT, „naklejki firmowe”. H1 bez zmian.
+- pierwszy akapit od frazy głównej z odpowiedzią na pytanie AI (od 1 arkusza, faktura VAT na NIP, bez nakładu i opłat za plik).
+- nowa sekcja H2 „Naklejki na paczki z logo - sezon wysyłek” (P4.3.4: jeden wzór na sezon i „Wypełnij arkusz”, faktura VAT, zamówienie z wyprzedzeniem bez daty granicznej) z przyciskiem do kreatora.
+- nowa sekcja H2 „Naklejki firmowe: arkusz od 1 sztuki czy drukarnia z nakładem?” z tabelą i uczciwym „kiedy się nie opłaca” (tysiące identycznych etykiet, etykiety na rolce). Dane drukarni tylko jakościowo.
+- 2 nowe FAQ (termin przed sezonem wysyłek, arkusz czy drukarnia) - widok i schemat z jednej tablicy.
+- przyciski „Otwórz kreator naklejek” → „Zamów naklejki z logo” (CTA z rejestru).
+- decyzja 3 (HOLD generatora): usunięte dwie wzmianki o „wbudowanym” generatorze AI; zostają zewnętrzne generatory i Canva.
+
+**Linki przychodzące z kotwicą „naklejki dla firm”:** nowy z `/blog/gdzie-zamowic-naklejki-w-malym-nakladzie-porownanie` (punkt o fakturze VAT); w `/blog/naklejki-firmowe-na-eventy-welcome-pack-dla-pracownikow` kotwica „naklejek firmowych” → „naklejki dla firm”. `/blog/naklejka-z-logo-firmy-...` i `/blog/naklejki-z-wlasnym-logo-na-sloiki-i-opakowania` już ją mają. Sąsiadom bez zmiany `zmieniono`.
+
+**Kiedy ocenić:** title i opis - pierwszy sygnał od 2026-12-03, CTR po 28 dniach (od 2026-12-17); pozycja „naklejki firmowe” i „naklejki dla firm” po 60-90 dniach (od 2027-01-18).
+
 ## 2026-11-19 - /tresc logo-na-sloiki-i-opakowania: title, opis i pierwszy akapit
 
 **Powód:** GSC 90 dni 18.08-15.11.2026: 325 wyświetleń, 0 kliknięć przy poz. 11,2; „naklejki z logo” 44 wyświetlenia na poz. 3,5, „słoiki z logo” 51 na poz. 17, „naklejki na słoiki z własnym nadrukiem” 49 na poz. 9,4 - bez kliknięć. Dane z 18.11 - powód aktualny.
