@@ -16,6 +16,8 @@ Prowadzi agent `redaktor-tresci`. Najnowsze wpisy na górze. Każdy wpis: data, 
 
 **Braki w bazie:** 32 → 30 (na 24 → 23 stronach).
 
+**Zgłoszenia:** commit 808636e na produkcji 18.11, IndexNow 200 OK 18.11, GSC „Poproś o zindeksowanie” 19.11 (adres był w indeksie).
+
 **Kiedy ocenić:** pozycja wpisu na „jak zrobić vlepki kibicowskie” i „naklejki kibicowskie” po 60-90 dniach (od 2027-01-17).
 
 ## 2026-11-18 - start systemu treści

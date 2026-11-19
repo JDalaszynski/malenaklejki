@@ -710,7 +710,10 @@
       "status": "opublikowane",
       "opublikowano": "2026-08-31",
       "zmieniono": "2026-11-18",
-      "zgloszenia": {}
+      "zgloszenia": {
+        "indexnow": "2026-11-18",
+        "gsc": "2026-11-19"
+      }
     },
     {
       "id": "naklejki-na-nalewki",
