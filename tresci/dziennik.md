@@ -10,6 +10,8 @@ Prowadzi agent `redaktor-tresci`. Najnowsze wpisy na górze. Każdy wpis: data, 
 
 **Baza fraz:** „jak zrobić naklejkę ze zdjęcia” przeniesiona z `naklejka-ze-zdjecia` na ten wpis jako czwarta wspierająca (Google i tak pokazywał tu tę frazę: ok. 935 wyświetleń wobec 53 na poprzednim właścicielu; przeniesienie na polecenie Jakuba w prompcie). Wpis `naklejka-ze-zdjecia` ma w bazie nową główną „naklejki ze zdjęciem na prezent” (dotąd bez strony). Jego title i H1 się nie zmieniły - to robi jego zadanie (kolejność 10, teza zaktualizowana). Do tego czasu ma 1 brak w bazie. Braki w bazie: 30 → 29.
 
+**Zgłoszenia:** commit eeeaae6 na produkcji 19.11, IndexNow 200 OK 19.11. GSC: „Przekroczono limit” 19.11 - **GSC do ponowienia od 2026-11-20** (`/blog/jak-zrobic-wlasne-naklejki-w-telefonie-proste-aplikacje-i-triki`; zmiana title, więc prośba jest potrzebna).
+
 **Kiedy ocenić:** title i opis - pierwszy sygnał od 2026-12-03 (14 dni), pełny odczyt CTR od 2026-12-17 (28 dni), okna 28 dni z tym samym dniem tygodnia.
 
 ## 2026-11-18 - /frazy: 5 fraz z panelu
