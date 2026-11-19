@@ -88,18 +88,8 @@
       "priorytet": "P0",
       "status": "opublikowane",
       "opublikowano": "2026-07-27",
-      "zmieniono": "2026-07-27",
-      "zgloszenia": {},
-      "zadanie": {
-        "rodzaj": "konwersja",
-        "tytul": "Pierwszy ekran prowadzi od zdjęcia prosto do kreatora",
-        "powod": "Wejścia z GA4 kończą się bez dodania do koszyka, a zamówień zaczętych na tej stronie od 3.11 nie ma (liczby w tresci/frazy.json, poza gitem). GSC 90 dni 18.08-15.11.2026: 1871 wyświetleń, poz. 8,8, CTR 1,3%.",
-        "teza": "Sprawdź pierwszy ekran przy 375 px: czy jest jedno zdanie odpowiedzi, przykład zdjęcie → naklejka i przycisk do kreatora nad linią zgięcia. Rozbrój obawy przy CTA: tło usuwa kreator, cena 59 zł za arkusz od razu, różne zdjęcia na jednym arkuszu. Dodaj sekcję „Fotonaklejki na prezent - święta i Dzień Babci i Dziadka” (21-22.01) z 1-2 pytaniami FAQ (zadanie P4.3.5 z blog-agent/plan.md). Bez grafik AI.",
-        "priorytet": "P1",
-        "kolejnosc": 2,
-        "zrodlo": "przegląd treści 2026-11-18",
-        "dodano": "2026-11-18"
-      }
+      "zmieniono": "2026-11-19",
+      "zgloszenia": {}
     },
     {
       "id": "wlepki-na-zamowienie",

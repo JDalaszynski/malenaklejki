@@ -21,6 +21,9 @@ import {
   Layers,
   Clock,
   ArrowRight,
+  Check,
+  CalendarHeart,
+  TreePine,
 } from "lucide-react";
 
 const PAGE_PATH = "/fotonaklejki";
@@ -64,8 +67,12 @@ export const metadata: Metadata = {
  */
 const FAQS: { q: string; a: string }[] = [
   {
+    q: "Gdzie zamówić naklejki z własnego zdjęcia wycięte po obrysie, bez usuwania tła samemu?",
+    a: "Naklejki z własnego zdjęcia wycięte po obrysie zamówisz w MałeNaklejki przez kreator arkusza na stronie głównej. Wgrywasz zdjęcie z telefonu, tło usuwasz w kreatorze przyciskiem „Usuń tło”, bez Photoshopa, a my drukujemy fotonaklejki na wodoodpornej folii winylowej i wycinamy je po sylwetce. Arkusz A4 kosztuje 59,00 zł brutto, bez minimalnego nakładu.",
+  },
+  {
     q: "Co to są fotonaklejki?",
-    a: "Fotonaklejki to naklejki drukowane z Twojego własnego zdjęcia lub grafiki na trwałej folii winylowej. Wgrywasz plik z telefonu lub komputera, kreator automatycznie usuwa tło, a my wycinamy naklejkę po obrysie motywu. W odróżnieniu od papierowej odbitki fotonaklejka jest samoprzylepna, wodoodporna i gotowa, by nakleić ją na laptop, bidon czy kask.",
+    a: "Fotonaklejki to naklejki drukowane z Twojego własnego zdjęcia lub grafiki na trwałej folii winylowej. Wgrywasz plik z telefonu lub komputera, tło usuwasz w kreatorze jednym przyciskiem, a my wycinamy naklejkę po obrysie motywu. W odróżnieniu od papierowej odbitki fotonaklejka jest samoprzylepna, wodoodporna i gotowa, by nakleić ją na laptop, bidon czy kask.",
   },
   {
     q: "Ile kosztują fotonaklejki z własnego zdjęcia?",
@@ -77,11 +84,11 @@ const FAQS: { q: string; a: string }[] = [
   },
   {
     q: "Czy zrobię fotonaklejkę ze zdjęcia w telefonie?",
-    a: "Tak, cały proces przejdziesz na telefonie. Wgraj zdjęcie prosto z galerii, a kreator sam usunie tło i wygeneruje ścieżkę cięcia po obrysie - bez Photoshopa i bez znajomości programów graficznych. Zdjęcia z nowszego smartfona (od 12 Mpx) mają w zupełności wystarczającą jakość.",
+    a: "Tak, cały proces przejdziesz na telefonie. Wgraj zdjęcie prosto z galerii, usuń tło przyciskiem „Usuń tło”, a kreator wyznaczy linię cięcia po obrysie - bez Photoshopa i bez znajomości programów graficznych. Najlepiej sprawdza się ostre, dobrze oświetlone zdjęcie w pełnej rozdzielczości, a nie miniatura z komunikatora.",
   },
   {
-    q: "Jak automatyczne usuwanie tła działa przy zdjęciu?",
-    a: "Po wgraniu zdjęcia kreator wykrywa główny motyw i odcina go od tła, zostawiając np. sam portret psa na przezroczystym tle. To ten krok sprawia, że fotonaklejka wygląda profesjonalnie, a nie jak zdjęcie przyklejone na białym prostokącie. Efekt zobaczysz od razu na podglądzie i możesz skorygować ścieżkę cięcia przed zamówieniem.",
+    q: "Jak działa usuwanie tła przy zdjęciu?",
+    a: "Po kliknięciu „Usuń tło” kreator wykrywa główny motyw i odcina go od tła, zostawiając np. sam portret psa na przezroczystym tle. To ten krok sprawia, że fotonaklejka wygląda profesjonalnie, a nie jak zdjęcie przyklejone na białym prostokącie. Efekt zobaczysz od razu na podglądzie i możesz skorygować ścieżkę cięcia przed zamówieniem.",
   },
   {
     q: "Czy mogę zrobić fotonaklejkę z portretem osoby lub zwierzęcia?",
@@ -89,11 +96,19 @@ const FAQS: { q: string; a: string }[] = [
   },
   {
     q: "Jakie zdjęcie i format pliku najlepiej przygotować?",
-    a: "Wgraj zdjęcie w formacie JPG, PNG lub plik PDF. Najlepiej sprawdza się ostre, dobrze oświetlone zdjęcie z wyraźnymi krawędziami motywu - ułatwia to automatyczne usuwanie tła i precyzyjne cięcie po obrysie. Zdjęcie z rozmytym lub bardzo zatłoczonym tłem również zadziała, ale kontur może wymagać drobnej korekty w kreatorze.",
+    a: "Wgraj zdjęcie w formacie JPG, PNG, WEBP lub plik PDF. Najlepiej sprawdza się ostre, dobrze oświetlone zdjęcie z wyraźnymi krawędziami motywu - ułatwia to usuwanie tła i precyzyjne cięcie po obrysie. Zdjęcie z rozmytym lub bardzo zatłoczonym tłem również zadziała, ale kontur może wymagać drobnej korekty w kreatorze.",
   },
   {
     q: "Ile fotonaklejek zmieszczę na jednym arkuszu A4?",
     a: "Na arkuszu A4 zmieścisz jedną dużą fotonaklejkę do 19 cm albo kilkanaście mniejszych z różnymi zdjęciami - wszystko w tej samej cenie 59,00 zł brutto. Kreator pilnuje, aby naklejki na siebie nie nachodziły i optymalnie wykorzystały miejsce.",
+  },
+  {
+    q: "Jaki prezent ze zdjęcia na Dzień Babci i Dziadka?",
+    a: "Dobrym prezentem jest arkusz fotonaklejek ze zdjęciami wnuków: kilka kadrów wyciętych po sylwetce, które babcia i dziadek nakleją na lodówkę, termos, laptop albo okładkę albumu. Dzień Babci przypada 21 stycznia, a Dzień Dziadka 22 stycznia. Produkcja trwa 4-5 dni robocze od opłacenia, potem wysyłamy paczkę do paczkomatu, więc zamów z zapasem.",
+  },
+  {
+    q: "Czy na jednym arkuszu zmieszczę fotonaklejki dla kilku osób?",
+    a: "Tak. Każde kolejne zdjęcie wgrane do kreatora trafia na ten sam arkusz A4 z własną linią cięcia, a płacisz 59,00 zł brutto za arkusz, nie za liczbę zdjęć. Arkusz możesz zamówić w całości albo jako pojedyncze docięte sztuki i rozdzielić je między prezenty. Kilka arkuszy w jednym zamówieniu ma jedną dostawę za 19,99 zł.",
   },
   {
     q: "Jak szybko zrealizujecie zamówienie fotonaklejek?",
@@ -101,7 +116,65 @@ const FAQS: { q: string; a: string }[] = [
   },
   {
     q: "Czym fotonaklejka różni się od odbitki zdjęcia z fotokiosku?",
-    a: "Odbitka to papierowy wydruk zdjęcia - nie klei się, nie jest wodoodporny i łatwo się niszczy. Fotonaklejka to samoprzylepna folia winylowa: wodoodporna, odporna na UV, wycięta po obrysie motywu i gotowa, by nakleić ją na dowolny przedmiot. To trwały nośnik zdjęcia, a nie zwykła fotografia na papierze.",
+    a: "Odbitka to papierowy wydruk zdjęcia - nie klei się, nie jest wodoodporny i łatwo się niszczy. Fotonaklejka to samoprzylepna folia winylowa: wodoodporna, odporna na UV, wycięta po obrysie motywu i gotowa, by nakleić ją na gładką powierzchnię - laptop, termos czy lodówkę. To trwały nośnik zdjęcia, a nie zwykła fotografia na papierze.",
+  },
+];
+
+/** Obawy rozbrajane przy każdym przycisku do kreatora (facts.md). */
+const CTA_REASSURANCE = [
+  "Tło usuwa kreator - przycisk „Usuń tło”",
+  "59,00 zł brutto za cały arkusz A4",
+  "Różne zdjęcia na jednym arkuszu",
+];
+
+function KreatorCta({ label }: { label: string }) {
+  return (
+    <div className="bg-white dark:bg-[#003a3b] rounded-2xl border border-border/40 p-5 shadow-sm space-y-3">
+      <Link
+        href="/"
+        className="group w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-[#02af7a] hover:bg-[#029668] text-white text-sm sm:text-base font-black tracking-wide uppercase rounded-2xl shadow-[0_4px_14px_0_rgba(2,175,122,0.4)] hover:shadow-[0_6px_20px_0_rgba(2,175,122,0.6)] transform hover:-translate-y-0.5 transition-all duration-300"
+      >
+        {label}
+        <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+      </Link>
+      <ul className="grid gap-1.5 sm:grid-cols-3 sm:gap-3">
+        {CTA_REASSURANCE.map((item) => (
+          <li
+            key={item}
+            className="flex items-start gap-1.5 text-xs font-bold text-foreground/80"
+          >
+            <Check className="w-3.5 h-3.5 mt-0.5 shrink-0 text-primary" />
+            {item}
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+const GIFT_IDEAS: {
+  icon: React.ElementType;
+  title: string;
+  text: string;
+  href?: string;
+  linkLabel?: string;
+}[] = [
+  {
+    icon: TreePine,
+    title: "Pod choinkę: zdjęcia całej rodziny na jednym arkuszu",
+    text: "Ułóż na arkuszu A4 rodzinne kadry z całego roku i portret pupila. Cały arkusz w kopercie to gotowy upominek, a pojedyncze fotonaklejki ozdobią paczki dla każdego domownika.",
+  },
+  {
+    icon: CalendarHeart,
+    title: "Naklejka ze zdjęcia wnuków na Dzień Babci i Dziadka",
+    text: "Zdjęcia wnuków albo rysunek wnuczki wycięte po sylwetce - na lodówkę, termos na działkę czy okładkę albumu. Dzień Babci wypada 21 stycznia, Dzień Dziadka 22 stycznia, a jeden arkusz wystarczy dla obojga.",
+  },
+  {
+    icon: Gift,
+    title: "Naklejki z własnego zdjęcia na opakowanie prezentu",
+    text: "Fotonaklejka ze wspólnym zdjęciem zamiast bileciku: na pudełku, torebce albo słoiku z domowymi przetworami. Obdarowany zdejmie ją z opakowania i przyklei w swoim miejscu.",
+    href: "/naklejki-swiateczne",
+    linkLabel: "Naklejki świąteczne na prezenty",
   },
 ];
 
@@ -155,8 +228,8 @@ const USE_CASES: {
 const ADVANTAGES: { icon: React.ElementType; title: string; text: string }[] = [
   {
     icon: Sparkles,
-    title: "Automatyczne usuwanie tła",
-    text: "Wgraj zwykłe zdjęcie, a kreator sam odetnie główny motyw od tła w kilka sekund - bez Photoshopa i bez ręcznego wycinania. To dzięki temu fotonaklejka wygląda profesjonalnie.",
+    title: "Usuwanie tła jednym przyciskiem",
+    text: "Wgraj zwykłe zdjęcie i kliknij „Usuń tło” - kreator odetnie główny motyw od tła w kilka sekund, bez Photoshopa i bez ręcznego wycinania. To dzięki temu fotonaklejka wygląda profesjonalnie.",
   },
   {
     icon: Scissors,
@@ -170,8 +243,8 @@ const ADVANTAGES: { icon: React.ElementType; title: string; text: string }[] = [
   },
   {
     icon: Printer,
-    title: "Druk 300 DPI w pełnym kolorze",
-    text: "Rozdzielczość 300 DPI oddaje detale twarzy, sierść pupila i przejścia kolorów ostro i nasycono, bez pikselozy widocznej na tanich wydrukach.",
+    title: "Różne zdjęcia na jednym arkuszu",
+    text: "Pies, wakacje i rysunek dziecka mogą trafić na ten sam arkusz A4 - każde zdjęcie dostaje własną linię cięcia, a płacisz 59,00 zł brutto za arkusz, nie za liczbę zdjęć.",
   },
   {
     icon: Smartphone,
@@ -186,12 +259,12 @@ const ADVANTAGES: { icon: React.ElementType; title: string; text: string }[] = [
 ];
 
 const SPECS: { label: string; value: string }[] = [
-  { label: "Źródło grafiki", value: "Własne zdjęcie lub plik (JPG, PNG, PDF)" },
-  { label: "Usuwanie tła", value: "Automatyczne w kreatorze, bez Photoshopa" },
+  { label: "Źródło grafiki", value: "Własne zdjęcie lub plik (JPG, PNG, WEBP, PDF)" },
+  { label: "Usuwanie tła", value: "Przycisk „Usuń tło” w kreatorze, bez Photoshopa" },
   { label: "Materiał", value: "Trwała folia winylowa z mocnym klejem" },
   { label: "Powierzchnia", value: "Subtelny połysk" },
   { label: "Odporność", value: "Woda, promieniowanie UV" },
-  { label: "Druk", value: "300 DPI, pełny kolor" },
+  { label: "Druk", value: "Pełny kolor; zalecany plik 300 DPI" },
   { label: "Cięcie", value: "Po obrysie (die-cut), koło lub prostokąt" },
   {
     label: "Rozmiar",
@@ -239,7 +312,7 @@ export default function FotonaklejkiPage() {
           "@type": "Product",
           name: "Fotonaklejki z własnego zdjęcia",
           description:
-            "Fotonaklejki drukowane z własnego zdjęcia na trwałej folii winylowej: automatyczne usuwanie tła, cięcie po obrysie, druk 300 DPI. Stała cena 59,00 zł brutto za arkusz A4, bez minimalnego nakładu, z odbiorem w paczkomacie.",
+            "Fotonaklejki drukowane z własnego zdjęcia na trwałej folii winylowej: usuwanie tła w kreatorze, cięcie po obrysie, różne zdjęcia na jednym arkuszu. Stała cena 59,00 zł brutto za arkusz A4, bez minimalnego nakładu, z odbiorem w paczkomacie.",
           image: "https://www.malenaklejki.pl/images/logo/favicon.png",
           brand: { "@type": "Brand", name: "MałeNaklejki" },
           category: "Fotonaklejki - naklejki ze zdjęcia",
@@ -314,7 +387,7 @@ export default function FotonaklejkiPage() {
           name: "Fotonaklejki z własnego zdjęcia",
           url: PAGE_URL,
           isPartOf: { "@id": "https://www.malenaklejki.pl/#website" },
-          dateModified: "2026-11-02T00:00:00+01:00",
+          dateModified: "2026-11-19T00:00:00+01:00",
         }}
       />
 
@@ -344,49 +417,71 @@ export default function FotonaklejkiPage() {
           </ol>
         </nav>
 
-        {/* Hero */}
-        <section className="bg-white dark:bg-[#003a3b] rounded-3xl border border-border/40 p-6 sm:p-10 md:p-12 shadow-sm space-y-5">
-          <span className="inline-flex items-center gap-2 px-3 py-1.5 bg-primary/10 text-primary rounded-full text-xs font-black tracking-wide uppercase">
-            <Camera className="w-4 h-4" />
-            Naklejki z Twojego zdjęcia
-          </span>
-
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-black leading-tight tracking-tight text-foreground font-heading">
+        {/* Hero: zdanie odpowiedzi, przykład zdjęcie → naklejka i przycisk
+            do kreatora mieszczą się w pierwszym ekranie przy 375 px. */}
+        <section className="bg-white dark:bg-[#003a3b] rounded-3xl border border-border/40 p-5 sm:p-10 md:p-12 shadow-sm space-y-4 sm:space-y-5">
+          <h1 className="text-[28px] sm:text-4xl md:text-5xl font-black leading-tight tracking-tight text-foreground font-heading">
             Fotonaklejki - naklejki z własnego zdjęcia
           </h1>
 
           <p className="text-sm sm:text-lg text-foreground/90 font-semibold leading-relaxed">
-            Zamień ulubione kadry z telefonu - portret psa lub kota, wspólne
-            zdjęcie z wakacji czy rysunek dziecka - w trwałe{" "}
-            <strong>fotonaklejki wycięte dokładnie po sylwetce</strong>, bez
-            przypadkowego tła z pokoju i bez znajomości Photoshopa. Na{" "}
-            <strong>jednym arkuszu A4 za stałe 59,00 zł brutto</strong>{" "}
-            zmieścisz kilkanaście różnych ujęć na prezent, laptop, bidon czy
-            lodówkę, już od 1 arkusza bez minimalnego nakładu. Chcesz poznać
-            cały proces?{" "}
-            <Link
-              href="/blog/naklejka-ze-zdjecia-jak-przeniesc-wspomnienia-na-naklejke"
-              className="text-primary font-bold underline underline-offset-4 hover:text-primary/80 transition-colors"
-            >
-              Zobacz, jak zrobić naklejkę ze zdjęcia krok po kroku
-            </Link>
-            .
+            <strong>Fotonaklejki</strong> zamówisz w MałeNaklejki bez
+            wycinania tła samemu: wgrywasz zdjęcie z telefonu, kreator usuwa
+            tło przyciskiem „Usuń tło”, a my drukujemy naklejkę wyciętą po
+            sylwetce na wodoodpornej folii winylowej -{" "}
+            <strong>59,00 zł brutto za cały arkusz A4</strong>.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-3 pt-2">
+          {/* Przykład zdjęcie → naklejka: schemat, bez grafik AI */}
+          <div
+            className="grid grid-cols-[1fr_auto_1fr] items-center gap-2 sm:gap-4 max-w-md"
+            aria-label="Przykład: zdjęcie pupila z galerii zamienione w fotonaklejkę wyciętą po sylwetce"
+          >
+            <figure className="flex flex-col items-center gap-1.5">
+              <div className="w-full h-16 sm:h-24 rounded-lg bg-gradient-to-br from-[#c9b79c] via-[#a8b8a0] to-[#7f9c8f] flex items-center justify-center shadow-inner">
+                <PawPrint
+                  fill="currentColor"
+                  className="w-10 h-10 sm:w-14 sm:h-14 text-[#3d2f22]"
+                />
+              </div>
+              <figcaption className="text-[11px] sm:text-xs font-bold text-muted-foreground text-center leading-tight">
+                Zdjęcie z galerii
+              </figcaption>
+            </figure>
+            <ArrowRight className="w-5 h-5 text-primary" aria-hidden />
+            <figure className="flex flex-col items-center gap-1.5">
+              {/* Biały kontur wokół motywu = linia cięcia po sylwetce */}
+              <div className="w-full h-16 sm:h-24 rounded-lg bg-[#edf6f2] dark:bg-[#002c2e] flex items-center justify-center">
+                <PawPrint
+                  fill="currentColor"
+                  className="w-10 h-10 sm:w-14 sm:h-14 text-[#3d2f22] [filter:drop-shadow(3px_0_0_#fff)_drop-shadow(-3px_0_0_#fff)_drop-shadow(0_3px_0_#fff)_drop-shadow(0_-3px_0_#fff)_drop-shadow(0_2px_3px_rgba(0,0,0,0.25))]"
+                />
+              </div>
+              <figcaption className="text-[11px] sm:text-xs font-bold text-muted-foreground text-center leading-tight">
+                Naklejka po sylwetce
+              </figcaption>
+            </figure>
+          </div>
+
+          <div id="first-article-banner" className="space-y-3 pt-1">
             <Link
               href="/"
-              className="group inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-[#02af7a] hover:bg-[#029668] text-white text-sm sm:text-base font-black tracking-wide uppercase rounded-2xl shadow-[0_4px_14px_0_rgba(2,175,122,0.4)] hover:shadow-[0_6px_20px_0_rgba(2,175,122,0.6)] transform hover:-translate-y-0.5 transition-all duration-300"
+              className="group w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-[#02af7a] hover:bg-[#029668] text-white text-sm sm:text-base font-black tracking-wide uppercase rounded-2xl shadow-[0_4px_14px_0_rgba(2,175,122,0.4)] hover:shadow-[0_6px_20px_0_rgba(2,175,122,0.6)] transform hover:-translate-y-0.5 transition-all duration-300"
             >
-              Zrób fotonaklejkę ze zdjęcia
+              Zrób fotonaklejki
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </Link>
-            <Link
-              href="/blog/jak-zrobic-wlasne-naklejki-w-telefonie-proste-aplikacje-i-triki"
-              className="inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-transparent border border-border text-foreground text-sm sm:text-base font-bold rounded-2xl hover:border-primary hover:text-primary transition-all duration-300"
-            >
-              Jak zrobić naklejki w telefonie
-            </Link>
+            <ul className="grid gap-1.5 sm:grid-cols-3 sm:gap-3">
+              {CTA_REASSURANCE.map((item) => (
+                <li
+                  key={item}
+                  className="flex items-start gap-1.5 text-xs font-bold text-foreground/80"
+                >
+                  <Check className="w-3.5 h-3.5 mt-0.5 shrink-0 text-primary" />
+                  {item}
+                </li>
+              ))}
+            </ul>
           </div>
 
           <div className="flex flex-wrap items-center gap-x-4 gap-y-1.5 pt-1">
@@ -394,7 +489,7 @@ export default function FotonaklejkiPage() {
               <ShieldCheck className="w-3.5 h-3.5" /> W 100% polska produkcja
             </span>
             <span className="text-xs font-bold text-muted-foreground/60 flex items-center gap-1.5">
-              <Clock className="w-3.5 h-3.5" /> Ostatnia aktualizacja: 2
+              <Clock className="w-3.5 h-3.5" /> Ostatnia aktualizacja: 19
               listopada 2026
             </span>
           </div>
@@ -405,7 +500,7 @@ export default function FotonaklejkiPage() {
           {[
             { value: "59 zł", label: "Brutto za arkusz A4" },
             { value: "od 1 szt.", label: "Bez min. nakładu" },
-            { value: "300 DPI", label: "Druk pełny kolor" },
+            { value: "4-5 dni", label: "Produkcja (dni robocze)" },
             { value: "Woda·UV", label: "Odporność folii" },
           ].map((stat) => (
             <div
@@ -454,13 +549,20 @@ export default function FotonaklejkiPage() {
             czy pudełko z prezentem.
           </p>
           <p className="text-sm sm:text-base text-muted-foreground font-medium leading-relaxed">
-            Cała trudna część dzieje się automatycznie w kreatorze. Wgrywasz
-            zwykłe zdjęcie z telefonu, a system sam wykrywa główny motyw i usuwa
-            tło - Twój pies znika z podłogi i zostaje na przezroczystym tle,
-            gotowy do cięcia po obrysie. Nie potrzebujesz Photoshopa ani
-            umiejętności graficznych. Każdą fotonaklejkę drukujemy w
-            rozdzielczości 300 DPI na folii winylowej odpornej na wodę
-            i promieniowanie UV.
+            Najtrudniejszą część robi kreator. Wgrywasz zwykłe zdjęcie z
+            telefonu, klikasz „Usuń tło”, a kreator wykrywa główny motyw i
+            odcina go od tła - Twój pies znika z podłogi i zostaje na
+            przezroczystym tle, gotowy do cięcia po obrysie. Nie potrzebujesz
+            Photoshopa ani umiejętności graficznych. Każdą fotonaklejkę
+            drukujemy na folii winylowej odpornej na wodę i promieniowanie UV.
+            Chcesz poznać cały proces od strony zdjęcia?{" "}
+            <Link
+              href="/blog/naklejka-ze-zdjecia-jak-przeniesc-wspomnienia-na-naklejke"
+              className="text-primary font-bold underline underline-offset-4 hover:text-primary/80 transition-colors"
+            >
+              Zobacz, jak zrobić naklejkę ze zdjęcia krok po kroku
+            </Link>
+            .
           </p>
         </section>
 
@@ -497,6 +599,7 @@ export default function FotonaklejkiPage() {
               </tbody>
             </table>
           </div>
+          <KreatorCta label="Wgraj zdjęcie do kreatora" />
         </section>
 
         {/* Zastosowania */}
@@ -583,6 +686,59 @@ export default function FotonaklejkiPage() {
           </div>
         </section>
 
+        {/* Prezent: święta i Dzień Babci i Dziadka (P4.3.5) */}
+        <section className="mt-12 space-y-6">
+          <h2 className="text-2xl sm:text-3xl font-black text-foreground font-heading">
+            Fotonaklejki na prezent - święta i Dzień Babci i Dziadka
+          </h2>
+          <p className="text-sm sm:text-base text-muted-foreground font-medium leading-relaxed">
+            Fotonaklejki na prezent to arkusz A4 z kilkoma ulubionymi
+            zdjęciami rodziny albo pupila, wyciętymi po sylwetce na
+            wodoodpornej folii winylowej. Pod choinkę sprawdzą się jako dodatek
+            do paczki albo osobny upominek, a 21 i 22 stycznia, na Dzień Babci
+            i Dziadka, jako zdjęcia wnuków na lodówkę, laptop czy termos. Arkusz
+            kosztuje 59,00 zł brutto.
+          </p>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            {GIFT_IDEAS.map((idea) => {
+              const Icon = idea.icon;
+              return (
+                <div
+                  key={idea.title}
+                  className="bg-white dark:bg-[#003a3b] rounded-2xl border border-border/40 p-5 shadow-sm space-y-2"
+                >
+                  <span className="w-10 h-10 rounded-xl bg-primary/10 text-primary flex items-center justify-center">
+                    <Icon className="w-5 h-5" />
+                  </span>
+                  <h3 className="text-base font-black text-foreground leading-snug">
+                    {idea.title}
+                  </h3>
+                  <p className="text-sm text-muted-foreground font-medium leading-relaxed">
+                    {idea.text}
+                  </p>
+                  {idea.href && (
+                    <Link
+                      href={idea.href}
+                      className="inline-flex items-center gap-1 text-xs font-bold text-primary hover:text-primary/80 transition-colors"
+                    >
+                      {idea.linkLabel}
+                      <ArrowRight className="w-3 h-3" />
+                    </Link>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+          <p className="text-sm sm:text-base text-muted-foreground font-medium leading-relaxed">
+            Zamów z zapasem: produkcja trwa 4-5 dni robocze od opłacenia, a
+            potem wysyłamy paczkę do paczkomatu. Arkusze dla kilku osób
+            zamówisz razem, z jedną dostawą za 19,99 zł. Fotonaklejka nie
+            nadaje się do zmywarki, więc na kubek wybierz taki, który
+            obdarowany myje ręcznie.
+          </p>
+          <KreatorCta label="Zrób fotonaklejki na prezent" />
+        </section>
+
         {/* Zalety */}
         <section className="mt-12 space-y-6">
           <h2 className="text-2xl sm:text-3xl font-black text-foreground font-heading">
@@ -642,7 +798,7 @@ export default function FotonaklejkiPage() {
               },
               {
                 title: "Usuń tło i wybierz cięcie po obrysie",
-                text: "Kreator sam usunie tło i zaznaczy główny motyw. Wybierz cięcie po obrysie, w koło lub w prostokąt, ustaw rozmiar i ułóż fotonaklejki na arkuszu A4 - jedną dużą do 19 cm albo kilkanaście mniejszych z różnymi zdjęciami.",
+                text: "Kliknij „Usuń tło”, a kreator zostawi sam główny motyw. Wybierz cięcie po obrysie, w koło lub w prostokąt, ustaw rozmiar i ułóż fotonaklejki na arkuszu A4 - jedną dużą do 19 cm albo kilkanaście mniejszych z różnymi zdjęciami.",
               },
               {
                 title: "Sprawdź podgląd 3D i zamów",
@@ -683,7 +839,15 @@ export default function FotonaklejkiPage() {
             >
               wodoodpornej folii winylowej
             </Link>
-            , co pozostałe nasze naklejki.
+            , co pozostałe nasze naklejki. Szukasz naklejki cyfrowej do
+            komunikatora, a nie wydruku? Sprawdź,{" "}
+            <Link
+              href="/blog/jak-zrobic-wlasne-naklejki-w-telefonie-proste-aplikacje-i-triki"
+              className="text-primary font-bold underline underline-offset-4 hover:text-primary/80 transition-colors"
+            >
+              jak zrobić naklejki w telefonie
+            </Link>
+            .
           </p>
         </section>
 
@@ -723,19 +887,19 @@ export default function FotonaklejkiPage() {
             Zrób fotonaklejki z własnego zdjęcia
           </h2>
           <p className="text-sm sm:text-base text-muted-foreground font-medium leading-relaxed max-w-2xl mx-auto">
-            Wgraj zdjęcie do kreatora, pozwól mu usunąć tło i wybierz cięcie po
+            Wgraj zdjęcie do kreatora, kliknij „Usuń tło” i wybierz cięcie po
             obrysie. Fotonaklejki będą gotowe w 4-5 dni robocze za stałe 59,00
             zł brutto od arkusza A4 - na trwałej folii winylowej odpornej na
             wodę i UV, bez minimalnego nakładu.
           </p>
           <div className="flex flex-wrap justify-center gap-2 pt-2 text-xs font-bold text-muted-foreground">
             <span className="inline-flex items-center gap-1.5">
-              <Sparkles className="w-3.5 h-3.5 text-primary" /> Automatyczne
-              usuwanie tła
+              <Sparkles className="w-3.5 h-3.5 text-primary" /> Tło usuwa
+              kreator
             </span>
             <span className="inline-flex items-center gap-1.5">
-              <Layers className="w-3.5 h-3.5 text-primary" /> Folia winylowa 300
-              DPI
+              <Layers className="w-3.5 h-3.5 text-primary" /> Różne zdjęcia na
+              arkuszu
             </span>
             <span className="inline-flex items-center gap-1.5">
               <Clock className="w-3.5 h-3.5 text-primary" /> Produkcja 4-5 dni
@@ -746,7 +910,7 @@ export default function FotonaklejkiPage() {
               href="/"
               className="group inline-flex items-center justify-center gap-2 px-8 py-4 bg-[#02af7a] hover:bg-[#029668] text-white text-sm sm:text-lg font-black tracking-wide uppercase rounded-2xl shadow-[0_4px_14px_0_rgba(2,175,122,0.4)] hover:shadow-[0_6px_20px_0_rgba(2,175,122,0.6)] transform hover:-translate-y-0.5 transition-all duration-300"
             >
-              Otwórz kreator naklejek
+              Zrób fotonaklejki
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </Link>
           </div>
