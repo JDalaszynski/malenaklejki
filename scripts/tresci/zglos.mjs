@@ -47,7 +47,8 @@ async function kontrola(sciezka, mapa) {
   if (html && /<meta name="robots" content="[^"]*noindex/i.test(html)) bledy.push("meta robots noindex");
   if (html && (!canonical || new URL(canonical, ADRES).href.replace(/\/$/, "") !== url.replace(/\/$/, ""))) bledy.push(`canonical ${canonical ?? "brak"} zamiast ${url}`);
   if (html && !/<title>[^<]+<\/title>/.test(html)) bledy.push("brak <title>");
-  if (!mapa.includes(`<loc>${url}</loc>`) && !mapa.includes(`<loc>${url}/</loc>`)) bledy.push("brak w sitemap.xml");
+  const bezUkosnika = url.replace(/\/$/, "");
+  if (!mapa.includes(`<loc>${bezUkosnika}</loc>`) && !mapa.includes(`<loc>${bezUkosnika}/</loc>`)) bledy.push("brak w sitemap.xml");
   return bledy;
 }
 

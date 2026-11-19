@@ -10,6 +10,8 @@ Prowadzi agent `redaktor-tresci`. Najnowsze wpisy na górze. Każdy wpis: data, 
 
 **Co się zmieniło:** baner nad pierwszym H2 każdego wpisu (`src/app/blog/[slug]/page.tsx`) obiecywał „w ciągu 2 dni”, a produkcja trwa 4-5 dni roboczych (`facts.md`). Ostatnia linia grafiki to teraz „Arkusz A4 za 59 zł” (Nunito Bold, tło z siatki kropek odtworzone). Plik `public/images/baner-blog-naklejki-po-twojemu.jpg` zastąpił `MałeNaklejki-Post-Instagram.jpg` (nowa nazwa, żeby cache nie trzymał starej wersji). **Przy zmianie ceny trzeba podmienić też ten baner.** Opis meta `/` (154 znaki) zaczyna się teraz od frazy głównej: „Naklejki z własnym nadrukiem od 1 sztuki: wgraj zdjęcie lub grafikę do kreatora…”; wcześniej „Stwórz własne naklejki w kreatorze online…”. Zgoda: Jakub w czacie 19.11 („podmień baner”, „dodaj do opisu meta strony głównej”).
 
+**Zgłoszenia:** commit 4e12b78 na produkcji 19.11 (nowy opis w HTML, baner 200), IndexNow `/` 200 OK 19.11. **GSC dla `/` do ponowienia od 2026-11-20** (sam opis meta = prośba potrzebna; razem 8 adresów). `zglos.mjs` odrzucał `/`, bo sitemapa zapisuje stronę główną bez ukośnika - poprawione.
+
 **Skan:** brak na `/` zostaje tylko w pierwszym akapicie (nie zmieniany, bo zgoda dotyczyła opisu meta). Braki 13 → 12.
 
 **Kiedy ocenić:** CTR strony głównej - sygnał od 2026-12-03, odczyt od 2026-12-17.
