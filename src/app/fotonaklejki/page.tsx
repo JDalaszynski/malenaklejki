@@ -560,7 +560,7 @@ export default function FotonaklejkiPage() {
               href="/blog/naklejka-ze-zdjecia-jak-przeniesc-wspomnienia-na-naklejke"
               className="text-primary font-bold underline underline-offset-4 hover:text-primary/80 transition-colors"
             >
-              Zobacz, jak zrobić naklejkę ze zdjęcia krok po kroku
+              Zobacz, jak przygotować zdjęcie na naklejkę krok po kroku
             </Link>
             .
           </p>

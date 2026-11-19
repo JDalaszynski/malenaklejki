@@ -6,6 +6,18 @@ Prowadzi agent `redaktor-tresci`. Najnowsze wpisy na górze. Każdy wpis: data, 
 
 
 
+## 2026-11-19 - /tresc naklejka-ze-zdjecia: wpis o przygotowaniu zdjęcia na prezent
+
+**Co się zmieniło:** `/blog/naklejka-ze-zdjecia-jak-przeniesc-wspomnienia-na-naklejke` (P0, `zmieniono` i `updated` = 2026-11-19). Nowy title i H1 „Naklejki ze zdjęciem na prezent - jak przygotować zdjęcie” (57 znaków + dopisek szablonu), bez frazy wpisu o telefonie. Nowy opis meta (145 znaków) i pierwszy akapit (56 słów) z nową główną, ceną i linkiem do filaru kotwicą „fotonaklejki ze zdjęcia”; drugi akapit odsyła osoby, które chcą naklejki w czacie, do wpisu o telefonie (kotwica „jak zrobić naklejki w telefonie”). Nowa sekcja H2 „Naklejki ze zdjęciem na prezent - święta i Dzień Babci i Dziadka” (P4.3.5): odpowiedź 54 słowa (kilka zdjęć dla kilku osób na jednym arkuszu, 59,00 zł, dostawa 19,99 zł raz), tabela okazja / zdjęcie / gdzie nakleić, H3 o rozdzieleniu arkusza między prezenty („Wypełnij arkusz”), terminie (4-5 dni robocze, „z zapasem”, bez daty granicznej) i o tym, kiedy to zły prezent (zmywarka, tkanina, jedna mała naklejka). H2 „Jak zrobić naklejkę ze zdjęcia krok po kroku?” → „Zrób naklejkę ze zdjęcia w kreatorze krok po kroku”, przycisk do kreatora po kroku 4. FAQ: pytanie AI (47 słów), „Czy mogę dodać do zdjęcia imię albo datę?” (brak edytora tekstu) - 7 pytań. Poprawki według `facts.md` i kodu: tło usuwa przycisk „Usuń tło” (było „algorytmy AI automatycznie”), kreator ma kadrowanie, a nie ręczną korektę linii cięcia (`StickerEditModal.tsx`), bez „mniej niż 5 minut”, „od 12 Mpx”, „do 19 cm” i „Twój projekt”; „nie do zmywarki” przy kubkach. Słowa: 946 → 1308.
+
+**Sąsiad:** `/fotonaklejki` - link do wpisu miał kotwicę „Zobacz, jak zrobić naklejkę ze zdjęcia krok po kroku” (fraza wpisu o telefonie), teraz „Zobacz, jak przygotować zdjęcie na naklejkę krok po kroku”. Bez zmiany `zmieniono` landingu. Kotwica wpisu w rejestrze: „naklejki ze zdjęciem na prezent”.
+
+**Dlaczego:** GSC 90 dni 18.08-15.11.2026: 787 wyświetleń, 5 kliknięć, poz. 9,1, CTR 0,6%. Google na „jak zrobić naklejkę ze zdjęcia” pokazywał wpis o telefonie (ok. 935 wyświetleń wobec 53 tutaj), fraza przeszła do niego 19.11. Wariant główny: ani „naklejki ze zdjęciem na prezent”, ani „naklejka ze zdjęcia na prezent” nie mają wyświetleń w GSC (90 dni do 15.11), więc baza bez zmian; title w liczbie mnogiej trafia też w „naklejka ze zdjęcia” (76 wyświetleń na tym wpisie, odmiana). Rozpoznanie 19.11.2026 (WebSearch „naklejki ze zdjęciem na prezent”): marketplace'y z ceną za sztukę (Shein, Etsy, Kaufland) i edytory bez wydruku (Canva, VistaCreate) - nikt nie pokazuje kilku zdjęć dla kilku osób na jednym arkuszu za jedną cenę.
+
+**Skan:** wszystkie frazy strony na miejscach, bez braków i kolizji. Zostaje sygnał „Google pokazuje inną stronę” na „zrób naklejkę ze zdjęcia” (`/fotonaklejki` 20 wyświetleń wobec 11 tutaj) - do decyzji przy przeglądzie.
+
+**Kiedy ocenić:** title i opis - sygnał od 2026-12-03, odczyt od 2026-12-17 (28 dni); pozycja na frazy prezentowe po Dniu Babci i Dziadka (od 2027-01-25), pozycja strony 60-90 dni (od 2027-01-18).
+
 ## 2026-11-19 - /tresc etykiety-na-prezenty: zadanie P4.3.6 przesunięte na 1-5.12
 
 **Co się zmieniło:** nic na stronie `/blog/naklejki-swiateczne-i-etykiety-na-prezenty` (`zmieniono` zostaje 2026-11-02, bez zgłoszeń). W rejestrze zadanie dostało `od` = 2026-12-01 i tezę na ten termin: z datą graniczną albo zdjęciami - realna aktualizacja; bez nich tylko link do `/naklejki-swiateczne` kotwicą „naklejki świąteczne” w sekcji „Skąd wziąć świąteczną grafikę na naklejki” i zamknięcie zadania.

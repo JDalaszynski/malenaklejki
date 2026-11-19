@@ -554,9 +554,9 @@
       "typ": "wpis",
       "sciezka": "/blog/naklejka-ze-zdjecia-jak-przeniesc-wspomnienia-na-naklejke",
       "plik": "src/content/blog/naklejka-ze-zdjecia-jak-przeniesc-wspomnienia-na-naklejke.md",
-      "tytul": "Jak zrobić naklejkę ze zdjęcia - od 1 szt., 59 zł/A4",
+      "tytul": "Naklejki ze zdjęciem na prezent - jak przygotować zdjęcie",
       "nazwa": "Naklejka ze zdjęcia",
-      "zajawka": "Jak zrobić naklejkę ze zdjęcia? Wgraj plik z telefonu, kreator usunie tło i wytnie ją po obrysie. Od 1 sztuki, 59 zł za arkusz A4, produkcja 4-5 dni robocze.",
+      "zajawka": "Naklejki ze zdjęciem na prezent: jak wybrać zdjęcie, usunąć tło w kreatorze i ułożyć kadry dla kilku osób na jednym arkuszu A4 za 59,00 zł brutto.",
       "fraza": "naklejki ze zdjęciem na prezent",
       "frazy": [
         "zdjęcia na naklejki",
@@ -571,7 +571,7 @@
       "odbiorca": "Osoba ze zdjęciem pupila, dziecka albo z wakacji, która chce naklejki na pamiątkę lub prezent.",
       "etap": "MOFU",
       "filar": "/fotonaklejki",
-      "kotwica": "jak zrobić naklejkę ze zdjęcia",
+      "kotwica": "naklejki ze zdjęciem na prezent",
       "cta": {
         "href": "/",
         "tekst": "Zrób naklejkę ze zdjęcia"
@@ -580,18 +580,8 @@
       "priorytet": "P0",
       "status": "opublikowane",
       "opublikowano": "2026-07-07",
-      "zmieniono": "2026-11-02",
-      "zgloszenia": {},
-      "zadanie": {
-        "rodzaj": "odswiezenie",
-        "tytul": "Wpis o wydruku zdjęcia na prezent (święta, Dzień Babci i Dziadka)",
-        "powod": "GSC 90 dni 18.08-15.11.2026: 787 wyświetleń, 5 kliknięć przy poz. 9,1. Google na „jak zrobić naklejkę ze zdjęcia” pokazuje wpis o telefonie (ok. 935 wyświetleń wobec 53 tutaj).",
-        "teza": "Fraza „jak zrobić naklejkę ze zdjęcia” należy od 2026-11-19 do wpisu o telefonie, a główna tego wpisu w bazie to już „naklejki ze zdjęciem na prezent” (sprawdź w GSC, czy lepszy jest wariant „naklejka ze zdjęcia na prezent”). Do zrobienia: title i H1 z nową główną, bez frazy wpisu o telefonie; opis meta i pierwsze zdanie z nową główną; sekcja „Naklejki ze zdjęciem na prezent - święta i Dzień Babci i Dziadka” (P4.3.5). Link do /fotonaklejki kotwicą „fotonaklejki” w pierwszym akapicie i link do wpisu o telefonie dla osób, które chcą naklejki w czacie.",
-        "priorytet": "P1",
-        "kolejnosc": 10,
-        "zrodlo": "przegląd treści 2026-11-18",
-        "dodano": "2026-11-18"
-      }
+      "zmieniono": "2026-11-19",
+      "zgloszenia": {}
     },
     {
       "id": "program-do-robienia-naklejek",
