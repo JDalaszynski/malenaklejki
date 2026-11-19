@@ -22,6 +22,8 @@ Prowadzi agent `redaktor-tresci`. Najnowsze wpisy na górze. Każdy wpis: data, 
 
 **Linki przychodzące z kotwicą „naklejki dla firm”:** nowy z `/blog/gdzie-zamowic-naklejki-w-malym-nakladzie-porownanie` (punkt o fakturze VAT); w `/blog/naklejki-firmowe-na-eventy-welcome-pack-dla-pracownikow` kotwica „naklejek firmowych” → „naklejki dla firm”. `/blog/naklejka-z-logo-firmy-...` i `/blog/naklejki-z-wlasnym-logo-na-sloiki-i-opakowania` już ją mają. Sąsiadom bez zmiany `zmieniono`.
 
+**Zgłoszenia:** commit 02861d9 na produkcji 19.11, IndexNow 200 OK 19.11. **GSC do ponowienia od 2026-11-20** (limit 19.11 wyczerpany; P1 z nowym title - prośba potrzebna).
+
 **Kiedy ocenić:** title i opis - pierwszy sygnał od 2026-12-03, CTR po 28 dniach (od 2026-12-17); pozycja „naklejki firmowe” i „naklejki dla firm” po 60-90 dniach (od 2027-01-18).
 
 ## 2026-11-19 - /tresc logo-na-sloiki-i-opakowania: title, opis i pierwszy akapit
