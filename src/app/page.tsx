@@ -19,7 +19,7 @@ import { SITE_OPEN_GRAPH, SITE_TWITTER } from "@/lib/siteMetadata";
 
 const HOME_TITLE = "Naklejki z własnym nadrukiem od 1 sztuki | MałeNaklejki";
 const HOME_DESCRIPTION =
-  "Stwórz własne naklejki w kreatorze online: wgraj zdjęcie lub grafikę, a my wytniemy je po obrysie. Wodoodporna folia winylowa i stała cena 59 zł za arkusz A4.";
+  "Naklejki z własnym nadrukiem od 1 sztuki: wgraj zdjęcie lub grafikę do kreatora, a wytniemy je po obrysie. Wodoodporna folia winylowa, 59 zł za arkusz A4.";
 
 export const metadata: Metadata = {
   title: HOME_TITLE,
