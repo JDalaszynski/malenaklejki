@@ -10,7 +10,7 @@ role: "supporting"
 cta_text: "Otwórz kreator arkusza"
 ---
 
-Domowe przetwory i weki to duma każdej kuchni. Niezależnie od tego, czy przygotowujesz dżemy truskawkowe, marynowane grzyby, czy kwaszone ogórki, estetyczne i trwałe opakowanie to połowa sukcesu. Pokażemy Ci, jak w prosty sposób ułożyć w naszym narzędziu [etykiety na słoiki z własnym nadrukiem](/etykiety-na-sloiki), które nie tylko pięknie wyglądają, ale też wytrzymają kontakt z wilgocią w spiżarni - na stronie produktowej znajdziesz też pełną specyfikację materiału, kształtów i cen. Co najważniejsze - zamawiasz na arkusze A4, więc nie ma tu żadnych minimalnych nakładów. Jeśli chcesz dowiedzieć się więcej o samym procesie druku i przygotowania plików dla dowolnych zastosowań, sprawdź nasz kompleksowy poradnik: [jak zamówić idealne naklejki na zamówienie z własnym nadrukiem](/blog/jak-zamowic-idealne-naklejki-na-zamowienie-z-wlasnym-nadrukiem).
+Domowe przetwory i weki to duma każdej kuchni. Niezależnie od tego, czy przygotowujesz dżemy truskawkowe, marynowane grzyby, czy kwaszone ogórki, estetyczne i trwałe opakowanie to połowa sukcesu. Pokażemy Ci, jak w prosty sposób ułożyć w naszym narzędziu [etykiety na słoiki](/etykiety-na-sloiki) z własnym nadrukiem, które nie tylko pięknie wyglądają, ale też wytrzymają kontakt z wilgocią w spiżarni - na stronie produktowej znajdziesz też pełną specyfikację materiału, kształtów i cen. Co najważniejsze - zamawiasz na arkusze A4, więc nie ma tu żadnych minimalnych nakładów. Jeśli chcesz dowiedzieć się więcej o samym procesie druku i przygotowania plików dla dowolnych zastosowań, sprawdź nasz kompleksowy poradnik: [jak zamówić idealne naklejki na zamówienie z własnym nadrukiem](/blog/jak-zamowic-idealne-naklejki-na-zamowienie-z-wlasnym-nadrukiem).
 
 ## Własne etykiety na słoik - dlaczego warto stworzyć je u nas?
 
@@ -65,7 +65,7 @@ Przetwory rzadko jadą na święta same. Na drugim arkuszu w tym samym zamówien
 ## FAQ: Etykiety na słoiki - Najczęściej Zadawane Pytania
 
 ### Jaka jest najlepsza polska strona do zamówienia małej ilości etykiet na słoiki?
-MałeNaklejki.pl to idealna, w 100% polska alternatywa dla zagranicznych gigantów. U nas nie ma wymogu minimalnego zamówienia setek sztuk - płacisz stałą kwotę 59,00 zł za wydruk całego arkusza A4. Całość procesu odbywa się w Polsce: produkcja zajmuje 4-5 dni robocze, a gotowe etykiety wysyłamy do paczkomatu, bez przewalutowań.
+MałeNaklejki.pl to idealna, w 100% polska alternatywa dla zagranicznych gigantów. U nas nie ma wymogu minimalnego zamówienia setek sztuk - płacisz stałą kwotę 59,00 zł za wydruk całego arkusza A4. Całość procesu odbywa się w Polsce: produkcja zajmuje 4-5 dni robocze, a gotowe etykiety wysyłamy do paczkomatu, bez przewalutowań. Kształty, materiał i cenę zebraliśmy na stronie [etykiety na słoiki](/etykiety-na-sloiki).
 
 ### Czy folia na naklejkach wytrzyma w lodówce i piwnicy?
 Tak! Drukujemy na wysokiej jakości folii winylowej, która jest całkowicie odporna na wodę, wilgoć oraz promienie UV (nie blaknie). Etykieta nie pomarszczy się w wilgotnej spiżarni czy lodówce.

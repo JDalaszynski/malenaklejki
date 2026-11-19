@@ -36,9 +36,9 @@ Poniższa tabela krótko podsumowuje, dlaczego stawiamy na folię winylową:
 | **Trwałość kleju na szkle** | Przeciętna | Doskonała (nie odkleja się samoczynnie) |
 | **Wygląd i struktura** | Matowy, szybciej blednie | Nasycone kolory, jakość premium |
 
-## Estetyczne naklejki na słoiki z własnym nadrukiem - co musisz wiedzieć?
+## Słoiki z logo - kształt i rozmiar naklejki
 
-Przygotowując etykiety na swoje wyroby, powinieneś wziąć pod uwagę wielkość i krzywiznę opakowania. Wybierając **naklejki na słoiki z własnym nadrukiem**, zyskujesz całkowitą kontrolę nad formą i prezencją swojej marki.
+Przygotowując etykiety na swoje wyroby, powinieneś wziąć pod uwagę wielkość i krzywiznę opakowania. Zamawiając [etykiety na słoiki](/etykiety-na-sloiki) z własnym logo, sam decydujesz o formie i prezencji swojej marki.
 
 ![Wzory estetycznych naklejek na słoiki wycinane po obrysie](/blog/naklejki-z-wlasnym-logo-na-sloiki-i-opakowania/naklejki-z-wlasnym-logo-na-sloiki-i-opakowania-w-tresci.png)
 

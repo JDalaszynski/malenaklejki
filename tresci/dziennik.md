@@ -5,6 +5,26 @@ Prowadzi agent `redaktor-tresci`. Najnowsze wpisy na górze. Każdy wpis: data, 
 
 
 
+
+## 2026-11-19 - /tresc etykiety-na-sloiki: frazy o słoikach do landingu
+
+**Powód:** GSC 90 dni 18.08-15.11.2026: 809 wyświetleń, 7 kliknięć przy poz. 23,7. „naklejki na słoiki z własnym nadrukiem”: wpis o logo na słoikach poz. 9,4 (49 wyśw.), landing poz. 18,1 (41 wyśw.); „etykiety na słoiki” 52 wyświetlenia na poz. 35,6. Braki w bazie: „naklejki na słoiki z własnym nadrukiem” i „etykiety na słoiki drukarnia” bez miejsca w H2/H3/FAQ landingu.
+
+**Zmiana na landingu** (`/etykiety-na-sloiki`, P1, `zmieniono`, `dateModified` i `lastModified` w sitemapie = 2026-11-19; title i H1 bez zmian):
+
+- nowa sekcja H2 „Naklejki na słoiki z własnym nadrukiem - gdzie zamówić małą ilość” z odpowiedzią 47 słów (pytanie AI: od 1 arkusza A4, 59,00 zł brutto, folia wodoodporna, 4-5 dni roboczych) i H3 „Etykiety na słoiki: drukarnia czy wydruk w domu?” (papier w suchej szafce wystarczy, w lodówce i przy myciu rozmaka; bez zmywarki); przycisk „Zamów etykiety na słoiki”. Bez darmowych szablonów do druku (decyzja 4), choć w GSC są zapytania „do druku/word”.
+- Skan: oba braki usunięte, strona bez braków.
+
+**Wpisy (linki kotwicą „etykiety na słoiki”, bez zmiany `zmieniono`):**
+
+- logo na słoikach: H2 „Estetyczne naklejki na słoiki z własnym nadrukiem…” → „Słoiki z logo - kształt i rozmiar naklejki” (fraza wraca do właściciela, wpis dostaje swoją wspierającą), w akapicie pod nim link do landingu zamiast pogrubionej frazy.
+- przetwory: kotwica „etykiety na słoiki z własnym nadrukiem” → „etykiety na słoiki”, nowy link w FAQ „Jaka jest najlepsza polska strona do zamówienia małej ilości etykiet na słoiki?”.
+- przyprawy i nalewki: kotwice „wodoodpornych etykiet na słoiki” i „własne etykiety na słoiki” → „etykiety na słoiki”.
+
+**Zauważone, poza zakresem:** wpis o przetworach ma brak „etykiety na przetwory” we wstępie (fraza główna nie stoi w pierwszym akapicie) - do zadania przy przeglądzie. Zapytanie „słoiki z logo” Google pokazuje częściej z landingu (76 wyśw., poz. 43,3) niż z wpisu-właściciela (51, poz. 17).
+
+**Kiedy ocenić:** pozycja landingu na „naklejki na słoiki z własnym nadrukiem” i „etykiety na słoiki” po 60-90 dniach (od 2027-01-18); czy Google przestał pokazywać na pierwszą wpis o logo - przy przeglądzie po 28 dniach (od 2026-12-17).
+
 ## 2026-11-19 - /tresc naklejki-foliowe: tabela folia a papier, H2 z frazami, FAQ, linki z wpisów
 
 **Powód:** GSC 90 dni 18.08-15.11.2026: 1404 wyświetlenia, 32 kliknięcia przy poz. 18,3; „naklejki foliowe” 449 wyświetleń na poz. 24,9, „naklejki winylowe” 183 na poz. 35,9, „naklejki wodoodporne” 76 na poz. 30,6. Dane z 18.11 - powód aktualny. Brak w bazie: „naklejki odporne na uv” bez miejsca w H2/H3/FAQ.

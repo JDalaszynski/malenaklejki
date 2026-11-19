@@ -328,7 +328,7 @@ export default function EtykietyNaSloikiPage() {
           name: "Etykiety na słoiki z własnym nadrukiem",
           url: PAGE_URL,
           isPartOf: { "@id": "https://www.malenaklejki.pl/#website" },
-          dateModified: "2026-11-02T00:00:00+01:00",
+          dateModified: "2026-11-19T00:00:00+01:00",
         }}
       />
 
@@ -402,7 +402,7 @@ export default function EtykietyNaSloikiPage() {
               <ShieldCheck className="w-3.5 h-3.5" /> W 100% polska produkcja
             </span>
             <span className="text-xs font-bold text-muted-foreground/60 flex items-center gap-1.5">
-              <Clock className="w-3.5 h-3.5" /> Ostatnia aktualizacja: 2
+              <Clock className="w-3.5 h-3.5" /> Ostatnia aktualizacja: 19
               listopada 2026
             </span>
           </div>
@@ -428,6 +428,38 @@ export default function EtykietyNaSloikiPage() {
               </span>
             </div>
           ))}
+        </section>
+
+        {/* Gdzie zamówić */}
+        <section className="mt-12 space-y-4">
+          <h2 className="text-2xl sm:text-3xl font-black text-foreground font-heading">
+            Naklejki na słoiki z własnym nadrukiem - gdzie zamówić małą ilość
+          </h2>
+          <p className="text-sm sm:text-base text-muted-foreground font-medium leading-relaxed">
+            Naklejki na słoiki z własnym nadrukiem zamówisz w MałeNaklejki od
+            jednego arkusza A4 za 59,00 zł brutto, bez minimalnego nakładu.
+            Wgrywasz napis albo grafikę do kreatora, układasz na arkuszu
+            etykiety w różnych kształtach i rozmiarach, a my drukujemy je na
+            wodoodpornej folii winylowej i produkujemy w 4-5 dni robocze.
+          </p>
+          <h3 className="text-lg sm:text-xl font-black text-foreground">
+            Etykiety na słoiki: drukarnia czy wydruk w domu?
+          </h3>
+          <p className="text-sm sm:text-base text-muted-foreground font-medium leading-relaxed">
+            Domowa drukarka i papier samoprzylepny wystarczą na słoik, który
+            stoi w suchej szafce i szybko się opróżni. W lodówce, w piwnicy i
+            przy myciu słoika papierowa etykieta rozmaka. Drukarnia naklejek
+            drukuje na folii winylowej odpornej na wodę, a w MałeNaklejki
+            zamówisz tyle arkuszy, ile słoików masz w tym sezonie. Słoik z
+            etykietą myj ręcznie - folia nie nadaje się do zmywarki.
+          </p>
+          <Link
+            href="/"
+            className="group inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-[#02af7a] hover:bg-[#029668] text-white text-sm sm:text-base font-black tracking-wide uppercase rounded-2xl shadow-[0_4px_14px_0_rgba(2,175,122,0.4)] hover:shadow-[0_6px_20px_0_rgba(2,175,122,0.6)] transform hover:-translate-y-0.5 transition-all duration-300"
+          >
+            Zamów etykiety na słoiki
+            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+          </Link>
         </section>
 
         {/* Czym są */}
