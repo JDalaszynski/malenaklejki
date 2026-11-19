@@ -536,17 +536,7 @@
       "status": "opublikowane",
       "opublikowano": "2026-07-15",
       "zmieniono": "2026-09-21",
-      "zgloszenia": {},
-      "zadanie": {
-        "rodzaj": "ctr",
-        "tytul": "Krótszy title i opis z frazą „naklejki na zeszyty z imieniem i nazwiskiem”",
-        "powod": "GSC 90 dni 18.08-15.11.2026: 2887 wyświetleń, 12 kliknięć (CTR 0,4%) przy pozycji 8,2. „naklejki na zeszyty z imieniem i nazwiskiem” 137 wyświetleń na poz. 7,3, „naklejki do podpisania zeszytu” 151 na poz. 9,1, oba bez kliknięć. Title ma 74 znaki.",
-        "teza": "Title do 60 znaków, który mieści obie frazy i konkret (np. ile naklejek imiennych na arkuszu, wg tabeli we wpisie o rozmiarze), opis meta 140-155 znaków z odpowiedzią „od 1 arkusza, 59 zł”. To zmiana pod drugi semestr i przedszkola; pełna aktualizacja sezonowa przed sierpniem 2027 to osobne zadanie.",
-        "priorytet": "P1",
-        "kolejnosc": 3,
-        "zrodlo": "przegląd treści 2026-11-18",
-        "dodano": "2026-11-18"
-      }
+      "zgloszenia": {}
     },
     {
       "id": "jak-zamowic-naklejki",

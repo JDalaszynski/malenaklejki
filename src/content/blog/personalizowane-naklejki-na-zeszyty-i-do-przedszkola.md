@@ -3,7 +3,7 @@ title: "Naklejki do podpisania zeszytu z imieniem i nazwiskiem"
 slug: "personalizowane-naklejki-na-zeszyty-i-do-przedszkola"
 date: "2026-07-15"
 updated: "2026-09-21"
-description: "Naklejki do podpisania zeszytu i rzeczy do przedszkola - z imieniem i nazwiskiem dziecka, na wodoodpornej folii. Stała cena 59,00 zł za arkusz A4."
+description: "Naklejki do podpisania zeszytu z imieniem i nazwiskiem dziecka: ok. 30 sztuk na arkuszu A4, od 1 arkusza za 59 zł brutto. Także do przedszkola."
 image: "/blog/personalizowane-naklejki-na-zeszyty-i-do-przedszkola/naklejki-z-imieniem-dziecka-na-zeszytach-szkolnych.jpg"
 imageAlt: "Stos kolorowych zeszytów i segregatorów szkolnych z naklejonymi na grzbietach personalizowanymi naklejkami z imieniem, nazwiskiem i ikoną każdego dziecka"
 tags: ["naklejki dla dzieci", "przedszkole", "szkoła", "personalizacja"]
