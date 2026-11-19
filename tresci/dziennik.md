@@ -12,7 +12,7 @@ Prowadzi agent `redaktor-tresci`. Najnowsze wpisy na górze. Każdy wpis: data, 
 
 **Zgłoszenia:** commit 4e12b78 na produkcji 19.11 (nowy opis w HTML, baner 200), IndexNow `/` 200 OK 19.11. **GSC dla `/` do ponowienia od 2026-11-20** (sam opis meta = prośba potrzebna; razem 8 adresów). `zglos.mjs` odrzucał `/`, bo sitemapa zapisuje stronę główną bez ukośnika - poprawione.
 
-**Skan:** brak na `/` zostaje tylko w pierwszym akapicie (nie zmieniany, bo zgoda dotyczyła opisu meta). Braki 13 → 12.
+**Skan:** brak na `/` zostaje tylko w pierwszym akapicie (nie zmieniany, bo zgoda dotyczyła opisu meta). Braki 13 bez zmian (licznik liczy frazy, nie miejsca).
 
 **Kiedy ocenić:** CTR strony głównej - sygnał od 2026-12-03, odczyt od 2026-12-17.
 
