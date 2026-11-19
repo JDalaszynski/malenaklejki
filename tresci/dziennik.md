@@ -10,7 +10,7 @@ Prowadzi agent `redaktor-tresci`. Najnowsze wpisy na górze. Każdy wpis: data, 
 
 **Co się zmieniło:** 28 wierszy usuniętych z `tresci/slowa-kluczowe.csv` (509 → 481 fraz): śmieciowe („- patrz”, „wobec”, „jesieniarski”), generator AI pod HOLD („generator naklejek ai”, „generator naklejek online”, „jak wygenerować naklejkę ai”, „wzory na naklejki ai”), obietnice terminu („naklejki na już”, „naklejki w 3 dni”), „tani zamiennik stickerapp”, „gadżety firmowe z logo”, „naklejka serwisowana przez” oraz 15 fraz zniczowych poza ofertą albo bez strony (lampion, wkłady, znicz logo/świąteczny/patriotyczny, znicze solarne i personalizowane, dedykacje na zniczach solarnych i LED). Wszystkie były bez strony (`docelowy_url` = `brak`), żadna nie była główną ani wspierającą, więc rejestr i teksty stron bez zmian. Decyzje w `tresci/frazy-zmiany.json` (`usunieta`).
 
-**Skan:** `scripts/tresci/frazy.mts` pomija w kandydatach frazy usunięte w panelu - inaczej „jesieniarski” (GSC) wracał od razu jako kandydat do dodania. Braki na stronach z rejestru: 0 przed i po; kandydaci 17 → 16.
+**Skan:** `scripts/tresci/frazy.mts` pomija w kandydatach frazy usunięte w panelu - inaczej „jesieniarski” (GSC) wracał od razu jako kandydat do dodania. Braki bez zmian: 21 przed i po (20 na 14 stronach z rejestru, 1 na stronie głównej) - usunięte frazy nie miały stron; uzupełnienie przy samym `/frazy`. Kandydaci 17 → 16.
 
 **Zgłoszenia:** brak (żadna strona się nie zmieniła).
 
