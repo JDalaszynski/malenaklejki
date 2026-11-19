@@ -1,8 +1,8 @@
 ---
 title: "Drukowanie naklejek online - jak przygotować plik 300 DPI"
 date: "2026-07-10"
-updated: "2026-11-02"
-description: "Drukowanie naklejek online: 300 dpi, PNG lub PDF i cięcie po obrysie. Poznaj 5 błędów, przez które wydruk wychodzi rozmazany - sprawdź plik przed wysyłką."
+updated: "2026-11-19"
+description: "Drukowanie naklejek online bez rozmazanego wydruku: plik 300 DPI w rozmiarze naklejki, PNG z przezroczystym tłem albo PDF. Arkusz A4 za 59,00 zł brutto."
 image: "/blog/drukowanie-naklejek-online-na-co-zwrocic-uwage-przed-wysylka-projektu/drukowanie-naklejek-online-w-dowolnym-ksztalcie.jpg"
 imageAlt: "Dłoń trzymająca w palcach precyzyjnie wyciętą po obrysie naklejkę z napisem Kształt Dowolny na tle trawy - ekologiczne i trwałe drukowanie naklejek online w MałeNaklejki."
 tags: ["drukowanie naklejek", "poradnik techniczny", "naklejki online", "przygotowanie pliku"]
@@ -12,7 +12,9 @@ pillarOrder: 2
 slug: "drukowanie-naklejek-online-na-co-zwrocic-uwage-przed-wysylka-projektu"
 ---
 
-Chcesz zamówić naklejki online, ale nie wiesz, jak przygotować plik, żeby wydruk wyszedł ostro i kolorowo? Dobrze trafiłeś. Za jeden w pełni zadrukowany arkusz A4 zapłacisz w MałeNaklejki stałe **59,00 zł** - niezależnie od kształtu, liczby i wzoru naklejek. Poniżej znajdziesz wszystko, co musisz wiedzieć przed wysyłką projektu, żeby efekt końcowy Cię zachwycił. Chcesz od razu przejść do działania? [Spersonalizuj naklejkę](/) w naszym kreatorze - wgraj plik, a my wydrukujemy i wytniemy go za Ciebie.
+Drukowanie naklejek online daje ostry wydruk, gdy wgrasz plik w 300 DPI w docelowym rozmiarze naklejki: PNG z przezroczystym tłem do cięcia po obrysie, JPG do zdjęć albo PDF do grafik z drobnym tekstem. Tła nie musisz wycinać sam - w kreatorze usuniesz je przyciskiem „Usuń tło”. Arkusz A4 kosztuje w MałeNaklejki 59,00 zł brutto, bez minimalnego nakładu.
+
+Poniżej znajdziesz tabelę rozdzielczości, listę formatów, różnice między rodzajami cięcia i 5 błędów, przez które wydruk wychodzi rozmazany. Plik jest gotowy? [Otwórz kreator arkusza](/) - wgraj grafikę, a my wydrukujemy i wytniemy naklejki za Ciebie.
 
 ## Drukowanie naklejek online - od czego zacząć?
 
@@ -25,7 +27,7 @@ Zanim wyślesz plik do druku, warto zrozumieć, z czego składa się cały proce
 
 Cały proces odbywa się w oknie przeglądarki - bez instalowania programów i bez rejestracji. Dopiero zaczynasz i zastanawiasz się, [jak zrobić własne naklejki](/blog/jak-zrobic-wlasne-naklejki-program-do-robienia-naklejek-online) krok po kroku? W osobnym poradniku porównujemy druk domowy DIY z prostym programem do robienia naklejek online.
 
-## Rozdzielczość pliku - dlaczego ma kluczowe znaczenie dla jakości druku?
+## Rozdzielczość pliku - dlaczego naklejki potrzebują 300 DPI?
 
 To najczęstszy błąd, który popełniają zamawiający po raz pierwszy. Zbyt niska rozdzielczość pliku = rozmazany, pikselowany wydruk. Zasada jest prosta:
 
@@ -44,7 +46,7 @@ To najczęstszy błąd, który popełniają zamawiający po raz pierwszy. Zbyt n
 Przyjmujemy wszystkie popularne formaty:
 
 - **PNG** - najlepszy wybór, gdy chcesz naklejkę wyciętą po obrysie. Zapisz plik z przezroczystym tłem (kanał alfa), a nasz kreator automatycznie rozpozna kształt i zaproponuje cięcie po jego obrysie.
-- **JPG / JPEG** - idealne dla zdjęć i pełnokolorowych projektów z jednolitym tłem (np. białym). Jeśli chcesz cięcie po obrysie zdjęcia, nasz kreator automatycznie usunie tło za Ciebie.
+- **JPG / JPEG** - idealne dla zdjęć i pełnokolorowych projektów z jednolitym tłem (np. białym). Jeśli chcesz cięcie po obrysie zdjęcia, usuń tło w kreatorze przyciskiem „Usuń tło”.
 - **PDF** - świetny wybór dla plików eksportowanych z programów takich jak Canva, Word, PowerPoint czy programów wektorowych (Illustrator, Inkscape). Zachowuje ostrość tekstu i wektorowych elementów graficznych.
 - **WEBP** - lekki format obrazów zapisywanych na nowoczesnych telefonach i w internecie, również obsługiwany bezpośrednio w kreatorze.
 
@@ -112,7 +114,7 @@ Na jednym arkuszu możesz umieścić **wiele różnych wzorów** - zestaw je ze 
 
 ![Wydrukowany arkusz A4 z różnymi własnymi naklejkami na zamówienie, w tym zdjęciem pary z wakacji, grafiką psa, deskorolki i gołębia, demonstrujący brak minimalnego nakładu](/blog/drukowanie-naklejek-online-na-co-zwrocic-uwage-przed-wysylka-projektu/wlasne-naklejki-wielowzorowe-arkusz-a4.jpg)
 
-## Najczęstsze błędy przed wysyłką projektu do druku
+## Druk naklejek online - 5 błędów, przez które wydruk wychodzi rozmazany
 
 Zebraliśmy listę błędów, które najczęściej powodują rozczarowanie jakością wydruku:
 
@@ -154,6 +156,10 @@ Nie ma minimalnego nakładu. Możesz zamówić jeden arkusz z jedną naklejką l
 
 ## Drukowanie naklejek online - FAQ
 
+### Jak przygotować plik do druku naklejek, żeby wydruk był ostry?
+
+Zapisz grafikę w 300 DPI w rozmiarze, w jakim ma być naklejka (przy naklejkach poniżej 5 cm najlepiej 600 DPI). Do cięcia po obrysie wybierz PNG z przezroczystym tłem, do zdjęć JPG, a do logo i drobnych napisów PDF. Nie wgrywaj zrzutów ekranu ani plików SVG - kreator MałeNaklejki przyjmuje JPG, PNG, WEBP i PDF.
+
 ### Jak długo trwa realizacja zamówienia na naklejki online?
 
 Produkcja zamówienia w MałeNaklejki zajmuje **4-5 dni robocze** od momentu opłacenia zamówienia. Gotową przesyłkę wysyłamy do wybranego paczkomatu InPost w stałej cenie 19,99 zł za całe zamówienie.
@@ -180,7 +186,7 @@ Stała cena to **59,00 zł za jeden arkusz A4** - niezależnie od liczby nakleje
 
 ### Czy mogę zamówić naklejki z własnego zdjęcia z telefonu?
 
-Tak. Wgrywasz zdjęcie JPG lub PNG prosto z telefonu, a nasz kreator automatycznie usuwa tło i proponuje cięcie po obrysie fotografii. Świetny sposób na stworzenie [naklejki ze zdjęcia z wakacji lub portretu](/blog/naklejka-ze-zdjecia-jak-przeniesc-wspomnienia-na-naklejke).
+Tak. Wgrywasz zdjęcie JPG lub PNG prosto z telefonu, usuwasz tło przyciskiem „Usuń tło” i wybierasz cięcie po obrysie fotografii. Świetny sposób na stworzenie [naklejki ze zdjęcia z wakacji lub portretu](/blog/naklejka-ze-zdjecia-jak-przeniesc-wspomnienia-na-naklejke).
 
 ### Czy można zamówić naklejkę z własnym tekstem lub napisem?
 

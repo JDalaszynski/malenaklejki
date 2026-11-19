@@ -946,7 +946,7 @@
       "plik": "src/content/blog/drukowanie-naklejek-online-na-co-zwrocic-uwage-przed-wysylka-projektu.md",
       "tytul": "Drukowanie naklejek online - jak przygotować plik 300 DPI",
       "nazwa": "Drukowanie naklejek online",
-      "zajawka": "Drukowanie naklejek online: 300 dpi, PNG lub PDF i cięcie po obrysie. Poznaj 5 błędów, przez które wydruk wychodzi rozmazany - sprawdź plik przed wysyłką.",
+      "zajawka": "Drukowanie naklejek online bez rozmazanego wydruku: plik 300 DPI w rozmiarze naklejki, PNG z przezroczystym tłem albo PDF. Arkusz A4 za 59,00 zł brutto.",
       "fraza": "drukowanie naklejek online",
       "frazy": [
         "druk naklejek online",
@@ -970,18 +970,8 @@
       "priorytet": "P1",
       "status": "opublikowane",
       "opublikowano": "2026-07-10",
-      "zmieniono": "2026-11-02",
-      "zgloszenia": {},
-      "zadanie": {
-        "rodzaj": "ctr",
-        "tytul": "Title filaru technicznego do 60 znaków i odpowiedź w pierwszym akapicie",
-        "powod": "GSC 90 dni 18.08-15.11.2026: 451 wyświetleń, 2 kliknięcia (CTR 0,4%) przy poz. 10,6. „drukowanie naklejek online” 39 wyświetleń na poz. 15,7. Pierwszy akapit nie zawiera frazy głównej.",
-        "teza": "Title do 60 znaków z frazą na początku, pierwsze zdanie odpowiada, jak przygotować plik (300 DPI, PNG albo PDF, tło), opis meta 140-155 znaków.",
-        "priorytet": "P2",
-        "kolejnosc": 11,
-        "zrodlo": "przegląd treści 2026-11-18",
-        "dodano": "2026-11-18"
-      }
+      "zmieniono": "2026-11-19",
+      "zgloszenia": {}
     },
     {
       "id": "naklejka-z-logo-firmy",
