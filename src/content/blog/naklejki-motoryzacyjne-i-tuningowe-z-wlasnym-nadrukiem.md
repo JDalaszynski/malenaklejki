@@ -36,7 +36,7 @@ Ten sam pomysł na personalizację sprzętu opisaliśmy szerzej przy [naklejkach
 
 ## Jaka folia sprawdzi się na aucie? Trwałość naklejek tuningowych
 
-Naklejka na aucie pracuje w trudniejszych warunkach niż wlepka na laptopie: deszcz, słońce i pęd powietrza. Drukujemy na wytrzymałej [folii winylowej](/naklejki-foliowe) z mocnym klejem, która radzi sobie z tym zestawem (granice tej odporności rozpisaliśmy we wpisie o tym, [ile wytrzymują naklejki wodoodporne](/blog/naklejki-wodoodporne-i-winylowe-jaka-folia-i-jak-dlugo-wytrzyma)):
+Naklejka na aucie pracuje w trudniejszych warunkach niż wlepka na laptopie: deszcz, słońce i pęd powietrza. Drukujemy [naklejki foliowe](/naklejki-foliowe) na wytrzymałej folii winylowej z mocnym klejem, która radzi sobie z tym zestawem (granice tej odporności rozpisaliśmy we wpisie o tym, [ile wytrzymują naklejki wodoodporne](/blog/naklejki-wodoodporne-i-winylowe-jaka-folia-i-jak-dlugo-wytrzyma)):
 
 - **Wodoodporność** - deszcz, mycie auta i mokra droga nie rozmywają nadruku ani nie podrywają krawędzi naklejki.
 - **Mocny klej** - wlepka trzyma się lakieru, plastiku zderzaka, szkła i metalu, a po odklejeniu nie zostawia trwałych śladów.

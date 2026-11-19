@@ -4,6 +4,24 @@ Prowadzi agent `redaktor-tresci`. Najnowsze wpisy na górze. Każdy wpis: data, 
 
 
 
+
+## 2026-11-19 - /tresc naklejki-foliowe: tabela folia a papier, H2 z frazami, FAQ, linki z wpisów
+
+**Powód:** GSC 90 dni 18.08-15.11.2026: 1404 wyświetlenia, 32 kliknięcia przy poz. 18,3; „naklejki foliowe” 449 wyświetleń na poz. 24,9, „naklejki winylowe” 183 na poz. 35,9, „naklejki wodoodporne” 76 na poz. 30,6. Dane z 18.11 - powód aktualny. Brak w bazie: „naklejki odporne na uv” bez miejsca w H2/H3/FAQ.
+
+**Zmiana** (`/naklejki-foliowe`, P0, `zmieniono`, `dateModified` i `lastModified` w sitemapie = 2026-11-19; title, H1 i fraza główna bez zmian):
+
+- nowa sekcja H2 „Naklejki winylowe i wodoodporne: folia winylowa a papier samoprzylepny” z odpowiedzią na początku i tabelą (woda, UV, zmywarka - nie, odklejanie, zastosowania, cena; tylko fakty z `facts.md`, papier jakościowo) oraz H3 „Naklejki odporne na UV - co to znaczy w praktyce” (bez liczby lat na zewnątrz) z linkiem do wpisu o wodoodporności; przycisk do kreatora po tabeli.
+- FAQ: pierwsze pytanie zamienione na pytanie AI „Czy naklejki z folii winylowej są wodoodporne i odporne na słońce?”, nowe „Gdzie zamówić wodoodporne naklejki winylowe… w małej ilości?” (pytanie AI) i „Czy naklejki foliowe to to samo co naklejki wodne?” (zapytanie GSC „naklejki wodne na zamówienie” - uczciwe „nie drukujemy kalkomanii”).
+- przyciski „Otwórz kreator naklejek” → „Zamów naklejki na folii” (CTA z rejestru); decyzja 3: usunięta wzmianka o „wbudowanym” generatorze AI.
+- Skan: brak „naklejki odporne na uv” usunięty, strona bez braków.
+
+**Linki przychodzące z kotwicą „naklejki foliowe”:** wpisy o rowerze i motoryzacji (kotwice „wodoodpornej folii winylowej” i „folii winylowej” → „naklejki foliowe”), nowe linki we wpisie o motocyklach i we wpisie o wodoodporności (pierwszy akapit). Sąsiadom bez zmiany `zmieniono`.
+
+**Do obserwacji:** wpis o wodoodporności zaczyna się od „Naklejki wodoodporne zamówisz…”, a ta fraza należy do landingu. Jeśli przy przeglądzie Google dalej będzie pokazywał na nią wpis, rozstrzygnąć właściciela.
+
+**Kiedy ocenić:** pozycja „naklejki foliowe”, „naklejki winylowe” i „naklejki wodoodporne” po 60-90 dniach (od 2027-01-18); wejścia i koszyk z GA4 przy przeglądzie.
+
 ## 2026-11-19 - /tresc naklejki-dla-firm: pogłębienie pod „naklejki firmowe” i „naklejki dla firm”
 
 **Powód:** GSC 90 dni 18.08-15.11.2026: 531 wyświetleń, 0 kliknięć przy poz. 21,8; „naklejki firmowe” 196 wyświetleń na poz. 37,8, „naklejki dla firm” 67 na poz. 19,2. Dane z 18.11 - powód aktualny.

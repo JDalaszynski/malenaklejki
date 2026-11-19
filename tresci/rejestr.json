@@ -44,18 +44,8 @@
       "priorytet": "P0",
       "status": "opublikowane",
       "opublikowano": "2026-07-25",
-      "zmieniono": "2026-07-25",
-      "zgloszenia": {},
-      "zadanie": {
-        "rodzaj": "poglebienie",
-        "tytul": "Wzmocnić landing na „naklejki foliowe” i „naklejki winylowe”",
-        "powod": "GSC 90 dni 18.08-15.11.2026: 1404 wyświetlenia, 32 kliknięcia przy poz. 18,3. „naklejki foliowe” 449 wyświetleń na poz. 24,9, „naklejki winylowe” 183 na poz. 35,9, „naklejki wodoodporne” 76 na poz. 30,6. Wejścia z GA4 i zamówienia według strony: tresci/frazy.json (poza gitem).",
-        "teza": "Strona prowadzi do koszyka (liczby GA4 w tresci/frazy.json), ale stoi poza pierwszą stroną. Dodaj tabelę „folia winylowa a papier samoprzylepny” (fakty tylko z facts.md: woda i UV tak, zmywarka nie), H2 z „naklejki winylowe” i „naklejki wodoodporne”, 2-3 pytania FAQ z prawdziwych zapytań. Linki przychodzące kotwicą „naklejki foliowe” z wpisów o rowerze, motorze, motoryzacji i trwałości folii.",
-        "priorytet": "P1",
-        "kolejnosc": 7,
-        "zrodlo": "przegląd treści 2026-11-18",
-        "dodano": "2026-11-18"
-      }
+      "zmieniono": "2026-11-19",
+      "zgloszenia": {}
     },
     {
       "id": "fotonaklejki",

@@ -11,7 +11,7 @@ role: "supporting"
 cta_text: "Zamów naklejki na folii"
 ---
 
-Naklejki wodoodporne zamówisz w MałeNaklejki od 1 sztuki za stałe 59,00 zł brutto za arkusz A4. Drukujemy wyłącznie na trwałej folii winylowej, która znosi kontakt z wodą i promieniowanie UV - dlatego ta sama naklejka sprawdzi się na bidonie w plecaku, na słoiku w lodówce i na kasku wystawionym na słońce. Zanim złożysz zamówienie, warto wiedzieć, co dokładnie oznacza "wodoodporna" w praktyce i gdzie leży granica tej odporności. Jeśli dopiero zaczynasz, zajrzyj też do naszego przewodnika o tym, na co zwrócić uwagę przy [drukowaniu naklejek online](/blog/drukowanie-naklejek-online-na-co-zwrocic-uwage-przed-wysylka-projektu) - znajdziesz tam komplet wymagań technicznych dla pliku.
+Naklejki wodoodporne zamówisz w MałeNaklejki od 1 sztuki za stałe 59,00 zł brutto za arkusz A4. Drukujemy wyłącznie [naklejki foliowe](/naklejki-foliowe) na trwałej folii winylowej, która znosi kontakt z wodą i promieniowanie UV - dlatego ta sama naklejka sprawdzi się na bidonie w plecaku, na słoiku w lodówce i na kasku wystawionym na słońce. Zanim złożysz zamówienie, warto wiedzieć, co dokładnie oznacza "wodoodporna" w praktyce i gdzie leży granica tej odporności. Jeśli dopiero zaczynasz, zajrzyj też do naszego przewodnika o tym, na co zwrócić uwagę przy [drukowaniu naklejek online](/blog/drukowanie-naklejek-online-na-co-zwrocic-uwage-przed-wysylka-projektu) - znajdziesz tam komplet wymagań technicznych dla pliku.
 
 ## Czy naklejki wodoodporne wytrzymają deszcz, mycie i słońce?
 

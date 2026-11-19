@@ -63,8 +63,16 @@ export const metadata: Metadata = {
  */
 const FAQS: { q: string; a: string }[] = [
   {
-    q: "Czy naklejki foliowe są wodoodporne?",
-    a: "Tak. Drukujemy na folii winylowej, która nie rozmoknie jak zwykły papier - jest odporna na wodę, zachlapanie i wilgoć. Dzięki temu wodoodporne naklejki foliowe sprawdzają się na bidonie, kubku, butelce czy laptopie, gdzie papierowa naklejka szybko by się rozpadła.",
+    q: "Czy naklejki z folii winylowej są wodoodporne i odporne na słońce?",
+    a: "Tak. Drukujemy na folii winylowej odpornej na wodę i promieniowanie UV: nie rozmoknie jak papier, znosi zachlapanie, deszcz i słońce. Dlatego wodoodporne naklejki foliowe sprawdzają się na bidonie, laptopie, ramie roweru czy kosmetykach w łazience. Nie nadają się tylko do zmywarki - naczynia z naklejką myj ręcznie.",
+  },
+  {
+    q: "Gdzie zamówić wodoodporne naklejki winylowe z własnym nadrukiem w małej ilości?",
+    a: "W MałeNaklejki zamówisz je online od 1 arkusza A4 za stałe 59,00 zł brutto, bez minimalnego nakładu. Wgrywasz grafikę do kreatora arkusza, kreator wycina ją po obrysie, a naklejki na folii winylowej produkujemy w Polsce w 4-5 dni robocze i wysyłamy do paczkomatu za 19,99 zł.",
+  },
+  {
+    q: "Czy naklejki foliowe to to samo co naklejki wodne?",
+    a: "Nie. Naklejki wodne (kalkomanie) przenosi się na powierzchnię po namoczeniu w wodzie i takich nie drukujemy. Nasze naklejki foliowe to naklejki samoprzylepne na folii winylowej: odklejasz je od podkładu i przyklejasz od razu, a po naklejeniu są odporne na wodę.",
   },
   {
     q: "Czym różnią się naklejki foliowe od winylowych?",
@@ -183,6 +191,39 @@ const ADVANTAGES: { icon: React.ElementType; title: string; text: string }[] = [
     icon: Truck,
     title: "Produkcja w Polsce, paczkomat",
     text: "Naklejki foliowe produkujemy w 4-5 dni robocze i wysyłamy z odbiorem w paczkomacie. Wszystko po polsku, z płatnością BLIK i Przelewy24.",
+  },
+];
+
+const VINYL_VS_PAPER: { label: string; vinyl: string; paper: string }[] = [
+  {
+    label: "Woda i wilgoć",
+    vinyl: "Odporna - nie rozmaka, nadruk się nie rozmywa",
+    paper: "Rozmaka i marszczy się po zamoczeniu",
+  },
+  {
+    label: "Słońce (UV)",
+    vinyl: "Odporna na promieniowanie UV",
+    paper: "Bez ochrony, kolory szybciej blakną",
+  },
+  {
+    label: "Zmywarka",
+    vinyl: "Nie - naczynia z naklejką myj ręcznie",
+    paper: "Nie",
+  },
+  {
+    label: "Odklejanie",
+    vinyl: "Mocny klej, po odklejeniu bez śladów",
+    paper: "Papier często się rwie przy odklejaniu",
+  },
+  {
+    label: "Gdzie się sprawdza",
+    vinyl: "Bidon, laptop, rower, kosmetyki w łazience, paczki",
+    paper: "Suche miejsca: koperty, zeszyty, opakowania na krótko",
+  },
+  {
+    label: "W MałeNaklejki",
+    vinyl: "59,00 zł brutto za arkusz A4, od 1 arkusza",
+    paper: "Nie drukujemy na papierze",
   },
 ];
 
@@ -315,7 +356,7 @@ export default function NaklejkiFoliowePage() {
           name: "Naklejki foliowe (winylowe) z własnym nadrukiem",
           url: PAGE_URL,
           isPartOf: { "@id": "https://www.malenaklejki.pl/#website" },
-          dateModified: "2026-11-02T00:00:00+01:00",
+          dateModified: "2026-11-19T00:00:00+01:00",
         }}
       />
 
@@ -380,7 +421,7 @@ export default function NaklejkiFoliowePage() {
               href="/"
               className="group inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-[#02af7a] hover:bg-[#029668] text-white text-sm sm:text-base font-black tracking-wide uppercase rounded-2xl shadow-[0_4px_14px_0_rgba(2,175,122,0.4)] hover:shadow-[0_6px_20px_0_rgba(2,175,122,0.6)] transform hover:-translate-y-0.5 transition-all duration-300"
             >
-              Otwórz kreator naklejek
+              Zamów naklejki na folii
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </Link>
             <Link
@@ -396,7 +437,7 @@ export default function NaklejkiFoliowePage() {
               <ShieldCheck className="w-3.5 h-3.5" /> W 100% polska produkcja
             </span>
             <span className="text-xs font-bold text-muted-foreground/60 flex items-center gap-1.5">
-              <Clock className="w-3.5 h-3.5" /> Ostatnia aktualizacja: 2
+              <Clock className="w-3.5 h-3.5" /> Ostatnia aktualizacja: 19
               listopada 2026
             </span>
           </div>
@@ -452,6 +493,84 @@ export default function NaklejkiFoliowePage() {
             jakość dostajesz. Każdą naklejkę drukujemy w rozdzielczości 300 DPI
             i tniemy po obrysie, w koło lub w prostokąt.
           </p>
+        </section>
+
+        {/* Folia winylowa a papier */}
+        <section className="mt-12 space-y-5">
+          <h2 className="text-2xl sm:text-3xl font-black text-foreground font-heading">
+            Naklejki winylowe i wodoodporne: folia winylowa a papier samoprzylepny
+          </h2>
+          <p className="text-sm sm:text-base text-muted-foreground font-medium leading-relaxed">
+            Naklejki winylowe są wodoodporne, a papierowe nie: folia winylowa
+            nie chłonie wody, więc nadruk nie rozmięknie od deszczu, zachlapania
+            ani mycia ręcznego, i jest odporna na promieniowanie UV. Papier
+            samoprzylepny wystarczy tam, gdzie naklejka zostaje sucha i krótko,
+            na przykład na kopercie. Żadna z nich nie nadaje się do zmywarki.
+          </p>
+          <div className="overflow-x-auto rounded-2xl border border-border/60 shadow-sm">
+            <table className="w-full border-collapse bg-white dark:bg-[#003a3b]/40 text-sm">
+              <thead>
+                <tr>
+                  <th className="p-3 sm:p-4 border-b border-border/60 text-left font-black text-foreground">
+                    Cecha
+                  </th>
+                  <th className="p-3 sm:p-4 border-b border-border/60 text-left font-black text-foreground">
+                    Folia winylowa
+                  </th>
+                  <th className="p-3 sm:p-4 border-b border-border/60 text-left font-black text-foreground">
+                    Papier samoprzylepny
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {VINYL_VS_PAPER.map((row, i) => (
+                  <tr
+                    key={row.label}
+                    className={
+                      i % 2 === 1 ? "bg-[#edf6f2]/30 dark:bg-[#002c2e]/20" : ""
+                    }
+                  >
+                    <th
+                      scope="row"
+                      className="p-3 sm:p-4 border-b border-border/60 text-left font-black text-foreground align-top"
+                    >
+                      {row.label}
+                    </th>
+                    <td className="p-3 sm:p-4 border-b border-border/60 text-foreground/80 dark:text-[#a0d4c8] font-semibold align-top">
+                      {row.vinyl}
+                    </td>
+                    <td className="p-3 sm:p-4 border-b border-border/60 text-foreground/80 dark:text-[#a0d4c8] font-semibold align-top">
+                      {row.paper}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <h3 className="text-lg sm:text-xl font-black text-foreground">
+            Naklejki odporne na UV - co to znaczy w praktyce
+          </h3>
+          <p className="text-sm sm:text-base text-muted-foreground font-medium leading-relaxed">
+            Odporność na UV oznacza, że nadruk na folii nie płowieje od słońca
+            tak szybko jak na papierze, więc naklejka na ramie roweru, kasku
+            czy szybie dłużej zachowuje kolory. Nie podajemy liczby lat na
+            zewnątrz, bo trwałość zależy od powierzchni i warunków. Ile folia
+            wytrzymuje w praktyce, opisujemy w poradniku o tym,{" "}
+            <Link
+              href="/blog/naklejki-wodoodporne-i-winylowe-jaka-folia-i-jak-dlugo-wytrzyma"
+              className="text-primary font-bold underline underline-offset-4 hover:text-primary/80 transition-colors"
+            >
+              ile realnie wytrzymują naklejki wodoodporne
+            </Link>
+            .
+          </p>
+          <Link
+            href="/"
+            className="group inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-[#02af7a] hover:bg-[#029668] text-white text-sm sm:text-base font-black tracking-wide uppercase rounded-2xl shadow-[0_4px_14px_0_rgba(2,175,122,0.4)] hover:shadow-[0_6px_20px_0_rgba(2,175,122,0.6)] transform hover:-translate-y-0.5 transition-all duration-300"
+          >
+            Zamów naklejki na folii
+            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+          </Link>
         </section>
 
         {/* Specyfikacja */}
@@ -594,7 +713,7 @@ export default function NaklejkiFoliowePage() {
             {[
               {
                 title: "Wgraj grafikę lub wygeneruj ją AI",
-                text: "Wgraj plik w formacie PDF, PNG lub JPG - zwykłe zdjęcie z telefonu też wystarczy, bo kreator sam usunie tło. Nie masz gotowej grafiki? Opisz pomysł tekstem, a generatory AI (np. Midjourney, ChatGPT lub wbudowany u nas) wygenerują obraz, który wgrasz jak własne zdjęcie.",
+                text: "Wgraj plik w formacie PDF, PNG lub JPG - zwykłe zdjęcie z telefonu też wystarczy, bo kreator sam usunie tło. Nie masz gotowej grafiki? Opisz pomysł tekstem, a generatory AI (np. ChatGPT, Gemini lub Midjourney) wygenerują obraz, który wgrasz jak własne zdjęcie.",
               },
               {
                 title: "Wybierz cięcie, rozmiar i liczbę sztuk",
@@ -695,7 +814,7 @@ export default function NaklejkiFoliowePage() {
               href="/"
               className="group inline-flex items-center justify-center gap-2 px-8 py-4 bg-[#02af7a] hover:bg-[#029668] text-white text-sm sm:text-lg font-black tracking-wide uppercase rounded-2xl shadow-[0_4px_14px_0_rgba(2,175,122,0.4)] hover:shadow-[0_6px_20px_0_rgba(2,175,122,0.6)] transform hover:-translate-y-0.5 transition-all duration-300"
             >
-              Otwórz kreator naklejek
+              Zamów naklejki na folii
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </Link>
           </div>
