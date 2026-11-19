@@ -12,6 +12,8 @@ Prowadzi agent `redaktor-tresci`. Najnowsze wpisy na górze. Każdy wpis: data, 
 
 **Dlaczego:** GSC 90 dni 18.08-15.11.2026: 168 wyświetleń, 0 kliknięć przy poz. 7,8 (typowo ok. 2,5%). Wejścia z tego wpisu częściej niż z innych wpisów kończą się koszykiem (GA4, liczby w `tresci/frazy.json`, poza gitem) - problem jest w wyniku Google, nie na stronie. Stary title i opis obiecywały listę („porównanie opcji”), nowe podają odpowiedź i cenę.
 
+**Zgłoszenia:** commit 6c323dc na produkcji 19.11, IndexNow 200 OK 19.11. **GSC do ponowienia od 2026-11-20** (nowy title i opis, prośba potrzebna; limit 19.11 wyczerpany).
+
 **Skan:** bez braków i kolizji.
 
 **Kiedy ocenić:** title i opis - sygnał od 2026-12-03, odczyt CTR od 2026-12-17 (28 dni).
