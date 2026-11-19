@@ -6,6 +6,14 @@ Prowadzi agent `redaktor-tresci`. Najnowsze wpisy na górze. Każdy wpis: data, 
 
 
 
+## 2026-11-19 - /tresc etykiety-na-prezenty: zadanie P4.3.6 przesunięte na 1-5.12
+
+**Co się zmieniło:** nic na stronie `/blog/naklejki-swiateczne-i-etykiety-na-prezenty` (`zmieniono` zostaje 2026-11-02, bez zgłoszeń). W rejestrze zadanie dostało `od` = 2026-12-01 i tezę na ten termin: z datą graniczną albo zdjęciami - realna aktualizacja; bez nich tylko link do `/naklejki-swiateczne` kotwicą „naklejki świąteczne” w sekcji „Skąd wziąć świąteczną grafikę na naklejki” i zamknięcie zadania.
+
+**Dlaczego:** warunek zadania niespełniony. `blog-agent/facts.md` nadal wymaga osobnej zgody na datę graniczną przed świętami (P4.3.0, decyzja D3 w `tresci/strategia.md`), a `public/blog/naklejki-swiateczne-i-etykiety-na-prezenty/` jest pusty. Wpis już linkuje landing w pierwszym akapicie (kotwica „gotowe zestawy naklejek świątecznych”), więc drugi link sam w sobie nie uzasadnia zmiany wbrew tezie. GSC 90 dni 18.08-15.11.2026: 14 wyświetleń, 1 kliknięcie, poz. 8.
+
+**Kiedy wrócić:** `/tresc etykiety-na-prezenty` od 2026-12-01. Data graniczna potrzebna do 1.12 (rekomendacja: pon 14.12.2026, `blog-agent/strategia-swieta-2026.md` §12).
+
 ## 2026-11-19 - /tresc etykiety-na-sloiki: frazy o słoikach do landingu
 
 **Powód:** GSC 90 dni 18.08-15.11.2026: 809 wyświetleń, 7 kliknięć przy poz. 23,7. „naklejki na słoiki z własnym nadrukiem”: wpis o logo na słoikach poz. 9,4 (49 wyśw.), landing poz. 18,1 (41 wyśw.); „etykiety na słoiki” 52 wyświetlenia na poz. 35,6. Braki w bazie: „naklejki na słoiki z własnym nadrukiem” i „etykiety na słoiki drukarnia” bez miejsca w H2/H3/FAQ landingu.

@@ -1060,12 +1060,12 @@
       "zadanie": {
         "rodzaj": "odswiezenie",
         "tytul": "Realna aktualizacja huba świątecznego (P4.3.6)",
-        "powod": "Zadanie P4.3.6 z blog-agent/plan.md: okno 10-20.11, bez daty granicznej i zdjęć przesuwa się na 1-5.12. Wpis ma 14 wyświetleń w 90 dni (sezon dopiero rusza).",
-        "teza": "Aktualizuj tylko, jeśli jest decyzja o dacie granicznej zamówień przed świętami (P4.3.0, facts.md) albo są zdjęcia od Jakuba. Bez tego niczego nie zmieniaj i przesuń zadanie na 1-5.12 z wpisem w dzienniku. Dodaj link do landingu /naklejki-swiateczne kotwicą „naklejki świąteczne” (gotowe zestawy) w sekcji dla osób bez własnej grafiki.",
+        "powod": "Zadanie P4.3.6 z blog-agent/plan.md: okno 10-20.11 minęło bez daty granicznej i zdjęć, 19.11 przesunięte na 1-5.12. GSC 90 dni 18.08-15.11.2026: 14 wyświetleń, 1 kliknięcie, poz. 8 (sezon dopiero rusza).",
+        "teza": "1-5.12: jeśli jest decyzja o dacie granicznej zamówień przed świętami (P4.3.0, facts.md), wpisz ją w sekcję „Kiedy zamówić” i FAQ „Czy zdążę…”; jeśli są zdjęcia od Jakuba, dodaj je procedurą z autoblog.md. W obu przypadkach dodaj link do landingu /naklejki-swiateczne kotwicą „naklejki świąteczne” (gotowe zestawy) w sekcji „Skąd wziąć świąteczną grafikę na naklejki”. Bez daty i zdjęć dodaj tylko ten link i zamknij zadanie: później aktualizacja nie zdąży zadziałać przed Wigilią.",
         "priorytet": "P1",
         "kolejnosc": 9,
         "zrodlo": "przegląd treści 2026-11-18",
-        "od": "2026-11-18",
+        "od": "2026-12-01",
         "dodano": "2026-11-18"
       }
     },
