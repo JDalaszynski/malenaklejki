@@ -16,7 +16,7 @@ Prowadzi agent `redaktor-tresci`. Najnowsze wpisy na górze. Każdy wpis: data, 
 - przycisk i `cta_text`: „Zamów naklejki z logo” (zgodnie z rejestrem; było „Zamów własne naklejki”).
 - Skan: brak „wstep” frazy głównej usunięty, strona bez braków.
 
-**Zgłoszenia:** GSC do ponowienia od 2026-11-20 (limit 19.11 wyczerpany).
+**Zgłoszenia:** commit bdbc86c na produkcji 19.11, IndexNow 200 OK 19.11. **GSC do ponowienia od 2026-11-20** (limit 19.11 wyczerpany).
 
 **Kiedy ocenić:** title i opis - pierwszy sygnał od 2026-12-03 (14 dni), pełny odczyt CTR od 2026-12-17 (28 dni).
 
