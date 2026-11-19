@@ -6,6 +6,16 @@ Prowadzi agent `redaktor-tresci`. Najnowsze wpisy na górze. Każdy wpis: data, 
 
 
 
+## 2026-11-19 - /tresc gdzie-zamowic-naklejki: title i opis z odpowiedzią
+
+**Co się zmieniło:** `/blog/gdzie-zamowic-naklejki-w-malym-nakladzie-porownanie` (P1, `zmieniono` i `updated` = 2026-11-19). Title i H1 „Gdzie zamówić naklejki w małym nakładzie? Porównanie opcji” (od 25.08) → „Gdzie zamówić naklejki? Od 1 arkusza za 59 zł, bez minimum” (58 znaków + dopisek szablonu, bez nazw konkurentów). Opis meta (152 znaki) z odpowiedzią: od 1 arkusza A4 za 59,00 zł brutto, bez minimum i wykrojnika; wcześniej „Porównujemy…”. Pierwsze zdanie odpowiada zamiast wyliczać cztery kanały: „Kilkanaście naklejek najprościej zamówić w polskim kreatorze online…” (cena, bez wykrojnika, produkcja 4-5 dni robocze), kanały w drugim zdaniu. Pierwsze pytanie FAQ zamienione na pytanie AI „Gdzie najlepiej zamówić kilkanaście naklejek z własnym nadrukiem w Polsce?” (odpowiedź bez zmian). Wspierająca „gdzie zamówić naklejki w małym nakładzie” wyszła z title, zostaje w H2 i opisie.
+
+**Dlaczego:** GSC 90 dni 18.08-15.11.2026: 168 wyświetleń, 0 kliknięć przy poz. 7,8 (typowo ok. 2,5%). Wejścia z tego wpisu częściej niż z innych wpisów kończą się koszykiem (GA4, liczby w `tresci/frazy.json`, poza gitem) - problem jest w wyniku Google, nie na stronie. Stary title i opis obiecywały listę („porównanie opcji”), nowe podają odpowiedź i cenę.
+
+**Skan:** bez braków i kolizji.
+
+**Kiedy ocenić:** title i opis - sygnał od 2026-12-03, odczyt CTR od 2026-12-17 (28 dni).
+
 ## 2026-11-19 - /tresc drukowanie-naklejek-online: odpowiedź o pliku w pierwszym akapicie
 
 **Co się zmieniło:** `/blog/drukowanie-naklejek-online-na-co-zwrocic-uwage-przed-wysylka-projektu` (P1, `zmieniono` i `updated` = 2026-11-19). Title i H1 bez zmian: „Drukowanie naklejek online - jak przygotować plik 300 DPI” ma 57 znaków z frazą na początku, a do 60 z dopiskiem szablonu nie zejdzie bez decyzji D1. Nowy pierwszy akapit (58 słów) zaczyna się od frazy głównej i odpowiada wprost: 300 DPI w docelowym rozmiarze, PNG z przezroczystym tłem do cięcia po obrysie, JPG do zdjęć, PDF do drobnego tekstu, tło usuwa przycisk „Usuń tło”, 59,00 zł brutto za arkusz A4. Drugi akapit: co jest dalej i link do kreatora kotwicą „Otwórz kreator arkusza” (zamiast „Spersonalizuj naklejkę”; bez „Dobrze trafiłeś”). Nowy opis meta (152 znaki, wcześniej „Poznaj 5 błędów…”). H2 „Rozdzielczość pliku - dlaczego naklejki potrzebują 300 DPI?” i „Druk naklejek online - 5 błędów, przez które wydruk wychodzi rozmazany” (wspierająca „druk naklejek online” była tylko w kotwicach). FAQ: pytanie AI na początku (55 słów) - 9 pytań. „Kreator automatycznie usunie tło” → przycisk „Usuń tło” (dwa miejsca, `facts.md`).

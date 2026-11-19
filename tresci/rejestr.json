@@ -901,9 +901,9 @@
       "typ": "wpis",
       "sciezka": "/blog/gdzie-zamowic-naklejki-w-malym-nakladzie-porownanie",
       "plik": "src/content/blog/gdzie-zamowic-naklejki-w-malym-nakladzie-porownanie.md",
-      "tytul": "Gdzie zamówić naklejki w małym nakładzie? Porównanie opcji",
+      "tytul": "Gdzie zamówić naklejki? Od 1 arkusza za 59 zł, bez minimum",
       "nazwa": "Gdzie zamówić naklejki",
-      "zajawka": "Gdzie zamówić naklejki w małym nakładzie? Porównujemy drukarnię lokalną, Allegro i serwisy zagraniczne z polskim kreatorem online. Arkusz A4 za 59,00 zł.",
+      "zajawka": "Gdzie zamówić naklejki w małym nakładzie? W MałeNaklejki od 1 arkusza A4 za 59,00 zł brutto, bez minimum i wykrojnika. Porównanie z drukarnią i Allegro.",
       "fraza": "gdzie zamówić naklejki",
       "frazy": [
         "gdzie zamówić naklejki w małym nakładzie"
@@ -926,18 +926,8 @@
       "priorytet": "P1",
       "status": "opublikowane",
       "opublikowano": "2026-08-25",
-      "zmieniono": "2026-10-19",
-      "zgloszenia": {},
-      "zadanie": {
-        "rodzaj": "ctr",
-        "tytul": "Opis i title, które obiecują odpowiedź, nie listę",
-        "powod": "GSC 90 dni 18.08-15.11.2026: 168 wyświetleń, 0 kliknięć przy poz. 7,8. Wejścia z GA4 na ten wpis częściej niż na inne wpisy kończą się koszykiem (tresci/frazy.json, poza gitem).",
-        "teza": "Wpis prowadzi do koszyka, a nikt nie klika w wynik. Title do 60 znaków z „gdzie zamówić naklejki” i odpowiedzią w skrócie (od 1 arkusza, 59 zł), opis meta z konkretną odpowiedzią. Bez nazw konkurentów w title.",
-        "priorytet": "P2",
-        "kolejnosc": 12,
-        "zrodlo": "przegląd treści 2026-11-18",
-        "dodano": "2026-11-18"
-      }
+      "zmieniono": "2026-11-19",
+      "zgloszenia": {}
     },
     {
       "id": "drukowanie-naklejek-online",
