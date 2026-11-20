@@ -1,6 +1,6 @@
 {
   "projekt": "malenaklejki",
-  "zaktualizowano": "2026-11-19",
+  "zaktualizowano": "2026-11-20",
   "opis": "Rejestr treści MałeNaklejki: landingi i wpisy opublikowane, kolejka nowych stron i zadania poprawy opublikowanych. Jedno źródło dla agenta treści (/tresc, /frazy, /przeglad-tresci) i panelu (Treści, Frazy). Pola opisuje tresci/system.md, sekcja 2.",
   "segmenty": {
     "wszyscy": "Wszyscy klienci",
@@ -46,7 +46,8 @@
       "opublikowano": "2026-07-25",
       "zmieniono": "2026-11-19",
       "zgloszenia": {
-        "indexnow": "2026-11-19"
+        "indexnow": "2026-11-19",
+        "gsc": "2026-11-20"
       }
     },
     {
@@ -82,7 +83,8 @@
       "opublikowano": "2026-07-27",
       "zmieniono": "2026-11-19",
       "zgloszenia": {
-        "indexnow": "2026-11-19"
+        "indexnow": "2026-11-19",
+        "gsc": "2026-11-20"
       }
     },
     {
@@ -121,7 +123,8 @@
       "opublikowano": "2026-08-31",
       "zmieniono": "2026-11-19",
       "zgloszenia": {
-        "indexnow": "2026-11-19"
+        "indexnow": "2026-11-19",
+        "gsc": "2026-11-20"
       }
     },
     {
@@ -442,7 +445,8 @@
       "opublikowano": "2026-07-17",
       "zmieniono": "2026-11-19",
       "zgloszenia": {
-        "indexnow": "2026-11-19"
+        "indexnow": "2026-11-19",
+        "gsc": "2026-11-20"
       }
     },
     {
@@ -479,7 +483,8 @@
       "opublikowano": "2026-07-19",
       "zmieniono": "2026-11-19",
       "zgloszenia": {
-        "indexnow": "2026-11-19"
+        "indexnow": "2026-11-19",
+        "gsc": "2026-11-20"
       }
     },
     {
@@ -517,7 +522,8 @@
       "opublikowano": "2026-07-15",
       "zmieniono": "2026-09-21",
       "zgloszenia": {
-        "indexnow": "2026-11-19"
+        "indexnow": "2026-11-19",
+        "gsc": "2026-11-20"
       }
     },
     {
@@ -552,7 +558,8 @@
       "opublikowano": "2026-07-02",
       "zmieniono": "2026-11-19",
       "zgloszenia": {
-        "indexnow": "2026-11-19"
+        "indexnow": "2026-11-19",
+        "gsc": "2026-11-20"
       }
     },
     {
@@ -588,7 +595,8 @@
       "opublikowano": "2026-07-07",
       "zmieniono": "2026-11-19",
       "zgloszenia": {
-        "indexnow": "2026-11-19"
+        "indexnow": "2026-11-19",
+        "gsc": "2026-11-20"
       }
     },
     {
@@ -626,7 +634,8 @@
       "opublikowano": "2026-08-04",
       "zmieniono": "2026-11-19",
       "zgloszenia": {
-        "indexnow": "2026-11-19"
+        "indexnow": "2026-11-19",
+        "gsc": "2026-11-20"
       }
     },
     {
@@ -836,7 +845,8 @@
       "opublikowano": "2026-07-14",
       "zmieniono": "2026-11-19",
       "zgloszenia": {
-        "indexnow": "2026-11-19"
+        "indexnow": "2026-11-19",
+        "gsc": "2026-11-20"
       }
     },
     {

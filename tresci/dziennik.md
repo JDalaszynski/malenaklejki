@@ -6,6 +6,20 @@ Prowadzi agent `redaktor-tresci`. Najnowsze wpisy na górze. Każdy wpis: data, 
 
 
 
+## 2026-11-20 - GSC: prośby o zindeksowanie zaległe z 19.11
+
+**Co zrobione:** „Sprawdzenie URL” dla 18 adresów zmienionych 19.11 (wszystkie z `www.`; bez `www` GSC pokazuje „Adres URL jest Google nieznany”, bo to przekierowanie 308). Żaden z 17 adresów z rejestru nie był skanowany po zmianie (ostatnie skanowania 30.10-18.11). „Poproś o zindeksowanie” przyjęte dla 10, `zgloszenia.gsc` = 2026-11-20: `/naklejki-foliowe`, `/fotonaklejki`, `/wlepki-na-zamowienie`, wpisy o telefonie, wlepkach, naklejce ze zdjęcia, zeszytach, jak zamówić, programie do naklejek i die-cut. Przy 11. (nalewki) „Przekroczono limit”.
+
+**Bez prośby:** `/` - Google pobrał stronę 19.11 o 14:39, po wdrożeniu 4e12b78; zindeksowana wersja ma już nowy opis meta.
+
+**Poza indeksem („zeskanowana, ale jeszcze nie zindeksowana”):**
+- `/blog/fajne-wzory-i-pomysly-na-naklejki-inspiracje-wg-zastosowania` - ostatnie skanowanie 16.08, więc Google nie widział zmiany z 19.11. Ma linki ze stopki, sekcji SEO strony głównej i wpisu o zamawianiu.
+- `/blog/naklejki-maly-naklad-jak-zamowic-pojedyncze-sztuki-bez-przeplacania` - ostatnie skanowanie 18.07 (zmiana z 17.08 niewidziana), bez zmian od sierpnia. Linkuje go 10 stron. Jedyna prawdziwa strona w tej przyczynie w raporcie stron (aktualizacja 16.11; reszta to pliki `/_next`, fonty, favicona, `/?zestaw=`). Walidacja przyczyny: „Niepowodzenie”.
+
+**Sprawdzone z 15.11:** wpisy o rowerze i motoryzacji oraz `/naklejki-swiateczne` są w indeksie. Mapa witryn: „Sukces”, odczyt 19.11, 64 strony („Tymczasowy błąd podczas przetwarzania” w sprawdzeniu URL nie jest stanem mapy).
+
+**GSC do ponowienia od 2026-11-21** (8, w tej kolejności): wzory, mały nakład, nalewki, `/etykiety-na-sloiki`, `/naklejki-dla-firm`, drukowanie online, logo na słoiki, gdzie zamówić. Jeśli wzory i mały nakład nie wrócą do indeksu po prośbie (kontrola ok. 2026-11-24), następny krok to treść, jak przy wpisach z 13.11.
+
 ## 2026-11-19 - Baner na blogu bez „w ciągu 2 dni”, opis meta strony głównej (za zgodą Jakuba)
 
 **Co się zmieniło:** baner nad pierwszym H2 każdego wpisu (`src/app/blog/[slug]/page.tsx`) obiecywał „w ciągu 2 dni”, a produkcja trwa 4-5 dni roboczych (`facts.md`). Ostatnia linia grafiki to teraz „Arkusz A4 za 59 zł” (Nunito Bold, tło z siatki kropek odtworzone). Plik `public/images/baner-blog-naklejki-po-twojemu.jpg` zastąpił `MałeNaklejki-Post-Instagram.jpg` (nowa nazwa, żeby cache nie trzymał starej wersji). **Przy zmianie ceny trzeba podmienić też ten baner.** Opis meta `/` (154 znaki) zaczyna się teraz od frazy głównej: „Naklejki z własnym nadrukiem od 1 sztuki: wgraj zdjęcie lub grafikę do kreatora…”; wcześniej „Stwórz własne naklejki w kreatorze online…”. Zgoda: Jakub w czacie 19.11 („podmień baner”, „dodaj do opisu meta strony głównej”).
