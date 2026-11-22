@@ -1,6 +1,6 @@
 {
   "projekt": "malenaklejki",
-  "zaktualizowano": "2026-11-20",
+  "zaktualizowano": "2026-11-23",
   "opis": "Rejestr treści MałeNaklejki: landingi i wpisy opublikowane, kolejka nowych stron i zadania poprawy opublikowanych. Jedno źródło dla agenta treści (/tresc, /frazy, /przeglad-tresci) i panelu (Treści, Frazy). Pola opisuje tresci/system.md, sekcja 2.",
   "segmenty": {
     "wszyscy": "Wszyscy klienci",
@@ -197,7 +197,8 @@
       "opublikowano": "2026-07-24",
       "zmieniono": "2026-11-19",
       "zgloszenia": {
-        "indexnow": "2026-11-19"
+        "indexnow": "2026-11-19",
+        "gsc": "2026-11-23"
       }
     },
     {
@@ -234,7 +235,8 @@
       "opublikowano": "2026-08-25",
       "zmieniono": "2026-11-19",
       "zgloszenia": {
-        "indexnow": "2026-11-19"
+        "indexnow": "2026-11-19",
+        "gsc": "2026-11-23"
       }
     },
     {
@@ -709,7 +711,8 @@
       "opublikowano": "2026-07-16",
       "zmieniono": "2026-11-19",
       "zgloszenia": {
-        "indexnow": "2026-11-19"
+        "indexnow": "2026-11-19",
+        "gsc": "2026-11-23"
       }
     },
     {
@@ -743,7 +746,8 @@
       "opublikowano": "2026-07-05",
       "zmieniono": "2026-11-19",
       "zgloszenia": {
-        "indexnow": "2026-11-19"
+        "indexnow": "2026-11-19",
+        "gsc": "2026-11-23"
       }
     },
     {
@@ -914,7 +918,9 @@
       "status": "opublikowane",
       "opublikowano": "2026-07-18",
       "zmieniono": "2026-08-17",
-      "zgloszenia": {}
+      "zgloszenia": {
+        "gsc": "2026-11-22"
+      }
     },
     {
       "id": "gdzie-zamowic-naklejki",
@@ -948,7 +954,8 @@
       "opublikowano": "2026-08-25",
       "zmieniono": "2026-11-19",
       "zgloszenia": {
-        "indexnow": "2026-11-19"
+        "indexnow": "2026-11-19",
+        "gsc": "2026-11-23"
       }
     },
     {
@@ -1097,7 +1104,8 @@
       "opublikowano": "2026-08-16",
       "zmieniono": "2026-11-19",
       "zgloszenia": {
-        "indexnow": "2026-11-19"
+        "indexnow": "2026-11-19",
+        "gsc": "2026-11-22"
       }
     },
     {

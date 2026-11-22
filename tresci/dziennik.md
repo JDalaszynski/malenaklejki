@@ -6,6 +6,16 @@ Prowadzi agent `redaktor-tresci`. Najnowsze wpisy na górze. Każdy wpis: data, 
 
 
 
+## 2026-11-22/23 - GSC: pozostałe 8 adresów z 20.11
+
+**Co zrobione:** „Poproś o zindeksowanie” przyjęte dla 7 adresów. 22.11 wieczorem: wzory i mały nakład (oba dalej „zeskanowana, ale jeszcze nie zindeksowana”, skanowania 16.08 i 18.07). Pierwsza prośba dla wzorów po kilku minutach skończyła się „Ups, coś poszło nie tak”, a ponowiona przeszła. Po północy, 23.11: nalewki, `/etykiety-na-sloiki`, `/naklejki-dla-firm`, logo na słoiki, gdzie zamówić (ostatnie skanowania 30.10-15.11, przed zmianą z 19.11). Limit nie wystąpił.
+
+**Bez prośby:** `/blog/drukowanie-naklejek-online-na-co-zwrocic-uwage-przed-wysylka-projektu` - Google pobrał go sam 20.11 o 14:54, a zindeksowana wersja ma już nowy title i opis.
+
+**Stan:** wszystkie 18 adresów zmienionych 19.11 jest zeskanowanych po zmianie albo zgłoszonych w GSC. Kolejki próśb nie ma.
+
+**Kiedy sprawdzić:** wzory i mały nakład ok. 2026-11-26 („Sprawdzenie URL”). Jeśli nadal będą poza indeksem, następny krok to treść, jak przy wpisach z 13.11.
+
 ## 2026-11-20 - GSC: prośby o zindeksowanie zaległe z 19.11
 
 **Co zrobione:** „Sprawdzenie URL” dla 18 adresów zmienionych 19.11 (wszystkie z `www.`; bez `www` GSC pokazuje „Adres URL jest Google nieznany”, bo to przekierowanie 308). Żaden z 17 adresów z rejestru nie był skanowany po zmianie (ostatnie skanowania 30.10-18.11). „Poproś o zindeksowanie” przyjęte dla 10, `zgloszenia.gsc` = 2026-11-20: `/naklejki-foliowe`, `/fotonaklejki`, `/wlepki-na-zamowienie`, wpisy o telefonie, wlepkach, naklejce ze zdjęcia, zeszytach, jak zamówić, programie do naklejek i die-cut. Przy 11. (nalewki) „Przekroczono limit”.
